@@ -144,3 +144,10 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 - Contingência: fontes_oficiais (35 trechos literais, 11 afirmações), conferidor rodando no testar.py, reconferência mensal agendada.
 - Exportações: sete abas em PDF, compactadas sem perda com qpdf (2,8 MB → 1,0 MB), num zip com MANIFESTO (SHA-256 do PDF compacto e do exportado), LEIA-ME e conferidor (zip_rastreavel.py). Adulteração de um byte é detectada.
 - Fase 2: plano em 5-leitura-por-circulo/fase2_plano.md e na aba "Fase 2 · Plano" do documento, para aprovação.
+
+## 03/10/2026, 18:29 — remoção das abas e decisões da fase 2
+
+Ítalo (literal): "1. resolva, remova., 2. 9 motores, como eu ja tinha passado e ja deixar modelo treinado para evoluirmos a plataforma, e as questoes do telegram eu tambem ja tinha definido, voce perdeu?"
+
+- As abas "Catálogo de jornadas" e "4 · Internas dos círculos" saíram do documento vivo; o PDF delas está em 7-historico.
+- Plano da fase 2 ajustado: nove motores independentes nascidos de um modelo-base; modelos de ML treinados já com usuários simulados e retreinados com dado real; Telegram nos 99% como ele definiu. O 1% (senhas, relatos da GO-09, confirmação de pagamento) fica como padrão até ele trocar.

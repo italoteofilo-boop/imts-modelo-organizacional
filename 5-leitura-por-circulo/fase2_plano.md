@@ -1,31 +1,31 @@
 # Fase 2 · Plano para aprovação
 
-Proposta de 03/10/2026, com as suas decisões das 17:42. Nada aqui foi construído. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
+Proposta de 03/10/2026, com as suas decisões das 17:42 e das 18:29. Nada aqui foi construído. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
 
 ## 1. Decisões suas incorporadas
 
 | Tema | Sua decisão | Como entra no plano |
 | --- | --- | --- |
-| Runtime | Um por círculo, customizável e reaproveitável | Nove instâncias de runtime, cada uma com configuração, DKP, pasta do Drive e repositório próprios. Todas rodam o mesmo motor versionado |
-| Machine learning | Desde já | A base de dados de ML nasce com o motor: registro de eventos, variáveis e registro de modelos. Os modelos treinam quando houver dado real |
-| Telegram | Canal padrão para 99% das interações | Autodestruição por padrão, armazenamento obrigatório na nossa base, pseudonimização e anonimização |
+| Motor | Nove motores, um por círculo, customizáveis e reaproveitáveis | Nove motores independentes, cada um com código, configuração, DKP, pasta do Drive e repositório próprios. Todos nascem do mesmo modelo-base, que guarda o que for comum |
+| Machine learning | Desde já, com modelo já treinado para evoluir a plataforma | A base de ML nasce com os motores: registro de eventos, variáveis e registro de modelos. Os primeiros modelos são treinados já, com os usuários simulados, e retreinados quando entrar dado real |
+| Telegram | Canal padrão para 99% das interações; a governança não precisa ser tão alta | Autodestruição por padrão, armazenamento obrigatório na nossa base, pseudonimização e anonimização |
 | Usuários simulados | Sim, inclusive no Telegram | Um usuário simulado por papel de cada raia, no ambiente de teste do Telegram e no motor |
 | Acessos externos | Mantidos | Contingência já feita: retrato literal das fontes, conferidor nos testes e reconferência mensal agendada |
 
-## 2. Onde eu divirjo e por quê
+## 2. Cuidados que entram no desenho (já decidido)
 
-- **Runtime:** nove instâncias, sim. Nove códigos separados, não. A customização que você quer fica na configuração de cada círculo: alçadas, cadências, agentes e parâmetros. Com nove códigos, cada correção seria feita nove vezes, e as versões se afastariam. O reaproveitamento futuro (outro ecossistema, outra empresa) é o mesmo motor com outra configuração.
-- **ML:** um modelo treinado com usuários simulados não decide nada real. O dado simulado testa o encanamento. Todo evento leva a marca simulado ou real, e o painel separa os dois.
-- **Telegram:** aceito como padrão. Mas cinco fatos da plataforma mudam o desenho (seção 4). O principal: no Telegram, um bot não vê a mensagem de outro bot. Os agentes não conversam entre si pelo grupo; quem orquestra é o nosso motor.
+- **Nove motores:** uma correção comum precisa chegar aos nove. O modelo-base leva a correção, e cada motor a puxa por versão, com os testes do próprio círculo rodando antes.
+- **Modelo treinado com simulação:** cada versão de modelo registra com que dado foi treinada. As versões treinadas só com dado simulado servem para evoluir a plataforma; o painel mostra simulado e real separados.
+- **Telegram:** um bot não vê a mensagem de outro bot. Os agentes não conversam entre si pelo grupo; quem orquestra são os motores (seção 4).
 
 ## 3. O que você pode estar esquecendo
 
 - **Identidade e acesso:** a mesma pessoa no Telegram, no Drive, no GitHub e no motor, com entrada e saída pela GE-07 (desligamento revoga tudo no mesmo dia).
 - **Segredos:** chaves de bots, do Supabase e do Drive num cofre, nunca em mensagem nem em repositório.
 - **Transferência internacional:** não conferi onde o Telegram guarda os dados. Se os dados saírem do Brasil, a LGPD só permite a transferência nos casos do art. 33. Cabe à Governança conferir e escolher a base: por exemplo, o consentimento específico e em destaque do inciso VIII.
-- **Versão do modelo e do runtime:** mudar uma jornada (ID-04) muda o runtime em produção. Isso exige migração versionada e volta atrás testada.
+- **Versão do modelo e do motor:** mudar uma jornada (ID-04) muda o motor em produção. Isso exige migração versionada e volta atrás testada.
 - **Cópia e restauração testadas:** a redundância só vale se a restauração tiver sido testada.
-- **Custo:** um limite por runtime e por modelo de IA, acompanhado no painel.
+- **Custo:** um limite por motor e por modelo de IA, acompanhado no painel.
 
 ## 4. Telegram: fatos que mudam o desenho
 
@@ -39,7 +39,7 @@ Proposta de 03/10/2026, com as suas decisões das 17:42. Nada aqui foi construí
 | Limites de envio: 1 mensagem por segundo por chat, 20 por minuto por grupo, cerca de 30 por segundo no total | Fila de envio no motor; avisos em massa vão por resumo, não um a um |
 | O Telegram tem ambiente de teste próprio para bots e usuários | Os usuários simulados rodam lá, sem misturar com o ambiente real |
 
-**Exceções propostas, para sua decisão (não impostas):**
+**O 1% fora do Telegram:** você definiu os 99%, mas não disse o que fica no 1%. Entram estes três, até você trocar algum:
 - Senhas, chaves e códigos de acesso nunca vão pelo Telegram.
 - Os relatos da GO-09 (canal de denúncia) vão por formulário próprio, para proteger quem relata.
 - Aprovações de pagamento (GE-04, GE-05) têm confirmação fora do Telegram, para manter a segregação.
@@ -55,21 +55,20 @@ Proposta de 03/10/2026, com as suas decisões das 17:42. Nada aqui foi construí
 | E1 | Registro de eventos | Cada tarefa executada vira um evento: jornada, etapa, tarefa, raia, executor, modo, início, fim, resultado e marca simulado ou real. Fica no Supabase, ao lado do modelo | — |
 | E2 | Usuários simulados | Uma pessoa simulada por papel de raia (sócios, executivo, Administrador do IMTS.OS, líderes, pessoas dos círculos, assessorias), com contas no ambiente de teste do Telegram | E1 |
 | E3 | Instruções de trabalho | Uma instrução por jornada (73), geradas da fonte do modelo: impressa (PDF) e digital (página). Mesma fonte, nenhuma divergência | — |
-| E4 | Motor e runtime piloto | O motor executa as jornadas de um círculo. Piloto: Identidade (5 jornadas, você é o líder). É o G7 | E1, sua escolha do motor |
-| E5 | Canal Telegram | Bot de entrada por runtime, webhook, fila de envio, autodestruição e gravação na base | E1, E4 |
+| E4 | Modelo-base e motor piloto | O modelo-base dos motores e o primeiro motor, que executa as jornadas de um círculo. Piloto: Identidade (5 jornadas, você é o líder). É o G7 | E1, sua escolha da tecnologia do motor |
+| E5 | Canal Telegram | Bot de entrada por motor, webhook, fila de envio, autodestruição e gravação na base | E1, E4 |
 | E6 | Painel | Visão de toda a operação: por círculo, jornada, etapa e alçada; trocas entre círculos; modo de execução; saúde das DKPs; desempenho dos modelos | E1 |
 | E7 | Simulador de cenários | Separado do motor: lê uma cópia do modelo e dos parâmetros, roda carga sintética e devolve propostas de mudança, que seguem a ID-04. Nunca escreve no motor | E1, E3 |
-| E8 | ML | Primeiros modelos: risco de atraso por etapa, promoção de modo (Copiloto → Autopiloto) e anomalia de cadência. Treino com dado real, avaliação no painel | E1, dado real |
+| E8 | ML | Primeiros modelos: risco de atraso por etapa, promoção de modo (Copiloto → Autopiloto) e anomalia de cadência. Treinados já com os usuários simulados, retreinados com dado real; avaliação no painel | E1, E2 |
 | E9 | Interface conversacional | Uma camada de conversa sobre Telegram e página web: intenção → tarefa, com a pessoa decidindo o que é de alçada | E4, E5 |
-| E10 | Replicação | Os outros oito runtimes, por configuração | E4 a E6 estáveis |
+| E10 | Os outros oito motores | Criados do modelo-base e customizados por círculo | E4 a E6 estáveis |
 
-**Ordem proposta:** E1 e E3 começam já: não dependem de escolha e custam pouco. Depois vêm E2, E4, E5 e E6 no piloto, E7, E9, E10 e, por fim, E8, quando houver dado real.
+**Ordem proposta:** E1 e E3 começam já: não dependem de escolha e custam pouco. Depois vêm E2 e E8, com o modelo treinado na simulação, e então E4, E5 e E6 no piloto, E7, E9 e E10.
 
 ## 6. O que preciso de você
 
-1. Aprovar ou ajustar este plano: as divergências da seção 2 e as exceções da seção 4.
-2. Escolher o motor do G7. Posso trazer a comparação das opções, com fonte, antes de você decidir.
-3. Confirmar o piloto: Identidade.
+1. Escolher a tecnologia dos motores (G7). Posso trazer a comparação das opções, com fonte.
+2. Confirmar o piloto: Identidade.
 
 ## Fontes
 
