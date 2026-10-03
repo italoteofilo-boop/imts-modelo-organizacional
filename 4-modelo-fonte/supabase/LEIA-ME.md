@@ -11,6 +11,7 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 - `001_esquema.sql`: tipos, tabelas, índices, visões e segurança.
 - `002_carga.sql`: a carga, gerada dos arquivos do modelo.
 - `carga_compacta.py` e `lotes/`: a mesma carga em 26 lotes, a forma usada para carregar o Supabase.
+- `gerar_tipos.py` e `tipos.ts`: os tipos TypeScript do esquema `org`.
 - `gerar_sql.py`: refaz os dois arquivos a partir de `saida/`. Rode depois de qualquer mudança no modelo: `python3 supabase/gerar_sql.py`.
 
 ## Tabelas
@@ -63,4 +64,6 @@ Testado em 03/10/2026 em Postgres 16 local. As contagens da carga batem com o mo
 
 ## Para as aplicações lerem
 
-A API do Supabase só publica o esquema `public` de fábrica. Para uma aplicação ler o esquema `org` pelo cliente do Supabase, é preciso incluir `org` em Configurações do projeto → API → Exposed schemas. Feito isso, os tipos TypeScript do esquema `org` podem ser gerados.
+O esquema `org` está liberado na API do projeto desde 03/10/2026. O acesso anônimo é recusado (conferido: "permission denied for schema org"); usuário autenticado lê.
+
+Tipos TypeScript: `tipos.ts`, gerado por `gerar_tipos.py` a partir do `001_esquema.sql` (o gerador do Supabase só cobre o esquema `public`). Uso: `createClient<Database>(url, chave, { db: { schema: 'org' } })`. Os tipos passaram no `tsc --strict`.
