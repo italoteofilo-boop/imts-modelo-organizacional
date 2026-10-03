@@ -162,6 +162,16 @@ def m_copiloto_vira_assistido(js):
         for et in j['etapas']:
             if et['modo'] == 'Copiloto':
                 et['modo'] = 'Assistido'; return
+def m_dinheiro_sem_segunda_pessoa(js):
+    for j in js:
+        for et in j['etapas']:
+            itens = [it for it in et['fluxo'] if it['k'] == 'T']
+            if any(gerar.DINHEIRO.match(it['nome']) for it in itens):
+                for it in itens:
+                    if gerar.APROVA.match(it['nome']):
+                        it['lane'] = gerar.PREF + 'P'; it['exec'] = 'P'
+                return
+    js[0]['etapas'][0]['fluxo'].append(dict(k='T', nome='Pagar o fornecedor sem aprovação', lane=gerar.PREF + 'R', exec='R', tipo='script'))
 def m_volta_para_etapa_inexistente(js):
     for j in js:
         for et in j['etapas']:

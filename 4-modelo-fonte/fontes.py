@@ -5,7 +5,7 @@ O uso de cada fonte é declarado por círculo (USO)."""
 FONTES_BASE = {'apqc': {'ref': 'APQC, Process Classification Framework (PCF), cross-industry',
           'conf': 'PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, '
                   'que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da '
-                  'categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão '
+                  'categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão '
                   '8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.',
           'links': [('PCF 7.4 (PDF, cópia 1)',
                      'https://www.business-analysis.com.au/wp-content/uploads/2025/04/K014750_APQC-Process-Classification-Framework-PCF-Cross-Industry-PDF-Version-7.4_January-2025.pdf'),
@@ -119,7 +119,7 @@ FONTES_BASE = {'apqc': {'ref': 'APQC, Process Classification Framework (PCF), cr
                'conf': 'Página oficial aberta; o texto completo é pago. Só as duas perguntas do trecho de abertura, visível na página, foram conferidas.',
                'links': [('hbr.org', 'https://hbr.org/1995/03/corporate-strategy-the-quest-for-parenting-advantage')]},
  'realloc': {'ref': 'Stephen Hall, Dan Lovallo e Reinier Musters, How to put your money where your strategy is, McKinsey Quarterly, março de 2012',
-             'conf': 'Artigo aberto no site da McKinsey (página e PDF). O número citado é dos autores, sobre a amostra deles; não foi reproduzido por nós.',
+             'conf': 'Artigo aberto no site da McKinsey em 03/10/2026. O texto diz que o terço que mais realocou teve, em média, retorno total ao acionista 30% maior por ano que o terço que menos realocou; os valores 10,2% e 7,8% ao ano (1990 a 2005, 1.616 empresas) estão no Exhibit 2 do artigo, não no texto corrido. Os números são dos autores, sobre a amostra deles; não foram reproduzidos por nós.',
              'links': [('mckinsey.com',
                         'https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/how-to-put-your-money-where-your-strategy-is'),
                        ('PDF',
@@ -160,36 +160,35 @@ FONTES_BASE.update({
                   'catálogo de dados é escolha nossa.',
           'links': [('go-fair.org (PDF)', 'https://www.go-fair.org/wp-content/uploads/2022/01/FAIRPrinciples_overview.pdf')]},
  'l14133': {'ref': 'Brasil, Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos)',
-            'conf': 'Texto aberto no site do Planalto em 02/10/2026; conferidos o art. 6º (incisos XLV, XLVI, XLVIII e XLIX), o art. 17 (caput e '
-                    'incisos I a VII) e o caput do art. 18. O Planalto, a Câmara e o Senado entregaram o texto só até os arts. 36, 45 e 53. '
-                    'Em 03/10/2026, os arts. 82 (incisos I a IX), 83, 84, 86 (caput e §§ 2º a 8º), 90 (caput e §§ 1º e 5º), 140, 141, 164 e 165 '
-                    'foram lidos em transcrição secundária (LegJur, uma página por artigo); conferir no texto oficial antes de usar em peça.',
-            'links': [('planalto.gov.br', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm'),
-                      ('LegJur, art. 164 (secundária)', 'https://www.legjur.com/legislacao/art/LEI_00141332021-164'),
-                      ('LegJur, art. 165 (secundária)', 'https://www.legjur.com/legislacao/art/LEI_00141332021-165'),
-                      ('LegJur, art. 84 (secundária)', 'https://www.legjur.com/legislacao/art/LEI_00141332021-84'),
-                      ('LegJur, art. 86 (secundária)', 'https://www.legjur.com/legislacao/art/LEI_00141332021-86'),
-                      ('LegJur, art. 90 (secundária)', 'https://www.legjur.com/legislacao/art/LEI_00141332021-90'),
-                      ('LegJur, art. 140 (secundária)', 'https://www.legjur.com/legislacao/art/LEI_00141332021-140')]},
+            'conf': 'Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 6º (incisos XLV, XLVI, XLVIII e XLIX); '
+                    'art. 17 (caput, incisos I a VII e §§ 1º e 2º: fases em sequência, habilitação antes do julgamento só por ato motivado e prevista no edital, '
+                    'forma preferencialmente eletrônica); caput do art. 18; arts. 82 a 84 (registro de preços; ata de 1 ano, prorrogável por igual período '
+                    'com preço vantajoso comprovado); art. 86 (caput e §§ 2º a 8º; o § 3º, na redação da Lei 14.770/2023, deixa órgão municipal aderir a ata '
+                    'federal, estadual ou distrital e a ata municipal só se o registro de preços veio de licitação); art. 90 (prazo de convocação fixado no '
+                    'edital, prorrogável uma vez); art. 140 (obras e serviços: recebimento provisório pelo fiscal e definitivo por servidor ou comissão, com '
+                    'termo detalhado; compras: provisório de forma sumária e definitivo com termo detalhado; prazos no regulamento ou no contrato); art. 141 '
+                    '(ordem cronológica de pagamento por fonte e categoria); art. 164 (impugnação até 3 dias úteis antes da abertura, resposta em 3 dias úteis); '
+                    'art. 165 (recurso em 3 dias úteis só contra os atos das alíneas a a e do inciso I, e pedido de reconsideração em 3 dias úteis). '
+                    'Contratação direta não foi lida.',
+            'links': [('planalto.gov.br', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm')]},
  'anpd15': {'ref': 'ANPD, Resolução CD/ANPD nº 15, de 24 de abril de 2024 (Regulamento de Comunicação de Incidente de Segurança), DOU de 26/04/2024',
             'conf': 'Lidos os arts. 4º, 5º (caput, incisos I a VI e §§ 1º e 2º), 6º (caput e §§ 1º, 3º, 4º e 8º), 9º (caput e §§ 3º, 4º e 6º) e 10 (caput e §§ 1º e 2º). Texto lido em transcrição secundária, em 03/10/2026; o texto oficial não abriu na ferramenta de leitura. Conferir no oficial antes de usar em peça ou contrato.',
             'links': [('LegisWeb (secundária)', 'https://www.legisweb.com.br/legislacao/?id=458235')]},
  'cc2002': {'ref': 'Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)',
-            'conf': 'Os arts. 389 e 395 (redação da Lei 14.905/2024) e os arts. 421 e 421-A (redação da Lei 13.874/2019) foram lidos no Planalto, nas leis que deram a redação. Os arts. 422, 441, 442, 443, 445, 446, 475, 1.179, 1.180 e 1.194 foram lidos em transcrição secundária: a página compilada do Planalto foi cortada antes deles. Conferir no oficial antes de usar em peça ou contrato.',
-            'links': [('planalto.gov.br, Lei 13.874/2019', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13874.htm'),
-                      ('planalto.gov.br, Lei 14.905/2024', 'https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14905.htm'),
-                      ('Petições Online, art. 445 (secundária)', 'https://www.peticoesonline.com.br/art-445-cc'),
-                      ('Petições Online, art. 446 (secundária)', 'https://www.peticoesonline.com.br/art-446-cc'),
-                      ('Petições Online, art. 1.179 (secundária)', 'https://www.peticoesonline.com.br/art-1179-cc'),
-                      ('Petições Online, art. 1.194 (secundária)', 'https://www.peticoesonline.com.br/art-1194-cc')]},
+            'conf': 'Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: arts. 389 (parágrafo único: IPCA quando o índice '
+                    'não foi convencionado), 395, 421, 421-A (inciso II), 422, 441 a 446 (art. 445: 30 dias para móvel e 1 ano para imóvel; art. 446: os '
+                    'prazos não correm na garantia contratual, e o defeito é denunciado em 30 dias da descoberta), 475, 1.179, 1.180 e 1.194.',
+            'links': [('planalto.gov.br, Código Civil compilado', 'https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm')]},
  'clt': {'ref': 'Brasil, Decreto-Lei nº 5.452, de 1º de maio de 1943 (Consolidação das Leis do Trabalho)',
-         'conf': 'O art. 459, § 1º (redação da Lei 7.855/1989), o art. 477, caput e § 6º (redação da Lei 13.467/2017), e o art. 74, caput e §§ 2º e 4º (redação da Lei 13.874/2019), foram lidos no Planalto, nas leis que deram a redação. O art. 145 foi lido em transcrição secundária. A página da CLT no Planalto foi cortada no art. 51.',
-         'links': [('planalto.gov.br, Lei 7.855/1989', 'https://www.planalto.gov.br/ccivil_03/leis/l7855.htm'),
-                   ('planalto.gov.br, Lei 13.467/2017', 'https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13467.htm'),
-                   ('Petições Online, art. 145 (secundária)', 'https://www.peticoesonline.com.br/art-145-clt')]},
+         'conf': 'Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 74, § 2º (registro de ponto obrigatório '
+                 'acima de 20 trabalhadores) e § 4º (ponto por exceção); art. 145 (férias pagas até 2 dias antes do início); art. 459, § 1º (salário '
+                 'até o quinto dia útil do mês seguinte); art. 477, § 6º (verbas rescisórias em até 10 dias do término).',
+         'links': [('planalto.gov.br, CLT', 'https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm')]},
  'fgts': {'ref': 'Brasil, Lei nº 8.036, de 11 de maio de 1990 (FGTS), art. 15, na redação da Lei nº 14.438, de 24 de agosto de 2022',
-          'conf': 'Lido no Planalto, na Lei 14.438/2022, o início do caput do art. 15 (depósito até o vigésimo dia de cada mês) e o art. 19 da mesma lei, que liga o efeito ao início da arrecadação digital. A data de início do FGTS Digital (1º/03/2024) só foi achada em notícia da CNI; o ato oficial não foi localizado.',
-          'links': [('planalto.gov.br, Lei 14.438/2022', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14438.htm'),
+          'conf': 'Texto consolidado aberto no site do Planalto em 03/10/2026: depósito até o vigésimo dia de cada mês, de 8% da remuneração do mês '
+                  'anterior (art. 15, redação da Lei 14.438/2022). A data de início do FGTS Digital (1º/03/2024) só foi achada em notícia da CNI; '
+                  'o ato oficial não foi localizado.',
+          'links': [('planalto.gov.br, Lei 8.036 consolidada', 'https://www.planalto.gov.br/ccivil_03/leis/l8036consol.htm'),
                     ('CNI, notícia sobre o FGTS Digital (secundária)', 'https://conexaotrabalho.portaldaindustria.com.br/noticias/detalhe/trabalhista/-geral/fgts-digital-torna-se-obrigatorio-para-empregadores-partir-de-1-de-marco/')]},
  'iso21502': {'ref': 'ISO 21502:2020, Project, programme and portfolio management — Guidance on project management',
               'conf': 'Página oficial da ISO aberta em 02/10/2026: resumo lido; a norma está publicada, no estágio 90.92 (a ser revista). A norma completa é paga e não foi lida.',

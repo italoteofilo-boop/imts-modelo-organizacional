@@ -14,115 +14,145 @@
   <bpmn:process id="Process_GO03" name="Gerir os riscos, a conformidade e os controles internos" isExecutable="false">
     <bpmn:documentation>Fazer os riscos de cada círculo, empresa, oferta, contrato e agente serem reunidos, avaliados pela matriz e tratados por decisão; os controles internos e a conformidade serem testados; cada falha de controle ou não conformidade virar plano de remediação com dono e prazo e, quando a causa pede, regra nova ou revista; e o relatório de riscos e conformidade ir aos sócios e à Estratégia. A Governança avalia, testa e relata; os donos tratam os riscos e remediam.</bpmn:documentation>
     <bpmn:laneSet id="LaneSet_GO03">
+      <bpmn:lane id="Lane_GO03_SOC" name="Sócios">
+        <bpmn:flowNodeRef>GO03_E1_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
       <bpmn:lane id="Lane_GO03_GOP" name="Governança · pessoa">
         <bpmn:flowNodeRef>GO03_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_E1_T4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_T2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_G1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_T4</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>GO03_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_M3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_G2</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_GO03_GOA" name="Governança · agente">
         <bpmn:flowNodeRef>GO03_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_M2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_T1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_T3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>GO03_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_M4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_E3_T2</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_GO03_GOR" name="Governança · automação">
         <bpmn:flowNodeRef>GO03_S1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_S2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_M1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_E1_G1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_E2_T5</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>GO03_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO03_E3_T3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GO03_F1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="GO03_S1" name="Ciclo de riscos e conformidade iniciado"><bpmn:outgoing>GO03_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GO03_S1_def" /></bpmn:startEvent>
     <bpmn:startEvent id="GO03_S2" name="Risco, falha de controle ou mudança relevante recebida"><bpmn:outgoing>GO03_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="GO03_S2_def" /></bpmn:startEvent>
-    <bpmn:exclusiveGateway id="GO03_M1"><bpmn:incoming>GO03_Flow1</bpmn:incoming><bpmn:incoming>GO03_Flow2</bpmn:incoming><bpmn:outgoing>GO03_Flow17</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:scriptTask id="GO03_E1_T1" name="Reunir os riscos de cada círculo, empresa, oferta, contrato e agente"><bpmn:documentation>Etapa 1: Identificar e avaliar os riscos. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow17</bpmn:incoming><bpmn:outgoing>GO03_Flow3</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="GO03_M1"><bpmn:incoming>GO03_Flow1</bpmn:incoming><bpmn:incoming>GO03_Flow2</bpmn:incoming><bpmn:outgoing>GO03_Flow22</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GO03_E1_T1" name="Reunir os riscos de cada círculo, empresa, oferta, contrato e agente"><bpmn:documentation>Etapa 1: Identificar e avaliar os riscos. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow22</bpmn:incoming><bpmn:outgoing>GO03_Flow3</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:serviceTask id="GO03_E1_T2" name="Avaliar probabilidade, impacto e controles de cada risco pela matriz"><bpmn:documentation>Etapa 1: Identificar e avaliar os riscos. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow3</bpmn:incoming><bpmn:outgoing>GO03_Flow4</bpmn:outgoing></bpmn:serviceTask>
     <bpmn:userTask id="GO03_E1_T3" name="Decidir o tratamento de cada risco: aceitar, mitigar, transferir ou evitar, com o dono"><bpmn:documentation>Etapa 1: Identificar e avaliar os riscos. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow4</bpmn:incoming><bpmn:outgoing>GO03_Flow5</bpmn:outgoing></bpmn:userTask>
-    <bpmn:serviceTask id="GO03_E2_T1" name="Testar os controles internos e a conformidade com a lei e as regras"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow5</bpmn:incoming><bpmn:outgoing>GO03_Flow6</bpmn:outgoing></bpmn:serviceTask>
-    <bpmn:userTask id="GO03_E2_T2" name="Conferir os achados dos testes com os donos"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow6</bpmn:incoming><bpmn:outgoing>GO03_Flow7</bpmn:outgoing></bpmn:userTask>
-    <bpmn:serviceTask id="GO03_E2_T3" name="Testar uma amostra dos indicadores publicados contra a fonte"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow7</bpmn:incoming><bpmn:outgoing>GO03_Flow8</bpmn:outgoing></bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="GO03_E2_G1" name="Há falha de controle ou não conformidade?"><bpmn:incoming>GO03_Flow8</bpmn:incoming><bpmn:outgoing>GO03_Flow9</bpmn:outgoing><bpmn:outgoing>GO03_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:userTask id="GO03_E2_T4" name="Montar o plano de remediação com o dono, o prazo e a causa"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow9</bpmn:incoming><bpmn:outgoing>GO03_Flow11</bpmn:outgoing></bpmn:userTask>
-    <bpmn:exclusiveGateway id="GO03_M2"><bpmn:incoming>GO03_Flow10</bpmn:incoming><bpmn:incoming>GO03_Flow11</bpmn:incoming><bpmn:outgoing>GO03_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="GO03_E2_G2" name="A causa pede regra nova ou revista?"><bpmn:incoming>GO03_Flow18</bpmn:incoming><bpmn:outgoing>GO03_Flow12</bpmn:outgoing><bpmn:outgoing>GO03_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:scriptTask id="GO03_E2_T5" name="Abrir a revisão da regra"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow12</bpmn:incoming><bpmn:outgoing>GO03_Flow14</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:exclusiveGateway id="GO03_M3"><bpmn:incoming>GO03_Flow13</bpmn:incoming><bpmn:incoming>GO03_Flow14</bpmn:incoming><bpmn:outgoing>GO03_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="GO03_E3_T1" name="Consolidar o relatório de riscos, conformidade e remediações"><bpmn:documentation>Etapa 3: Relatar os riscos e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO03_Flow19</bpmn:incoming><bpmn:outgoing>GO03_Flow15</bpmn:outgoing></bpmn:serviceTask>
-    <bpmn:scriptTask id="GO03_E3_T2" name="Publicar o relatório aos sócios e à Estratégia"><bpmn:documentation>Etapa 3: Relatar os riscos e a conformidade. Executor: Automação da Governança (Governança · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO03_Flow15</bpmn:incoming><bpmn:outgoing>GO03_Flow16</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:endEvent id="GO03_F1" name="Relatório de riscos e conformidade publicado"><bpmn:incoming>GO03_Flow16</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="GO03_E1_G1" name="Algum risco tem nota 15 ou mais na matriz?"><bpmn:incoming>GO03_Flow5</bpmn:incoming><bpmn:outgoing>GO03_Flow6</bpmn:outgoing><bpmn:outgoing>GO03_Flow8</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GO03_E1_T4" name="Levar aos sócios os riscos de nota 15 ou mais, com a proposta de tratamento"><bpmn:documentation>Etapa 1: Identificar e avaliar os riscos. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow6</bpmn:incoming><bpmn:outgoing>GO03_Flow7</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GO03_E1_T5" name="Decidir o tratamento dos riscos de nota 15 ou mais"><bpmn:documentation>Etapa 1: Identificar e avaliar os riscos. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow7</bpmn:incoming><bpmn:outgoing>GO03_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GO03_M2"><bpmn:incoming>GO03_Flow8</bpmn:incoming><bpmn:incoming>GO03_Flow9</bpmn:incoming><bpmn:outgoing>GO03_Flow23</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="GO03_E2_T1" name="Testar os controles internos e a conformidade com a lei e as regras"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow23</bpmn:incoming><bpmn:outgoing>GO03_Flow10</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GO03_E2_T2" name="Conferir os achados dos testes com os donos"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow10</bpmn:incoming><bpmn:outgoing>GO03_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="GO03_E2_T3" name="Testar uma amostra dos indicadores publicados contra a fonte"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow11</bpmn:incoming><bpmn:outgoing>GO03_Flow12</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="GO03_E2_G1" name="Há falha de controle ou não conformidade?"><bpmn:incoming>GO03_Flow12</bpmn:incoming><bpmn:outgoing>GO03_Flow13</bpmn:outgoing><bpmn:outgoing>GO03_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GO03_E2_T4" name="Montar o plano de remediação com o dono, o prazo e a causa"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow13</bpmn:incoming><bpmn:outgoing>GO03_Flow15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GO03_M3"><bpmn:incoming>GO03_Flow14</bpmn:incoming><bpmn:incoming>GO03_Flow15</bpmn:incoming><bpmn:outgoing>GO03_Flow24</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="GO03_E2_G2" name="A causa pede regra nova ou revista?"><bpmn:incoming>GO03_Flow24</bpmn:incoming><bpmn:outgoing>GO03_Flow16</bpmn:outgoing><bpmn:outgoing>GO03_Flow17</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GO03_E2_T5" name="Abrir a revisão da regra"><bpmn:documentation>Etapa 2: Testar os controles e a conformidade. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO03_Flow16</bpmn:incoming><bpmn:outgoing>GO03_Flow18</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="GO03_M4"><bpmn:incoming>GO03_Flow17</bpmn:incoming><bpmn:incoming>GO03_Flow18</bpmn:incoming><bpmn:outgoing>GO03_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="GO03_E3_T1" name="Conferir a evidência das remediações e apontar as vencidas"><bpmn:documentation>Etapa 3: Relatar os riscos e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO03_Flow25</bpmn:incoming><bpmn:outgoing>GO03_Flow19</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="GO03_E3_T2" name="Consolidar o relatório de riscos, conformidade e remediações"><bpmn:documentation>Etapa 3: Relatar os riscos e a conformidade. Executor: Agente da Governança (Governança · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO03_Flow19</bpmn:incoming><bpmn:outgoing>GO03_Flow20</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="GO03_E3_T3" name="Publicar o relatório aos sócios e à Estratégia"><bpmn:documentation>Etapa 3: Relatar os riscos e a conformidade. Executor: Automação da Governança (Governança · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO03_Flow20</bpmn:incoming><bpmn:outgoing>GO03_Flow21</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GO03_F1" name="Relatório de riscos e conformidade publicado"><bpmn:incoming>GO03_Flow21</bpmn:incoming></bpmn:endEvent>
     <bpmn:sequenceFlow id="GO03_Flow1" sourceRef="GO03_S1" targetRef="GO03_M1" />
     <bpmn:sequenceFlow id="GO03_Flow2" sourceRef="GO03_S2" targetRef="GO03_M1" />
     <bpmn:sequenceFlow id="GO03_Flow3" sourceRef="GO03_E1_T1" targetRef="GO03_E1_T2" />
     <bpmn:sequenceFlow id="GO03_Flow4" sourceRef="GO03_E1_T2" targetRef="GO03_E1_T3" />
-    <bpmn:sequenceFlow id="GO03_Flow5" sourceRef="GO03_E1_T3" targetRef="GO03_E2_T1" />
-    <bpmn:sequenceFlow id="GO03_Flow6" sourceRef="GO03_E2_T1" targetRef="GO03_E2_T2" />
-    <bpmn:sequenceFlow id="GO03_Flow7" sourceRef="GO03_E2_T2" targetRef="GO03_E2_T3" />
-    <bpmn:sequenceFlow id="GO03_Flow8" sourceRef="GO03_E2_T3" targetRef="GO03_E2_G1" />
-    <bpmn:sequenceFlow id="GO03_Flow9" name="Sim" sourceRef="GO03_E2_G1" targetRef="GO03_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="GO03_Flow10" name="Não" sourceRef="GO03_E2_G1" targetRef="GO03_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="GO03_Flow11" sourceRef="GO03_E2_T4" targetRef="GO03_M2" />
-    <bpmn:sequenceFlow id="GO03_Flow12" name="Sim" sourceRef="GO03_E2_G2" targetRef="GO03_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="GO03_Flow13" name="Não" sourceRef="GO03_E2_G2" targetRef="GO03_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="GO03_Flow14" sourceRef="GO03_E2_T5" targetRef="GO03_M3" />
-    <bpmn:sequenceFlow id="GO03_Flow15" sourceRef="GO03_E3_T1" targetRef="GO03_E3_T2" />
-    <bpmn:sequenceFlow id="GO03_Flow16" sourceRef="GO03_E3_T2" targetRef="GO03_F1" />
-    <bpmn:sequenceFlow id="GO03_Flow17" sourceRef="GO03_M1" targetRef="GO03_E1_T1" />
-    <bpmn:sequenceFlow id="GO03_Flow18" sourceRef="GO03_M2" targetRef="GO03_E2_G2" />
-    <bpmn:sequenceFlow id="GO03_Flow19" sourceRef="GO03_M3" targetRef="GO03_E3_T1" />
+    <bpmn:sequenceFlow id="GO03_Flow5" sourceRef="GO03_E1_T3" targetRef="GO03_E1_G1" />
+    <bpmn:sequenceFlow id="GO03_Flow6" name="Sim" sourceRef="GO03_E1_G1" targetRef="GO03_E1_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO03_Flow7" sourceRef="GO03_E1_T4" targetRef="GO03_E1_T5" />
+    <bpmn:sequenceFlow id="GO03_Flow8" name="Não" sourceRef="GO03_E1_G1" targetRef="GO03_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO03_Flow9" sourceRef="GO03_E1_T5" targetRef="GO03_M2" />
+    <bpmn:sequenceFlow id="GO03_Flow10" sourceRef="GO03_E2_T1" targetRef="GO03_E2_T2" />
+    <bpmn:sequenceFlow id="GO03_Flow11" sourceRef="GO03_E2_T2" targetRef="GO03_E2_T3" />
+    <bpmn:sequenceFlow id="GO03_Flow12" sourceRef="GO03_E2_T3" targetRef="GO03_E2_G1" />
+    <bpmn:sequenceFlow id="GO03_Flow13" name="Sim" sourceRef="GO03_E2_G1" targetRef="GO03_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO03_Flow14" name="Não" sourceRef="GO03_E2_G1" targetRef="GO03_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO03_Flow15" sourceRef="GO03_E2_T4" targetRef="GO03_M3" />
+    <bpmn:sequenceFlow id="GO03_Flow16" name="Sim" sourceRef="GO03_E2_G2" targetRef="GO03_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO03_Flow17" name="Não" sourceRef="GO03_E2_G2" targetRef="GO03_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO03_Flow18" sourceRef="GO03_E2_T5" targetRef="GO03_M4" />
+    <bpmn:sequenceFlow id="GO03_Flow19" sourceRef="GO03_E3_T1" targetRef="GO03_E3_T2" />
+    <bpmn:sequenceFlow id="GO03_Flow20" sourceRef="GO03_E3_T2" targetRef="GO03_E3_T3" />
+    <bpmn:sequenceFlow id="GO03_Flow21" sourceRef="GO03_E3_T3" targetRef="GO03_F1" />
+    <bpmn:sequenceFlow id="GO03_Flow22" sourceRef="GO03_M1" targetRef="GO03_E1_T1" />
+    <bpmn:sequenceFlow id="GO03_Flow23" sourceRef="GO03_M2" targetRef="GO03_E2_T1" />
+    <bpmn:sequenceFlow id="GO03_Flow24" sourceRef="GO03_M3" targetRef="GO03_E2_G2" />
+    <bpmn:sequenceFlow id="GO03_Flow25" sourceRef="GO03_M4" targetRef="GO03_E3_T1" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="Diagram_GO03">
     <bpmndi:BPMNPlane id="Plane_GO03" bpmnElement="Collab_GO03">
-      <bpmndi:BPMNShape id="Participant_GO03_di" bpmnElement="Participant_GO03" isHorizontal="true"><dc:Bounds x="0" y="0" width="3620" height="528" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_GO03_GOP_di" bpmnElement="Lane_GO03_GOP" isHorizontal="true"><dc:Bounds x="30" y="0" width="3590" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_GO03_GOA_di" bpmnElement="Lane_GO03_GOA" isHorizontal="true"><dc:Bounds x="30" y="176" width="3590" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_GO03_GOR_di" bpmnElement="Lane_GO03_GOR" isHorizontal="true"><dc:Bounds x="30" y="352" width="3590" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_S1_di" bpmnElement="GO03_S1"><dc:Bounds x="156" y="382" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="380" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_S2_di" bpmnElement="GO03_S2"><dc:Bounds x="156" y="462" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="460" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_M1_di" bpmnElement="GO03_M1" isMarkerVisible="true"><dc:Bounds x="355" y="415" width="50" height="50" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E1_T1_di" bpmnElement="GO03_E1_T1"><dc:Bounds x="506" y="390" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E1_T2_di" bpmnElement="GO03_E1_T2"><dc:Bounds x="712" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E1_T3_di" bpmnElement="GO03_E1_T3"><dc:Bounds x="918" y="38" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_T1_di" bpmnElement="GO03_E2_T1"><dc:Bounds x="1124" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_T2_di" bpmnElement="GO03_E2_T2"><dc:Bounds x="1330" y="38" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_T3_di" bpmnElement="GO03_E2_T3"><dc:Bounds x="1536" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_G1_di" bpmnElement="GO03_E2_G1" isMarkerVisible="true"><dc:Bounds x="1797" y="63" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1710" y="115" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_T4_di" bpmnElement="GO03_E2_T4"><dc:Bounds x="1948" y="38" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_M2_di" bpmnElement="GO03_M2" isMarkerVisible="true"><dc:Bounds x="2209" y="63" width="50" height="50" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_G2_di" bpmnElement="GO03_E2_G2" isMarkerVisible="true"><dc:Bounds x="2415" y="63" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2328" y="115" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E2_T5_di" bpmnElement="GO03_E2_T5"><dc:Bounds x="2566" y="390" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_M3_di" bpmnElement="GO03_M3" isMarkerVisible="true"><dc:Bounds x="2827" y="239" width="50" height="50" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E3_T1_di" bpmnElement="GO03_E3_T1"><dc:Bounds x="2978" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_E3_T2_di" bpmnElement="GO03_E3_T2"><dc:Bounds x="3184" y="390" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GO03_F1_di" bpmnElement="GO03_F1"><dc:Bounds x="3452" y="422" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3415" y="463" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="GO03_Flow1_di" bpmnElement="GO03_Flow1"><di:waypoint x="192" y="400" /><di:waypoint x="380" y="400" /><di:waypoint x="380" y="415" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow2_di" bpmnElement="GO03_Flow2"><di:waypoint x="192" y="480" /><di:waypoint x="380" y="480" /><di:waypoint x="380" y="465" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow3_di" bpmnElement="GO03_Flow3"><di:waypoint x="586" y="390" /><di:waypoint x="586" y="264" /><di:waypoint x="712" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow4_di" bpmnElement="GO03_Flow4"><di:waypoint x="792" y="214" /><di:waypoint x="792" y="88" /><di:waypoint x="918" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow5_di" bpmnElement="GO03_Flow5"><di:waypoint x="998" y="138" /><di:waypoint x="998" y="264" /><di:waypoint x="1124" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow6_di" bpmnElement="GO03_Flow6"><di:waypoint x="1204" y="214" /><di:waypoint x="1204" y="88" /><di:waypoint x="1330" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow7_di" bpmnElement="GO03_Flow7"><di:waypoint x="1410" y="138" /><di:waypoint x="1410" y="264" /><di:waypoint x="1536" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow8_di" bpmnElement="GO03_Flow8"><di:waypoint x="1616" y="214" /><di:waypoint x="1616" y="88" /><di:waypoint x="1797" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow9_di" bpmnElement="GO03_Flow9"><di:waypoint x="1847" y="88" /><di:waypoint x="1948" y="88" /><bpmndi:BPMNLabel><dc:Bounds x="1852" y="70" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow10_di" bpmnElement="GO03_Flow10"><di:waypoint x="1822" y="63" /><di:waypoint x="1822" y="9" /><di:waypoint x="2234" y="9" /><di:waypoint x="2234" y="63" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="45" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow11_di" bpmnElement="GO03_Flow11"><di:waypoint x="2108" y="88" /><di:waypoint x="2209" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow12_di" bpmnElement="GO03_Flow12"><di:waypoint x="2440" y="113" /><di:waypoint x="2440" y="440" /><di:waypoint x="2566" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="2446" y="118" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow13_di" bpmnElement="GO03_Flow13"><di:waypoint x="2465" y="88" /><di:waypoint x="2852" y="88" /><di:waypoint x="2852" y="239" /><bpmndi:BPMNLabel><dc:Bounds x="2470" y="70" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow14_di" bpmnElement="GO03_Flow14"><di:waypoint x="2646" y="390" /><di:waypoint x="2646" y="264" /><di:waypoint x="2827" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow15_di" bpmnElement="GO03_Flow15"><di:waypoint x="3058" y="314" /><di:waypoint x="3058" y="440" /><di:waypoint x="3184" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow16_di" bpmnElement="GO03_Flow16"><di:waypoint x="3344" y="440" /><di:waypoint x="3452" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow17_di" bpmnElement="GO03_Flow17"><di:waypoint x="405" y="440" /><di:waypoint x="506" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow18_di" bpmnElement="GO03_Flow18"><di:waypoint x="2259" y="88" /><di:waypoint x="2415" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GO03_Flow19_di" bpmnElement="GO03_Flow19"><di:waypoint x="2877" y="264" /><di:waypoint x="2978" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Group_GO03_E1_di" bpmnElement="Group_GO03_E1"><dc:Bounds x="285" y="-44" width="808" height="580" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_GO03_E2_di" bpmnElement="Group_GO03_E2"><dc:Bounds x="1109" y="-44" width="1632" height="580" /><bpmndi:BPMNLabel><dc:Bounds x="1115" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_GO03_E3_di" bpmnElement="Group_GO03_E3"><dc:Bounds x="2757" y="-44" width="602" height="580" /><bpmndi:BPMNLabel><dc:Bounds x="2763" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_GO03_di" bpmnElement="Participant_GO03" isHorizontal="true"><dc:Bounds x="0" y="0" width="4650" height="704" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO03_SOC_di" bpmnElement="Lane_GO03_SOC" isHorizontal="true"><dc:Bounds x="30" y="0" width="4620" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO03_GOP_di" bpmnElement="Lane_GO03_GOP" isHorizontal="true"><dc:Bounds x="30" y="176" width="4620" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO03_GOA_di" bpmnElement="Lane_GO03_GOA" isHorizontal="true"><dc:Bounds x="30" y="352" width="4620" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO03_GOR_di" bpmnElement="Lane_GO03_GOR" isHorizontal="true"><dc:Bounds x="30" y="528" width="4620" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_S1_di" bpmnElement="GO03_S1"><dc:Bounds x="156" y="558" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="556" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_S2_di" bpmnElement="GO03_S2"><dc:Bounds x="156" y="638" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="636" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_M1_di" bpmnElement="GO03_M1" isMarkerVisible="true"><dc:Bounds x="355" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E1_T1_di" bpmnElement="GO03_E1_T1"><dc:Bounds x="506" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E1_T2_di" bpmnElement="GO03_E1_T2"><dc:Bounds x="712" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E1_T3_di" bpmnElement="GO03_E1_T3"><dc:Bounds x="918" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E1_G1_di" bpmnElement="GO03_E1_G1" isMarkerVisible="true"><dc:Bounds x="1179" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1092" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E1_T4_di" bpmnElement="GO03_E1_T4"><dc:Bounds x="1330" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E1_T5_di" bpmnElement="GO03_E1_T5"><dc:Bounds x="1536" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_M2_di" bpmnElement="GO03_M2" isMarkerVisible="true"><dc:Bounds x="1797" y="415" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_T1_di" bpmnElement="GO03_E2_T1"><dc:Bounds x="1948" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_T2_di" bpmnElement="GO03_E2_T2"><dc:Bounds x="2154" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_T3_di" bpmnElement="GO03_E2_T3"><dc:Bounds x="2360" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_G1_di" bpmnElement="GO03_E2_G1" isMarkerVisible="true"><dc:Bounds x="2621" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2534" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_T4_di" bpmnElement="GO03_E2_T4"><dc:Bounds x="2772" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_M3_di" bpmnElement="GO03_M3" isMarkerVisible="true"><dc:Bounds x="3033" y="239" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_G2_di" bpmnElement="GO03_E2_G2" isMarkerVisible="true"><dc:Bounds x="3239" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3152" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E2_T5_di" bpmnElement="GO03_E2_T5"><dc:Bounds x="3390" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_M4_di" bpmnElement="GO03_M4" isMarkerVisible="true"><dc:Bounds x="3651" y="415" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E3_T1_di" bpmnElement="GO03_E3_T1"><dc:Bounds x="3802" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E3_T2_di" bpmnElement="GO03_E3_T2"><dc:Bounds x="4008" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_E3_T3_di" bpmnElement="GO03_E3_T3"><dc:Bounds x="4214" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO03_F1_di" bpmnElement="GO03_F1"><dc:Bounds x="4482" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4445" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GO03_Flow1_di" bpmnElement="GO03_Flow1"><di:waypoint x="192" y="576" /><di:waypoint x="380" y="576" /><di:waypoint x="380" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow2_di" bpmnElement="GO03_Flow2"><di:waypoint x="192" y="656" /><di:waypoint x="380" y="656" /><di:waypoint x="380" y="641" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow3_di" bpmnElement="GO03_Flow3"><di:waypoint x="586" y="566" /><di:waypoint x="586" y="440" /><di:waypoint x="712" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow4_di" bpmnElement="GO03_Flow4"><di:waypoint x="792" y="390" /><di:waypoint x="792" y="264" /><di:waypoint x="918" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow5_di" bpmnElement="GO03_Flow5"><di:waypoint x="998" y="314" /><di:waypoint x="998" y="616" /><di:waypoint x="1179" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow6_di" bpmnElement="GO03_Flow6"><di:waypoint x="1204" y="591" /><di:waypoint x="1204" y="264" /><di:waypoint x="1330" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="1210" y="573" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow7_di" bpmnElement="GO03_Flow7"><di:waypoint x="1410" y="214" /><di:waypoint x="1410" y="88" /><di:waypoint x="1536" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow8_di" bpmnElement="GO03_Flow8"><di:waypoint x="1229" y="616" /><di:waypoint x="1822" y="616" /><di:waypoint x="1822" y="465" /><bpmndi:BPMNLabel><dc:Bounds x="1234" y="598" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow9_di" bpmnElement="GO03_Flow9"><di:waypoint x="1616" y="138" /><di:waypoint x="1616" y="440" /><di:waypoint x="1797" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow10_di" bpmnElement="GO03_Flow10"><di:waypoint x="2028" y="390" /><di:waypoint x="2028" y="264" /><di:waypoint x="2154" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow11_di" bpmnElement="GO03_Flow11"><di:waypoint x="2234" y="314" /><di:waypoint x="2234" y="440" /><di:waypoint x="2360" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow12_di" bpmnElement="GO03_Flow12"><di:waypoint x="2440" y="390" /><di:waypoint x="2440" y="264" /><di:waypoint x="2621" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow13_di" bpmnElement="GO03_Flow13"><di:waypoint x="2671" y="264" /><di:waypoint x="2772" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="2676" y="246" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow14_di" bpmnElement="GO03_Flow14"><di:waypoint x="2646" y="239" /><di:waypoint x="2646" y="185" /><di:waypoint x="3058" y="185" /><di:waypoint x="3058" y="239" /><bpmndi:BPMNLabel><dc:Bounds x="2652" y="221" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow15_di" bpmnElement="GO03_Flow15"><di:waypoint x="2932" y="264" /><di:waypoint x="3033" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow16_di" bpmnElement="GO03_Flow16"><di:waypoint x="3264" y="289" /><di:waypoint x="3264" y="616" /><di:waypoint x="3390" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="3270" y="294" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow17_di" bpmnElement="GO03_Flow17"><di:waypoint x="3289" y="264" /><di:waypoint x="3676" y="264" /><di:waypoint x="3676" y="415" /><bpmndi:BPMNLabel><dc:Bounds x="3294" y="246" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow18_di" bpmnElement="GO03_Flow18"><di:waypoint x="3470" y="566" /><di:waypoint x="3470" y="440" /><di:waypoint x="3651" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow19_di" bpmnElement="GO03_Flow19"><di:waypoint x="3962" y="440" /><di:waypoint x="4008" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow20_di" bpmnElement="GO03_Flow20"><di:waypoint x="4088" y="490" /><di:waypoint x="4088" y="616" /><di:waypoint x="4214" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow21_di" bpmnElement="GO03_Flow21"><di:waypoint x="4374" y="616" /><di:waypoint x="4482" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow22_di" bpmnElement="GO03_Flow22"><di:waypoint x="405" y="616" /><di:waypoint x="506" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow23_di" bpmnElement="GO03_Flow23"><di:waypoint x="1847" y="440" /><di:waypoint x="1948" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow24_di" bpmnElement="GO03_Flow24"><di:waypoint x="3083" y="264" /><di:waypoint x="3239" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO03_Flow25_di" bpmnElement="GO03_Flow25"><di:waypoint x="3701" y="440" /><di:waypoint x="3802" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GO03_E1_di" bpmnElement="Group_GO03_E1"><dc:Bounds x="285" y="-44" width="1426" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GO03_E2_di" bpmnElement="Group_GO03_E2"><dc:Bounds x="1727" y="-44" width="1838" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="1733" y="-38" width="1826" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GO03_E3_di" bpmnElement="Group_GO03_E3"><dc:Bounds x="3581" y="-44" width="808" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="3587" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

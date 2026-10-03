@@ -129,7 +129,7 @@ JORNADAS.append(dict(
                T('Conferir a viabilidade nos agentes', 'ITG'),
                T('Conferir o uso nos canais e com parceiros', 'REL'),
                T('Conferir os limites dos agentes com as alçadas', 'GOV'),
-               T('Aprovar voz, persona e limites dos agentes', 'IDP')])],
+               T('Aprovar voz e persona dos agentes; os limites seguem aos sócios na etapa 3', 'IDP')])],
           [('Padrões redigidos', ['etapa 3'])]),
         E('Testar os padrões em casos reais', 'Identidade, com Governança e os sócios', 'Copiloto', 'alto',
           [('Padrões redigidos', 'etapa 2'), ('Registros de entregas de pessoas e agentes', 'Integração')],
@@ -474,6 +474,9 @@ DECISOES = [
     ('Cadências e conteúdos validados; gates de implantação',
      'Validado por você (14:07 de 03/10/2026)',
      'ID-05 semestral. O que depende de dado real ficou nos gates G1 a G9.'),
+    ('Correções da auditoria geral',
+     'Aprovado por você (16:05 de 03/10/2026)',
+     'ID-02, etapa 2: a Identidade aprova voz e persona dos agentes; os limites dos agentes vão aos sócios na etapa 3, que passam a ser o dono único deles (M5).'),
 ]
 
 # alertas que seguem para os próximos círculos
@@ -554,7 +557,7 @@ MUDANCAS = [
 LIMITES = [
     'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
     'As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.',
     'Na ID-02, as consultas entram pela etapa 1. Se o volume crescer, vale separar em jornada própria; hoje não há medida de volume.',
     'Na ID-03, a jornada termina no pedido de registro; oposição ou recusa do registro ainda não tem caminho desenhado.',
@@ -575,5 +578,5 @@ REVISAO_TXT = [
     'As jornadas ID-01, ID-03 e ID-04 vêm da versão de treze jornadas, que passou por revisão independente: 30 achados, 3 graves, corrigidos naquela versão.',
     'No fechamento, um revisor independente leu as cinco jornadas junto com as da Estratégia e propôs sete mudanças. Três foram aplicadas na hora, porque tratavam de partes novas (ID-02, etapa 1; ID-05, etapa 1; fronteira com a Estratégia). As demais viraram cinco propostas: você aprovou quatro, aplicadas nesta versão, e recusou uma.',
     'As fontes deste círculo foram conferidas por um segundo revisor na versão anterior (23 fontes: 18 confirmadas e 5 confirmadas em parte, corrigidas) e, neste fechamento, a do IIA.',
-    'Depois do fechamento, o cruzamento com a Inteligência gerou uma proposta, que você aprovou às 20:02 e está aplicada. As duas propostas seguintes (data de efeito da retirada e escolha da identidade pela Identidade, ouvido o executivo) foram aprovadas às 20:11 de 02/10/2026 e estão aplicadas. A revisão independente dessas mudanças gerou uma proposta nova (papel da marca e nome na ID-03), na aba Decisões, não aplicada.',
+    'Depois do fechamento, o cruzamento com a Inteligência gerou uma proposta, que você aprovou às 20:02 e está aplicada. As duas propostas seguintes (data de efeito da retirada e escolha da identidade pela Identidade, ouvido o executivo) foram aprovadas às 20:11 de 02/10/2026 e estão aplicadas. A revisão independente dessas mudanças gerou uma proposta nova (papel da marca e nome na ID-03), aprovada às 09:30 de 03/10/2026 e aplicada.',
 ]

@@ -177,6 +177,7 @@
 - Inteligência → Estratégia: Aposta devolvida com evidência e recomendação [sai em IN-07 etapa 3, IN-07 etapa 5, IN-07 etapa 6; entra em ES-04 etapa 1; chega: direto]
 - Inteligência → Estratégia: Resposta com evidência, fonte e grau de confiança [sai em IN-02 etapa 4; entra em ES-04 etapa 2, ES-05 etapa 1, ES-06 etapa 2; chega: a quem pediu]
 - Inteligência → Estratégia: Pergunta devolvida com o motivo [sai em IN-02 etapa 1; entra em ES-04 etapa 2, ES-05 etapa 1, ES-06 etapa 2; chega: a quem pediu]
+- Inteligência → Estratégia: Ajuste de oferta feito sem portão, com o motivo da dispensa [sai em IN-07 etapa 2; entra em ES-06 etapa 1; chega: direto]
 - Inteligência → Estratégia: Contestação de indicador de alvo vigente [sai em IN-04 etapa 1, IN-04 etapa 4, IN-04 etapa 5; entra em ES-06 etapa 1; chega: direto]
 - Inteligência → Estratégia: Ideia ou aposta nova [sai em IN-01 etapa 4, IN-08 etapa 3; entra em ES-04 etapa 1; chega: como pedido]
 - Inteligência → Relações: Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores [sai em IN-07 etapa 9; entra em RE-01 etapa 1, RE-02 etapa 1, RE-03 etapa 2, RE-04 etapa 1, RE-06 etapa 3; chega: direto]
@@ -338,7 +339,7 @@
 - Integração → Governança: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em GO-03 etapa 1; chega: direto]
 - Integração → Governança: Agente suspenso, com o motivo [sai em IT-06 etapa 4; entra em GO-03 etapa 1, GO-06 etapa 1; chega: direto]
 - Integração → Governança: Contrato de tecnologia para guardar [sai em IT-07 etapa 3; entra em GO-05 etapa 1; chega: direto]
-- Integração → Governança: Registros de entregas de pessoas e agentes [sai em IT-06 etapa 4; entra em GO-06 etapa 1; chega: direto]
+- Integração → Governança: Registros de entregas de pessoas e agentes [sai em IT-06 etapa 4; entra em GO-06 etapa 1, GO-06 etapa 4; chega: direto]
 - Operações → Identidade: Consulta sobre caso não coberto [sai em OP-03 etapa 2; entra em ID-02 etapa 1; chega: como pedido]
 - Operações → Inteligência: Registros de entrega, atendimento e qualidade [sai em OP-02 etapa 4, OP-03 etapa 3, OP-05 etapa 2, OP-06 etapa 4, OP-07 etapa 5, OP-08 etapa 3; entra em IN-03 etapa 2; chega: direto]
 - Operações → Inteligência: Pedidos, reclamações e incidentes de clientes [sai em OP-03 etapa 3, OP-04 etapa 4, OP-07 etapa 5; entra em IN-03 etapa 2; chega: direto]
@@ -367,6 +368,7 @@
 - Gestão → Estratégia: Execução do orçamento e da alocação por empresa, oferta e aposta [sai em GE-05 etapa 2; entra em ES-02 etapa 1, ES-04 etapa 2; chega: direto]
 - Gestão → Estratégia: Posição e projeção de caixa [sai em GE-05 etapa 1; entra em ES-02 etapa 2, ES-03 etapa 3; chega: direto]
 - Gestão → Estratégia: Desvios e decisões do ritual de acompanhamento [sai em GE-02 etapa 2; entra em ES-06 etapa 1; chega: direto]
+- Gestão → Estratégia: Desvio grave ou mudança de alvo apontados pelo ritual [sai em GE-02 etapa 2; entra em ES-06 etapa 1; chega: direto]
 - Gestão → Inteligência: Resultado por empresa e consolidado [sai em GE-05 etapa 2; entra em IN-03 etapa 2; chega: direto]
 - Gestão → Inteligência: Resultado da pesquisa de cultura e dados de pessoas [sai em GE-09 etapa 3; entra em IN-03 etapa 2; chega: direto]
 - Gestão → Inteligência: Custos e margens por empresa e oferta [sai em GE-05 etapa 2; entra em IN-07 etapa 5; chega: direto]
@@ -376,6 +378,7 @@
 - Gestão → Negócios: Situação de faturas e pagamentos do cliente [sai em GE-03 etapa 4; entra em NE-06 etapa 1; chega: direto]
 - Gestão → Integração: Pedido, incidente ou risco de tecnologia [sai em GE-07 etapa 4; entra em IT-07 etapa 1; chega: como pedido]
 - Gestão → Operações: Pessoas, compras e ativos do plano confirmados [sai em GE-01 etapa 1; entra em OP-01 etapa 1; chega: direto]
+- Gestão → Operações: Suspensão de novas entregas por atraso, decidida pelo executivo [sai em GE-03 etapa 3; entra em OP-02 etapa 2; chega: direto]
 - Gestão → Operações: Materiais e serviços comprados, com a data de entrega [sai em GE-04 etapa 2; entra em OP-06 etapa 2; chega: direto]
 - Gestão → Governança: Contestação do critério de rateio [sai em GE-06 etapa 2; entra em GO-01 etapa 1; chega: direto]
 - Gestão → Governança: Aportes, distribuição ou mudanças de contas executados [sai em GE-05 etapa 3; entra em GO-02 etapa 3; chega: direto]
@@ -384,13 +387,13 @@
 - Governança → Identidade: Padrão ambíguo apontado pela auditoria [sai em GO-06 etapa 3; entra em ID-02 etapa 1; chega: direto]
 - Governança → Identidade: Lições da crise [sai em GO-08 etapa 3; entra em ID-02 etapa 1, ID-05 etapa 1; chega: direto]
 - Governança → Identidade: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em ID-02 etapa 2; chega: a todos]
-- Governança → Identidade: Resultado da auditoria das entregas [sai em GO-06 etapa 4; entra em ID-05 etapa 1; chega: direto]
+- Governança → Identidade: Resultado da auditoria das entregas [sai em GO-06 etapa 5; entra em ID-05 etapa 1; chega: direto]
 - Governança → Estratégia: Relatório de riscos e conformidade [sai em GO-03 etapa 3; entra em ES-01 etapa 1, ES-06 etapa 1; chega: direto]
 - Governança → Estratégia: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em ES-04 etapa 3, ES-05 etapa 4; chega: a todos]
 - Governança → Inteligência: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em IN-01 etapa 4, IN-02 etapa 1, IN-03 etapa 1, IN-04 etapa 1, IN-05 etapa 2, IN-06 etapa 2, IN-07 etapa 7, IN-08 etapa 1; chega: a todos]
 - Governança → Inteligência: Regras de guarda e de eliminação de dados [sai em GO-01 etapa 3; entra em IN-03 etapa 1, IN-03 etapa 5; chega: direto]
 - Governança → Inteligência: Amostra de entregas de pessoas e agentes [sai em GO-06 etapa 1; entra em IN-06 etapa 5; chega: direto]
-- Governança → Inteligência: Resultado da auditoria das entregas [sai em GO-06 etapa 4; entra em IN-06 etapa 5; chega: direto]
+- Governança → Inteligência: Resultado da auditoria das entregas [sai em GO-06 etapa 5; entra em IN-06 etapa 5; chega: direto]
 - Governança → Relações: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em RE-03 etapa 1, RE-03 etapa 5, RE-07 etapa 3; chega: a todos]
 - Governança → Relações: Pedido de titular, com a resposta decidida pela Governança [sai em GO-07 etapa 2; entra em RE-03 etapa 5; chega: direto]
 - Governança → Relações: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em RE-06 etapa 2; chega: a todos]
@@ -534,6 +537,7 @@
 - Governança, em NE-03 etapa 3: Revisar a cláusula fora do modelo e o risco
 - Governança, em NE-04 etapa 1: Levar a concessão negociada à decisão dos sócios
 - Governança, em NE-04 etapa 2: Revisar as cláusulas fora do modelo e o risco do contrato
+- Governança, em NE-04 etapa 2: Revisar a cláusula de matéria dos sócios e propor a redação
 - Governança, em NE-04 etapa 2: Conferir os poderes de quem assina pela empresa e pelo cliente
 - Governança, em NE-04 etapa 2: Guardar o contrato assinado
 - Operações, em NE-05 etapa 1: Confirmar a capacidade de entregar o objeto do edital
@@ -581,10 +585,13 @@
 - Governança, em IT-08 etapa 2: Conferir o redesenho contra as alçadas, as regras e os contratos
 - Negócios, em OP-03 etapa 1: Receber o pedido comercial do cliente e tratá-lo na proposta ou no contrato
 - Governança, em OP-04 etapa 1: Avaliar o risco e o dever de comunicar a autoridade
+- Governança, em OP-04 etapa 2: Avaliar a responsabilidade e o risco da solução acima da alçada
 - Gestão, em OP-06 etapa 2: Fazer a compra e informar a data de entrega
 - Governança, em OP-07 etapa 3: Comunicar o risco à autoridade competente
 - Governança, em OP-07 etapa 4: Enviar à autoridade os relatórios do recall
 - Governança, em GE-04 etapa 2: Revisar o contrato com o fornecedor e guardá-lo
+- Governança, em GE-05 etapa 3: Conferir os poderes e a mudança de contas
+- Governança, em GE-05 etapa 3: Conferir os poderes e a mudança de contas do IMTS.OS
 - Governança, em GE-11 etapa 2: Validar o conteúdo sensível
 - Estratégia, em GO-01 etapa 2: Definir o critério de rateio com a Governança
 - Identidade, em GO-06 etapa 3: Julgar os casos de fronteira

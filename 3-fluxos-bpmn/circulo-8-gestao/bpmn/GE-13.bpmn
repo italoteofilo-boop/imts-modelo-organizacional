@@ -10,8 +10,14 @@
     <bpmn:group id="Group_GE13_E2" categoryValueRef="CV_GE13_E2" />
   </bpmn:collaboration>
   <bpmn:process id="Process_GE13" name="Calcular e pagar a folha e os encargos" isExecutable="false">
-    <bpmn:documentation>Fazer cada folha ter o ponto, as variáveis, as comissões de quem vende, os reconhecimentos e as mudanças de remuneração do período apurados a partir dos registros de pessoas, conferida e aprovada pela Gestão, paga no prazo e com os encargos recolhidos. A Gestão apura, aprova e paga.</bpmn:documentation>
+    <bpmn:documentation>Fazer cada folha ter o ponto, as variáveis, as comissões de quem vende sobre a receita recebida, os reconhecimentos e as mudanças de remuneração do período apurados a partir dos registros de pessoas, conferida pela Gestão, aprovada pelo executivo ou, nos círculos do IMTS.OS, pelo Administrador, paga no prazo e com os encargos recolhidos. A Gestão apura, confere e paga; quem aprova é outra pessoa.</bpmn:documentation>
     <bpmn:laneSet id="LaneSet_GE13">
+      <bpmn:lane id="Lane_GE13_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>GE13_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE13_ADM" name="Administrador do IMTS.OS">
+        <bpmn:flowNodeRef>GE13_E2_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
       <bpmn:lane id="Lane_GE13_GEP" name="Gestão · pessoa">
         <bpmn:flowNodeRef>GE13_E2_T1</bpmn:flowNodeRef>
       </bpmn:lane>
@@ -21,41 +27,63 @@
       <bpmn:lane id="Lane_GE13_GER" name="Gestão · automação">
         <bpmn:flowNodeRef>GE13_S1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GE13_E1_T1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>GE13_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE13_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE13_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE13_E2_T4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>GE13_F1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:startEvent id="GE13_S1" name="Período da folha iniciado"><bpmn:outgoing>GE13_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GE13_S1_def" /></bpmn:startEvent>
-    <bpmn:scriptTask id="GE13_E1_T1" name="Reunir o ponto, as mudanças de pessoas, os contratos vendidos e os reconhecimentos"><bpmn:documentation>Etapa 1: Apurar a folha do período. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE13_Flow1</bpmn:incoming><bpmn:outgoing>GE13_Flow2</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:serviceTask id="GE13_E1_T2" name="Apurar salários, variáveis, comissões de quem vende e reconhecimentos"><bpmn:documentation>Etapa 1: Apurar a folha do período. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE13_Flow2</bpmn:incoming><bpmn:outgoing>GE13_Flow3</bpmn:outgoing></bpmn:serviceTask>
-    <bpmn:userTask id="GE13_E2_T1" name="Conferir e aprovar a folha"><bpmn:documentation>Etapa 2: Aprovar e pagar a folha. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE13_Flow3</bpmn:incoming><bpmn:outgoing>GE13_Flow4</bpmn:outgoing></bpmn:userTask>
-    <bpmn:scriptTask id="GE13_E2_T2" name="Pagar a folha e recolher os encargos"><bpmn:documentation>Etapa 2: Aprovar e pagar a folha. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE13_Flow4</bpmn:incoming><bpmn:outgoing>GE13_Flow5</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:endEvent id="GE13_F1" name="Folha paga e encargos recolhidos"><bpmn:incoming>GE13_Flow5</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="GE13_E1_T1" name="Reunir o ponto, as mudanças de pessoas, as receitas recebidas e os reconhecimentos"><bpmn:documentation>Etapa 1: Apurar a folha do período. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE13_Flow1</bpmn:incoming><bpmn:outgoing>GE13_Flow2</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GE13_E1_T2" name="Apurar salários, variáveis, comissões sobre a receita recebida e reconhecimentos"><bpmn:documentation>Etapa 1: Apurar a folha do período. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE13_Flow2</bpmn:incoming><bpmn:outgoing>GE13_Flow3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE13_E2_T1" name="Conferir a folha"><bpmn:documentation>Etapa 2: Aprovar e pagar a folha. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE13_Flow3</bpmn:incoming><bpmn:outgoing>GE13_Flow4</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GE13_E2_G1" name="De quem é a folha?"><bpmn:incoming>GE13_Flow4</bpmn:incoming><bpmn:outgoing>GE13_Flow5</bpmn:outgoing><bpmn:outgoing>GE13_Flow6</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GE13_E2_T2" name="Aprovar a folha da empresa"><bpmn:documentation>Etapa 2: Aprovar e pagar a folha. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE13_Flow5</bpmn:incoming><bpmn:outgoing>GE13_Flow7</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE13_E2_T3" name="Aprovar a folha dos círculos"><bpmn:documentation>Etapa 2: Aprovar e pagar a folha. Executor: Pessoa de fora do círculo (Administrador do IMTS.OS). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE13_Flow6</bpmn:incoming><bpmn:outgoing>GE13_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GE13_M1"><bpmn:incoming>GE13_Flow7</bpmn:incoming><bpmn:incoming>GE13_Flow8</bpmn:incoming><bpmn:outgoing>GE13_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GE13_E2_T4" name="Pagar a folha e recolher os encargos"><bpmn:documentation>Etapa 2: Aprovar e pagar a folha. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE13_Flow10</bpmn:incoming><bpmn:outgoing>GE13_Flow9</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GE13_F1" name="Folha paga e encargos recolhidos"><bpmn:incoming>GE13_Flow9</bpmn:incoming></bpmn:endEvent>
     <bpmn:sequenceFlow id="GE13_Flow1" sourceRef="GE13_S1" targetRef="GE13_E1_T1" />
     <bpmn:sequenceFlow id="GE13_Flow2" sourceRef="GE13_E1_T1" targetRef="GE13_E1_T2" />
     <bpmn:sequenceFlow id="GE13_Flow3" sourceRef="GE13_E1_T2" targetRef="GE13_E2_T1" />
-    <bpmn:sequenceFlow id="GE13_Flow4" sourceRef="GE13_E2_T1" targetRef="GE13_E2_T2" />
-    <bpmn:sequenceFlow id="GE13_Flow5" sourceRef="GE13_E2_T2" targetRef="GE13_F1" />
+    <bpmn:sequenceFlow id="GE13_Flow4" sourceRef="GE13_E2_T1" targetRef="GE13_E2_G1" />
+    <bpmn:sequenceFlow id="GE13_Flow5" name="De uma empresa" sourceRef="GE13_E2_G1" targetRef="GE13_E2_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">De uma empresa</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE13_Flow6" name="Dos círculos do IMTS.OS" sourceRef="GE13_E2_G1" targetRef="GE13_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Dos círculos do IMTS.OS</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE13_Flow7" sourceRef="GE13_E2_T2" targetRef="GE13_M1" />
+    <bpmn:sequenceFlow id="GE13_Flow8" sourceRef="GE13_E2_T3" targetRef="GE13_M1" />
+    <bpmn:sequenceFlow id="GE13_Flow9" sourceRef="GE13_E2_T4" targetRef="GE13_F1" />
+    <bpmn:sequenceFlow id="GE13_Flow10" sourceRef="GE13_M1" targetRef="GE13_E2_T4" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="Diagram_GE13">
     <bpmndi:BPMNPlane id="Plane_GE13" bpmnElement="Collab_GE13">
-      <bpmndi:BPMNShape id="Participant_GE13_di" bpmnElement="Participant_GE13" isHorizontal="true"><dc:Bounds x="0" y="0" width="1330" height="528" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_GE13_GEP_di" bpmnElement="Lane_GE13_GEP" isHorizontal="true"><dc:Bounds x="30" y="0" width="1300" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_GE13_GEA_di" bpmnElement="Lane_GE13_GEA" isHorizontal="true"><dc:Bounds x="30" y="176" width="1300" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_GE13_GER_di" bpmnElement="Lane_GE13_GER" isHorizontal="true"><dc:Bounds x="30" y="352" width="1300" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GE13_S1_di" bpmnElement="GE13_S1"><dc:Bounds x="132" y="422" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="463" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GE13_E1_T1_di" bpmnElement="GE13_E1_T1"><dc:Bounds x="276" y="390" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GE13_E1_T2_di" bpmnElement="GE13_E1_T2"><dc:Bounds x="482" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GE13_E2_T1_di" bpmnElement="GE13_E2_T1"><dc:Bounds x="688" y="38" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GE13_E2_T2_di" bpmnElement="GE13_E2_T2"><dc:Bounds x="894" y="390" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="GE13_F1_di" bpmnElement="GE13_F1"><dc:Bounds x="1162" y="422" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1125" y="463" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="GE13_Flow1_di" bpmnElement="GE13_Flow1"><di:waypoint x="168" y="440" /><di:waypoint x="276" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GE13_Flow2_di" bpmnElement="GE13_Flow2"><di:waypoint x="356" y="390" /><di:waypoint x="356" y="264" /><di:waypoint x="482" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GE13_Flow3_di" bpmnElement="GE13_Flow3"><di:waypoint x="562" y="214" /><di:waypoint x="562" y="88" /><di:waypoint x="688" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GE13_Flow4_di" bpmnElement="GE13_Flow4"><di:waypoint x="768" y="138" /><di:waypoint x="768" y="440" /><di:waypoint x="894" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="GE13_Flow5_di" bpmnElement="GE13_Flow5"><di:waypoint x="1054" y="440" /><di:waypoint x="1162" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Group_GE13_E1_di" bpmnElement="Group_GE13_E1"><dc:Bounds x="261" y="-44" width="396" height="580" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_GE13_E2_di" bpmnElement="Group_GE13_E2"><dc:Bounds x="673" y="-44" width="396" height="580" /><bpmndi:BPMNLabel><dc:Bounds x="679" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_GE13_di" bpmnElement="Participant_GE13" isHorizontal="true"><dc:Bounds x="0" y="0" width="2154" height="880" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE13_EXE_di" bpmnElement="Lane_GE13_EXE" isHorizontal="true"><dc:Bounds x="30" y="0" width="2124" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE13_ADM_di" bpmnElement="Lane_GE13_ADM" isHorizontal="true"><dc:Bounds x="30" y="176" width="2124" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE13_GEP_di" bpmnElement="Lane_GE13_GEP" isHorizontal="true"><dc:Bounds x="30" y="352" width="2124" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE13_GEA_di" bpmnElement="Lane_GE13_GEA" isHorizontal="true"><dc:Bounds x="30" y="528" width="2124" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE13_GER_di" bpmnElement="Lane_GE13_GER" isHorizontal="true"><dc:Bounds x="30" y="704" width="2124" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_S1_di" bpmnElement="GE13_S1"><dc:Bounds x="132" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E1_T1_di" bpmnElement="GE13_E1_T1"><dc:Bounds x="276" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E1_T2_di" bpmnElement="GE13_E1_T2"><dc:Bounds x="482" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E2_T1_di" bpmnElement="GE13_E2_T1"><dc:Bounds x="688" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E2_G1_di" bpmnElement="GE13_E2_G1" isMarkerVisible="true"><dc:Bounds x="949" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="862" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E2_T2_di" bpmnElement="GE13_E2_T2"><dc:Bounds x="1100" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E2_T3_di" bpmnElement="GE13_E2_T3"><dc:Bounds x="1306" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_M1_di" bpmnElement="GE13_M1" isMarkerVisible="true"><dc:Bounds x="1567" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_E2_T4_di" bpmnElement="GE13_E2_T4"><dc:Bounds x="1718" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE13_F1_di" bpmnElement="GE13_F1"><dc:Bounds x="1986" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1949" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GE13_Flow1_di" bpmnElement="GE13_Flow1"><di:waypoint x="168" y="792" /><di:waypoint x="276" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow2_di" bpmnElement="GE13_Flow2"><di:waypoint x="356" y="742" /><di:waypoint x="356" y="616" /><di:waypoint x="482" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow3_di" bpmnElement="GE13_Flow3"><di:waypoint x="562" y="566" /><di:waypoint x="562" y="440" /><di:waypoint x="688" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow4_di" bpmnElement="GE13_Flow4"><di:waypoint x="768" y="490" /><di:waypoint x="768" y="792" /><di:waypoint x="949" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow5_di" bpmnElement="GE13_Flow5"><di:waypoint x="974" y="767" /><di:waypoint x="974" y="88" /><di:waypoint x="1100" y="88" /><bpmndi:BPMNLabel><dc:Bounds x="980" y="736" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow6_di" bpmnElement="GE13_Flow6"><di:waypoint x="999" y="792" /><di:waypoint x="1282" y="792" /><di:waypoint x="1282" y="264" /><di:waypoint x="1306" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="1288" y="759" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow7_di" bpmnElement="GE13_Flow7"><di:waypoint x="1260" y="88" /><di:waypoint x="1592" y="88" /><di:waypoint x="1592" y="767" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow8_di" bpmnElement="GE13_Flow8"><di:waypoint x="1386" y="314" /><di:waypoint x="1386" y="792" /><di:waypoint x="1567" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow9_di" bpmnElement="GE13_Flow9"><di:waypoint x="1878" y="792" /><di:waypoint x="1986" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE13_Flow10_di" bpmnElement="GE13_Flow10"><di:waypoint x="1617" y="792" /><di:waypoint x="1718" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GE13_E1_di" bpmnElement="Group_GE13_E1"><dc:Bounds x="261" y="-44" width="396" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE13_E2_di" bpmnElement="Group_GE13_E2"><dc:Bounds x="673" y="-44" width="1220" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="679" y="-38" width="1208" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

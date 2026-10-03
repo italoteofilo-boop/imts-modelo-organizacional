@@ -867,8 +867,8 @@
    "modo": "Assistido",
    "risco": "alto",
    "real": "Assistida",
-   "n": 18,
-   "maq": 10
+   "n": 19,
+   "maq": 11
   },
   {
    "circulo": "Inteligência",
@@ -967,8 +967,8 @@
    "modo": "Copiloto",
    "risco": "baixo",
    "real": "Copiloto",
-   "n": 8,
-   "maq": 7
+   "n": 10,
+   "maq": 8
   },
   {
    "circulo": "Inteligência",
@@ -977,8 +977,8 @@
    "modo": "Autopiloto",
    "risco": "baixo",
    "real": "Autopiloto",
-   "n": 5,
-   "maq": 5
+   "n": 7,
+   "maq": 6
   },
   {
    "circulo": "Relações",
@@ -1427,7 +1427,7 @@
    "modo": "Assistido",
    "risco": "alto",
    "real": "Assistida",
-   "n": 8,
+   "n": 10,
    "maq": 2
   },
   {
@@ -1627,8 +1627,8 @@
    "modo": "Assistido",
    "risco": "médio",
    "real": "Assistida",
-   "n": 5,
-   "maq": 2
+   "n": 7,
+   "maq": 3
   },
   {
    "circulo": "Integração",
@@ -1764,10 +1764,10 @@
    "circulo": "Integração",
    "ref": "IT-06 etapa 4",
    "nome": "Monitorar o agente em uso e tratar o desvio",
-   "modo": "Autômato",
+   "modo": "Autopiloto",
    "risco": "médio",
-   "real": "Autômata",
-   "n": 4,
+   "real": "Autopiloto",
+   "n": 6,
    "maq": 4
   },
   {
@@ -1897,8 +1897,8 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 5,
-   "maq": 3
+   "n": 6,
+   "maq": 4
   },
   {
    "circulo": "Operações",
@@ -1997,7 +1997,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 6,
+   "n": 7,
    "maq": 3
   },
   {
@@ -2167,7 +2167,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 8,
+   "n": 10,
    "maq": 5
   },
   {
@@ -2197,8 +2197,8 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 6,
-   "maq": 2
+   "n": 9,
+   "maq": 5
   },
   {
    "circulo": "Gestão",
@@ -2227,7 +2227,7 @@
    "modo": "Autopiloto",
    "risco": "médio",
    "real": "Autopiloto",
-   "n": 5,
+   "n": 6,
    "maq": 4
   },
   {
@@ -2237,7 +2237,7 @@
    "modo": "Autopiloto",
    "risco": "médio",
    "real": "Autopiloto",
-   "n": 3,
+   "n": 5,
    "maq": 2
   },
   {
@@ -2257,7 +2257,7 @@
    "modo": "Autopiloto",
    "risco": "baixo",
    "real": "Autopiloto",
-   "n": 4,
+   "n": 5,
    "maq": 2
   },
   {
@@ -2317,7 +2317,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 5,
+   "n": 6,
    "maq": 4
   },
   {
@@ -2327,7 +2327,7 @@
    "modo": "Copiloto",
    "risco": "alto",
    "real": "Copiloto",
-   "n": 4,
+   "n": 9,
    "maq": 2
   },
   {
@@ -2357,7 +2357,7 @@
    "modo": "Copiloto",
    "risco": "alto",
    "real": "Copiloto",
-   "n": 7,
+   "n": 10,
    "maq": 2
   },
   {
@@ -2437,7 +2437,7 @@
    "modo": "Assistido",
    "risco": "médio",
    "real": "Assistida",
-   "n": 5,
+   "n": 7,
    "maq": 2
   },
   {
@@ -2477,7 +2477,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 2,
+   "n": 4,
    "maq": 1
   },
   {
@@ -2627,7 +2627,7 @@
    "modo": "Copiloto",
    "risco": "baixo",
    "real": "Copiloto",
-   "n": 4,
+   "n": 5,
    "maq": 3
   },
   {
@@ -2657,7 +2657,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 3,
+   "n": 5,
    "maq": 2
   },
   {
@@ -2677,8 +2677,8 @@
    "modo": "Autopiloto",
    "risco": "baixo",
    "real": "Autopiloto",
-   "n": 2,
-   "maq": 2
+   "n": 3,
+   "maq": 3
   },
   {
    "circulo": "Governança",
@@ -2707,7 +2707,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 4,
+   "n": 6,
    "maq": 2
   },
   {
@@ -2727,7 +2727,7 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 4,
+   "n": 5,
    "maq": 3
   },
   {
@@ -2747,22 +2747,32 @@
    "modo": "Autopiloto",
    "risco": "baixo",
    "real": "Autopiloto",
-   "n": 2,
-   "maq": 2
+   "n": 3,
+   "maq": 3
   },
   {
    "circulo": "Governança",
    "ref": "GO-06 etapa 3",
    "nome": "Julgar os casos e achar a causa",
-   "modo": "Copiloto",
+   "modo": "Assistido",
    "risco": "médio",
-   "real": "Copiloto",
-   "n": 6,
+   "real": "Assistida",
+   "n": 7,
    "maq": 4
   },
   {
    "circulo": "Governança",
    "ref": "GO-06 etapa 4",
+   "nome": "Auditar a Governança por assessoria externa",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-06 etapa 5",
    "nome": "Publicar o resultado da auditoria",
    "modo": "Autopiloto",
    "risco": "baixo",
@@ -2814,10 +2824,10 @@
    "circulo": "Governança",
    "ref": "GO-08 etapa 2",
    "nome": "Decidir a declaração, a posição e o porta-voz",
-   "modo": "Assistido",
+   "modo": "Copiloto",
    "risco": "alto",
-   "real": "Assistida",
-   "n": 5,
+   "real": "Copiloto",
+   "n": 7,
    "maq": 2
   },
   {
@@ -2827,7 +2837,7 @@
    "modo": "Copiloto",
    "risco": "alto",
    "real": "Copiloto",
-   "n": 4,
+   "n": 6,
    "maq": 1
   },
   {
@@ -2837,8 +2847,8 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 3,
-   "maq": 2
+   "n": 4,
+   "maq": 3
   },
   {
    "circulo": "Governança",
@@ -2853,6 +2863,16 @@
   {
    "circulo": "Governança",
    "ref": "GO-09 etapa 3",
+   "nome": "Apurar por assessoria externa o relato que cita a Governança",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Exclusivamente humana",
+   "n": 2,
+   "maq": 0
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-09 etapa 4",
    "nome": "Comunicar à autoridade",
    "modo": "Copiloto",
    "risco": "alto",
@@ -2862,7 +2882,7 @@
   },
   {
    "circulo": "Governança",
-   "ref": "GO-09 etapa 4",
+   "ref": "GO-09 etapa 5",
    "nome": "Registrar e levar a causa à conformidade",
    "modo": "Autômato",
    "risco": "baixo",
@@ -3109,12 +3129,6 @@
   {
    "gravidade": "leve",
    "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
-   "onde": "IT-06 etapa 4",
-   "detalhe": "Há desvio no agente? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
-  },
-  {
-   "gravidade": "leve",
-   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
    "onde": "OP-02 etapa 2",
    "detalhe": "A entrega passou na conferência? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
   },
@@ -3183,6 +3197,12 @@
    "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
    "onde": "GE-04 etapa 5",
    "detalhe": "Os valores batem? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "GE-04 etapa 5",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
   },
   {
    "gravidade": "leve",
@@ -3260,9 +3280,9 @@
    "tarefas": {
     "A": 55,
     "P": 56,
-    "R": 115,
+    "R": 118,
     "C": 48,
-    "H": 12,
+    "H": 14,
     "X": 1
    },
    "modos": {
@@ -3305,8 +3325,8 @@
     "R": 67,
     "A": 22,
     "P": 29,
-    "H": 20,
-    "C": 34
+    "H": 21,
+    "C": 35
    },
    "modos": {
     "Autopiloto": 4,
@@ -3323,32 +3343,32 @@
   },
   "Integração": {
    "tarefas": {
-    "R": 76,
+    "R": 77,
     "A": 25,
-    "P": 28,
-    "H": 10,
+    "P": 30,
+    "H": 11,
     "C": 23
    },
    "modos": {
     "Copiloto": 11,
-    "Autopiloto": 5,
+    "Autopiloto": 6,
     "Assistido": 7,
-    "Autômato": 6
+    "Autômato": 5
    },
    "reais": {
     "Copiloto": 11,
-    "Autopiloto": 5,
+    "Autopiloto": 6,
     "Assistida": 7,
-    "Autômata": 6
+    "Autômata": 5
    }
   },
   "Operações": {
    "tarefas": {
-    "R": 49,
+    "R": 50,
     "A": 35,
     "H": 8,
     "P": 29,
-    "C": 5
+    "C": 6
    },
    "modos": {
     "Autopiloto": 8,
@@ -3366,10 +3386,10 @@
   "Gestão": {
    "tarefas": {
     "A": 39,
-    "P": 36,
-    "R": 51,
-    "H": 22,
-    "C": 2
+    "P": 37,
+    "R": 54,
+    "H": 38,
+    "C": 4
    },
    "modos": {
     "Copiloto": 19,
@@ -3387,24 +3407,25 @@
   },
   "Governança": {
    "tarefas": {
-    "R": 42,
-    "A": 25,
-    "P": 27,
+    "R": 44,
+    "A": 27,
+    "P": 31,
     "C": 3,
-    "H": 7
+    "H": 16,
+    "X": 2
    },
    "modos": {
     "Autopiloto": 7,
     "Copiloto": 16,
     "Autômato": 5,
-    "Assistido": 3
+    "Assistido": 5
    },
    "reais": {
     "Autopiloto": 7,
     "Copiloto": 16,
     "Autômata": 5,
-    "Assistida": 2,
-    "Exclusivamente humana": 1
+    "Assistida": 3,
+    "Exclusivamente humana": 2
    }
   }
  },
@@ -3412,7 +3433,7 @@
   {
    "quem": "Governança",
    "em": "Negócios",
-   "tarefas": 21
+   "tarefas": 22
   },
   {
    "quem": "Integração",
@@ -3500,6 +3521,16 @@
    "tarefas": 4
   },
   {
+   "quem": "Governança",
+   "em": "Operações",
+   "tarefas": 4
+  },
+  {
+   "quem": "Governança",
+   "em": "Gestão",
+   "tarefas": 4
+  },
+  {
    "quem": "Gestão",
    "em": "Identidade",
    "tarefas": 3
@@ -3540,11 +3571,6 @@
    "tarefas": 3
   },
   {
-   "quem": "Governança",
-   "em": "Operações",
-   "tarefas": 3
-  },
-  {
    "quem": "Estratégia",
    "em": "Identidade",
    "tarefas": 2
@@ -3567,11 +3593,6 @@
   {
    "quem": "Negócios",
    "em": "Integração",
-   "tarefas": 2
-  },
-  {
-   "quem": "Governança",
-   "em": "Gestão",
    "tarefas": 2
   },
   {
@@ -3744,15 +3765,15 @@
    "code": "IN-07",
    "circulo": "Inteligência",
    "declarado": "média na preparação, baixa nas decisões",
-   "maq": 0.4117647058823529,
-   "n": 102
+   "maq": 0.4174757281553398,
+   "n": 103
   },
   {
    "code": "IN-08",
    "circulo": "Inteligência",
    "declarado": "alta",
-   "maq": 0.8181818181818182,
-   "n": 22
+   "maq": 0.7692307692307693,
+   "n": 26
   },
   {
    "code": "RE-01",
@@ -3835,8 +3856,8 @@
    "code": "NE-04",
    "circulo": "Negócios",
    "declarado": "média",
-   "maq": 0.4444444444444444,
-   "n": 18
+   "maq": 0.4,
+   "n": 20
   },
   {
    "code": "NE-05",
@@ -3870,8 +3891,8 @@
    "code": "IT-02",
    "circulo": "Integração",
    "declarado": "média",
-   "maq": 0.5238095238095238,
-   "n": 21
+   "maq": 0.5217391304347826,
+   "n": 23
   },
   {
    "code": "IT-03",
@@ -3897,9 +3918,9 @@
   {
    "code": "IT-06",
    "circulo": "Integração",
-   "declarado": "alta",
-   "maq": 0.6842105263157895,
-   "n": 19
+   "declarado": "média",
+   "maq": 0.6190476190476191,
+   "n": 21
   },
   {
    "code": "IT-07",
@@ -3926,8 +3947,8 @@
    "code": "OP-02",
    "circulo": "Operações",
    "declarado": "alta",
-   "maq": 0.7142857142857143,
-   "n": 14
+   "maq": 0.7333333333333333,
+   "n": 15
   },
   {
    "code": "OP-08",
@@ -3947,8 +3968,8 @@
    "code": "OP-04",
    "circulo": "Operações",
    "declarado": "média",
-   "maq": 0.6666666666666666,
-   "n": 21
+   "maq": 0.6363636363636364,
+   "n": 22
   },
   {
    "code": "OP-05",
@@ -3975,36 +3996,36 @@
    "code": "GE-01",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.6666666666666666,
-   "n": 12
+   "maq": 0.5714285714285714,
+   "n": 14
   },
   {
    "code": "GE-02",
    "circulo": "Gestão",
-   "declarado": "média",
-   "maq": 0.6,
-   "n": 10
+   "declarado": "alta",
+   "maq": 0.6923076923076923,
+   "n": 13
   },
   {
    "code": "GE-03",
    "circulo": "Gestão",
-   "declarado": "alta",
-   "maq": 0.8333333333333334,
-   "n": 12
+   "declarado": "média",
+   "maq": 0.6666666666666666,
+   "n": 15
   },
   {
    "code": "GE-04",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.47058823529411764,
-   "n": 17
+   "maq": 0.4444444444444444,
+   "n": 18
   },
   {
    "code": "GE-05",
    "circulo": "Gestão",
-   "declarado": "alta",
-   "maq": 0.7272727272727273,
-   "n": 11
+   "declarado": "média",
+   "maq": 0.47058823529411764,
+   "n": 17
   },
   {
    "code": "GE-06",
@@ -4017,8 +4038,8 @@
    "code": "GE-07",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.4444444444444444,
-   "n": 18
+   "maq": 0.38095238095238093,
+   "n": 21
   },
   {
    "code": "GE-08",
@@ -4031,15 +4052,15 @@
    "code": "GE-09",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.5,
-   "n": 16
+   "maq": 0.4444444444444444,
+   "n": 18
   },
   {
    "code": "GE-13",
    "circulo": "Gestão",
-   "declarado": "alta",
-   "maq": 0.75,
-   "n": 4
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 6
   },
   {
    "code": "GE-10",
@@ -4073,15 +4094,15 @@
    "code": "GO-02",
    "circulo": "Governança",
    "declarado": "média",
-   "maq": 0.5454545454545454,
-   "n": 11
+   "maq": 0.5,
+   "n": 12
   },
   {
    "code": "GO-03",
    "circulo": "Governança",
-   "declarado": "alta",
-   "maq": 0.7,
-   "n": 10
+   "declarado": "média",
+   "maq": 0.6153846153846154,
+   "n": 13
   },
   {
    "code": "GO-04",
@@ -4093,16 +4114,16 @@
   {
    "code": "GO-05",
    "circulo": "Governança",
-   "declarado": "alta",
-   "maq": 0.7,
-   "n": 10
+   "declarado": "média",
+   "maq": 0.5384615384615384,
+   "n": 13
   },
   {
    "code": "GO-06",
    "circulo": "Governança",
    "declarado": "alta",
-   "maq": 0.8461538461538461,
-   "n": 13
+   "maq": 0.7222222222222222,
+   "n": 18
   },
   {
    "code": "GO-07",
@@ -4115,15 +4136,15 @@
    "code": "GO-08",
    "circulo": "Governança",
    "declarado": "média",
-   "maq": 0.46153846153846156,
-   "n": 13
+   "maq": 0.35294117647058826,
+   "n": 17
   },
   {
    "code": "GO-09",
    "circulo": "Governança",
    "declarado": "média",
-   "maq": 0.5,
-   "n": 10
+   "maq": 0.46153846153846156,
+   "n": 13
   },
   {
    "code": "GO-10",

@@ -106,6 +106,9 @@ DECISOES = [
     ('Cadências e conteúdos validados; gates de implantação',
      'Validado por você (14:07 de 03/10/2026)',
      'GO-01 anual; GO-02 e GO-03 trimestrais; GO-06 trimestral; matriz de riscos 5 por 5, desenho da amostra e regras de sigilo, dados e guarda. O que depende de dado real ficou nos gates G1 a G9.'),
+    ('Correções da auditoria geral',
+     'Aprovado por você (16:05 de 03/10/2026)',
+     'GO-01: quem decide sai da lista de matérias, por regra; a alçada das pessoas da Governança e os limites dos agentes vão aos sócios (M2). GO-03: risco de nota 15 ou mais vai aos sócios; a remediação volta com evidência (M1, M8). GO-05: matéria da regra 10 dos contratos vai aos sócios; vencimento sem decisão do dono volta com a decisão do executivo (M1, M8). GO-06: pessoa revê amostra dos conformes do agente; correções voltam; auditoria externa anual da própria Governança, com as correções decididas pelos sócios (M3, M8). GO-07: a execução do pedido do titular volta confirmada (M8). GO-08: dono único da crise: o executivo, o Administrador do IMTS.OS ou os sócios (M4). GO-09: relato que cita a Governança vai à assessoria externa, e os sócios decidem a medida (D4). GO-02: a devolução de matéria é decidida por pessoa (L9). Tabela matéria × órgão (D1).'),
 ]
 
 PROPOSTAS = []
@@ -142,9 +145,9 @@ LIMITES = [
     'As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.',
     'As alçadas, o que a Governança decide sozinha e as regras gerais dos contratos foram aprovados em 03/10/2026 (abas Parâmetros em aberto e Propostas de parâmetros). Os rascunhos da matriz de riscos, do critério de rateio, da amostra e das regras de sigilo e guarda foram validados em 03/10/2026; o texto final é o gate G8, e o tamanho da amostra, o G9.',
     'Continuidade dos negócios (APQC 11.4.2 a 11.4.4), assessoria externa (12.4.5) e litígios (12.4.7) não têm etapa própria.',
-    'Da LGPD foram conferidos os arts. 6º, 15, 16, 18, 19, 41 e 48 citados. O prazo de comunicação de incidente (três dias úteis, Resolução CD/ANPD nº 15/2024) foi lido em transcrição secundária, porque o texto oficial não abriu: conferir no Diário Oficial antes de usar.',
+    'Da LGPD foram conferidos os arts. 6º, 15, 16, 18, 19, 41 e 48 citados. O prazo de comunicação de incidente (três dias úteis, Resolução CD/ANPD nº 15/2024) foi lido em transcrição secundária, porque o Diário Oficial não abriu nas ferramentas de leitura: conferir no oficial antes de usar (gate G5). O Código Civil citado na GO-05 foi conferido no texto oficial.',
     'Cada empresa do Ecossistema é um controlador e indica o seu encarregado; o modelo põe o papel de encarregado na Governança, sem desenhar a indicação nem a divulgação.',
-    'O desenho da amostra (estratos e tamanho) e a conferência independente dos indicadores pela amostra (GO-03, etapa 2) não têm regra escrita.',
+    'O desenho da amostra (estratos e tamanho) tem rascunho validado em 03/10/2026 (aba Gates de implantação, item 2.13); o texto final é o gate G8 e os números, o G9.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024.',
     'As trocas com os oito círculos já fechados foram conferidas dos dois lados pelo nome.',
     'A tarefa de quem não é do círculo (sócios, executivo, Relações) está desenhada como participação; o detalhe dela fica no círculo dono.',

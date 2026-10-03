@@ -2288,6 +2288,18 @@
    ]
   },
   {
+   "o": "Ajuste de oferta feito sem portão, com o motivo da dispensa",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 2"
+   ],
+   "entra": [
+    "ES-06 etapa 1"
+   ]
+  },
+  {
    "o": "Contestação de indicador de alvo vigente",
    "de": "Inteligência",
    "para": "Estratégia",
@@ -4324,7 +4336,8 @@
     "IT-06 etapa 4"
    ],
    "entra": [
-    "GO-06 etapa 1"
+    "GO-06 etapa 1",
+    "GO-06 etapa 4"
    ]
   },
   {
@@ -4695,6 +4708,18 @@
    ]
   },
   {
+   "o": "Desvio grave ou mudança de alvo apontados pelo ritual",
+   "de": "Gestão",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "GE-02 etapa 2"
+   ],
+   "entra": [
+    "ES-06 etapa 1"
+   ]
+  },
+  {
    "o": "Resultado por empresa e consolidado",
    "de": "Gestão",
    "para": "Inteligência",
@@ -4803,6 +4828,18 @@
    ]
   },
   {
+   "o": "Suspensão de novas entregas por atraso, decidida pelo executivo",
+   "de": "Gestão",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "GE-03 etapa 3"
+   ],
+   "entra": [
+    "OP-02 etapa 2"
+   ]
+  },
+  {
    "o": "Materiais e serviços comprados, com a data de entrega",
    "de": "Gestão",
    "para": "Operações",
@@ -4905,7 +4942,7 @@
    "para": "Identidade",
    "via": "direto",
    "sai": [
-    "GO-06 etapa 4"
+    "GO-06 etapa 5"
    ],
    "entra": [
     "ID-05 etapa 1"
@@ -4987,7 +5024,7 @@
    "para": "Inteligência",
    "via": "direto",
    "sai": [
-    "GO-06 etapa 4"
+    "GO-06 etapa 5"
    ],
    "entra": [
     "IN-06 etapa 5"
@@ -5200,7 +5237,7 @@
   }
  ],
  "problemas": [],
- "verificacoes": 1039,
+ "verificacoes": 1046,
  "tarefas": [
   {
    "quem": "Governança",
@@ -6089,6 +6126,13 @@
    "em": "Negócios",
    "code": "NE-04",
    "etapa": 2,
+   "nome": "Revisar a cláusula de matéria dos sócios e propor a redação"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-04",
+   "etapa": 2,
    "nome": "Conferir os poderes de quem assina pela empresa e pelo cliente"
   },
   {
@@ -6414,6 +6458,13 @@
    "nome": "Avaliar o risco e o dever de comunicar a autoridade"
   },
   {
+   "quem": "Governança",
+   "em": "Operações",
+   "code": "OP-04",
+   "etapa": 2,
+   "nome": "Avaliar a responsabilidade e o risco da solução acima da alçada"
+  },
+  {
    "quem": "Gestão",
    "em": "Operações",
    "code": "OP-06",
@@ -6440,6 +6491,20 @@
    "code": "GE-04",
    "etapa": 2,
    "nome": "Revisar o contrato com o fornecedor e guardá-lo"
+  },
+  {
+   "quem": "Governança",
+   "em": "Gestão",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Conferir os poderes e a mudança de contas"
+  },
+  {
+   "quem": "Governança",
+   "em": "Gestão",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Conferir os poderes e a mudança de contas do IMTS.OS"
   },
   {
    "quem": "Governança",
@@ -6506,6 +6571,12 @@
      ]
     },
     {
+     "o": "Resultado da auditoria externa da Governança, com as correções decididas",
+     "de": [
+      "GO-06"
+     ]
+    },
+    {
      "o": "Resultado da revisão da estratégia",
      "de": [
       "ES-06"
@@ -6538,6 +6609,12 @@
    ],
    "tarefas": [
     {
+     "nome": "Aprovar o pedido acima da reserva de contingência",
+     "em": [
+      "GE-04"
+     ]
+    },
+    {
      "nome": "Aprovar o relato",
      "em": [
       "GO-10"
@@ -6562,6 +6639,18 @@
      ]
     },
     {
+     "nome": "Decidir a cláusula de matéria dos sócios do contrato",
+     "em": [
+      "NE-04"
+     ]
+    },
+    {
+     "nome": "Decidir a cláusula que vai aos sócios pela regra dos contratos",
+     "em": [
+      "GO-05"
+     ]
+    },
+    {
      "nome": "Decidir a concessão da renovação pelos sócios",
      "em": [
       "NE-06"
@@ -6577,6 +6666,18 @@
      "nome": "Decidir a concessão pelos sócios",
      "em": [
       "NE-03"
+     ]
+    },
+    {
+     "nome": "Decidir a declaração, a posição e o porta-voz da crise que envolve o executivo",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
+     "nome": "Decidir a medida e a correção da causa do relato apurado pela assessoria",
+     "em": [
+      "GO-09"
      ]
     },
     {
@@ -6598,9 +6699,27 @@
      ]
     },
     {
+     "nome": "Decidir as correções apontadas pela auditoria externa da Governança",
+     "em": [
+      "GO-06"
+     ]
+    },
+    {
      "nome": "Decidir as matérias da pauta",
      "em": [
       "GO-02"
+     ]
+    },
+    {
+     "nome": "Decidir o aumento do total do orçamento aprovado",
+     "em": [
+      "GE-01"
+     ]
+    },
+    {
+     "nome": "Decidir o desligamento do executivo ou do líder de círculo",
+     "em": [
+      "GE-07"
      ]
     },
     {
@@ -6610,9 +6729,21 @@
      ]
     },
     {
+     "nome": "Decidir o encerramento da crise que envolve o executivo",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
      "nome": "Decidir o menor preço da disputa pelos sócios",
      "em": [
       "NE-05"
+     ]
+    },
+    {
+     "nome": "Decidir o tratamento dos riscos de nota 15 ou mais",
+     "em": [
+      "GO-03"
      ]
     },
     {
@@ -6660,6 +6791,12 @@
      "o": "Pedido de serviço de empresa",
      "em": [
       "IT-05"
+     ]
+    },
+    {
+     "o": "Remediação executada, com a evidência",
+     "em": [
+      "GO-03"
      ]
     }
    ],
@@ -7034,15 +7171,15 @@
      ]
     },
     {
-     "nome": "Aprovar a decisão do comitê",
+     "nome": "Aprovar a folha da empresa",
      "em": [
-      "GO-08"
+      "GE-13"
      ]
     },
     {
-     "nome": "Aprovar o encerramento da crise",
+     "nome": "Aprovar as mudanças de remuneração da empresa",
      "em": [
-      "GO-08"
+      "GE-09"
      ]
     },
     {
@@ -7118,6 +7255,12 @@
      ]
     },
     {
+     "nome": "Autorizar a mudança de contas da empresa",
+     "em": [
+      "GE-05"
+     ]
+    },
+    {
      "nome": "Confirmar a ficha do indicador da empresa e assumir o resultado",
      "em": [
       "IN-04"
@@ -7154,6 +7297,12 @@
      ]
     },
     {
+     "nome": "Decidir a declaração, a posição e o porta-voz da crise da empresa",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
      "nome": "Decidir a divisão de receita e de responsabilidade entre as empresas",
      "em": [
       "NE-07"
@@ -7166,15 +7315,33 @@
      ]
     },
     {
+     "nome": "Decidir a melhoria não feita: cobrar o dono, adiar ou retirar",
+     "em": [
+      "IN-08"
+     ]
+    },
+    {
      "nome": "Decidir a prioridade dos projetos da sua empresa",
      "em": [
       "IT-01"
      ]
     },
     {
+     "nome": "Decidir a recomendação sem resposta do dono: aceitar, adiar ou recusar",
+     "em": [
+      "IN-08"
+     ]
+    },
+    {
      "nome": "Decidir a solução acima da alçada de Operações",
      "em": [
       "OP-04"
+     ]
+    },
+    {
+     "nome": "Decidir a suspensão das novas entregas do cliente",
+     "em": [
+      "GE-03"
      ]
     },
     {
@@ -7187,6 +7354,18 @@
      "nome": "Decidir o desligamento com o líder",
      "em": [
       "GE-07"
+     ]
+    },
+    {
+     "nome": "Decidir o encerramento da crise da empresa",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
+     "nome": "Decidir o impasse da implantação: corrigir com recurso, rever o contrato ou encerrar",
+     "em": [
+      "IT-02"
      ]
     },
     {
@@ -7212,6 +7391,12 @@
      "nome": "Decidir o recall",
      "em": [
       "OP-07"
+     ]
+    },
+    {
+     "nome": "Decidir renovar ou encerrar o contrato vencido sem decisão do dono",
+     "em": [
+      "GO-05"
      ]
     },
     {
@@ -7364,15 +7549,33 @@
    "parte": "Líderes dos círculos",
    "entrega": [
     {
+     "o": "Correção feita pelo dono da entrega",
+     "em": [
+      "GO-06"
+     ]
+    },
+    {
      "o": "Entrega do projeto",
      "em": [
       "IT-01"
      ]
     },
     {
+     "o": "Execução do pedido do titular, confirmada por quem guarda os dados",
+     "em": [
+      "GO-07"
+     ]
+    },
+    {
      "o": "Prontidão de cada círculo para o lançamento",
      "em": [
       "IT-03"
+     ]
+    },
+    {
+     "o": "Remediação executada, com a evidência",
+     "em": [
+      "GO-03"
      ]
     },
     {
@@ -7527,6 +7730,30 @@
      "nome": "Apresentar os desvios e propor as ações",
      "em": [
       "GE-02"
+     ]
+    },
+    {
+     "nome": "Aprovar a execução do aporte ou da distribuição",
+     "em": [
+      "GE-05"
+     ]
+    },
+    {
+     "nome": "Aprovar o fechamento e o recolhimento dos impostos",
+     "em": [
+      "GE-05"
+     ]
+    },
+    {
+     "nome": "Aprovar o pagamento do reembolso na alçada",
+     "em": [
+      "GE-03"
+     ]
+    },
+    {
+     "nome": "Aprovar o pagamento na alçada",
+     "em": [
+      "GE-04"
      ]
     },
     {
@@ -8082,6 +8309,12 @@
    "recebe": [],
    "tarefas": [
     {
+     "nome": "Auditar por amostra as entregas, os julgamentos e as decisões da Governança",
+     "em": [
+      "GO-06"
+     ]
+    },
+    {
      "nome": "Avaliar o enquadramento fiscal e contábil da oferta",
      "em": [
       "IN-07"
@@ -8103,6 +8336,12 @@
      "nome": "Avaliar os efeitos societários, fiscais e contábeis das alternativas",
      "em": [
       "ES-02"
+     ]
+    },
+    {
+     "nome": "Classificar e apurar os fatos do relato com independência",
+     "em": [
+      "GO-09"
      ]
     }
    ]
@@ -8469,6 +8708,62 @@
      "nome": "Indicar um padrinho ou uma madrinha",
      "em": [
       "GE-08"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Administrador do IMTS.OS",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Decisão sobre o recurso pedido, com o motivo",
+     "de": [
+      "GE-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Aprovar a folha dos círculos",
+     "em": [
+      "GE-13"
+     ]
+    },
+    {
+     "nome": "Aprovar as mudanças de remuneração dos círculos",
+     "em": [
+      "GE-09"
+     ]
+    },
+    {
+     "nome": "Autorizar a mudança de contas do IMTS.OS",
+     "em": [
+      "GE-05"
+     ]
+    },
+    {
+     "nome": "Decidir a declaração, a posição e o porta-voz da crise do Ecossistema",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
+     "nome": "Decidir o encerramento da crise do Ecossistema",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
+     "nome": "Decidir o pedido de pessoa dos círculos acima da alçada da Gestão",
+     "em": [
+      "GE-07"
+     ]
+    },
+    {
+     "nome": "Decidir o pedido de recurso dos círculos acima da alçada da Gestão",
+     "em": [
+      "GE-01"
      ]
     }
    ]

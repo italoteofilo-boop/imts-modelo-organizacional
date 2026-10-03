@@ -15,20 +15,22 @@
     <bpmn:documentation>Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda.</bpmn:documentation>
     <bpmn:laneSet id="LaneSet_NE04">
       <bpmn:lane id="Lane_NE04_CLI" name="Cliente">
-        <bpmn:flowNodeRef>NE04_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T8</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_NE04_GOV" name="Governança">
         <bpmn:flowNodeRef>NE04_E1_T4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_E2_T2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>NE04_E2_T4</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>NE04_E2_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T10</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_NE04_EXE" name="Executivo da empresa">
         <bpmn:flowNodeRef>NE04_E1_T3</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>NE04_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T7</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_NE04_SOC" name="Sócios">
         <bpmn:flowNodeRef>NE04_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T4</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_NE04_NEP" name="Negócios · pessoa">
         <bpmn:flowNodeRef>NE04_E1_T1</bpmn:flowNodeRef>
@@ -36,7 +38,7 @@
         <bpmn:flowNodeRef>NE04_E1_G2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_E2_G1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_M2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>NE04_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_E2_G2</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_NE04_NEA" name="Negócios · agente">
@@ -49,7 +51,7 @@
         <bpmn:flowNodeRef>NE04_E1_T6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_F3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_E1_T7</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>NE04_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE04_E2_T9</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_M3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_F2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NE04_E3_T1</bpmn:flowNodeRef>
@@ -65,28 +67,30 @@
     <bpmn:userTask id="NE04_E1_T3" name="Decidir a concessão negociada acima da alçada de quem vende"><bpmn:documentation>Etapa 1: Negociar as condições com o cliente. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE04_Flow4</bpmn:incoming><bpmn:outgoing>NE04_Flow8</bpmn:outgoing></bpmn:userTask>
     <bpmn:callActivity id="NE04_E1_T4" name="Levar a concessão negociada à decisão dos sócios"><bpmn:documentation>Etapa 1: Negociar as condições com o cliente. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE04_Flow5</bpmn:incoming><bpmn:outgoing>NE04_Flow6</bpmn:outgoing></bpmn:callActivity>
     <bpmn:manualTask id="NE04_E1_T5" name="Decidir a concessão negociada pelos sócios"><bpmn:documentation>Etapa 1: Negociar as condições com o cliente. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE04_Flow6</bpmn:incoming><bpmn:outgoing>NE04_Flow9</bpmn:outgoing></bpmn:manualTask>
-    <bpmn:exclusiveGateway id="NE04_M1"><bpmn:incoming>NE04_Flow7</bpmn:incoming><bpmn:incoming>NE04_Flow8</bpmn:incoming><bpmn:incoming>NE04_Flow9</bpmn:incoming><bpmn:outgoing>NE04_Flow30</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="NE04_E1_G2" name="O cliente e a empresa chegaram a acordo?"><bpmn:incoming>NE04_Flow30</bpmn:incoming><bpmn:outgoing>NE04_Flow10</bpmn:outgoing><bpmn:outgoing>NE04_Flow11</bpmn:outgoing><bpmn:outgoing>NE04_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="NE04_M1"><bpmn:incoming>NE04_Flow7</bpmn:incoming><bpmn:incoming>NE04_Flow8</bpmn:incoming><bpmn:incoming>NE04_Flow9</bpmn:incoming><bpmn:outgoing>NE04_Flow33</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="NE04_E1_G2" name="O cliente e a empresa chegaram a acordo?"><bpmn:incoming>NE04_Flow33</bpmn:incoming><bpmn:outgoing>NE04_Flow10</bpmn:outgoing><bpmn:outgoing>NE04_Flow11</bpmn:outgoing><bpmn:outgoing>NE04_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
     <bpmn:scriptTask id="NE04_E1_T6" name="Devolver o pedido de mudança de escopo à proposta"><bpmn:documentation>Etapa 1: Negociar as condições com o cliente. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE04_Flow11</bpmn:incoming><bpmn:outgoing>NE04_Flow12</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:endEvent id="NE04_F3" name="Mudança de escopo devolvida à proposta"><bpmn:incoming>NE04_Flow12</bpmn:incoming></bpmn:endEvent>
     <bpmn:scriptTask id="NE04_E1_T7" name="Registrar a perda e o motivo da negociação"><bpmn:documentation>Etapa 1: Negociar as condições com o cliente. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE04_Flow13</bpmn:incoming><bpmn:outgoing>NE04_Flow14</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:serviceTask id="NE04_E2_T1" name="Redigir o contrato no modelo, com o escopo vendido e as condições acordadas"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow10</bpmn:incoming><bpmn:outgoing>NE04_Flow15</bpmn:outgoing></bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="NE04_E2_G1" name="O contrato foge do modelo?"><bpmn:incoming>NE04_Flow15</bpmn:incoming><bpmn:outgoing>NE04_Flow16</bpmn:outgoing><bpmn:outgoing>NE04_Flow17</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:callActivity id="NE04_E2_T2" name="Revisar as cláusulas fora do modelo e o risco do contrato"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow16</bpmn:incoming><bpmn:outgoing>NE04_Flow18</bpmn:outgoing></bpmn:callActivity>
-    <bpmn:exclusiveGateway id="NE04_M2"><bpmn:incoming>NE04_Flow17</bpmn:incoming><bpmn:incoming>NE04_Flow18</bpmn:incoming><bpmn:outgoing>NE04_Flow31</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:userTask id="NE04_E2_T3" name="Conferir o contrato final com o que foi acordado"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow31</bpmn:incoming><bpmn:outgoing>NE04_Flow19</bpmn:outgoing></bpmn:userTask>
-    <bpmn:task id="NE04_E2_T4" name="Conferir os poderes de quem assina pela empresa e pelo cliente"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow19</bpmn:incoming><bpmn:outgoing>NE04_Flow20</bpmn:outgoing></bpmn:task>
-    <bpmn:userTask id="NE04_E2_T5" name="Assinar o contrato em nome da empresa"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow20</bpmn:incoming><bpmn:outgoing>NE04_Flow21</bpmn:outgoing></bpmn:userTask>
-    <bpmn:userTask id="NE04_E2_T6" name="Assinar o contrato"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow21</bpmn:incoming><bpmn:outgoing>NE04_Flow22</bpmn:outgoing></bpmn:userTask>
-    <bpmn:exclusiveGateway id="NE04_E2_G2" name="O contrato foi assinado pelas duas partes?"><bpmn:incoming>NE04_Flow22</bpmn:incoming><bpmn:outgoing>NE04_Flow23</bpmn:outgoing><bpmn:outgoing>NE04_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:scriptTask id="NE04_E2_T7" name="Registrar a desistência do cliente e o motivo"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow23</bpmn:incoming><bpmn:outgoing>NE04_Flow24</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:exclusiveGateway id="NE04_M3"><bpmn:incoming>NE04_Flow14</bpmn:incoming><bpmn:incoming>NE04_Flow24</bpmn:incoming><bpmn:outgoing>NE04_Flow32</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:endEvent id="NE04_F2" name="Negociação perdida, com o motivo"><bpmn:incoming>NE04_Flow32</bpmn:incoming></bpmn:endEvent>
-    <bpmn:task id="NE04_E2_T8" name="Guardar o contrato assinado"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow25</bpmn:incoming><bpmn:outgoing>NE04_Flow26</bpmn:outgoing></bpmn:task>
-    <bpmn:scriptTask id="NE04_E3_T1" name="Registrar o contrato, o escopo vendido, o valor, a vigência e o vencimento"><bpmn:documentation>Etapa 3: Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE04_Flow26</bpmn:incoming><bpmn:outgoing>NE04_Flow27</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:scriptTask id="NE04_E3_T2" name="Avisar a Integração, Operações, a Gestão e Relações do contrato assinado"><bpmn:documentation>Etapa 3: Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE04_Flow27</bpmn:incoming><bpmn:outgoing>NE04_Flow28</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:scriptTask id="NE04_E3_T3" name="Registrar os descontos dados e o motivo do ganho"><bpmn:documentation>Etapa 3: Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE04_Flow28</bpmn:incoming><bpmn:outgoing>NE04_Flow29</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:endEvent id="NE04_F1" name="Contrato assinado e passado a quem implanta, entrega, fatura e acompanha"><bpmn:incoming>NE04_Flow29</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="NE04_E2_G1" name="O contrato foge do modelo?"><bpmn:incoming>NE04_Flow15</bpmn:incoming><bpmn:outgoing>NE04_Flow16</bpmn:outgoing><bpmn:outgoing>NE04_Flow17</bpmn:outgoing><bpmn:outgoing>NE04_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="NE04_E2_T2" name="Revisar as cláusulas fora do modelo e o risco do contrato"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow16</bpmn:incoming><bpmn:outgoing>NE04_Flow20</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:callActivity id="NE04_E2_T3" name="Revisar a cláusula de matéria dos sócios e propor a redação"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow17</bpmn:incoming><bpmn:outgoing>NE04_Flow18</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:manualTask id="NE04_E2_T4" name="Decidir a cláusula de matéria dos sócios do contrato"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow18</bpmn:incoming><bpmn:outgoing>NE04_Flow21</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="NE04_M2"><bpmn:incoming>NE04_Flow19</bpmn:incoming><bpmn:incoming>NE04_Flow20</bpmn:incoming><bpmn:incoming>NE04_Flow21</bpmn:incoming><bpmn:outgoing>NE04_Flow34</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="NE04_E2_T5" name="Conferir o contrato final com o que foi acordado"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow34</bpmn:incoming><bpmn:outgoing>NE04_Flow22</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="NE04_E2_T6" name="Conferir os poderes de quem assina pela empresa e pelo cliente"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow22</bpmn:incoming><bpmn:outgoing>NE04_Flow23</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="NE04_E2_T7" name="Assinar o contrato em nome da empresa"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow23</bpmn:incoming><bpmn:outgoing>NE04_Flow24</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="NE04_E2_T8" name="Assinar o contrato"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow24</bpmn:incoming><bpmn:outgoing>NE04_Flow25</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="NE04_E2_G2" name="O contrato foi assinado pelas duas partes?"><bpmn:incoming>NE04_Flow25</bpmn:incoming><bpmn:outgoing>NE04_Flow26</bpmn:outgoing><bpmn:outgoing>NE04_Flow28</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE04_E2_T9" name="Registrar a desistência do cliente e o motivo"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow26</bpmn:incoming><bpmn:outgoing>NE04_Flow27</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="NE04_M3"><bpmn:incoming>NE04_Flow14</bpmn:incoming><bpmn:incoming>NE04_Flow27</bpmn:incoming><bpmn:outgoing>NE04_Flow35</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="NE04_F2" name="Negociação perdida, com o motivo"><bpmn:incoming>NE04_Flow35</bpmn:incoming></bpmn:endEvent>
+    <bpmn:task id="NE04_E2_T10" name="Guardar o contrato assinado"><bpmn:documentation>Etapa 2: Formalizar e assinar o contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE04_Flow28</bpmn:incoming><bpmn:outgoing>NE04_Flow29</bpmn:outgoing></bpmn:task>
+    <bpmn:scriptTask id="NE04_E3_T1" name="Registrar o contrato, o escopo vendido, o valor, a vigência e o vencimento"><bpmn:documentation>Etapa 3: Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE04_Flow29</bpmn:incoming><bpmn:outgoing>NE04_Flow30</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE04_E3_T2" name="Avisar a Integração, Operações, a Gestão e Relações do contrato assinado"><bpmn:documentation>Etapa 3: Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE04_Flow30</bpmn:incoming><bpmn:outgoing>NE04_Flow31</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE04_E3_T3" name="Registrar os descontos dados e o motivo do ganho"><bpmn:documentation>Etapa 3: Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE04_Flow31</bpmn:incoming><bpmn:outgoing>NE04_Flow32</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE04_F1" name="Contrato assinado e passado a quem implanta, entrega, fatura e acompanha"><bpmn:incoming>NE04_Flow32</bpmn:incoming></bpmn:endEvent>
     <bpmn:sequenceFlow id="NE04_Flow1" sourceRef="NE04_S1" targetRef="NE04_E1_T1" />
     <bpmn:sequenceFlow id="NE04_Flow2" sourceRef="NE04_E1_T1" targetRef="NE04_E1_T2" />
     <bpmn:sequenceFlow id="NE04_Flow3" sourceRef="NE04_E1_T2" targetRef="NE04_E1_G1" />
@@ -103,33 +107,36 @@
     <bpmn:sequenceFlow id="NE04_Flow14" sourceRef="NE04_E1_T7" targetRef="NE04_M3" />
     <bpmn:sequenceFlow id="NE04_Flow15" sourceRef="NE04_E2_T1" targetRef="NE04_E2_G1" />
     <bpmn:sequenceFlow id="NE04_Flow16" name="Sim" sourceRef="NE04_E2_G1" targetRef="NE04_E2_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="NE04_Flow17" name="Não" sourceRef="NE04_E2_G1" targetRef="NE04_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="NE04_Flow18" sourceRef="NE04_E2_T2" targetRef="NE04_M2" />
-    <bpmn:sequenceFlow id="NE04_Flow19" sourceRef="NE04_E2_T3" targetRef="NE04_E2_T4" />
-    <bpmn:sequenceFlow id="NE04_Flow20" sourceRef="NE04_E2_T4" targetRef="NE04_E2_T5" />
-    <bpmn:sequenceFlow id="NE04_Flow21" sourceRef="NE04_E2_T5" targetRef="NE04_E2_T6" />
-    <bpmn:sequenceFlow id="NE04_Flow22" sourceRef="NE04_E2_T6" targetRef="NE04_E2_G2" />
-    <bpmn:sequenceFlow id="NE04_Flow23" name="Não: o cliente desistiu" sourceRef="NE04_E2_G2" targetRef="NE04_E2_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: o cliente desistiu</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="NE04_Flow24" sourceRef="NE04_E2_T7" targetRef="NE04_M3" />
-    <bpmn:sequenceFlow id="NE04_Flow25" name="Sim" sourceRef="NE04_E2_G2" targetRef="NE04_E2_T8"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="NE04_Flow26" sourceRef="NE04_E2_T8" targetRef="NE04_E3_T1" />
-    <bpmn:sequenceFlow id="NE04_Flow27" sourceRef="NE04_E3_T1" targetRef="NE04_E3_T2" />
-    <bpmn:sequenceFlow id="NE04_Flow28" sourceRef="NE04_E3_T2" targetRef="NE04_E3_T3" />
-    <bpmn:sequenceFlow id="NE04_Flow29" sourceRef="NE04_E3_T3" targetRef="NE04_F1" />
-    <bpmn:sequenceFlow id="NE04_Flow30" sourceRef="NE04_M1" targetRef="NE04_E1_G2" />
-    <bpmn:sequenceFlow id="NE04_Flow31" sourceRef="NE04_M2" targetRef="NE04_E2_T3" />
-    <bpmn:sequenceFlow id="NE04_Flow32" sourceRef="NE04_M3" targetRef="NE04_F2" />
+    <bpmn:sequenceFlow id="NE04_Flow17" name="Sim, com matéria dos sócios pela regra dos contratos" sourceRef="NE04_E2_G1" targetRef="NE04_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, com matéria dos sócios pela regra dos contratos</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE04_Flow18" sourceRef="NE04_E2_T3" targetRef="NE04_E2_T4" />
+    <bpmn:sequenceFlow id="NE04_Flow19" name="Não" sourceRef="NE04_E2_G1" targetRef="NE04_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE04_Flow20" sourceRef="NE04_E2_T2" targetRef="NE04_M2" />
+    <bpmn:sequenceFlow id="NE04_Flow21" sourceRef="NE04_E2_T4" targetRef="NE04_M2" />
+    <bpmn:sequenceFlow id="NE04_Flow22" sourceRef="NE04_E2_T5" targetRef="NE04_E2_T6" />
+    <bpmn:sequenceFlow id="NE04_Flow23" sourceRef="NE04_E2_T6" targetRef="NE04_E2_T7" />
+    <bpmn:sequenceFlow id="NE04_Flow24" sourceRef="NE04_E2_T7" targetRef="NE04_E2_T8" />
+    <bpmn:sequenceFlow id="NE04_Flow25" sourceRef="NE04_E2_T8" targetRef="NE04_E2_G2" />
+    <bpmn:sequenceFlow id="NE04_Flow26" name="Não: o cliente desistiu" sourceRef="NE04_E2_G2" targetRef="NE04_E2_T9"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: o cliente desistiu</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE04_Flow27" sourceRef="NE04_E2_T9" targetRef="NE04_M3" />
+    <bpmn:sequenceFlow id="NE04_Flow28" name="Sim" sourceRef="NE04_E2_G2" targetRef="NE04_E2_T10"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE04_Flow29" sourceRef="NE04_E2_T10" targetRef="NE04_E3_T1" />
+    <bpmn:sequenceFlow id="NE04_Flow30" sourceRef="NE04_E3_T1" targetRef="NE04_E3_T2" />
+    <bpmn:sequenceFlow id="NE04_Flow31" sourceRef="NE04_E3_T2" targetRef="NE04_E3_T3" />
+    <bpmn:sequenceFlow id="NE04_Flow32" sourceRef="NE04_E3_T3" targetRef="NE04_F1" />
+    <bpmn:sequenceFlow id="NE04_Flow33" sourceRef="NE04_M1" targetRef="NE04_E1_G2" />
+    <bpmn:sequenceFlow id="NE04_Flow34" sourceRef="NE04_M2" targetRef="NE04_E2_T5" />
+    <bpmn:sequenceFlow id="NE04_Flow35" sourceRef="NE04_M3" targetRef="NE04_F2" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="Diagram_NE04">
     <bpmndi:BPMNPlane id="Plane_NE04" bpmnElement="Collab_NE04">
-      <bpmndi:BPMNShape id="Participant_NE04_di" bpmnElement="Participant_NE04" isHorizontal="true"><dc:Bounds x="0" y="0" width="6068" height="1232" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_CLI_di" bpmnElement="Lane_NE04_CLI" isHorizontal="true"><dc:Bounds x="30" y="0" width="6038" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_GOV_di" bpmnElement="Lane_NE04_GOV" isHorizontal="true"><dc:Bounds x="30" y="176" width="6038" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_EXE_di" bpmnElement="Lane_NE04_EXE" isHorizontal="true"><dc:Bounds x="30" y="352" width="6038" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_SOC_di" bpmnElement="Lane_NE04_SOC" isHorizontal="true"><dc:Bounds x="30" y="528" width="6038" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_NEP_di" bpmnElement="Lane_NE04_NEP" isHorizontal="true"><dc:Bounds x="30" y="704" width="6038" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_NEA_di" bpmnElement="Lane_NE04_NEA" isHorizontal="true"><dc:Bounds x="30" y="880" width="6038" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_NE04_NER_di" bpmnElement="Lane_NE04_NER" isHorizontal="true"><dc:Bounds x="30" y="1056" width="6038" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_NE04_di" bpmnElement="Participant_NE04" isHorizontal="true"><dc:Bounds x="0" y="0" width="6480" height="1232" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_CLI_di" bpmnElement="Lane_NE04_CLI" isHorizontal="true"><dc:Bounds x="30" y="0" width="6450" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_GOV_di" bpmnElement="Lane_NE04_GOV" isHorizontal="true"><dc:Bounds x="30" y="176" width="6450" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_EXE_di" bpmnElement="Lane_NE04_EXE" isHorizontal="true"><dc:Bounds x="30" y="352" width="6450" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_SOC_di" bpmnElement="Lane_NE04_SOC" isHorizontal="true"><dc:Bounds x="30" y="528" width="6450" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_NEP_di" bpmnElement="Lane_NE04_NEP" isHorizontal="true"><dc:Bounds x="30" y="704" width="6450" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_NEA_di" bpmnElement="Lane_NE04_NEA" isHorizontal="true"><dc:Bounds x="30" y="880" width="6450" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE04_NER_di" bpmnElement="Lane_NE04_NER" isHorizontal="true"><dc:Bounds x="30" y="1056" width="6450" height="176" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="NE04_S1_di" bpmnElement="NE04_S1"><dc:Bounds x="132" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="NE04_E1_T1_di" bpmnElement="NE04_E1_T1"><dc:Bounds x="276" y="742" width="160" height="100" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="NE04_E1_T2_di" bpmnElement="NE04_E1_T2"><dc:Bounds x="482" y="918" width="160" height="100" /></bpmndi:BPMNShape>
@@ -145,20 +152,22 @@
       <bpmndi:BPMNShape id="NE04_E2_T1_di" bpmnElement="NE04_E2_T1"><dc:Bounds x="2542" y="918" width="160" height="100" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="NE04_E2_G1_di" bpmnElement="NE04_E2_G1" isMarkerVisible="true"><dc:Bounds x="2803" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2716" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="NE04_E2_T2_di" bpmnElement="NE04_E2_T2"><dc:Bounds x="2954" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_M2_di" bpmnElement="NE04_M2" isMarkerVisible="true"><dc:Bounds x="3215" y="767" width="50" height="50" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_T3_di" bpmnElement="NE04_E2_T3"><dc:Bounds x="3366" y="742" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_T4_di" bpmnElement="NE04_E2_T4"><dc:Bounds x="3572" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_T5_di" bpmnElement="NE04_E2_T5"><dc:Bounds x="3778" y="390" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_T6_di" bpmnElement="NE04_E2_T6"><dc:Bounds x="3984" y="38" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_G2_di" bpmnElement="NE04_E2_G2" isMarkerVisible="true"><dc:Bounds x="4245" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4158" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_T7_di" bpmnElement="NE04_E2_T7"><dc:Bounds x="4396" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_M3_di" bpmnElement="NE04_M3" isMarkerVisible="true"><dc:Bounds x="4657" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_F2_di" bpmnElement="NE04_F2"><dc:Bounds x="4870" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4833" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E2_T8_di" bpmnElement="NE04_E2_T8"><dc:Bounds x="5014" y="214" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E3_T1_di" bpmnElement="NE04_E3_T1"><dc:Bounds x="5220" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E3_T2_di" bpmnElement="NE04_E3_T2"><dc:Bounds x="5426" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_E3_T3_di" bpmnElement="NE04_E3_T3"><dc:Bounds x="5632" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="NE04_F1_di" bpmnElement="NE04_F1"><dc:Bounds x="5900" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="5863" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T3_di" bpmnElement="NE04_E2_T3"><dc:Bounds x="3160" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T4_di" bpmnElement="NE04_E2_T4"><dc:Bounds x="3366" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_M2_di" bpmnElement="NE04_M2" isMarkerVisible="true"><dc:Bounds x="3627" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T5_di" bpmnElement="NE04_E2_T5"><dc:Bounds x="3778" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T6_di" bpmnElement="NE04_E2_T6"><dc:Bounds x="3984" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T7_di" bpmnElement="NE04_E2_T7"><dc:Bounds x="4190" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T8_di" bpmnElement="NE04_E2_T8"><dc:Bounds x="4396" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_G2_di" bpmnElement="NE04_E2_G2" isMarkerVisible="true"><dc:Bounds x="4657" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4570" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T9_di" bpmnElement="NE04_E2_T9"><dc:Bounds x="4808" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_M3_di" bpmnElement="NE04_M3" isMarkerVisible="true"><dc:Bounds x="5069" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_F2_di" bpmnElement="NE04_F2"><dc:Bounds x="5282" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="5245" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E2_T10_di" bpmnElement="NE04_E2_T10"><dc:Bounds x="5426" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E3_T1_di" bpmnElement="NE04_E3_T1"><dc:Bounds x="5632" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E3_T2_di" bpmnElement="NE04_E3_T2"><dc:Bounds x="5838" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_E3_T3_di" bpmnElement="NE04_E3_T3"><dc:Bounds x="6044" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE04_F1_di" bpmnElement="NE04_F1"><dc:Bounds x="6312" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6275" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="NE04_Flow1_di" bpmnElement="NE04_Flow1"><di:waypoint x="168" y="1144" /><di:waypoint x="356" y="1144" /><di:waypoint x="356" y="842" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="NE04_Flow2_di" bpmnElement="NE04_Flow2"><di:waypoint x="436" y="792" /><di:waypoint x="562" y="792" /><di:waypoint x="562" y="918" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="NE04_Flow3_di" bpmnElement="NE04_Flow3"><di:waypoint x="562" y="1018" /><di:waypoint x="562" y="1144" /><di:waypoint x="743" y="1144" /></bpmndi:BPMNEdge>
@@ -172,28 +181,31 @@
       <bpmndi:BPMNEdge id="NE04_Flow11_di" bpmnElement="NE04_Flow11"><di:waypoint x="1798" y="817" /><di:waypoint x="1798" y="1144" /><di:waypoint x="1924" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="1804" y="1113" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="NE04_Flow12_di" bpmnElement="NE04_Flow12"><di:waypoint x="2084" y="1144" /><di:waypoint x="2192" y="1144" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="NE04_Flow13_di" bpmnElement="NE04_Flow13"><di:waypoint x="1823" y="792" /><di:waypoint x="2416" y="792" /><di:waypoint x="2416" y="1094" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="774" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow14_di" bpmnElement="NE04_Flow14"><di:waypoint x="2416" y="1194" /><di:waypoint x="2416" y="1224" /><di:waypoint x="4682" y="1224" /><di:waypoint x="4682" y="1169" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow14_di" bpmnElement="NE04_Flow14"><di:waypoint x="2416" y="1194" /><di:waypoint x="2416" y="1224" /><di:waypoint x="5094" y="1224" /><di:waypoint x="5094" y="1169" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="NE04_Flow15_di" bpmnElement="NE04_Flow15"><di:waypoint x="2622" y="918" /><di:waypoint x="2622" y="792" /><di:waypoint x="2803" y="792" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="NE04_Flow16_di" bpmnElement="NE04_Flow16"><di:waypoint x="2828" y="767" /><di:waypoint x="2828" y="264" /><di:waypoint x="2954" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow17_di" bpmnElement="NE04_Flow17"><di:waypoint x="2853" y="792" /><di:waypoint x="3215" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="2858" y="774" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow18_di" bpmnElement="NE04_Flow18"><di:waypoint x="3034" y="314" /><di:waypoint x="3034" y="792" /><di:waypoint x="3215" y="792" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow19_di" bpmnElement="NE04_Flow19"><di:waypoint x="3446" y="742" /><di:waypoint x="3446" y="264" /><di:waypoint x="3572" y="264" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow20_di" bpmnElement="NE04_Flow20"><di:waypoint x="3652" y="314" /><di:waypoint x="3652" y="440" /><di:waypoint x="3778" y="440" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow21_di" bpmnElement="NE04_Flow21"><di:waypoint x="3858" y="390" /><di:waypoint x="3858" y="88" /><di:waypoint x="3984" y="88" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow22_di" bpmnElement="NE04_Flow22"><di:waypoint x="4064" y="138" /><di:waypoint x="4064" y="792" /><di:waypoint x="4245" y="792" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow23_di" bpmnElement="NE04_Flow23"><di:waypoint x="4270" y="817" /><di:waypoint x="4270" y="1144" /><di:waypoint x="4396" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="4276" y="822" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow24_di" bpmnElement="NE04_Flow24"><di:waypoint x="4556" y="1144" /><di:waypoint x="4657" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow25_di" bpmnElement="NE04_Flow25"><di:waypoint x="4270" y="767" /><di:waypoint x="4270" y="264" /><di:waypoint x="5014" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="4276" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow26_di" bpmnElement="NE04_Flow26"><di:waypoint x="5094" y="314" /><di:waypoint x="5094" y="1144" /><di:waypoint x="5220" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow27_di" bpmnElement="NE04_Flow27"><di:waypoint x="5380" y="1144" /><di:waypoint x="5426" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow28_di" bpmnElement="NE04_Flow28"><di:waypoint x="5586" y="1144" /><di:waypoint x="5632" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow29_di" bpmnElement="NE04_Flow29"><di:waypoint x="5792" y="1144" /><di:waypoint x="5900" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow30_di" bpmnElement="NE04_Flow30"><di:waypoint x="1617" y="792" /><di:waypoint x="1773" y="792" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow31_di" bpmnElement="NE04_Flow31"><di:waypoint x="3265" y="792" /><di:waypoint x="3366" y="792" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="NE04_Flow32_di" bpmnElement="NE04_Flow32"><di:waypoint x="4707" y="1144" /><di:waypoint x="4870" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow17_di" bpmnElement="NE04_Flow17"><di:waypoint x="2853" y="792" /><di:waypoint x="3136" y="792" /><di:waypoint x="3136" y="264" /><di:waypoint x="3160" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="3142" y="759" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow18_di" bpmnElement="NE04_Flow18"><di:waypoint x="3240" y="314" /><di:waypoint x="3240" y="616" /><di:waypoint x="3366" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow19_di" bpmnElement="NE04_Flow19"><di:waypoint x="2828" y="817" /><di:waypoint x="2828" y="872" /><di:waypoint x="3652" y="872" /><di:waypoint x="3652" y="817" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="822" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow20_di" bpmnElement="NE04_Flow20"><di:waypoint x="3034" y="214" /><di:waypoint x="3034" y="185" /><di:waypoint x="3652" y="185" /><di:waypoint x="3652" y="767" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow21_di" bpmnElement="NE04_Flow21"><di:waypoint x="3446" y="666" /><di:waypoint x="3446" y="792" /><di:waypoint x="3627" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow22_di" bpmnElement="NE04_Flow22"><di:waypoint x="3858" y="742" /><di:waypoint x="3858" y="264" /><di:waypoint x="3984" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow23_di" bpmnElement="NE04_Flow23"><di:waypoint x="4064" y="314" /><di:waypoint x="4064" y="440" /><di:waypoint x="4190" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow24_di" bpmnElement="NE04_Flow24"><di:waypoint x="4270" y="390" /><di:waypoint x="4270" y="88" /><di:waypoint x="4396" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow25_di" bpmnElement="NE04_Flow25"><di:waypoint x="4476" y="138" /><di:waypoint x="4476" y="792" /><di:waypoint x="4657" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow26_di" bpmnElement="NE04_Flow26"><di:waypoint x="4682" y="817" /><di:waypoint x="4682" y="1144" /><di:waypoint x="4808" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="4688" y="822" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow27_di" bpmnElement="NE04_Flow27"><di:waypoint x="4968" y="1144" /><di:waypoint x="5069" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow28_di" bpmnElement="NE04_Flow28"><di:waypoint x="4682" y="767" /><di:waypoint x="4682" y="264" /><di:waypoint x="5426" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="4688" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow29_di" bpmnElement="NE04_Flow29"><di:waypoint x="5506" y="314" /><di:waypoint x="5506" y="1144" /><di:waypoint x="5632" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow30_di" bpmnElement="NE04_Flow30"><di:waypoint x="5792" y="1144" /><di:waypoint x="5838" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow31_di" bpmnElement="NE04_Flow31"><di:waypoint x="5998" y="1144" /><di:waypoint x="6044" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow32_di" bpmnElement="NE04_Flow32"><di:waypoint x="6204" y="1144" /><di:waypoint x="6312" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow33_di" bpmnElement="NE04_Flow33"><di:waypoint x="1617" y="792" /><di:waypoint x="1773" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow34_di" bpmnElement="NE04_Flow34"><di:waypoint x="3677" y="792" /><di:waypoint x="3778" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE04_Flow35_di" bpmnElement="NE04_Flow35"><di:waypoint x="5119" y="1144" /><di:waypoint x="5282" y="1144" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Group_NE04_E1_di" bpmnElement="Group_NE04_E1"><dc:Bounds x="261" y="-44" width="2250" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="2238" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_NE04_E2_di" bpmnElement="Group_NE04_E2"><dc:Bounds x="2527" y="-44" width="2662" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="2533" y="-38" width="2650" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_NE04_E3_di" bpmnElement="Group_NE04_E3"><dc:Bounds x="5205" y="-44" width="602" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="5211" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE04_E2_di" bpmnElement="Group_NE04_E2"><dc:Bounds x="2527" y="-44" width="3074" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="2533" y="-38" width="3062" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE04_E3_di" bpmnElement="Group_NE04_E3"><dc:Bounds x="5617" y="-44" width="602" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="5623" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

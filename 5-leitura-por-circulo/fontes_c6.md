@@ -11,7 +11,7 @@
 ## apqc
 - Referência (como será publicada): APQC, Process Classification Framework (PCF), cross-industry
 - O que dizemos que a fonte contém e como a usamos: PCF 7.4. Os processos da Integração estão em duas categorias: 8.0, tecnologia da informação (arquitetura, portfólio de TI, segurança, identidade e acesso, criação e teste de soluções, implantação, controle de mudança e suporte), base da IT-06 e da IT-07; e 13.0, capacidades do negócio (processos, portfólio e projetos, mudança), base da IT-01 a IT-05 e da IT-08. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.
-- Como dizemos que foi conferida: PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.
+- Como dizemos que foi conferida: PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.
 - Links:
   - PCF 7.4 (PDF, cópia 1): https://www.business-analysis.com.au/wp-content/uploads/2025/04/K014750_APQC-Process-Classification-Framework-PCF-Cross-Industry-PDF-Version-7.4_January-2025.pdf
   - PCF 7.4 (PDF, cópia 2): https://solutions.ifrc.org/sites/default/files/2024-10/K014750_APQC%20Process%20Classification%20Framework%20(PCF)%20-%20Cross%20Industry%20-%20PDF%20Version%207.4.pdf
@@ -20,7 +20,7 @@
 
 ## bpmn
 - Referência (como será publicada): OMG, Business Process Model and Notation (BPMN) 2.0.2; ISO/IEC 19510:2013
-- O que dizemos que a fonte contém e como a usamos: Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, manual, serviço, regra de negócio, script e recebimento, além da atividade de chamada.
+- O que dizemos que a fonte contém e como a usamos: Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, manual, serviço, script e recebimento, além da atividade de chamada.
 - Como dizemos que foi conferida: Páginas oficiais da OMG e da ISO abertas; a lista de tipos de tarefa foi conferida no BPMN Quick Guide; a atividade de chamada foi aceita pelo metamodelo usado nos testes. A especificação completa não foi lida.
 - Links:
   - omg.org: https://www.omg.org/spec/BPMN/2.0.2/About-BPMN

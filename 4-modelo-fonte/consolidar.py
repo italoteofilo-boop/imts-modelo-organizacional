@@ -36,7 +36,7 @@ CROSS = [
     ('C8', 'Do registro à prestação de contas', 'Gestão', ['GE-05', 'GO-03'], 'Gestão; a Governança relata riscos e conformidade', ''),
     ('C9', 'Do risco ao controle', 'Governança', ['GO-03', 'GO-01'], 'Governança', ''),
     ('C10', 'Do pedido de tecnologia ao serviço estável', 'Integração', ['OP-03', 'IT-07'], 'Integração', 'Qualquer círculo pede à IT-07.'),
-    ('C11', 'Da marca à reputação', 'Identidade', ['ID-04', 'RE-08', 'GO-08'], 'Identidade cria a marca e o posicionamento; Relações monitora; a Governança decide a crise', 'A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04.'),
+    ('C11', 'Da marca à reputação', 'Identidade', ['ID-04', 'RE-08', 'GO-08'], 'Identidade cria a marca e o posicionamento; Relações monitora; a Governança conduz o comitê de crise e o dono da crise decide (executivo, Administrador do IMTS.OS ou sócios)', 'A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04.'),
     ('C12', 'Do valor declarado à cultura vivida', 'Identidade', ['ID-02', 'GE-10', 'GE-09', 'ID-05'], 'Identidade; a Gestão executa', ''),
     ('C13', 'Da minuta ao contrato encerrado', 'Governança', ['GO-01', 'NE-04', 'GO-05'], 'Governança', 'O contrato é originado pela frente dona.'),
     ('E1', 'Do pedido ao serviço', 'Integração', ['IT-05'], 'Integração', 'O pedido de serviço de uma empresa a um círculo fica na IT-05, com acordo de serviço.'),

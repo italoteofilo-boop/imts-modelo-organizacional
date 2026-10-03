@@ -9,14 +9,16 @@ CIRC = {
 PAPEIS = {
     'SOC': 'Sócios', 'EXE': 'Executivo da empresa', 'LCI': 'Líder do círculo', 'LID': 'Líder da equipe',
     'PES': 'Pessoa', 'SOL': 'Solicitante', 'ASS': 'Assessoria externa', 'CLI': 'Cliente', 'PRC': 'Parceiro',
+    'ADM': 'Administrador do IMTS.OS',
 }
 # papel (raia) -> parte que gera entrada ou recebe saída
 PAPEL_PARTE = {'SOC': 'Sócios', 'EXE': 'Executivos', 'LCI': 'Líderes dos círculos', 'LID': 'Líderes',
-               'PES': 'Pessoas', 'SOL': 'Solicitante', 'ASS': 'Assessoria externa', 'CLI': 'Clientes', 'PRC': 'Parceiros'}
+               'PES': 'Pessoas', 'SOL': 'Solicitante', 'ASS': 'Assessoria externa', 'CLI': 'Clientes', 'PRC': 'Parceiros', 'ADM': 'Administrador do IMTS.OS'}
 # quem pode gerar entrada ou receber saída fora do círculo
 PARTES_BASE = ['Identidade', 'Estratégia', 'Inteligência', 'Relações', 'Negócios', 'Integração', 'Operações',
                'Gestão', 'Governança', 'Sócios', 'Executivos', 'Líderes dos círculos', 'Líderes', 'Pessoas',
-               'Solicitante', 'Assessoria externa', 'Clientes', 'Parceiros', 'Públicos externos', 'Todos (pessoas e agentes)']
+               'Solicitante', 'Assessoria externa', 'Clientes', 'Parceiros', 'Públicos externos', 'Todos (pessoas e agentes)',
+               'Administrador do IMTS.OS']
 TODOS = 'Todos (pessoas e agentes)'
 
 # como o nome do círculo entra numa frase: (o círculo, do círculo, ao círculo)

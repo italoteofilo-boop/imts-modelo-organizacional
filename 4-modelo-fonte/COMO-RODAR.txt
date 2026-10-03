@@ -3,7 +3,7 @@ Requisitos: Python 3 e Node.js.
 1. cd ferramentas-node && npm install && cd ..
 2. python3 testar.py   (gera os fluxos e roda integridade, bpmnlint, desenho, rótulos, prova dos testes e cruzamento)
 3. python3 consolidar.py   (cadeias das cross)
-4. python3 pagina.py c1   (e c2 a c9: refaz as páginas em saida/)
+4. python3 pagina.py c1   (e c2 a c9: refaz as páginas em saida/, pasta criada ao rodar; a cópia publicada dos dados está em dados-gerados/)
 5. python3 revisao.py   (texto corrido por círculo)
 6. python3 empacotar.py c1 c2 c3 c4 c5 c6 c7 c8 c9   (zips dos fluxos)
 

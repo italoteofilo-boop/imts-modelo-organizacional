@@ -1,24 +1,24 @@
 # Gates de implantação
 
-O desenho está fechado. O que falta depende de dado real (empresas, pessoas, valores, sistemas) ou de alguém de fora do projeto (sócios, assessoria). Cada item virou um gate de setup. A implantação só passa de um gate quando o critério de saída está cumprido. Os gates seguem a ordem em que dependem um do outro.
+O desenho está fechado. O que falta depende de dado real (empresas, pessoas, valores, sistemas) ou de alguém de fora do projeto (sócios, assessoria). Cada item virou um gate de setup. A implantação só passa de um gate quando o critério de saída está cumprido. Os gates seguem a ordem em que dependem um do outro: o G6 vem logo depois do G2, porque o G3 já usa as alçadas ratificadas (auditoria geral, M11; ajustado em 03/10/2026).
 
 | Gate | O que entra | Quem fornece | Critério de saída | Desbloqueia |
 |---|---|---|---|---|
 | G1. Empresas | Lista das empresas do portfólio. Para cada uma: regime tributário, porte e se é agente de pequeno porte para a ANPD. | Você | Cada empresa cadastrada com regime e porte | G4, G5, rateio (GE-06), prazos em dobro da ANPD (GO-09) |
-| G2. Pessoas por papel | Sócios, executivo de cada empresa, líder de cada círculo (você na Identidade) e encarregado de dados de cada empresa | Você e os sócios | Nenhum papel do modelo sem pessoa; ninguém acumula papéis que se fiscalizam, como lançar e aprovar o mesmo pagamento | G3, G7 e todas as alçadas com nome |
+| G2. Pessoas por papel | Sócios do Ecossistema e de cada empresa, executivo de cada empresa, líder de cada círculo (você na Identidade) e encarregado de dados de cada empresa. O Administrador do IMTS.OS é você (decidido em 03/10/2026) | Você e os sócios | Nenhum papel do modelo sem pessoa; ninguém acumula papéis que se fiscalizam, como lançar e aprovar o mesmo pagamento | G3, G7 e todas as alçadas com nome |
+| G6. Ratificação dos sócios | Os sócios ratificam o que você aprovou: método de estratégia, regras gerais de contrato, alçadas, tabela matéria × órgão, critério dos agentes (ID-02) e apetite a risco | Sócios | Ata assinada (GO-02) | Valor formal das regras e dos valores do G3 |
 | G3. Valores do primeiro ciclo | Orçamento de cada empresa e círculo, reserva de apostas, limite de cada unidade, reserva de contingência e preço-base de cada oferta | Estratégia e Gestão, com aprovação dos sócios (ES-02 e ES-03 do primeiro ciclo) | Alocação e alvos aprovados pelos sócios | As alçadas que usam essas referências |
 | G4. Regra fiscal e folha | Tributos, obrigações acessórias e calendário de cada empresa pelo regime; convenção coletiva aplicável | Assessoria contábil e trabalhista | Calendário fiscal e de folha de cada empresa conferido pela assessoria | GE-05, GE-13 |
-| G5. Fontes no texto oficial | Conferir no texto oficial o que foi lido em transcrição: Resolução CD/ANPD nº 15/2024, Lei 14.133 (arts. 82 a 165) e Código Civil (arts. 422, 441 a 446, 475 e 1.179 a 1.194) | Assessoria jurídica, ou eu, com o Chrome conectado ou os links do Diário Oficial | Cada artigo conferido, com o link oficial na aba Fontes | Uso dos prazos em peça, contrato e política |
-| G6. Ratificação dos sócios | Os sócios ratificam o que você aprovou: método de estratégia, regras gerais de contrato, alçadas, critério dos agentes (ID-02) e apetite a risco | Sócios | Ata assinada (GO-02) | Valor formal das regras |
+| G5. Fontes no texto oficial | Cumprido em 03/10/2026 na Lei 14.133, no Código Civil, na CLT e na Lei 8.036: todos os artigos citados conferidos no Planalto, com o link oficial na aba Fontes. Falta só a Resolução CD/ANPD nº 15/2024: o Diário Oficial não abriu nas ferramentas de leitura | Assessoria jurídica, ou eu, com o link do Diário Oficial | Arts. 6º e 9º da Resolução CD/ANPD nº 15/2024 e a regra do prazo em dobro conferidos no oficial | Uso do prazo de incidente em peça, contrato e política |
 | G7. Motor e sistemas | Escolher o motor que executa os fluxos e ligar cada tarefa a um sistema. Construir os agentes e as automações e liberá-los pela IT-06 | Integração, com você | Cada tarefa de agente ou automação tem sistema e teste aprovado; cada agente foi liberado pela IT-06 | Execução real das 73 jornadas |
 | G8. Modelos e políticas redigidos | Textos finais dos modelos de contrato e das políticas, a partir dos rascunhos aprovados | Governança e Gestão, com a assessoria jurídica | Cada texto aprovado por quem decide, pela aba Parâmetros em aberto | Uso em cliente, fornecedor e pessoa |
 | G9. Calibração | Depois de dois ciclos: medir tempo, volume e carga; rever frações, cadências e níveis de automação | Inteligência (IN-04) e Integração (IT-08) | Parâmetros revistos com dados e aprovados por quem decide | Versão 2 do modelo |
 
-# Propostas de cadências e conteúdos
+# Cadências e conteúdos validados
 
-Rascunhos para você validar. Sem dados reais, são escolha de desenho, sem fonte externa salvo onde citada. Quando houver pessoas (G2), o líder de cada círculo ajusta na implantação. Os prazos legais já registrados nas fontes dos círculos aparecem marcados.
+Rascunhos validados por você em 03/10/2026, às 14:07, e aplicados na aba Parâmetros em aberto e nos círculos. Sem dados reais, são escolha de desenho, sem fonte externa salvo onde citada. Quando houver pessoas (G2), o líder de cada círculo ajusta na implantação. Os prazos legais já registrados nas fontes dos círculos aparecem marcados.
 
-## 1. Cadências (33)
+## 1. Cadências (34)
 
 As cadências seguem o calendário do método de estratégia: ano, semestre, trimestre e mês.
 
@@ -57,6 +57,7 @@ As cadências seguem o calendário do método de estratégia: ano, semestre, tri
 | GO-02 · reunião dos sócios | Trimestral, e por evento |
 | GO-03 · riscos e conformidade | Trimestral |
 | GO-06 · auditoria das entregas | Trimestral, antes da revisão da execução (ES-06) |
+| GO-06 · auditoria externa da própria Governança | Anual (acrescentado em 03/10/2026, auditoria geral M3) |
 
 ## 2. Conteúdos (14)
 
@@ -143,7 +144,7 @@ Em risco médio, a GO-06 audita por amostra; desvio suspende o agente. A taxa de
 
 **Garantia:**
 - com cliente consumidor, segue o CDC;
-- entre empresas, segue a garantia escrita, e o defeito deve ser denunciado em trinta dias da descoberta (Código Civil, art. 446, transcrição).
+- entre empresas, segue a garantia escrita, e o defeito deve ser denunciado em trinta dias da descoberta (Código Civil, art. 446, conferido no texto oficial).
 
 Os valores de cada nível são fixados na IN-07, por oferta.
 
@@ -194,7 +195,7 @@ O tamanho em número fica para o gate G9, com o volume real.
 
 **Guarda:**
 - o registro de incidente é guardado por no mínimo cinco anos (Resolução CD/ANPD nº 15/2024, art. 10, transcrição);
-- a escrituração é guardada enquanto não houver prescrição ou decadência (Código Civil, art. 1.194, transcrição);
+- a escrituração é guardada enquanto não houver prescrição ou decadência (Código Civil, art. 1.194, conferido no texto oficial);
 - os demais prazos de guarda fiscal e trabalhista entram no gate G4.
 
 São 14: os 13 conteúdos ainda em aberto na aba Parâmetros e a estrutura dos modelos de contrato (2.4), cujas regras gerais já estavam aprovadas.

@@ -1,6 +1,6 @@
 {
  "integridade": {
-  "verificacoes": 4569,
+  "verificacoes": 4611,
   "problemas": 0
  },
  "lint": {
@@ -13,18 +13,21 @@
   "avisos": 0
  },
  "rotulos": {
-  "tarefas": 287,
+  "tarefas": 292,
   "problemas": 0
  },
  "mutacao": {
-  "detectados": 20,
-  "total": 20
+  "detectados": 21,
+  "total": 21
  },
  "cruzamento": {
-  "trocas": 406,
-  "verificacoes": 1039,
+  "trocas": 409,
+  "verificacoes": 1046,
   "problemas": 0,
   "mut_detectados": 12,
-  "mut_total": 12
+  "mut_total": 12,
+  "alcadas": 17,
+  "alcadas_niveis": 40,
+  "alcadas_faltas": 0
  }
 }

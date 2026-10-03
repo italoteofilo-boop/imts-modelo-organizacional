@@ -50,6 +50,12 @@ cz['mut_detectados'] = num(r'DEFEITOS DETECTADOS: (\d+) de (\d+)', o)
 cz['mut_total'] = num(r'DEFEITOS DETECTADOS: (\d+) de (\d+)', o, 2)
 falhou = falhou or bool(rc) or bool(rcm)
 print('cruzamento', 'OK' if not (rc or rcm) else 'FALHOU', json.dumps(cz, ensure_ascii=False))
+rca, o = run([sys.executable, 'alcadas_fluxo.py'], BASE)
+cz['alcadas'] = num(r'ALÇADAS: (\d+)', o)
+cz['alcadas_niveis'] = num(r'NÍVEIS CONFERIDOS: (\d+)', o)
+cz['alcadas_faltas'] = num(r'FALTAS: (\d+)', o)
+falhou = falhou or bool(rca)
+print('alçadas no fluxo', 'OK' if not rca else 'FALHOU', o.strip().splitlines()[-1] if o.strip() else '')
 for m in mods:
     res[m]['cruzamento'] = cz
     with open(os.path.join(BASE, 'saida', m, 'testes.json'), 'w', encoding='utf-8') as fh:

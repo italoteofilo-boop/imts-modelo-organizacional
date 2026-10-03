@@ -128,6 +128,9 @@ DECISOES = [
     ('Cadências e conteúdos validados; gates de implantação',
      'Validado por você (14:07 de 03/10/2026)',
      'Cadências da Gestão (fechamento, rateio, folha, avaliação, cultura, comunicação, inventário); políticas de cobrança, compras, remuneração e desenvolvimento; critério de rateio. O que depende de dado real ficou nos gates G1 a G9.'),
+    ('Correções da auditoria geral',
+     'Aprovado por você (16:05 de 03/10/2026)',
+     'Administrador do IMTS.OS (você) decide acima dos círculos compartilhados: recurso (GE-01), contas do IMTS.OS (GE-05), pessoas, remuneração e folha dos círculos (GE-07, GE-09, GE-13) (D2). Quem prepara não aprova: o líder do círculo aprova pagamento, reembolso, fechamento e impostos (GE-03, GE-04, GE-05); a folha e a remuneração têm o executivo ou o Administrador como segundo aprovador (D3). Aumento do orçamento e compra acima da reserva vão aos sócios; desligamento de executivo ou de líder também (M1). A comissão sai da receita recebida (M6); a segunda fatura vencida leva à proposta de suspensão ao executivo (M7). GE-02: desvio grave à ES-06, mudança de alvo à Estratégia, recurso novo à GE-01, e fim próprio para ação em atraso (M9, L1, L7).'),
 ]
 
 PROPOSTAS = []
@@ -171,13 +174,13 @@ LIMITES = [
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. O alerta do círculo 1 sobre a carga humana das jornadas transferidas continua sem medida.',
     'O ritual de acompanhamento é mensal, pelo método de estratégia aprovado em 03/10/2026. As outras cadências (fechamento, folha, avaliação, rituais de cultura, comunicação interna, rateio e inventário) são decididas pelo líder do círculo, na implantação.',
     'Os rascunhos de políticas de cobrança, compras, remuneração e desenvolvimento foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.',
-    'Da área trabalhista e contábil foram lidos os prazos da folha, das férias e da rescisão (CLT), o depósito do FGTS e a escrituração (Código Civil), parte em transcrição secundária. A regra fiscal não foi citada: os tributos dependem do regime de cada empresa, que não está no modelo (empresas e pessoas ficaram para depois). A apuração segue a lei vigente, com a assessoria.',
+    'Da área trabalhista e contábil foram lidos os prazos da folha, das férias e da rescisão (CLT), o depósito do FGTS e a escrituração (Código Civil), conferidos no texto oficial (Planalto) em 03/10/2026. A regra fiscal não foi citada: os tributos dependem do regime de cada empresa, que não está no modelo (empresas e pessoas ficaram para depois). A apuração segue a lei vigente, com a assessoria.',
     'Estratégia e políticas de pessoas (APQC 7.1), relações sindicais e queixas (7.4), benefícios (7.5.2), reembolso de despesas (9.6.2), dívida e aplicações (9.7.4) não têm etapa própria.',
     'O fornecedor não é uma parte do vocabulário do modelo: as trocas com ele aparecem como tarefas da Gestão.',
     'A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.',
     'O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
     'A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As saídas estão listadas por etapa, não por caminho.',
     'Os números descrevem este desenho, não a operação atual.',

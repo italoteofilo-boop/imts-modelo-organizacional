@@ -13,6 +13,8 @@ from fontes import FONTES_BASE
 
 # critérios aprovados em 03/10/2026 (auditoria de execução)
 JULGA = re.compile(r'^(Decidir|Aprovar|Julgar|Escolher|Autorizar|Calibrar|Liberar)\b')
+DINHEIRO = re.compile(r'^(Pagar|Programar e fazer o pagamento|Recolher os impostos|Executar e registrar a movimentação)\b')
+APROVA = re.compile(r'^(Aprovar|Autorizar)\b')
 MODO_DA_CLASSE = {'Exclusivamente humana': ('Assistido',), 'Assistida': ('Assistido',), 'Copiloto': ('Copiloto',),
                   'Autopiloto': ('Autopiloto',), 'Autômata': ('Autômato',),
                   'Conduzida por outros círculos': ('Assistido', 'Copiloto', 'Autopiloto', 'Autômato')}
@@ -299,6 +301,12 @@ def integridade(graphs):
             for t in main:
                 if t['exec'] in ('A', 'R'):
                     chk(not JULGA.match(t['nome']), f'{c} etapa {e}: agente ou automação com tarefa de julgamento: {t["nome"]}')
+            # saída de dinheiro: quem aprova não é a pessoa do círculo que prepara (critério aprovado em 03/10/2026, auditoria geral)
+            todas_t = [t for t, cond in tarefas]
+            if any(DINHEIRO.match(t['nome']) and t['exec'] in ('A', 'R') for t in todas_t):
+                aprov = [t for t in todas_t if APROVA.match(t['nome'])]
+                chk(bool(aprov) and all(t['exec'] in ('H', 'C') for t in aprov),
+                    f'{c} etapa {e}: saída de dinheiro sem aprovação de outra pessoa que não a do círculo que prepara')
         nt = sum(jtar.values())
         if nt:
             fx = faixa_automacao((jtar['A'] + jtar['R']) / nt)

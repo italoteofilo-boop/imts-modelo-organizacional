@@ -1,6 +1,6 @@
 # Auditoria de execução
 
-Conferência das 73 jornadas, 290 etapas e 1.482 tarefas dos nove círculos pelo modo de execução: quem faz cada tarefa (pessoa, agente, automação) e se o modo declarado de cada etapa bate com o que as tarefas fazem. Feita em 03/10/2026 sobre o modelo aprovado às 11:50. Script: modelo/auditar.py; dados: saida/auditoria.json. As correções propostas (seção 6) foram aprovadas e aplicadas (seção 7).
+Conferência das 73 jornadas, 290 etapas e 1.482 tarefas dos nove círculos (números do modelo das 11:50; os atuais estão na seção 8) pelo modo de execução: quem faz cada tarefa (pessoa, agente, automação) e se o modo declarado de cada etapa bate com o que as tarefas fazem. Feita em 03/10/2026 sobre o modelo aprovado às 11:50. Script: modelo/auditar.py; dados: saida/auditoria.json. As correções propostas (seção 6) foram aprovadas e aplicadas (seção 7).
 
 ## 1. Critério
 
@@ -202,3 +202,34 @@ Depois da aplicação:
 - Seguem como apontamento leve, sem defeito:
   - 44 decisões de caminho na raia do agente. São 41 de regra objetiva e 3 em que o agente faz a triagem e a pessoa trata a dúvida ou a negativa: RE-03, RE-08 e a cobertura da OP-07.
   - 6 etapas de Copiloto com pessoa de fora do círculo.
+
+## 8. Situação depois das correções da auditoria geral (03/10/2026, 16:05)
+
+As seções 2 a 7 registram a auditoria como foi feita, sobre o modelo das 11:50, com 290 etapas e 1.482 tarefas (1.490 depois da aplicação). As correções da auditoria geral, aprovadas às 16:05, mudaram fluxos. Esta seção dá os números atuais, gerados por modelo/auditar.py.
+
+| Círculo | Tarefas | Pessoa do círculo | Pessoa de fora ou assessoria | Agente | Automação | Outro círculo |
+|---|---|---|---|---|---|---|
+| Identidade | 99 | 27 | 7 | 26 | 21 | 18 |
+| Estratégia | 200 | 52 | 17 | 33 | 73 | 25 |
+| Inteligência | 292 | 56 | 15 | 55 | 118 | 48 |
+| Relações | 190 | 49 | 16 | 34 | 68 | 23 |
+| Negócios | 174 | 29 | 21 | 22 | 67 | 35 |
+| Integração | 166 | 30 | 11 | 25 | 77 | 23 |
+| Operações | 128 | 29 | 8 | 35 | 50 | 6 |
+| Gestão | 172 | 37 | 38 | 39 | 54 | 4 |
+| Governança | 123 | 31 | 18 | 27 | 44 | 3 |
+| **Total** | **1.544** | **340** | **151** | **296** | **572** | **185** |
+
+Das 1.359 tarefas que cada círculo faz com os próprios meios, 868 são de máquina (64%): 572 de automação e 296 de agente.
+
+| Modo declarado | Etapas |
+|---|---|
+| Copiloto | 139 |
+| Autopiloto | 62 |
+| Assistido | 57 |
+| Autômato | 34 |
+| **Total** | **292** |
+
+- O modo declarado bate com as tarefas em todas as 292 etapas (rotular.py e gerar.py, sem problemas).
+- A única etapa de risco alto sem pessoa no caminho principal segue sendo a ES-05 etapa 7, por desenho (4.1): o caminho é todo de outros círculos.
+- Apontamentos leves, sem defeito: decisão do caminho tomada pelo agente em etapa de risco médio ou alto: 43; copiloto em que a pessoa no caminho é de fora do círculo: 7.

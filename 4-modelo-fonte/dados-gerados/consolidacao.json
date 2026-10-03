@@ -331,6 +331,7 @@
      "de": "GE-02",
      "para": "ES-06",
      "produtos": [
+      "Desvio grave ou mudança de alvo apontados pelo ritual",
       "Desvios e decisões do ritual de acompanhamento"
      ]
     }
@@ -603,7 +604,7 @@
     "Relações",
     "Governança"
    ],
-   "dono": "Identidade cria a marca e o posicionamento; Relações monitora; a Governança decide a crise",
+   "dono": "Identidade cria a marca e o posicionamento; Relações monitora; a Governança conduz o comitê de crise e o dono da crise decide (executivo, Administrador do IMTS.OS ou sócios)",
    "nota": "A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04.",
    "elos": [
     {

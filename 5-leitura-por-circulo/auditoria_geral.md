@@ -113,3 +113,38 @@ O que falta:
 | 7 | M11 e leves | O G6 passa para antes do G3. Os 9 itens leves de desenho são corrigidos. |
 
 Os blocos 1 e 2 não mudam o desenho. Os blocos 3 a 7 mudam fluxos já aprovados: depois de aplicá-los, rodo de novo os testes, o cruzamento, a auditoria de execução e a base no Supabase.
+
+## 6. Aplicação (aprovada por você em 03/10/2026, às 16:05)
+
+Você aprovou os sete blocos e assumiu o papel de **Administrador do IMTS.OS**, dono acima dos círculos compartilhados.
+
+| # | O que foi feito |
+|---|---|
+| D1 | Tabela matéria × órgão: sócios do Ecossistema, sócios de cada empresa, Administrador do IMTS.OS e executivo (aba Propostas de parâmetros, seção 5). |
+| D2 | O Administrador do IMTS.OS entra como papel. Decide o recurso dos círculos compartilhados (GE-01), as contas do IMTS.OS (GE-05), e as pessoas, a remuneração e a folha dos círculos (GE-07, GE-09, GE-13). |
+| D3 | Quem prepara não aprova:<br>- O líder do círculo aprova pagamento, reembolso, fechamento e impostos (GE-03, GE-04, GE-05).<br>- A folha e a remuneração têm o executivo, ou o Administrador, como segundo aprovador.<br>- A mudança de contas passa sempre pela Governança.<br>Teste novo: uma etapa com saída de dinheiro feita por máquina precisa de aprovação de alguém de fora do círculo. Ele pega 21 de 21 defeitos plantados. |
+| D4 | GO-09: o relato que cita a Governança vai à assessoria externa, sem acesso da Governança, e os sócios decidem a medida. |
+| M1 | Ramos novos:<br>- GE-01: aumento do total, aos sócios.<br>- GE-04: acima da reserva, aos sócios.<br>- GE-07: desligamento de executivo ou de líder, aos sócios.<br>- GO-03: nota 15 ou mais, aos sócios.<br>- GO-05 e NE-04: regra 10 dos contratos, aos sócios.<br>- OP-04: a Governança avalia antes do executivo.<br>Teste novo: 17 alçadas, 40 níveis, sem falta. A prova de mutação detectou a falta plantada. |
+| M2 | GO-01: quem decide sai da lista de matérias, por regra. A alçada das pessoas da Governança vai aos sócios. |
+| M3 | GO-06: uma pessoa revê uma amostra dos conformes do agente, e há auditoria externa anual da própria Governança. IT-06: uma pessoa confirma o desvio do agente. |
+| M4 | GO-08: a crise tem um único dono. É o executivo na crise da empresa, o Administrador na crise do Ecossistema e os sócios quando a crise envolve o executivo. A cadeia C11 foi alinhada. |
+| M5 | Os limites dos agentes têm um único dono: os sócios, na ID-02, etapa 3. |
+| M6 | A comissão é calculada sobre a receita recebida (GE-13 recebe da GE-03). |
+| M7 | Na GE-03, a segunda fatura vencida leva à proposta de suspensão, que o executivo decide. A OP-02 suspende as entregas e avisa. |
+| M8 | As escaladas voltam:<br>- GO-03: remediação com evidência;<br>- GO-05: decisão do executivo;<br>- GO-06: correção feita;<br>- GO-07: execução confirmada, no prazo da LGPD;<br>- IT-02: decisão sobre o impasse;<br>- IN-08: decisão do executivo. |
+| M9 | O critério de desvio grave está no método. A GE-02 o aponta à ES-06. |
+| M10 | ES-04: vão aos sócios o encerramento de oferta com contratos vigentes e a decisão contra o portfólio-alvo. |
+| M11 | O G6 passou para antes do G3. |
+| L1 a L9 | Corrigidos:<br>- GE-02: mudança de alvo e recurso novo, com fim próprio para ação em atraso;<br>- um só vocabulário de realocação;<br>- textos do c2;<br>- evento de início da revisão do meio do ciclo;<br>- cadência da GO-02 com os sócios;<br>- exceção da compra e venda na regra 2;<br>- IN-07 avisa a Estratégia;<br>- GO-02: a devolução é decidida por pessoa. |
+| Fontes | Conferidos no texto oficial (Planalto):<br>- Lei 14.133: art. 17, §§ 1º e 2º, e arts. 82 a 84, 86 (com o § 3º), 90, 140, 141, 164 e 165;<br>- Código Civil: arts. 389 a 1.194 citados;<br>- CLT: arts. 74, § 2º, 145, 459, § 1º, e 477, § 6º;<br>- Lei 8.036: art. 15.<br>McKinsey: os valores 10,2% e 7,8% estão no Exhibit 2 do artigo; o texto diz "30% maior". APQC: os 18 elementos do círculo 6 conferidos. O G5 fica aberto só para a Resolução CD/ANPD nº 15/2024: o Diário Oficial não abriu. |
+| Coerência | Textos desatualizados corrigidos e arquivos de leitura gerados de novo. A auditoria de execução ganhou a seção 8, com os números atuais. |
+
+**Números depois da aplicação**
+
+| Item | Valor |
+|---|---|
+| Jornadas | 73 |
+| Etapas | 292 |
+| Tarefas | 1.544 |
+| Trocas entre círculos | 409, sem falha |
+| Testes | Todos os círculos sem problema |

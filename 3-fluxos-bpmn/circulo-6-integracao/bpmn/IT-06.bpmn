@@ -36,12 +36,13 @@
         <bpmn:flowNodeRef>IT06_E2_G1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E3_G1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT06_E4_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT06_E4_T6</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_IT06_ITA" name="Integração · agente">
         <bpmn:flowNodeRef>IT06_E1_G2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E1_T6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E2_T4</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IT06_E4_G1</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_IT06_ITR" name="Integração · automação">
         <bpmn:flowNodeRef>IT06_S1</bpmn:flowNodeRef>
@@ -61,8 +62,9 @@
         <bpmn:flowNodeRef>IT06_M3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E4_T1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E4_T2</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IT06_E4_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT06_E4_G1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_E4_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT06_E4_T5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_F3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IT06_F1</bpmn:flowNodeRef>
       </bpmn:lane>
@@ -72,16 +74,16 @@
     <bpmn:startEvent id="IT06_S3" name="Padrão, posicionamento ou marca alterados"><bpmn:outgoing>IT06_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="IT06_S3_def" /></bpmn:startEvent>
     <bpmn:startEvent id="IT06_S4" name="Falha ou desvio de agente detectado"><bpmn:outgoing>IT06_Flow4</bpmn:outgoing><bpmn:signalEventDefinition id="IT06_S4_def" /></bpmn:startEvent>
     <bpmn:startEvent id="IT06_S5" name="Ciclo de monitoramento dos agentes iniciado"><bpmn:outgoing>IT06_Flow5</bpmn:outgoing><bpmn:timerEventDefinition id="IT06_S5_def" /></bpmn:startEvent>
-    <bpmn:exclusiveGateway id="IT06_M1"><bpmn:incoming>IT06_Flow1</bpmn:incoming><bpmn:incoming>IT06_Flow2</bpmn:incoming><bpmn:incoming>IT06_Flow3</bpmn:incoming><bpmn:incoming>IT06_Flow4</bpmn:incoming><bpmn:incoming>IT06_Flow5</bpmn:incoming><bpmn:incoming>IT06_Flow22</bpmn:incoming><bpmn:incoming>IT06_Flow27</bpmn:incoming><bpmn:incoming>IT06_Flow35</bpmn:incoming><bpmn:outgoing>IT06_Flow38</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:scriptTask id="IT06_E1_T1" name="Registrar o que abriu o trabalho e os agentes afetados"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow38</bpmn:incoming><bpmn:outgoing>IT06_Flow6</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT06_M1"><bpmn:incoming>IT06_Flow1</bpmn:incoming><bpmn:incoming>IT06_Flow2</bpmn:incoming><bpmn:incoming>IT06_Flow3</bpmn:incoming><bpmn:incoming>IT06_Flow4</bpmn:incoming><bpmn:incoming>IT06_Flow5</bpmn:incoming><bpmn:incoming>IT06_Flow22</bpmn:incoming><bpmn:incoming>IT06_Flow27</bpmn:incoming><bpmn:incoming>IT06_Flow36</bpmn:incoming><bpmn:outgoing>IT06_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT06_E1_T1" name="Registrar o que abriu o trabalho e os agentes afetados"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow40</bpmn:incoming><bpmn:outgoing>IT06_Flow6</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:exclusiveGateway id="IT06_E1_G1" name="O que abriu o trabalho?"><bpmn:incoming>IT06_Flow6</bpmn:incoming><bpmn:outgoing>IT06_Flow7</bpmn:outgoing><bpmn:outgoing>IT06_Flow9</bpmn:outgoing><bpmn:outgoing>IT06_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
     <bpmn:scriptTask id="IT06_E1_T2" name="Retirar o agente ou o conteúdo de uso e avisar o dono da capacidade"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow7</bpmn:incoming><bpmn:outgoing>IT06_Flow8</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:endEvent id="IT06_F2" name="Agente retirado de uso"><bpmn:incoming>IT06_Flow8</bpmn:incoming></bpmn:endEvent>
     <bpmn:exclusiveGateway id="IT06_E1_G2" name="Há padrão de identidade para o canal ou o tipo de agente?"><bpmn:incoming>IT06_Flow10</bpmn:incoming><bpmn:outgoing>IT06_Flow11</bpmn:outgoing><bpmn:outgoing>IT06_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
     <bpmn:scriptTask id="IT06_E1_T3" name="Pedir à Identidade o padrão para o agente ou o canal novo"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow11</bpmn:incoming><bpmn:outgoing>IT06_Flow12</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:receiveTask id="IT06_E1_T4" name="Receber os padrões e os casos de teste da Identidade"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow12</bpmn:incoming><bpmn:outgoing>IT06_Flow14</bpmn:outgoing></bpmn:receiveTask>
-    <bpmn:exclusiveGateway id="IT06_M2"><bpmn:incoming>IT06_Flow13</bpmn:incoming><bpmn:incoming>IT06_Flow14</bpmn:incoming><bpmn:outgoing>IT06_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:userTask id="IT06_E1_T5" name="Decidir a arquitetura do agente: modelo, ferramentas, conhecimento e integrações"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow39</bpmn:incoming><bpmn:outgoing>IT06_Flow15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IT06_M2"><bpmn:incoming>IT06_Flow13</bpmn:incoming><bpmn:incoming>IT06_Flow14</bpmn:incoming><bpmn:outgoing>IT06_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT06_E1_T5" name="Decidir a arquitetura do agente: modelo, ferramentas, conhecimento e integrações"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow41</bpmn:incoming><bpmn:outgoing>IT06_Flow15</bpmn:outgoing></bpmn:userTask>
     <bpmn:serviceTask id="IT06_E1_T6" name="Montar as instruções, o conhecimento, as ferramentas, a voz e a alçada do agente"><bpmn:documentation>Etapa 1: Montar ou mudar o agente pela ficha. Executor: Agente da Integração (Integração · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow15</bpmn:incoming><bpmn:outgoing>IT06_Flow16</bpmn:outgoing></bpmn:serviceTask>
     <bpmn:scriptTask id="IT06_E2_T1" name="Rodar os casos de teste do método, da base e da Identidade"><bpmn:documentation>Etapa 2: Testar o agente com os casos de teste. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow16</bpmn:incoming><bpmn:outgoing>IT06_Flow17</bpmn:outgoing></bpmn:scriptTask>
     <bpmn:task id="IT06_E2_T2" name="Medir o acerto do conteúdo e julgar os casos de fronteira de conteúdo"><bpmn:documentation>Etapa 2: Testar o agente com os casos de teste. Executor: Outro círculo (Inteligência). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow17</bpmn:incoming><bpmn:outgoing>IT06_Flow18</bpmn:outgoing></bpmn:task>
@@ -95,13 +97,15 @@
     <bpmn:exclusiveGateway id="IT06_E3_G1" name="A Governança e o líder do círculo dono aceitaram o agente?"><bpmn:incoming>IT06_Flow26</bpmn:incoming><bpmn:outgoing>IT06_Flow27</bpmn:outgoing><bpmn:outgoing>IT06_Flow28</bpmn:outgoing></bpmn:exclusiveGateway>
     <bpmn:userTask id="IT06_E3_T3" name="Liberar o agente em uso"><bpmn:documentation>Etapa 3: Liberar o agente em uso. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>IT06_Flow28</bpmn:incoming><bpmn:outgoing>IT06_Flow29</bpmn:outgoing></bpmn:userTask>
     <bpmn:scriptTask id="IT06_E3_T4" name="Registrar a versão liberada, a alçada e o dono e marcar a capacidade como em uso"><bpmn:documentation>Etapa 3: Liberar o agente em uso. Executor: Automação da Integração (Integração · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>IT06_Flow29</bpmn:incoming><bpmn:outgoing>IT06_Flow30</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:exclusiveGateway id="IT06_M3"><bpmn:incoming>IT06_Flow9</bpmn:incoming><bpmn:incoming>IT06_Flow30</bpmn:incoming><bpmn:outgoing>IT06_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:scriptTask id="IT06_E4_T1" name="Monitorar erro, disponibilidade, custo e consultas e mandar a amostra à Inteligência"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow40</bpmn:incoming><bpmn:outgoing>IT06_Flow31</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:scriptTask id="IT06_E4_T2" name="Registrar as entregas dos agentes para a auditoria e para a Identidade"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow31</bpmn:incoming><bpmn:outgoing>IT06_Flow32</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:exclusiveGateway id="IT06_E4_G1" name="Há desvio no agente?"><bpmn:incoming>IT06_Flow32</bpmn:incoming><bpmn:outgoing>IT06_Flow33</bpmn:outgoing><bpmn:outgoing>IT06_Flow34</bpmn:outgoing><bpmn:outgoing>IT06_Flow36</bpmn:outgoing></bpmn:exclusiveGateway>
-    <bpmn:scriptTask id="IT06_E4_T3" name="Abrir a correção do agente"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow34</bpmn:incoming><bpmn:outgoing>IT06_Flow35</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:scriptTask id="IT06_E4_T4" name="Suspender o agente, avisar a Governança e o dono e registrar a correção pendente"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow36</bpmn:incoming><bpmn:outgoing>IT06_Flow37</bpmn:outgoing></bpmn:scriptTask>
-    <bpmn:endEvent id="IT06_F3" name="Agente suspenso, com a Governança e o dono avisados"><bpmn:incoming>IT06_Flow37</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="IT06_M3"><bpmn:incoming>IT06_Flow9</bpmn:incoming><bpmn:incoming>IT06_Flow30</bpmn:incoming><bpmn:outgoing>IT06_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT06_E4_T1" name="Monitorar erro, disponibilidade, custo e consultas e mandar a amostra à Inteligência"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow42</bpmn:incoming><bpmn:outgoing>IT06_Flow31</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT06_E4_T2" name="Registrar as entregas dos agentes para a auditoria e para a Identidade"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow31</bpmn:incoming><bpmn:outgoing>IT06_Flow32</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT06_E4_G1" name="O agente passou de algum limite de erro, custo ou alçada?"><bpmn:incoming>IT06_Flow32</bpmn:incoming><bpmn:outgoing>IT06_Flow33</bpmn:outgoing><bpmn:outgoing>IT06_Flow34</bpmn:outgoing><bpmn:outgoing>IT06_Flow37</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT06_E4_T3" name="Confirmar o desvio apontado e a correção a fazer"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow34</bpmn:incoming><bpmn:outgoing>IT06_Flow35</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT06_E4_T4" name="Abrir a correção do agente"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow35</bpmn:incoming><bpmn:outgoing>IT06_Flow36</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT06_E4_T5" name="Suspender o agente, avisar a Governança e o dono e registrar a correção pendente"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow37</bpmn:incoming><bpmn:outgoing>IT06_Flow38</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="IT06_E4_T6" name="Confirmar a suspensão e a causa do desvio"><bpmn:documentation>Etapa 4: Monitorar o agente em uso e tratar o desvio. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT06_Flow38</bpmn:incoming><bpmn:outgoing>IT06_Flow39</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="IT06_F3" name="Agente suspenso, com a Governança e o dono avisados"><bpmn:incoming>IT06_Flow39</bpmn:incoming></bpmn:endEvent>
     <bpmn:endEvent id="IT06_F1" name="Agente em uso, monitorado"><bpmn:incoming>IT06_Flow33</bpmn:incoming></bpmn:endEvent>
     <bpmn:sequenceFlow id="IT06_Flow1" sourceRef="IT06_S1" targetRef="IT06_M1" />
     <bpmn:sequenceFlow id="IT06_Flow2" sourceRef="IT06_S2" targetRef="IT06_M1" />
@@ -136,24 +140,26 @@
     <bpmn:sequenceFlow id="IT06_Flow31" sourceRef="IT06_E4_T1" targetRef="IT06_E4_T2" />
     <bpmn:sequenceFlow id="IT06_Flow32" sourceRef="IT06_E4_T2" targetRef="IT06_E4_G1" />
     <bpmn:sequenceFlow id="IT06_Flow33" name="Não" sourceRef="IT06_E4_G1" targetRef="IT06_F1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="IT06_Flow34" name="Sim, corrigível na montagem" sourceRef="IT06_E4_G1" targetRef="IT06_E4_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, corrigível na montagem</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="IT06_Flow35" sourceRef="IT06_E4_T3" targetRef="IT06_M1" />
-    <bpmn:sequenceFlow id="IT06_Flow36" name="Sim: risco ou decisão fora da alçada" sourceRef="IT06_E4_G1" targetRef="IT06_E4_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim: risco ou decisão fora da alçada</bpmn:conditionExpression></bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="IT06_Flow37" sourceRef="IT06_E4_T4" targetRef="IT06_F3" />
-    <bpmn:sequenceFlow id="IT06_Flow38" sourceRef="IT06_M1" targetRef="IT06_E1_T1" />
-    <bpmn:sequenceFlow id="IT06_Flow39" sourceRef="IT06_M2" targetRef="IT06_E1_T5" />
-    <bpmn:sequenceFlow id="IT06_Flow40" sourceRef="IT06_M3" targetRef="IT06_E4_T1" />
+    <bpmn:sequenceFlow id="IT06_Flow34" name="Sim, erro ou custo acima do limite" sourceRef="IT06_E4_G1" targetRef="IT06_E4_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, erro ou custo acima do limite</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT06_Flow35" sourceRef="IT06_E4_T3" targetRef="IT06_E4_T4" />
+    <bpmn:sequenceFlow id="IT06_Flow36" sourceRef="IT06_E4_T4" targetRef="IT06_M1" />
+    <bpmn:sequenceFlow id="IT06_Flow37" name="Sim: risco ou decisão fora da alçada" sourceRef="IT06_E4_G1" targetRef="IT06_E4_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim: risco ou decisão fora da alçada</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT06_Flow38" sourceRef="IT06_E4_T5" targetRef="IT06_E4_T6" />
+    <bpmn:sequenceFlow id="IT06_Flow39" sourceRef="IT06_E4_T6" targetRef="IT06_F3" />
+    <bpmn:sequenceFlow id="IT06_Flow40" sourceRef="IT06_M1" targetRef="IT06_E1_T1" />
+    <bpmn:sequenceFlow id="IT06_Flow41" sourceRef="IT06_M2" targetRef="IT06_E1_T5" />
+    <bpmn:sequenceFlow id="IT06_Flow42" sourceRef="IT06_M3" targetRef="IT06_E4_T1" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="Diagram_IT06">
     <bpmndi:BPMNPlane id="Plane_IT06" bpmnElement="Collab_IT06">
-      <bpmndi:BPMNShape id="Participant_IT06_di" bpmnElement="Participant_IT06" isHorizontal="true"><dc:Bounds x="0" y="0" width="6710" height="1232" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_INT_di" bpmnElement="Lane_IT06_INT" isHorizontal="true"><dc:Bounds x="30" y="0" width="6680" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_IDE_di" bpmnElement="Lane_IT06_IDE" isHorizontal="true"><dc:Bounds x="30" y="176" width="6680" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_GOV_di" bpmnElement="Lane_IT06_GOV" isHorizontal="true"><dc:Bounds x="30" y="352" width="6680" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_LCI_di" bpmnElement="Lane_IT06_LCI" isHorizontal="true"><dc:Bounds x="30" y="528" width="6680" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_ITP_di" bpmnElement="Lane_IT06_ITP" isHorizontal="true"><dc:Bounds x="30" y="704" width="6680" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_ITA_di" bpmnElement="Lane_IT06_ITA" isHorizontal="true"><dc:Bounds x="30" y="880" width="6680" height="176" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Lane_IT06_ITR_di" bpmnElement="Lane_IT06_ITR" isHorizontal="true"><dc:Bounds x="30" y="1056" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_IT06_di" bpmnElement="Participant_IT06" isHorizontal="true"><dc:Bounds x="0" y="0" width="7122" height="1232" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_INT_di" bpmnElement="Lane_IT06_INT" isHorizontal="true"><dc:Bounds x="30" y="0" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_IDE_di" bpmnElement="Lane_IT06_IDE" isHorizontal="true"><dc:Bounds x="30" y="176" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_GOV_di" bpmnElement="Lane_IT06_GOV" isHorizontal="true"><dc:Bounds x="30" y="352" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_LCI_di" bpmnElement="Lane_IT06_LCI" isHorizontal="true"><dc:Bounds x="30" y="528" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_ITP_di" bpmnElement="Lane_IT06_ITP" isHorizontal="true"><dc:Bounds x="30" y="704" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_ITA_di" bpmnElement="Lane_IT06_ITA" isHorizontal="true"><dc:Bounds x="30" y="880" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT06_ITR_di" bpmnElement="Lane_IT06_ITR" isHorizontal="true"><dc:Bounds x="30" y="1056" width="7092" height="176" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IT06_S1_di" bpmnElement="IT06_S1"><dc:Bounds x="156" y="1072" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1070" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IT06_S2_di" bpmnElement="IT06_S2"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IT06_S3_di" bpmnElement="IT06_S3"><dc:Bounds x="156" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="244" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
@@ -185,11 +191,13 @@
       <bpmndi:BPMNShape id="IT06_M3_di" bpmnElement="IT06_M3" isMarkerVisible="true"><dc:Bounds x="5093" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IT06_E4_T1_di" bpmnElement="IT06_E4_T1"><dc:Bounds x="5244" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IT06_E4_T2_di" bpmnElement="IT06_E4_T2"><dc:Bounds x="5450" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="IT06_E4_G1_di" bpmnElement="IT06_E4_G1" isMarkerVisible="true"><dc:Bounds x="5711" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5624" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="IT06_E4_T3_di" bpmnElement="IT06_E4_T3"><dc:Bounds x="5862" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT06_E4_G1_di" bpmnElement="IT06_E4_G1" isMarkerVisible="true"><dc:Bounds x="5711" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5624" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT06_E4_T3_di" bpmnElement="IT06_E4_T3"><dc:Bounds x="5862" y="742" width="160" height="100" /></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IT06_E4_T4_di" bpmnElement="IT06_E4_T4"><dc:Bounds x="6068" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="IT06_F3_di" bpmnElement="IT06_F3"><dc:Bounds x="6336" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6299" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="IT06_F1_di" bpmnElement="IT06_F1"><dc:Bounds x="6542" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6505" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT06_E4_T5_di" bpmnElement="IT06_E4_T5"><dc:Bounds x="6274" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT06_E4_T6_di" bpmnElement="IT06_E4_T6"><dc:Bounds x="6480" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT06_F3_di" bpmnElement="IT06_F3"><dc:Bounds x="6748" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6711" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT06_F1_di" bpmnElement="IT06_F1"><dc:Bounds x="6954" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6917" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="IT06_Flow1_di" bpmnElement="IT06_Flow1"><di:waypoint x="192" y="1090" /><di:waypoint x="380" y="1090" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="IT06_Flow2_di" bpmnElement="IT06_Flow2"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="IT06_Flow3_di" bpmnElement="IT06_Flow3"><di:waypoint x="192" y="264" /><di:waypoint x="380" y="264" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
@@ -221,19 +229,21 @@
       <bpmndi:BPMNEdge id="IT06_Flow29_di" bpmnElement="IT06_Flow29"><di:waypoint x="4706" y="842" /><di:waypoint x="4706" y="1144" /><di:waypoint x="4832" y="1144" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="IT06_Flow30_di" bpmnElement="IT06_Flow30"><di:waypoint x="4992" y="1144" /><di:waypoint x="5093" y="1144" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="IT06_Flow31_di" bpmnElement="IT06_Flow31"><di:waypoint x="5404" y="1144" /><di:waypoint x="5450" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow32_di" bpmnElement="IT06_Flow32"><di:waypoint x="5530" y="1094" /><di:waypoint x="5530" y="968" /><di:waypoint x="5711" y="968" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow33_di" bpmnElement="IT06_Flow33"><di:waypoint x="5736" y="943" /><di:waypoint x="5736" y="889" /><di:waypoint x="6560" y="889" /><di:waypoint x="6560" y="1126" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="925" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow34_di" bpmnElement="IT06_Flow34"><di:waypoint x="5736" y="993" /><di:waypoint x="5736" y="1144" /><di:waypoint x="5862" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow35_di" bpmnElement="IT06_Flow35"><di:waypoint x="5942" y="1094" /><di:waypoint x="5942" y="1065" /><di:waypoint x="380" y="1065" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow36_di" bpmnElement="IT06_Flow36"><di:waypoint x="5761" y="968" /><di:waypoint x="6148" y="968" /><di:waypoint x="6148" y="1094" /><bpmndi:BPMNLabel><dc:Bounds x="6154" y="974" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow37_di" bpmnElement="IT06_Flow37"><di:waypoint x="6228" y="1144" /><di:waypoint x="6336" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow38_di" bpmnElement="IT06_Flow38"><di:waypoint x="405" y="1144" /><di:waypoint x="506" y="1144" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow39_di" bpmnElement="IT06_Flow39"><di:waypoint x="2053" y="792" /><di:waypoint x="2154" y="792" /></bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="IT06_Flow40_di" bpmnElement="IT06_Flow40"><di:waypoint x="5143" y="1144" /><di:waypoint x="5244" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow32_di" bpmnElement="IT06_Flow32"><di:waypoint x="5610" y="1144" /><di:waypoint x="5711" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow33_di" bpmnElement="IT06_Flow33"><di:waypoint x="5736" y="1119" /><di:waypoint x="5736" y="1065" /><di:waypoint x="6972" y="1065" /><di:waypoint x="6972" y="1126" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="1101" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow34_di" bpmnElement="IT06_Flow34"><di:waypoint x="5736" y="1119" /><di:waypoint x="5736" y="792" /><di:waypoint x="5862" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="761" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow35_di" bpmnElement="IT06_Flow35"><di:waypoint x="5942" y="842" /><di:waypoint x="5942" y="1144" /><di:waypoint x="6068" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow36_di" bpmnElement="IT06_Flow36"><di:waypoint x="6148" y="1094" /><di:waypoint x="6148" y="1071" /><di:waypoint x="380" y="1071" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow37_di" bpmnElement="IT06_Flow37"><di:waypoint x="5736" y="1169" /><di:waypoint x="5736" y="1224" /><di:waypoint x="6354" y="1224" /><di:waypoint x="6354" y="1194" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="1174" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow38_di" bpmnElement="IT06_Flow38"><di:waypoint x="6354" y="1094" /><di:waypoint x="6354" y="792" /><di:waypoint x="6480" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow39_di" bpmnElement="IT06_Flow39"><di:waypoint x="6560" y="842" /><di:waypoint x="6560" y="1144" /><di:waypoint x="6748" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow40_di" bpmnElement="IT06_Flow40"><di:waypoint x="405" y="1144" /><di:waypoint x="506" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow41_di" bpmnElement="IT06_Flow41"><di:waypoint x="2053" y="792" /><di:waypoint x="2154" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT06_Flow42_di" bpmnElement="IT06_Flow42"><di:waypoint x="5143" y="1144" /><di:waypoint x="5244" y="1144" /></bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Group_IT06_E1_di" bpmnElement="Group_IT06_E1"><dc:Bounds x="285" y="-44" width="2250" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="2238" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Group_IT06_E2_di" bpmnElement="Group_IT06_E2"><dc:Bounds x="2551" y="-44" width="1220" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="2557" y="-38" width="1208" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Group_IT06_E3_di" bpmnElement="Group_IT06_E3"><dc:Bounds x="3993" y="-44" width="1014" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="3999" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Group_IT06_E4_di" bpmnElement="Group_IT06_E4"><dc:Bounds x="5023" y="-44" width="1220" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="5029" y="-38" width="1208" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT06_E4_di" bpmnElement="Group_IT06_E4"><dc:Bounds x="5023" y="-44" width="1632" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="5029" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
