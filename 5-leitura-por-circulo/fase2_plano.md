@@ -66,10 +66,12 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 
 **Ordem proposta:** E0, E1 e E3 começam já: não dependem de escolha e custam pouco. Depois vêm E2 e E8, com o modelo treinado na simulação, e então E4, E5 e E6 no piloto, E7, E9 e E10.
 
-## 6. O que preciso de você
+## 6. Decidido em 03/10/2026, às 18:34
 
-1. Escolher a tecnologia dos motores (G7). Posso trazer a comparação das opções, com fonte.
-2. Confirmar o piloto: Identidade.
+1. Motores próprios sobre o Supabase, sob o runtime dos runtimes (G7).
+2. Piloto: Identidade.
+3. Uso real do Telegram com o consentimento específico e em destaque do art. 33, VIII, da LGPD, colhido na entrada de cada pessoa (GE-07). A Governança responde. Pela política de privacidade do Telegram, quem desenvolve o bot responde pelos dados que ele recebe: aqui, o IMTS.
+4. E0 construído: esquema `rt` no Supabase, com 10 testes verdes (4-modelo-fonte/supabase/003_runtime.sql).
 
 ## Fontes
 
@@ -80,3 +82,5 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 - deleteMessage, limite de 48 horas: documentação do método na Bot API, conferida na reprodução da aiogram, https://docs.aiogram.dev/en/latest/api/methods/delete_message.html. A página oficial veio truncada na leitura.
 - Telegram, temporizador de autodestruição em todos os chats (24 horas ou 7 dias), 23/02/2021: https://telegram.org/blog/autodelete-inv2
 - Lei 13.709/2018 (LGPD), arts. 5º, III e XI; 12; 13, § 4º; e 33, I e VIII: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
+- Telegram, política de privacidade (bots independentes do Telegram; quem desenvolve responde pelos dados): https://telegram.org/privacy
+- Telegram Bots (plataforma de bots gratuita): https://core.telegram.org/bots

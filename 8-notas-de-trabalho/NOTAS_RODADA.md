@@ -151,3 +151,11 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 
 - As abas "Catálogo de jornadas" e "4 · Internas dos círculos" saíram do documento vivo; o PDF delas está em 7-historico.
 - Plano da fase 2 ajustado: nove motores independentes nascidos de um modelo-base; modelos de ML treinados já com usuários simulados e retreinados com dado real; Telegram nos 99% como ele definiu. O 1% (senhas, relatos da GO-09, confirmação de pagamento) fica como padrão até ele trocar.
+
+## 03/10/2026, 18:34 — runtime dos runtimes e travas
+
+Ítalo (literal): "gere o runtime dos ruintimes, assim resolvemos seu problema. Telegram não é gratis? me guia nas travas...." Respostas às três perguntas: motores próprios sobre o Supabase; piloto Identidade; consentimento do art. 33, VIII, para uso real.
+
+- E0 construído: 003_runtime.sql (esquema rt e rt_chave), aplicado no Supabase. 10 testes verdes no Postgres 16 local e no Supabase (rodados numa transação desfeita); 6 defeitos plantados detectados.
+- Telegram: plataforma de bots gratuita (core.telegram.org/bots); quem desenvolve o bot responde pelos dados (telegram.org/privacy).
+- G7: motor escolhido; falta ligar cada tarefa a um sistema.

@@ -12,6 +12,8 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 - `002_carga.sql`: a carga, gerada dos arquivos do modelo.
 - `carga_compacta.py` e `lotes/`: a mesma carga em 26 lotes, a forma usada para carregar o Supabase.
 - `gerar_tipos.py` e `tipos.ts`: os tipos TypeScript do esquema `org`.
+- `003_runtime.sql`: fase 2, o runtime dos runtimes (esquema `rt`) e o registro de eventos. Aplicado no Supabase em 03/10/2026, às 18h40.
+- `testar_runtime.sql`: 10 testes do runtime dos runtimes, numa transação desfeita no fim. Também rodaram no Supabase: 10 testes, 0 falhas. Seis defeitos plantados foram detectados, um a um.
 - `gerar_sql.py`: refaz os dois arquivos a partir de `saida/`, a pasta que os scripts do modelo criam ao rodar (no repositório, a cópia publicada dos dados está em `dados-gerados/`). Rode depois de qualquer mudança no modelo: `python3 supabase/gerar_sql.py`.
 
 ## Tabelas
@@ -67,3 +69,19 @@ Testado em 03/10/2026 em Postgres 16 local, antes de cada carga no Supabase. As 
 O esquema `org` está liberado na API do projeto desde 03/10/2026. O acesso anônimo é recusado (conferido: "permission denied for schema org"); usuário autenticado lê.
 
 Tipos TypeScript: `tipos.ts`, gerado por `gerar_tipos.py` a partir do `001_esquema.sql` (o gerador do Supabase só cobre o esquema `public`). Uso: `createClient<Database>(url, chave, { db: { schema: 'org' } })`. Os tipos passaram no `tsc --strict`.
+
+## Runtime dos runtimes (esquema rt, fase 2)
+
+Plano de controle acima dos nove motores. Decisões de 03/10/2026, 18:34: motores próprios sobre o Supabase; piloto Identidade; para uso real do Telegram, consentimento do art. 33, VIII, da LGPD.
+
+| Peça | O que faz |
+|---|---|
+| `rt.motor` | Os nove motores, um por círculo. A Identidade está em piloto; os outros oito, em desenho |
+| `rt.config` | O que customiza cada motor: jornadas, raias, limites e regras do Telegram, lidos do esquema `org` |
+| `rt.versao_base`, `rt.atualizacao`, `rt.publicar_versao`, `rt.concluir_atualizacao` | Uma correção comum vira versão. Cada motor só a aplica com os testes do seu círculo verdes; com teste vermelho, a atualização é recusada e o motor fica na versão anterior |
+| `rt.troca_envio`, `rt.enviar_troca`, `rt.v_rota_troca` | Leva cada uma das 410 trocas ao motor que a recebe |
+| `rt.rota_chat`, `rt.mensagem`, `rt.receber_mensagem`, `rt.v_a_apagar` | Porta única do Telegram: grava toda mensagem e a entrega ao motor do chat. A autodestruição tem prazo máximo de 47 horas, porque o bot só apaga mensagens com menos de 48 horas |
+| `rt.evento` | Registro de eventos (E1), com a marca simulado ou real obrigatória |
+| `rt.pessoa` e `rt_chave.identidade` | O motor vê só o pseudônimo; o nome e o Telegram ficam em `rt_chave`, que só o service_role lê. Pessoa real no Telegram sem consentimento registrado é recusada |
+
+O verificador do Supabase aponta, como informação, que `rt_chave.identidade` tem RLS sem política. É de propósito: só o service_role, que ignora o RLS, pode ler essa tabela.
