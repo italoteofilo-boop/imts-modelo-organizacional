@@ -73,7 +73,7 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 3. Uso real do Telegram com o consentimento específico e em destaque do art. 33, VIII, da LGPD, colhido na entrada de cada pessoa (GE-07). A Governança responde. Pela política de privacidade do Telegram, quem desenvolve o bot responde pelos dados que ele recebe: aqui, o IMTS.
 4. E0 construído: esquema `rt` no Supabase, com 10 testes verdes (4-modelo-fonte/supabase/003_runtime.sql).
 
-## 7. Andamento (03/10/2026, 19h30)
+## 7. Andamento (03/10/2026, 19h45)
 
 | Entrega | Situação |
 | --- | --- |
@@ -83,8 +83,8 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 | E2 Usuários simulados | 60 na base, pseudonimizados. Falta o bot no ambiente de teste do Telegram |
 | E4 Motor piloto | Pronto: roda as 73 jornadas a partir do BPMN. Na Identidade, 2.000 instâncias concluídas e 99 de 99 tarefas executadas |
 | E8 ML | Dois modelos treinados com a simulação, registrados e fora de uso. O de atraso fica no acaso, como deve, porque o simulador sorteia os tempos sem padrão |
-| E3 Instruções de trabalho | Prontas: 73 instruções geradas do modelo, página digital publicada e 73 PDFs A4 (as 1.555 tarefas conferidas nos PDFs) |
-| E6 Painel | Pronto: página publicada que lê o Supabase pelo seu conector (rt.painel()), com retrato gravado para quando o conector não responder |
+| E3 Instruções de trabalho | Prontas: 73 instruções geradas do modelo, com o recorte do fluxo BPMN em cada etapa; página digital com mapa geral das 73 jornadas (660 ligações) e fluxo completo com zoom; 73 PDFs A4 (as 1.555 tarefas conferidas nos PDFs) |
+| E6 Painel | Pronto: sala de comando com rede viva dos nove motores, eventos em reprodução, drill-down de ecossistema a círculo, jornada, etapa e execução (linha do tempo animada) e botão para rodar uma execução simulada no Supabase. Lê o Supabase pelo seu conector; sem ele, usa o retrato gravado |
 | E5, E7, E9, E10 | A fazer |
 
 ## Fontes

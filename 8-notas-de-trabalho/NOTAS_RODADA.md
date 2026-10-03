@@ -177,3 +177,10 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 - E3: instrucoes.py gera as 73 instruções da fonte do modelo; página digital publicada; 73 PDFs A4 (qpdf, 13 MB) num zip rastreável em 9-instrucoes-de-trabalho. Conferido: as 1.555 tarefas aparecem nos PDFs.
 - E6: rt.painel() (008_painel.sql) no Supabase; página do painel publicada, com leitura ao vivo pelo conector do Supabase (execute_sql) e retrato gravado. O retrato local bateu com o Supabase: 2.000 execuções, 52.042 eventos, 19.071 trocas.
 - Proposta pendente: o texto de limites dos nove círculos ainda diz "Para executar falta escolher o motor e ligar cada tarefa a um sistema."
+
+## 03/10/2026, 19:19 — fluxos nas instruções, mapa geral e sala de comando
+
+Ítalo (literal): "não seria bom nas instruções termos os fluxos? ficaria mais diatico, e termos um mapa geral de todos os fluxos bpms? e o painel não seria bom ser mais dril dow, e ter imagens com movimentos vivos, para uma sala de comando e controle"
+
+- Instruções: cada etapa traz o recorte do seu fluxo BPMN, só com as raias usadas, com o nome das raias ao lado; etapas largas viram partes. No PDF, cada recorte é um SVG só com os elementos que cruzam o pedaço. Página digital: mapa geral (73 jornadas, 660 ligações, por círculo, com o que cada uma entrega e recebe), instrução e fluxo completo com zoom. PDFs: 49 MB no total (eram 13 MB sem fluxos); as 1.555 tarefas conferidas.
+- Painel: sala de comando escura, rede viva dos nove motores com as trocas animadas, eventos de execuções reais da simulação em reprodução acelerada, drill-down até a linha do tempo de uma execução, botão para rodar uma execução simulada no Supabase. 009_painel_detalhe.sql no Supabase.

@@ -2,280 +2,408 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
 <style>
-/* Layout: sala de controle em uma coluna — resumo no topo, motores, depois o detalhe do piloto; mesmo sistema visual das páginas dos círculos */
-:root {
-  --bg: #F2F4F3; --surface: #FFFFFF; --ink: #17222A; --muted: #58666F; --line: #D2D9D7; --line-soft: #E4E9E7;
-  --accent: #0B5E6B; --accent-soft: #DDECEE; --bar: #2C7F8C; --bar-soft: #B9D8DD;
-  --ok: #17693F; --ok-bg: #DDF1E5; --warn: #8A5A00; --warn-bg: #FBEFD3; --bad: #A32222; --bad-bg: #F9E0E0; --idle-bg: #E9EEEC;
+/* Layout: sala de comando — faixa de estado no topo; à esquerda a rede viva dos nove motores, à direita o fluxo de eventos;
+   abaixo, o nível escolhido (ecossistema > círculo > jornada > etapa > execução). Visual escuro único, por escolha: tela de sala de controle. */
+:root { color-scheme: dark;
+  --bg: #0A1216; --panel: #0F1A20; --panel-2: #13222A; --ink: #E2ECEC; --muted: #8FA3AA; --line: #1F323B; --line-2: #2A424D;
+  --accent: #5FD0DC; --accent-2: #2A8C99;
+  --pessoa: #F0A371; --agente: #9DAAF5; --regra: #6ACB98; --outro: #B9C7CC;
+  --ok: #6ACB98; --warn: #E6B95A; --bad: #F08A8A; --on-accent: #031417;
   --f-body: 'IBM Plex Sans', system-ui, sans-serif; --f-head: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif; --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark;
-  --bg: #0F161A; --surface: #161F25; --ink: #E3EAE9; --muted: #96A5AC; --line: #2B3840; --line-soft: #222D34;
-  --accent: #6FC6D2; --accent-soft: #153038; --bar: #5DB3C0; --bar-soft: #24464D;
-  --ok: #6ACB98; --ok-bg: #14301F; --warn: #E6B95A; --warn-bg: #33270E; --bad: #F08A8A; --bad-bg: #3B1B1B; --idle-bg: #222D34; } }
-:root[data-theme="dark"] { color-scheme: dark;
-  --bg: #0F161A; --surface: #161F25; --ink: #E3EAE9; --muted: #96A5AC; --line: #2B3840; --line-soft: #222D34;
-  --accent: #6FC6D2; --accent-soft: #153038; --bar: #5DB3C0; --bar-soft: #24464D;
-  --ok: #6ACB98; --ok-bg: #14301F; --warn: #E6B95A; --warn-bg: #33270E; --bad: #F08A8A; --bad-bg: #3B1B1B; --idle-bg: #222D34; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14.5px; line-height: 1.45; padding-inline: 16px; padding-block: 0 40px; }
-.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+html, body { background: var(--bg); color: var(--ink); }
+body { margin: 0; font-family: var(--f-body); font-size: 14px; line-height: 1.45; padding-inline: 16px; padding-block: 0 32px; }
+.wrap { max-width: 1360px; margin: 0 auto; display: grid; gap: 14px; padding-top: 14px; }
 h1, h2, h3 { font-family: var(--f-head); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
-h1 { font-size: 26px; } h2 { font-size: 18px; } h3 { font-size: 15px; }
-.eyebrow, th, .lbl { font-family: var(--f-head); font-weight: 500; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
-.num, td.n, .mono { font-variant-numeric: tabular-nums; }
-.mono { font-family: var(--f-mono); font-size: .9em; } td.mono { white-space: nowrap; }
-header.top { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: flex-end; justify-content: space-between; padding-block: 22px 4px; }
-header.top > div { min-width: 0; }
-.estado { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-head); font-weight: 500; font-size: 12.5px; padding: 3px 10px; border-radius: 999px; background: var(--idle-bg); color: var(--ink); white-space: nowrap; }
-.pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
-.pill.sim { background: var(--warn-bg); color: var(--warn); } .pill.ok { background: var(--ok-bg); color: var(--ok); }
-.pill.bad { background: var(--bad-bg); color: var(--bad); } .pill.idle { color: var(--muted); }
-button { font: inherit; font-family: var(--f-head); font-weight: 500; color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
-button:hover { border-color: var(--accent); } button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-button[disabled] { opacity: .6; cursor: progress; }
-.fresh { color: var(--muted); font-size: 13px; }
+.lbl, th { font-family: var(--f-head); font-weight: 500; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.mono, td.n { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 4; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: -16px; padding: 10px 16px; }
+.top .in { max-width: 1360px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.top h1 { font-size: 19px; letter-spacing: .01em; }
+.top .rel { font-family: var(--f-mono); font-size: 13px; color: var(--muted); }
+.esp { flex: 1; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-head); font-weight: 500; font-size: 12px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); white-space: nowrap; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.chip.vivo { color: var(--ok); } .chip.vivo i { animation: pulsa 1.6s infinite; } .chip.sim { color: var(--warn); } .chip.off { color: var(--muted); }
+@keyframes pulsa { 50% { opacity: .25; } }
+button { font: inherit; font-family: var(--f-head); font-weight: 500; font-size: 13px; color: var(--ink); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); color: var(--accent); } button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button[disabled] { opacity: .5; cursor: progress; }
+button.pri { background: var(--accent-2); border-color: var(--accent-2); color: var(--on-accent); } button.pri:hover { color: var(--on-accent); background: var(--accent); }
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-.kpi { background: var(--surface); padding: 12px 14px; min-width: 0; }
-.kpi b { display: block; font-family: var(--f-head); font-size: 28px; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; margin-top: 2px; }
-.kpi small { color: var(--muted); font-size: 12.5px; }
-section.bloco { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; min-width: 0; }
-section.bloco > header { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
-section.bloco > header p { margin: 0; color: var(--muted); font-size: 13px; max-width: 70ch; }
-.duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+.kpi { background: var(--panel); padding: 10px 14px; min-width: 0; }
+.kpi b { display: block; font-family: var(--f-mono); font-size: 24px; font-weight: 500; line-height: 1.15; color: var(--ink); margin-top: 2px; }
+.kpi small { color: var(--muted); font-size: 12px; }
+.palco { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr); gap: 14px; }
+.cx { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+.cx > header { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.cx > header h2 { font-size: 15.5px; } .cx > header p { margin: 0; color: var(--muted); font-size: 12.5px; }
+#rede { width: 100%; aspect-ratio: 16 / 10; display: block; border-radius: 8px; background: var(--panel-2); cursor: pointer; }
+.feed { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 240px; max-height: 440px; overflow: hidden; display: flex; flex-direction: column; gap: 2px; font-size: 12.5px; }
+.feed li { display: grid; grid-template-columns: 78px 22px 1fr; gap: 6px; padding: 4px 6px; border-radius: 6px; background: var(--panel-2); animation: entra .5s ease-out; }
+.feed li .h { font-family: var(--f-mono); color: var(--muted); } .feed li .x { font-family: var(--f-mono); font-weight: 500; text-align: center; border-radius: 4px; }
+.feed li .t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed li.troca { background: transparent; border: 1px dashed var(--line-2); } .feed li.fim { border-left: 3px solid var(--ok); } .feed li.dec { border-left: 3px solid var(--warn); }
+@keyframes entra { from { opacity: 0; transform: translateY(-6px); } }
+.x-P, .x-H, .x-X { color: var(--pessoa); } .x-A { color: var(--agente); } .x-R { color: var(--regra); } .x-C { color: var(--outro); } .x-- { color: var(--muted); }
+.ctl { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.trilha { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-family: var(--f-head); font-size: 14px; }
+.trilha button { padding: 3px 9px; font-size: 13px; } .trilha span { color: var(--muted); }
+.trilha .atual { color: var(--accent); font-weight: 600; padding: 3px 4px; }
 .tbl { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 14px; }
-th { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-td { padding: 7px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line-2); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 td.n, th.n { text-align: right; white-space: nowrap; }
-tr:last-child td { border-bottom: 0; }
-.cob { display: flex; align-items: center; gap: 8px; min-width: 150px; }
-.cob .trilho { flex: 1; height: 8px; background: var(--idle-bg); border-radius: 4px; overflow: hidden; }
-.cob .trilho i { display: block; height: 100%; background: var(--bar); border-radius: 0 4px 4px 0; }
-.cob span { font-size: 12.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.barras { display: grid; gap: 6px; }
-.barra { display: grid; grid-template-columns: minmax(110px, 34%) 1fr; gap: 10px; align-items: center; position: relative; }
-.barra .rot { font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.barra .rot .mono { color: var(--muted); }
-.barra .tr { position: relative; height: 18px; display: flex; align-items: center; gap: 6px; }
-.barra .tr i { display: block; height: 12px; background: var(--bar); border-radius: 0 4px 4px 0; min-width: 2px; }
-.barra .tr em { font-style: normal; font-size: 12.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.barra .tr.abs em { position: absolute; top: 0; line-height: 18px; }
-.barra .tr .p75 { position: absolute; top: 2px; width: 2px; height: 14px; background: var(--ink); opacity: .55; }
-.barra:hover .rot, .barra:focus-within .rot { color: var(--accent); }
-.grupo { margin: 10px 0 4px; font-family: var(--f-head); font-weight: 600; font-size: 13.5px; }
-.legenda { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); margin-top: 10px; }
-.legenda span { display: inline-flex; align-items: center; gap: 6px; }
-.legenda .sw { width: 14px; height: 10px; background: var(--bar); border-radius: 2px; } .legenda .tk { width: 2px; height: 12px; background: var(--ink); opacity: .55; }
-.fins { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12.5px; color: var(--muted); }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
-.card h3 { margin-bottom: 6px; } .card dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 8px 0 0; font-size: 13px; }
-.card dt { color: var(--muted); } .card dd { margin: 0; font-variant-numeric: tabular-nums; }
-.nota { color: var(--muted); font-size: 13px; margin: 10px 0 0; max-width: 85ch; }
-.aviso { border: 1px solid var(--line); border-left: 3px solid var(--warn); background: var(--surface); border-radius: 8px; padding: 10px 14px; font-size: 13.5px; }
-.tip { position: fixed; z-index: 5; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12.5px; padding: 6px 9px; border-radius: 6px; max-width: 280px; display: none; }
-footer { color: var(--muted); font-size: 12.5px; }
-@media (max-width: 560px) { h1 { font-size: 22px; } .kpi b { font-size: 24px; } .barra { grid-template-columns: 1fr; gap: 2px; } }
-@media (prefers-reduced-motion: no-preference) { .cob .trilho i, .barra .tr i { transition: width .4s ease; } }
+tr.vai { cursor: pointer; } tr.vai:hover td, tr.vai:focus-visible td { background: var(--panel-2); } tr.vai:focus-visible { outline: 2px solid var(--accent); }
+tr.vai td:first-child::after { content: ' ›'; color: var(--accent); }
+.pill { display: inline-block; font-family: var(--f-head); font-weight: 500; font-size: 12px; padding: 1px 9px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--muted); }
+.pill.ok { color: var(--ok); }
+.cob { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+.cob .tr { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; } .cob .tr i { display: block; height: 100%; background: var(--accent); }
+.cob span { font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.bar { display: grid; grid-template-columns: minmax(120px, 36%) 1fr; gap: 10px; align-items: center; padding: 3px 4px; }
+.bar .r { font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .t { position: relative; height: 16px; } .bar .t i { position: absolute; left: 0; top: 3px; height: 10px; background: var(--accent-2); border-radius: 0 3px 3px 0; }
+.bar .t .k { position: absolute; top: 0; width: 2px; height: 16px; background: var(--ink); opacity: .6; } .bar .t em { position: absolute; top: 0; font-style: normal; font-family: var(--f-mono); font-size: 12px; color: var(--muted); line-height: 16px; white-space: nowrap; }
+.bar.vai { cursor: pointer; border-radius: 6px; } .bar.vai:hover, .bar.vai:focus-visible { background: var(--panel-2); } .bar.vai:focus-visible { outline: 2px solid var(--accent); }
+.grade2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px 24px; }
+.nota { color: var(--muted); font-size: 12.5px; margin: 8px 0 0; max-width: 90ch; }
+.aviso { border: 1px solid var(--line-2); border-left: 3px solid var(--warn); background: var(--panel); border-radius: 8px; padding: 9px 12px; font-size: 13px; }
+#gantt { width: 100%; display: block; }
+.leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.leg i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+a { color: var(--accent); }
+.tip { position: fixed; z-index: 9; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12px; padding: 5px 8px; border-radius: 6px; max-width: 300px; display: none; }
+footer { color: var(--muted); font-size: 12px; }
+@media (max-width: 900px) { .palco { grid-template-columns: 1fr; } .feed { max-height: 260px; } }
+@media (max-width: 560px) { .top h1 { font-size: 16px; } .kpi b { font-size: 20px; } .bar { grid-template-columns: 1fr; gap: 0; } }
+@media (prefers-reduced-motion: reduce) { .feed li { animation: none; } .chip.vivo i { animation: none; } }
 </style>
 
-<div class="wrap">
-  <header class="top">
-    <div>
-      <div class="eyebrow">Ecossistema IMTS · runtime dos runtimes</div>
-      <h1>Painel da operação</h1>
-    </div>
-    <div class="estado">
-      <span class="pill sim" id="tipo-dado">Dado simulado</span>
-      <span class="fresh" id="fresco"></span>
-      <button id="atualizar" type="button">Atualizar do Supabase</button>
-    </div>
-  </header>
-  <div class="aviso" id="aviso" hidden></div>
+<div class="top"><div class="in">
+  <h1>Painel da operação</h1><span class="rel" id="relogio"></span>
+  <span class="esp"></span>
+  <span class="chip sim" id="c-dado"><i></i><span>Dado simulado</span></span>
+  <span class="chip off" id="c-fonte"><i></i><span>Retrato gravado</span></span>
+  <button id="b-atual" hidden>Atualizar</button>
+  <button id="b-tela">Tela cheia</button>
+</div></div>
 
+<div class="wrap">
+  <div class="aviso" id="aviso" hidden></div>
   <div class="kpis" id="kpis"></div>
 
-  <section class="bloco">
-    <header><h2>Motores</h2><p>Um motor por círculo. Cobertura: quantas tarefas do círculo já rodaram ao menos uma vez.</p></header>
-    <div class="tbl"><table id="motores"><thead><tr><th>Círculo</th><th>Estado</th><th>Versão</th><th class="n">Jornadas</th><th>Cobertura</th><th class="n">Execuções</th><th class="n">Trocas enviadas</th><th class="n">Trocas recebidas</th></tr></thead><tbody></tbody></table></div>
-  </section>
-
-  <section class="bloco">
-    <header><h2>Jornadas em execução</h2><p>Tempo de ponta a ponta de cada execução. Volta: a execução repetiu ao menos uma tarefa.</p></header>
-    <div class="tbl"><table id="jornadas"><thead><tr><th>Jornada</th><th class="n">Execuções</th><th class="n">Mediana</th><th class="n">p90</th><th class="n">Com volta</th><th>Como terminaram</th></tr></thead><tbody></tbody></table></div>
-  </section>
-
-  <section class="bloco">
-    <header><h2>Duração por etapa</h2><p>Mediana em minutos de cada etapa, com o p75 marcado. É a régua do modelo de risco de atraso.</p></header>
-    <div id="etapas"></div>
-    <div class="legenda"><span><i class="sw"></i>mediana</span><span><i class="tk"></i>p75</span></div>
-  </section>
-
-  <div class="duas">
-    <section class="bloco">
-      <header><h2>Tarefas por executor</h2><p>Quantas tarefas rodaram e a mediana de cada uma.</p></header>
-      <div class="barras" id="executores"></div>
+  <div class="palco">
+    <section class="cx">
+      <header><h2>Rede dos motores</h2><p>Linhas: trocas previstas no modelo. Pontos em movimento: trocas entregues. Arco em volta: cobertura. Clique num círculo.</p></header>
+      <canvas id="rede" role="img" aria-label="Rede dos nove motores com as trocas entre círculos"></canvas>
     </section>
-    <section class="bloco">
-      <header><h2>Trocas entregues</h2><p>Saídas que o runtime dos runtimes levou de um círculo a outro.</p></header>
-      <div class="barras" id="trocas"></div>
+    <section class="cx" style="display:flex;flex-direction:column">
+      <header><h2>Eventos</h2><p id="feed-sub">Reprodução das últimas execuções, acelerada</p></header>
+      <ul class="feed" id="feed" aria-live="off"></ul>
+      <div class="ctl"><button id="b-pausa">Pausar</button><button id="b-rodar" hidden class="pri">Rodar uma execução agora</button><span>1 hora simulada passa em 1 segundo</span></div>
     </section>
   </div>
 
-  <section class="bloco">
-    <header><h2>Modelos de ML</h2><p>Registrados em rt.modelo. Nenhum decide nada enquanto treinado só com simulação.</p></header>
-    <div class="cards" id="modelos"></div>
+  <section class="cx">
+    <header><div class="trilha" id="trilha"></div><p id="nivel-sub"></p></header>
+    <div id="nivel"></div>
   </section>
 
-  <section class="bloco">
-    <header><h2>Hipóteses da simulação</h2><p>Faixa de tempo sorteada para cada executor (rt.parametro_simulacao). A calibrar no G9 com dado real.</p></header>
-    <div class="tbl"><table id="parametros"><thead><tr><th>Executor</th><th class="n">Mínimo</th><th class="n">Máximo</th></tr></thead><tbody></tbody></table></div>
-  </section>
-
-  <footer>Fonte: função rt.painel() no Supabase, projeto imts-modelo-organizacional. O botão lê de novo pelo seu conector do Supabase; sem ele, a página mostra o retrato gravado nela.</footer>
+  <footer>Fonte: funções rt.painel(), rt.painel_detalhe() e rt.painel_execucao() no Supabase, projeto imts-modelo-organizacional. Sem o conector, a página usa o retrato gravado em __QUANDO__. Todo dado aqui é simulado até a primeira execução real.</footer>
 </div>
 <div class="tip" id="tip" role="tooltip"></div>
 
 <script>
-const RETRATO = __DADOS__;
+const RETRATO = __PAINEL__, DETALHES = __DETALHES__, MODELO = __MODELO__;
+const ATLAS = 'https://claude.ai/artifact/WwGQpKJfeZNzpipzgTcGQj';
 const PROJETO = 'rzkfolkqdgtounqjjzss';
-const EXEC = { P: 'Pessoa do círculo', A: 'Agente', R: 'Automação', H: 'Pessoa de fora do círculo', C: 'Outro círculo', X: 'Assessoria externa' };
+const EXEC = { P: 'Pessoa do círculo', A: 'Agente', R: 'Automação', H: 'Pessoa de fora', C: 'Outro círculo', X: 'Assessoria' };
+const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const fmt = n => n == null ? '—' : Number(n).toLocaleString('pt-BR');
-const el = (t, a = {}, ...f) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) { if (k === 'class') e.className = v; else if (k === 'style') e.style.cssText = v; else e.setAttribute(k, v); } for (const x of f) e.append(x?.nodeType ? x : document.createTextNode(x ?? '')); return e; };
-const horas = h => h == null ? '—' : h < 1 ? Math.round(h * 60) + ' min' : h < 48 ? fmt(h) + ' h' : fmt(Math.round(h / 24 * 10) / 10) + ' d';
 const minutos = m => m == null ? '—' : m < 120 ? fmt(Math.round(m * 10) / 10) + ' min' : m < 2880 ? fmt(Math.round(m / 6) / 10) + ' h' : fmt(Math.round(m / 144) / 10) + ' d';
+const horas = h => h == null ? '—' : minutos(h * 60);
+const el = (t, a = {}, ...f) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) { if (k === 'class') e.className = v; else if (k === 'style') e.style.cssText = v; else if (k.startsWith('on')) e[k] = v; else e.setAttribute(k, v); } for (const x of f) e.append(x?.nodeType ? x : document.createTextNode(x ?? '')); return e; };
 const tip = document.getElementById('tip');
+function mostraTip(texto, x, y) { tip.textContent = texto; tip.style.display = 'block'; tip.style.left = Math.min(x + 12, innerWidth - 310) + 'px'; tip.style.top = (y + 14) + 'px'; }
 function dica(alvo, texto) {
-  alvo.tabIndex = 0;
-  const mostra = ev => { tip.textContent = texto; tip.style.display = 'block'; const r = alvo.getBoundingClientRect(); const x = ev?.clientX ?? r.left + 20, y = ev?.clientY ?? r.top; tip.style.left = Math.min(x + 12, innerWidth - 290) + 'px'; tip.style.top = (y + 14) + 'px'; };
-  alvo.addEventListener('mousemove', mostra); alvo.addEventListener('focus', () => mostra()); alvo.addEventListener('mouseleave', () => tip.style.display = 'none'); alvo.addEventListener('blur', () => tip.style.display = 'none');
+  alvo.addEventListener('mousemove', ev => mostraTip(texto, ev.clientX, ev.clientY));
+  alvo.addEventListener('focus', () => { const r = alvo.getBoundingClientRect(); mostraTip(texto, r.left + 20, r.top); });
+  alvo.addEventListener('mouseleave', () => tip.style.display = 'none'); alvo.addEventListener('blur', () => tip.style.display = 'none');
+}
+function vai(e, f) { e.tabIndex = 0; e.onclick = f; e.onkeydown = ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); f(); } }; return e; }
+
+let P = RETRATO, fonte = 'retrato';
+const det = Object.assign({}, DETALHES);
+const nomeC = k => (MODELO.circulos.find(c => c.k === +k) || {}).nome || k;
+
+const relogio = document.getElementById('relogio');
+const tic = () => relogio.textContent = new Date().toLocaleTimeString('pt-BR'); tic(); setInterval(tic, 1000);
+document.getElementById('b-tela').onclick = () => { try { const p = document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); p?.catch?.(() => {}); } catch (e) {} };
+
+function kpis() {
+  const o = P.operacao, m = P.modelo, k = document.getElementById('kpis'); k.replaceChildren();
+  [['Execuções', fmt(o.instancias), `${fmt(o.concluidas)} concluídas · ${fmt(o.erros)} com erro`],
+   ['Eventos', fmt(o.eventos), `${fmt(o.eventos_reais)} reais`],
+   ['Trocas entregues', fmt(o.trocas_enviadas), `${fmt(m.trocas)} trocas previstas no modelo`],
+   ['Motores ligados', `${P.motores.filter(x => x.estado !== 'desenho').length} de ${P.motores.length}`, 'em piloto ou ativos'],
+   ['Tarefas ligadas', fmt(m.tarefas_ligadas), `de ${fmt(m.tarefas)} no modelo`],
+   ['Pessoas', fmt(m.pessoas_simuladas + m.pessoas_reais), `${fmt(m.pessoas_reais)} reais`]
+  ].forEach(([l, v, s]) => k.append(el('div', { class: 'kpi' }, el('span', { class: 'lbl' }, l), el('b', {}, v), el('small', {}, s))));
+  const real = (o.instancias_reais || 0) > 0, cd = document.getElementById('c-dado');
+  cd.className = 'chip ' + (real ? 'vivo' : 'sim'); cd.lastElementChild.textContent = real ? 'Dado real e simulado' : 'Dado simulado';
+  const cf = document.getElementById('c-fonte');
+  cf.className = 'chip ' + (fonte === 'vivo' ? 'vivo' : 'off');
+  cf.lastElementChild.textContent = fonte === 'vivo' ? 'Supabase ao vivo · ' + new Date(P.gerado_em).toLocaleTimeString('pt-BR', { timeStyle: 'short' }) : 'Retrato gravado';
 }
 
-function render(d, origem) {
-  const o = d.operacao, m = d.modelo;
-  const real = (o.instancias_reais || 0) > 0;
-  const tp = document.getElementById('tipo-dado');
-  tp.textContent = real ? 'Dado real e simulado' : 'Dado simulado'; tp.className = 'pill ' + (real ? 'ok' : 'sim');
-  const quando = new Date(d.gerado_em);
-  document.getElementById('fresco').textContent = (origem === 'vivo' ? 'Lido do Supabase às ' : 'Retrato de ') + quando.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
-
-  const kp = document.getElementById('kpis'); kp.replaceChildren();
-  [['Execuções', o.instancias, `${fmt(o.concluidas)} concluídas · ${fmt(o.erros)} com erro`],
-   ['Eventos', o.eventos, `${fmt(o.eventos_reais)} reais`],
-   ['Trocas entregues', o.trocas_enviadas, `de ${fmt(m.trocas)} trocas no modelo`],
-   ['Tarefas ligadas', m.tarefas_ligadas, `de ${fmt(m.tarefas)} no modelo`],
-   ['Pessoas', m.pessoas_simuladas + m.pessoas_reais, `${fmt(m.pessoas_reais)} reais`],
-   ['Versão do modelo-base', null, `${fmt(o.atualizacoes_pendentes)} atualizações pendentes`, o.versao_base]
-  ].forEach(([l, v, s, txt]) => kp.append(el('div', { class: 'kpi' }, el('span', { class: 'lbl' }, l), el('b', {}, txt ?? fmt(v)), el('small', {}, s))));
-
-  const tb = document.querySelector('#motores tbody'); tb.replaceChildren();
-  for (const x of d.motores) {
-    const pct = x.tarefas ? x.tarefas_executadas / x.tarefas : 0;
-    const est = { piloto: 'ok', ativo: 'ok', pausado: 'bad', desenho: 'idle' }[x.estado] || 'idle';
-    const cob = el('div', { class: 'cob' }, el('div', { class: 'trilho' }, el('i', { style: `width:${(pct * 100).toFixed(1)}%` })), el('span', {}, `${fmt(x.tarefas_executadas)} de ${fmt(x.tarefas)}`));
-    tb.append(el('tr', {}, el('td', {}, `${x.circulo} · ${x.nome}`), el('td', {}, el('span', { class: 'pill ' + est }, x.estado)),
-      el('td', { class: 'mono' }, x.versao || '—'), el('td', { class: 'n' }, fmt(x.jornadas)), el('td', {}, cob),
-      el('td', { class: 'n' }, fmt(x.instancias)), el('td', { class: 'n' }, fmt(x.trocas_envia)), el('td', { class: 'n' }, fmt(x.trocas_recebe))));
+// ---------- rede viva ----------
+const cv = document.getElementById('rede'), ctx = cv.getContext('2d');
+let W = 0, H = 0, nos = {}, particulas = [], pulsos = {}, escolhido = null;
+function medidas() {
+  const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1; W = r.width; H = r.height; cv.width = Math.round(W * d); cv.height = Math.round(H * d); ctx.setTransform(d, 0, 0, d, 0, 0);
+  const Ry = H * 0.36, Rx = Math.min(W * 0.4, Ry * 1.45), cx = W / 2, cy = H / 2 + 4;
+  MODELO.circulos.forEach((c, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / MODELO.circulos.length; nos[c.k] = { x: cx + Rx * Math.cos(a), y: cy + Ry * Math.sin(a), a, k: c.k }; });
+}
+const fluxoEntregue = () => (P.trocas || []).map(t => ({ ...t, taxa: Math.log10(1 + t.n) }));
+let entregues = fluxoEntregue();
+function spawn(de, para) { const a = nos[de], b = nos[para]; if (!a || !b || particulas.length > 400) return; particulas.push({ a, b, t: 0, v: 0.005 + Math.random() * 0.005, curva: (Math.random() - .5) * 0.3 }); }
+function quad(a, b, t, cur) { const mx = (a.x + b.x) / 2 + (b.y - a.y) * cur, my = (a.y + b.y) / 2 - (b.x - a.x) * cur; const u = 1 - t; return [u * u * a.x + 2 * u * t * mx + t * t * b.x, u * u * a.y + 2 * u * t * my + t * t * b.y]; }
+function desenha() {
+  ctx.clearRect(0, 0, W, H);
+  const linha = css('--line-2'), ac = css('--accent'), ink = css('--ink'), muted = css('--muted'), fundo = css('--panel');
+  for (const [de, para, n] of MODELO.trocasCirculos) {
+    const a = nos[de], b = nos[para]; if (!a || !b) continue;
+    const foco = escolhido && (escolhido === de || escolhido === para);
+    ctx.strokeStyle = foco ? ac : linha; ctx.globalAlpha = foco ? 0.6 : 0.55; ctx.lineWidth = foco ? 1.6 : 0.6 + Math.min(2, n / 12);
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
   }
-
-  const tj = document.querySelector('#jornadas tbody'); tj.replaceChildren();
-  for (const j of d.jornadas || []) {
-    const fins = el('div', { class: 'fins' }); Object.entries(j.fins || {}).sort((a, b) => b[1] - a[1]).forEach(([f, n]) => fins.append(el('span', {}, `${f}: ${fmt(n)}`)));
-    tj.append(el('tr', {}, el('td', {}, el('span', { class: 'mono' }, j.codigo), ' ', j.nome), el('td', { class: 'n' }, fmt(j.instancias)),
-      el('td', { class: 'n' }, horas(j.horas_mediana)), el('td', { class: 'n' }, horas(j.horas_p90)), el('td', { class: 'n' }, (j.voltas_pct ?? 0).toLocaleString('pt-BR') + '%'), el('td', {}, fins)));
+  ctx.globalAlpha = 1;
+  ctx.fillStyle = ac;
+  for (const p of particulas) { const [x, y] = quad(p.a, p.b, p.t, p.curva); ctx.globalAlpha = 0.35; ctx.beginPath(); ctx.arc(x, y, 5, 0, 7); ctx.fill(); ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 7); ctx.fill(); }
+  for (const m of P.motores) {
+    const n = nos[m.circulo]; if (!n) continue;
+    const ativo = m.estado !== 'desenho', pul = pulsos[m.circulo] || 0, r = 20 + Math.min(8, Math.log10(1 + m.instancias) * 2.4);
+    if (pul > 0) { ctx.strokeStyle = ac; ctx.globalAlpha = pul; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(n.x, n.y, r + 6 + (1 - pul) * 20, 0, 7); ctx.stroke(); ctx.globalAlpha = 1; }
+    ctx.fillStyle = fundo; ctx.strokeStyle = ativo ? ac : linha; ctx.lineWidth = escolhido === m.circulo ? 3 : ativo ? 2 : 1.2;
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7); ctx.fill(); ctx.stroke();
+    const cob = m.tarefas ? m.tarefas_executadas / m.tarefas : 0;
+    if (cob > 0) { ctx.strokeStyle = ac; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(n.x, n.y, r + 5, -Math.PI / 2, -Math.PI / 2 + cob * 2 * Math.PI); ctx.stroke(); }
+    ctx.fillStyle = ink; ctx.font = '600 14px "IBM Plex Sans Condensed", system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(String(m.circulo), n.x, n.y);
+    const baixo = Math.sin(n.a) > -0.3, ty = baixo ? n.y + r + 16 : n.y - r - 30;
+    ctx.fillStyle = ativo ? ink : muted; ctx.font = '500 12.5px "IBM Plex Sans Condensed", system-ui'; ctx.fillText(m.nome, n.x, ty);
+    ctx.fillStyle = ativo ? ac : muted; ctx.font = '500 10.5px "IBM Plex Mono", monospace'; ctx.fillText(m.estado + (m.instancias ? ' · ' + fmt(m.instancias) : ''), n.x, ty + 14);
   }
-  if (!(d.jornadas || []).length) tj.append(el('tr', {}, el('td', { colspan: 6 }, 'Nenhuma execução ainda.')));
-
-  const et = document.getElementById('etapas'); et.replaceChildren();
-  const maxE = Math.max(1, ...(d.etapas || []).map(e => e.min_p75));
-  let jor = null, box = null;
-  for (const e of d.etapas || []) {
-    if (e.jornada !== jor) { jor = e.jornada; et.append(el('div', { class: 'grupo' }, jor)); box = el('div', { class: 'barras' }); et.append(box); }
-    const i = el('i', { style: `width:${(e.min_mediana / maxE * 82).toFixed(2)}%` });
-    const p75 = el('span', { class: 'p75', style: `left:${(e.min_p75 / maxE * 82).toFixed(2)}%` });
-    const fim = Math.max(e.min_mediana, e.min_p75) / maxE * 82;
-    const linha = el('div', { class: 'barra' }, el('div', { class: 'rot' }, el('span', { class: 'mono' }, `E${e.etapa} `), e.nome), el('div', { class: 'tr abs' }, i, p75, el('em', { style: `left:calc(${fim.toFixed(2)}% + 8px)` }, minutos(e.min_mediana))));
-    dica(linha, `${e.jornada} · etapa ${e.etapa} (${e.modo}): mediana ${minutos(e.min_mediana)}, p75 ${minutos(e.min_p75)}, ${fmt(e.execucoes)} execuções`);
-    box.append(linha);
+}
+let rodando = true, ultimo = 0;
+function quadro(ts) {
+  const dt = Math.min(64, ultimo ? ts - ultimo : 16); ultimo = ts;
+  if (rodando && !reduz) {
+    for (const t of entregues) if (Math.random() < t.taxa * 0.006 * dt / 16) spawn(t.de, t.para);
+    for (const p of particulas) p.t += p.v * dt / 16;
+    particulas = particulas.filter(p => { if (p.t >= 1) { pulsos[p.b.k] = Math.max(pulsos[p.b.k] || 0, 0.5); return false; } return true; });
+    for (const k in pulsos) pulsos[k] = Math.max(0, pulsos[k] - 0.015 * dt / 16);
+    replay(dt);
   }
+  desenha(); requestAnimationFrame(quadro);
+}
+const noEm = ev => { const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top; return Object.values(nos).find(n => Math.hypot(n.x - x, n.y - y) < 32); };
+cv.addEventListener('click', ev => { const n = noEm(ev); if (n) abre({ nivel: 'circulo', k: n.k }); });
+cv.addEventListener('mousemove', ev => { const n = noEm(ev); if (!n) { tip.style.display = 'none'; cv.style.cursor = 'default'; return; } cv.style.cursor = 'pointer';
+  const m = P.motores.find(z => z.circulo === n.k); mostraTip(`${m.circulo} · ${m.nome}: ${m.estado}; ${fmt(m.instancias)} execuções; ${fmt(m.trocas_envia)} trocas enviadas e ${fmt(m.trocas_recebe)} recebidas`, ev.clientX, ev.clientY); });
+cv.addEventListener('mouseleave', () => tip.style.display = 'none');
+addEventListener('resize', medidas);
 
-  const ex = document.getElementById('executores'); ex.replaceChildren();
-  const maxX = Math.max(1, ...(d.executores || []).map(x => x.tarefas));
-  for (const x of d.executores || []) {
-    const linha = el('div', { class: 'barra' }, el('div', { class: 'rot' }, el('span', { class: 'mono' }, x.executor + ' '), EXEC[x.executor] || x.executor),
-      el('div', { class: 'tr' }, el('i', { style: `width:${(x.tarefas / maxX * 70).toFixed(2)}%` }), el('em', {}, `${fmt(x.tarefas)} · mediana ${minutos(x.min_mediana)}`)));
-    dica(linha, `${EXEC[x.executor]}: ${fmt(x.tarefas)} tarefas executadas, mediana de ${minutos(x.min_mediana)} cada`);
-    ex.append(linha);
+// ---------- reprodução de eventos ----------
+const feed = document.getElementById('feed');
+let fila = [], relogioSim = 0, execAtual = null, espera = 0;
+const ESCALA = 3600;
+function carregaFila() {
+  const execs = Object.values(det).flatMap(d => (d.execucoes || []).map(x => ({ ...x, circulo: d.circulo })));
+  if (!execs.length) return;
+  execAtual = execs[Math.floor(Math.random() * execs.length)];
+  fila = execAtual.eventos.map(e => ({ e, t: e[6] })); relogioSim = 0;
+  document.getElementById('feed-sub').textContent = `Reproduzindo a execução ${execAtual.id} da ${execAtual.jornada}, acelerada`;
+}
+function linhaFeed(ev, ex) {
+  const [tipo, etapa, tarefa, exe, nome] = ev;
+  const h = el('span', { class: 'h' }, ex.jornada + (etapa ? ' E' + etapa : ''));
+  let li;
+  if (tipo === 'troca_enviada') { const mm = /motor (\d+)/.exec(nome), para = mm ? +mm[1] : null; if (para) for (let i = 0; i < 5; i++) spawn(ex.circulo, para);
+    li = el('li', { class: 'troca' }, h, el('span', { class: 'x x--' }, '→'), el('span', { class: 't' }, 'Troca entregue a ' + (para ? nomeC(para) : 'outro círculo'))); }
+  else if (tipo === 'decisao') li = el('li', { class: 'dec' }, h, el('span', { class: 'x x--' }, '◆'), el('span', { class: 't' }, nome));
+  else if (tipo === 'fim' && !tarefa) li = el('li', { class: 'fim' }, h, el('span', { class: 'x x--' }, '■'), el('span', { class: 't' }, 'Fim: ' + nome));
+  else if (tipo === 'inicio') li = el('li', {}, h, el('span', { class: 'x x--' }, '▶'), el('span', { class: 't' }, 'Início da execução ' + ex.id));
+  else { li = el('li', {}, h, el('span', { class: 'x x-' + (exe || '-') }, exe || '·'), el('span', { class: 't' }, nome)); pulsos[ex.circulo] = 0.8; }
+  li.title = li.textContent; feed.prepend(li); while (feed.children.length > 40) feed.lastChild.remove();
+}
+function replay(dt) {
+  if (!fila.length) { espera += dt; if (espera > 1500) { espera = 0; carregaFila(); } return; }
+  relogioSim += dt / 1000 * ESCALA;
+  while (fila.length && fila[0].t <= relogioSim) linhaFeed(fila.shift().e, execAtual);
+}
+document.getElementById('b-pausa').onclick = e => { rodando = !rodando; e.target.textContent = rodando ? 'Pausar' : 'Retomar'; };
+
+// ---------- drill-down ----------
+let rota = { nivel: 'eco' }, anim = null;
+const trilha = document.getElementById('trilha'), nivel = document.getElementById('nivel'), sub = document.getElementById('nivel-sub');
+function abre(r) { rota = r; escolhido = r.k || (r.j ? MODELO.nos.find(n => n.c === r.j)?.k : null) || null; cancelAnimationFrame(anim); desenhaNivel(); trilha.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block: 'nearest' }); }
+function migalhas() {
+  const p = [['Ecossistema', { nivel: 'eco' }]];
+  const k = rota.k || (rota.j && MODELO.nos.find(n => n.c === rota.j)?.k);
+  if (k) p.push([`${k} · ${nomeC(k)}`, { nivel: 'circulo', k }]);
+  if (rota.j) p.push([rota.j, { nivel: 'jornada', j: rota.j }]);
+  if (rota.e) p.push(['Etapa ' + rota.e, { nivel: 'etapa', j: rota.j, e: rota.e }]);
+  if (rota.x) p.push(['Execução ' + rota.x, rota]);
+  trilha.replaceChildren();
+  p.forEach(([t, r], i) => { if (i) trilha.append(el('span', {}, '›')); trilha.append(i === p.length - 1 ? el('span', { class: 'atual' }, t) : el('button', { onclick: () => abre(r) }, t)); });
+}
+function tabela(cab, linhas) {
+  const t = el('table', {}, el('thead', {}, el('tr', {}, ...cab.map(([c, n]) => el('th', n ? { class: 'n' } : {}, c)))), el('tbody'));
+  linhas.forEach(l => t.tBodies[0].append(l)); return el('div', { class: 'tbl' }, t);
+}
+function desenhaNivel() { migalhas(); nivel.replaceChildren(); tip.style.display = 'none'; ({ eco: nEco, circulo: nCirculo, jornada: nJornada, etapa: nEtapa, execucao: nExecucao })[rota.nivel](); }
+const cabecalho = t => el('h3', { class: 'lbl', style: 'margin:14px 0 6px' }, t);
+function nEco() {
+  sub.textContent = 'Os nove motores. Clique numa linha ou num círculo da rede para descer.';
+  nivel.append(tabela([['Círculo'], ['Estado'], ['Versão'], ['Jornadas', 1], ['Cobertura'], ['Execuções', 1], ['Trocas enviadas', 1], ['Trocas recebidas', 1]],
+    P.motores.map(m => vai(el('tr', { class: 'vai' }, el('td', {}, `${m.circulo} · ${m.nome}`), el('td', {}, el('span', { class: 'pill ' + (m.estado === 'desenho' ? '' : 'ok') }, m.estado)),
+      el('td', { class: 'mono' }, m.versao), el('td', { class: 'n' }, fmt(m.jornadas)),
+      el('td', {}, el('div', { class: 'cob' }, el('div', { class: 'tr' }, el('i', { style: `width:${(m.tarefas ? m.tarefas_executadas / m.tarefas * 100 : 0).toFixed(1)}%` })), el('span', {}, `${fmt(m.tarefas_executadas)} de ${fmt(m.tarefas)}`))),
+      el('td', { class: 'n' }, fmt(m.instancias)), el('td', { class: 'n' }, fmt(m.trocas_envia)), el('td', { class: 'n' }, fmt(m.trocas_recebe))), () => abre({ nivel: 'circulo', k: m.circulo })))));
+  const ex = el('div', {}, cabecalho('Tarefas por executor'));
+  const mx = Math.max(1, ...(P.executores || []).map(x => x.tarefas));
+  (P.executores || []).forEach(x => { const w = (x.tarefas / mx * 64).toFixed(1); const b = el('div', { class: 'bar' }, el('div', { class: 'r' }, el('span', { class: 'mono x-' + x.executor }, x.executor + ' '), EXEC[x.executor]),
+    el('div', { class: 't' }, el('i', { style: `width:${w}%` }), el('em', { style: `left:calc(${w}% + 6px)` }, `${fmt(x.tarefas)} · ${minutos(x.min_mediana)}`))); dica(b, `${EXEC[x.executor]}: ${fmt(x.tarefas)} tarefas, mediana ${minutos(x.min_mediana)} cada`); ex.append(b); });
+  const mo = el('div', {}, cabecalho('Modelos de ML'));
+  (P.modelos || []).forEach(x => mo.append(el('div', { class: 'bar' }, el('div', { class: 'r' }, x.nome), el('div', {}, el('span', { class: 'pill' }, x.em_uso ? 'em uso' : 'fora de uso'), ' ',
+    el('span', { class: 'mono', style: 'color:var(--muted);font-size:12px' }, `${x.dado} · ${fmt(x.amostras)} amostras` + (x.metricas?.auc_teste != null ? ` · AUC ${x.metricas.auc_teste.toLocaleString('pt-BR')}` : ''))))));
+  mo.append(el('p', { class: 'nota' }, 'Treinados só com simulação. O de atraso fica no acaso porque o simulador sorteia os tempos sem padrão. Ficam fora de uso até haver dado real.'));
+  nivel.append(el('div', { class: 'grade2' }, ex, mo));
+}
+function nCirculo() {
+  const k = rota.k, m = P.motores.find(x => x.circulo === k);
+  sub.textContent = (m.estado === 'desenho' ? 'Motor em desenho, ainda sem execuções.' : 'Motor em ' + m.estado + '.') + ' Clique numa jornada para descer.';
+  const js = MODELO.nos.filter(n => n.k === k);
+  nivel.append(tabela([['Jornada'], ['Execuções', 1], ['Mediana', 1], ['p90', 1], ['Com volta', 1], ['Instrução e fluxo']],
+    js.map(n => { const s = (P.jornadas || []).find(x => x.codigo === n.c) || {};
+      const link = el('a', { href: `${ATLAS}#${n.c}`, target: '_blank', rel: 'noopener', onclick: e => e.stopPropagation() }, 'abrir');
+      return vai(el('tr', { class: 'vai' }, el('td', {}, el('span', { class: 'mono' }, n.c), ' ', n.n), el('td', { class: 'n' }, fmt(s.instancias || 0)),
+        el('td', { class: 'n' }, horas(s.horas_mediana)), el('td', { class: 'n' }, horas(s.horas_p90)), el('td', { class: 'n' }, s.voltas_pct != null ? s.voltas_pct.toLocaleString('pt-BR') + '%' : '—'), el('td', {}, link)), () => abre({ nivel: 'jornada', j: n.c })); })));
+  const ent = MODELO.trocasCirculos.filter(t => t[1] === k), sai = MODELO.trocasCirculos.filter(t => t[0] === k);
+  nivel.append(el('p', { class: 'nota' }, `No modelo, o círculo envia ${fmt(sai.reduce((a, t) => a + t[2], 0))} trocas para ${sai.length} círculos e recebe ${fmt(ent.reduce((a, t) => a + t[2], 0))} de ${ent.length}.`));
+}
+async function detalhe(j) {
+  if (det[j]) return det[j];
+  if (!mcp) return null;
+  try { const d = await sql(`select rt.painel_detalhe('${j}', 8) as p`); if (d?.execucoes) det[j] = d; return d; } catch (e) { avisa(e); return null; }
+}
+async function nJornada() {
+  const j = rota.j, s = (P.jornadas || []).find(x => x.codigo === j) || {}, n = MODELO.nos.find(x => x.c === j);
+  sub.textContent = n.n;
+  nivel.append(el('p', { class: 'nota' }, 'Carregando…'));
+  const d = await detalhe(j); nivel.replaceChildren();
+  nivel.append(el('div', { class: 'ctl', style: 'margin:0 0 10px' }, el('a', { href: `${ATLAS}#${j}`, target: '_blank', rel: 'noopener' }, 'Abrir a instrução de trabalho'), el('span', {}, '·'), el('a', { href: `${ATLAS}#fluxo-${j}`, target: '_blank', rel: 'noopener' }, 'Ver o fluxo BPMN')));
+  if (!d || !d.execucoes) { nivel.append(el('p', { class: 'nota' }, 'Esta jornada ainda não rodou. Quando o motor do círculo entrar em piloto, as etapas e as execuções aparecem aqui.')); return; }
+  const et = (P.etapas || []).filter(x => x.jornada === j), mx = Math.max(1, ...et.map(x => x.min_p75));
+  const b = el('div', {}, cabecalho('Duração por etapa. Clique para descer.'));
+  d.etapas.forEach(e => { const x = et.find(z => z.etapa === e.n) || {};
+    const wm = ((x.min_mediana || 0) / mx * 64), wk = ((x.min_p75 || 0) / mx * 64), fim = Math.max(wm, wk);
+    const linha = vai(el('div', { class: 'bar vai' }, el('div', { class: 'r' }, el('span', { class: 'mono' }, 'E' + e.n + ' '), e.nome),
+      el('div', { class: 't' }, el('i', { style: `width:${wm.toFixed(1)}%` }), el('span', { class: 'k', style: `left:${wk.toFixed(1)}%` }), el('em', { style: `left:calc(${fim.toFixed(1)}% + 8px)` }, minutos(x.min_mediana)))), () => abre({ nivel: 'etapa', j, e: e.n }));
+    dica(linha, `Etapa ${e.n} (${e.modo}, risco ${e.risco}): mediana ${minutos(x.min_mediana)}, p75 ${minutos(x.min_p75)}, ${fmt(x.execucoes)} execuções`); b.append(linha); });
+  b.append(el('div', { class: 'leg' }, el('span', {}, el('i', { style: 'background:var(--accent-2)' }), 'mediana'), el('span', {}, el('i', { style: 'background:var(--ink);width:2px' }), 'p75')));
+  const fins = el('div', {}, cabecalho('Como terminaram'));
+  const tot = Object.values(s.fins || {}).reduce((a, v) => a + v, 0) || 1;
+  Object.entries(s.fins || {}).sort((a, b) => b[1] - a[1]).forEach(([f, v]) => { const w = (v / tot * 64).toFixed(1); fins.append(el('div', { class: 'bar' }, el('div', { class: 'r', title: f }, f), el('div', { class: 't' }, el('i', { style: `width:${w}%` }), el('em', { style: `left:calc(${w}% + 6px)` }, `${fmt(v)} · ${Math.round(v / tot * 100)}%`)))); });
+  fins.append(cabecalho('Últimas execuções. Clique para reproduzir.'));
+  fins.append(tabela([['Execução'], ['Duração', 1], ['Passos', 1], ['Como terminou']], d.execucoes.map(x => vai(el('tr', { class: 'vai' }, el('td', { class: 'mono' }, '#' + x.id),
+    el('td', { class: 'n' }, minutos((new Date(x.fim) - new Date(x.inicio)) / 60000)), el('td', { class: 'n' }, fmt(x.passos)), el('td', {}, x.fim_no || x.estado)), () => abre({ nivel: 'execucao', j, x: x.id })))));
+  nivel.append(el('div', { class: 'grade2' }, b, fins));
+}
+async function nEtapa() {
+  const d = await detalhe(rota.j), e = d?.etapas?.find(x => x.n === rota.e);
+  if (!e) { sub.textContent = ''; nivel.append(el('p', { class: 'nota' }, 'Sem dados desta etapa.')); return; }
+  sub.textContent = `${e.nome} · modo ${e.modo} · risco ${e.risco} · dono: ${e.dono}`;
+  nivel.append(tabela([['#'], ['Tarefa'], ['Quem'], ['Sistema'], ['Execuções', 1], ['Mediana', 1]], e.tarefas.map(t => el('tr', {},
+    el('td', { class: 'mono' }, t.ordem), el('td', {}, el('span', { class: 'mono x-' + t.executor, style: 'margin-right:6px' }, t.executor), t.nome),
+    el('td', {}, t.raia), el('td', { class: 'mono' }, t.sistema), el('td', { class: 'n' }, fmt(t.execucoes)), el('td', { class: 'n' }, minutos(t.min_mediana))))));
+}
+async function nExecucao() {
+  const d = await detalhe(rota.j), x = d?.execucoes?.find(z => z.id === rota.x) || det['_x' + rota.x];
+  if (!x) { nivel.append(el('p', { class: 'nota' }, 'Execução não encontrada.')); return; }
+  sub.textContent = `${x.jornada} · ${x.estado} · ${x.fim_no || ''} · ${x.simulado ? 'simulada' : 'real'}`;
+  const tarefas = x.eventos.filter(e => e[2]);
+  const T = Math.max(1, ...x.eventos.map(e => e[7])), etapas = [...new Set(tarefas.map(e => e[1]))].sort((a, b) => a - b);
+  const lh = 26, top = 26, esq = 64, w = Math.max(320, nivel.clientWidth), h = top + etapas.length * lh + 14;
+  const NSS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NSS, 'svg'); svg.id = 'gantt'; svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Linha do tempo da execução');
+  const mk = (t, a) => { const e = document.createElementNS(NSS, t); for (const k in a) e.setAttribute(k, a[k]); svg.append(e); return e; };
+  const X = s => esq + (w - esq - 14) * s / T, Y = n => top + etapas.indexOf(n) * lh;
+  for (let i = 0; i <= 4; i++) { const s = T * i / 4; mk('line', { x1: X(s), x2: X(s), y1: 16, y2: h - 8, stroke: css('--line'), 'stroke-width': 1 });
+    const tx = mk('text', { x: X(s), y: 11, fill: css('--muted'), 'font-size': 11, 'font-family': 'IBM Plex Mono, monospace', 'text-anchor': i === 0 ? 'start' : i === 4 ? 'end' : 'middle' }); tx.textContent = minutos(s / 60); }
+  etapas.forEach(n => { const t = mk('text', { x: 2, y: Y(n) + lh / 2 + 4, fill: css('--muted'), 'font-size': 12, 'font-family': 'IBM Plex Sans Condensed, system-ui' }); t.textContent = 'Etapa ' + n; });
+  const cores = { P: '--pessoa', H: '--pessoa', X: '--pessoa', A: '--agente', R: '--regra', C: '--outro' };
+  const barras = tarefas.map(e => { const r = mk('rect', { x: X(e[6]), y: Y(e[1]) + 4, width: Math.max(3, X(e[7]) - X(e[6])), height: lh - 8, rx: 3, fill: css(cores[e[3]] || '--accent'), opacity: 0.15 });
+    const tt = document.createElementNS(NSS, 'title'); tt.textContent = `${e[4]} (${EXEC[e[3]]}, ${e[5]}): ${minutos((e[7] - e[6]) / 60)}`; r.append(tt); return { r, e }; });
+  const cab = mk('line', { x1: X(0), x2: X(0), y1: 16, y2: h - 8, stroke: css('--accent'), 'stroke-width': 2 });
+  nivel.append(el('div', { class: 'tbl' }, svg), el('div', { class: 'leg' }, ...[['P', 'pessoa (P, H, X)'], ['A', 'agente'], ['R', 'automação'], ['C', 'outro círculo']].map(([k, t]) => el('span', {}, el('i', { style: `background:var(${cores[k]})` }), t))),
+    el('div', { class: 'ctl' }, el('button', { onclick: () => toca() }, 'Reproduzir de novo'), el('span', {}, `${tarefas.length} tarefas · ${minutos(T / 60)} de ponta a ponta · passe o cursor numa barra para ver a tarefa`)));
+  function toca() {
+    cancelAnimationFrame(anim); const t0 = performance.now(), dur = reduz ? 0 : 6000;
+    const passo = now => { const f = dur ? Math.min(1, (now - t0) / dur) : 1, s = f * T;
+      cab.setAttribute('x1', X(s)); cab.setAttribute('x2', X(s));
+      barras.forEach(({ r, e }) => r.setAttribute('opacity', e[6] <= s ? 0.95 : 0.15));
+      if (f < 1) anim = requestAnimationFrame(passo); };
+    anim = requestAnimationFrame(passo);
   }
-
-  const nomes = Object.fromEntries(d.motores.map(x => [x.circulo, x.nome]));
-  const tr = document.getElementById('trocas'); tr.replaceChildren();
-  const maxT = Math.max(1, ...(d.trocas || []).map(x => x.n));
-  for (const x of d.trocas || []) {
-    const linha = el('div', { class: 'barra' }, el('div', { class: 'rot' }, `${nomes[x.de]} → ${nomes[x.para]}`),
-      el('div', { class: 'tr' }, el('i', { style: `width:${(x.n / maxT * 70).toFixed(2)}%` }), el('em', {}, fmt(x.n))));
-    dica(linha, `${fmt(x.n)} trocas de ${nomes[x.de]} para ${nomes[x.para]}`);
-    tr.append(linha);
-  }
-  if (!(d.trocas || []).length) tr.append(el('p', { class: 'nota' }, 'Nenhuma troca entregue ainda.'));
-
-  const mo = document.getElementById('modelos'); mo.replaceChildren();
-  for (const x of d.modelos || []) {
-    const dl = el('dl', {}, el('dt', {}, 'Versão'), el('dd', { class: 'mono' }, x.versao), el('dt', {}, 'Dado'), el('dd', {}, x.dado),
-      el('dt', {}, 'Amostras'), el('dd', {}, fmt(x.amostras)));
-    const ROT = { auc_teste: 'AUC no teste', brier_teste: 'Brier no teste', brier_base_taxa_media: 'Brier da taxa média', taxa_atraso: 'Taxa de atraso', amostras_teste: 'Amostras de teste', amostras_treino: 'Amostras de treino', instancias: 'Execuções', marcadas_anomalas: 'Marcadas como anômalas', contaminacao_assumida: 'Contaminação assumida' };
-    for (const [k, v] of Object.entries(x.metricas || {})) dl.append(el('dt', {}, ROT[k] || k.replaceAll('_', ' ')), el('dd', {}, typeof v === 'number' ? v.toLocaleString('pt-BR') : String(v)));
-    mo.append(el('div', { class: 'card' }, el('h3', {}, x.nome), el('span', { class: 'pill ' + (x.em_uso ? 'ok' : 'idle') }, x.em_uso ? 'em uso' : 'fora de uso'), el('div', { class: 'nota' }, x.tipo), dl));
-  }
-
-  const tpz = document.querySelector('#parametros tbody'); tpz.replaceChildren();
-  for (const x of d.parametros_simulacao || []) tpz.append(el('tr', {}, el('td', {}, `${x.executor} · ${EXEC[x.executor]}`), el('td', { class: 'n' }, minutos(x.min)), el('td', { class: 'n' }, minutos(x.max))));
+  toca();
 }
 
-render(RETRATO, 'retrato');
-
-// leitura ao vivo pelo conector do Supabase do próprio leitor
-const aviso = document.getElementById('aviso'), botao = document.getElementById('atualizar');
-const AVISOS = {
-  server_not_connected: 'Para ler ao vivo, adicione o conector do Supabase em claude.ai, Configurações → Conectores. Até lá, a página mostra o retrato gravado.',
-  needs_reauth: 'O conector do Supabase precisa ser reconectado em claude.ai, Configurações → Conectores.',
-  not_in_manifest: 'A leitura ao vivo não foi permitida para esta página. Ela segue com o retrato gravado.',
-  selection_required: 'Há mais de um conector do Supabase. Escolha qual usar no aviso do Claude e tente de novo.',
-  blocked_by_policy: 'A política da organização bloqueia esta leitura. A página segue com o retrato gravado.',
-  approval_required: 'A leitura precisa de aprovação da organização. A página segue com o retrato gravado.',
-  server_unavailable: 'O Supabase não respondeu agora. Tente de novo em instantes.',
-  tool_error: 'O Supabase recusou a consulta: ',
-};
+// ---------- leitura ao vivo ----------
+let mcp = null;
+const aviso = document.getElementById('aviso');
+const AVISOS = { server_not_connected: 'Para ver ao vivo, adicione o conector do Supabase em claude.ai, Configurações → Conectores. Até lá vale o retrato gravado.',
+  needs_reauth: 'O conector do Supabase precisa ser reconectado em claude.ai, Configurações → Conectores.', not_in_manifest: 'A leitura ao vivo não foi permitida para esta página. Segue o retrato gravado.',
+  selection_required: 'Há mais de um conector do Supabase: escolha um no aviso do Claude.', blocked_by_policy: 'A política da organização bloqueia esta leitura.', approval_required: 'A leitura precisa de aprovação da organização.',
+  server_unavailable: 'O Supabase não respondeu agora. Tente Atualizar em instantes.' };
+function avisa(e) { const c = e?.code; aviso.textContent = c === 'tool_error' ? 'O Supabase recusou a consulta: ' + (e.message || '') : AVISOS[c] || (c === 'formato' ? 'A resposta do Supabase veio num formato que a página não reconhece. Segue o retrato gravado.' : 'A leitura ao vivo falhou (' + (c || 'erro') + '). Segue o retrato gravado.'); aviso.hidden = false; }
 function lerPayload(p) {
-  let s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
+  const s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
   const m = s.match(/<untrusted-data-[^>]*>\s*([\s\S]*?)\s*<\/untrusted-data/);
-  const linhas = JSON.parse(m ? m[1] : s);
+  let linhas; try { linhas = JSON.parse(m ? m[1] : s); } catch (e) { throw { code: 'formato' }; }
   const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
+  if (v == null) throw { code: 'formato' };
   return typeof v === 'string' ? JSON.parse(v) : v;
 }
-let mcp = null;
+async function sql(q) { const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false }); return lerPayload(r.payload ?? r.content?.[0]?.text); }
 async function atualizar() {
-  if (!mcp) return;
-  botao.disabled = true; botao.textContent = 'Lendo…';
-  try {
-    const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: 'select rt.painel() as p' }, { cache: false });
-    const d = lerPayload(r.payload ?? r.content?.[0]?.text);
-    if (!d || !d.operacao) throw { code: 'formato' };
-    render(d, 'vivo'); aviso.hidden = true;
-  } catch (e) {
-    const c = e?.code;
-    aviso.textContent = c === 'tool_error' ? AVISOS.tool_error + (e.message || '') : AVISOS[c] || (c === 'formato' ? 'A resposta do Supabase veio num formato que a página não reconhece. Segue o retrato gravado.' : 'A leitura ao vivo falhou (' + (c || 'erro') + '). Segue o retrato gravado.');
-    aviso.hidden = false;
-  } finally { botao.disabled = false; botao.textContent = 'Atualizar do Supabase'; }
+  const b = document.getElementById('b-atual'); b.disabled = true;
+  try { const d = await sql('select rt.painel() as p'); if (!d?.operacao) throw { code: 'formato' }; P = d; fonte = 'vivo'; entregues = fluxoEntregue(); aviso.hidden = true; kpis(); if (rota.nivel === 'eco' || rota.nivel === 'circulo') desenhaNivel(); }
+  catch (e) { avisa(e); } finally { b.disabled = false; }
 }
-botao.addEventListener('click', atualizar);
-botao.hidden = true;
+document.getElementById('b-atual').onclick = atualizar;
+document.getElementById('b-rodar').onclick = async e => {
+  const b = e.currentTarget; b.disabled = true; b.textContent = 'Rodando…';
+  try {
+    const js = MODELO.nos.filter(n => P.motores.some(m => m.circulo === n.k && m.estado !== 'desenho'));
+    const j = js[Math.floor(Math.random() * js.length)].c;
+    const x = await sql(`select rt.painel_execucao(rt.executar_simulada('${j}', random(), now())) as p`);
+    if (det[j]?.execucoes) det[j].execucoes.unshift(x); else det['_x' + x.id] = x;
+    execAtual = { ...x, circulo: MODELO.nos.find(n => n.c === j).k }; fila = x.eventos.map(ev => ({ e: ev, t: ev[6] })); relogioSim = 0;
+    document.getElementById('feed-sub').textContent = `Execução ${x.id} da ${j}, rodada agora no Supabase`;
+    await atualizar();
+  } catch (err) { avisa(err); } finally { b.disabled = false; b.textContent = 'Rodar uma execução agora'; }
+};
+
+medidas(); kpis(); desenhaNivel(); carregaFila(); requestAnimationFrame(quadro);
 (async () => {
   mcp = await window.claude?.use?.('mcp').catch(() => null);
   if (!mcp) return;
-  botao.hidden = false;
+  document.getElementById('b-atual').hidden = false; document.getElementById('b-rodar').hidden = false;
   atualizar();
 })();
 </script>
