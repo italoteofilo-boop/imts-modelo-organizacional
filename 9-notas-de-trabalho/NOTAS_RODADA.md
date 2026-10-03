@@ -120,3 +120,7 @@ Resposta literal: "Tudo validado e aprovado, pode seguir em frente e Podemos ali
 ## 03/10/2026, 14:54
 
 Projeto imts-modelo-organizacional (rzkfolkqdgtounqjjzss, org IMTS.OS) criado por ele. Esquema org e carga aplicados por função temporária protegida por token, removida em seguida; contagens conferidas no banco; verificador de segurança sem apontamentos; índices de troca acrescentados por migração.
+
+## 03/10/2026, 15:50
+
+Resposta literal: "feito, vamos em frente." Esquema org liberado na API (conferido: anônimo recusado). Tipos TS gerados e conferidos com tsc. Auditoria geral feita por 3 revisores independentes: 4 graves de desenho (sócios indefinidos, sem dono acima dos círculos, segregação no dinheiro, relatos sem independência), 11 médios, 9 leves; coerência e fontes com textos desatualizados. 7 blocos de correção aguardando aprovação. Repositório: italoteofilo-boop/imts-modelo-organizacional (público).
