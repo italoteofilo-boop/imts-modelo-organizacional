@@ -18,6 +18,7 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 - `005_motor.sql`: os sistemas e o vínculo das 1.555 tarefas (G7), os 60 usuários simulados e o motor (`rt.executar_simulada`).
 - `006_modelos.sql`: o registro dos modelos de ML (`rt.modelo`), gerado por `ml/treinar.py`.
 - `testar_motor.sql` e `007_testes.sql`: 9 testes do motor; o 007 traz os testes do runtime e do motor como funções, para rodar no Supabase sem gravar nada.
+- `008_painel.sql`: a função `rt.painel()`, que devolve em JSON tudo o que o painel da operação mostra. Só lê.
 - `gerar_sql.py`: refaz os dois arquivos a partir de `saida/`, a pasta que os scripts do modelo criam ao rodar (no repositório, a cópia publicada dos dados está em `dados-gerados/`). Rode depois de qualquer mudança no modelo: `python3 supabase/gerar_sql.py`.
 
 ## Tabelas

@@ -30,6 +30,8 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
                                 o gerador, os testes, o cruzamento e a consolidação entre círculos, a prova dos testes e as páginas.
   ferramentas-node/ ........... scripts de validação e desenho (bpmn-moddle, bpmnlint, bpmn-js). Rode npm install antes.
   supabase/ ................... esquema e carga do modelo (esquema org) e, na fase 2, o runtime dos runtimes, o motor e os testes (esquema rt).
+  painel/ ..................... o painel da operação: modelo da página, gerador e o retrato de 03/10/2026.
+  instrucoes.py, instrucoes_pdf.mjs  geram as instruções de trabalho (HTML e PDF).
   ml/ ......................... treino dos primeiros modelos de ML com eventos simulados e os modelos treinados.
   fontes_oficiais/ ............ texto literal dos dispositivos legais citados (retrato de 03/10/2026) e o conferidor de contingência.
   dados-gerados/ .............. circulo.json e testes.json de cada círculo, cruzamento.json, consolidacao.json e auditoria.json.
@@ -51,6 +53,8 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
 
 7-historico/ .................. as versões superadas num zip só, com MANIFESTO (SHA-256), LEIA-ME e o conferidor: base e
                                 catálogo da rodada 2, círculo 1 de treze jornadas, módulos anteriores e fragmentos do c2.
+
+9-instrucoes-de-trabalho/ ..... as 73 instruções de trabalho: PDFs A4 num zip com MANIFESTO (SHA-256), versão digital e conferidor.
 
 8-notas-de-trabalho/ .......... as notas das rodadas, com as respostas literais do dono do projeto e a triagem das revisões.
 

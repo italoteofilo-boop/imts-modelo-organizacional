@@ -1,0 +1,281 @@
+<title>Painel da Operação IMTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600&display=swap">
+<style>
+/* Layout: sala de controle em uma coluna — resumo no topo, motores, depois o detalhe do piloto; mesmo sistema visual das páginas dos círculos */
+:root {
+  --bg: #F2F4F3; --surface: #FFFFFF; --ink: #17222A; --muted: #58666F; --line: #D2D9D7; --line-soft: #E4E9E7;
+  --accent: #0B5E6B; --accent-soft: #DDECEE; --bar: #2C7F8C; --bar-soft: #B9D8DD;
+  --ok: #17693F; --ok-bg: #DDF1E5; --warn: #8A5A00; --warn-bg: #FBEFD3; --bad: #A32222; --bad-bg: #F9E0E0; --idle-bg: #E9EEEC;
+  --f-body: 'IBM Plex Sans', system-ui, sans-serif; --f-head: 'IBM Plex Sans Condensed', 'IBM Plex Sans', system-ui, sans-serif; --f-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark;
+  --bg: #0F161A; --surface: #161F25; --ink: #E3EAE9; --muted: #96A5AC; --line: #2B3840; --line-soft: #222D34;
+  --accent: #6FC6D2; --accent-soft: #153038; --bar: #5DB3C0; --bar-soft: #24464D;
+  --ok: #6ACB98; --ok-bg: #14301F; --warn: #E6B95A; --warn-bg: #33270E; --bad: #F08A8A; --bad-bg: #3B1B1B; --idle-bg: #222D34; } }
+:root[data-theme="dark"] { color-scheme: dark;
+  --bg: #0F161A; --surface: #161F25; --ink: #E3EAE9; --muted: #96A5AC; --line: #2B3840; --line-soft: #222D34;
+  --accent: #6FC6D2; --accent-soft: #153038; --bar: #5DB3C0; --bar-soft: #24464D;
+  --ok: #6ACB98; --ok-bg: #14301F; --warn: #E6B95A; --warn-bg: #33270E; --bad: #F08A8A; --bad-bg: #3B1B1B; --idle-bg: #222D34; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14.5px; line-height: 1.45; padding-inline: 16px; padding-block: 0 40px; }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 22px; }
+h1, h2, h3 { font-family: var(--f-head); font-weight: 600; margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: 26px; } h2 { font-size: 18px; } h3 { font-size: 15px; }
+.eyebrow, th, .lbl { font-family: var(--f-head); font-weight: 500; font-size: 12px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.num, td.n, .mono { font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--f-mono); font-size: .9em; } td.mono { white-space: nowrap; }
+header.top { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: flex-end; justify-content: space-between; padding-block: 22px 4px; }
+header.top > div { min-width: 0; }
+.estado { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-head); font-weight: 500; font-size: 12.5px; padding: 3px 10px; border-radius: 999px; background: var(--idle-bg); color: var(--ink); white-space: nowrap; }
+.pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.pill.sim { background: var(--warn-bg); color: var(--warn); } .pill.ok { background: var(--ok-bg); color: var(--ok); }
+.pill.bad { background: var(--bad-bg); color: var(--bad); } .pill.idle { color: var(--muted); }
+button { font: inherit; font-family: var(--f-head); font-weight: 500; color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); } button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button[disabled] { opacity: .6; cursor: progress; }
+.fresh { color: var(--muted); font-size: 13px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.kpi { background: var(--surface); padding: 12px 14px; min-width: 0; }
+.kpi b { display: block; font-family: var(--f-head); font-size: 28px; font-weight: 600; line-height: 1.1; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.kpi small { color: var(--muted); font-size: 12.5px; }
+section.bloco { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; min-width: 0; }
+section.bloco > header { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+section.bloco > header p { margin: 0; color: var(--muted); font-size: 13px; max-width: 70ch; }
+.duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; }
+.tbl { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--line-soft); vertical-align: middle; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.cob { display: flex; align-items: center; gap: 8px; min-width: 150px; }
+.cob .trilho { flex: 1; height: 8px; background: var(--idle-bg); border-radius: 4px; overflow: hidden; }
+.cob .trilho i { display: block; height: 100%; background: var(--bar); border-radius: 0 4px 4px 0; }
+.cob span { font-size: 12.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.barras { display: grid; gap: 6px; }
+.barra { display: grid; grid-template-columns: minmax(110px, 34%) 1fr; gap: 10px; align-items: center; position: relative; }
+.barra .rot { font-size: 13px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barra .rot .mono { color: var(--muted); }
+.barra .tr { position: relative; height: 18px; display: flex; align-items: center; gap: 6px; }
+.barra .tr i { display: block; height: 12px; background: var(--bar); border-radius: 0 4px 4px 0; min-width: 2px; }
+.barra .tr em { font-style: normal; font-size: 12.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.barra .tr.abs em { position: absolute; top: 0; line-height: 18px; }
+.barra .tr .p75 { position: absolute; top: 2px; width: 2px; height: 14px; background: var(--ink); opacity: .55; }
+.barra:hover .rot, .barra:focus-within .rot { color: var(--accent); }
+.grupo { margin: 10px 0 4px; font-family: var(--f-head); font-weight: 600; font-size: 13.5px; }
+.legenda { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--muted); margin-top: 10px; }
+.legenda span { display: inline-flex; align-items: center; gap: 6px; }
+.legenda .sw { width: 14px; height: 10px; background: var(--bar); border-radius: 2px; } .legenda .tk { width: 2px; height: 12px; background: var(--ink); opacity: .55; }
+.fins { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12.5px; color: var(--muted); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; min-width: 0; }
+.card h3 { margin-bottom: 6px; } .card dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 12px; margin: 8px 0 0; font-size: 13px; }
+.card dt { color: var(--muted); } .card dd { margin: 0; font-variant-numeric: tabular-nums; }
+.nota { color: var(--muted); font-size: 13px; margin: 10px 0 0; max-width: 85ch; }
+.aviso { border: 1px solid var(--line); border-left: 3px solid var(--warn); background: var(--surface); border-radius: 8px; padding: 10px 14px; font-size: 13.5px; }
+.tip { position: fixed; z-index: 5; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12.5px; padding: 6px 9px; border-radius: 6px; max-width: 280px; display: none; }
+footer { color: var(--muted); font-size: 12.5px; }
+@media (max-width: 560px) { h1 { font-size: 22px; } .kpi b { font-size: 24px; } .barra { grid-template-columns: 1fr; gap: 2px; } }
+@media (prefers-reduced-motion: no-preference) { .cob .trilho i, .barra .tr i { transition: width .4s ease; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Ecossistema IMTS · runtime dos runtimes</div>
+      <h1>Painel da operação</h1>
+    </div>
+    <div class="estado">
+      <span class="pill sim" id="tipo-dado">Dado simulado</span>
+      <span class="fresh" id="fresco"></span>
+      <button id="atualizar" type="button">Atualizar do Supabase</button>
+    </div>
+  </header>
+  <div class="aviso" id="aviso" hidden></div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <section class="bloco">
+    <header><h2>Motores</h2><p>Um motor por círculo. Cobertura: quantas tarefas do círculo já rodaram ao menos uma vez.</p></header>
+    <div class="tbl"><table id="motores"><thead><tr><th>Círculo</th><th>Estado</th><th>Versão</th><th class="n">Jornadas</th><th>Cobertura</th><th class="n">Execuções</th><th class="n">Trocas enviadas</th><th class="n">Trocas recebidas</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="bloco">
+    <header><h2>Jornadas em execução</h2><p>Tempo de ponta a ponta de cada execução. Volta: a execução repetiu ao menos uma tarefa.</p></header>
+    <div class="tbl"><table id="jornadas"><thead><tr><th>Jornada</th><th class="n">Execuções</th><th class="n">Mediana</th><th class="n">p90</th><th class="n">Com volta</th><th>Como terminaram</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="bloco">
+    <header><h2>Duração por etapa</h2><p>Mediana em minutos de cada etapa, com o p75 marcado. É a régua do modelo de risco de atraso.</p></header>
+    <div id="etapas"></div>
+    <div class="legenda"><span><i class="sw"></i>mediana</span><span><i class="tk"></i>p75</span></div>
+  </section>
+
+  <div class="duas">
+    <section class="bloco">
+      <header><h2>Tarefas por executor</h2><p>Quantas tarefas rodaram e a mediana de cada uma.</p></header>
+      <div class="barras" id="executores"></div>
+    </section>
+    <section class="bloco">
+      <header><h2>Trocas entregues</h2><p>Saídas que o runtime dos runtimes levou de um círculo a outro.</p></header>
+      <div class="barras" id="trocas"></div>
+    </section>
+  </div>
+
+  <section class="bloco">
+    <header><h2>Modelos de ML</h2><p>Registrados em rt.modelo. Nenhum decide nada enquanto treinado só com simulação.</p></header>
+    <div class="cards" id="modelos"></div>
+  </section>
+
+  <section class="bloco">
+    <header><h2>Hipóteses da simulação</h2><p>Faixa de tempo sorteada para cada executor (rt.parametro_simulacao). A calibrar no G9 com dado real.</p></header>
+    <div class="tbl"><table id="parametros"><thead><tr><th>Executor</th><th class="n">Mínimo</th><th class="n">Máximo</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <footer>Fonte: função rt.painel() no Supabase, projeto imts-modelo-organizacional. O botão lê de novo pelo seu conector do Supabase; sem ele, a página mostra o retrato gravado nela.</footer>
+</div>
+<div class="tip" id="tip" role="tooltip"></div>
+
+<script>
+const RETRATO = __DADOS__;
+const PROJETO = 'rzkfolkqdgtounqjjzss';
+const EXEC = { P: 'Pessoa do círculo', A: 'Agente', R: 'Automação', H: 'Pessoa de fora do círculo', C: 'Outro círculo', X: 'Assessoria externa' };
+const fmt = n => n == null ? '—' : Number(n).toLocaleString('pt-BR');
+const el = (t, a = {}, ...f) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) { if (k === 'class') e.className = v; else if (k === 'style') e.style.cssText = v; else e.setAttribute(k, v); } for (const x of f) e.append(x?.nodeType ? x : document.createTextNode(x ?? '')); return e; };
+const horas = h => h == null ? '—' : h < 1 ? Math.round(h * 60) + ' min' : h < 48 ? fmt(h) + ' h' : fmt(Math.round(h / 24 * 10) / 10) + ' d';
+const minutos = m => m == null ? '—' : m < 120 ? fmt(Math.round(m * 10) / 10) + ' min' : m < 2880 ? fmt(Math.round(m / 6) / 10) + ' h' : fmt(Math.round(m / 144) / 10) + ' d';
+const tip = document.getElementById('tip');
+function dica(alvo, texto) {
+  alvo.tabIndex = 0;
+  const mostra = ev => { tip.textContent = texto; tip.style.display = 'block'; const r = alvo.getBoundingClientRect(); const x = ev?.clientX ?? r.left + 20, y = ev?.clientY ?? r.top; tip.style.left = Math.min(x + 12, innerWidth - 290) + 'px'; tip.style.top = (y + 14) + 'px'; };
+  alvo.addEventListener('mousemove', mostra); alvo.addEventListener('focus', () => mostra()); alvo.addEventListener('mouseleave', () => tip.style.display = 'none'); alvo.addEventListener('blur', () => tip.style.display = 'none');
+}
+
+function render(d, origem) {
+  const o = d.operacao, m = d.modelo;
+  const real = (o.instancias_reais || 0) > 0;
+  const tp = document.getElementById('tipo-dado');
+  tp.textContent = real ? 'Dado real e simulado' : 'Dado simulado'; tp.className = 'pill ' + (real ? 'ok' : 'sim');
+  const quando = new Date(d.gerado_em);
+  document.getElementById('fresco').textContent = (origem === 'vivo' ? 'Lido do Supabase às ' : 'Retrato de ') + quando.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+
+  const kp = document.getElementById('kpis'); kp.replaceChildren();
+  [['Execuções', o.instancias, `${fmt(o.concluidas)} concluídas · ${fmt(o.erros)} com erro`],
+   ['Eventos', o.eventos, `${fmt(o.eventos_reais)} reais`],
+   ['Trocas entregues', o.trocas_enviadas, `de ${fmt(m.trocas)} trocas no modelo`],
+   ['Tarefas ligadas', m.tarefas_ligadas, `de ${fmt(m.tarefas)} no modelo`],
+   ['Pessoas', m.pessoas_simuladas + m.pessoas_reais, `${fmt(m.pessoas_reais)} reais`],
+   ['Versão do modelo-base', null, `${fmt(o.atualizacoes_pendentes)} atualizações pendentes`, o.versao_base]
+  ].forEach(([l, v, s, txt]) => kp.append(el('div', { class: 'kpi' }, el('span', { class: 'lbl' }, l), el('b', {}, txt ?? fmt(v)), el('small', {}, s))));
+
+  const tb = document.querySelector('#motores tbody'); tb.replaceChildren();
+  for (const x of d.motores) {
+    const pct = x.tarefas ? x.tarefas_executadas / x.tarefas : 0;
+    const est = { piloto: 'ok', ativo: 'ok', pausado: 'bad', desenho: 'idle' }[x.estado] || 'idle';
+    const cob = el('div', { class: 'cob' }, el('div', { class: 'trilho' }, el('i', { style: `width:${(pct * 100).toFixed(1)}%` })), el('span', {}, `${fmt(x.tarefas_executadas)} de ${fmt(x.tarefas)}`));
+    tb.append(el('tr', {}, el('td', {}, `${x.circulo} · ${x.nome}`), el('td', {}, el('span', { class: 'pill ' + est }, x.estado)),
+      el('td', { class: 'mono' }, x.versao || '—'), el('td', { class: 'n' }, fmt(x.jornadas)), el('td', {}, cob),
+      el('td', { class: 'n' }, fmt(x.instancias)), el('td', { class: 'n' }, fmt(x.trocas_envia)), el('td', { class: 'n' }, fmt(x.trocas_recebe))));
+  }
+
+  const tj = document.querySelector('#jornadas tbody'); tj.replaceChildren();
+  for (const j of d.jornadas || []) {
+    const fins = el('div', { class: 'fins' }); Object.entries(j.fins || {}).sort((a, b) => b[1] - a[1]).forEach(([f, n]) => fins.append(el('span', {}, `${f}: ${fmt(n)}`)));
+    tj.append(el('tr', {}, el('td', {}, el('span', { class: 'mono' }, j.codigo), ' ', j.nome), el('td', { class: 'n' }, fmt(j.instancias)),
+      el('td', { class: 'n' }, horas(j.horas_mediana)), el('td', { class: 'n' }, horas(j.horas_p90)), el('td', { class: 'n' }, (j.voltas_pct ?? 0).toLocaleString('pt-BR') + '%'), el('td', {}, fins)));
+  }
+  if (!(d.jornadas || []).length) tj.append(el('tr', {}, el('td', { colspan: 6 }, 'Nenhuma execução ainda.')));
+
+  const et = document.getElementById('etapas'); et.replaceChildren();
+  const maxE = Math.max(1, ...(d.etapas || []).map(e => e.min_p75));
+  let jor = null, box = null;
+  for (const e of d.etapas || []) {
+    if (e.jornada !== jor) { jor = e.jornada; et.append(el('div', { class: 'grupo' }, jor)); box = el('div', { class: 'barras' }); et.append(box); }
+    const i = el('i', { style: `width:${(e.min_mediana / maxE * 82).toFixed(2)}%` });
+    const p75 = el('span', { class: 'p75', style: `left:${(e.min_p75 / maxE * 82).toFixed(2)}%` });
+    const fim = Math.max(e.min_mediana, e.min_p75) / maxE * 82;
+    const linha = el('div', { class: 'barra' }, el('div', { class: 'rot' }, el('span', { class: 'mono' }, `E${e.etapa} `), e.nome), el('div', { class: 'tr abs' }, i, p75, el('em', { style: `left:calc(${fim.toFixed(2)}% + 8px)` }, minutos(e.min_mediana))));
+    dica(linha, `${e.jornada} · etapa ${e.etapa} (${e.modo}): mediana ${minutos(e.min_mediana)}, p75 ${minutos(e.min_p75)}, ${fmt(e.execucoes)} execuções`);
+    box.append(linha);
+  }
+
+  const ex = document.getElementById('executores'); ex.replaceChildren();
+  const maxX = Math.max(1, ...(d.executores || []).map(x => x.tarefas));
+  for (const x of d.executores || []) {
+    const linha = el('div', { class: 'barra' }, el('div', { class: 'rot' }, el('span', { class: 'mono' }, x.executor + ' '), EXEC[x.executor] || x.executor),
+      el('div', { class: 'tr' }, el('i', { style: `width:${(x.tarefas / maxX * 70).toFixed(2)}%` }), el('em', {}, `${fmt(x.tarefas)} · mediana ${minutos(x.min_mediana)}`)));
+    dica(linha, `${EXEC[x.executor]}: ${fmt(x.tarefas)} tarefas executadas, mediana de ${minutos(x.min_mediana)} cada`);
+    ex.append(linha);
+  }
+
+  const nomes = Object.fromEntries(d.motores.map(x => [x.circulo, x.nome]));
+  const tr = document.getElementById('trocas'); tr.replaceChildren();
+  const maxT = Math.max(1, ...(d.trocas || []).map(x => x.n));
+  for (const x of d.trocas || []) {
+    const linha = el('div', { class: 'barra' }, el('div', { class: 'rot' }, `${nomes[x.de]} → ${nomes[x.para]}`),
+      el('div', { class: 'tr' }, el('i', { style: `width:${(x.n / maxT * 70).toFixed(2)}%` }), el('em', {}, fmt(x.n))));
+    dica(linha, `${fmt(x.n)} trocas de ${nomes[x.de]} para ${nomes[x.para]}`);
+    tr.append(linha);
+  }
+  if (!(d.trocas || []).length) tr.append(el('p', { class: 'nota' }, 'Nenhuma troca entregue ainda.'));
+
+  const mo = document.getElementById('modelos'); mo.replaceChildren();
+  for (const x of d.modelos || []) {
+    const dl = el('dl', {}, el('dt', {}, 'Versão'), el('dd', { class: 'mono' }, x.versao), el('dt', {}, 'Dado'), el('dd', {}, x.dado),
+      el('dt', {}, 'Amostras'), el('dd', {}, fmt(x.amostras)));
+    const ROT = { auc_teste: 'AUC no teste', brier_teste: 'Brier no teste', brier_base_taxa_media: 'Brier da taxa média', taxa_atraso: 'Taxa de atraso', amostras_teste: 'Amostras de teste', amostras_treino: 'Amostras de treino', instancias: 'Execuções', marcadas_anomalas: 'Marcadas como anômalas', contaminacao_assumida: 'Contaminação assumida' };
+    for (const [k, v] of Object.entries(x.metricas || {})) dl.append(el('dt', {}, ROT[k] || k.replaceAll('_', ' ')), el('dd', {}, typeof v === 'number' ? v.toLocaleString('pt-BR') : String(v)));
+    mo.append(el('div', { class: 'card' }, el('h3', {}, x.nome), el('span', { class: 'pill ' + (x.em_uso ? 'ok' : 'idle') }, x.em_uso ? 'em uso' : 'fora de uso'), el('div', { class: 'nota' }, x.tipo), dl));
+  }
+
+  const tpz = document.querySelector('#parametros tbody'); tpz.replaceChildren();
+  for (const x of d.parametros_simulacao || []) tpz.append(el('tr', {}, el('td', {}, `${x.executor} · ${EXEC[x.executor]}`), el('td', { class: 'n' }, minutos(x.min)), el('td', { class: 'n' }, minutos(x.max))));
+}
+
+render(RETRATO, 'retrato');
+
+// leitura ao vivo pelo conector do Supabase do próprio leitor
+const aviso = document.getElementById('aviso'), botao = document.getElementById('atualizar');
+const AVISOS = {
+  server_not_connected: 'Para ler ao vivo, adicione o conector do Supabase em claude.ai, Configurações → Conectores. Até lá, a página mostra o retrato gravado.',
+  needs_reauth: 'O conector do Supabase precisa ser reconectado em claude.ai, Configurações → Conectores.',
+  not_in_manifest: 'A leitura ao vivo não foi permitida para esta página. Ela segue com o retrato gravado.',
+  selection_required: 'Há mais de um conector do Supabase. Escolha qual usar no aviso do Claude e tente de novo.',
+  blocked_by_policy: 'A política da organização bloqueia esta leitura. A página segue com o retrato gravado.',
+  approval_required: 'A leitura precisa de aprovação da organização. A página segue com o retrato gravado.',
+  server_unavailable: 'O Supabase não respondeu agora. Tente de novo em instantes.',
+  tool_error: 'O Supabase recusou a consulta: ',
+};
+function lerPayload(p) {
+  let s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
+  const m = s.match(/<untrusted-data-[^>]*>\s*([\s\S]*?)\s*<\/untrusted-data/);
+  const linhas = JSON.parse(m ? m[1] : s);
+  const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
+  return typeof v === 'string' ? JSON.parse(v) : v;
+}
+let mcp = null;
+async function atualizar() {
+  if (!mcp) return;
+  botao.disabled = true; botao.textContent = 'Lendo…';
+  try {
+    const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: 'select rt.painel() as p' }, { cache: false });
+    const d = lerPayload(r.payload ?? r.content?.[0]?.text);
+    if (!d || !d.operacao) throw { code: 'formato' };
+    render(d, 'vivo'); aviso.hidden = true;
+  } catch (e) {
+    const c = e?.code;
+    aviso.textContent = c === 'tool_error' ? AVISOS.tool_error + (e.message || '') : AVISOS[c] || (c === 'formato' ? 'A resposta do Supabase veio num formato que a página não reconhece. Segue o retrato gravado.' : 'A leitura ao vivo falhou (' + (c || 'erro') + '). Segue o retrato gravado.');
+    aviso.hidden = false;
+  } finally { botao.disabled = false; botao.textContent = 'Atualizar do Supabase'; }
+}
+botao.addEventListener('click', atualizar);
+botao.hidden = true;
+(async () => {
+  mcp = await window.claude?.use?.('mcp').catch(() => null);
+  if (!mcp) return;
+  botao.hidden = false;
+  atualizar();
+})();
+</script>

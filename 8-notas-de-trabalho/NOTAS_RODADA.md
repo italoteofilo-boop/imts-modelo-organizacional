@@ -169,3 +169,11 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 - E4: motor (rt.executar_simulada) que percorre o grafo BPMN (004_grafos.sql: 2.766 nós, 3.184 fluxos; as 1.555 tarefas batem com o modelo). As 73 jornadas rodam; no Supabase, 2.000 instâncias da Identidade concluídas, 99 de 99 tarefas executadas, 19.071 trocas entregues.
 - Testes: 10 do runtime e 9 do motor, verdes no local e no Supabase; seis defeitos plantados detectados (o sexto pediu um teste novo: pessoa com papel errado).
 - E8: risco-atraso-etapa (AUC 0,447, sem sinal, como esperado no simulador) e anomalia-instancia; registrados, fora de uso.
+
+## 03/10/2026, 19:04 — instruções de trabalho e painel
+
+Ítalo (literal): "PROSSIGA".
+
+- E3: instrucoes.py gera as 73 instruções da fonte do modelo; página digital publicada; 73 PDFs A4 (qpdf, 13 MB) num zip rastreável em 9-instrucoes-de-trabalho. Conferido: as 1.555 tarefas aparecem nos PDFs.
+- E6: rt.painel() (008_painel.sql) no Supabase; página do painel publicada, com leitura ao vivo pelo conector do Supabase (execute_sql) e retrato gravado. O retrato local bateu com o Supabase: 2.000 execuções, 52.042 eventos, 19.071 trocas.
+- Proposta pendente: o texto de limites dos nove círculos ainda diz "Para executar falta escolher o motor e ligar cada tarefa a um sistema."
