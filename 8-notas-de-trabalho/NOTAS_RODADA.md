@@ -184,3 +184,12 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 
 - Instruções: cada etapa traz o recorte do seu fluxo BPMN, só com as raias usadas, com o nome das raias ao lado; etapas largas viram partes. No PDF, cada recorte é um SVG só com os elementos que cruzam o pedaço. Página digital: mapa geral (73 jornadas, 660 ligações, por círculo, com o que cada uma entrega e recebe), instrução e fluxo completo com zoom. PDFs: 49 MB no total (eram 13 MB sem fluxos); as 1.555 tarefas conferidas.
 - Painel: sala de comando escura, rede viva dos nove motores com as trocas animadas, eventos de execuções reais da simulação em reprodução acelerada, drill-down até a linha do tempo de uma execução, botão para rodar uma execução simulada no Supabase. 009_painel_detalhe.sql no Supabase.
+
+## 03/10/2026, 20:36 — Mesa de trabalho e cérebro vivo
+
+Ítalo (literal): "Aprovado" (Mesa de trabalho E11 na moldura do protótipo humano-IA; dial ligado aos modos; Telegram e Mini App como formato principal; kanban de cinco colunas e três quadros; cartões fluxo, avulsa e ajuda; delegação ao agente, a colega e a outro círculo; privacidade das avulsas; ordem: motor, Mesa, cérebro).
+
+- Motor: 010_mesa.sql no Supabase e no local; 12 testes (M1 a M12) sem falha nos dois; seis defeitos plantados detectados.
+- Mesa da Identidade publicada: quadro, foco, periferia (precisa de você, carga do círculo só em números para o líder, recibos), captura por texto ou voz com sugestão da jornada, delegação com teto do modo. Ao vivo pelo conector do Supabase (cada ação roda o motor e a regra do banco decide) ou retrato gravado com as mesmas regras na tela.
+- Cérebro vivo no painel: 73 neurônios, 9 lobos, 660 sinapses; lobos de motor em desenho só acendem ao receber troca; alerta por regra (acima do p90 da jornada ou erro). O modelo de anomalia segue fora de uso. Ao vivo, lê rt.evento e rt.instancia a cada 30 segundos.
+- Em aberto: ritmo da simulação contínua (1 por minuto ou 1 a cada 5 minutos); proposta do texto de limites dos nove círculos; travas do token do bot de teste e do termo do art. 33.

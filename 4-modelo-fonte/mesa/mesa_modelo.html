@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa da Identidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ground:#EBEBE6; --surface:#FFFFFF; --ink:#1F201E; --sec:#5C5E5A; --hair:#D6D5CF; --accent:#2F52C7; --accent-soft:#E3E8F8;
+  --pill:#1F201E; --pill-ink:#FFFFFF; --late:#B3261E; --late-soft:#F8E1DF; --ok:#1E7A46; --ok-soft:#DDF0E4; --wait:#8A5A00; --wait-soft:#F6EBD3;
+  --shadow:0 1px 2px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.05);
+  --sans:'Atkinson Hyperlegible', system-ui, sans-serif; --serif:'Newsreader', Georgia, serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:#151614; --surface:#1F201E; --ink:#ECECE7; --sec:#A5A7A1; --hair:#34352F; --accent:#8AA4F5; --accent-soft:#232C47;
+    --pill:#ECECE7; --pill-ink:#151614; --late:#F2867D; --late-soft:#3A2220; --ok:#7CD3A0; --ok-soft:#1C3326; --wait:#E8C276; --wait-soft:#3A3020;
+    --shadow:0 1px 2px rgba(0,0,0,.4); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:#151614; --surface:#1F201E; --ink:#ECECE7; --sec:#A5A7A1; --hair:#34352F; --accent:#8AA4F5; --accent-soft:#232C47;
+  --pill:#ECECE7; --pill-ink:#151614; --late:#F2867D; --late-soft:#3A2220; --ok:#7CD3A0; --ok-soft:#1C3326; --wait:#E8C276; --wait-soft:#3A3020;
+  --shadow:0 1px 2px rgba(0,0,0,.4); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.4; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.app { display:grid; grid-template-rows:auto auto 1fr auto; min-height:100vh; min-height:100dvh; }
+
+/* chão comum */
+.chao { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; padding:12px 20px; border-bottom:1px solid var(--hair); background:var(--surface); }
+.marca { font-family:var(--serif); font-weight:600; font-size:20px; margin-right:auto; }
+.marca small { font-family:var(--sans); font-weight:400; font-size:13px; color:var(--sec); margin-left:6px; }
+.quem { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--sec); }
+.quem select { padding:6px 8px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); max-width:260px; }
+.fonte { font-size:12px; padding:3px 9px; border-radius:99px; background:var(--wait-soft); color:var(--wait); white-space:nowrap; }
+.fonte.vivo { background:var(--ok-soft); color:var(--ok); }
+.icone { border:1px solid var(--hair); background:var(--surface); border-radius:8px; padding:5px 9px; font-size:13px; }
+.resumo { display:flex; flex-wrap:wrap; gap:8px; width:100%; }
+.resumo span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--ground); color:var(--sec); }
+.resumo b { color:var(--ink); }
+.resumo .alerta b { color:var(--late); }
+
+/* abas */
+.abas { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:10px 20px; }
+.aba { border:1px solid var(--hair); background:transparent; border-radius:99px; padding:6px 14px; font-size:14px; }
+.aba[aria-selected="true"] { background:var(--pill); color:var(--pill-ink); border-color:var(--pill); }
+.abas .dir { margin-left:auto; display:flex; gap:8px; align-items:center; font-size:13px; color:var(--sec); }
+.abas select { padding:5px 8px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
+
+/* mesa */
+.mesa { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:16px; padding:0 20px 20px; align-items:start; }
+.quadro { overflow-x:auto; padding-bottom:6px; }
+.grade { display:grid; grid-template-columns:repeat(5, minmax(200px, 1fr)); gap:10px; min-width:1040px; }
+.col-cab { position:sticky; top:0; display:flex; justify-content:space-between; align-items:baseline; padding:6px 4px; font-weight:700; font-size:14px; }
+.col-cab small { font-weight:400; color:var(--sec); }
+.col-cab .dica { display:block; font-weight:400; font-size:12px; color:var(--sec); }
+.raia { grid-column:1 / -1; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--sec); padding:10px 4px 2px; border-top:1px solid var(--hair); }
+.celula { min-height:64px; display:flex; flex-direction:column; gap:8px; padding:6px; border-radius:12px; background:color-mix(in srgb, var(--surface) 45%, transparent); }
+.celula.sobre { outline:2px dashed var(--accent); }
+.vazio { font-size:12px; color:var(--sec); padding:8px 4px; }
+
+.cartao { text-align:left; width:100%; background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:6px; }
+.cartao:hover { border-color:var(--accent); }
+.cartao[aria-current="true"] { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
+.cartao .titulo { font-weight:700; font-size:14px; }
+.cartao .meta { display:flex; flex-wrap:wrap; gap:4px 8px; font-size:12px; color:var(--sec); }
+.etq { font-size:11px; padding:1px 7px; border-radius:99px; border:1px solid var(--hair); color:var(--sec); }
+.etq.fluxo { border-color:transparent; background:var(--accent-soft); color:var(--accent); }
+.etq.ajuda { border-color:transparent; background:var(--wait-soft); color:var(--wait); }
+.prazo.atraso { color:var(--late); font-weight:700; }
+.chip { font-size:12px; padding:2px 8px; border-radius:6px; background:var(--ground); color:var(--sec); }
+.chip.pend { background:var(--wait-soft); color:var(--wait); }
+.opcoes { display:flex; flex-wrap:wrap; gap:4px; }
+.opcoes span { font-size:12px; border:1px solid var(--hair); border-radius:6px; padding:1px 6px; }
+
+/* periferia */
+.periferia { display:flex; flex-direction:column; gap:14px; position:sticky; top:12px; }
+.bloco { background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:12px 14px; }
+.bloco h2 { font-family:var(--serif); font-weight:600; font-size:17px; margin:0 0 8px; }
+.bloco p { margin:0; font-size:13px; color:var(--sec); }
+.lista { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.lista button { width:100%; text-align:left; background:var(--ground); border:0; border-radius:8px; padding:7px 9px; font-size:13px; }
+.recibo { border-left:3px solid var(--hair); padding:2px 0 2px 9px; font-size:13px; }
+.recibo .tipo { font-size:11px; text-transform:uppercase; letter-spacing:.05em; font-weight:700; }
+.recibo.feito { border-color:var(--ok); } .recibo.feito .tipo { color:var(--ok); }
+.recibo.precisa { border-color:var(--late); } .recibo.precisa .tipo { color:var(--late); }
+.recibo.pedido { border-color:var(--accent); } .recibo.pedido .tipo { color:var(--accent); }
+.recibo small { color:var(--sec); }
+table.carga { width:100%; border-collapse:collapse; font-size:13px; }
+table.carga td, table.carga th { padding:5px 4px; border-bottom:1px solid var(--hair); text-align:left; }
+table.carga td.n, table.carga th.n { text-align:right; font-variant-numeric:tabular-nums; }
+
+/* foco */
+.foco { position:fixed; inset:0 0 0 auto; width:min(460px, 100%); background:var(--surface); border-left:1px solid var(--hair); box-shadow:-8px 0 24px rgba(0,0,0,.12); padding:18px 20px 28px; overflow-y:auto; z-index:20; display:flex; flex-direction:column; gap:14px; }
+.foco[hidden] { display:none; }
+.foco .topo { display:flex; justify-content:space-between; align-items:start; gap:12px; }
+.foco h2 { font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.2; margin:4px 0 0; }
+.foco .contexto { font-size:13px; color:var(--sec); display:grid; grid-template-columns:auto 1fr; gap:3px 10px; }
+.foco .contexto dt { color:var(--sec); } .foco .contexto dd { margin:0; color:var(--ink); }
+.foco section { border-top:1px solid var(--hair); padding-top:12px; display:flex; flex-direction:column; gap:8px; }
+.foco h3 { font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--sec); margin:0; }
+.acoes { display:flex; flex-wrap:wrap; gap:8px; }
+.btn { border:1px solid var(--hair); background:var(--surface); border-radius:10px; padding:8px 14px; font-size:14px; }
+.btn.prim { background:var(--accent); border-color:var(--accent); color:#fff; }
+:root[data-theme="dark"] .btn.prim { color:#10131c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.prim { color:#10131c; } }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.dial { display:grid; grid-template-columns:repeat(4, 1fr); border:1px solid var(--hair); border-radius:12px; overflow:hidden; }
+.dial button { border:0; border-right:1px solid var(--hair); background:var(--surface); padding:9px 6px; font-size:13px; line-height:1.2; }
+.dial button:last-child { border-right:0; }
+.dial button[aria-pressed="true"] { background:var(--pill); color:var(--pill-ink); }
+.dial button:disabled { color:var(--sec); background:var(--ground); text-decoration:line-through; cursor:not-allowed; }
+.nota { font-size:12px; color:var(--sec); margin:0; }
+.linha { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.linha select, .linha input, .foco textarea { padding:7px 9px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
+.linha select { flex:1 1 200px; min-width:0; }
+.foco textarea { width:100%; min-height:60px; resize:vertical; }
+.erro { color:var(--late); font-size:13px; margin:0; }
+.veu { position:fixed; inset:0; background:rgba(0,0,0,.25); z-index:19; }
+.veu[hidden] { display:none; }
+
+/* entrada */
+.entrada { position:sticky; bottom:0; background:var(--surface); border-top:1px solid var(--hair); padding:10px 20px 12px; z-index:10; }
+.entrada form { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.entrada input[type=text] { flex:1 1 320px; min-width:0; padding:10px 14px; border:1px solid var(--hair); border-radius:99px; background:var(--ground); }
+.entrada input[type=datetime-local] { padding:8px 10px; border:1px solid var(--hair); border-radius:10px; background:var(--surface); }
+.entrada .mic { border-radius:99px; width:40px; height:40px; border:1px solid var(--hair); background:var(--surface); }
+.entrada .mic[aria-pressed="true"] { background:var(--late); color:#fff; border-color:var(--late); }
+.sugestao { margin-top:8px; font-size:13px; background:var(--accent-soft); border-radius:10px; padding:8px 12px; display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; }
+.sugestao[hidden] { display:none; }
+.sugestao b { color:var(--accent); }
+.rodape { font-size:12px; color:var(--sec); padding:0 20px 16px; }
+
+.colnav { display:none; }
+@media (max-width: 900px) {
+  .mesa { grid-template-columns:1fr; }
+  .periferia { position:static; }
+}
+@media (max-width: 640px) {
+  .chao, .abas, .entrada { padding-left:16px; padding-right:16px; }
+  .mesa { padding:0 16px 16px; }
+  .rodape { padding:0 16px 16px; }
+  .marca { width:100%; }
+  .quem select { max-width:none; flex:1; } .quem { flex:1; }
+  .colnav { display:flex; gap:6px; overflow-x:auto; padding:0 0 8px; }
+  .colnav button { flex:0 0 auto; border:1px solid var(--hair); background:var(--surface); border-radius:99px; padding:5px 11px; font-size:13px; }
+  .colnav button[aria-pressed="true"] { background:var(--pill); color:var(--pill-ink); border-color:var(--pill); }
+  .grade { grid-template-columns:1fr; min-width:0; }
+  .grade .col-cab, .grade .celula { display:none; }
+  .grade .col-cab.ativa, .grade .celula.ativa { display:flex; }
+  .abas .dir { margin-left:0; width:100%; }
+  .entrada input[type=text] { flex:1 1 0; }
+  .entrada input[type=datetime-local] { flex:1; }
+  .entrada { padding-top:8px; padding-bottom:8px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="chao">
+    <div class="marca">Mesa de trabalho <small>Identidade · protótipo</small></div>
+    <label class="quem">Você é <select id="persona" aria-label="Pessoa simulada"></select></label>
+    <span class="fonte" id="fonte">Retrato de __QUANDO__</span>
+    <button class="icone" id="b-atual" hidden>Atualizar</button>
+    <button class="icone" id="b-tema" aria-label="Alternar tema">◐</button>
+    <div class="resumo" id="resumo" aria-live="polite"></div>
+  </header>
+
+  <nav class="abas" role="tablist">
+    <button class="aba" role="tab" data-aba="meu" aria-selected="true">Meu quadro</button>
+    <button class="aba" role="tab" data-aba="circulo" aria-selected="false">Círculo</button>
+    <button class="aba" role="tab" data-aba="jornada" aria-selected="false">Jornada</button>
+    <div class="dir">
+      <label id="l-jornada" hidden>Jornada <select id="sel-jornada"></select></label>
+      <label>Raias <select id="sel-raia"><option value="nenhuma">sem raias</option><option value="jornada">por jornada</option><option value="tipo">por tipo</option><option value="execucao">por execução</option></select></label>
+    </div>
+  </nav>
+
+  <main class="mesa">
+    <section class="quadro" aria-label="Quadro">
+      <div class="colnav" id="colnav"></div>
+      <div class="grade" id="grade"></div>
+    </section>
+    <aside class="periferia">
+      <div class="bloco" id="b-precisa"><h2>Precisa de você</h2><ul class="lista" id="precisa"></ul></div>
+      <div class="bloco" id="b-carga" hidden><h2>Carga do círculo</h2><p id="carga-nota"></p><table class="carga" id="carga"></table></div>
+      <div class="bloco"><h2>Recibos</h2><div class="lista" id="recibos"><p>Cada ação sua aparece aqui: o pedido, o que foi feito e o que precisa de você.</p></div></div>
+    </aside>
+  </main>
+
+  <footer class="entrada">
+    <form id="captura" autocomplete="off">
+      <button type="button" class="mic" id="mic" aria-label="Falar" aria-pressed="false" hidden>🎙</button>
+      <input type="text" id="texto" placeholder="O que precisa ser feito? Escreva ou fale." aria-label="Nova tarefa">
+      <input type="datetime-local" id="prazo" aria-label="Prazo" required>
+      <button class="btn prim" type="submit">Criar</button>
+    </form>
+    <div class="sugestao" id="sugestao" hidden></div>
+  </footer>
+  <div class="rodape" id="rodape"></div>
+</div>
+
+<div class="veu" id="veu" hidden></div>
+<aside class="foco" id="foco" hidden aria-label="Foco no cartão"></aside>
+
+<script>
+const RETRATO = __RETRATO__;
+const CIRCULOS = __CIRCULOS__;
+const PROJETO = 'rzkfolkqdgtounqjjzss';
+const COLUNAS = [
+  ['a_fazer', 'A fazer', 'o que chegou'], ['fazendo', 'Fazendo', 'em mãos'], ['esperando', 'Esperando', 'parado por outro'],
+  ['decidir', 'Decidir', 'o fluxo pede escolha'], ['feito', 'Feito', 'últimos 7 dias']];
+const MODOS = [['Só informar', 'Assistido'], ['Propor', 'Copiloto'], ['Fazer e você aprova', 'Autopiloto'], ['Fazer e enviar', 'Autômato']];
+const NIVEL = { Assistido: 0, Copiloto: 1, Autopiloto: 2, 'Autômato': 3 };
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const lit = s => "'" + String(s).replace(/'/g, "''") + "'";
+const nomeJ = Object.fromEntries(RETRATO.jornadas.map(j => [j.c, j]));
+
+// ---------- estado ----------
+let fonte = 'retrato', mcp = null;
+let pessoas = RETRATO.pessoas.slice();
+let eu = (pessoas.find(p => p.id === 'eca4013b-41f7-4a28-8f13-aa445cd27d5e') || pessoas.find(p => p.circulo === 1)).id;
+let aba = 'meu', raia = 'nenhuma', colMovel = 'a_fazer', aberto = null, jornadaSel = 'ID-01';
+let quadro = [], circulo = { fluxo: [], carga: [], pedidos_de_fora: 0 };
+const recibos = [];
+
+const pessoa = id => pessoas.find(p => p.id === id);
+// o quadro não traz o círculo do cartão: vem da jornada ou, na avulsa, de quem é dono
+function circDe(c) { return c.circulo ?? (c.jornada ? nomeJ[c.jornada]?.k : pessoa(c.dono)?.circulo) ?? null; }
+// Retrato: os horários andam junto com o relógio, para o retrato parecer o momento em que foi tirado
+const desloc = Date.now() - new Date(RETRATO.gerado_em).getTime();
+const mover = t => t ? new Date(new Date(t).getTime() + desloc).toISOString() : t;
+const CART = {};
+for (const lista of Object.values(RETRATO.quadros)) for (const c of lista) {
+  if (CART[c.id]) continue;
+  const x = { ...c, prazo: mover(c.prazo), criado_em: mover(c.criado_em), atualizado_em: mover(c.atualizado_em) }; delete x.sou_dono; x.circulo = circDe(x); CART[c.id] = x;
+}
+let proximoId = Math.max(0, ...Object.keys(CART).map(Number)) + 1;
+
+const circNome = k => CIRCULOS.find(c => c.k === k)?.nome || ('círculo ' + k);
+function rotuloPessoa(p) {
+  if (!p) return 'pessoa';
+  const mesmos = pessoas.filter(q => q.papel === p.papel && q.circulo === p.circulo);
+  let r = p.papel + (mesmos.length > 1 ? ' ' + (mesmos.indexOf(p) + 1) : '');
+  if (p.papel === 'Líder do círculo' && p.circulo === 1) r += ' (Ítalo)';
+  return r;
+}
+const nomeDe = id => rotuloPessoa(pessoa(id));
+const souLider = () => { const p = pessoa(eu); return p?.papel === 'Líder do círculo'; };
+
+// ---------- regras no retrato (ao vivo, quem decide é o motor no Supabase) ----------
+function regraLocal(acao, c, extra) {
+  const quem = pessoa(eu), lider = quem?.papel === 'Líder do círculo' && c && quem.circulo === circDe(c);
+  const pode = c && (c.dono === eu || c.delegado_pessoa === eu);
+  switch (acao) {
+    case 'mover':
+      if (!pode) return 'só quem é dono ou recebeu a tarefa pode mover';
+      if (extra === 'feito') return 'para concluir, use concluir';
+      if (c.tipo === 'fluxo' && !((c.coluna === 'a_fazer' && extra === 'fazendo') || (c.coluna === 'fazendo' && extra === 'a_fazer'))) return 'cartão de fluxo só anda pelo motor';
+      if (extra === 'decidir') return 'a coluna decidir é só das decisões do fluxo';
+      return null;
+    case 'concluir':
+      if (c.coluna === 'feito') return 'cartão já concluído';
+      if (c.coluna === 'decidir') return 'cartão de decisão se resolve escolhendo um caminho';
+      if (!pode) return 'só quem é dono ou recebeu a tarefa pode concluir';
+      if (c.delegado_pessoa === eu && c.aceite === 'pendente') return 'aceite a tarefa antes de concluir';
+      return null;
+    case 'decidir': return pode ? null : 'só quem tem a decisão pode decidir';
+    case 'delegar': {
+      if (c.coluna === 'feito') return 'cartão já concluído';
+      if (c.dono !== eu && !lider) return 'só o dono ou o líder do círculo delega';
+      if (extra.agente) { const teto = tetoModo(c); return extra.modo > teto ? `o modo pedido passa do aprovado para esta etapa (até ${teto})` : null; }
+      const para = pessoa(extra.para); if (!para) return 'pessoa inexistente';
+      if (c.tipo === 'fluxo' && para.papel !== c.papel && !lider) return 'tarefa de fluxo só se delega dentro da mesma raia; fora dela, o líder decide';
+      return null;
+    }
+    case 'responder':
+      if (c.delegado_pessoa !== eu) return 'só quem recebeu responde à delegação';
+      if (c.aceite !== 'pendente') return 'delegação já respondida';
+      return null;
+  }
+  return null;
+}
+const tetoModo = c => c.etapa_modo ? NIVEL[c.etapa_modo] : 2;
+
+// ---------- leitura e escrita ----------
+const AVISOS = { server_not_connected: 'conector do Supabase não adicionado', needs_reauth: 'conector do Supabase precisa ser reconectado', not_in_manifest: 'leitura ao vivo não permitida para esta página',
+  blocked_by_policy: 'bloqueado pela política da organização', approval_required: 'precisa de aprovação da organização', server_unavailable: 'o Supabase não respondeu' };
+function lerPayload(p) {
+  const s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
+  const m = s.match(/<untrusted-data-[^>]*>\s*([\s\S]*?)\s*<\/untrusted-data/);
+  let linhas; try { linhas = JSON.parse(m ? m[1] : s); } catch (e) { throw { code: 'formato', message: s.slice(0, 200) }; }
+  const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
+  if (v === undefined) throw { code: 'formato' };
+  return typeof v === 'string' ? JSON.parse(v) : v;
+}
+async function sql(q) {
+  const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false });
+  if (r?.isError) throw { code: 'tool_error', message: String(r.payload ?? r.content?.[0]?.text ?? '') };
+  return lerPayload(r.payload ?? r.content?.[0]?.text);
+}
+function motivo(e) {
+  const m = String(e?.message || '');
+  const x = m.match(/ERROR:\s*P0001:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*([^\n"\\]+)/);
+  return x ? x[1].trim() : (AVISOS[e?.code] || m || e?.code || 'erro');
+}
+async function carregarVivo() {
+  const [q, c] = await Promise.all([sql(`select rt.quadro(${lit(eu)}::uuid) as p`), sql(`select rt.quadro_circulo(1::smallint) as p`)]);
+  quadro = q || []; circulo = c || circulo;
+}
+function carregarRetrato() {
+  quadro = Object.values(CART).filter(c => c.dono === eu || c.delegado_pessoa === eu)
+    .map(c => ({ ...c, sou_dono: c.dono === eu, outro_circulo: c.circulo != null && pessoa(eu)?.circulo != null && c.circulo !== pessoa(eu).circulo }))
+    .sort((a, b) => a.prazo < b.prazo ? -1 : 1);
+  const abertos = Object.values(CART).filter(c => c.circulo === 1 && c.coluna !== 'feito');
+  const carga = {};
+  for (const c of abertos) { const k = c.dono; carga[k] ??= { pessoa: k, papel: pessoa(k)?.papel, abertas: 0, avulsas: 0 }; carga[k].abertas++; if (c.tipo !== 'fluxo') carga[k].avulsas++; }
+  circulo = { fluxo: abertos.filter(c => c.tipo === 'fluxo').sort((a, b) => a.prazo < b.prazo ? -1 : 1), carga: Object.values(carga),
+    pedidos_de_fora: Object.values(CART).filter(c => c.aceite === 'pendente' && c.circulo !== 1 && pessoa(c.delegado_pessoa)?.circulo === 1).length };
+}
+async function recarregar() { if (fonte === 'vivo') await carregarVivo(); else carregarRetrato(); desenhar(); }
+
+// Executa uma ação: ao vivo pelo motor; no retrato, pelas mesmas regras aplicadas aqui
+async function agir(pedido, vivoSQL, local) {
+  try {
+    let r;
+    if (fonte === 'vivo') { r = await sql(vivoSQL); }
+    else { r = local(); }
+    recibo('feito', pedido, typeof r === 'string' ? r : '');
+    await recarregar();
+    return true;
+  } catch (e) {
+    recibo('precisa', pedido, 'Recusado: ' + (typeof e === 'string' ? e : motivo(e)));
+    return false;
+  }
+}
+const vazio = fn => `select jsonb_build_object('r', ${fn}::text) as p`;
+function exigir(msg) { if (msg) throw msg; }
+
+// ---------- ações ----------
+function acMover(c, col) {
+  return agir(`Mover “${c.titulo}” para ${COLUNAS.find(k => k[0] === col)[1].toLowerCase()}`,
+    vazio(`rt.mover_cartao(${+c.id}, ${lit(eu)}::uuid, ${lit(col)})`),
+    () => { exigir(regraLocal('mover', c, col)); Object.assign(CART[c.id], { coluna: col, atualizado_em: new Date().toISOString() }); });
+}
+function acConcluir(c) {
+  return agir(`Concluir “${c.titulo}”`, `select to_jsonb(rt.concluir_cartao(${+c.id}, ${lit(eu)}::uuid)) as p`,
+    () => { exigir(regraLocal('concluir', c)); Object.assign(CART[c.id], { coluna: 'feito', atualizado_em: new Date().toISOString() });
+            return c.tipo === 'fluxo' ? 'No retrato o motor não anda. Ao vivo, o próximo passo do fluxo chega como cartão.' : ''; })
+    .then(ok => { if (ok && fonte === 'vivo' && c.tipo === 'fluxo') recibos[0].detalhe = 'O motor seguiu o fluxo; o que for seu já está no quadro.'; desenharRecibos(); return ok; });
+}
+function acDecidir(c, op) {
+  return agir(`Decidir “${c.titulo}”: ${op.rotulo}`, `select to_jsonb(rt.decidir_cartao(${+c.id}, ${lit(eu)}::uuid, ${lit(op.para)})) as p`,
+    () => { exigir(regraLocal('decidir', c)); Object.assign(CART[c.id], { coluna: 'feito', escolha: op.para });
+            return 'No retrato o motor não anda. Ao vivo, o fluxo segue pelo caminho escolhido.'; });
+}
+function acDelegarAgente(c, modo) {
+  return agir(`Delegar “${c.titulo}” ao agente: ${MODOS[modo][0].toLowerCase()}`,
+    vazio(`rt.delegar_cartao(${+c.id}, ${lit(eu)}::uuid, null, true, ${+modo}::smallint)`),
+    () => { exigir(regraLocal('delegar', c, { agente: true, modo })); const x = CART[c.id];
+            Object.assign(x, { delegado_agente: true, modo, delegado_pessoa: null, aceite: null });
+            if (modo === 3) x.coluna = 'feito'; else if (modo === 2) x.coluna = 'fazendo';
+            return ['O agente vai só informar; você segue com a tarefa.', 'O agente vai propor; a decisão continua sua.', 'O agente faz e o cartão espera sua aprovação em Fazendo.', 'O agente fez e enviou.'][modo]; });
+}
+function acDelegarPessoa(c, para) {
+  if (!UUID.test(para)) return recibo('precisa', 'Delegar', 'Recusado: escolha uma pessoa');
+  return agir(`Delegar “${c.titulo}” a ${nomeDe(para)}`, vazio(`rt.delegar_cartao(${+c.id}, ${lit(eu)}::uuid, ${lit(para)}::uuid)`),
+    () => { exigir(regraLocal('delegar', c, { para })); Object.assign(CART[c.id], { delegado_pessoa: para, delegado_agente: false, modo: null, aceite: 'pendente' });
+            const p = pessoa(para); return 'Aguardando o aceite' + (p?.circulo != null && p.circulo !== circDe(c) ? '; o líder do outro círculo vê o pedido.' : '.'); });
+}
+function acResponder(c, aceita, novoPrazo) {
+  const np = novoPrazo ? `${lit(new Date(novoPrazo).toISOString())}::timestamptz` : 'null';
+  return agir(`${aceita ? 'Aceitar' : 'Recusar'} “${c.titulo}”`, vazio(`rt.responder_delegacao(${+c.id}, ${lit(eu)}::uuid, ${aceita}, ${np})`),
+    () => { exigir(regraLocal('responder', c)); Object.assign(CART[c.id], { aceite: aceita ? 'aceita' : 'recusada', delegado_pessoa: aceita ? c.delegado_pessoa : null,
+            prazo: novoPrazo ? new Date(novoPrazo).toISOString() : c.prazo }); return aceita ? '' : 'Volta para quem delegou.'; });
+}
+function acCriar(titulo, prazo, pai) {
+  if (!titulo.trim()) return recibo('precisa', 'Criar tarefa', 'Recusado: escreva o que precisa ser feito');
+  if (!prazo) return recibo('precisa', `Criar “${titulo}”`, 'Recusado: toda tarefa tem prazo');
+  const iso = new Date(prazo).toISOString();
+  const paiC = pai ? CART[pai] || quadro.find(c => c.id === pai) : null;
+  return agir(pai ? `Pedir ajuda: “${titulo}”` : `Criar “${titulo}”`,
+    `select to_jsonb(rt.criar_avulsa(${lit(eu)}::uuid, ${lit(titulo.trim())}, ${lit(iso)}::timestamptz${pai ? ', ' + (+pai) : ''})) as p`,
+    () => { const p = pessoa(eu); const circ = paiC ? paiC.circulo : p?.circulo; if (circ == null) throw 'pessoa sem círculo: a avulsa precisa de um círculo';
+            const id = proximoId++; const agora = new Date().toISOString();
+            CART[id] = { id, tipo: pai ? 'ajuda' : 'avulsa', titulo: titulo.trim(), coluna: 'a_fazer', prazo: iso, circulo: circ, dono: eu, origem: 'mesa', pai: pai || null,
+              jornada: paiC?.jornada || null, jornada_nome: paiC?.jornada_nome || null, etapa: paiC?.etapa || null, etapa_nome: paiC?.etapa_nome || null, etapa_modo: paiC?.etapa_modo || null,
+              instancia: paiC?.instancia || null, delegado_pessoa: null, delegado_agente: false, modo: null, aceite: null, opcoes: null, criado_em: agora, atualizado_em: agora };
+            return repetida(titulo); });
+}
+function acIniciar(j) {
+  return agir(`Iniciar a jornada ${j}`, `select to_jsonb(rt.iniciar_jornada(${lit(j)}, ${lit(eu)}::uuid, true)) as p`,
+    () => { throw 'no retrato o motor não roda; ao vivo, a jornada inicia e as tarefas de gente chegam como cartões'; });
+}
+function repetida(t) {
+  const n = s => s.trim().toLowerCase().replace(/\s+/g, ' ');
+  const k = Object.values(CART).filter(c => c.tipo === 'avulsa' && n(c.titulo) === n(t)).length;
+  return k >= 3 ? `Esta avulsa já apareceu ${k} vezes no círculo: vira proposta para a ID-04 rever o modelo.` : '';
+}
+
+// ---------- recibos ----------
+function recibo(tipo, pedido, detalhe) {
+  recibos.unshift({ tipo, pedido, detalhe, quando: new Date(), fonte }); if (recibos.length > 30) recibos.pop(); desenharRecibos();
+}
+function desenharRecibos() {
+  if (!recibos.length) return;
+  $('recibos').innerHTML = recibos.map(r => `<div class="recibo ${r.tipo}"><div class="tipo">${r.tipo === 'feito' ? 'Feito' : 'Precisa de você'}</div>
+    <div>${esc(r.pedido)}</div>${r.detalhe ? `<small>${esc(r.detalhe)}</small><br>` : ''}<small>${r.quando.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })} · ${r.fonte === 'vivo' ? 'no Supabase' : 'no retrato'}</small></div>`).join('');
+}
+
+// ---------- desenho ----------
+function quando(t) {
+  const d = new Date(t), m = Math.round((d - Date.now()) / 60000), a = Math.abs(m);
+  const txt = a < 60 ? `${a} min` : a < 2880 ? `${Math.round(a / 60)} h` : `${Math.round(a / 1440)} dias`;
+  return { atraso: m < 0, txt: m < 0 ? `atrasada ${txt}` : `vence em ${txt}`, data: d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) };
+}
+function estadoDelegacao(c) {
+  if (c.delegado_agente) return `<span class="chip">com o agente · ${esc(MODOS[c.modo]?.[0].toLowerCase() || '')}</span>`;
+  if (c.delegado_pessoa && c.aceite === 'pendente') return `<span class="chip pend">${c.delegado_pessoa === eu ? 'pedido para você · aceitar?' : 'aguardando aceite de ' + esc(nomeDe(c.delegado_pessoa))}</span>`;
+  if (c.delegado_pessoa && c.aceite === 'aceita') return `<span class="chip">${c.delegado_pessoa === eu ? 'delegada a você por ' + esc(nomeDe(c.dono)) : 'com ' + esc(nomeDe(c.delegado_pessoa))}</span>`;
+  if (c.aceite === 'recusada') return `<span class="chip pend">delegação recusada</span>`;
+  return '';
+}
+function cartaoHTML(c, ro) {
+  const p = quando(c.prazo);
+  const ops = c.coluna === 'decidir' && c.opcoes ? `<div class="opcoes">${c.opcoes.map(o => `<span>${esc(o.rotulo)}</span>`).join('')}</div>` : '';
+  const sobre = c.tipo === 'ajuda' ? 'ajuda' : c.tipo;
+  return `<button class="cartao" data-id="${+c.id}" ${ro ? 'data-ro="1"' : `draggable="${c.coluna !== 'feito' && c.coluna !== 'decidir'}"`} aria-current="${aberto === c.id}">
+    <div class="meta"><span class="etq ${sobre}">${sobre}</span>${c.jornada ? `<span>${esc(c.jornada)}${c.etapa ? ' · etapa ' + c.etapa : ''}</span>` : ''}</div>
+    <div class="titulo">${esc(c.titulo)}</div>${ops}
+    <div class="meta">${c.coluna === 'feito' ? '<span>concluída</span>' : `<span class="prazo ${p.atraso ? 'atraso' : ''}" title="${p.data}">${p.txt}</span>`}
+      ${ro ? `<span>${esc(nomeDe(c.dono))}</span>` : (!c.sou_dono && c.dono ? `<span>de ${esc(nomeDe(c.dono))}</span>` : '')}</div>
+    ${ro ? '' : estadoDelegacao(c)}</button>`;
+}
+function grupos(lista) {
+  const chave = { nenhuma: () => '', jornada: c => c.jornada ? c.jornada + ' · ' + (nomeJ[c.jornada]?.n || '') : 'Sem jornada (avulsas)',
+    tipo: c => ({ fluxo: 'Do fluxo', avulsa: 'Avulsas', ajuda: 'Pedidos de ajuda' }[c.tipo]), execucao: c => c.instancia ? `Execução ${c.instancia} · ${c.jornada}` : 'Fora de execução' }[raia];
+  const g = new Map(); for (const c of lista) { const k = chave(c); if (!g.has(k)) g.set(k, []); g.get(k).push(c); }
+  return [...g.entries()].sort((a, b) => a[0] < b[0] ? -1 : 1);
+}
+function listaAtual() {
+  if (aba === 'meu') return { lista: quadro, ro: false };
+  const f = circulo.fluxo || [];
+  return { lista: aba === 'jornada' ? f.filter(c => c.jornada === jornadaSel) : f, ro: true };
+}
+function desenhar() {
+  const { lista, ro } = listaAtual();
+  const cont = Object.fromEntries(COLUNAS.map(k => [k[0], lista.filter(c => c.coluna === k[0]).length]));
+  let h = COLUNAS.map(k => `<div class="col-cab ${k[0] === colMovel ? 'ativa' : ''}"><span>${k[1]}<span class="dica">${k[2]}</span></span><small>${cont[k[0]]}</small></div>`).join('');
+  const gs = grupos(lista);
+  if (!gs.length) gs.push(['', []]);
+  for (const [nome, cs] of gs) {
+    if (raia !== 'nenhuma') h += `<div class="raia">${esc(nome)}</div>`;
+    for (const [col] of COLUNAS) {
+      const dentro = cs.filter(c => c.coluna === col);
+      h += `<div class="celula ${col === colMovel ? 'ativa' : ''}" data-col="${col}">${dentro.map(c => cartaoHTML(c, ro)).join('') || (gs.length === 1 ? '<div class="vazio">nada aqui</div>' : '')}</div>`;
+    }
+  }
+  $('grade').innerHTML = h;
+  $('colnav').innerHTML = COLUNAS.map(k => `<button data-col="${k[0]}" aria-pressed="${k[0] === colMovel}">${k[1]} ${cont[k[0]]}</button>`).join('');
+  desenharResumo(); desenharPrecisa(); desenharCarga(); desenharRodape();
+  if (aberto != null) abrir(aberto, true);
+}
+function desenharResumo() {
+  const ab = quadro.filter(c => c.coluna !== 'feito');
+  const atr = ab.filter(c => c.coluna !== 'decidir' && new Date(c.prazo) < Date.now()).length;
+  const dec = ab.filter(c => c.coluna === 'decidir').length;
+  const ace = ab.filter(c => c.delegado_pessoa === eu && c.aceite === 'pendente').length;
+  const p = pessoa(eu);
+  $('resumo').innerHTML = `<span>${esc(rotuloPessoa(p))}${p?.circulo ? ' · ' + esc(circNome(p.circulo)) : ''}</span><span>abertas <b>${ab.length}</b></span>
+    <span class="${atr ? 'alerta' : ''}">atrasadas <b>${atr}</b></span><span>decidir <b>${dec}</b></span><span>para aceitar <b>${ace}</b></span>`;
+}
+function desenharPrecisa() {
+  const ab = quadro.filter(c => c.coluna !== 'feito');
+  const itens = [
+    ...ab.filter(c => c.delegado_pessoa === eu && c.aceite === 'pendente').map(c => [c, 'aceitar ou recusar']),
+    ...ab.filter(c => c.coluna === 'decidir').map(c => [c, 'escolher o caminho']),
+    ...ab.filter(c => c.delegado_agente && c.modo === 2 && c.coluna === 'fazendo').map(c => [c, 'aprovar o que o agente fez']),
+    ...ab.filter(c => c.coluna !== 'decidir' && !(c.delegado_pessoa === eu && c.aceite === 'pendente') && new Date(c.prazo) < Date.now()).map(c => [c, 'atrasada'])];
+  $('precisa').innerHTML = itens.length ? itens.slice(0, 8).map(([c, o]) => `<li><button data-id="${+c.id}"><b>${esc(o)}</b> · ${esc(c.titulo)}</button></li>`).join('')
+    : '<li><p>Nada pendente com você agora.</p></li>';
+}
+function desenharCarga() {
+  const ver = aba !== 'meu' && souLider();
+  $('b-carga').hidden = !ver; if (!ver) return;
+  $('carga-nota').textContent = `Só números: o título das avulsas é privado de quem criou e de quem recebeu. Pedidos de outros círculos esperando aceite aqui: ${circulo.pedidos_de_fora || 0}.`;
+  $('carga').innerHTML = `<tr><th>Pessoa</th><th class="n">Abertas</th><th class="n">Avulsas</th></tr>` +
+    (circulo.carga || []).map(l => `<tr><td>${esc(nomeDe(l.pessoa))}</td><td class="n">${l.abertas}</td><td class="n">${l.avulsas}</td></tr>`).join('');
+}
+function desenharRodape() {
+  const t = { meu: 'Meu quadro: o que é seu ou foi delegado a você.', circulo: 'Quadro do círculo: só os cartões de fluxo; as avulsas aparecem apenas como números para o líder.',
+    jornada: 'Quadro da jornada: os cartões de fluxo abertos de cada execução.' }[aba];
+  $('rodape').textContent = `${t} Cartões de fluxo andam pelo motor: você começa, conclui ou decide; arrastar não pula etapa. ${fonte === 'vivo' ? 'Ao vivo: cada ação roda no Supabase e vale a regra do motor.' : 'Retrato gravado: as ações valem só nesta tela e seguem as mesmas regras; o motor não anda.'} Pessoas simuladas; sem dado pessoal real.`;
+}
+
+// ---------- foco ----------
+function acharCartao(id) { return quadro.find(c => c.id === id) || (circulo.fluxo || []).find(c => c.id === id); }
+function abrir(id, redesenho) {
+  const c = acharCartao(id);
+  if (!c) { fechar(); return; }
+  aberto = id; const meu = quadro.some(x => x.id === id);
+  const p = quando(c.prazo), pode = c.dono === eu || c.delegado_pessoa === eu;
+  const quem = pessoa(eu), lider = quem?.papel === 'Líder do círculo' && quem.circulo === circDe(c);
+  let h = `<div class="topo"><div><span class="etq ${c.tipo || 'fluxo'}">${c.tipo || 'fluxo'}</span><h2>${esc(c.titulo)}</h2></div><button class="icone" id="f-fechar" aria-label="Fechar">✕</button></div>
+  <dl class="contexto">
+    ${c.jornada ? `<dt>Jornada</dt><dd>${esc(c.jornada)} · ${esc(c.jornada_nome || nomeJ[c.jornada]?.n || '')}</dd>` : ''}
+    ${c.etapa_nome ? `<dt>Etapa</dt><dd>${c.etapa} · ${esc(c.etapa_nome)}</dd><dt>Modo aprovado</dt><dd>${esc(c.etapa_modo)}</dd>` : ''}
+    ${c.papel ? `<dt>Raia</dt><dd>${esc(c.papel)}</dd>` : ''}
+    <dt>Dono</dt><dd>${esc(nomeDe(c.dono))}${c.dono === eu ? ' (você)' : ''}</dd>
+    <dt>Prazo</dt><dd>${c.coluna === 'feito' ? 'concluída' : `${p.data} · <span class="prazo ${p.atraso ? 'atraso' : ''}">${p.txt}</span>`}</dd>
+    ${c.instancia ? `<dt>Execução</dt><dd>${c.instancia}</dd>` : ''}
+    ${c.pai ? `<dt>Ajuda para</dt><dd>cartão ${c.pai}</dd>` : ''}
+  </dl>`;
+  if (meu) {
+    h += estadoDelegacao(c) ? `<div>${estadoDelegacao(c)}</div>` : '';
+    if (c.delegado_pessoa === eu && c.aceite === 'pendente') {
+      h += `<section><h3>Pedido para você</h3><div class="linha"><label class="nota">Novo prazo (opcional) <input type="datetime-local" id="f-nprazo"></label></div>
+        <div class="acoes"><button class="btn prim" id="f-aceitar">Aceitar</button><button class="btn" id="f-recusar">Recusar</button></div></section>`;
+    }
+    if (c.coluna === 'decidir' && c.opcoes) {
+      h += `<section><h3>O fluxo pede uma escolha</h3><div class="acoes">${c.opcoes.map((o, i) => `<button class="btn" data-op="${i}">${esc(o.rotulo)}</button>`).join('')}</div>
+        <p class="nota">A escolha segue o caminho desenhado no BPMN desta jornada.</p></section>`;
+    } else if (c.coluna !== 'feito') {
+      const destinos = c.tipo === 'fluxo' ? (c.coluna === 'a_fazer' ? [['fazendo', 'Começar']] : c.coluna === 'fazendo' ? [['a_fazer', 'Voltar para a fazer']] : [])
+        : COLUNAS.filter(k => !['feito', 'decidir', c.coluna].includes(k[0])).map(k => [k[0], 'Mover para ' + k[1].toLowerCase()]);
+      h += `<section><h3>Andamento</h3><div class="acoes"><button class="btn prim" id="f-concluir" ${pode ? '' : 'disabled'}>${c.delegado_agente && c.modo === 2 ? 'Aprovar e concluir' : 'Concluir'}</button>
+        ${destinos.map(d => `<button class="btn" data-mover="${d[0]}">${d[1]}</button>`).join('')}</div>
+        ${c.tipo === 'fluxo' ? '<p class="nota">Ao concluir, o motor leva o fluxo ao próximo passo.</p>' : ''}</section>`;
+    }
+  }
+  const podeDelegar = c.coluna !== 'feito' && (c.dono === eu || lider);
+  if (podeDelegar && meu) {
+    const teto = tetoModo(c);
+    h += `<section><h3>Delegar ao agente: nesta tarefa, ele vai</h3><div class="dial" role="group">${MODOS.map((m, i) =>
+      `<button data-modo="${i}" aria-pressed="${c.delegado_agente && c.modo === i}" ${i > teto ? `disabled title="acima do modo aprovado (${esc(c.etapa_modo || 'avulsa: até fazer e você aprova')})"` : ''}>${m[0]}</button>`).join('')}</div>
+      <p class="nota">Teto: ${c.etapa_modo ? `modo ${esc(c.etapa_modo)} da etapa` : 'avulsas vão até “fazer e você aprova”'}. O que passa do teto fica bloqueado.</p></section>`;
+  }
+  if (podeDelegar) {
+    const cand = pessoas.filter(x => x.id !== eu && x.id !== c.dono && (c.tipo !== 'fluxo' || lider || x.papel === c.papel));
+    const porCirc = {}; for (const x of cand) (porCirc[x.circulo ?? 0] ??= []).push(x);
+    h += `<section><h3>Delegar a alguém</h3><div class="linha"><select id="f-para"><option value="">Escolha a pessoa</option>${Object.entries(porCirc).map(([k, xs]) =>
+      `<optgroup label="${k === '0' ? 'Sem círculo' : esc(circNome(+k))}">${xs.map(x => `<option value="${esc(x.id)}">${esc(rotuloPessoa(x))}</option>`).join('')}</optgroup>`).join('')}</select>
+      <button class="btn" id="f-delegar">Delegar</button></div>
+      <p class="nota">${c.tipo === 'fluxo' ? (lider ? 'Como líder, você pode delegar fora da raia.' : 'Tarefa de fluxo: só na mesma raia. Fora dela, o líder decide.') : 'Quem recebe precisa aceitar. Outro círculo: o líder de lá vê o pedido.'}</p></section>`;
+  }
+  if (meu && c.tipo === 'fluxo' && c.coluna !== 'feito') {
+    h += `<section><h3>Pedir ajuda</h3><textarea id="f-ajuda" placeholder="Ex.: me traz as últimas pesquisas com clientes"></textarea>
+      <div class="linha"><input type="datetime-local" id="f-ajuda-prazo"><button class="btn" id="f-pedir">Criar pedido de ajuda</button></div>
+      <p class="nota">Vira um cartão de ajuda ligado a este, visível só para você e para quem receber.</p></section>`;
+  }
+  if (!meu) h += `<p class="nota">Cartão de ${esc(nomeDe(c.dono))}. ${lider ? 'Como líder, você pode delegá-lo.' : 'Só o dono ou o líder do círculo age sobre ele.'}</p>`;
+  const f = $('foco'); f.innerHTML = h; f.hidden = false; $('veu').hidden = false;
+  if (!redesenho) $('f-fechar').focus();
+  const def = new Date(Date.now() + 86400000); const dl = toLocal(def);
+  if ($('f-ajuda-prazo')) $('f-ajuda-prazo').value = dl;
+  $('f-fechar').onclick = fechar;
+  f.querySelectorAll('[data-op]').forEach(b => b.onclick = () => acDecidir(c, c.opcoes[+b.dataset.op]));
+  f.querySelectorAll('[data-mover]').forEach(b => b.onclick = () => acMover(c, b.dataset.mover));
+  f.querySelectorAll('[data-modo]').forEach(b => b.onclick = () => acDelegarAgente(c, +b.dataset.modo));
+  if ($('f-concluir')) $('f-concluir').onclick = () => acConcluir(c);
+  if ($('f-aceitar')) $('f-aceitar').onclick = () => acResponder(c, true, $('f-nprazo').value);
+  if ($('f-recusar')) $('f-recusar').onclick = () => acResponder(c, false, null);
+  if ($('f-delegar')) $('f-delegar').onclick = () => acDelegarPessoa(c, $('f-para').value);
+  if ($('f-pedir')) $('f-pedir').onclick = () => acCriar($('f-ajuda').value, $('f-ajuda-prazo').value, c.id);
+  document.querySelectorAll('.cartao').forEach(el => el.setAttribute('aria-current', String(+el.dataset.id === id)));
+}
+function fechar() { aberto = null; $('foco').hidden = true; $('veu').hidden = true; document.querySelectorAll('.cartao[aria-current="true"]').forEach(el => el.setAttribute('aria-current', 'false')); }
+const toLocal = d => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+
+// ---------- captura com sugestão de jornada (mesma regra de rt.sugerir_jornada) ----------
+const palavras = s => [...new Set(s.toLowerCase().split(/[^\p{L}]+/u).filter(w => w.length >= 5))];
+function sugerir(texto) {
+  const ws = palavras(texto); if (!ws.length) return [];
+  const r = [];
+  for (const [j, nome] of RETRATO.tarefas) {
+    const n = nome.toLowerCase(); const pontos = ws.filter(w => n.includes(w)).length;
+    if (!pontos) continue;
+    const tot = Math.max(1, nome.split(/[^\p{L}]+/u).filter(x => x.length >= 5).length);
+    r.push({ jornada: j, tarefa: nome, pontos, cobertura: pontos / tot });
+  }
+  return r.sort((a, b) => b.pontos - a.pontos || b.cobertura - a.cobertura || (a.jornada < b.jornada ? -1 : 1)).slice(0, 3);
+}
+let tSug = null;
+$('texto').addEventListener('input', () => { clearTimeout(tSug); tSug = setTimeout(mostrarSugestao, 250); });
+function mostrarSugestao() {
+  const s = sugerir($('texto').value), box = $('sugestao');
+  if (!s.length || s[0].pontos < 2) { box.hidden = true; return; }
+  const top = s[0], j = nomeJ[top.jornada];
+  const meuCirc = pessoa(eu)?.circulo;
+  const acao = j?.ativo && j.k === meuCirc ? `<button class="btn prim" type="button" id="s-iniciar">Iniciar ${esc(top.jornada)}</button>`
+    : j?.k !== meuCirc ? `<span>É do círculo ${esc(circNome(j?.k))}: delegue a quem é de lá.</span>` : `<span>O motor desta jornada ainda está em desenho.</span>`;
+  box.innerHTML = `<span>Isso já existe: <b>${esc(top.jornada)}</b> · ${esc(j?.n || '')}<br><small>tarefa “${esc(top.tarefa)}”</small></span>${acao}<button class="btn" type="button" id="s-avulsa">Criar como avulsa mesmo assim</button>`;
+  box.hidden = false;
+  if ($('s-iniciar')) $('s-iniciar').onclick = () => acIniciar(top.jornada).then(ok => { if (ok) limparCaptura(); });
+  $('s-avulsa').onclick = () => criarDaCaptura(true);
+}
+function limparCaptura() { $('texto').value = ''; $('sugestao').hidden = true; }
+async function criarDaCaptura(forcar) {
+  const t = $('texto').value;
+  if (!forcar) { const s = sugerir(t); if (s.length && s[0].pontos >= 2) { mostrarSugestao(); recibo('precisa', `Criar “${t}”`, 'Isso parece uma tarefa de jornada existente. Inicie a jornada ou confirme como avulsa.'); return; } }
+  if (await acCriar(t, $('prazo').value)) limparCaptura();
+}
+$('captura').addEventListener('submit', e => { e.preventDefault(); criarDaCaptura(false); });
+$('prazo').value = toLocal(new Date(Date.now() + 86400000));
+
+// voz (quando o navegador permite)
+const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+if (Rec) {
+  const mic = $('mic'); mic.hidden = false; let rec = null;
+  mic.onclick = () => {
+    if (rec) { rec.stop(); return; }
+    try { rec = new Rec(); } catch (e) { recibo('precisa', 'Falar', 'O navegador não liberou o microfone aqui.'); return; }
+    rec.lang = 'pt-BR'; rec.interimResults = true; mic.setAttribute('aria-pressed', 'true');
+    rec.onresult = ev => { $('texto').value = [...ev.results].map(r => r[0].transcript).join(' '); mostrarSugestao(); };
+    rec.onerror = ev => recibo('precisa', 'Falar', 'Sem microfone: ' + ev.error);
+    rec.onend = () => { rec = null; mic.setAttribute('aria-pressed', 'false'); };
+    rec.start();
+  };
+}
+
+// ---------- eventos ----------
+$('grade').addEventListener('click', e => { const b = e.target.closest('.cartao'); if (b) abrir(+b.dataset.id); });
+$('precisa').addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) { aba = 'meu'; marcarAba(); desenhar(); abrir(+b.dataset.id); } });
+$('colnav').addEventListener('click', e => { const b = e.target.closest('button[data-col]'); if (b) { colMovel = b.dataset.col; desenhar(); } });
+$('veu').onclick = fechar;
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && aberto != null) fechar(); });
+document.querySelectorAll('.aba').forEach(b => b.onclick = () => { aba = b.dataset.aba; marcarAba(); fechar(); desenhar(); });
+function marcarAba() {
+  document.querySelectorAll('.aba').forEach(x => x.setAttribute('aria-selected', String(x.dataset.aba === aba)));
+  $('l-jornada').hidden = aba !== 'jornada';
+}
+$('sel-raia').onchange = e => { raia = e.target.value; desenhar(); };
+$('sel-jornada').innerHTML = RETRATO.jornadas.filter(j => j.k === 1).map(j => `<option value="${esc(j.c)}">${esc(j.c)} · ${esc(j.n)}</option>`).join('');
+$('sel-jornada').onchange = e => { jornadaSel = e.target.value; desenhar(); };
+function desenharPersonas() {
+  const sel = $('persona'), lista = pessoas.filter(p => p.circulo === 1 || p.circulo == null);
+  sel.innerHTML = lista.map(p => `<option value="${esc(p.id)}" ${p.id === eu ? 'selected' : ''}>${esc(rotuloPessoa(p))}</option>`).join('');
+}
+$('persona').onchange = async e => { eu = e.target.value; fechar(); try { await recarregar(); } catch (err) { recibo('precisa', 'Trocar de pessoa', 'Recusado: ' + motivo(err)); } };
+
+// arrastar (no computador; no celular, use o foco)
+let arrastando = null;
+$('grade').addEventListener('dragstart', e => { const b = e.target.closest('.cartao'); if (!b || b.dataset.ro) return; arrastando = +b.dataset.id; e.dataTransfer.effectAllowed = 'move'; });
+$('grade').addEventListener('dragover', e => { const cel = e.target.closest('.celula'); if (cel && arrastando != null) { e.preventDefault(); cel.classList.add('sobre'); } });
+$('grade').addEventListener('dragleave', e => { const cel = e.target.closest('.celula'); if (cel) cel.classList.remove('sobre'); });
+$('grade').addEventListener('drop', e => {
+  const cel = e.target.closest('.celula'); if (!cel || arrastando == null) return; e.preventDefault(); cel.classList.remove('sobre');
+  const c = quadro.find(x => x.id === arrastando); arrastando = null; if (!c || c.coluna === cel.dataset.col) return;
+  if (cel.dataset.col === 'feito') acConcluir(c); else acMover(c, cel.dataset.col);
+});
+
+// tema
+$('b-tema').onclick = () => {
+  const r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  r.dataset.theme = escuro ? 'light' : 'dark';
+};
+
+// ---------- início ----------
+desenharPersonas(); carregarRetrato(); desenhar();
+async function ligarVivo() {
+  try {
+    const r = await sql(`select jsonb_build_object('pessoas', rt.mesa_pessoas(), 'mais', (select c.dono from rt.cartao c join rt.pessoa p on p.pseudonimo = c.dono
+      where c.circulo = 1 and p.papel <> 'Líder do círculo' group by 1 order by count(*) desc limit 1)) as p`);
+    const ps = r?.pessoas; if (!Array.isArray(ps) || !ps.length) throw { code: 'formato' };
+    pessoas = ps; if (!pessoa(eu)) eu = r.mais || (pessoas.find(p => p.papel === 'Identidade · pessoa') || pessoas.find(p => p.circulo === 1)).id;
+    fonte = 'vivo'; await carregarVivo();
+    $('fonte').textContent = 'Ao vivo · Supabase'; $('fonte').classList.add('vivo'); $('b-atual').hidden = false;
+    desenharPersonas(); desenhar();
+  } catch (e) {
+    fonte = 'retrato'; carregarRetrato(); desenhar();
+    recibo('precisa', 'Ligar ao Supabase', `Segue o retrato gravado (${motivo(e)}).`);
+  }
+}
+$('b-atual').onclick = async () => { const b = $('b-atual'); b.disabled = true; try { await recarregar(); } catch (e) { recibo('precisa', 'Atualizar', 'Recusado: ' + motivo(e)); } finally { b.disabled = false; } };
+(async () => {
+  mcp = await window.claude?.use?.('mcp').catch(() => null);
+  if (mcp) ligarVivo();
+})();
+</script>
+</body>
+</html>

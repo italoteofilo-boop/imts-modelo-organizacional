@@ -73,7 +73,17 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 3. Uso real do Telegram com o consentimento específico e em destaque do art. 33, VIII, da LGPD, colhido na entrada de cada pessoa (GE-07). A Governança responde. Pela política de privacidade do Telegram, quem desenvolve o bot responde pelos dados que ele recebe: aqui, o IMTS.
 4. E0 construído: esquema `rt` no Supabase, com 10 testes verdes (4-modelo-fonte/supabase/003_runtime.sql).
 
-## 7. Andamento (03/10/2026, 19h45)
+## 6.1 Decidido em 03/10/2026, às 20:36: a Mesa de trabalho (E11)
+
+1. **Mesa de trabalho (E11):** a tela onde cada pessoa recebe, faz, decide, delega e acompanha as suas tarefas. Parte da moldura do protótipo da interface humano-IA: chão comum, foco, periferia e entrada por voz ou texto, com os oito momentos (chegada, captura de intenção, trabalho, delegação, decisão, colaboração, memória e confiança, encerramento). A E9, interface conversacional, passa a ser o canal de conversa da Mesa.
+2. **Modos:** o controle "Nesta tarefa, eu vou" fica ligado aos quatro modos: só informar = Assistido; propor = Copiloto; fazer e você aprova = Autopiloto; fazer e enviar = Autômato. A pessoa não passa do modo aprovado para a etapa (a alçada).
+3. **Formatos:** Telegram na conversa e Telegram Mini App como principais; navegador para trabalho longo; sala de situação para leitura coletiva; impresso para estudo. Um aplicativo só.
+4. **Kanban:** vista de quadro da Mesa, com cinco colunas (a fazer, fazendo, esperando, decidir, feito); três quadros (meu, do círculo, da jornada); raias à escolha da pessoa. O cartão de fluxo anda pelo motor; o foco é onde se trabalha.
+5. **Tarefas avulsas e delegação:** três tipos de cartão (de fluxo, avulsa, pedido de ajuda). Delegação a agente (com o modo), a colega do círculo (com aceite), a outro círculo (com aceite e o líder dele vendo) e de tarefa de fluxo só dentro da mesma raia (fora dela, o líder decide). Regras: todo cartão tem dono e prazo; alçada não se contorna (a captura sugere a jornada que já existe); avulsa que se repete vira proposta à ID-04; todo cartão gera evento.
+6. **Privacidade:** a avulsa é vista só por quem é dono e por quem recebeu; o líder vê a carga em números, não o conteúdo.
+7. **Ordem:** motor com estado das tarefas e avulsas; protótipo da Mesa da Identidade; cérebro vivo na sala de situação.
+
+## 7. Andamento (03/10/2026, 21h)
 
 | Entrega | Situação |
 | --- | --- |
@@ -85,6 +95,8 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 | E8 ML | Dois modelos treinados com a simulação, registrados e fora de uso. O de atraso fica no acaso, como deve, porque o simulador sorteia os tempos sem padrão |
 | E3 Instruções de trabalho | Prontas: 73 instruções geradas do modelo, com o recorte do fluxo BPMN em cada etapa; página digital com mapa geral das 73 jornadas (660 ligações) e fluxo completo com zoom; 73 PDFs A4 (as 1.555 tarefas conferidas nos PDFs) |
 | E6 Painel | Pronto: sala de comando com rede viva dos nove motores, eventos em reprodução, drill-down de ecossistema a círculo, jornada, etapa e execução (linha do tempo animada) e botão para rodar uma execução simulada no Supabase. Lê o Supabase pelo seu conector; sem ele, usa o retrato gravado |
+| E11 Mesa de trabalho | Motor com estado das tarefas, avulsas, ajuda, decisão e delegação (010_mesa.sql): 12 testes verdes no Postgres local e no Supabase, seis defeitos plantados detectados. Protótipo da Mesa da Identidade publicado: quadro com cinco colunas, três quadros (meu, círculo, jornada), raias à escolha, foco, delegação ao agente com teto no modo da etapa e a colega com aceite, captura por texto ou voz que sugere a jornada existente. Ao vivo pelo conector do Supabase; sem ele, retrato gravado com as mesmas regras |
+| Cérebro vivo | No painel: 73 jornadas em 9 lobos e 660 sinapses; acende a cada evento (reprodução ou, ao vivo, leitura de 30 em 30 segundos); alerta por regra (acima do p90 da jornada ou erro). Falta escolher o ritmo da simulação contínua |
 | E5, E7, E9, E10 | A fazer |
 
 ## Fontes

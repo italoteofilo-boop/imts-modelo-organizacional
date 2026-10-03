@@ -20,6 +20,8 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 - `testar_motor.sql` e `007_testes.sql`: 9 testes do motor; o 007 traz os testes do runtime e do motor como funções, para rodar no Supabase sem gravar nada.
 - `008_painel.sql`: a função `rt.painel()`, que devolve em JSON tudo o que o painel da operação mostra. Só lê.
 - `009_painel_detalhe.sql`: `rt.painel_detalhe(jornada, n)` e `rt.painel_execucao(id)`, o detalhe de jornada, etapa e execução do painel. Só leem.
+- `010_mesa.sql`: a Mesa de trabalho (E11). O motor passa a rodar em modo interativo: tarefa de gente vira cartão e decisão de gente vira cartão para decidir. Cartões de fluxo, avulsas e pedidos de ajuda (`rt.cartao`), delegação ao agente com teto no modo da etapa e a colega com aceite, sugestão da jornada existente e quadros (`rt.quadro`, `rt.quadro_circulo`).
+- `testar_mesa.sql` e `011_testes_mesa.sql`: 12 testes da Mesa (M1 a M12); o 011 traz a função `rt._testar_mesa()`, para rodar no Supabase sem gravar nada.
 - `gerar_sql.py`: refaz os dois arquivos a partir de `saida/`, a pasta que os scripts do modelo criam ao rodar (no repositório, a cópia publicada dos dados está em `dados-gerados/`). Rode depois de qualquer mudança no modelo: `python3 supabase/gerar_sql.py`.
 
 ## Tabelas
@@ -105,5 +107,20 @@ O verificador do Supabase aponta, como informação, que `rt_chave.identidade` t
 | `rt.v_cobertura` | Quantas tarefas de cada motor já rodaram |
 
 No Supabase, em 03/10/2026, rodaram 2.000 instâncias simuladas da Identidade (400 por jornada). Resultado: 2.000 concluídas, 52.042 eventos, 19.071 trocas entregues e 99 de 99 tarefas da Identidade executadas. Testes: 10 do runtime e 9 do motor sem falha, no Postgres 16 local e no Supabase. Seis defeitos plantados no motor foram detectados.
+
+## Mesa de trabalho (fase 2, E11)
+
+| Peça | O que faz |
+|---|---|
+| `rt.iniciar_jornada` | Inicia uma execução interativa. Recusa motor em desenho |
+| `rt.cartao`, `rt.token` | Cartões (fluxo, avulsa, ajuda) em cinco colunas: a fazer, fazendo, esperando, decidir, feito. Toda tarefa tem dono e prazo |
+| `rt.concluir_cartao`, `rt.decidir_cartao` | Só quem é dono ou recebeu age. Ao concluir ou decidir, o motor segue o fluxo |
+| `rt.mover_cartao` | Cartão de fluxo só vai de a fazer a fazendo e volta; não vai a feito nem a decidir arrastado |
+| `rt.criar_avulsa` | Avulsa ou pedido de ajuda ligado a um cartão |
+| `rt.delegar_cartao`, `rt.responder_delegacao` | Ao agente, até o modo da etapa (avulsa até "fazer e você aprova"); a colega, com aceite; tarefa de fluxo só na mesma raia, salvo o líder |
+| `rt.sugerir_jornada`, `rt.v_avulsas_recorrentes` | A captura sugere a jornada que já existe; avulsa repetida três vezes em 30 dias vira sinal para a ID-04 |
+| `rt.quadro`, `rt.quadro_circulo`, `rt.mesa_pessoas` | Meu quadro; quadro do círculo com só os cartões de fluxo e a carga em números; pessoas por pseudônimo |
+
+Avulsas e pedidos de ajuda não saem pela API: a política de leitura de `rt.cartao` só libera cartões de fluxo. Testes: 12 da Mesa sem falha, no Postgres 16 local e no Supabase.
 
 O verificador de desempenho aponta, como informação, chaves estrangeiras sem índice e índices ainda sem uso. Fica para quando houver volume real.

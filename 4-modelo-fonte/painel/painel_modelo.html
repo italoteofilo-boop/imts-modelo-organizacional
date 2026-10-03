@@ -76,9 +76,17 @@ tr.vai td:first-child::after { content: ' ›'; color: var(--accent); }
 .leg i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
 a { color: var(--accent); }
 .tip { position: fixed; z-index: 9; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12px; padding: 5px 8px; border-radius: 6px; max-width: 300px; display: none; }
+.vistas { display: inline-flex; gap: 4px; } .vistas button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+#cerebro { width: 100%; aspect-ratio: 16 / 10; display: block; border-radius: 8px; background: radial-gradient(ellipse at 50% 45%, #10232B 0%, var(--panel-2) 70%); }
+#rede[hidden], #cerebro[hidden] { display: none; }
+.alertas { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; }
+.alertas li { border-left: 3px solid var(--bad); background: var(--panel-2); border-radius: 6px; padding: 4px 8px; animation: entra .5s ease-out; }
+.alertas li b { color: var(--bad); font-family: var(--f-mono); font-weight: 500; }
+#cx-rede:fullscreen { display: flex; flex-direction: column; padding: 16px; } #cx-rede:fullscreen canvas { flex: 1; aspect-ratio: auto; min-height: 0; }
+#cx-rede:fullscreen .alertas { max-height: 18vh; overflow: hidden; }
 footer { color: var(--muted); font-size: 12px; }
 @media (max-width: 900px) { .palco { grid-template-columns: 1fr; } .feed { max-height: 260px; } }
-@media (max-width: 560px) { .top h1 { font-size: 16px; } .kpi b { font-size: 20px; } .bar { grid-template-columns: 1fr; gap: 0; } }
+@media (max-width: 560px) { #cerebro { aspect-ratio: 4 / 5; } .top h1 { font-size: 16px; } .kpi b { font-size: 20px; } .bar { grid-template-columns: 1fr; gap: 0; } }
 @media (prefers-reduced-motion: reduce) { .feed li { animation: none; } .chip.vivo i { animation: none; } }
 </style>
 
@@ -96,9 +104,12 @@ footer { color: var(--muted); font-size: 12px; }
   <div class="kpis" id="kpis"></div>
 
   <div class="palco">
-    <section class="cx">
-      <header><h2>Rede dos motores</h2><p>Linhas: trocas previstas no modelo. Pontos em movimento: trocas entregues. Arco em volta: cobertura. Clique num círculo.</p></header>
-      <canvas id="rede" role="img" aria-label="Rede dos nove motores com as trocas entre círculos"></canvas>
+    <section class="cx" id="cx-rede">
+      <header><div class="vistas" role="group" aria-label="Vista"><button id="v-cerebro" aria-pressed="true">Cérebro</button><button id="v-rede" aria-pressed="false">Rede dos motores</button><button id="b-tela-c" title="Só esta vista em tela cheia">⛶</button></div>
+        <p id="vista-sub"></p></header>
+      <canvas id="cerebro" role="img" aria-label="Cérebro da operação: 73 jornadas em 9 lobos, ligadas pelas 660 trocas entre jornadas, acendendo a cada evento"></canvas>
+      <canvas id="rede" hidden role="img" aria-label="Rede dos nove motores com as trocas entre círculos"></canvas>
+      <ul class="alertas" id="alertas" aria-live="polite"></ul>
     </section>
     <section class="cx" style="display:flex;flex-direction:column">
       <header><h2>Eventos</h2><p id="feed-sub">Reprodução das últimas execuções, acelerada</p></header>
@@ -112,7 +123,7 @@ footer { color: var(--muted); font-size: 12px; }
     <div id="nivel"></div>
   </section>
 
-  <footer>Fonte: funções rt.painel(), rt.painel_detalhe() e rt.painel_execucao() no Supabase, projeto imts-modelo-organizacional. Sem o conector, a página usa o retrato gravado em __QUANDO__. Todo dado aqui é simulado até a primeira execução real.</footer>
+  <footer>Fonte: funções rt.painel(), rt.painel_detalhe() e rt.painel_execucao() no Supabase; o cérebro lê rt.evento e rt.instancia a cada 30 s, projeto imts-modelo-organizacional. Sem o conector, a página usa o retrato gravado em __QUANDO__. Todo dado aqui é simulado até a primeira execução real.</footer>
 </div>
 <div class="tip" id="tip" role="tooltip"></div>
 
@@ -202,6 +213,7 @@ function desenha() {
 let rodando = true, ultimo = 0;
 function quadro(ts) {
   const dt = Math.min(64, ultimo ? ts - ultimo : 16); ultimo = ts;
+  if (vista === 'cerebro') cerebroPasso(dt);
   if (rodando && !reduz) {
     for (const t of entregues) if (Math.random() < t.taxa * 0.006 * dt / 16) spawn(t.de, t.para);
     for (const p of particulas) p.t += p.v * dt / 16;
@@ -209,14 +221,161 @@ function quadro(ts) {
     for (const k in pulsos) pulsos[k] = Math.max(0, pulsos[k] - 0.015 * dt / 16);
     replay(dt);
   }
-  desenha(); requestAnimationFrame(quadro);
+  if (vista === 'rede') desenha(); else desenhaCerebro(); requestAnimationFrame(quadro);
 }
 const noEm = ev => { const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top; return Object.values(nos).find(n => Math.hypot(n.x - x, n.y - y) < 32); };
 cv.addEventListener('click', ev => { const n = noEm(ev); if (n) abre({ nivel: 'circulo', k: n.k }); });
 cv.addEventListener('mousemove', ev => { const n = noEm(ev); if (!n) { tip.style.display = 'none'; cv.style.cursor = 'default'; return; } cv.style.cursor = 'pointer';
   const m = P.motores.find(z => z.circulo === n.k); mostraTip(`${m.circulo} · ${m.nome}: ${m.estado}; ${fmt(m.instancias)} execuções; ${fmt(m.trocas_envia)} trocas enviadas e ${fmt(m.trocas_recebe)} recebidas`, ev.clientX, ev.clientY); });
 cv.addEventListener('mouseleave', () => tip.style.display = 'none');
-addEventListener('resize', medidas);
+addEventListener('resize', () => { medidas(); medidasCerebro(); });
+
+// ---------- cérebro vivo ----------
+// 73 neurônios (jornadas) em 9 lobos (círculos), 660 sinapses (trocas entre jornadas, do modelo).
+// Disparo: cada evento das execuções acende a jornada e manda impulsos pelas sinapses. Lobo de motor em desenho fica apagado e só acende ao receber troca.
+// Alerta por regra: execução acima do p90 de duração da jornada, ou com erro. O modelo de anomalia (rt.modelo) não está em uso: foi treinado só com dado simulado.
+const cb = document.getElementById('cerebro'), cc = cb.getContext('2d');
+let vista = 'cerebro', CW = 0, CH = 0, neur = {}, lobos = {}, saidas = {}, impulsos = [], brilho = {}, marcados = {}, maxSin = 1;
+const LOBO = { 1: [-.60, -.32], 2: [-.16, -.56], 3: [.30, -.52], 4: [.66, -.26], 5: [-.70, .16], 6: [-.24, .02], 7: [.22, -.02], 8: [.58, .38], 9: [-.04, .44] };
+for (const [a, b, n] of MODELO.sinapses) { (saidas[a] ??= []).push([b, n]); maxSin = Math.max(maxSin, n); }
+// largura e altura escalam em separado: no celular o cérebro fica em pé
+const escala = () => ({ Rx: CW / 2.15, Ry: Math.min(CH / 1.7, CW / 2.15 * 1.6), cx: CW / 2, cy: CH / 2 + 8 });
+function medidasCerebro() {
+  const r = cb.getBoundingClientRect(); if (!r.width) return;
+  const d = devicePixelRatio || 1; CW = r.width; CH = r.height; cb.width = Math.round(CW * d); cb.height = Math.round(CH * d); cc.setTransform(d, 0, 0, d, 0, 0);
+  const { Rx, Ry, cx, cy } = escala(), passo = Math.min(Rx, Ry) * 0.052;
+  for (const c of MODELO.circulos) {
+    const [lx, ly] = LOBO[c.k], js = MODELO.nos.filter(n => n.k === c.k);
+    const L = lobos[c.k] = { x: cx + lx * Rx, y: cy + ly * Ry, k: c.k, r: passo * Math.sqrt(js.length + 1) + 10 };
+    js.forEach((j, i) => { const a = i * 2.39996 + c.k, rr = passo * Math.sqrt(i + 0.6);
+      neur[j.c] = { x: L.x + rr * Math.cos(a), y: L.y + rr * Math.sin(a) * 0.85, k: c.k, c: j.c, n: j.n }; });
+  }
+}
+const motorAtivo = k => (P.motores.find(m => m.circulo === k) || {}).estado !== 'desenho';
+function dispara(j, forca = 1, profundidade = 0) {
+  const a = neur[j]; if (!a) return;
+  brilho[j] = Math.max(brilho[j] || 0, forca);
+  if (reduz || profundidade > 1) return;
+  for (const [b, n] of saidas[j] || []) {
+    if (impulsos.length > 300) break;
+    if (Math.random() < (0.12 + 0.4 * n / maxSin) * forca) impulsos.push({ a, b: neur[b], j: b, t: 0, v: 0.004 + Math.random() * 0.006, forca: forca * 0.7, prof: profundidade + 1, cur: (Math.random() - .5) * 0.5 });
+  }
+}
+function disparaPara(j, k) {
+  const a = neur[j]; if (!a) return;
+  const alvos = (saidas[j] || []).filter(([b]) => neur[b]?.k === k).map(([b]) => b);
+  const lista = alvos.length ? alvos : MODELO.nos.filter(n => n.k === k).map(n => n.c);
+  const b = lista[Math.floor(Math.random() * lista.length)];
+  if (b && !reduz) impulsos.push({ a, b: neur[b], j: b, t: 0, v: 0.006, forca: 1, prof: 2, cur: (Math.random() - .5) * 0.4 });
+}
+function cerebroEvento(ex, tipo, nome) {
+  if (!ex?.jornada) return;
+  if (tipo === 'troca_enviada') { const mm = /motor (\d+)/.exec(nome || ''); if (mm) disparaPara(ex.jornada, +mm[1]); return; }
+  dispara(ex.jornada, tipo === 'fim' || tipo === 'decisao' ? 1 : 0.75);
+  if (tipo === 'fim' && ex.fim && ex.inicio) avaliaAlerta(ex);
+}
+function avaliaAlerta(ex) {
+  const j = (P.jornadas || []).find(x => x.codigo === ex.jornada), h = (new Date(ex.fim) - new Date(ex.inicio)) / 3.6e6;
+  if (ex.estado === 'erro') alerta(ex.jornada, `Execução ${ex.id} da ${ex.jornada} terminou com erro`);
+  else if (j?.horas_p90 && h > j.horas_p90) alerta(ex.jornada, `Execução ${ex.id} da ${ex.jornada} levou ${fmt(Math.round(h * 10) / 10)} h, acima do p90 de ${fmt(j.horas_p90)} h`);
+}
+const listaAlertas = document.getElementById('alertas');
+function alerta(j, texto) {
+  marcados[j] = 1;
+  const li = el('li', {}, el('b', {}, new Date().toLocaleTimeString('pt-BR', { timeStyle: 'short' }) + ' '), texto);
+  listaAlertas.prepend(li); while (listaAlertas.children.length > 4) listaAlertas.lastChild.remove();
+}
+// atividade de fundo: cada jornada de motor ligado dispara na proporção das execuções que já teve
+function cerebroPasso(dt) {
+  if (!rodando) return;
+  if (!reduz) for (const j of P.jornadas || []) {
+    if (!motorAtivo(j.circulo) || !j.instancias) continue;
+    if (Math.random() < (j.instancias / 2000) * 1.6 * dt / 1000) dispara(j.codigo, 0.45, 1);
+  }
+  for (const p of impulsos) p.t += p.v * dt / 16;
+  impulsos = impulsos.filter(p => { if (p.t < 1) return true; dispara(p.j, p.forca, p.prof); return false; });
+  for (const k in brilho) brilho[k] = Math.max(0, brilho[k] - 0.006 * dt / 16);
+  for (const k in marcados) { marcados[k] -= 0.0012 * dt / 16; if (marcados[k] <= 0) delete marcados[k]; }
+}
+function curva(a, b, t, cur) { const mx = (a.x + b.x) / 2 + (b.y - a.y) * cur, my = (a.y + b.y) / 2 - (b.x - a.x) * cur, u = 1 - t; return [u * u * a.x + 2 * u * t * mx + t * t * b.x, u * u * a.y + 2 * u * t * my + t * t * b.y, mx, my]; }
+function desenhaCerebro() {
+  if (!CW) { medidasCerebro(); if (!CW) return; }
+  cc.clearRect(0, 0, CW, CH);
+  const ac = css('--accent'), ink = css('--ink'), muted = css('--muted'), linha = css('--line-2'), bad = css('--bad');
+  // silhueta: dois hemisférios e a fissura
+  const { Rx, Ry, cx, cy } = escala(), estreito = CW < 520;
+  cc.strokeStyle = linha; cc.lineWidth = 1; cc.globalAlpha = 0.7;
+  cc.beginPath(); cc.ellipse(cx, cy, Rx * 0.98, Ry * 0.78, 0, 0, 7); cc.stroke();
+  cc.globalAlpha = 0.35; cc.beginPath(); cc.moveTo(cx - Rx * 0.05, cy - Ry * 0.78); cc.bezierCurveTo(cx + Rx * 0.08, cy - Ry * 0.3, cx - Rx * 0.1, cy + Ry * 0.2, cx + Rx * 0.02, cy + Ry * 0.78); cc.stroke();
+  // sinapses em repouso
+  cc.lineWidth = 0.6;
+  for (const [a, b, n] of MODELO.sinapses) {
+    const A = neur[a], B = neur[b]; if (!A || !B) continue;
+    const luz = Math.min(brilho[a] || 0, brilho[b] || 0);
+    cc.strokeStyle = luz > 0.3 ? ac : linha; cc.globalAlpha = 0.12 + 0.04 * n + luz * 0.4;
+    const [, , mx, my] = curva(A, B, 0, A.k === B.k ? 0.25 : 0.12);
+    cc.beginPath(); cc.moveTo(A.x, A.y); cc.quadraticCurveTo(mx, my, B.x, B.y); cc.stroke();
+  }
+  // impulsos em trânsito
+  cc.fillStyle = ac;
+  for (const p of impulsos) { const [x, y] = curva(p.a, p.b, p.t, p.cur); cc.globalAlpha = 0.25 * p.forca; cc.beginPath(); cc.arc(x, y, 5, 0, 7); cc.fill(); cc.globalAlpha = 0.9 * p.forca + 0.1; cc.beginPath(); cc.arc(x, y, 1.8, 0, 7); cc.fill(); }
+  cc.globalAlpha = 1;
+  // lobos
+  cc.textAlign = 'center'; cc.textBaseline = 'middle';
+  for (const L of Object.values(lobos)) {
+    const ativo = motorAtivo(L.k), m = P.motores.find(x => x.circulo === L.k) || {};
+    cc.fillStyle = ativo ? ac : muted; cc.globalAlpha = ativo ? 0.07 : 0.035; cc.beginPath(); cc.arc(L.x, L.y, L.r, 0, 7); cc.fill(); cc.globalAlpha = 1;
+    cc.fillStyle = ativo ? ink : muted; cc.font = `500 ${estreito ? 10.5 : 12}px "IBM Plex Sans Condensed", system-ui`; cc.fillText(estreito ? `${L.k} · ${(m.nome || nomeC(L.k)).slice(0, 11)}` : `${L.k} · ${m.nome || nomeC(L.k)}`, L.x, L.y - L.r - 8);
+    if (!estreito || ativo) { cc.fillStyle = ativo ? ac : muted; cc.font = '500 10px "IBM Plex Mono", monospace'; cc.fillText(m.estado || '', L.x, L.y + L.r + 9); }
+  }
+  // neurônios
+  for (const N of Object.values(neur)) {
+    const b = brilho[N.c] || 0, ativo = motorAtivo(N.k), j = (P.jornadas || []).find(x => x.codigo === N.c);
+    const r = 3 + Math.min(4, Math.log10(1 + (j?.instancias || 0)) * 1.3);
+    if (b > 0.05) { cc.fillStyle = ac; cc.globalAlpha = b * 0.35; cc.beginPath(); cc.arc(N.x, N.y, r + 4 + b * 9, 0, 7); cc.fill(); }
+    cc.globalAlpha = 1; cc.fillStyle = b > 0.05 ? ac : ativo ? ink : muted; cc.globalAlpha = b > 0.05 ? 0.5 + b / 2 : ativo ? 0.85 : 0.45;
+    cc.beginPath(); cc.arc(N.x, N.y, r, 0, 7); cc.fill(); cc.globalAlpha = 1;
+    if (marcados[N.c]) { const f = marcados[N.c], pul = 0.5 + 0.5 * Math.sin(performance.now() / 180);
+      cc.strokeStyle = bad; cc.lineWidth = 2; cc.globalAlpha = Math.min(1, f * 2) * (0.5 + pul / 2); cc.beginPath(); cc.arc(N.x, N.y, r + 6 + pul * 3, 0, 7); cc.stroke(); cc.globalAlpha = 1; }
+  }
+}
+const noCerebro = ev => { const r = cb.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top; return Object.values(neur).find(n => Math.hypot(n.x - x, n.y - y) < 9); };
+cb.addEventListener('mousemove', ev => { const n = noCerebro(ev); if (!n) { tip.style.display = 'none'; cb.style.cursor = 'default'; return; } cb.style.cursor = 'pointer';
+  const j = (P.jornadas || []).find(x => x.codigo === n.c); mostraTip(`${n.c} · ${n.n}${j ? ` — ${fmt(j.instancias)} execuções` : ''}; ${(saidas[n.c] || []).length} sinapses de saída`, ev.clientX, ev.clientY); });
+cb.addEventListener('mouseleave', () => tip.style.display = 'none');
+cb.addEventListener('click', ev => { const n = noCerebro(ev); if (n) abre({ nivel: 'jornada', j: n.c }); });
+const SUB = { cerebro: 'Cada ponto é uma jornada; cada lobo, um círculo; as linhas, as 660 trocas entre jornadas. Acende a cada evento. Vermelho: alerta por regra (acima do p90 ou erro). Clique numa jornada.',
+  rede: 'Linhas: trocas previstas no modelo. Pontos em movimento: trocas entregues. Arco em volta: cobertura. Clique num círculo.' };
+function trocaVista(v) {
+  vista = v; document.getElementById('cerebro').hidden = v !== 'cerebro'; document.getElementById('rede').hidden = v !== 'rede';
+  document.getElementById('v-cerebro').setAttribute('aria-pressed', String(v === 'cerebro')); document.getElementById('v-rede').setAttribute('aria-pressed', String(v === 'rede'));
+  document.getElementById('vista-sub').textContent = SUB[v]; tip.style.display = 'none';
+  requestAnimationFrame(() => { medidas(); medidasCerebro(); });
+}
+document.getElementById('v-cerebro').onclick = () => trocaVista('cerebro');
+document.getElementById('v-rede').onclick = () => trocaVista('rede');
+document.getElementById('b-tela-c').onclick = () => { try { const x = document.getElementById('cx-rede'); const p = document.fullscreenElement ? document.exitFullscreen() : x.requestFullscreen(); p?.catch?.(() => {}); } catch (e) {} };
+document.addEventListener('fullscreenchange', () => setTimeout(() => { medidas(); medidasCerebro(); }, 60));
+// ao vivo: a cada 30 s, os eventos novos no Supabase acendem o cérebro, espalhados no intervalo
+let ultEv = null, ultInst = null;
+async function escutar() {
+  const q = `select jsonb_build_object(
+    'ult_ev', (select coalesce(max(id), 0) from rt.evento), 'ult_inst', (select coalesce(max(id), 0) from rt.instancia),
+    'ev', (select coalesce(jsonb_agg(jsonb_build_array(x.jornada, x.tipo, x.resultado, x.instancia) order by x.id), '[]') from (select * from rt.evento where id > ${ultEv ?? 2147483647} and jornada is not null order by id limit 400) x),
+    'alertas', (select coalesce(jsonb_agg(jsonb_build_object('id', i.id, 'jornada', i.jornada, 'estado', i.estado, 'inicio', i.inicio, 'fim', i.fim)), '[]')
+       from rt.instancia i where i.id > ${ultInst ?? 2147483647} and i.estado <> 'rodando')) as p`;
+  try {
+    const r = await sql(q);
+    if (ultEv != null) {
+      const ev = r.ev || [];
+      ev.forEach(([j, tipo, res, inst], i) => setTimeout(() => cerebroEvento({ jornada: j }, tipo, res), (i / Math.max(1, ev.length)) * 28000));
+      for (const a of r.alertas || []) avaliaAlerta(a);
+      if (ev.length) document.getElementById('vista-sub').textContent = `${SUB.cerebro} Últimos 30 s: ${fmt(ev.length)} eventos novos no Supabase.`;
+    }
+    ultEv = r.ult_ev; ultInst = r.ult_inst;
+  } catch (e) { avisa(e); }
+  setTimeout(escutar, 30000);
+}
 
 // ---------- reprodução de eventos ----------
 const feed = document.getElementById('feed');
@@ -231,6 +390,7 @@ function carregaFila() {
 }
 function linhaFeed(ev, ex) {
   const [tipo, etapa, tarefa, exe, nome] = ev;
+  cerebroEvento(ex, tipo, nome);
   const h = el('span', { class: 'h' }, ex.jornada + (etapa ? ' E' + etapa : ''));
   let li;
   if (tipo === 'troca_enviada') { const mm = /motor (\d+)/.exec(nome), para = mm ? +mm[1] : null; if (para) for (let i = 0; i < 5; i++) spawn(ex.circulo, para);
@@ -399,11 +559,11 @@ document.getElementById('b-rodar').onclick = async e => {
   } catch (err) { avisa(err); } finally { b.disabled = false; b.textContent = 'Rodar uma execução agora'; }
 };
 
-medidas(); kpis(); desenhaNivel(); carregaFila(); requestAnimationFrame(quadro);
+medidas(); trocaVista('cerebro'); kpis(); desenhaNivel(); carregaFila(); requestAnimationFrame(quadro);
 (async () => {
   mcp = await window.claude?.use?.('mcp').catch(() => null);
   if (!mcp) return;
   document.getElementById('b-atual').hidden = false; document.getElementById('b-rodar').hidden = false;
-  atualizar();
+  await atualizar(); escutar();
 })();
 </script>
