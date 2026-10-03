@@ -1,0 +1,37 @@
+Círculo 9 · Governança — fluxos em BPMN 2.0
+Situação: Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026
+
+Conteúdo
+- bpmn/GO-01.bpmn a GO-10.bpmn: um arquivo por jornada, com o diagrama (raias, etapas, tarefas, decisões).
+- circulo9-governanca-fonte.json: a mesma informação em dados (jornadas, etapas, tarefas, entradas, saídas, fontes, testes).
+
+Jornadas
+- GO-01 · Manter as regras, as políticas e as alçadas de pessoas e agentes
+- GO-02 · Secretariar as decisões dos sócios e cumprir os atos societários
+- GO-03 · Gerir os riscos, a conformidade e os controles internos
+- GO-04 · Manter em dia as obrigações legais: registros, certidões, marcas, procurações e seguros
+- GO-05 · Revisar os contratos, guardá-los e acompanhar prazos e obrigações
+- GO-06 · Auditar se as entregas de pessoas e agentes seguem a identidade e a alçada
+- GO-07 · Responder aos titulares de dados pessoais
+- GO-08 · Conduzir o comitê de crise, da declaração ao encerramento
+- GO-09 · Receber relatos, apurar com independência e comunicar às autoridades
+- GO-10 · Apurar e publicar o relato anual de impacto
+
+Como abrir
+- Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.
+- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+
+Como ler
+- Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.
+- Tarefa de usuário: pessoa. Tarefa manual: conversa ou reunião. Tarefa de serviço: agente. Tarefa de script: automação.
+  Tarefa de regra de negócio: decisão por tabela. Atividade de chamada: chama jornada de outro círculo.
+  Tarefa de recebimento: o fluxo espera ali a resposta de outra jornada ou de uma pessoa.
+- As caixas tracejadas (grupos) são as etapas da jornada.
+
+Testes desta versão
+- 1961 verificações de integridade, 0 falhas.
+- 10 arquivos lidos pelo metamodelo do BPMN 2.0 e conferidos por 26 regras do bpmnlint: 0 apontamentos.
+- 10 fluxos desenhados no bpmn-js: 0 avisos; 104 nomes de tarefa conferidos, 0 encobertos ou cortados.
+- Trocas entre os círculos já desenhados: 406 produtos conferidos dos dois lados, 0 falhas.
+
+Gerado em 02/10/2026 a partir da fonte única do modelo.

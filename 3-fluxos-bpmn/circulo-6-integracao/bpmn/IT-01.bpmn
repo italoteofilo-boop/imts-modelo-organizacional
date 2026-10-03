@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_IT01" targetNamespace="urn:imts:modelo:circulo6-integracao" exporter="Ecossistema IMTS - fonte única do Círculo 6" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_IT01">
+    <bpmn:categoryValue id="CV_IT01_E1" value="1. Registrar o projeto e o que ele pede" />
+    <bpmn:categoryValue id="CV_IT01_E2" value="2. Priorizar o projeto na carteira" />
+    <bpmn:categoryValue id="CV_IT01_E3" value="3. Acompanhar o projeto e corrigir o desvio" />
+    <bpmn:categoryValue id="CV_IT01_E4" value="4. Encerrar o projeto e registrar as lições" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_IT01">
+    <bpmn:participant id="Participant_IT01" name="IT-01 · Gerir a carteira de projetos do Ecossistema e das empresas" processRef="Process_IT01" />
+    <bpmn:group id="Group_IT01_E1" categoryValueRef="CV_IT01_E1" />
+    <bpmn:group id="Group_IT01_E2" categoryValueRef="CV_IT01_E2" />
+    <bpmn:group id="Group_IT01_E3" categoryValueRef="CV_IT01_E3" />
+    <bpmn:group id="Group_IT01_E4" categoryValueRef="CV_IT01_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_IT01" name="Gerir a carteira de projetos do Ecossistema e das empresas" isExecutable="false">
+    <bpmn:documentation>Fazer cada projeto, interno ou de cliente, entrar numa carteira única com objetivo, dono, prazo, custo e empresa; ser priorizado contra a capacidade; ser acompanhado com o desvio apontado a tempo; e ser encerrado com a entrega conferida e as lições registradas. O executivo decide a prioridade dos projetos da sua empresa; a Integração decide a dos projetos corporativos e o método; o conflito de capacidade entre empresas sobe à Estratégia. A Integração informa a situação da carteira à Estratégia e à Gestão.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_IT01">
+      <bpmn:lane id="Lane_IT01_EST" name="Estratégia">
+        <bpmn:flowNodeRef>IT01_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT01_INT" name="Inteligência">
+        <bpmn:flowNodeRef>IT01_S3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT01_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>IT01_E2_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT01_ITP" name="Integração · pessoa">
+        <bpmn:flowNodeRef>IT01_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E4_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT01_ITA" name="Integração · agente">
+        <bpmn:flowNodeRef>IT01_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT01_ITR" name="Integração · automação">
+        <bpmn:flowNodeRef>IT01_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_S4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_F4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_F3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_F5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E3_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_E4_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT01_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="IT01_S1" name="Iniciativa, decisão de portão ou de encerramento recebida"><bpmn:outgoing>IT01_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="IT01_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT01_S2" name="Projeto aberto por outra jornada da Integração"><bpmn:outgoing>IT01_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="IT01_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT01_S3" name="Aposta devolvida ou encerrada avisada"><bpmn:outgoing>IT01_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="IT01_S3_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT01_S4" name="Ciclo de acompanhamento da carteira iniciado"><bpmn:outgoing>IT01_Flow4</bpmn:outgoing><bpmn:timerEventDefinition id="IT01_S4_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="IT01_M1"><bpmn:incoming>IT01_Flow1</bpmn:incoming><bpmn:incoming>IT01_Flow2</bpmn:incoming><bpmn:incoming>IT01_Flow3</bpmn:incoming><bpmn:incoming>IT01_Flow4</bpmn:incoming><bpmn:outgoing>IT01_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT01_E1_T1" name="Registrar o que abriu o trabalho, a empresa e o projeto afetado"><bpmn:documentation>Etapa 1: Registrar o projeto e o que ele pede. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow41</bpmn:incoming><bpmn:outgoing>IT01_Flow5</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT01_E1_G1" name="O que abriu o trabalho?"><bpmn:incoming>IT01_Flow5</bpmn:incoming><bpmn:outgoing>IT01_Flow6</bpmn:outgoing><bpmn:outgoing>IT01_Flow8</bpmn:outgoing><bpmn:outgoing>IT01_Flow9</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT01_E1_T2" name="Suspender ou encerrar o projeto e avisar a Gestão dos recursos liberados"><bpmn:documentation>Etapa 1: Registrar o projeto e o que ele pede. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow6</bpmn:incoming><bpmn:outgoing>IT01_Flow7</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT01_F2" name="Projeto suspenso ou encerrado antes da entrega, com recursos liberados"><bpmn:incoming>IT01_Flow7</bpmn:incoming></bpmn:endEvent>
+    <bpmn:serviceTask id="IT01_E1_T3" name="Estimar prazo, custo, pessoas, agentes e dependências do projeto"><bpmn:documentation>Etapa 1: Registrar o projeto e o que ele pede. Executor: Agente da Integração (Integração · agente). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow9</bpmn:incoming><bpmn:outgoing>IT01_Flow10</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="IT01_E1_T4" name="Definir o objetivo, o dono e o alvo ou o contrato a que o projeto se liga"><bpmn:documentation>Etapa 1: Registrar o projeto e o que ele pede. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow10</bpmn:incoming><bpmn:outgoing>IT01_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="IT01_E2_T1" name="Simular a carga da carteira com o projeto novo e apontar os conflitos de capacidade"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Agente da Integração (Integração · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow11</bpmn:incoming><bpmn:outgoing>IT01_Flow12</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="IT01_E2_T2" name="Propor a ordem dos projetos pela regra de prioridade e pelos alvos"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow12</bpmn:incoming><bpmn:outgoing>IT01_Flow13</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IT01_E2_G1" name="De quem é a prioridade?"><bpmn:incoming>IT01_Flow13</bpmn:incoming><bpmn:outgoing>IT01_Flow14</bpmn:outgoing><bpmn:outgoing>IT01_Flow15</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT01_E2_T3" name="Decidir a prioridade dos projetos da sua empresa"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow14</bpmn:incoming><bpmn:outgoing>IT01_Flow16</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="IT01_E2_T4" name="Decidir a prioridade dos projetos corporativos, pelos alvos e pelo método de estratégia"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow15</bpmn:incoming><bpmn:outgoing>IT01_Flow17</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IT01_M2"><bpmn:incoming>IT01_Flow16</bpmn:incoming><bpmn:incoming>IT01_Flow17</bpmn:incoming><bpmn:outgoing>IT01_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT01_E2_G2" name="Há conflito de capacidade entre empresas?"><bpmn:incoming>IT01_Flow42</bpmn:incoming><bpmn:outgoing>IT01_Flow18</bpmn:outgoing><bpmn:outgoing>IT01_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="IT01_E2_T5" name="Decidir o conflito de capacidade entre empresas, pelos alvos e pela alocação"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Outro círculo (Estratégia). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow18</bpmn:incoming><bpmn:outgoing>IT01_Flow20</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="IT01_M3"><bpmn:incoming>IT01_Flow19</bpmn:incoming><bpmn:incoming>IT01_Flow20</bpmn:incoming><bpmn:outgoing>IT01_Flow43</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT01_E2_G3" name="O projeto entra agora?"><bpmn:incoming>IT01_Flow43</bpmn:incoming><bpmn:outgoing>IT01_Flow21</bpmn:outgoing><bpmn:outgoing>IT01_Flow23</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT01_E2_T6" name="Fechar a carteira priorizada e avisar os donos dos projetos"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow21</bpmn:incoming><bpmn:outgoing>IT01_Flow22</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT01_E2_T7" name="Registrar o projeto em espera, com a condição para entrar, e avisar o dono"><bpmn:documentation>Etapa 2: Priorizar o projeto na carteira. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow23</bpmn:incoming><bpmn:outgoing>IT01_Flow24</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT01_F4" name="Projeto não priorizado, em espera"><bpmn:incoming>IT01_Flow24</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="IT01_M4"><bpmn:incoming>IT01_Flow8</bpmn:incoming><bpmn:incoming>IT01_Flow22</bpmn:incoming><bpmn:incoming>IT01_Flow34</bpmn:incoming><bpmn:incoming>IT01_Flow36</bpmn:incoming><bpmn:outgoing>IT01_Flow44</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT01_E3_G1" name="O que chegou à etapa?"><bpmn:incoming>IT01_Flow44</bpmn:incoming><bpmn:outgoing>IT01_Flow25</bpmn:outgoing><bpmn:outgoing>IT01_Flow28</bpmn:outgoing><bpmn:outgoing>IT01_Flow30</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IT01_E3_T1" name="Rever os projetos em espera e devolver à priorização os que já cabem"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Agente da Integração (Integração · agente). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow25</bpmn:incoming><bpmn:outgoing>IT01_Flow26</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="IT01_E3_T2" name="Informar a situação da carteira à Estratégia, à Gestão e aos executivos"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow26</bpmn:incoming><bpmn:outgoing>IT01_Flow27</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT01_F3" name="Situação da carteira informada"><bpmn:incoming>IT01_Flow27</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="IT01_E3_T3" name="Atualizar o projeto com a decisão do portão"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow28</bpmn:incoming><bpmn:outgoing>IT01_Flow29</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT01_F5" name="Projeto atualizado com a decisão do portão"><bpmn:incoming>IT01_Flow29</bpmn:incoming></bpmn:endEvent>
+    <bpmn:receiveTask id="IT01_E3_T4" name="Receber a situação, o marco, o desvio ou a conclusão de cada projeto"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow30</bpmn:incoming><bpmn:outgoing>IT01_Flow31</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:serviceTask id="IT01_E3_T5" name="Comparar prazo, custo e entrega com o plano e apontar o desvio"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Agente da Integração (Integração · agente). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow31</bpmn:incoming><bpmn:outgoing>IT01_Flow32</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IT01_E3_G2" name="Como está o projeto?"><bpmn:incoming>IT01_Flow32</bpmn:incoming><bpmn:outgoing>IT01_Flow33</bpmn:outgoing><bpmn:outgoing>IT01_Flow35</bpmn:outgoing><bpmn:outgoing>IT01_Flow37</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT01_E3_T6" name="Atualizar a situação da carteira"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow33</bpmn:incoming><bpmn:outgoing>IT01_Flow34</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="IT01_E3_T7" name="Decidir a correção com o dono do projeto e avisar o executivo quando o desvio é dele"><bpmn:documentation>Etapa 3: Acompanhar o projeto e corrigir o desvio. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT01_Flow35</bpmn:incoming><bpmn:outgoing>IT01_Flow36</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="IT01_E4_T1" name="Conferir a entrega com o objetivo, o prazo e o custo do projeto"><bpmn:documentation>Etapa 4: Encerrar o projeto e registrar as lições. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow37</bpmn:incoming><bpmn:outgoing>IT01_Flow38</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="IT01_E4_T2" name="Confirmar o aceite do dono do projeto: cliente, executivo ou líder do círculo"><bpmn:documentation>Etapa 4: Encerrar o projeto e registrar as lições. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow38</bpmn:incoming><bpmn:outgoing>IT01_Flow39</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT01_E4_T3" name="Registrar o encerramento, o resultado e as lições do projeto"><bpmn:documentation>Etapa 4: Encerrar o projeto e registrar as lições. Executor: Automação da Integração (Integração · automação). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>IT01_Flow39</bpmn:incoming><bpmn:outgoing>IT01_Flow40</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT01_F1" name="Projeto encerrado, com a entrega conferida e as lições registradas"><bpmn:incoming>IT01_Flow40</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="IT01_Flow1" sourceRef="IT01_S1" targetRef="IT01_M1" />
+    <bpmn:sequenceFlow id="IT01_Flow2" sourceRef="IT01_S2" targetRef="IT01_M1" />
+    <bpmn:sequenceFlow id="IT01_Flow3" sourceRef="IT01_S3" targetRef="IT01_M1" />
+    <bpmn:sequenceFlow id="IT01_Flow4" sourceRef="IT01_S4" targetRef="IT01_M1" />
+    <bpmn:sequenceFlow id="IT01_Flow5" sourceRef="IT01_E1_T1" targetRef="IT01_E1_G1" />
+    <bpmn:sequenceFlow id="IT01_Flow6" name="Aposta devolvida ou encerrada, oferta encerrada, ou projeto suspenso por outra jornada" sourceRef="IT01_E1_G1" targetRef="IT01_E1_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Aposta devolvida ou encerrada, oferta encerrada, ou projeto suspenso por outra jornada</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow7" sourceRef="IT01_E1_T2" targetRef="IT01_F2" />
+    <bpmn:sequenceFlow id="IT01_Flow8" name="Decisão do portão sobre aposta que já está na carteira, ou ciclo de acompanhamento" sourceRef="IT01_E1_G1" targetRef="IT01_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Decisão do portão sobre aposta que já está na carteira, ou ciclo de acompanhamento</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow9" name="Projeto novo ou reativado: iniciativa, implantação, lançamento, capacidade, redesenho ou saída" sourceRef="IT01_E1_G1" targetRef="IT01_E1_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Projeto novo ou reativado: iniciativa, implantação, lançamento, capacidade, redesenho ou saída</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow10" sourceRef="IT01_E1_T3" targetRef="IT01_E1_T4" />
+    <bpmn:sequenceFlow id="IT01_Flow11" sourceRef="IT01_E1_T4" targetRef="IT01_E2_T1" />
+    <bpmn:sequenceFlow id="IT01_Flow12" sourceRef="IT01_E2_T1" targetRef="IT01_E2_T2" />
+    <bpmn:sequenceFlow id="IT01_Flow13" sourceRef="IT01_E2_T2" targetRef="IT01_E2_G1" />
+    <bpmn:sequenceFlow id="IT01_Flow14" name="Projeto de uma empresa" sourceRef="IT01_E2_G1" targetRef="IT01_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Projeto de uma empresa</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow15" name="Projeto corporativo ou de círculo" sourceRef="IT01_E2_G1" targetRef="IT01_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Projeto corporativo ou de círculo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow16" sourceRef="IT01_E2_T3" targetRef="IT01_M2" />
+    <bpmn:sequenceFlow id="IT01_Flow17" sourceRef="IT01_E2_T4" targetRef="IT01_M2" />
+    <bpmn:sequenceFlow id="IT01_Flow18" name="Sim" sourceRef="IT01_E2_G2" targetRef="IT01_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow19" name="Não" sourceRef="IT01_E2_G2" targetRef="IT01_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow20" sourceRef="IT01_E2_T5" targetRef="IT01_M3" />
+    <bpmn:sequenceFlow id="IT01_Flow21" name="Sim" sourceRef="IT01_E2_G3" targetRef="IT01_E2_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow22" sourceRef="IT01_E2_T6" targetRef="IT01_M4" />
+    <bpmn:sequenceFlow id="IT01_Flow23" name="Não: espera capacidade ou prioridade" sourceRef="IT01_E2_G3" targetRef="IT01_E2_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: espera capacidade ou prioridade</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow24" sourceRef="IT01_E2_T7" targetRef="IT01_F4" />
+    <bpmn:sequenceFlow id="IT01_Flow25" name="Ciclo de acompanhamento da carteira" sourceRef="IT01_E3_G1" targetRef="IT01_E3_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Ciclo de acompanhamento da carteira</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow26" sourceRef="IT01_E3_T1" targetRef="IT01_E3_T2" />
+    <bpmn:sequenceFlow id="IT01_Flow27" sourceRef="IT01_E3_T2" targetRef="IT01_F3" />
+    <bpmn:sequenceFlow id="IT01_Flow28" name="Decisão do portão sobre aposta da carteira" sourceRef="IT01_E3_G1" targetRef="IT01_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Decisão do portão sobre aposta da carteira</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow29" sourceRef="IT01_E3_T3" targetRef="IT01_F5" />
+    <bpmn:sequenceFlow id="IT01_Flow30" name="Projeto priorizado" sourceRef="IT01_E3_G1" targetRef="IT01_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Projeto priorizado</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow31" sourceRef="IT01_E3_T4" targetRef="IT01_E3_T5" />
+    <bpmn:sequenceFlow id="IT01_Flow32" sourceRef="IT01_E3_T5" targetRef="IT01_E3_G2" />
+    <bpmn:sequenceFlow id="IT01_Flow33" name="Em andamento, sem desvio" sourceRef="IT01_E3_G2" targetRef="IT01_E3_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Em andamento, sem desvio</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow34" sourceRef="IT01_E3_T6" targetRef="IT01_M4" />
+    <bpmn:sequenceFlow id="IT01_Flow35" name="Em andamento, com desvio" sourceRef="IT01_E3_G2" targetRef="IT01_E3_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Em andamento, com desvio</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow36" sourceRef="IT01_E3_T7" targetRef="IT01_M4" />
+    <bpmn:sequenceFlow id="IT01_Flow37" name="Concluído" sourceRef="IT01_E3_G2" targetRef="IT01_E4_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Concluído</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT01_Flow38" sourceRef="IT01_E4_T1" targetRef="IT01_E4_T2" />
+    <bpmn:sequenceFlow id="IT01_Flow39" sourceRef="IT01_E4_T2" targetRef="IT01_E4_T3" />
+    <bpmn:sequenceFlow id="IT01_Flow40" sourceRef="IT01_E4_T3" targetRef="IT01_F1" />
+    <bpmn:sequenceFlow id="IT01_Flow41" sourceRef="IT01_M1" targetRef="IT01_E1_T1" />
+    <bpmn:sequenceFlow id="IT01_Flow42" sourceRef="IT01_M2" targetRef="IT01_E2_G2" />
+    <bpmn:sequenceFlow id="IT01_Flow43" sourceRef="IT01_M3" targetRef="IT01_E2_G3" />
+    <bpmn:sequenceFlow id="IT01_Flow44" sourceRef="IT01_M4" targetRef="IT01_E3_G1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_IT01">
+    <bpmndi:BPMNPlane id="Plane_IT01" bpmnElement="Collab_IT01">
+      <bpmndi:BPMNShape id="Participant_IT01_di" bpmnElement="Participant_IT01" isHorizontal="true"><dc:Bounds x="0" y="0" width="7740" height="1056" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT01_EST_di" bpmnElement="Lane_IT01_EST" isHorizontal="true"><dc:Bounds x="30" y="0" width="7710" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT01_INT_di" bpmnElement="Lane_IT01_INT" isHorizontal="true"><dc:Bounds x="30" y="176" width="7710" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT01_EXE_di" bpmnElement="Lane_IT01_EXE" isHorizontal="true"><dc:Bounds x="30" y="352" width="7710" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT01_ITP_di" bpmnElement="Lane_IT01_ITP" isHorizontal="true"><dc:Bounds x="30" y="528" width="7710" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT01_ITA_di" bpmnElement="Lane_IT01_ITA" isHorizontal="true"><dc:Bounds x="30" y="704" width="7710" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT01_ITR_di" bpmnElement="Lane_IT01_ITR" isHorizontal="true"><dc:Bounds x="30" y="880" width="7710" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_S1_di" bpmnElement="IT01_S1"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_S2_di" bpmnElement="IT01_S2"><dc:Bounds x="156" y="910" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="908" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_S3_di" bpmnElement="IT01_S3"><dc:Bounds x="156" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="244" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_S4_di" bpmnElement="IT01_S4"><dc:Bounds x="156" y="990" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="988" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_M1_di" bpmnElement="IT01_M1" isMarkerVisible="true"><dc:Bounds x="355" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E1_T1_di" bpmnElement="IT01_E1_T1"><dc:Bounds x="506" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E1_G1_di" bpmnElement="IT01_E1_G1" isMarkerVisible="true"><dc:Bounds x="767" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="680" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E1_T2_di" bpmnElement="IT01_E1_T2"><dc:Bounds x="918" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_F2_di" bpmnElement="IT01_F2"><dc:Bounds x="1186" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1149" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E1_T3_di" bpmnElement="IT01_E1_T3"><dc:Bounds x="1330" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E1_T4_di" bpmnElement="IT01_E1_T4"><dc:Bounds x="1536" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T1_di" bpmnElement="IT01_E2_T1"><dc:Bounds x="1742" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T2_di" bpmnElement="IT01_E2_T2"><dc:Bounds x="1948" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_G1_di" bpmnElement="IT01_E2_G1" isMarkerVisible="true"><dc:Bounds x="2209" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2122" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T3_di" bpmnElement="IT01_E2_T3"><dc:Bounds x="2360" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T4_di" bpmnElement="IT01_E2_T4"><dc:Bounds x="2566" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_M2_di" bpmnElement="IT01_M2" isMarkerVisible="true"><dc:Bounds x="2827" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_G2_di" bpmnElement="IT01_E2_G2" isMarkerVisible="true"><dc:Bounds x="3033" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2946" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T5_di" bpmnElement="IT01_E2_T5"><dc:Bounds x="3184" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_M3_di" bpmnElement="IT01_M3" isMarkerVisible="true"><dc:Bounds x="3445" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_G3_di" bpmnElement="IT01_E2_G3" isMarkerVisible="true"><dc:Bounds x="3651" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3564" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T6_di" bpmnElement="IT01_E2_T6"><dc:Bounds x="3802" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E2_T7_di" bpmnElement="IT01_E2_T7"><dc:Bounds x="4008" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_F4_di" bpmnElement="IT01_F4"><dc:Bounds x="4276" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4239" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_M4_di" bpmnElement="IT01_M4" isMarkerVisible="true"><dc:Bounds x="4475" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_G1_di" bpmnElement="IT01_E3_G1" isMarkerVisible="true"><dc:Bounds x="4681" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4594" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T1_di" bpmnElement="IT01_E3_T1"><dc:Bounds x="4832" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T2_di" bpmnElement="IT01_E3_T2"><dc:Bounds x="5038" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_F3_di" bpmnElement="IT01_F3"><dc:Bounds x="5306" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="5269" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T3_di" bpmnElement="IT01_E3_T3"><dc:Bounds x="5450" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_F5_di" bpmnElement="IT01_F5"><dc:Bounds x="5718" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="5681" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T4_di" bpmnElement="IT01_E3_T4"><dc:Bounds x="5862" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T5_di" bpmnElement="IT01_E3_T5"><dc:Bounds x="6068" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_G2_di" bpmnElement="IT01_E3_G2" isMarkerVisible="true"><dc:Bounds x="6329" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="6242" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T6_di" bpmnElement="IT01_E3_T6"><dc:Bounds x="6480" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E3_T7_di" bpmnElement="IT01_E3_T7"><dc:Bounds x="6686" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E4_T1_di" bpmnElement="IT01_E4_T1"><dc:Bounds x="6892" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E4_T2_di" bpmnElement="IT01_E4_T2"><dc:Bounds x="7098" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_E4_T3_di" bpmnElement="IT01_E4_T3"><dc:Bounds x="7304" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT01_F1_di" bpmnElement="IT01_F1"><dc:Bounds x="7572" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7535" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="IT01_Flow1_di" bpmnElement="IT01_Flow1"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow2_di" bpmnElement="IT01_Flow2"><di:waypoint x="192" y="928" /><di:waypoint x="380" y="928" /><di:waypoint x="380" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow3_di" bpmnElement="IT01_Flow3"><di:waypoint x="192" y="264" /><di:waypoint x="380" y="264" /><di:waypoint x="380" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow4_di" bpmnElement="IT01_Flow4"><di:waypoint x="192" y="1008" /><di:waypoint x="380" y="1008" /><di:waypoint x="380" y="993" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow5_di" bpmnElement="IT01_Flow5"><di:waypoint x="666" y="968" /><di:waypoint x="767" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow6_di" bpmnElement="IT01_Flow6"><di:waypoint x="817" y="968" /><di:waypoint x="918" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="822" y="937" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow7_di" bpmnElement="IT01_Flow7"><di:waypoint x="1078" y="968" /><di:waypoint x="1186" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow8_di" bpmnElement="IT01_Flow8"><di:waypoint x="792" y="993" /><di:waypoint x="792" y="1048" /><di:waypoint x="4500" y="1048" /><di:waypoint x="4500" y="993" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow9_di" bpmnElement="IT01_Flow9"><di:waypoint x="792" y="943" /><di:waypoint x="792" y="792" /><di:waypoint x="1330" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="761" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow10_di" bpmnElement="IT01_Flow10"><di:waypoint x="1410" y="742" /><di:waypoint x="1410" y="616" /><di:waypoint x="1536" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow11_di" bpmnElement="IT01_Flow11"><di:waypoint x="1616" y="666" /><di:waypoint x="1616" y="792" /><di:waypoint x="1742" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow12_di" bpmnElement="IT01_Flow12"><di:waypoint x="1822" y="742" /><di:waypoint x="1822" y="616" /><di:waypoint x="1948" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow13_di" bpmnElement="IT01_Flow13"><di:waypoint x="2028" y="666" /><di:waypoint x="2028" y="968" /><di:waypoint x="2209" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow14_di" bpmnElement="IT01_Flow14"><di:waypoint x="2234" y="943" /><di:waypoint x="2234" y="440" /><di:waypoint x="2360" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="2240" y="912" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow15_di" bpmnElement="IT01_Flow15"><di:waypoint x="2259" y="968" /><di:waypoint x="2542" y="968" /><di:waypoint x="2542" y="616" /><di:waypoint x="2566" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="2548" y="935" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow16_di" bpmnElement="IT01_Flow16"><di:waypoint x="2440" y="490" /><di:waypoint x="2440" y="792" /><di:waypoint x="2827" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow17_di" bpmnElement="IT01_Flow17"><di:waypoint x="2646" y="666" /><di:waypoint x="2646" y="792" /><di:waypoint x="2827" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow18_di" bpmnElement="IT01_Flow18"><di:waypoint x="3058" y="767" /><di:waypoint x="3058" y="88" /><di:waypoint x="3184" y="88" /><bpmndi:BPMNLabel><dc:Bounds x="3064" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow19_di" bpmnElement="IT01_Flow19"><di:waypoint x="3083" y="792" /><di:waypoint x="3470" y="792" /><di:waypoint x="3470" y="641" /><bpmndi:BPMNLabel><dc:Bounds x="3088" y="774" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow20_di" bpmnElement="IT01_Flow20"><di:waypoint x="3264" y="138" /><di:waypoint x="3264" y="616" /><di:waypoint x="3445" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow21_di" bpmnElement="IT01_Flow21"><di:waypoint x="3701" y="616" /><di:waypoint x="3802" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="3706" y="598" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow22_di" bpmnElement="IT01_Flow22"><di:waypoint x="3962" y="616" /><di:waypoint x="4500" y="616" /><di:waypoint x="4500" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow23_di" bpmnElement="IT01_Flow23"><di:waypoint x="3676" y="641" /><di:waypoint x="3676" y="968" /><di:waypoint x="4008" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="3682" y="646" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow24_di" bpmnElement="IT01_Flow24"><di:waypoint x="4168" y="968" /><di:waypoint x="4276" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow25_di" bpmnElement="IT01_Flow25"><di:waypoint x="4706" y="943" /><di:waypoint x="4706" y="792" /><di:waypoint x="4832" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="4712" y="912" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow26_di" bpmnElement="IT01_Flow26"><di:waypoint x="4912" y="842" /><di:waypoint x="4912" y="968" /><di:waypoint x="5038" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow27_di" bpmnElement="IT01_Flow27"><di:waypoint x="5198" y="968" /><di:waypoint x="5306" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow28_di" bpmnElement="IT01_Flow28"><di:waypoint x="4706" y="993" /><di:waypoint x="4706" y="1048" /><di:waypoint x="5530" y="1048" /><di:waypoint x="5530" y="1018" /><bpmndi:BPMNLabel><dc:Bounds x="4712" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow29_di" bpmnElement="IT01_Flow29"><di:waypoint x="5610" y="968" /><di:waypoint x="5718" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow30_di" bpmnElement="IT01_Flow30"><di:waypoint x="4706" y="993" /><di:waypoint x="4706" y="1048" /><di:waypoint x="5942" y="1048" /><di:waypoint x="5942" y="1018" /><bpmndi:BPMNLabel><dc:Bounds x="4712" y="1052" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow31_di" bpmnElement="IT01_Flow31"><di:waypoint x="5942" y="918" /><di:waypoint x="5942" y="792" /><di:waypoint x="6068" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow32_di" bpmnElement="IT01_Flow32"><di:waypoint x="6148" y="742" /><di:waypoint x="6148" y="616" /><di:waypoint x="6329" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow33_di" bpmnElement="IT01_Flow33"><di:waypoint x="6354" y="641" /><di:waypoint x="6354" y="968" /><di:waypoint x="6480" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="6360" y="646" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow34_di" bpmnElement="IT01_Flow34"><di:waypoint x="6560" y="918" /><di:waypoint x="6560" y="889" /><di:waypoint x="4500" y="889" /><di:waypoint x="4500" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow35_di" bpmnElement="IT01_Flow35"><di:waypoint x="6379" y="616" /><di:waypoint x="6686" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="6384" y="585" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow36_di" bpmnElement="IT01_Flow36"><di:waypoint x="6766" y="566" /><di:waypoint x="6766" y="543" /><di:waypoint x="4500" y="543" /><di:waypoint x="4500" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow37_di" bpmnElement="IT01_Flow37"><di:waypoint x="6354" y="591" /><di:waypoint x="6354" y="537" /><di:waypoint x="6972" y="537" /><di:waypoint x="6972" y="566" /><bpmndi:BPMNLabel><dc:Bounds x="6360" y="519" width="62" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow38_di" bpmnElement="IT01_Flow38"><di:waypoint x="7052" y="616" /><di:waypoint x="7098" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow39_di" bpmnElement="IT01_Flow39"><di:waypoint x="7178" y="666" /><di:waypoint x="7178" y="968" /><di:waypoint x="7304" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow40_di" bpmnElement="IT01_Flow40"><di:waypoint x="7464" y="968" /><di:waypoint x="7572" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow41_di" bpmnElement="IT01_Flow41"><di:waypoint x="405" y="968" /><di:waypoint x="506" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow42_di" bpmnElement="IT01_Flow42"><di:waypoint x="2877" y="792" /><di:waypoint x="3033" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow43_di" bpmnElement="IT01_Flow43"><di:waypoint x="3495" y="616" /><di:waypoint x="3651" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT01_Flow44_di" bpmnElement="IT01_Flow44"><di:waypoint x="4525" y="968" /><di:waypoint x="4681" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_IT01_E1_di" bpmnElement="Group_IT01_E1"><dc:Bounds x="285" y="-44" width="1426" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT01_E2_di" bpmnElement="Group_IT01_E2"><dc:Bounds x="1727" y="-44" width="2456" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="1733" y="-38" width="2444" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT01_E3_di" bpmnElement="Group_IT01_E3"><dc:Bounds x="4405" y="-44" width="2456" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="4411" y="-38" width="2444" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT01_E4_di" bpmnElement="Group_IT01_E4"><dc:Bounds x="6877" y="-44" width="602" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="6883" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

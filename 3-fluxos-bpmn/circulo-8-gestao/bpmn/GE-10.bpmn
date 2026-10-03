@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_GE10" targetNamespace="urn:imts:modelo:circulo8-gestao" exporter="Ecossistema IMTS - fonte única do Círculo 8" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_GE10">
+    <bpmn:categoryValue id="CV_GE10_E1" value="1. Preparar o ritual" />
+    <bpmn:categoryValue id="CV_GE10_E2" value="2. Avaliar as indicações de reconhecimento" />
+    <bpmn:categoryValue id="CV_GE10_E3" value="3. Realizar o ritual" />
+    <bpmn:categoryValue id="CV_GE10_E4" value="4. Comunicar e registrar" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_GE10">
+    <bpmn:participant id="Participant_GE10" name="GE-10 · Realizar os rituais de cultura e o reconhecimento de pessoas e equipes" processRef="Process_GE10" />
+    <bpmn:group id="Group_GE10_E1" categoryValueRef="CV_GE10_E1" />
+    <bpmn:group id="Group_GE10_E2" categoryValueRef="CV_GE10_E2" />
+    <bpmn:group id="Group_GE10_E3" categoryValueRef="CV_GE10_E3" />
+    <bpmn:group id="Group_GE10_E4" categoryValueRef="CV_GE10_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GE10" name="Realizar os rituais de cultura e o reconhecimento de pessoas e equipes" isExecutable="false">
+    <bpmn:documentation>Reforçar, com cadência fixa, os comportamentos que os valores pedem: cada ritual preparado pelo padrão do kit de cultura, cada indicação de reconhecimento conferida com os critérios e decidida com os líderes, o ritual conduzido pelo líder, as histórias registradas e comunicadas e os reconhecimentos levados à folha. A Identidade define o padrão; a Gestão prepara, decide com os líderes e registra; o líder conduz.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_GE10">
+      <bpmn:lane id="Lane_GE10_LID" name="Líder da equipe">
+        <bpmn:flowNodeRef>GE10_E3_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE10_GEP" name="Gestão · pessoa">
+        <bpmn:flowNodeRef>GE10_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE10_GEA" name="Gestão · agente">
+        <bpmn:flowNodeRef>GE10_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_E4_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE10_GER" name="Gestão · automação">
+        <bpmn:flowNodeRef>GE10_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE10_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="GE10_S1" name="Ritual do calendário iniciado"><bpmn:outgoing>GE10_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GE10_S1_def" /></bpmn:startEvent>
+    <bpmn:scriptTask id="GE10_E1_T1" name="Abrir a preparação e colher as indicações"><bpmn:documentation>Etapa 1: Preparar o ritual. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE10_Flow1</bpmn:incoming><bpmn:outgoing>GE10_Flow2</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GE10_E1_T2" name="Montar o roteiro e o material do ritual"><bpmn:documentation>Etapa 1: Preparar o ritual. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE10_Flow2</bpmn:incoming><bpmn:outgoing>GE10_Flow3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="GE10_E2_T1" name="Conferir cada indicação com os critérios do kit"><bpmn:documentation>Etapa 2: Avaliar as indicações de reconhecimento. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE10_Flow3</bpmn:incoming><bpmn:outgoing>GE10_Flow4</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE10_E2_T2" name="Decidir os reconhecimentos com os líderes"><bpmn:documentation>Etapa 2: Avaliar as indicações de reconhecimento. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE10_Flow4</bpmn:incoming><bpmn:outgoing>GE10_Flow5</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE10_E2_T3" name="Aprovar a recompensa dentro do orçamento"><bpmn:documentation>Etapa 2: Avaliar as indicações de reconhecimento. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE10_Flow5</bpmn:incoming><bpmn:outgoing>GE10_Flow6</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE10_E3_T1" name="Conduzir o ritual"><bpmn:documentation>Etapa 3: Realizar o ritual. Executor: Pessoa de fora do círculo (Líder da equipe). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE10_Flow6</bpmn:incoming><bpmn:outgoing>GE10_Flow7</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE10_E3_T2" name="Apoiar a condução e registrar as histórias"><bpmn:documentation>Etapa 3: Realizar o ritual. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE10_Flow7</bpmn:incoming><bpmn:outgoing>GE10_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="GE10_E4_T1" name="Selecionar as histórias e os reconhecimentos a comunicar"><bpmn:documentation>Etapa 4: Comunicar e registrar. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE10_Flow8</bpmn:incoming><bpmn:outgoing>GE10_Flow9</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="GE10_E4_T2" name="Registrar a participação e os reconhecimentos"><bpmn:documentation>Etapa 4: Comunicar e registrar. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE10_Flow9</bpmn:incoming><bpmn:outgoing>GE10_Flow10</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GE10_F1" name="Ritual realizado e registrado"><bpmn:incoming>GE10_Flow10</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="GE10_Flow1" sourceRef="GE10_S1" targetRef="GE10_E1_T1" />
+    <bpmn:sequenceFlow id="GE10_Flow2" sourceRef="GE10_E1_T1" targetRef="GE10_E1_T2" />
+    <bpmn:sequenceFlow id="GE10_Flow3" sourceRef="GE10_E1_T2" targetRef="GE10_E2_T1" />
+    <bpmn:sequenceFlow id="GE10_Flow4" sourceRef="GE10_E2_T1" targetRef="GE10_E2_T2" />
+    <bpmn:sequenceFlow id="GE10_Flow5" sourceRef="GE10_E2_T2" targetRef="GE10_E2_T3" />
+    <bpmn:sequenceFlow id="GE10_Flow6" sourceRef="GE10_E2_T3" targetRef="GE10_E3_T1" />
+    <bpmn:sequenceFlow id="GE10_Flow7" sourceRef="GE10_E3_T1" targetRef="GE10_E3_T2" />
+    <bpmn:sequenceFlow id="GE10_Flow8" sourceRef="GE10_E3_T2" targetRef="GE10_E4_T1" />
+    <bpmn:sequenceFlow id="GE10_Flow9" sourceRef="GE10_E4_T1" targetRef="GE10_E4_T2" />
+    <bpmn:sequenceFlow id="GE10_Flow10" sourceRef="GE10_E4_T2" targetRef="GE10_F1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_GE10">
+    <bpmndi:BPMNPlane id="Plane_GE10" bpmnElement="Collab_GE10">
+      <bpmndi:BPMNShape id="Participant_GE10_di" bpmnElement="Participant_GE10" isHorizontal="true"><dc:Bounds x="0" y="0" width="2360" height="704" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE10_LID_di" bpmnElement="Lane_GE10_LID" isHorizontal="true"><dc:Bounds x="30" y="0" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE10_GEP_di" bpmnElement="Lane_GE10_GEP" isHorizontal="true"><dc:Bounds x="30" y="176" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE10_GEA_di" bpmnElement="Lane_GE10_GEA" isHorizontal="true"><dc:Bounds x="30" y="352" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE10_GER_di" bpmnElement="Lane_GE10_GER" isHorizontal="true"><dc:Bounds x="30" y="528" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_S1_di" bpmnElement="GE10_S1"><dc:Bounds x="132" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E1_T1_di" bpmnElement="GE10_E1_T1"><dc:Bounds x="276" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E1_T2_di" bpmnElement="GE10_E1_T2"><dc:Bounds x="482" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E2_T1_di" bpmnElement="GE10_E2_T1"><dc:Bounds x="688" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E2_T2_di" bpmnElement="GE10_E2_T2"><dc:Bounds x="894" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E2_T3_di" bpmnElement="GE10_E2_T3"><dc:Bounds x="1100" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E3_T1_di" bpmnElement="GE10_E3_T1"><dc:Bounds x="1306" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E3_T2_di" bpmnElement="GE10_E3_T2"><dc:Bounds x="1512" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E4_T1_di" bpmnElement="GE10_E4_T1"><dc:Bounds x="1718" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_E4_T2_di" bpmnElement="GE10_E4_T2"><dc:Bounds x="1924" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE10_F1_di" bpmnElement="GE10_F1"><dc:Bounds x="2192" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2155" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GE10_Flow1_di" bpmnElement="GE10_Flow1"><di:waypoint x="168" y="616" /><di:waypoint x="276" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow2_di" bpmnElement="GE10_Flow2"><di:waypoint x="356" y="566" /><di:waypoint x="356" y="440" /><di:waypoint x="482" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow3_di" bpmnElement="GE10_Flow3"><di:waypoint x="642" y="440" /><di:waypoint x="688" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow4_di" bpmnElement="GE10_Flow4"><di:waypoint x="768" y="390" /><di:waypoint x="768" y="264" /><di:waypoint x="894" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow5_di" bpmnElement="GE10_Flow5"><di:waypoint x="1054" y="264" /><di:waypoint x="1100" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow6_di" bpmnElement="GE10_Flow6"><di:waypoint x="1180" y="214" /><di:waypoint x="1180" y="88" /><di:waypoint x="1306" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow7_di" bpmnElement="GE10_Flow7"><di:waypoint x="1386" y="138" /><di:waypoint x="1386" y="264" /><di:waypoint x="1512" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow8_di" bpmnElement="GE10_Flow8"><di:waypoint x="1592" y="314" /><di:waypoint x="1592" y="440" /><di:waypoint x="1718" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow9_di" bpmnElement="GE10_Flow9"><di:waypoint x="1798" y="490" /><di:waypoint x="1798" y="616" /><di:waypoint x="1924" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE10_Flow10_di" bpmnElement="GE10_Flow10"><di:waypoint x="2084" y="616" /><di:waypoint x="2192" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GE10_E1_di" bpmnElement="Group_GE10_E1"><dc:Bounds x="261" y="-44" width="396" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE10_E2_di" bpmnElement="Group_GE10_E2"><dc:Bounds x="673" y="-44" width="602" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="679" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE10_E3_di" bpmnElement="Group_GE10_E3"><dc:Bounds x="1291" y="-44" width="396" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="1297" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE10_E4_di" bpmnElement="Group_GE10_E4"><dc:Bounds x="1703" y="-44" width="396" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="1709" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

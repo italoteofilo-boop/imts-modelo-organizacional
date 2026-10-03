@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_GO04" targetNamespace="urn:imts:modelo:circulo9-governanca" exporter="Ecossistema IMTS - fonte única do Círculo 9" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_GO04">
+    <bpmn:categoryValue id="CV_GO04_E1" value="1. Manter o calendário de obrigações" />
+    <bpmn:categoryValue id="CV_GO04_E2" value="2. Cumprir a obrigação" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_GO04">
+    <bpmn:participant id="Participant_GO04" name="GO-04 · Manter em dia as obrigações legais: registros, certidões, marcas, procurações e seguros" processRef="Process_GO04" />
+    <bpmn:group id="Group_GO04_E1" categoryValueRef="CV_GO04_E1" />
+    <bpmn:group id="Group_GO04_E2" categoryValueRef="CV_GO04_E2" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GO04" name="Manter em dia as obrigações legais: registros, certidões, marcas, procurações e seguros" isExecutable="false">
+    <bpmn:documentation>Fazer cada licença, certidão, registro de empresa e de marca, procuração e seguro estar no calendário com o prazo; cada obrigação ser cumprida antes de vencer, com as exigências do órgão atendidas e o indeferimento levado ao executivo; e as certidões e os documentos de habilitação estarem em dia para Negócios. A Governança mantém e cumpre; a Identidade decide a marca.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_GO04">
+      <bpmn:lane id="Lane_GO04_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>GO04_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GO04_GOP" name="Governança · pessoa">
+        <bpmn:flowNodeRef>GO04_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_E2_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GO04_GOA" name="Governança · agente">
+        <bpmn:flowNodeRef>GO04_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_E2_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GO04_GOR" name="Governança · automação">
+        <bpmn:flowNodeRef>GO04_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO04_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="GO04_S1" name="Prazo de obrigação legal próximo"><bpmn:outgoing>GO04_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GO04_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="GO04_S2" name="Registro, documento ou certidão pedido"><bpmn:outgoing>GO04_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="GO04_S2_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="GO04_M1"><bpmn:incoming>GO04_Flow1</bpmn:incoming><bpmn:incoming>GO04_Flow2</bpmn:incoming><bpmn:outgoing>GO04_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GO04_E1_T1" name="Registrar licenças, certidões, registros, marcas, procurações e seguros com o prazo"><bpmn:documentation>Etapa 1: Manter o calendário de obrigações. Executor: Automação da Governança (Governança · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO04_Flow13</bpmn:incoming><bpmn:outgoing>GO04_Flow3</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GO04_E1_T2" name="Apontar o que vence, o que falta e o que o mandato ou a marca retirada pedem"><bpmn:documentation>Etapa 1: Manter o calendário de obrigações. Executor: Agente da Governança (Governança · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO04_Flow3</bpmn:incoming><bpmn:outgoing>GO04_Flow4</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="GO04_E2_T1" name="Preparar o pedido, a renovação, a transferência ou a baixa"><bpmn:documentation>Etapa 2: Cumprir a obrigação. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO04_Flow4</bpmn:incoming><bpmn:outgoing>GO04_Flow5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GO04_E2_T2" name="Conferir e protocolar no órgão"><bpmn:documentation>Etapa 2: Cumprir a obrigação. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO04_Flow5</bpmn:incoming><bpmn:outgoing>GO04_Flow6</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GO04_E2_G1" name="O órgão deferiu?"><bpmn:incoming>GO04_Flow6</bpmn:incoming><bpmn:outgoing>GO04_Flow7</bpmn:outgoing><bpmn:outgoing>GO04_Flow8</bpmn:outgoing><bpmn:outgoing>GO04_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GO04_E2_T3" name="Cumprir a exigência do órgão e protocolar de novo"><bpmn:documentation>Etapa 2: Cumprir a obrigação. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO04_Flow7</bpmn:incoming><bpmn:outgoing>GO04_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="GO04_E2_T4" name="Levar o indeferimento ao executivo, com as opções e o efeito na habilitação"><bpmn:documentation>Etapa 2: Cumprir a obrigação. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO04_Flow8</bpmn:incoming><bpmn:outgoing>GO04_Flow9</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GO04_F2" name="Obrigação indeferida, levada ao executivo"><bpmn:incoming>GO04_Flow9</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="GO04_M2"><bpmn:incoming>GO04_Flow10</bpmn:incoming><bpmn:incoming>GO04_Flow11</bpmn:incoming><bpmn:outgoing>GO04_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GO04_E2_T5" name="Registrar o documento e o novo prazo"><bpmn:documentation>Etapa 2: Cumprir a obrigação. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO04_Flow14</bpmn:incoming><bpmn:outgoing>GO04_Flow12</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GO04_F1" name="Obrigação cumprida e registrada"><bpmn:incoming>GO04_Flow12</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="GO04_Flow1" sourceRef="GO04_S1" targetRef="GO04_M1" />
+    <bpmn:sequenceFlow id="GO04_Flow2" sourceRef="GO04_S2" targetRef="GO04_M1" />
+    <bpmn:sequenceFlow id="GO04_Flow3" sourceRef="GO04_E1_T1" targetRef="GO04_E1_T2" />
+    <bpmn:sequenceFlow id="GO04_Flow4" sourceRef="GO04_E1_T2" targetRef="GO04_E2_T1" />
+    <bpmn:sequenceFlow id="GO04_Flow5" sourceRef="GO04_E2_T1" targetRef="GO04_E2_T2" />
+    <bpmn:sequenceFlow id="GO04_Flow6" sourceRef="GO04_E2_T2" targetRef="GO04_E2_G1" />
+    <bpmn:sequenceFlow id="GO04_Flow7" name="Não, com exigência" sourceRef="GO04_E2_G1" targetRef="GO04_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, com exigência</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO04_Flow8" name="Não, indeferido" sourceRef="GO04_E2_G1" targetRef="GO04_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, indeferido</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO04_Flow9" sourceRef="GO04_E2_T4" targetRef="GO04_F2" />
+    <bpmn:sequenceFlow id="GO04_Flow10" name="Sim" sourceRef="GO04_E2_G1" targetRef="GO04_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO04_Flow11" sourceRef="GO04_E2_T3" targetRef="GO04_M2" />
+    <bpmn:sequenceFlow id="GO04_Flow12" sourceRef="GO04_E2_T5" targetRef="GO04_F1" />
+    <bpmn:sequenceFlow id="GO04_Flow13" sourceRef="GO04_M1" targetRef="GO04_E1_T1" />
+    <bpmn:sequenceFlow id="GO04_Flow14" sourceRef="GO04_M2" targetRef="GO04_E2_T5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_GO04">
+    <bpmndi:BPMNPlane id="Plane_GO04" bpmnElement="Collab_GO04">
+      <bpmndi:BPMNShape id="Participant_GO04_di" bpmnElement="Participant_GO04" isHorizontal="true"><dc:Bounds x="0" y="0" width="2772" height="704" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO04_SOL_di" bpmnElement="Lane_GO04_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO04_GOP_di" bpmnElement="Lane_GO04_GOP" isHorizontal="true"><dc:Bounds x="30" y="176" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO04_GOA_di" bpmnElement="Lane_GO04_GOA" isHorizontal="true"><dc:Bounds x="30" y="352" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO04_GOR_di" bpmnElement="Lane_GO04_GOR" isHorizontal="true"><dc:Bounds x="30" y="528" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_S1_di" bpmnElement="GO04_S1"><dc:Bounds x="132" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_S2_di" bpmnElement="GO04_S2"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_M1_di" bpmnElement="GO04_M1" isMarkerVisible="true"><dc:Bounds x="331" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E1_T1_di" bpmnElement="GO04_E1_T1"><dc:Bounds x="482" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E1_T2_di" bpmnElement="GO04_E1_T2"><dc:Bounds x="688" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E2_T1_di" bpmnElement="GO04_E2_T1"><dc:Bounds x="894" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E2_T2_di" bpmnElement="GO04_E2_T2"><dc:Bounds x="1100" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E2_G1_di" bpmnElement="GO04_E2_G1" isMarkerVisible="true"><dc:Bounds x="1361" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1274" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E2_T3_di" bpmnElement="GO04_E2_T3"><dc:Bounds x="1512" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E2_T4_di" bpmnElement="GO04_E2_T4"><dc:Bounds x="1718" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_F2_di" bpmnElement="GO04_F2"><dc:Bounds x="1986" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1949" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_M2_di" bpmnElement="GO04_M2" isMarkerVisible="true"><dc:Bounds x="2185" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_E2_T5_di" bpmnElement="GO04_E2_T5"><dc:Bounds x="2336" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO04_F1_di" bpmnElement="GO04_F1"><dc:Bounds x="2604" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2567" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GO04_Flow1_di" bpmnElement="GO04_Flow1"><di:waypoint x="168" y="616" /><di:waypoint x="331" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow2_di" bpmnElement="GO04_Flow2"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow3_di" bpmnElement="GO04_Flow3"><di:waypoint x="562" y="566" /><di:waypoint x="562" y="440" /><di:waypoint x="688" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow4_di" bpmnElement="GO04_Flow4"><di:waypoint x="848" y="440" /><di:waypoint x="894" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow5_di" bpmnElement="GO04_Flow5"><di:waypoint x="974" y="390" /><di:waypoint x="974" y="264" /><di:waypoint x="1100" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow6_di" bpmnElement="GO04_Flow6"><di:waypoint x="1260" y="264" /><di:waypoint x="1361" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow7_di" bpmnElement="GO04_Flow7"><di:waypoint x="1411" y="264" /><di:waypoint x="1512" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="1416" y="233" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow8_di" bpmnElement="GO04_Flow8"><di:waypoint x="1386" y="289" /><di:waypoint x="1386" y="616" /><di:waypoint x="1718" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="1392" y="294" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow9_di" bpmnElement="GO04_Flow9"><di:waypoint x="1878" y="616" /><di:waypoint x="1986" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow10_di" bpmnElement="GO04_Flow10"><di:waypoint x="1386" y="239" /><di:waypoint x="1386" y="185" /><di:waypoint x="2210" y="185" /><di:waypoint x="2210" y="591" /><bpmndi:BPMNLabel><dc:Bounds x="1392" y="167" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow11_di" bpmnElement="GO04_Flow11"><di:waypoint x="1672" y="264" /><di:waypoint x="2210" y="264" /><di:waypoint x="2210" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow12_di" bpmnElement="GO04_Flow12"><di:waypoint x="2496" y="616" /><di:waypoint x="2604" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow13_di" bpmnElement="GO04_Flow13"><di:waypoint x="381" y="616" /><di:waypoint x="482" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO04_Flow14_di" bpmnElement="GO04_Flow14"><di:waypoint x="2235" y="616" /><di:waypoint x="2336" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GO04_E1_di" bpmnElement="Group_GO04_E1"><dc:Bounds x="261" y="-44" width="602" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GO04_E2_di" bpmnElement="Group_GO04_E2"><dc:Bounds x="879" y="-44" width="1632" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="885" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_NE06" targetNamespace="urn:imts:modelo:circulo5-negocios" exporter="Ecossistema IMTS - fonte única do Círculo 5" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_NE06">
+    <bpmn:categoryValue id="CV_NE06_E1" value="1. Reunir a carteira e decidir o que tratar" />
+    <bpmn:categoryValue id="CV_NE06_E2" value="2. Negociar a renovação, a expansão, o aditivo ou a retenção" />
+    <bpmn:categoryValue id="CV_NE06_E3" value="3. Encerrar ou transferir os contratos da oferta ou da empresa que sai" />
+    <bpmn:categoryValue id="CV_NE06_E4" value="4. Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato" />
+    <bpmn:categoryValue id="CV_NE06_E5" value="5. Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_NE06">
+    <bpmn:participant id="Participant_NE06" name="NE-06 · Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar" processRef="Process_NE06" />
+    <bpmn:group id="Group_NE06_E1" categoryValueRef="CV_NE06_E1" />
+    <bpmn:group id="Group_NE06_E2" categoryValueRef="CV_NE06_E2" />
+    <bpmn:group id="Group_NE06_E3" categoryValueRef="CV_NE06_E3" />
+    <bpmn:group id="Group_NE06_E4" categoryValueRef="CV_NE06_E4" />
+    <bpmn:group id="Group_NE06_E5" categoryValueRef="CV_NE06_E5" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_NE06" name="Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar" isExecutable="false">
+    <bpmn:documentation>Fazer cada contrato de cliente ser renovado, ampliado ou aditado no tempo certo, com as concessões dentro das alçadas e com o escopo novo confirmado por Operações e pela Integração, a partir da oportunidade que Relações aponta, do pedido do cliente e do plano de conta; tratar o pedido de cancelamento com uma negociação de retenção e, perdido o cliente ou vencida a vigência sem renovação, formalizar o fim do contrato e avisar quem entrega, implanta e fatura; atender a contratação de órgão participante pela ata; e, quando uma oferta é encerrada ou uma empresa sai, encerrar ou transferir os contratos pelo plano de saída coordenado pela Integração. O vencimento próximo só avisa Relações, que decide se abre a renovação. Relações acompanha o sucesso do cliente; Negócios negocia e formaliza; o executivo assina.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_NE06">
+      <bpmn:lane id="Lane_NE06_REL" name="Relações">
+        <bpmn:flowNodeRef>NE06_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_EST" name="Estratégia">
+        <bpmn:flowNodeRef>NE06_S7</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_CLI" name="Cliente">
+        <bpmn:flowNodeRef>NE06_S5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_S6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T6</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_OPE" name="Operações">
+        <bpmn:flowNodeRef>NE06_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_ITG" name="Integração">
+        <bpmn:flowNodeRef>NE06_E2_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_IDE" name="Identidade">
+        <bpmn:flowNodeRef>NE06_E1_T6</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_GOV" name="Governança">
+        <bpmn:flowNodeRef>NE06_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T7</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>NE06_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_SOC" name="Sócios">
+        <bpmn:flowNodeRef>NE06_E2_T6</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_NEP" name="Negócios · pessoa">
+        <bpmn:flowNodeRef>NE06_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E2_G4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_M6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_NEA" name="Negócios · agente">
+        <bpmn:flowNodeRef>NE06_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E1_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E4_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE06_NER" name="Negócios · automação">
+        <bpmn:flowNodeRef>NE06_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_S4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E3_T9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E5_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E5_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E5_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E5_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_E5_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE06_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="NE06_S1" name="Oportunidade de renovação ou de expansão recebida"><bpmn:outgoing>NE06_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="NE06_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE06_S2" name="Vencimento de contrato próximo"><bpmn:outgoing>NE06_Flow2</bpmn:outgoing><bpmn:timerEventDefinition id="NE06_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE06_S3" name="Fim de vigência sem renovação"><bpmn:outgoing>NE06_Flow3</bpmn:outgoing><bpmn:timerEventDefinition id="NE06_S3_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE06_S4" name="Pedido de cliente com contrato vigente recebido"><bpmn:outgoing>NE06_Flow4</bpmn:outgoing><bpmn:messageEventDefinition id="NE06_S4_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE06_S5" name="Pedido de contratação pela ata recebido"><bpmn:outgoing>NE06_Flow5</bpmn:outgoing><bpmn:messageEventDefinition id="NE06_S5_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE06_S6" name="Pedido de cancelamento do cliente recebido"><bpmn:outgoing>NE06_Flow6</bpmn:outgoing><bpmn:messageEventDefinition id="NE06_S6_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE06_S7" name="Decisão de encerrar oferta, data de saída ou mandato recebido"><bpmn:outgoing>NE06_Flow7</bpmn:outgoing><bpmn:messageEventDefinition id="NE06_S7_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="NE06_M1"><bpmn:incoming>NE06_Flow1</bpmn:incoming><bpmn:incoming>NE06_Flow2</bpmn:incoming><bpmn:incoming>NE06_Flow3</bpmn:incoming><bpmn:incoming>NE06_Flow4</bpmn:incoming><bpmn:incoming>NE06_Flow5</bpmn:incoming><bpmn:incoming>NE06_Flow6</bpmn:incoming><bpmn:incoming>NE06_Flow7</bpmn:incoming><bpmn:outgoing>NE06_Flow67</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE06_E1_T1" name="Conferir o contrato, o saldo de ata e o que abriu o trabalho"><bpmn:documentation>Etapa 1: Reunir a carteira e decidir o que tratar. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow67</bpmn:incoming><bpmn:outgoing>NE06_Flow8</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="NE06_E1_G1" name="O que abriu o trabalho?"><bpmn:incoming>NE06_Flow8</bpmn:incoming><bpmn:outgoing>NE06_Flow9</bpmn:outgoing><bpmn:outgoing>NE06_Flow11</bpmn:outgoing><bpmn:outgoing>NE06_Flow13</bpmn:outgoing><bpmn:outgoing>NE06_Flow14</bpmn:outgoing><bpmn:outgoing>NE06_Flow15</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE06_E1_T2" name="Avisar Relações e a Gestão do vencimento próximo do contrato"><bpmn:documentation>Etapa 1: Reunir a carteira e decidir o que tratar. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow9</bpmn:incoming><bpmn:outgoing>NE06_Flow10</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE06_F7" name="Vencimento avisado a Relações"><bpmn:incoming>NE06_Flow10</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="NE06_E1_T3" name="Registrar o fim de vigência sem renovação e a data de fim"><bpmn:documentation>Etapa 1: Reunir a carteira e decidir o que tratar. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow11</bpmn:incoming><bpmn:outgoing>NE06_Flow12</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="NE06_E1_T4" name="Preparar a proposta de renovação, aditivo ou retenção com o histórico, o plano de conta e a tabela"><bpmn:documentation>Etapa 1: Reunir a carteira e decidir o que tratar. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow15</bpmn:incoming><bpmn:outgoing>NE06_Flow16</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="NE06_E1_G2" name="A proposta está conforme os padrões de identidade?"><bpmn:incoming>NE06_Flow16</bpmn:incoming><bpmn:outgoing>NE06_Flow17</bpmn:outgoing><bpmn:outgoing>NE06_Flow18</bpmn:outgoing><bpmn:outgoing>NE06_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="NE06_E1_T5" name="Corrigir a proposta de renovação no que não está conforme os padrões"><bpmn:documentation>Etapa 1: Reunir a carteira e decidir o que tratar. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow17</bpmn:incoming><bpmn:outgoing>NE06_Flow20</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="NE06_E1_T6" name="Responder à consulta sobre a proposta de renovação não coberta pelos padrões"><bpmn:documentation>Etapa 1: Reunir a carteira e decidir o que tratar. Executor: Outro círculo (Identidade). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow18</bpmn:incoming><bpmn:outgoing>NE06_Flow21</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="NE06_M2"><bpmn:incoming>NE06_Flow19</bpmn:incoming><bpmn:incoming>NE06_Flow20</bpmn:incoming><bpmn:incoming>NE06_Flow21</bpmn:incoming><bpmn:incoming>NE06_Flow27</bpmn:incoming><bpmn:outgoing>NE06_Flow68</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:manualTask id="NE06_E2_T1" name="Negociar com o cliente a renovação, a expansão, o aditivo ou a retenção"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow68</bpmn:incoming><bpmn:outgoing>NE06_Flow22</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="NE06_E2_G1" name="O escopo muda?"><bpmn:incoming>NE06_Flow22</bpmn:incoming><bpmn:outgoing>NE06_Flow23</bpmn:outgoing><bpmn:outgoing>NE06_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="NE06_E2_T2" name="Confirmar que consegue entregar o escopo renovado ou ampliado"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Outro círculo (Operações). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow23</bpmn:incoming><bpmn:outgoing>NE06_Flow24</bpmn:outgoing></bpmn:task>
+    <bpmn:task id="NE06_E2_T3" name="Confirmar o que a implantação do escopo novo pede"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Outro círculo (Integração). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow24</bpmn:incoming><bpmn:outgoing>NE06_Flow26</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="NE06_M3"><bpmn:incoming>NE06_Flow25</bpmn:incoming><bpmn:incoming>NE06_Flow26</bpmn:incoming><bpmn:outgoing>NE06_Flow69</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="NE06_E2_G2" name="Operações e a Integração conseguem entregar o escopo combinado?"><bpmn:incoming>NE06_Flow69</bpmn:incoming><bpmn:outgoing>NE06_Flow27</bpmn:outgoing><bpmn:outgoing>NE06_Flow28</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="NE06_E2_G3" name="A concessão da renovação está dentro da alçada de quem vende?"><bpmn:incoming>NE06_Flow28</bpmn:incoming><bpmn:outgoing>NE06_Flow29</bpmn:outgoing><bpmn:outgoing>NE06_Flow30</bpmn:outgoing><bpmn:outgoing>NE06_Flow32</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="NE06_E2_T4" name="Decidir a concessão da renovação acima da alçada de quem vende"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow29</bpmn:incoming><bpmn:outgoing>NE06_Flow33</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="NE06_E2_T5" name="Levar a concessão da renovação à decisão dos sócios"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow30</bpmn:incoming><bpmn:outgoing>NE06_Flow31</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:manualTask id="NE06_E2_T6" name="Decidir a concessão da renovação pelos sócios"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow31</bpmn:incoming><bpmn:outgoing>NE06_Flow34</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="NE06_M4"><bpmn:incoming>NE06_Flow32</bpmn:incoming><bpmn:incoming>NE06_Flow33</bpmn:incoming><bpmn:incoming>NE06_Flow34</bpmn:incoming><bpmn:outgoing>NE06_Flow70</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="NE06_E2_G4" name="Qual é o resultado com o cliente?"><bpmn:incoming>NE06_Flow70</bpmn:incoming><bpmn:outgoing>NE06_Flow35</bpmn:outgoing><bpmn:outgoing>NE06_Flow36</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE06_E2_T7" name="Registrar a perda, o motivo e a data de fim do contrato"><bpmn:documentation>Etapa 2: Negociar a renovação, a expansão, o aditivo ou a retenção. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>NE06_Flow36</bpmn:incoming><bpmn:outgoing>NE06_Flow37</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE06_E3_T1" name="Listar os contratos, as atas e as propostas afetados"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow14</bpmn:incoming><bpmn:outgoing>NE06_Flow38</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="NE06_E3_G1" name="Há data de saída confirmada?"><bpmn:incoming>NE06_Flow38</bpmn:incoming><bpmn:outgoing>NE06_Flow39</bpmn:outgoing><bpmn:outgoing>NE06_Flow40</bpmn:outgoing><bpmn:outgoing>NE06_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE06_E3_T2" name="Suspender novas propostas da oferta ou da empresa que sai"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow39</bpmn:incoming><bpmn:outgoing>NE06_Flow44</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE06_E3_T3" name="Mandar à Integração a lista de contratos afetados, sem avisar os clientes"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow40</bpmn:incoming><bpmn:outgoing>NE06_Flow41</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE06_F4" name="Contratos afetados listados, à espera da data de saída"><bpmn:incoming>NE06_Flow41</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="NE06_E3_T4" name="Registrar o mandato e os contratos que ele alcança, sob sigilo"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow42</bpmn:incoming><bpmn:outgoing>NE06_Flow43</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE06_F5" name="Mandato registrado, sem mexer nos contratos"><bpmn:incoming>NE06_Flow43</bpmn:incoming></bpmn:endEvent>
+    <bpmn:manualTask id="NE06_E3_T5" name="Executar a parte de Negócios do plano de saída: encerrar, transferir ou manter cada contrato"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow44</bpmn:incoming><bpmn:outgoing>NE06_Flow45</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:manualTask id="NE06_E3_T6" name="Encerrar com os clientes as propostas e as negociações em curso"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow45</bpmn:incoming><bpmn:outgoing>NE06_Flow46</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:task id="NE06_E3_T7" name="Conferir o encerramento ou a transferência de cada contrato"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow46</bpmn:incoming><bpmn:outgoing>NE06_Flow47</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="NE06_E3_G2" name="Os contratos foram encerrados ou transferidos como planejado?"><bpmn:incoming>NE06_Flow47</bpmn:incoming><bpmn:outgoing>NE06_Flow48</bpmn:outgoing><bpmn:outgoing>NE06_Flow50</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE06_E3_T8" name="Registrar os contratos encerrados ou transferidos e avisar a Integração e a Gestão"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow48</bpmn:incoming><bpmn:outgoing>NE06_Flow49</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE06_F3" name="Contratos da saída encerrados ou transferidos"><bpmn:incoming>NE06_Flow49</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="NE06_E3_T9" name="Apontar a pendência à Integração e ao executivo"><bpmn:documentation>Etapa 3: Encerrar ou transferir os contratos da oferta ou da empresa que sai. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow50</bpmn:incoming><bpmn:outgoing>NE06_Flow51</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE06_F6" name="Pendência da saída apontada"><bpmn:incoming>NE06_Flow51</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="NE06_M5"><bpmn:incoming>NE06_Flow12</bpmn:incoming><bpmn:incoming>NE06_Flow13</bpmn:incoming><bpmn:incoming>NE06_Flow35</bpmn:incoming><bpmn:incoming>NE06_Flow37</bpmn:incoming><bpmn:outgoing>NE06_Flow71</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="NE06_E4_T1" name="Redigir a renovação, o aditivo, o contrato pela ata ou o termo de encerramento, no modelo"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow71</bpmn:incoming><bpmn:outgoing>NE06_Flow52</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="NE06_E4_G1" name="O documento foge do modelo?"><bpmn:incoming>NE06_Flow52</bpmn:incoming><bpmn:outgoing>NE06_Flow53</bpmn:outgoing><bpmn:outgoing>NE06_Flow54</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="NE06_E4_T2" name="Revisar as cláusulas fora do modelo e o risco do aditivo"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow53</bpmn:incoming><bpmn:outgoing>NE06_Flow55</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="NE06_M6"><bpmn:incoming>NE06_Flow54</bpmn:incoming><bpmn:incoming>NE06_Flow55</bpmn:incoming><bpmn:outgoing>NE06_Flow72</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="NE06_E4_T3" name="Conferir o documento final com o que foi acordado ou com a ata"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow72</bpmn:incoming><bpmn:outgoing>NE06_Flow56</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="NE06_E4_T4" name="Conferir os poderes de quem assina o documento"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow56</bpmn:incoming><bpmn:outgoing>NE06_Flow57</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="NE06_E4_T5" name="Assinar o documento em nome da empresa"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow57</bpmn:incoming><bpmn:outgoing>NE06_Flow58</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="NE06_E4_T6" name="Assinar o documento pelo cliente, quando a forma pede"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow58</bpmn:incoming><bpmn:outgoing>NE06_Flow59</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="NE06_E4_T7" name="Guardar o documento assinado"><bpmn:documentation>Etapa 4: Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>NE06_Flow59</bpmn:incoming><bpmn:outgoing>NE06_Flow60</bpmn:outgoing></bpmn:task>
+    <bpmn:scriptTask id="NE06_E5_T1" name="Registrar o novo escopo, o valor, a vigência e o vencimento, ou a data de fim"><bpmn:documentation>Etapa 5: Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow60</bpmn:incoming><bpmn:outgoing>NE06_Flow61</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE06_E5_T2" name="Abater do saldo da ata a contratação feita por ela, quando for o caso"><bpmn:documentation>Etapa 5: Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow61</bpmn:incoming><bpmn:outgoing>NE06_Flow62</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="NE06_E5_G1" name="O contrato continua?"><bpmn:incoming>NE06_Flow62</bpmn:incoming><bpmn:outgoing>NE06_Flow63</bpmn:outgoing><bpmn:outgoing>NE06_Flow65</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE06_E5_T3" name="Avisar Relações, Operações, a Integração e a Gestão do que mudou no contrato"><bpmn:documentation>Etapa 5: Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow63</bpmn:incoming><bpmn:outgoing>NE06_Flow64</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE06_E5_T4" name="Avisar Relações, Operações, a Integração e a Gestão do fim do contrato"><bpmn:documentation>Etapa 5: Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>NE06_Flow65</bpmn:incoming><bpmn:outgoing>NE06_Flow66</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE06_F2" name="Contrato encerrado, com o fim formalizado e avisado"><bpmn:incoming>NE06_Flow66</bpmn:incoming></bpmn:endEvent>
+    <bpmn:endEvent id="NE06_F1" name="Renovação, aditivo ou contratação assinada e registrada"><bpmn:incoming>NE06_Flow64</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="NE06_Flow1" sourceRef="NE06_S1" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow2" sourceRef="NE06_S2" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow3" sourceRef="NE06_S3" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow4" sourceRef="NE06_S4" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow5" sourceRef="NE06_S5" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow6" sourceRef="NE06_S6" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow7" sourceRef="NE06_S7" targetRef="NE06_M1" />
+    <bpmn:sequenceFlow id="NE06_Flow8" sourceRef="NE06_E1_T1" targetRef="NE06_E1_G1" />
+    <bpmn:sequenceFlow id="NE06_Flow9" name="Vencimento próximo de contrato" sourceRef="NE06_E1_G1" targetRef="NE06_E1_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Vencimento próximo de contrato</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow10" sourceRef="NE06_E1_T2" targetRef="NE06_F7" />
+    <bpmn:sequenceFlow id="NE06_Flow11" name="Fim de vigência sem renovação" sourceRef="NE06_E1_G1" targetRef="NE06_E1_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Fim de vigência sem renovação</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow12" sourceRef="NE06_E1_T3" targetRef="NE06_M5" />
+    <bpmn:sequenceFlow id="NE06_Flow13" name="Pedido de contratação pela ata" sourceRef="NE06_E1_G1" targetRef="NE06_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Pedido de contratação pela ata</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow14" name="Oferta encerrada, empresa que sai ou mandato" sourceRef="NE06_E1_G1" targetRef="NE06_E3_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Oferta encerrada, empresa que sai ou mandato</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow15" name="Oportunidade de renovação ou de expansão, pedido de aditivo ou pedido de cancelamento" sourceRef="NE06_E1_G1" targetRef="NE06_E1_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Oportunidade de renovação ou de expansão, pedido de aditivo ou pedido de cancelamento</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow16" sourceRef="NE06_E1_T4" targetRef="NE06_E1_G2" />
+    <bpmn:sequenceFlow id="NE06_Flow17" name="Não" sourceRef="NE06_E1_G2" targetRef="NE06_E1_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow18" name="Há ponto que os padrões não cobrem" sourceRef="NE06_E1_G2" targetRef="NE06_E1_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Há ponto que os padrões não cobrem</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow19" name="Sim" sourceRef="NE06_E1_G2" targetRef="NE06_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow20" sourceRef="NE06_E1_T5" targetRef="NE06_M2" />
+    <bpmn:sequenceFlow id="NE06_Flow21" sourceRef="NE06_E1_T6" targetRef="NE06_M2" />
+    <bpmn:sequenceFlow id="NE06_Flow22" sourceRef="NE06_E2_T1" targetRef="NE06_E2_G1" />
+    <bpmn:sequenceFlow id="NE06_Flow23" name="Sim" sourceRef="NE06_E2_G1" targetRef="NE06_E2_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow24" sourceRef="NE06_E2_T2" targetRef="NE06_E2_T3" />
+    <bpmn:sequenceFlow id="NE06_Flow25" name="Não" sourceRef="NE06_E2_G1" targetRef="NE06_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow26" sourceRef="NE06_E2_T3" targetRef="NE06_M3" />
+    <bpmn:sequenceFlow id="NE06_Flow27" name="Não, renegociar o escopo" sourceRef="NE06_E2_G2" targetRef="NE06_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, renegociar o escopo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow28" name="Sim, ou o escopo não muda" sourceRef="NE06_E2_G2" targetRef="NE06_E2_G3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, ou o escopo não muda</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow29" name="Acima, dentro da alçada do executivo" sourceRef="NE06_E2_G3" targetRef="NE06_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Acima, dentro da alçada do executivo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow30" name="Acima da alçada do executivo" sourceRef="NE06_E2_G3" targetRef="NE06_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Acima da alçada do executivo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow31" sourceRef="NE06_E2_T5" targetRef="NE06_E2_T6" />
+    <bpmn:sequenceFlow id="NE06_Flow32" name="Sim, ou não há concessão" sourceRef="NE06_E2_G3" targetRef="NE06_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, ou não há concessão</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow33" sourceRef="NE06_E2_T4" targetRef="NE06_M4" />
+    <bpmn:sequenceFlow id="NE06_Flow34" sourceRef="NE06_E2_T6" targetRef="NE06_M4" />
+    <bpmn:sequenceFlow id="NE06_Flow35" name="Renovou, ampliou, aditou ou ficou" sourceRef="NE06_E2_G4" targetRef="NE06_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Renovou, ampliou, aditou ou ficou</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow36" name="Não renovou ou cancelou" sourceRef="NE06_E2_G4" targetRef="NE06_E2_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não renovou ou cancelou</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow37" sourceRef="NE06_E2_T7" targetRef="NE06_M5" />
+    <bpmn:sequenceFlow id="NE06_Flow38" sourceRef="NE06_E3_T1" targetRef="NE06_E3_G1" />
+    <bpmn:sequenceFlow id="NE06_Flow39" name="Sim, ou venda fechada ou encerramento de empresa" sourceRef="NE06_E3_G1" targetRef="NE06_E3_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, ou venda fechada ou encerramento de empresa</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow40" name="Não: decisão de encerrar, ainda sem data" sourceRef="NE06_E3_G1" targetRef="NE06_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: decisão de encerrar, ainda sem data</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow41" sourceRef="NE06_E3_T3" targetRef="NE06_F4" />
+    <bpmn:sequenceFlow id="NE06_Flow42" name="Mandato de busca de comprador, de criação ou de mudança de mandato" sourceRef="NE06_E3_G1" targetRef="NE06_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Mandato de busca de comprador, de criação ou de mudança de mandato</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow43" sourceRef="NE06_E3_T4" targetRef="NE06_F5" />
+    <bpmn:sequenceFlow id="NE06_Flow44" sourceRef="NE06_E3_T2" targetRef="NE06_E3_T5" />
+    <bpmn:sequenceFlow id="NE06_Flow45" sourceRef="NE06_E3_T5" targetRef="NE06_E3_T6" />
+    <bpmn:sequenceFlow id="NE06_Flow46" sourceRef="NE06_E3_T6" targetRef="NE06_E3_T7" />
+    <bpmn:sequenceFlow id="NE06_Flow47" sourceRef="NE06_E3_T7" targetRef="NE06_E3_G2" />
+    <bpmn:sequenceFlow id="NE06_Flow48" name="Sim" sourceRef="NE06_E3_G2" targetRef="NE06_E3_T8"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow49" sourceRef="NE06_E3_T8" targetRef="NE06_F3" />
+    <bpmn:sequenceFlow id="NE06_Flow50" name="Não: há pendência" sourceRef="NE06_E3_G2" targetRef="NE06_E3_T9"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: há pendência</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow51" sourceRef="NE06_E3_T9" targetRef="NE06_F6" />
+    <bpmn:sequenceFlow id="NE06_Flow52" sourceRef="NE06_E4_T1" targetRef="NE06_E4_G1" />
+    <bpmn:sequenceFlow id="NE06_Flow53" name="Sim" sourceRef="NE06_E4_G1" targetRef="NE06_E4_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow54" name="Não" sourceRef="NE06_E4_G1" targetRef="NE06_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow55" sourceRef="NE06_E4_T2" targetRef="NE06_M6" />
+    <bpmn:sequenceFlow id="NE06_Flow56" sourceRef="NE06_E4_T3" targetRef="NE06_E4_T4" />
+    <bpmn:sequenceFlow id="NE06_Flow57" sourceRef="NE06_E4_T4" targetRef="NE06_E4_T5" />
+    <bpmn:sequenceFlow id="NE06_Flow58" sourceRef="NE06_E4_T5" targetRef="NE06_E4_T6" />
+    <bpmn:sequenceFlow id="NE06_Flow59" sourceRef="NE06_E4_T6" targetRef="NE06_E4_T7" />
+    <bpmn:sequenceFlow id="NE06_Flow60" sourceRef="NE06_E4_T7" targetRef="NE06_E5_T1" />
+    <bpmn:sequenceFlow id="NE06_Flow61" sourceRef="NE06_E5_T1" targetRef="NE06_E5_T2" />
+    <bpmn:sequenceFlow id="NE06_Flow62" sourceRef="NE06_E5_T2" targetRef="NE06_E5_G1" />
+    <bpmn:sequenceFlow id="NE06_Flow63" name="Sim" sourceRef="NE06_E5_G1" targetRef="NE06_E5_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow64" sourceRef="NE06_E5_T3" targetRef="NE06_F1" />
+    <bpmn:sequenceFlow id="NE06_Flow65" name="Não: contrato encerrado" sourceRef="NE06_E5_G1" targetRef="NE06_E5_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: contrato encerrado</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE06_Flow66" sourceRef="NE06_E5_T4" targetRef="NE06_F2" />
+    <bpmn:sequenceFlow id="NE06_Flow67" sourceRef="NE06_M1" targetRef="NE06_E1_T1" />
+    <bpmn:sequenceFlow id="NE06_Flow68" sourceRef="NE06_M2" targetRef="NE06_E2_T1" />
+    <bpmn:sequenceFlow id="NE06_Flow69" sourceRef="NE06_M3" targetRef="NE06_E2_G2" />
+    <bpmn:sequenceFlow id="NE06_Flow70" sourceRef="NE06_M4" targetRef="NE06_E2_G4" />
+    <bpmn:sequenceFlow id="NE06_Flow71" sourceRef="NE06_M5" targetRef="NE06_E4_T1" />
+    <bpmn:sequenceFlow id="NE06_Flow72" sourceRef="NE06_M6" targetRef="NE06_E4_T3" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_NE06">
+    <bpmndi:BPMNPlane id="Plane_NE06" bpmnElement="Collab_NE06">
+      <bpmndi:BPMNShape id="Participant_NE06_di" bpmnElement="Participant_NE06" isHorizontal="true"><dc:Bounds x="0" y="0" width="11860" height="2112" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_REL_di" bpmnElement="Lane_NE06_REL" isHorizontal="true"><dc:Bounds x="30" y="0" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_EST_di" bpmnElement="Lane_NE06_EST" isHorizontal="true"><dc:Bounds x="30" y="176" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_CLI_di" bpmnElement="Lane_NE06_CLI" isHorizontal="true"><dc:Bounds x="30" y="352" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_OPE_di" bpmnElement="Lane_NE06_OPE" isHorizontal="true"><dc:Bounds x="30" y="528" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_ITG_di" bpmnElement="Lane_NE06_ITG" isHorizontal="true"><dc:Bounds x="30" y="704" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_IDE_di" bpmnElement="Lane_NE06_IDE" isHorizontal="true"><dc:Bounds x="30" y="880" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_GOV_di" bpmnElement="Lane_NE06_GOV" isHorizontal="true"><dc:Bounds x="30" y="1056" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_EXE_di" bpmnElement="Lane_NE06_EXE" isHorizontal="true"><dc:Bounds x="30" y="1232" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_SOC_di" bpmnElement="Lane_NE06_SOC" isHorizontal="true"><dc:Bounds x="30" y="1408" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_NEP_di" bpmnElement="Lane_NE06_NEP" isHorizontal="true"><dc:Bounds x="30" y="1584" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_NEA_di" bpmnElement="Lane_NE06_NEA" isHorizontal="true"><dc:Bounds x="30" y="1760" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE06_NER_di" bpmnElement="Lane_NE06_NER" isHorizontal="true"><dc:Bounds x="30" y="1936" width="11830" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S1_di" bpmnElement="NE06_S1"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S2_di" bpmnElement="NE06_S2"><dc:Bounds x="156" y="1952" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1950" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S3_di" bpmnElement="NE06_S3"><dc:Bounds x="156" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="2004" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S4_di" bpmnElement="NE06_S4"><dc:Bounds x="156" y="2060" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="2058" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S5_di" bpmnElement="NE06_S5"><dc:Bounds x="156" y="382" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="380" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S6_di" bpmnElement="NE06_S6"><dc:Bounds x="156" y="462" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="460" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_S7_di" bpmnElement="NE06_S7"><dc:Bounds x="156" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="244" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_M1_di" bpmnElement="NE06_M1" isMarkerVisible="true"><dc:Bounds x="355" y="1999" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_T1_di" bpmnElement="NE06_E1_T1"><dc:Bounds x="506" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_G1_di" bpmnElement="NE06_E1_G1" isMarkerVisible="true"><dc:Bounds x="767" y="1999" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="680" y="2051" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_T2_di" bpmnElement="NE06_E1_T2"><dc:Bounds x="918" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F7_di" bpmnElement="NE06_F7"><dc:Bounds x="1186" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1149" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_T3_di" bpmnElement="NE06_E1_T3"><dc:Bounds x="1330" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_T4_di" bpmnElement="NE06_E1_T4"><dc:Bounds x="1536" y="1798" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_G2_di" bpmnElement="NE06_E1_G2" isMarkerVisible="true"><dc:Bounds x="1797" y="1823" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1710" y="1875" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_T5_di" bpmnElement="NE06_E1_T5"><dc:Bounds x="1948" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E1_T6_di" bpmnElement="NE06_E1_T6"><dc:Bounds x="2154" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_M2_di" bpmnElement="NE06_M2" isMarkerVisible="true"><dc:Bounds x="2415" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T1_di" bpmnElement="NE06_E2_T1"><dc:Bounds x="2566" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_G1_di" bpmnElement="NE06_E2_G1" isMarkerVisible="true"><dc:Bounds x="2827" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2740" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T2_di" bpmnElement="NE06_E2_T2"><dc:Bounds x="2978" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T3_di" bpmnElement="NE06_E2_T3"><dc:Bounds x="3184" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_M3_di" bpmnElement="NE06_M3" isMarkerVisible="true"><dc:Bounds x="3445" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_G2_di" bpmnElement="NE06_E2_G2" isMarkerVisible="true"><dc:Bounds x="3651" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3564" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_G3_di" bpmnElement="NE06_E2_G3" isMarkerVisible="true"><dc:Bounds x="3857" y="1999" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3770" y="2051" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T4_di" bpmnElement="NE06_E2_T4"><dc:Bounds x="4008" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T5_di" bpmnElement="NE06_E2_T5"><dc:Bounds x="4214" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T6_di" bpmnElement="NE06_E2_T6"><dc:Bounds x="4420" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_M4_di" bpmnElement="NE06_M4" isMarkerVisible="true"><dc:Bounds x="4681" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_G4_di" bpmnElement="NE06_E2_G4" isMarkerVisible="true"><dc:Bounds x="4887" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4800" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E2_T7_di" bpmnElement="NE06_E2_T7"><dc:Bounds x="5038" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T1_di" bpmnElement="NE06_E3_T1"><dc:Bounds x="5244" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_G1_di" bpmnElement="NE06_E3_G1" isMarkerVisible="true"><dc:Bounds x="5505" y="1999" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5418" y="2051" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T2_di" bpmnElement="NE06_E3_T2"><dc:Bounds x="5656" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T3_di" bpmnElement="NE06_E3_T3"><dc:Bounds x="5862" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F4_di" bpmnElement="NE06_F4"><dc:Bounds x="6130" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6093" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T4_di" bpmnElement="NE06_E3_T4"><dc:Bounds x="6274" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F5_di" bpmnElement="NE06_F5"><dc:Bounds x="6542" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6505" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T5_di" bpmnElement="NE06_E3_T5"><dc:Bounds x="6686" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T6_di" bpmnElement="NE06_E3_T6"><dc:Bounds x="6892" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T7_di" bpmnElement="NE06_E3_T7"><dc:Bounds x="7098" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_G2_di" bpmnElement="NE06_E3_G2" isMarkerVisible="true"><dc:Bounds x="7359" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="7272" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T8_di" bpmnElement="NE06_E3_T8"><dc:Bounds x="7510" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F3_di" bpmnElement="NE06_F3"><dc:Bounds x="7778" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7741" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E3_T9_di" bpmnElement="NE06_E3_T9"><dc:Bounds x="7922" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F6_di" bpmnElement="NE06_F6"><dc:Bounds x="8190" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="8153" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_M5_di" bpmnElement="NE06_M5" isMarkerVisible="true"><dc:Bounds x="8389" y="1823" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T1_di" bpmnElement="NE06_E4_T1"><dc:Bounds x="8540" y="1798" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_G1_di" bpmnElement="NE06_E4_G1" isMarkerVisible="true"><dc:Bounds x="8801" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="8714" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T2_di" bpmnElement="NE06_E4_T2"><dc:Bounds x="8952" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_M6_di" bpmnElement="NE06_M6" isMarkerVisible="true"><dc:Bounds x="9213" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T3_di" bpmnElement="NE06_E4_T3"><dc:Bounds x="9364" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T4_di" bpmnElement="NE06_E4_T4"><dc:Bounds x="9570" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T5_di" bpmnElement="NE06_E4_T5"><dc:Bounds x="9776" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T6_di" bpmnElement="NE06_E4_T6"><dc:Bounds x="9982" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E4_T7_di" bpmnElement="NE06_E4_T7"><dc:Bounds x="10188" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E5_T1_di" bpmnElement="NE06_E5_T1"><dc:Bounds x="10394" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E5_T2_di" bpmnElement="NE06_E5_T2"><dc:Bounds x="10600" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E5_G1_di" bpmnElement="NE06_E5_G1" isMarkerVisible="true"><dc:Bounds x="10861" y="1999" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="10774" y="2051" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E5_T3_di" bpmnElement="NE06_E5_T3"><dc:Bounds x="11012" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_E5_T4_di" bpmnElement="NE06_E5_T4"><dc:Bounds x="11218" y="1974" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F2_di" bpmnElement="NE06_F2"><dc:Bounds x="11486" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="11449" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE06_F1_di" bpmnElement="NE06_F1"><dc:Bounds x="11692" y="2006" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="11655" y="2047" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="NE06_Flow1_di" bpmnElement="NE06_Flow1"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="1999" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow2_di" bpmnElement="NE06_Flow2"><di:waypoint x="192" y="1970" /><di:waypoint x="380" y="1970" /><di:waypoint x="380" y="1999" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow3_di" bpmnElement="NE06_Flow3"><di:waypoint x="192" y="2024" /><di:waypoint x="355" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow4_di" bpmnElement="NE06_Flow4"><di:waypoint x="192" y="2078" /><di:waypoint x="380" y="2078" /><di:waypoint x="380" y="2049" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow5_di" bpmnElement="NE06_Flow5"><di:waypoint x="192" y="400" /><di:waypoint x="380" y="400" /><di:waypoint x="380" y="1999" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow6_di" bpmnElement="NE06_Flow6"><di:waypoint x="192" y="480" /><di:waypoint x="380" y="480" /><di:waypoint x="380" y="1999" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow7_di" bpmnElement="NE06_Flow7"><di:waypoint x="192" y="264" /><di:waypoint x="380" y="264" /><di:waypoint x="380" y="1999" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow8_di" bpmnElement="NE06_Flow8"><di:waypoint x="666" y="2024" /><di:waypoint x="767" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow9_di" bpmnElement="NE06_Flow9"><di:waypoint x="817" y="2024" /><di:waypoint x="918" y="2024" /><bpmndi:BPMNLabel><dc:Bounds x="822" y="1993" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow10_di" bpmnElement="NE06_Flow10"><di:waypoint x="1078" y="2024" /><di:waypoint x="1186" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow11_di" bpmnElement="NE06_Flow11"><di:waypoint x="792" y="1999" /><di:waypoint x="792" y="1945" /><di:waypoint x="1410" y="1945" /><di:waypoint x="1410" y="1974" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1914" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow12_di" bpmnElement="NE06_Flow12"><di:waypoint x="1410" y="2074" /><di:waypoint x="1410" y="2098" /><di:waypoint x="8414" y="2098" /><di:waypoint x="8414" y="1873" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow13_di" bpmnElement="NE06_Flow13"><di:waypoint x="792" y="1999" /><di:waypoint x="792" y="1951" /><di:waypoint x="8414" y="1951" /><di:waypoint x="8414" y="1873" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1955" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow14_di" bpmnElement="NE06_Flow14"><di:waypoint x="792" y="1999" /><di:waypoint x="792" y="1945" /><di:waypoint x="5324" y="1945" /><di:waypoint x="5324" y="1974" /><bpmndi:BPMNLabel><dc:Bounds x="5330" y="1951" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow15_di" bpmnElement="NE06_Flow15"><di:waypoint x="792" y="2049" /><di:waypoint x="792" y="2104" /><di:waypoint x="1616" y="2104" /><di:waypoint x="1616" y="1898" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="2054" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow16_di" bpmnElement="NE06_Flow16"><di:waypoint x="1696" y="1848" /><di:waypoint x="1797" y="1848" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow17_di" bpmnElement="NE06_Flow17"><di:waypoint x="1822" y="1823" /><di:waypoint x="1822" y="1672" /><di:waypoint x="1948" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="1805" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow18_di" bpmnElement="NE06_Flow18"><di:waypoint x="1847" y="1848" /><di:waypoint x="2130" y="1848" /><di:waypoint x="2130" y="968" /><di:waypoint x="2154" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="2136" y="1815" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow19_di" bpmnElement="NE06_Flow19"><di:waypoint x="1822" y="1873" /><di:waypoint x="1822" y="1928" /><di:waypoint x="2440" y="1928" /><di:waypoint x="2440" y="1697" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="1878" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow20_di" bpmnElement="NE06_Flow20"><di:waypoint x="2108" y="1672" /><di:waypoint x="2415" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow21_di" bpmnElement="NE06_Flow21"><di:waypoint x="2234" y="1018" /><di:waypoint x="2234" y="1672" /><di:waypoint x="2415" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow22_di" bpmnElement="NE06_Flow22"><di:waypoint x="2726" y="1672" /><di:waypoint x="2827" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow23_di" bpmnElement="NE06_Flow23"><di:waypoint x="2852" y="1647" /><di:waypoint x="2852" y="616" /><di:waypoint x="2978" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="2858" y="1629" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow24_di" bpmnElement="NE06_Flow24"><di:waypoint x="3058" y="666" /><di:waypoint x="3058" y="792" /><di:waypoint x="3184" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow25_di" bpmnElement="NE06_Flow25"><di:waypoint x="2877" y="1672" /><di:waypoint x="3445" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="2882" y="1654" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow26_di" bpmnElement="NE06_Flow26"><di:waypoint x="3264" y="842" /><di:waypoint x="3264" y="1672" /><di:waypoint x="3445" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow27_di" bpmnElement="NE06_Flow27"><di:waypoint x="3676" y="1647" /><di:waypoint x="3676" y="1593" /><di:waypoint x="2440" y="1593" /><di:waypoint x="2440" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="3682" y="1616" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow28_di" bpmnElement="NE06_Flow28"><di:waypoint x="3676" y="1697" /><di:waypoint x="3676" y="2024" /><di:waypoint x="3857" y="2024" /><bpmndi:BPMNLabel><dc:Bounds x="3682" y="1702" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow29_di" bpmnElement="NE06_Flow29"><di:waypoint x="3882" y="1999" /><di:waypoint x="3882" y="1320" /><di:waypoint x="4008" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="3888" y="1968" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow30_di" bpmnElement="NE06_Flow30"><di:waypoint x="3907" y="2024" /><di:waypoint x="4190" y="2024" /><di:waypoint x="4190" y="1144" /><di:waypoint x="4214" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="4196" y="1991" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow31_di" bpmnElement="NE06_Flow31"><di:waypoint x="4294" y="1194" /><di:waypoint x="4294" y="1496" /><di:waypoint x="4420" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow32_di" bpmnElement="NE06_Flow32"><di:waypoint x="3882" y="2049" /><di:waypoint x="3882" y="2104" /><di:waypoint x="4706" y="2104" /><di:waypoint x="4706" y="1697" /><bpmndi:BPMNLabel><dc:Bounds x="3888" y="2054" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow33_di" bpmnElement="NE06_Flow33"><di:waypoint x="4088" y="1370" /><di:waypoint x="4088" y="1672" /><di:waypoint x="4681" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow34_di" bpmnElement="NE06_Flow34"><di:waypoint x="4500" y="1546" /><di:waypoint x="4500" y="1672" /><di:waypoint x="4681" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow35_di" bpmnElement="NE06_Flow35"><di:waypoint x="4937" y="1672" /><di:waypoint x="4961" y="1672" /><di:waypoint x="4961" y="1848" /><di:waypoint x="8389" y="1848" /><bpmndi:BPMNLabel><dc:Bounds x="4942" y="1641" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow36_di" bpmnElement="NE06_Flow36"><di:waypoint x="4912" y="1697" /><di:waypoint x="4912" y="2024" /><di:waypoint x="5038" y="2024" /><bpmndi:BPMNLabel><dc:Bounds x="4918" y="1702" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow37_di" bpmnElement="NE06_Flow37"><di:waypoint x="5118" y="1974" /><di:waypoint x="5118" y="1848" /><di:waypoint x="8389" y="1848" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow38_di" bpmnElement="NE06_Flow38"><di:waypoint x="5404" y="2024" /><di:waypoint x="5505" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow39_di" bpmnElement="NE06_Flow39"><di:waypoint x="5555" y="2024" /><di:waypoint x="5656" y="2024" /><bpmndi:BPMNLabel><dc:Bounds x="5560" y="1993" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow40_di" bpmnElement="NE06_Flow40"><di:waypoint x="5530" y="1999" /><di:waypoint x="5530" y="1945" /><di:waypoint x="5942" y="1945" /><di:waypoint x="5942" y="1974" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="1914" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow41_di" bpmnElement="NE06_Flow41"><di:waypoint x="6022" y="2024" /><di:waypoint x="6130" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow42_di" bpmnElement="NE06_Flow42"><di:waypoint x="5530" y="2049" /><di:waypoint x="5530" y="2104" /><di:waypoint x="6354" y="2104" /><di:waypoint x="6354" y="2074" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="2054" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow43_di" bpmnElement="NE06_Flow43"><di:waypoint x="6434" y="2024" /><di:waypoint x="6542" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow44_di" bpmnElement="NE06_Flow44"><di:waypoint x="5736" y="1974" /><di:waypoint x="5736" y="1672" /><di:waypoint x="6686" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow45_di" bpmnElement="NE06_Flow45"><di:waypoint x="6846" y="1672" /><di:waypoint x="6892" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow46_di" bpmnElement="NE06_Flow46"><di:waypoint x="6972" y="1622" /><di:waypoint x="6972" y="1144" /><di:waypoint x="7098" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow47_di" bpmnElement="NE06_Flow47"><di:waypoint x="7178" y="1194" /><di:waypoint x="7178" y="1672" /><di:waypoint x="7359" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow48_di" bpmnElement="NE06_Flow48"><di:waypoint x="7384" y="1697" /><di:waypoint x="7384" y="2024" /><di:waypoint x="7510" y="2024" /><bpmndi:BPMNLabel><dc:Bounds x="7390" y="1702" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow49_di" bpmnElement="NE06_Flow49"><di:waypoint x="7670" y="2024" /><di:waypoint x="7778" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow50_di" bpmnElement="NE06_Flow50"><di:waypoint x="7409" y="1672" /><di:waypoint x="8002" y="1672" /><di:waypoint x="8002" y="1974" /><bpmndi:BPMNLabel><dc:Bounds x="7414" y="1641" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow51_di" bpmnElement="NE06_Flow51"><di:waypoint x="8082" y="2024" /><di:waypoint x="8190" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow52_di" bpmnElement="NE06_Flow52"><di:waypoint x="8620" y="1798" /><di:waypoint x="8620" y="1672" /><di:waypoint x="8801" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow53_di" bpmnElement="NE06_Flow53"><di:waypoint x="8826" y="1647" /><di:waypoint x="8826" y="1144" /><di:waypoint x="8952" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="8832" y="1629" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow54_di" bpmnElement="NE06_Flow54"><di:waypoint x="8851" y="1672" /><di:waypoint x="9213" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="8856" y="1654" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow55_di" bpmnElement="NE06_Flow55"><di:waypoint x="9032" y="1194" /><di:waypoint x="9032" y="1672" /><di:waypoint x="9213" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow56_di" bpmnElement="NE06_Flow56"><di:waypoint x="9444" y="1622" /><di:waypoint x="9444" y="1144" /><di:waypoint x="9570" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow57_di" bpmnElement="NE06_Flow57"><di:waypoint x="9650" y="1194" /><di:waypoint x="9650" y="1320" /><di:waypoint x="9776" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow58_di" bpmnElement="NE06_Flow58"><di:waypoint x="9856" y="1270" /><di:waypoint x="9856" y="440" /><di:waypoint x="9982" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow59_di" bpmnElement="NE06_Flow59"><di:waypoint x="10062" y="490" /><di:waypoint x="10062" y="1144" /><di:waypoint x="10188" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow60_di" bpmnElement="NE06_Flow60"><di:waypoint x="10268" y="1194" /><di:waypoint x="10268" y="2024" /><di:waypoint x="10394" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow61_di" bpmnElement="NE06_Flow61"><di:waypoint x="10554" y="2024" /><di:waypoint x="10600" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow62_di" bpmnElement="NE06_Flow62"><di:waypoint x="10760" y="2024" /><di:waypoint x="10861" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow63_di" bpmnElement="NE06_Flow63"><di:waypoint x="10911" y="2024" /><di:waypoint x="11012" y="2024" /><bpmndi:BPMNLabel><dc:Bounds x="10916" y="2006" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow64_di" bpmnElement="NE06_Flow64"><di:waypoint x="11092" y="1974" /><di:waypoint x="11092" y="1951" /><di:waypoint x="11710" y="1951" /><di:waypoint x="11710" y="2006" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow65_di" bpmnElement="NE06_Flow65"><di:waypoint x="10886" y="1999" /><di:waypoint x="10886" y="1945" /><di:waypoint x="11298" y="1945" /><di:waypoint x="11298" y="1974" /><bpmndi:BPMNLabel><dc:Bounds x="10892" y="1968" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow66_di" bpmnElement="NE06_Flow66"><di:waypoint x="11378" y="2024" /><di:waypoint x="11486" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow67_di" bpmnElement="NE06_Flow67"><di:waypoint x="405" y="2024" /><di:waypoint x="506" y="2024" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow68_di" bpmnElement="NE06_Flow68"><di:waypoint x="2465" y="1672" /><di:waypoint x="2566" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow69_di" bpmnElement="NE06_Flow69"><di:waypoint x="3495" y="1672" /><di:waypoint x="3651" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow70_di" bpmnElement="NE06_Flow70"><di:waypoint x="4731" y="1672" /><di:waypoint x="4887" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow71_di" bpmnElement="NE06_Flow71"><di:waypoint x="8439" y="1848" /><di:waypoint x="8540" y="1848" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE06_Flow72_di" bpmnElement="NE06_Flow72"><di:waypoint x="9263" y="1672" /><di:waypoint x="9364" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_NE06_E1_di" bpmnElement="Group_NE06_E1"><dc:Bounds x="285" y="-44" width="2044" height="2164" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="2032" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE06_E2_di" bpmnElement="Group_NE06_E2"><dc:Bounds x="2345" y="-44" width="2868" height="2164" /><bpmndi:BPMNLabel><dc:Bounds x="2351" y="-38" width="2856" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE06_E3_di" bpmnElement="Group_NE06_E3"><dc:Bounds x="5229" y="-44" width="2868" height="2164" /><bpmndi:BPMNLabel><dc:Bounds x="5235" y="-38" width="2856" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE06_E4_di" bpmnElement="Group_NE06_E4"><dc:Bounds x="8319" y="-44" width="2044" height="2164" /><bpmndi:BPMNLabel><dc:Bounds x="8325" y="-38" width="2032" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE06_E5_di" bpmnElement="Group_NE06_E5"><dc:Bounds x="10379" y="-44" width="1014" height="2164" /><bpmndi:BPMNLabel><dc:Bounds x="10385" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

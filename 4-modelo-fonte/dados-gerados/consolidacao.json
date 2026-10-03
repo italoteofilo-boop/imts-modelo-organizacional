@@ -1,0 +1,831 @@
+{
+ "jornadas": 73,
+ "por_circulo": {
+  "Identidade": 5,
+  "Estratégia": 6,
+  "Inteligência": 8,
+  "Relações": 8,
+  "Negócios": 7,
+  "Integração": 8,
+  "Operações": 8,
+  "Gestão": 13,
+  "Governança": 10
+ },
+ "cross": [
+  {
+   "codigo": "V1",
+   "nome": "Do problema à oferta",
+   "lider_antes": "Inteligência",
+   "cadeia": [
+    "IN-07",
+    "ES-04",
+    "IT-03"
+   ],
+   "circulos": [
+    "Estratégia",
+    "Inteligência",
+    "Integração"
+   ],
+   "dono": "Inteligência desenha; Estratégia decide no portão; Integração lança",
+   "nota": "A decisão de lançamento passou à Estratégia (ES-04) no fechamento do círculo 2.",
+   "elos": [
+    {
+     "de": "IN-07",
+     "para": "ES-04",
+     "produtos": [
+      "Aposta devolvida com evidência e recomendação",
+      "Pacote da oferta pronta para lançamento",
+      "Pedido de revisão da aposta ou da oferta"
+     ]
+    },
+    {
+     "de": "ES-04",
+     "para": "IT-03",
+     "produtos": [
+      "Oferta aprovada para lançamento"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V2",
+   "nome": "Do mercado à oportunidade",
+   "lider_antes": "Relações",
+   "cadeia": [
+    "RE-01",
+    "RE-02",
+    "RE-03",
+    "NE-03"
+   ],
+   "circulos": [
+    "Relações",
+    "Negócios"
+   ],
+   "dono": "Relações",
+   "nota": "",
+   "elos": [
+    {
+     "de": "RE-01",
+     "para": "RE-02",
+     "produtos": [
+      "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento"
+     ]
+    },
+    {
+     "de": "RE-02",
+     "para": "RE-03",
+     "produtos": [
+      "Contatos captados pela ação, com o consentimento"
+     ]
+    },
+    {
+     "de": "RE-03",
+     "para": "NE-03",
+     "produtos": [
+      "Base de relacionamento atualizada, com a base legal e o histórico",
+      "Oportunidade qualificada, com o contato, a necessidade e a origem",
+      "Oportunidade sem resposta no prazo"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V3",
+   "nome": "Da oportunidade ao contrato",
+   "lider_antes": "Negócios",
+   "cadeia": [
+    "NE-03",
+    "NE-04",
+    "GO-05"
+   ],
+   "circulos": [
+    "Negócios",
+    "Governança"
+   ],
+   "dono": "Negócios",
+   "nota": "Na licitação, NE-05 no lugar de NE-03 e NE-04.",
+   "elos": [
+    {
+     "de": "NE-03",
+     "para": "NE-04",
+     "produtos": [
+      "Proposta aceita ou em negociação"
+     ]
+    },
+    {
+     "de": "NE-04",
+     "para": "GO-05",
+     "produtos": [
+      "Contrato para conferir e guardar"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V4",
+   "nome": "Do contrato à operação",
+   "lider_antes": "Integração",
+   "cadeia": [
+    "NE-04",
+    "IT-02",
+    "OP-02"
+   ],
+   "circulos": [
+    "Negócios",
+    "Integração",
+    "Operações"
+   ],
+   "dono": "Integração",
+   "nota": "",
+   "elos": [
+    {
+     "de": "NE-04",
+     "para": "IT-02",
+     "produtos": [
+      "Contrato de cliente assinado, com o escopo vendido"
+     ]
+    },
+    {
+     "de": "IT-02",
+     "para": "OP-02",
+     "produtos": [
+      "Cliente implantado e aceito, passado à entrega",
+      "Plano de implantação do cliente"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V5",
+   "nome": "Da entrega ao recebimento",
+   "lider_antes": "Operações",
+   "cadeia": [
+    "OP-02",
+    "GE-03"
+   ],
+   "circulos": [
+    "Operações",
+    "Gestão"
+   ],
+   "dono": "Operações entrega; Gestão fatura e recebe",
+   "nota": "",
+   "elos": [
+    {
+     "de": "OP-02",
+     "para": "GE-03",
+     "produtos": [
+      "Entregas confirmadas para faturar, com a medição dos níveis de serviço"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V6",
+   "nome": "Do chamado à solução",
+   "lider_antes": "Operações",
+   "cadeia": [
+    "OP-03",
+    "OP-04",
+    "OP-05"
+   ],
+   "circulos": [
+    "Operações"
+   ],
+   "dono": "Operações",
+   "nota": "O problema de tecnologia segue para a IT-07.",
+   "elos": [
+    {
+     "de": "OP-03",
+     "para": "OP-04",
+     "produtos": [
+      "Reclamação registrada"
+     ]
+    },
+    {
+     "de": "OP-04",
+     "para": "OP-05",
+     "produtos": [
+      "Ação corretiva aberta"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V7",
+   "nome": "Do resultado à renovação",
+   "lider_antes": "Relações",
+   "cadeia": [
+    "OP-02",
+    "RE-05",
+    "NE-06"
+   ],
+   "circulos": [
+    "Relações",
+    "Negócios",
+    "Operações"
+   ],
+   "dono": "Relações acompanha; Negócios renova",
+   "nota": "",
+   "elos": [
+    {
+     "de": "OP-02",
+     "para": "RE-05",
+     "produtos": [
+      "Registros de entrega, atendimento e reclamações do cliente"
+     ]
+    },
+    {
+     "de": "RE-05",
+     "para": "NE-06",
+     "produtos": [
+      "Clientes avisados da saída, com a transição combinada",
+      "Oportunidade de renovação ou de expansão, com o histórico",
+      "Plano de sucesso do cliente: resultados esperados, marcos e contatos"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "V8",
+   "nome": "Da previsão ao produto entregue",
+   "lider_antes": "Operações",
+   "cadeia": [
+    "NE-02",
+    "OP-01",
+    "OP-06",
+    "GE-03"
+   ],
+   "circulos": [
+    "Negócios",
+    "Operações",
+    "Gestão"
+   ],
+   "dono": "Operações",
+   "nota": "Só onde há produto físico.",
+   "elos": [
+    {
+     "de": "NE-02",
+     "para": "OP-01",
+     "produtos": [
+      "Previsão de receita e de vendas"
+     ]
+    },
+    {
+     "de": "OP-01",
+     "para": "OP-06",
+     "produtos": [
+      "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos"
+     ]
+    },
+    {
+     "de": "OP-06",
+     "para": "GE-03",
+     "produtos": [
+      "Entregas confirmadas para faturar, com a medição dos níveis de serviço"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C1",
+   "nome": "Da estratégia ao resultado",
+   "lider_antes": "Estratégia",
+   "cadeia": [
+    "ES-01",
+    "ES-03",
+    "GE-01",
+    "GE-02",
+    "ES-06"
+   ],
+   "circulos": [
+    "Estratégia",
+    "Gestão"
+   ],
+   "dono": "Estratégia; a Gestão roda o orçamento e o ritual",
+   "nota": "",
+   "elos": [
+    {
+     "de": "ES-01",
+     "para": "ES-03",
+     "produtos": [
+      "Estratégia vigente do Ecossistema e das empresas",
+      "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário"
+     ]
+    },
+    {
+     "de": "ES-03",
+     "para": "GE-01",
+     "produtos": [
+      "Alvos e iniciativas do ciclo",
+      "Decisão dos sócios sobre alvos e orçamento"
+     ]
+    },
+    {
+     "de": "GE-01",
+     "para": "GE-02",
+     "produtos": [
+      "Orçamento vigente por empresa, círculo, oferta e aposta"
+     ]
+    },
+    {
+     "de": "GE-02",
+     "para": "ES-06",
+     "produtos": [
+      "Desvios e decisões do ritual de acompanhamento"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C2",
+   "nome": "Do propósito ao padrão",
+   "lider_antes": "Identidade",
+   "cadeia": [
+    "ID-01",
+    "ID-02",
+    "IT-06"
+   ],
+   "circulos": [
+    "Identidade",
+    "Integração"
+   ],
+   "dono": "Identidade",
+   "nota": "O padrão chega aos agentes pela IT-06 e às pessoas pela Gestão (GE-07 a GE-10).",
+   "elos": [
+    {
+     "de": "ID-01",
+     "para": "ID-02",
+     "produtos": [
+      "Declaração de identidade vigente",
+      "Lista de padrões e materiais afetados"
+     ]
+    },
+    {
+     "de": "ID-02",
+     "para": "IT-06",
+     "produtos": [
+      "Critérios de auditoria e casos de teste",
+      "Padrões de identidade vigentes"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C3",
+   "nome": "Do dado ao aprendizado",
+   "lider_antes": "Inteligência",
+   "cadeia": [
+    "IN-03",
+    "IN-04",
+    "IN-08"
+   ],
+   "circulos": [
+    "Inteligência"
+   ],
+   "dono": "Inteligência",
+   "nota": "",
+   "elos": [
+    {
+     "de": "IN-03",
+     "para": "IN-04",
+     "produtos": [
+      "Dado confiável publicado no catálogo de dados",
+      "Dado marcado como não confiável no catálogo de dados",
+      "Dado retirado do catálogo de dados",
+      "Pedido de dado não atendido, com o motivo"
+     ]
+    },
+    {
+     "de": "IN-04",
+     "para": "IN-08",
+     "produtos": [
+      "Indicadores e análises por empresa, oferta e aposta"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C4",
+   "nome": "Do contato à parceria ativa",
+   "lider_antes": "Relações",
+   "cadeia": [
+    "RE-06",
+    "NE-07"
+   ],
+   "circulos": [
+    "Relações",
+    "Negócios"
+   ],
+   "dono": "Relações",
+   "nota": "",
+   "elos": [
+    {
+     "de": "RE-06",
+     "para": "NE-07",
+     "produtos": [
+      "Parceria ativa, com plano de ativação",
+      "Resultado da parceria"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C5",
+   "nome": "Da necessidade à capacidade",
+   "lider_antes": "Integração",
+   "cadeia": [
+    "IT-05",
+    "IT-06"
+   ],
+   "circulos": [
+    "Integração"
+   ],
+   "dono": "Integração",
+   "nota": "",
+   "elos": [
+    {
+     "de": "IT-05",
+     "para": "IT-06",
+     "produtos": [
+      "Ficha da capacidade: método, conhecimento, executor, ferramentas, acordo de serviço e indicador",
+      "Pedido de montagem ou de mudança de agente ou automação"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C6",
+   "nome": "Da vaga ao talento",
+   "lider_antes": "Gestão",
+   "cadeia": [
+    "GE-07",
+    "GE-08",
+    "GE-09"
+   ],
+   "circulos": [
+    "Gestão"
+   ],
+   "dono": "Gestão",
+   "nota": "",
+   "elos": [
+    {
+     "de": "GE-07",
+     "para": "GE-08",
+     "produtos": [
+      "Mudança de pessoas registrada",
+      "Pessoa contratada, com papel e líder"
+     ]
+    },
+    {
+     "de": "GE-08",
+     "para": "GE-09",
+     "produtos": [
+      "Integração cultural concluída, com o resultado da verificação"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C7",
+   "nome": "Da compra ao pagamento",
+   "lider_antes": "Gestão",
+   "cadeia": [
+    "OP-06",
+    "GE-04",
+    "GE-05"
+   ],
+   "circulos": [
+    "Operações",
+    "Gestão"
+   ],
+   "dono": "Gestão",
+   "nota": "Qualquer círculo pede compra à GE-04.",
+   "elos": [
+    {
+     "de": "OP-06",
+     "para": "GE-04",
+     "produtos": [
+      "Desempenho dos fornecedores na entrega e na qualidade",
+      "Pedido de compra de materiais e serviços"
+     ]
+    },
+    {
+     "de": "GE-04",
+     "para": "GE-05",
+     "produtos": [
+      "Pagamentos a fornecedores e parceiros realizados"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C8",
+   "nome": "Do registro à prestação de contas",
+   "lider_antes": "Gestão",
+   "cadeia": [
+    "GE-05",
+    "GO-03"
+   ],
+   "circulos": [
+    "Gestão",
+    "Governança"
+   ],
+   "dono": "Gestão; a Governança relata riscos e conformidade",
+   "nota": "",
+   "elos": [
+    {
+     "de": "GE-05",
+     "para": "GO-03",
+     "produtos": [
+      "Demonstrações e obrigações fiscais do período"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C9",
+   "nome": "Do risco ao controle",
+   "lider_antes": "Governança",
+   "cadeia": [
+    "GO-03",
+    "GO-01"
+   ],
+   "circulos": [
+    "Governança"
+   ],
+   "dono": "Governança",
+   "nota": "",
+   "elos": [
+    {
+     "de": "GO-03",
+     "para": "GO-01",
+     "produtos": [
+      "Regra a criar ou rever, com a causa"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C10",
+   "nome": "Do pedido de tecnologia ao serviço estável",
+   "lider_antes": "Integração",
+   "cadeia": [
+    "OP-03",
+    "IT-07"
+   ],
+   "circulos": [
+    "Integração",
+    "Operações"
+   ],
+   "dono": "Integração",
+   "nota": "Qualquer círculo pede à IT-07.",
+   "elos": [
+    {
+     "de": "OP-03",
+     "para": "IT-07",
+     "produtos": [
+      "Pedido, incidente ou risco de tecnologia"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C11",
+   "nome": "Da marca à reputação",
+   "lider_antes": "Identidade",
+   "cadeia": [
+    "ID-04",
+    "RE-08",
+    "GO-08"
+   ],
+   "circulos": [
+    "Identidade",
+    "Relações",
+    "Governança"
+   ],
+   "dono": "Identidade cria a marca e o posicionamento; Relações monitora; a Governança decide a crise",
+   "nota": "A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04.",
+   "elos": [
+    {
+     "de": "ID-04",
+     "para": "RE-08",
+     "produtos": [
+      "Posicionamento e casa de mensagens vigentes"
+     ]
+    },
+    {
+     "de": "RE-08",
+     "para": "GO-08",
+     "produtos": [
+      "Alerta de crise, com os fatos apurados",
+      "Lições da crise"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C12",
+   "nome": "Do valor declarado à cultura vivida",
+   "lider_antes": "Identidade",
+   "cadeia": [
+    "ID-02",
+    "GE-10",
+    "GE-09",
+    "ID-05"
+   ],
+   "circulos": [
+    "Identidade",
+    "Gestão"
+   ],
+   "dono": "Identidade; a Gestão executa",
+   "nota": "",
+   "elos": [
+    {
+     "de": "ID-02",
+     "para": "GE-10",
+     "produtos": [
+      "Kit de cultura e pessoas",
+      "Padrões de identidade vigentes"
+     ]
+    },
+    {
+     "de": "GE-10",
+     "para": "GE-09",
+     "produtos": [
+      "Registro de participação em rituais"
+     ]
+    },
+    {
+     "de": "GE-09",
+     "para": "ID-05",
+     "produtos": [
+      "Resultado da pesquisa de cultura e dados de pessoas"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "C13",
+   "nome": "Da minuta ao contrato encerrado",
+   "lider_antes": "Governança",
+   "cadeia": [
+    "GO-01",
+    "NE-04",
+    "GO-05"
+   ],
+   "circulos": [
+    "Negócios",
+    "Governança"
+   ],
+   "dono": "Governança",
+   "nota": "O contrato é originado pela frente dona.",
+   "elos": [
+    {
+     "de": "GO-01",
+     "para": "NE-04",
+     "produtos": [
+      "Modelos de proposta e de contrato",
+      "Regras e alçadas vigentes"
+     ]
+    },
+    {
+     "de": "NE-04",
+     "para": "GO-05",
+     "produtos": [
+      "Contrato para conferir e guardar"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "E1",
+   "nome": "Do pedido ao serviço",
+   "lider_antes": "Integração",
+   "cadeia": [
+    "IT-05"
+   ],
+   "circulos": [
+    "Integração"
+   ],
+   "dono": "Integração",
+   "nota": "O pedido de serviço de uma empresa a um círculo fica na IT-05, com acordo de serviço.",
+   "elos": []
+  },
+  {
+   "codigo": "E2",
+   "nome": "Da oportunidade cruzada à oferta conjunta",
+   "lider_antes": "Negócios",
+   "cadeia": [
+    "NE-07",
+    "GE-03"
+   ],
+   "circulos": [
+    "Negócios",
+    "Gestão"
+   ],
+   "dono": "Negócios",
+   "nota": "O acordo entre as empresas vai também à guarda na GO-05.",
+   "elos": [
+    {
+     "de": "NE-07",
+     "para": "GE-03",
+     "produtos": [
+      "Acordo de oferta conjunta entre as empresas"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "E3",
+   "nome": "Do custo corporativo ao rateio",
+   "lider_antes": "Gestão",
+   "cadeia": [
+    "GO-01",
+    "GE-06",
+    "GE-05"
+   ],
+   "circulos": [
+    "Gestão",
+    "Governança"
+   ],
+   "dono": "Governança define com a Estratégia; Gestão aplica",
+   "nota": "",
+   "elos": [
+    {
+     "de": "GO-01",
+     "para": "GE-06",
+     "produtos": [
+      "Critério de rateio do custo dos círculos"
+     ]
+    },
+    {
+     "de": "GE-06",
+     "para": "GE-05",
+     "produtos": [
+      "Rateio do custo dos círculos por empresa"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "E4",
+   "nome": "Do resultado da empresa à decisão do Ecossistema",
+   "lider_antes": "Estratégia",
+   "cadeia": [
+    "GE-05",
+    "ES-02"
+   ],
+   "circulos": [
+    "Estratégia",
+    "Gestão"
+   ],
+   "dono": "Estratégia",
+   "nota": "",
+   "elos": [
+    {
+     "de": "GE-05",
+     "para": "ES-02",
+     "produtos": [
+      "Execução do orçamento e da alocação por empresa, oferta e aposta",
+      "Posição e projeção de caixa",
+      "Resultado por empresa e consolidado"
+     ]
+    }
+   ]
+  },
+  {
+   "codigo": "E5",
+   "nome": "Da aposta à empresa nova",
+   "lider_antes": "Estratégia",
+   "cadeia": [
+    "ES-04",
+    "ES-05",
+    "IT-04"
+   ],
+   "circulos": [
+    "Estratégia",
+    "Integração"
+   ],
+   "dono": "Estratégia",
+   "nota": "A IT-04 abre o projeto de ligar a empresa nova.",
+   "elos": [
+    {
+     "de": "ES-04",
+     "para": "ES-05",
+     "produtos": [
+      "Aposta aprovada para empresa própria, com recursos"
+     ]
+    },
+    {
+     "de": "ES-05",
+     "para": "IT-04",
+     "produtos": [
+      "Mandato da empresa",
+      "Pedido de plano de saída: clientes, contratos e pessoas"
+     ]
+    }
+   ]
+  }
+ ],
+ "falhas": []
+}

@@ -1,0 +1,660 @@
+# Ecossistema IMTS · Estrutura organizacional e operacional — situação em 03/10/2026
+
+Este arquivo é gerado a partir da fonte única do modelo (pasta 4-modelo-fonte). Ele resume o que está decidido, o que está desenhado, o que aguarda resposta e como cada parte foi conferida.
+
+## O que é o projeto
+
+Um modelo conceitual da estrutura organizacional e operacional do Ecossistema IMTS, sem empresas, pessoas, tempos nem volumes concretos. São nove círculos: Identidade, Estratégia, Inteligência, Relações, Negócios, Integração, Operações, Gestão e Governança. Cada círculo tem jornadas; cada jornada tem etapas; cada etapa tem tarefas, com o que entra (e quem gera) e o que sai (e quem recebe). As tarefas são executadas por pessoas, agentes e automações. O debate foi feito círculo a círculo; ao fim, as jornadas que atravessam círculos foram consolidadas em cadeias de jornadas.
+
+## Situação dos nove círculos
+
+| Círculo | Situação | Jornadas | Página |
+| --- | --- | --- | --- |
+| 1 · Identidade | Fechado em 01/10/2026 · mudanças aprovadas aplicadas em 02/10/2026 · proposta da revisão aplicada em 03/10/2026 · auditoria de execução aplicada em 03/10/2026 | 5 (ID-01 a ID-05) | https://claude.ai/artifact/A6QLnXcmX63GmXxgKpBN3n |
+| 2 · Estratégia | Fechado em 01/10/2026 · todas as mudanças aprovadas aplicadas em 02/10/2026 · auditoria de execução aplicada em 03/10/2026 | 6 (ES-01 a ES-06) | https://claude.ai/artifact/A3CDo4ceVPMuXckiYbgeZt |
+| 3 · Inteligência | Fechado em 02/10/2026 · propostas do círculo 4 aplicadas · auditoria de execução aplicada em 03/10/2026 | 8 (IN-01 a IN-08) | https://claude.ai/artifact/174ZnMnVvMo9nR1RxT7DMf |
+| 4 · Relações | Fechado em 02/10/2026 · auditoria de execução aplicada em 03/10/2026 | 8 (RE-01 a RE-08) | https://claude.ai/artifact/1ieAubzurbnW2QXku6NXxw |
+| 5 · Negócios | Fechado em 02/10/2026 · proposta do círculo 6 aplicada em 03/10/2026 · auditoria de execução aplicada em 03/10/2026 | 7 (NE-01 a NE-07) | https://claude.ai/artifact/PsNEXAeWAACHMiyXTzhpva |
+| 6 · Integração | Fechado em 03/10/2026 · propostas dos círculos 7 e 9 aplicadas em 03/10/2026 · auditoria de execução aplicada em 03/10/2026 | 8 (IT-01 a IT-08) | https://claude.ai/artifact/VPQjvqYjALWqj1HLmKfvAj |
+| 7 · Operações | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 8 (OP-01 a OP-08) | https://claude.ai/artifact/UFrAbKRRJgDjhs1obbVJPV |
+| 8 · Gestão | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 13 (GE-01 a GE-13) | https://claude.ai/artifact/NiG1cQx83MFwcL4GDrWj6y |
+| 9 · Governança | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 10 (GO-01 a GO-10) | https://claude.ai/artifact/7CZVqjYCBJB5zw4KqfbD2J |
+
+Documento vivo do projeto (Documento-base, Catálogo da rodada 2 e Mapa de jornadas): https://claude.ai/code/artifact/97e51770-d3ab-4475-a7e6-57f2361d2b0e
+
+## Números do desenho e dos testes
+
+| Círculo | Jornadas | Etapas | Tarefas | Decisões | Verificações de integridade | Falhas | Regras do bpmnlint | Apontamentos | Nomes de tarefa conferidos | Defeitos plantados detectados |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 · Identidade | 5 | 25 | 99 | 15 | 1678 | 0 | 26 | 0 | 99 | 20 de 20 |
+| 2 · Estratégia | 6 | 31 | 200 | 51 | 3281 | 0 | 26 | 0 | 200 | 20 de 20 |
+| 3 · Inteligência | 8 | 42 | 287 | 77 | 4569 | 0 | 26 | 0 | 287 | 20 de 20 |
+| 4 · Relações | 8 | 33 | 190 | 46 | 3140 | 0 | 26 | 0 | 190 | 20 de 20 |
+| 5 · Negócios | 7 | 25 | 172 | 40 | 2745 | 0 | 26 | 0 | 172 | 20 de 20 |
+| 6 · Integração | 8 | 29 | 162 | 37 | 2706 | 0 | 26 | 0 | 162 | 20 de 20 |
+| 7 · Operações | 8 | 30 | 126 | 31 | 2189 | 0 | 26 | 0 | 126 | 20 de 20 |
+| 8 · Gestão | 13 | 44 | 150 | 38 | 2800 | 0 | 26 | 0 | 150 | 20 de 20 |
+| 9 · Governança | 10 | 31 | 104 | 28 | 1961 | 0 | 26 | 0 | 104 | 20 de 20 |
+
+Trocas entre os nove círculos: 406 produtos conferidos dos dois lados, em 1039 verificações, com 0 falhas; 12 de 12 defeitos plantados foram detectados. Os números descrevem o desenho, não a operação atual.
+
+## Decisões do dono do projeto, por círculo
+
+### Círculo 1 · Identidade
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| A Identidade padroniza, normatiza e sistematiza; os outros círculos executam | Regra sua (12:29), aplicada às treze jornadas por proposta minha, que você aprovou (12:59) | O círculo fica com cinco jornadas; oito são transferidas a quem executa. |
+| O Soul Brand é insumo, não o centro das jornadas | Orientação sua (10:01) | Ele é a declaração de identidade em vigor: saída da ID-01 e entrada das demais. |
+| Comunicação interna fica na Gestão; a externa, em Relações | Decisão sua (12:29) para a interna; a externa segue a decisão D3 da rodada 2 | A Identidade entrega voz, mensagens e o aviso do que mudou. |
+| Auditoria das entregas fica na Governança, com interoperabilidade com o que é cross | Decisão sua (12:29) | A Identidade entrega critérios de auditoria e casos de teste e julga os casos de fronteira. |
+| Integração cultural, rituais, reconhecimento e propósito pessoal ficam na parte de cultura e pessoas da Gestão | Decisão sua (12:29), estendida por proposta minha aprovada (12:59) | A Identidade entrega o kit de cultura e pessoas. |
+| Monitorar a reputação fica em Relações; responder a crises, na Governança com o executivo | Proposta minha aprovada (12:59) | A Identidade entrega o protocolo de crise e tem assento no comitê. |
+| O relato de impacto fica na Governança | Proposta minha aprovada (12:59) | A Identidade define o que conta como impacto. |
+| Material de marca é produzido por quem usa; uso por terceiros fica em Relações, com Governança | Proposta minha aprovada (12:59) | A Identidade entrega o pacote de marca com modelos e a regra de uso por terceiros. |
+| A Identidade mantém o ciclo de retorno e responde consultas em prazo combinado | Condição proposta por mim e aprovada (12:59) | ID-05 avalia os padrões com os dados de quem mede; a etapa 1 da ID-02 responde consultas. O prazo ainda não foi definido. |
+| Os padrões são obrigatórios | Condição proposta por mim e aprovada (12:59) | Cada jornada que executa terá um ponto de conferência contra o padrão. Vale como requisito para os próximos círculos. |
+| Quatro ajustes depois do fechamento: marca recebida e retirada de marca (ID-03); ramo “manter o atual” quando os sócios dizem não (ID-01 e ID-02); pesquisa de mercado vinda da Inteligência (ID-03); conferência da Governança nos limites dos agentes (ID-02) | Propostas do revisor independente e do cruzamento com a Estratégia, aprovadas por você (15:48) | Aplicados nesta versão. |
+| Reserva de domínios e registro de perfis da marca ficam na Identidade | Decisão sua (15:48), contra a proposta do revisor | A ID-03 fica como estava nesse ponto. |
+| O posicionamento institucional e a casa de mensagens passam a ir também à Inteligência | Proposta do cruzamento com a Inteligência, aprovada por você (20:02) | A ID-04, etapa 5, entrega o posicionamento à Inteligência, que o usa para enquadrar cada oferta (IN-07, etapa 3). |
+| Na marca, a Identidade decide, ouvido o executivo; a retirada vale na data de efeito do pedido | Duas propostas, aprovadas por você (20:11 de 02/10/2026) | Na ID-03, etapa 4, o executivo opina e a Identidade escolhe a identidade visual e verbal; na etapa 2, a retirada da marca é agendada para a data de efeito que vem no pedido da Estratégia. |
+| O nível “workflow” passa a se chamar etapa; cada círculo tem o seu código | Você usou “etapas” (10:01); o código por círculo é proposta minha, sem objeção | ID-01 a ID-05 aqui; ES-01 em diante na Estratégia. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | De Autopiloto para Autômato, pelas tarefas: ID-04 etapa 5. De Copiloto para Assistido, pelas tarefas: ID-01 etapa 1, ID-01 etapa 2, ID-03 etapa 2, ID-03 etapa 3, ID-03 etapa 4, ID-04 etapa 2. Nível de automação pela faixa: ID-01 baixa → média; ID-02 alta nas consultas, média na redação → média (alta nas consultas, média na redação); ID-04 média → baixa; ID-05 média → alta. |
+| Você lidera a Identidade até os padrões estarem codificados | Tema P2, decidido por você (13:09 de 03/10/2026) | O líder do círculo Identidade é você; a troca de liderança volta a decisão quando os padrões estiverem codificados. |
+| Critério de decisão e limites dos agentes | Aprovado por você (13:51 de 03/10/2026), a aprovar pelos sócios na ID-02 | Agente sem tarefa de julgamento; etapa sem pessoa no caminho principal só em risco baixo ou médio, com auditoria por amostra no médio (P6); liberação com teste e alçada conferida pela Governança; suspensão quando a auditoria aponta desvio. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | ID-05 semestral. O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 2 · Estratégia
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| A Estratégia faz o trabalho de estratégia de ponta a ponta, os sócios aprovam e a Gestão opera a rotina | Regra sua (15:48), sobre a minha proposta | A Estratégia formula, propõe, desdobra, decide os portões dentro da alçada e acompanha. Li “rotina” como montar e controlar o orçamento e rodar o ritual de acompanhamento dos alvos; leitura confirmada por você às 20:11 de 02/10/2026. |
+| O executivo e o líder do círculo propõem e participam, mas não decidem | Regra sua (20:02), ao aprovar a proposta 1 | Na ES-01, etapa 3, a Estratégia formula a estratégia de cada empresa e as escolhas de cada círculo, ouvidos o executivo e o líder; a divergência sem acordo sobe aos sócios, e a decisão deles é incorporada ao texto na etapa 5. Desde as 20:11 de 02/10/2026 a regra vale também na ES-02 (mudança de papel), na ES-04 (portão e data de saída) e na ES-06 (correções de execução): o executivo opina numa tarefa própria e a Estratégia decide; acima da alçada, decidem os sócios. |
+| A Integração é o PMO corporativo, interno e externo | Definição sua (15:48) | Na ES-05 a Integração executa o mandato e a Estratégia confere; na ES-03 confere a capacidade de executar as iniciativas; na ES-04 coordena o lançamento da oferta aprovada (ponto 3 do círculo 3, aprovado às 20:02) e o plano de saída de clientes e contratos. Vale como requisito para o círculo 6. |
+| Sobem para os sócios: a estratégia, a alocação e o destino do resultado, os alvos com o orçamento, e criar, adquirir, vender ou encerrar empresa | Proposta minha aprovada (15:48), completada pelas propostas 3, 4, 6 e 13 (20:02) e pelas mudanças aprovadas às 20:11 de 02/10/2026 | ES-01, ES-02, ES-03 e ES-05 têm etapa de aprovação pelos sócios. Sobem também o método de estratégia e as hipóteses, a proposta de manter a estratégia e a de manter a alocação, as divergências sem acordo, a autorização para negociar e a proposta de arquivar caso que os sócios mandaram estudar ou cuja negociação autorizaram. Na ES-04 só sobe o que passa da alçada da Estratégia. |
+| Os sócios autorizam a negociação, com limites, antes de ela começar | Proposta 13, aprovada por você (20:02) | A ES-05 ganha a etapa 2. O contrato de compra ou venda é preparado pela Governança e assinado depois da decisão dos sócios e antes do mandato (etapa 5). |
+| Uma aposta atravessa dois portões: a entrada na carteira e o lançamento | Sua decisão D4 da rodada 2, confirmada (15:48) | A validação com clientes é marco da jornada da Inteligência. Encerrar é resultado possível de qualquer portão ou revisão. |
+| A estratégia de experiência do cliente é de Relações | Proposta minha aprovada (15:48) | Fica fora das jornadas da Estratégia. Entra no desenho do círculo 4, com Operações no círculo 7. |
+| Vender ou encerrar uma empresa inclui retirar a marca de uso | Decorre da proposta 1 do círculo 1, aprovada por você (15:48) | A ES-05 pede a retirada à Identidade, com a data de efeito, e a ES-04 faz o mesmo pedido quando encerra oferta com marca própria. Desde as 20:11 de 02/10/2026, a ID-03 agenda a retirada para a data de efeito do pedido. |
+| As 18 propostas de mudança deste círculo foram aprovadas | Sua resposta das 20:02 | Estão aplicadas nesta versão. Cada uma aparece na aba O que mudou com a marca “aprovada às 20:02”. |
+| As cinco propostas da revisão de 02/10/2026 foram aprovadas | Sua resposta das 20:11 de 02/10/2026 (“Tudo 100% aprovado”) | Estão aplicadas nesta versão, menos a troca do nome do método: o nome é recebido pela Inteligência (círculo 3) e ficou como estava. Cada uma aparece na aba O que mudou. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | ES-05 etapa 3: acrescentada a tarefa da pessoa da Estratégia "Consolidar o resultado da apuração para decidir se o caso segue" (item 1). ES-03 etapa 3: acrescentada a tarefa da pessoa da Estratégia "Confirmar se os alvos e as iniciativas cabem nos recursos"; o modo segue Copiloto (item 2). De Assistido para Copiloto, pelas tarefas: ES-04 etapa 3, ES-04 etapa 4. De Autopiloto para Autômato, pelas tarefas: ES-03 etapa 5. De Copiloto para Assistido, pelas tarefas: ES-01 etapa 2, ES-03 etapa 2, ES-05 etapa 4, ES-06 etapa 3. Nível de automação pela faixa: ES-01 baixa → média; ES-05 baixa → média; ES-06 média → alta. |
+| Método de estratégia: calendário, portões, realocação e hipóteses | Aprovado por você (13:51 de 03/10/2026) | Calendário: ES-01 anual com revisão no meio do ciclo, ES-02 semestral, ES-03 anual, ES-06 trimestral, GE-02 mensal, ES-04 por evento. Portão 1 (entrar na carteira): problema e público claros, coerência com a identidade, hipótese testável com indicador, próximo passo dentro da reserva, dono. Portão 2 (lançar): evidência de demanda, preço-base que cobre o custo, capacidade confirmada, contrato no modelo, indicadores definidos. Realocação por resultado contra o alvo e coerência: crescer, manter, reduzir ou estudar a saída. Alçada da aposta: cada aposta dentro da reserva dos sócios, até um terço dela. |
+
+### Círculo 3 · Inteligência
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| A Inteligência decide o que é técnico do seu ofício | Ponto 1, aprovado por você (20:02) | Decide a ficha de cada dado e de cada indicador, o método, a curadoria das bases e a conclusão de cada análise e de cada piloto. Se o dono não confirma a ficha, vale a da Inteligência, com a divergência registrada; no indicador de alvo, decide a Estratégia. Fora do seu ofício e da oferta entre os portões, ela propõe ou recomenda. |
+| Entre os dois portões, a decisão é da Inteligência; o executivo pode sugerir | Decisão sua (20:02), contra a minha proposta | Na IN-07, a Inteligência decide o enquadramento, o desenho, o modelo de negócio com o preço-base, as condições do piloto, o caminho depois dele e o pacote. O executivo, Negócios e a Gestão opinam. Negócios mantém a tabela de preços e a política comercial, redige os termos e fecha o piloto; a Governança revê os termos. |
+| A Integração acompanha o desenvolvimento e coordena o lançamento da oferta | Ponto 3, aprovado por você (20:02) | A Inteligência lidera o conteúdo até o portão de lançamento, e a Integração, como PMO corporativo, acompanha o desenvolvimento na carteira de projetos. Depois do portão, a Integração coordena o lançamento com o executivo; Relações gera a demanda e Negócios vende. |
+| Uma amostra só, sorteada pela Governança | Ponto 4, aprovado por você (20:02) | A Inteligência avalia o resultado em cada amostra recebida, pelo critério de sucesso do método (IN-06, etapa 5). Não sorteia amostra própria. |
+| O ajuste de oferta em uso não passa pelo portão; a revisão passa | Ponto 5: você aprovou a alternativa que recomendei (20:02) | Na IN-07, etapa 2, a Inteligência decide, ouvido o executivo, se o pedido é ajuste ou revisão. O ajuste, que não muda problema, público, modelo nem preço-base, é feito ali mesmo, só no que muda, e vai direto ao catálogo de ofertas. A revisão volta ao portão de entrada. Tratar a mudança de preço-base como revisão foi confirmado por você às 20:11 de 02/10/2026. |
+| O círculo fica com oito jornadas | Ponto 6, aprovado por você (20:02) | IN-01 a IN-08, sem fusão. |
+| As mudanças que este círculo pediu aos círculos 1 e 2 foram aprovadas | Sua resposta das 20:02 | Uma no círculo 1 e 18 no círculo 2, aplicadas nas páginas deles. Aqui mudaram os nomes dos produtos trocados com a Estratégia, e a IN-04 e a IN-07 ganharam inícios novos: alvos propostos, decisão sobre contestação, decisão sobre aposta devolvida, mandato de saída de empresa e pedido sobre oferta em uso. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | De Assistido para Copiloto, pelas tarefas: IN-03 etapa 5, IN-06 etapa 3, IN-07 etapa 8. De Autopiloto para Autômato, pelas tarefas: IN-07 etapa 9. De Copiloto para Assistido, pelas tarefas: IN-07 etapa 2, IN-07 etapa 3, IN-07 etapa 5. Nível de automação pela faixa: IN-01 média → alta; IN-03 alta → média; IN-08 média → alta. |
+| O limite do ajuste de oferta em uso é decidido pela Estratégia | Decidido por você (13:09 de 03/10/2026) | IN-07: o ajuste dentro do limite dispensa o portão; quem fixa o limite é a Estratégia, que já decide a oferta lançada. |
+| Limite do ajuste de oferta em uso | Aprovado por você (13:51 de 03/10/2026) | O ajuste dispensa o portão se não muda o público, a promessa central nem o escopo principal, não reduz o preço-base, não pede capacidade nova e não muda o risco do contrato-modelo; senão, vai ao portão (ES-04). |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | IN-01 mensal; IN-04 medição mensal e revisão anual; IN-05 trimestral; IN-08 trimestral. O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 4 · Relações
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| Relações decide o que é do seu ofício; o executivo e Negócios opinam | Ponto 1, aprovado por você (19:05) | Relações decide o plano de demanda, a qualificação de cada oportunidade, a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias dentro da alçada. O executivo aprova o que se diz em nome da empresa e quem fala por ela. |
+| O critério de oportunidade qualificada é combinado com Negócios; sem acordo, decide o executivo | Ponto 2, aprovado por você (19:05) | Relações e Negócios combinam o critério a cada ciclo de demanda (RE-01, etapa 2). Negócios aceita ou devolve cada oportunidade com o motivo (RE-03). É a única exceção do círculo à regra de que o executivo opina e não decide. |
+| Relações acompanha o sucesso do cliente; Negócios renova e amplia; Operações atende e entrega | Ponto 3, aprovado por você (19:05) | O plano de sucesso (RE-05) é a referência comum dos três círculos que falam com o cliente. |
+| O executivo aprova o que fala em nome da empresa; a Governança confere o risco jurídico | Ponto 4, aprovado por você (19:05) | Relações decide a pauta e aprova o conteúdo dentro dos padrões (RE-07). Na crise, a posição é do comitê da Governança, com o executivo (RE-08). |
+| O uso da marca por terceiros fica na RE-06, etapa 5 | Ponto 5, aprovado por você (19:05) | A regra é da Identidade. Relações decide o uso coberto pela regra e, fora dela, a exceção ouvida a Identidade; a Governança libera antes da autorização. |
+| Relações forma e acompanha o parceiro de venda; Negócios vende com ele | Ponto 6, aprovado por você (19:05) | A relação institucional sem contrato segue a mesma jornada e a mesma alçada; a Governança confere o termo e o executivo o aprova (RE-06). |
+| Oito jornadas | Ponto 7, decidido por mim, como você pediu (19:05) | Mantive a proposta. Planejar e executar a demanda têm cadência diferente (ciclo e ação), e desenhar a experiência de todos os clientes é trabalho distinto de cuidar de cada cliente. Juntar daria seis jornadas maiores, com gatilhos misturados. |
+| As três propostas aos círculos 2 e 3 foram aceitas e aplicadas | Decisão sua (19:05) | IN-07, etapa 4, recebe a estratégia de experiência do cliente (RE-04). IN-03, etapa 2, recebe a situação do funil e a base de relacionamento (RE-03) e o resultado das ações de demanda (RE-02). ES-04 avisa Relações da aposta mantida, em espera, devolvida ou encerrada (etapa 3): a RE-05 desfaz a transição preparada e a RE-06 responde ao parceiro. A parceria aprovada no portão volta a Relações (etapa 5) e a RE-06 a formaliza. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | RE-03 etapa 1: na dúvida sobre a base legal, a pessoa de Relações decide (item 8). De Assistido para Copiloto, pelas tarefas: RE-06 etapa 2. De Autopiloto para Autômato, pelas tarefas: RE-02 etapa 2, RE-03 etapa 4. De Copiloto para Assistido, pelas tarefas: RE-01 etapa 2, RE-03 etapa 3, RE-06 etapa 4. Nível de automação pela faixa: RE-02 alta na execução, média na preparação → média (alta na execução, média na preparação); RE-08 alta na coleta, baixa na crise → média (alta na coleta, baixa na crise). |
+| Alçada de parceria | Aprovado por você (13:51 de 03/10/2026) | Relações decide parceria sem exclusividade, com remuneração na regra dos sócios, marca pelo pacote, prazo até o fim do ciclo estratégico e sem obrigação além do orçamento do círculo; fora disso, os sócios. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | Cadências de RE-01 a RE-08; critério de oportunidade qualificada (quatro condições), regra de saúde do cliente (três sinais) e critério de crise (quatro gatilhos). O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 5 · Negócios
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| Negócios decide o seu ofício; o executivo opina, aprova a concessão acima da alçada de quem vende e assina | Ponto 1, aprovado por você (20:11) | Acima da alçada do executivo, decidem os sócios. A faixa de desconto de quem vende é aprovada pela Governança. A oportunidade de parceiro de venda é conferida por Negócios com o critério combinado com Relações, sem passar pela qualificação de Relações. |
+| O preço de tabela fica no preço-base ou acima dele | Ponto 2, aprovado por você (20:11) | Abaixo, Negócios pede à Inteligência a revisão do preço-base e mantém a oferta no preço vigente até a resposta (NE-01). Você confirmou também que mudar o preço-base de oferta em uso é revisão, que volta ao portão de entrada. |
+| Licitação é jornada própria; Negócios decide participar e recorrer, ouvidos o executivo e a Governança | Ponto 3, aprovado por você (20:11) | NE-05, nas fases da Lei 14.133. A Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina. |
+| A divisão na oferta conjunta é dos executivos das duas empresas | Ponto 4, aprovado por você (20:11) | Exceção declarada à regra de que o executivo opina. A Gestão confere o efeito no resultado de cada empresa e a Governança formaliza o acordo antes da proposta (NE-07). |
+| A previsão de receita e o desdobramento dos alvos de venda são de Negócios | Ponto 5, aprovado por você (20:11) | NE-02, a partir dos alvos do ciclo, do funil e dos contratos; a previsão vai à Gestão, a Operações, à Integração e ao executivo. |
+| O pedido de cancelamento é tratado por Negócios, como retenção | Ponto 6, aprovado por você (20:11) | NE-06, etapa 2. Relações trata o risco de perda antes do pedido (RE-05). |
+| Sete jornadas | Ponto 7, aprovado por você (20:11) | NE-01 a NE-07, como propostas. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | De Assistido para Copiloto, pelas tarefas: NE-05 etapa 4. De Autopiloto para Autômato, pelas tarefas: NE-03 etapa 4. De Copiloto para Assistido, pelas tarefas: NE-02 etapa 2, NE-03 etapa 2, NE-06 etapa 2, NE-06 etapa 3, NE-07 etapa 2. |
+| A regra de remuneração de quem vende e de parceiros é decidida pelos sócios | Decidido por você (13:09 de 03/10/2026) | Negócios propõe com a Gestão; os sócios decidem, porque mexe em custo e incentivo de todas as empresas. Também: prazos da Lei 14.133 (arts. 84, 86, 90, 164 e 165) lidos em transcrição secundária e registrados nas fontes. |
+| Alçada de concessão comercial | Aprovado por você (13:51 de 03/10/2026) | A NE-01 fixa, por oferta, a faixa entre o preço de tabela e o preço-base. Quem vende concede até metade da faixa; o executivo, até o preço-base e a condição de pagamento fora da política; os sócios decidem preço abaixo do preço-base, exclusividade e prazo maior que o ciclo estratégico. No contrato público, a concessão é a que o edital permite. A fração é escolha de desenho, a recalibrar com dados. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | NE-01 semestral; NE-02 trimestral, com previsão mensal; NE-07 semestral; estrutura dos modelos de contrato e regra de remuneração. O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 6 · Integração
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| A Integração decide o seu ofício; o executivo decide a prioridade dos projetos da sua empresa | Ponto 1, aprovado por você (09:30 de 03/10/2026) | Método de projetos, arquitetura e plataforma, ficha técnica da capacidade, liberação do agente pelos testes e mudança em sistemas são da Integração, ouvidos os donos. A prioridade dos projetos de cada empresa é do executivo, exceção declarada que vem do documento-base. |
+| O conflito de capacidade entre empresas sobe à Estratégia | Ponto 2, aprovado por você (09:30) | IT-01, etapa 2. |
+| A Integração libera o agente depois dos testes; a Governança confere a alçada; o líder do círculo dono aceita | Ponto 3, aprovado por você (09:30) | IT-06, etapa 3. A Inteligência mede o acerto de conteúdo. |
+| O líder do círculo dono decide o redesenho da jornada | Ponto 4, aprovado por você (09:30) | IT-08. Os círculos por onde a jornada passa confirmam a sua parte; a Governança confere quando mexe em alçada, regra ou contrato. |
+| A Integração decide o plano e a data do lançamento, ouvido o executivo | Ponto 5, aprovado por você (09:30) | IT-03. O lançamento só sai com a prontidão conferida. |
+| O pedido de serviço de uma empresa aos círculos fica na IT-05 | Ponto 6, aprovado por você (09:30) | Com acordo de serviço combinado com o líder do círculo dono. O rateio fica para a consolidação das jornadas entre empresas. |
+| Oito jornadas | Ponto 7, aprovado por você (09:30) | IT-01 a IT-08, como propostas. |
+| A NE-01 recebe o plano de lançamento | Proposta aprovada por você (09:30) | Aplicada no círculo 5: a IT-03 entrega o plano a Negócios. |
+| A IT-04 recebe de Operações as entregas encerradas na saída | Proposta do círculo 7, aprovada por você às 11:50 de 03/10/2026 | IT-04, etapa 2: a conclusão da parte de Operações na saída passa a ser uma entrada, vinda da OP-08. |
+| A IT-06 recebe da Governança o desvio de agente apontado pela auditoria | Proposta do círculo 9, aprovada por você às 11:50 de 03/10/2026 | IT-06, etapa 4: o desvio achado na auditoria (GO-06) entra no tratamento de desvio, como o achado pelo monitoramento. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | IT-08 etapa 1: o agente propõe as jornadas do ciclo e a pessoa da Integração decide; o modo passa de Autopiloto a Copiloto (item 3). De Autopiloto para Autômato, pelas tarefas: IT-05 etapa 3, IT-06 etapa 4, IT-08 etapa 3. De Copiloto para Assistido, pelas tarefas: IT-01 etapa 4, IT-02 etapa 1, IT-02 etapa 3, IT-03 etapa 1, IT-05 etapa 2, IT-06 etapa 3, IT-08 etapa 2. Nível de automação pela faixa: IT-04 baixa → média; IT-05 média → alta; IT-06 média → alta; IT-07 alta → média; IT-08 média → alta. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | IT-01 mensal; IT-05 trimestral; IT-06 mensal; IT-08 trimestral; método de projetos, prioridade da carteira, critério de liberação de agente (cinco testes) e política de segurança. O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 7 · Operações
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| Operações decide o seu ofício; o executivo decide o que passa da alçada e o recall | Ponto 1, aprovado por você (11:50 de 03/10/2026) | Plano de capacidade, plano de entrega, procedimentos e níveis de serviço, solução de reclamação dentro da alçada e ação corretiva são de Operações. Segue a regra dos outros círculos: o executivo decide só o que passa da alçada. |
+| Relações define os padrões de experiência; Operações define os níveis de serviço | Ponto 2, aprovado por você (11:50) | OP-05, etapa 1: Operações traduz a experiência e o método em procedimentos e níveis de serviço por oferta e por segmento. O padrão que não consegue cumprir volta a Relações como lacuna. |
+| Operações trata todas as reclamações sobre entrega e atendimento | Ponto 3, aprovado por você (11:50) | OP-04. Relações recebe cada reclamação com a causa (RE-04 e RE-08); a Governança avalia o risco legal e o dever de comunicar a autoridade. |
+| Operações confirma a entrega; a Gestão fatura e compra | Ponto 4, aprovado por você (11:50) | Como diz o documento-base: Operações não fatura. OP-02 e OP-06 passam as entregas confirmadas a faturar; OP-06 pede a compra dos materiais. |
+| O pedido comercial que chega ao atendimento vai a Negócios sem passar por Relações | Ponto 5, aprovado por você (11:50) | OP-03, etapa 1: tarefa de Negócios, que o trata na proposta ou no contrato (NE-03 e NE-06). Nenhuma mudança nos círculos fechados. |
+| Produto físico em duas jornadas recomendadas | Ponto 6, aprovado por você (11:50) | OP-06 e OP-07 só existem onde a oferta tem produto físico. O recall é decidido pelo executivo. |
+| Oito jornadas | Ponto 7, aprovado por você (11:50) | OP-01 a OP-08. |
+| A IT-04 recebe de Operações as entregas encerradas na saída | Proposta ao círculo 6, aprovada por você (11:50) | IT-04, etapa 2: a conclusão da parte de Operações passa a ser uma entrada, vinda da OP-08, etapa 3. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | OP-08 etapa 3: a automação registra a liberação de pessoas, agentes, parceiros e ativos (item 4). OP-07 etapa 1: o agente faz a triagem e a pessoa de Operações decide se há risco à saúde ou à segurança; na dúvida, vai à avaliação de recall. A negativa de cobertura apontada pelo agente é revisada pela pessoa antes da resposta ao cliente. O modo passa de Autopiloto a Copiloto (itens 5 e 6). De Assistido para Copiloto, pelas tarefas: OP-07 etapa 3. De Autopiloto para Autômato, pelas tarefas: OP-01 etapa 3. De Copiloto para Assistido, pelas tarefas: OP-08 etapa 2, OP-07 etapa 2. Nível de automação pela faixa: OP-02 média → alta; OP-05 média → alta. |
+| Fontes do pós-venda entre empresas e do recebimento público | Pedido seu (13:09 de 03/10/2026): pesquisar e resolver as fontes | OP-07: Código Civil, arts. 421-A e 441 a 446; OP-02: Lei 14.133, art. 140. Lidos em transcrição secundária; conferir no oficial antes de usar em peça. |
+| Alçadas de Operações | Aprovado por você (13:51 de 03/10/2026) | Falta de capacidade: Operações cobre com pessoas e parceiros já contratados, dentro do orçamento; contratação nova ou fora do orçamento vai ao executivo pela GE-01. Reclamação: Operações refaz e dá crédito até o valor faturado da entrega reclamada; acima, ou com responsabilidade e indenização, o executivo com a Governança. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | OP-01 trimestral; OP-05 e OP-06 mensais; procedimento, três níveis de serviço e garantia por oferta. O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 8 · Gestão
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| A Gestão decide o seu ofício dentro da alçada; o executivo decide o que passa dela | Ponto 1, aprovado por você (11:50 de 03/10/2026) | Mesma regra dos outros círculos. Os sócios aprovam alvos e orçamento (ES-03) e decidem alocação e destino do resultado (ES-02); a Gestão desdobra, controla e executa. |
+| O líder decide quem entra na sua equipe; a Gestão conduz e confere | Ponto 2, aprovado por você (11:50) | GE-07, etapa 2. O desligamento é decidido pelo executivo, com o líder, como exceção declarada na regra do círculo. |
+| As quatro jornadas vindas da Identidade ficam como jornadas da Gestão, com o propósito pessoal dentro do desenvolvimento | Ponto 3, aprovado por você (11:50) | Integração cultural (GE-08), rituais e reconhecimento (GE-10) e comunicação interna (GE-11), como transferidas em 01/10/2026; o propósito pessoal, que o destino da transferência já punha “dentro do ciclo de desenvolvimento”, virou etapa voluntária da GE-09, com o ajuste de papel só com o acordo da pessoa. |
+| O rateio é aplicado pela Gestão pelo critério da Governança | Ponto 4, aprovado por você (11:50) | GE-06, como a fronteira da Estratégia já dizia. O executivo opina; a contestação do critério vai à Governança. |
+| A Gestão confirma ao plano de capacidade os recursos que cabem no orçamento | Ponto 5, aprovado por você (11:50) | GE-01, etapa 1. A contratação e a compra seguem na GE-07 e na GE-04. |
+| A realocação entre empresas não é decidida na Gestão | Ponto 6, aprovado por você (11:50) | O pedido acima da alçada vai ao executivo; entre empresas, fica registrado para a revisão do portfólio (ES-02), que lê a execução do orçamento. |
+| A folha é jornada própria; a remuneração de parceiros é paga na jornada de compras e pagamentos | Ponto 7, aprovado por você (11:50) | GE-13 e GE-04, como Negócios pediu: a remuneração de quem vende e de parceiros fica com a Gestão. |
+| Treze jornadas | Ponto 8, aprovado por você (11:50) | GE-01 a GE-13. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | De Assistido para Copiloto, pelas tarefas: GE-02 etapa 2. De Autopiloto para Autômato, pelas tarefas: GE-01 etapa 3, GE-02 etapa 3, GE-07 etapa 4, GE-11 etapa 3. De Copiloto para Assistido, pelas tarefas: GE-06 etapa 2, GE-07 etapa 2, GE-08 etapa 2, GE-09 etapa 1, GE-10 etapa 2. Nível de automação pela faixa: GE-05 média → alta; GE-06 alta → média; GE-12 média → alta. |
+| A regra de remuneração é dos sócios; fontes da folha e da escrituração | Decidido e pedido por você (13:09 de 03/10/2026) | A Gestão aplica a regra que os sócios decidem. GE-13 e GE-07: CLT (arts. 74, 145, 459 e 477) e FGTS (art. 15); GE-05: Código Civil (arts. 1.179, 1.180 e 1.194). A regra fiscal depende do regime de cada empresa, que não está no modelo. |
+| Alçadas da Gestão | Aprovado por você (13:51 de 03/10/2026) | Remanejamento dentro do círculo e da empresa sem mudar o total: Gestão; entre círculos, executivo; entre empresas, Estratégia; aumento do total, sócios. Cobrança privada: na segunda fatura vencida, proposta de suspensão ao executivo; contrato público segue a lei e o contrato. Pagamento só com pedido, recebimento e nota conferidos; quem lança não aprova; fora do orçamento, executivo; acima da reserva de contingência, sócios. Aportes e distribuição: só o que os sócios decidiram; contas e poderes bancários com o executivo e a Governança. Vaga no orçamento: Gestão com o líder; fora, executivo; desligamento de executivo ou líder, sócios. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | Cadências da Gestão (fechamento, rateio, folha, avaliação, cultura, comunicação, inventário); políticas de cobrança, compras, remuneração e desenvolvimento; critério de rateio. O que depende de dado real ficou nos gates G1 a G9. |
+
+### Círculo 9 · Governança
+
+| Decisão | Origem | Efeito no desenho |
+| --- | --- | --- |
+| A Governança decide o seu ofício dentro da alçada; os sócios decidem as regras gerais e as alçadas dos executivos | Ponto 1, aprovado por você (11:50 de 03/10/2026) | GO-01, etapa 2. Mesma regra dos outros círculos. O critério de rateio é definido pela Governança com a Estratégia, como a fronteira do círculo 2 diz; a Gestão aplica. |
+| Uma amostra única de entregas serve à auditoria e à avaliação dos métodos | Ponto 2, aprovado por você (11:50) | GO-06, etapa 1: a mesma amostra vai à Inteligência (IN-06, etapa 5). Encaminha o alerta do círculo 3: quem sorteia e para onde vai está definido; os estratos (inclusive as entregas com método publicado) e o tamanho ficam em aberto. |
+| O comitê de crise é conduzido pela Governança, com o executivo | Ponto 3, aprovado por você (11:50) | GO-08, como a transferência do círculo 1 e a RE-08 já diziam: Relações monitora e comunica; a Governança propõe e o executivo aprova a declaração, a posição e o encerramento; a Identidade tem assento no comitê. |
+| O papel de encarregado de dados pessoais fica na Governança | Ponto 4, aprovado por você (11:50) | GO-07: a Governança decide a resposta ao titular; Relações executa na base de relacionamento (RE-03) e quem guarda o dado executa o resto. |
+| O relato sobre o executivo é decidido com os sócios | Ponto 5, aprovado por você (11:50) | GO-09, etapa 2: a medida é decidida com o executivo; se ele, a Governança ou um sócio estiver envolvido, decidem os sócios não envolvidos. |
+| As auditorias de identidade e de agentes viram uma só | Ponto 6, aprovado por você (11:50) | GO-06 junta a ID-11 transferida e a I-GO3, com a causa encaminhada a quem corrige. A Identidade julga os casos de fronteira, como decidido no fechamento do círculo 1. |
+| Dez jornadas | Ponto 7, aprovado por você (11:50) | GO-01 a GO-10. |
+| A IT-06 recebe da Governança o desvio de agente apontado pela auditoria | Proposta ao círculo 6, aprovada por você (11:50) | IT-06, etapa 4. |
+| Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | GO-05 etapa 1: a decisão sobre cláusula fora do modelo ou risco relevante passa à pessoa da Governança; o agente aponta as diferenças (item 9). De Autopiloto para Autômato, pelas tarefas: GO-01 etapa 3, GO-05 etapa 2, GO-06 etapa 1, GO-07 etapa 3, GO-09 etapa 4. Nível de automação pela faixa: GO-03 média → alta; GO-06 média → alta; GO-07 média → alta; GO-08 baixa → média; GO-09 baixa → média. |
+| O apetite a risco é dos sócios; prazo de comunicação de incidente lido | Decidido e pedido por você (13:09 de 03/10/2026) | GO-03: a Governança mantém a matriz de riscos; os sócios decidem o apetite a risco. GO-09: três dias úteis para comunicar a autoridade e o titular (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º), em dobro para o agente de pequeno porte, lida em transcrição secundária. GO-05: Código Civil, arts. 421-A e 422. |
+| O que a Governança decide sozinha e as regras gerais dos contratos | Aprovado por você (13:51 de 03/10/2026) | A Governança decide sozinha as regras que aplicam regra geral aprovada, os modelos de proposta e contrato, sigilo, dados e guarda, a alçada de pessoas no círculo e de agentes no critério, a matriz de riscos dentro do apetite dos sócios, o rateio com a Estratégia e a amostra. Vão aos sócios as alçadas dos executivos, as regras gerais, as exceções e a alçada da própria Governança. Regras gerais dos contratos: modelo obrigatório; assina o executivo; alocação de riscos escrita (Código Civil, art. 421-A); garantia escrita; papéis de dados e aviso de incidente a tempo dos três dias úteis; reajuste anual por índice escrito (recomendado o IPCA); exclusividade, prazo longo, multa acima do modelo, foro e garantia financeira vão aos sócios; contrato público usa a minuta do edital. |
+| Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | GO-01 anual; GO-02 e GO-03 trimestrais; GO-06 trimestral; matriz de riscos 5 por 5, desenho da amostra e regras de sigilo, dados e guarda. O que depende de dado real ficou nos gates G1 a G9. |
+
+## Consolidação das jornadas cross
+
+O modelo fechado tem 73 jornadas. As 26 jornadas cross da rodada 2 viraram cadeias de jornadas dos círculos; os 47 passos das cadeias foram conferidos nos dados, com 0 falhas.
+
+| Cross | Nome | Cadeia nova | Dono do resultado | Nota |
+| --- | --- | --- | --- | --- |
+| V1 | Do problema à oferta | IN-07 → ES-04 → IT-03 | Inteligência desenha; Estratégia decide no portão; Integração lança | A decisão de lançamento passou à Estratégia (ES-04) no fechamento do círculo 2. |
+| V2 | Do mercado à oportunidade | RE-01 → RE-02 → RE-03 → NE-03 | Relações |  |
+| V3 | Da oportunidade ao contrato | NE-03 → NE-04 → GO-05 | Negócios | Na licitação, NE-05 no lugar de NE-03 e NE-04. |
+| V4 | Do contrato à operação | NE-04 → IT-02 → OP-02 | Integração |  |
+| V5 | Da entrega ao recebimento | OP-02 → GE-03 | Operações entrega; Gestão fatura e recebe |  |
+| V6 | Do chamado à solução | OP-03 → OP-04 → OP-05 | Operações | O problema de tecnologia segue para a IT-07. |
+| V7 | Do resultado à renovação | OP-02 → RE-05 → NE-06 | Relações acompanha; Negócios renova |  |
+| V8 | Da previsão ao produto entregue | NE-02 → OP-01 → OP-06 → GE-03 | Operações | Só onde há produto físico. |
+| C1 | Da estratégia ao resultado | ES-01 → ES-03 → GE-01 → GE-02 → ES-06 | Estratégia; a Gestão roda o orçamento e o ritual |  |
+| C2 | Do propósito ao padrão | ID-01 → ID-02 → IT-06 | Identidade | O padrão chega aos agentes pela IT-06 e às pessoas pela Gestão (GE-07 a GE-10). |
+| C3 | Do dado ao aprendizado | IN-03 → IN-04 → IN-08 | Inteligência |  |
+| C4 | Do contato à parceria ativa | RE-06 → NE-07 | Relações |  |
+| C5 | Da necessidade à capacidade | IT-05 → IT-06 | Integração |  |
+| C6 | Da vaga ao talento | GE-07 → GE-08 → GE-09 | Gestão |  |
+| C7 | Da compra ao pagamento | OP-06 → GE-04 → GE-05 | Gestão | Qualquer círculo pede compra à GE-04. |
+| C8 | Do registro à prestação de contas | GE-05 → GO-03 | Gestão; a Governança relata riscos e conformidade |  |
+| C9 | Do risco ao controle | GO-03 → GO-01 | Governança |  |
+| C10 | Do pedido de tecnologia ao serviço estável | OP-03 → IT-07 | Integração | Qualquer círculo pede à IT-07. |
+| C11 | Da marca à reputação | ID-04 → RE-08 → GO-08 | Identidade cria a marca e o posicionamento; Relações monitora; a Governança decide a crise | A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04. |
+| C12 | Do valor declarado à cultura vivida | ID-02 → GE-10 → GE-09 → ID-05 | Identidade; a Gestão executa |  |
+| C13 | Da minuta ao contrato encerrado | GO-01 → NE-04 → GO-05 | Governança | O contrato é originado pela frente dona. |
+| E1 | Do pedido ao serviço | IT-05 | Integração | O pedido de serviço de uma empresa a um círculo fica na IT-05, com acordo de serviço. |
+| E2 | Da oportunidade cruzada à oferta conjunta | NE-07 → GE-03 | Negócios | O acordo entre as empresas vai também à guarda na GO-05. |
+| E3 | Do custo corporativo ao rateio | GO-01 → GE-06 → GE-05 | Governança define com a Estratégia; Gestão aplica |  |
+| E4 | Do resultado da empresa à decisão do Ecossistema | GE-05 → ES-02 | Estratégia |  |
+| E5 | Da aposta à empresa nova | ES-04 → ES-05 → IT-04 | Estratégia | A IT-04 abre o projeto de ligar a empresa nova. |
+
+## Propostas de mudança que aguardam aprovação (nenhuma aplicada)
+
+## Perguntas em aberto para o dono do projeto
+
+Nenhuma pergunta de desenho. Tudo foi aprovado em 03/10/2026, às 11:50. O que falta são os valores e textos listados em 5-leitura-por-circulo/parametros_em_aberto.md (alçadas, cadências, regras e fontes a ler).
+
+## Alertas registrados por círculo (todos respondidos pelos círculos seguintes)
+
+### Do círculo 1 · Identidade
+
+- **Carga da Gestão.** A Gestão recebe quatro jornadas com muito trabalho humano: integração cultural, rituais e reconhecimento, propósito pessoal e comunicação interna. A carga só pode ser medida quando a Gestão for desenhada.
+- **Um indicador, um dono.** Identidade responde por padrão claro e atual. Cultura vivida é da Gestão; percepção e reputação, de Relações; conformidade das entregas, da Governança.
+- **Prazo de resposta às consultas.** Depende do volume de consultas: ficou para o gate G9 (calibração), depois de dois ciclos. Sem medida, não propus número.
+- **Uma auditoria só.** A Governança amostra as entregas uma vez, com os critérios de cada círculo. A decidir no círculo 9.
+
+### Do círculo 2 · Estratégia
+
+- **Integração como PMO corporativo.** A definição pede, no círculo 6, as jornadas de carteira de projetos internos e externos, a execução de mandato de empresa e a coordenação de lançamento de oferta. A ES-03, a ES-04 e a ES-05 já contam com elas.
+- **Plano de saída.** O plano de saída de clientes, contratos e pessoas (ES-05) e o de clientes e contratos de oferta encerrada (ES-04) são pedidos à Integração, que coordena Relações, Negócios, Operações, Governança e Gestão. Viram requisito dos círculos 4 a 9. A Integração como dona do plano e a data de saída decidida pela Estratégia, ouvido o executivo, são escolhas do desenho para a proposta 10 funcionar. Confirmado por você às 20:11 de 02/10/2026.
+- **Alçadas e sócios.** Faltam as alçadas que separam a decisão da Estratégia da decisão dos sócios, por recursos e por tipo de decisão (encerrar oferta em uso, virar empresa própria, contrariar o portfólio-alvo aprovado), e quem são os sócios em cada caso: os do Ecossistema ou os de cada empresa. Fica para o círculo 9.
+- **Cadências.** Fixadas pelo método de estratégia aprovado em 03/10/2026: estratégia anual, com revisão no meio do ciclo; portfólio semestral; alvos anuais; revisão da execução trimestral. Recalibrar com dados no gate G9.
+- **Método de estratégia.** Tem lugar no desenho (ES-01) e passa a ser aprovado pelos sócios, mas o conteúdo ainda não foi escrito: critérios dos portões, regras de realocação, critério de desvio grave e calendário.
+
+### Do círculo 3 · Inteligência
+
+- **Conferência de identidade em cinco jornadas.** A IN-01, a IN-02, a IN-03, a IN-04 e a IN-08 produzem análise e medida para uso interno e não têm ponto de conferência com a identidade. Você aprovou às 20:11 de 02/10/2026 a leitura proposta: a conferência vale para as jornadas que produzem conteúdo, método ou oferta; as cinco de análise e medida para uso interno ficam sem o ponto.
+- **Amostra da Governança.** A avaliação do resultado dos métodos depende do desenho da amostra, que só será feito no círculo 9. A entrega feita sem método publicado não é avaliada.
+- **Integração.** O círculo 6 recebe: conectar as fontes e guardar os dados, servir as bases aos agentes, rodar os casos de teste dos métodos, manter a carteira de projetos das ofertas e coordenar o lançamento.
+- **Preço-base.** A mudança de preço-base de oferta em uso é revisão, que volta ao portão de entrada, e não ajuste: confirmado por você às 20:11 de 02/10/2026. A regra da tabela ficou no círculo 5: o preço de tabela fica no preço-base ou acima dele; abaixo, Negócios pede a revisão (NE-01).
+- **Empresa que entra ou sai do portfólio.** Na saída, a IN-07 retira as ofertas do catálogo e a IN-04 revê os indicadores; o destino dos dados (IN-03) e das bases (IN-05) ainda não está desenhado. Na aquisição, as ofertas que a empresa já tem não têm caminho desenhado até o catálogo de ofertas.
+- **Cadências e prazos.** Cadências validadas em 03/10/2026: leitura mensal; medição mensal e revisão dos indicadores anual; revisão das bases trimestral; aprendizado trimestral. O prazo de resposta da IN-02 depende de volume e ficou para o gate G9.
+
+### Do círculo 4 · Relações
+
+- **Negócios (círculo 5).** Relações espera de Negócios: o aceite ou a devolução de cada oportunidade com o motivo e no prazo combinado, a tabela de preços para as ações, o contrato de cliente assinado com o escopo vendido e o vencimento e o resultado de cada renovação. Entrega o critério combinado, a oportunidade qualificada e a oportunidade de renovação ou de expansão.
+- **Integração (círculo 6).** Relações espera o plano de implantação de cada cliente, o plano de lançamento de cada oferta, o plano de saída de clientes e contratos e os sistemas e canais que as ações e os padrões de experiência pedem.
+- **Operações (círculo 7).** Relações espera as reclamações e os incidentes de clientes com a causa e os registros de entrega e atendimento de cada cliente. Entrega a estratégia de experiência e os planos de sucesso e de recuperação.
+- **Gestão (círculo 8).** Relações espera o orçamento de demanda do ciclo e a situação de faturas e pagamentos de cada cliente.
+- **Governança (círculo 9).** Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise (que declara, decide a posição e encerra a crise) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.
+
+### Do círculo 5 · Negócios
+
+- **Integração (círculo 6).** Negócios espera o plano de saída de clientes e contratos e a confirmação do que a implantação pede antes da proposta. Entrega o contrato assinado, a previsão de vendas, os contratos afetados pela saída e as pendências de contrato na saída.
+- **Operações (círculo 7).** Negócios espera a confirmação de capacidade antes da proposta, do edital e da previsão. Entrega o contrato e a ata assinados, a tabela de preços e a previsão de vendas.
+- **Gestão (círculo 8).** Negócios espera a situação de faturas e pagamentos de cada cliente e a conferência de margem da política comercial e da oferta conjunta. Entrega o contrato e a ata assinados, a previsão de receita, o desvio contra os alvos e o vencimento de cada contrato. A remuneração de quem vende e de parceiros fica com a Gestão.
+- **Governança (círculo 9).** Negócios espera as regras e alçadas vigentes, os modelos de proposta e de contrato, as certidões e os documentos de habilitação em dia, a revisão do que foge do modelo, a condução de esclarecimentos, impugnações e recursos em licitação e a formalização do acordo de oferta conjunta. Entrega o contrato para conferir e guardar e o acordo entre as empresas.
+
+### Do círculo 6 · Integração
+
+- **Operações (círculo 7).** A Integração espera de Operações a confirmação de capacidade antes da implantação e do lançamento, a implantação feita em conjunto e o fim das entregas na saída. Entrega o cliente implantado e aceito, o plano de implantação, o plano de lançamento, a oferta lançada e o plano de saída.
+- **Gestão (círculo 8).** A Integração entrega também os planos de implantação, de lançamento e de saída. Espera que a Gestão compre o que falta para a implantação, compre fornecedores e licenças de tecnologia, confira o orçamento do lançamento e proponha o destino das pessoas e dos custos na saída. Entrega a situação da carteira, os recursos liberados, o custo de tecnologia por empresa e por círculo e o cliente implantado para iniciar a cobrança.
+- **Governança (círculo 9).** A Integração entrega também os planos de lançamento e de saída. Espera as regras e alçadas vigentes, as regras de sigilo e de dados pessoais, a alçada de cada capacidade e de cada agente, a conferência de mudança que mexe em dado pessoal ou segurança, o tratamento do incidente de segurança, a revisão do contrato de tecnologia e as obrigações legais da saída. Entrega o contrato de tecnologia para guardar, os registros de entregas de pessoas e agentes e o agente suspenso, com o motivo.
+
+### Do círculo 7 · Operações
+
+- **Gestão (círculo 8).** Operações espera da Gestão as pessoas, as compras e os ativos do plano de capacidade, confirmados; os materiais comprados com a data de entrega; a fatura das entregas confirmadas; o crédito ou o reembolso aprovado e a cobrança do fornecedor. Entrega o plano de capacidade, as entregas confirmadas para faturar, o pedido de compra, o desempenho dos fornecedores e os recursos liberados.
+- **Governança (círculo 9).** Operações espera as regras e alçadas vigentes e as regras de sigilo e de dados pessoais, a avaliação do risco legal da reclamação, a comunicação do risco do produto à autoridade e os relatórios do recall. Entrega o incidente ou risco a comunicar à autoridade e os relatórios do recall para a autoridade.
+
+### Do círculo 8 · Gestão
+
+- **Governança (círculo 9).** A Gestão espera da Governança as regras e alçadas vigentes, as regras de sigilo e de dados pessoais, o critério de rateio do custo dos círculos, a revisão e a guarda dos contratos de fornecedor e a validação do conteúdo interno sensível. Entrega o contrato de fornecedor, as demonstrações e obrigações fiscais do período, os aportes e distribuições executados e a contestação do critério de rateio.
+
+### Do círculo 9 · Governança
+
+
+## Jornadas dos círculos fechados
+
+### Círculo 1 · Identidade
+
+A Identidade padroniza, normatiza e sistematiza. Quem executa são os outros círculos, e quem audita é a Governança. São cinco jornadas: declarar quem somos, transformar isso em regra, criar as marcas, definir o posicionamento e avaliar se os padrões funcionam. O Soul Brand é a declaração de identidade em vigor: é a saída da ID-01 e serve de insumo às outras quatro.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| ID-01 | Definir e revisar propósito, visão, missão, princípios e valores | 5 | Manter uma declaração de identidade única, aprovada pelos sócios, que diga o que vale para todo o Ecossistema e o que é próprio de cada empresa. |
+| ID-02 | Transformar a identidade em regras práticas para pessoas e agentes | 4 | Converter a declaração em padrões que qualquer pessoa ou agente aplica sem consultar o fundador, entregar a cada círculo que executa o conjunto de padrões de que ele precisa e responder às consultas sobre casos que o padrão não cobre. |
+| ID-03 | Criar ou rever e registrar a marca de uma empresa, oferta ou projeto | 7 | Decidir se o negócio novo usa uma marca existente ou ganha marca própria e, quando ganha, entregá-la criada, protegida e pronta para uso por pessoas e agentes. Vale também para rever uma marca existente, receber a marca de uma empresa adquirida e retirar uma marca de uso. Quem usa a marca produz os materiais com o pacote. |
+| ID-04 | Definir o posicionamento institucional e as mensagens para cada público | 5 | Definir uma promessa clara e as mensagens principais para cada público, no nível do Ecossistema e de cada empresa, para uso de pessoas e agentes. Quem comunica são Relações, para fora, e a Gestão, para dentro. |
+| ID-05 | Avaliar se os padrões de identidade funcionam e decidir o que rever | 4 | Saber, com os dados de quem executa e de quem audita, onde o que declaramos, o que vivemos e como somos vistos não batem; separar falha do padrão de falha de execução; e abrir a revisão do padrão certo. |
+
+### Círculo 2 · Estratégia
+
+A Estratégia faz o trabalho de estratégia de ponta a ponta: formula, propõe, desdobra em alvos, decide os portões dentro da alçada e acompanha as hipóteses. Na formulação, o executivo e o líder do círculo propõem e participam, mas não decidem. Os sócios aprovam. A Gestão opera a rotina: orçamento e ritual de acompanhamento. A Integração é o PMO corporativo e coordena projetos, implantações e lançamentos. São seis jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| ES-01 | Formular e revisar a estratégia do Ecossistema e de cada empresa | 5 | Ter uma estratégia escrita e aprovada, do Ecossistema e de cada empresa, que diga onde atuar, o que não fazer e para quem, com as hipóteses de cada escolha, e que sirva de critério para alocar recursos e fixar alvos. Inclui as escolhas de cada círculo e o método de estratégia, que os sócios aprovam junto com a estratégia. A Estratégia formula; o executivo e o líder do círculo propõem e participam. |
+| ES-02 | Rever o portfólio e realocar recursos entre empresas, ofertas e apostas | 4 | Decidir, a cada período, para onde vão dinheiro, pessoas e atenção: o que recebe mais, o que mantém, o que perde recursos e o que deve ter a saída estudada, e o destino do resultado de cada empresa. A proposta sobe sempre aos sócios, mesmo quando é manter a alocação. |
+| ES-03 | Desdobrar a estratégia em alvos e iniciativas de cada empresa e de cada círculo | 5 | Transformar a estratégia em poucos alvos mensuráveis do Ecossistema, de cada empresa e de cada círculo, com iniciativas, dono e indicador, combinados de cima para baixo e de baixo para cima; pedir à Inteligência a ficha do indicador de cada alvo antes da aprovação; e conferir com a Gestão e a Integração se os alvos cabem nos recursos. |
+| ES-04 | Decidir em cada portão se uma aposta avança, espera, volta para ajuste ou é encerrada | 5 | Fazer cada ideia, oferta ou negócio novo passar por decisões explícitas antes de receber recursos: entrar na carteira e, depois de produtizada pela Inteligência, ser lançada. Em qualquer portão ou revisão, a aposta pode avançar, seguir como está, esperar, voltar para ajuste ou ser encerrada. A Estratégia decide, ouvido o executivo, dentro da alçada; acima dela, decidem os sócios. Encerrar aposta em desenvolvimento ou oferta em uso só termina com o plano de saída conferido, a data de saída decidida por pessoa e a saída conferida. |
+| ES-05 | Decidir e estruturar a criação, a aquisição, a venda ou o encerramento de uma empresa | 8 | Decidir com um caso escrito se o Ecossistema cria, adquire, vende ou encerra uma empresa; obter dos sócios a autorização para negociar e, depois, a decisão, inclusive a de arquivar o caso que eles mandaram estudar ou cuja negociação autorizaram; firmar o contrato, quando há; emitir o mandato para os círculos que executam; e conferir o cumprimento. A Integração executa o mandato; a Estratégia confere. |
+| ES-06 | Acompanhar a execução da estratégia e corrigir o rumo | 4 | Saber a cada revisão se a estratégia está sendo executada e se as hipóteses continuam de pé, separar falha de execução de hipótese errada, decidir as correções de execução, ouvidos os executivos, abrir só a revisão de nível mais alto que os sócios decidem (a estratégia puxa o portfólio, que puxa os alvos) e prestar contas. Usa as comparações que a Inteligência e a Gestão já fazem, num painel único. |
+
+### Círculo 3 · Inteligência
+
+A Inteligência sabe antes e melhor e transforma o que sabe em oferta. Lê o mercado, responde a quem decide, torna o dado confiável, mede os indicadores, cura as bases de conhecimento, escreve os métodos e desenha as ofertas. Decide o que é do seu ofício (a medida, o método e a curadoria) e, entre os dois portões, a oferta, ouvidos o executivo, Negócios e a Gestão. Não decide o portfólio nem a regra, não monta nem opera agentes e não responde pelo resultado que mede. São oito jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| IN-01 | Ler o mercado, os clientes e os concorrentes e avisar das mudanças relevantes | 5 | Manter uma leitura atual de mercado, clientes e concorrentes, guiada pelas perguntas de quem decide, e avisar a tempo quando um sinal muda uma hipótese da estratégia ou abre uma oportunidade. Os sinais internos (clientes, vendas e entrega) chegam como dado do catálogo de dados, e a leitura só é publicada depois de classificada. |
+| IN-02 | Responder a perguntas de decisão com evidência | 4 | Dar a quem vai decidir uma resposta com fonte e grau de confiança, dentro do prazo combinado, e guardar a pergunta, a resposta e o uso para que a próxima seja mais rápida. É por aqui que a Estratégia pede a evidência de um portão ou de um caso e a contestação das causas de um desvio: essas respostas são revistas por pessoa e ficam restritas a quem pode vê-las. |
+| IN-03 | Tornar cada dado confiável: definir, validar, catalogar, classificar e retirar | 5 | Fazer com que cada dado usado em decisão, indicador ou agente tenha definição, dono, fonte, regra de qualidade, classificação de sigilo e prazo de guarda, esteja no catálogo de dados para pessoas e agentes e saia dele quando o prazo vence ou o tratamento deixa de ser permitido. A Integração conecta a fonte, guarda o dado e controla o acesso; a Governança define o sigilo, as regras de dados pessoais e a regra de guarda. |
+| IN-04 | Definir e medir os indicadores e publicar as análises | 5 | Fazer com que cada alvo e cada decisão recorrente tenham um indicador com definição, dono, fonte, linha de base e cadência, calculado pela mesma ficha para todos e publicado com a análise num painel único. A Inteligência decide a ficha: como se mede e quem pode ver. O dono do resultado confirma a ficha e responde pelo resultado; se não confirma, vale a ficha da Inteligência, com a divergência registrada, e no indicador de alvo decide a Estratégia. É por aqui que a Estratégia confere, antes de aprovar os alvos, se cada um tem indicador, fonte e linha de base. |
+| IN-05 | Curar as bases de conhecimento que pessoas e agentes consultam | 5 | Manter, para cada tema, uma base única, curada, classificada e com dono, em que pessoas e agentes encontram a resposta certa e atual, e fazer cada pergunta sem resposta virar pedido de curadoria. O que já chega aprovado, versionado e classificado por quem publica (padrão, estratégia, método, oferta) é indexado, não revalidado. |
+| IN-06 | Criar e publicar um método testado, a partir de uma prática ou de uma necessidade | 5 | Fazer com que o que funciona na prática, ou o que uma oferta ou capacidade nova exige, vire método escrito, testado em caso real por quem não o descreveu, testado nos agentes, publicado com versão e entregue com critério de sucesso e casos de teste. Quando o método nasce para uma oferta, o caso real é o piloto da IN-07. A Inteligência é a dona do método e avalia, a cada amostra da Governança, se o resultado que ele produz é bom. |
+| IN-07 | Desenhar e validar uma oferta com o seu modelo de negócio e prepará-la para o lançamento | 9 | Levar uma aposta aprovada no portão de entrada até uma oferta pronta para vender e entregar: enquadramento, solução e método de entrega, modelo de negócio e preço-base, validação com clientes reais e pacote completo. Entre os dois portões, quem decide é a Inteligência; o executivo da empresa, Negócios e a Gestão opinam e sugerem. A Estratégia decide os dois portões. O ajuste de uma oferta em uso, quando não muda problema, público, modelo nem preço-base, é decidido e feito aqui, sem portão; a revisão que muda um deles volta ao portão de entrada. |
+| IN-08 | Aprender com as lições e os resultados e recomendar melhorias | 4 | Fazer com que cada lição de aposta, caso, piloto, projeto, cliente ou revisão seja registrada só com o que pode ser dito, cruzada com os indicadores e transformada em recomendação com evidência, entregue a quem pode agir; e conferir se a melhoria aceita foi feita e deu resultado. |
+
+### Círculo 4 · Relações
+
+Relações constrói e cuida das relações com o mercado, os clientes, os parceiros e as instituições, antes e depois do contrato. Gera demanda e entrega a Negócios oportunidades qualificadas, desenha a experiência do cliente, acompanha o sucesso de cada cliente, forma parcerias, comunica para fora e vigia a reputação. Não vende, não atende, não define a marca e não decide a crise. São oito jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| RE-01 | Planejar a geração de demanda do ciclo por público, oferta e canal | 4 | Ter, a cada ciclo, um plano de demanda de cada empresa que diga a que públicos falar, com que ofertas, por quais canais e ações, com que alvo e com que orçamento, a partir da direção, dos alvos, das ofertas no catálogo e do resultado do ciclo anterior, e com o critério de oportunidade qualificada combinado com Negócios. Relações decide o plano, ouvidos Negócios e o executivo; a Gestão confere o orçamento. |
+| RE-02 | Executar as ações de demanda e medir o resultado | 3 | Levar cada ação do plano aos públicos certos, com material conforme os padrões de identidade e só para quem pode ser abordado, captar os contatos com a base legal e medir o resultado de cada ação contra o alvo, e não só pelo alcance; e recolher o material em circulação quando a marca sai de uso ou o material vence. |
+| RE-03 | Qualificar os contatos e entregar a Negócios as oportunidades qualificadas | 5 | Fazer com que cada contato entre na base de relacionamento com a origem e a base legal, receba conteúdo já aprovado pelo interesse que mostra, seja qualificado pelo critério combinado com Negócios e, quando qualificado, chegue a Negócios com o histórico; e manter a base confiável, executando os pedidos dos titulares que a Governança decide. |
+| RE-04 | Desenhar a experiência do cliente: personas, mapa da jornada e padrões de experiência | 4 | Ter, para cada empresa, uma estratégia de experiência do cliente escrita e validada com clientes: quem são os clientes (personas), por onde passam (mapa da jornada), o que vivem em cada ponto de contato e que padrão de experiência cada etapa tem de cumprir, coerente com os valores e o posicionamento da marca. Operações, Negócios e Integração dizem se conseguem cumprir; Relações decide, ouvidos o executivo e os clientes. |
+| RE-05 | Acompanhar o sucesso de cada cliente, da entrada à renovação, à expansão ou à perda | 4 | Fazer com que cada cliente tenha um plano de sucesso combinado, que a saúde de cada cliente seja medida a cada ciclo, que o risco de perda seja tratado antes da perda, que o resultado seja apresentado ao cliente e que a renovação, a expansão, a indicação ou a lição da perda cheguem a quem age. Negócios negocia a renovação e a expansão e informa o resultado; Operações atende e entrega. Os clientes só são avisados de uma saída quando a data está confirmada. |
+| RE-06 | Formar e cuidar de parcerias e relações institucionais e autorizar o uso da marca por terceiros | 5 | Fazer cada parceria ou relação institucional nascer de uma avaliação de encaixe, ser formalizada com objetivos, papéis e indicadores, por contrato ou por termo institucional conferido pela Governança e aprovado pelo executivo, ser ativada, acompanhada e, quando deixa de servir, encerrada com ordem; e decidir quem de fora pode usar as marcas, pela regra da Identidade, com a exceção decidida por Relações, ouvida a Identidade, e liberada pela Governança. A parceria acima da alçada sobe aos sócios pela Governança; a que muda o portfólio vai à Estratégia como aposta. |
+| RE-07 | Comunicar para fora: pauta, conteúdo, imprensa e porta-vozes | 4 | Comunicar aos públicos externos, com uma só voz e dentro dos padrões de identidade, os fatos, as mudanças, os lançamentos e os casos que importam, preparar quem fala pela empresa e medir o efeito de cada tema contra o alvo, e não só a exposição. O executivo aprova o que se diz em nome da empresa; a Governança confere o risco jurídico. A comunicação interna é da Gestão. |
+| RE-08 | Monitorar a percepção dos públicos e a reputação e acionar a resposta a crises | 4 | Saber, a cada ciclo, como os públicos percebem as marcas, encaminhar cada lacuna a quem pode agir e detectar cedo o que pode virar crise. Relações apura os fatos e leva ao comitê da Governança todo sinal grave ou em dúvida; o comitê declara a crise, decide a posição e o porta-voz e a encerra; Relações redige e publica a comunicação da posição decidida. |
+
+### Círculo 5 · Negócios
+
+Negócios transforma oportunidade em contrato e cuida dos contratos dos clientes. Mantém a tabela de preços e a política comercial, planeja as vendas e prevê a receita, faz a proposta, negocia e fecha o contrato, disputa licitações, renova, amplia, adita e encerra contratos e vende com parceiros e em oferta conjunta entre as empresas. Não gera demanda, não desenha a oferta, não implanta, não entrega e não fatura. São sete jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| NE-01 | Manter a tabela de preços, a política comercial e o material de venda de cada empresa | 3 | Ter, em cada empresa, uma tabela de preços e uma política comercial vigentes (preço de cada oferta, descontos, condições de pagamento e faixa de desconto de quem vende) que pessoas e agentes usam, a partir do preço-base decidido pela Inteligência e do papel de cada oferta no portfólio-alvo, com o material de venda de cada oferta conforme os padrões de identidade; e parar a venda da oferta encerrada. Negócios decide a tabela e a política, ouvidos o executivo e a Gestão; a faixa de desconto e as condições que mexem nos modelos de contrato são aprovadas pela Governança, dona das alçadas. O preço de tabela fica no preço-base ou acima dele; abaixo, só depois de a Inteligência rever o preço-base. |
+| NE-02 | Planejar as vendas do ciclo e prever a receita | 3 | Ter, a cada ciclo, os alvos de venda de cada empresa por oferta e canal, desdobrados dos alvos do ciclo, os clientes-chave com o plano de conta de cada um, e uma previsão de receita e de vendas atualizada a cada período a partir do funil, das propostas, dos contratos, das atas e das renovações, entregue a quem precisa dela para o orçamento, o caixa, a capacidade e a implantação. Negócios decide o desdobramento e a previsão, ouvido o executivo; o desvio contra os alvos vai ao executivo e à Gestão. |
+| NE-03 | Aceitar a oportunidade, desenhar a solução e fazer a proposta | 4 | Fazer cada oportunidade qualificada receber aceite ou devolução com o motivo no prazo combinado com Relações e, aceita, virar uma proposta com escopo que a operação e a implantação conseguem entregar, preço pela tabela, concessão dentro da alçada, conforme os padrões de identidade e no modelo da Governança. A oportunidade de parceiro ou de oferta conjunta já aceita na NE-07 entra direto no escopo, que é confirmado com o cliente. O que foge do catálogo vai à Inteligência ou à Estratégia, e a resposta da Inteligência retoma a proposta; o contato que chega direto a Negócios vai a Relações para ser qualificado. |
+| NE-04 | Negociar e fechar o contrato com o cliente | 3 | Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda. |
+| NE-05 | Disputar licitações e contratar com o setor público | 4 | Decidir em cada edital se a empresa participa, montar a proposta e os documentos de habilitação nas regras do edital, disputar, acompanhar o julgamento, a habilitação, os recursos e a homologação e, ganhando, assinar o contrato ou a ata de registro de preços; responder ao pedido de cotação para pesquisa de preços; e responder ao órgão não participante que pede para aderir à ata. Negócios decide participar e recorrer, ouvidos o executivo e a Governança; a Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina. Prazos e regras de impugnação, recurso, convocação e adesão seguem a lei e o edital e não foram conferidos neste desenho. |
+| NE-06 | Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar | 5 | Fazer cada contrato de cliente ser renovado, ampliado ou aditado no tempo certo, com as concessões dentro das alçadas e com o escopo novo confirmado por Operações e pela Integração, a partir da oportunidade que Relações aponta, do pedido do cliente e do plano de conta; tratar o pedido de cancelamento com uma negociação de retenção e, perdido o cliente ou vencida a vigência sem renovação, formalizar o fim do contrato e avisar quem entrega, implanta e fatura; atender a contratação de órgão participante pela ata; e, quando uma oferta é encerrada ou uma empresa sai, encerrar ou transferir os contratos pelo plano de saída coordenado pela Integração. O vencimento próximo só avisa Relações, que decide se abre a renovação. Relações acompanha o sucesso do cliente; Negócios negocia e formaliza; o executivo assina. |
+| NE-07 | Vender com parceiros e em oferta conjunta entre as empresas | 3 | Fazer a oportunidade trazida por um parceiro de venda ativo ser conferida com o critério combinado com Relações e com o funil e, aceita, chegar à proposta sem conflito; montar com outra empresa do Ecossistema a oferta conjunta quando o cliente de uma tem um problema que a outra resolve, com a divisão de receita e de responsabilidade decidida pelos executivos das duas empresas (exceção à regra de que o executivo opina, porque mexe no resultado de duas empresas) e formalizada pela Governança antes da proposta; e medir a venda com parceiros e conjunta. Relações forma, ativa e acompanha o parceiro; Negócios vende com ele. |
+
+### Círculo 6 · Integração
+
+A Integração faz o todo funcionar como um só. É o escritório de projetos do Ecossistema: mantém a carteira de projetos, implanta os clientes, coordena o lançamento das ofertas e a saída de ofertas e empresas. Mantém o catálogo de capacidades e as jornadas ponta a ponta, monta, testa, libera e monitora agentes e automações e opera a tecnologia. Não decide o que o agente precisa saber, não roda a entrega recorrente e não define as regras. São oito jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| IT-01 | Gerir a carteira de projetos do Ecossistema e das empresas | 4 | Fazer cada projeto, interno ou de cliente, entrar numa carteira única com objetivo, dono, prazo, custo e empresa; ser priorizado contra a capacidade; ser acompanhado com o desvio apontado a tempo; e ser encerrado com a entrega conferida e as lições registradas. O executivo decide a prioridade dos projetos da sua empresa; a Integração decide a dos projetos corporativos e o método; o conflito de capacidade entre empresas sobe à Estratégia. A Integração informa a situação da carteira à Estratégia e à Gestão. |
+| IT-02 | Implantar o cliente, do contrato assinado à operação | 4 | Fazer cada contrato assinado virar um cliente implantado e aceito, com um plano combinado com o cliente e com Operações, ambiente, acessos, pessoas e materiais prontos, e passado a Operações para a entrega recorrente. A Integração coordena; Operações confirma a capacidade e assume a entrega; a Gestão compra o que falta; o cliente aceita. |
+| IT-03 | Coordenar o lançamento da oferta aprovada | 3 | Fazer cada oferta aprovada no portão de lançamento chegar ao mercado com um plano único: quem faz o quê em Relações, Negócios, Operações, Gestão e Governança, com marcos e riscos, a prontidão conferida antes de lançar e os primeiros resultados acompanhados. A Integração coordena com o executivo da empresa; cada círculo executa a sua parte. |
+| IT-04 | Montar e coordenar o plano de saída de oferta ou de empresa | 3 | Fazer cada oferta encerrada ou empresa que sai do portfólio ter um plano de saída de clientes, contratos, pessoas, sistemas e dados, montado com os círculos que executam e entregue à Estratégia, que decide a data; e, com a data confirmada, coordenar a execução até a conclusão, apontando as pendências. No mandato de criação ou de aquisição, a Integração abre na carteira o projeto de ligar a empresa aos círculos. Cada círculo executa a sua parte; a Integração coordena. |
+| IT-05 | Atender pedidos de capacidade e de serviço e manter o catálogo de capacidades | 3 | Fazer cada pedido de serviço de uma empresa a um círculo chegar ao círculo dono da capacidade com um acordo de serviço, e cada necessidade de capacidade nova ou mudada virar uma ficha com método, conhecimento, executor (pessoa, agente, automação ou assessoria), ferramentas, acordo de serviço, indicador e alçada, aceita pelo líder do círculo dono e publicada no catálogo, ligada às jornadas e às tarefas. A Inteligência dá o método e o conhecimento; a Governança define a alçada; o líder do círculo dono aceita a capacidade. |
+| IT-06 | Cuidar dos agentes e automações: montar, testar, liberar, monitorar e corrigir | 4 | Fazer cada agente ou automação ser montado pela ficha da capacidade, com o método, o conhecimento, os padrões de identidade e a alçada; passar nos casos de teste da Inteligência e da Identidade antes de entrar em uso; ser aceito pelo líder do círculo dono; e ser monitorado em uso, com o desvio corrigido, suspenso quando sai da alçada e retirado quando o método, a base ou a marca saem de uso. A Inteligência diz o que o agente precisa saber e mede se ele acertou; a Integração monta, testa, libera e mantém; a Governança define a alçada e audita. |
+| IT-07 | Operar a tecnologia: pedidos, incidentes, acessos, mudanças e fornecedores | 4 | Fazer cada pedido, incidente ou risco de tecnologia ser resolvido no prazo; cada acesso a dados e sistemas ser dado e retirado pela classificação do dado e pelo pedido; cada mudança em sistema ser testada, aprovada e reversível; cada incidente de segurança ou de dados pessoais ser tratado com a Governança; e cada fornecedor e licença de tecnologia ser escolhido, contratado e controlado com a Gestão e a Governança. A Integração opera e protege; a Governança define a política e verifica; a Gestão compra e paga. |
+| IT-08 | Medir e redesenhar as jornadas ponta a ponta e manter o catálogo de jornadas | 4 | Fazer cada jornada ponta a ponta ser medida, ter o gargalo achado com evidência, ser redesenhada com o círculo dono e com os círculos por onde passa, ter o redesenho decidido pelo líder do círculo dono e conferido pela Governança quando mexe em alçada, regra ou contrato, ser implantada e ter o ganho conferido; e manter o catálogo de jornadas, etapas e tarefas íntegro e versionado. A Integração mede, propõe e implanta; o líder do círculo dono decide. |
+
+### Círculo 7 · Operações
+
+Operações cumpre a promessa feita ao cliente. Planeja a capacidade de entrega, assume cada cliente implantado e roda a entrega recorrente, atende pedidos e problemas, trata reclamações, garante a qualidade e os níveis de serviço e encerra as entregas no fim do contrato ou na saída. Onde há produto físico, cuida da cadeia de suprimentos e do pós-venda. Não muda o desenho, não compra e não fatura. São oito jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| OP-01 | Planejar a capacidade de entrega de cada oferta e cobrir as faltas | 3 | Fazer a capacidade de pessoas, agentes, parceiros, materiais e ativos acompanhar a demanda prevista: cada oferta lançada, mudada ou retirada, cada previsão de vendas, ata, parceria e mandato traduzidos em trabalho; cada falta coberta (remanejar, contratar, usar parceiro, automatizar ou recusar) por decisão de Operações ou, acima da alçada, do executivo; e um plano publicado, usado para confirmar propostas, implantações e lançamentos. Operações planeja e decide; a Gestão contrata e compra; a Integração cria a capacidade que falta. |
+| OP-02 | Entregar o serviço a cada cliente, ciclo a ciclo | 4 | Fazer cada cliente implantado ter um plano de entrega com escopo, nível de serviço, equipe, agentes e contatos; cada entrega feita pelo método da oferta, conferida contra o escopo e o padrão e aceita pelo cliente; cada ciclo confirmado conforme o contrato, com a medição dos níveis de serviço, e passado à Gestão para faturar; cada impasse sobre a entrega virar reclamação tratada; e cada plano de recuperação de Relações virar ajuste do plano de entrega. Operações entrega; o cliente aceita; a Gestão fatura. |
+| OP-08 | Encerrar as entregas no fim do contrato ou na saída da oferta ou da empresa | 3 | Fazer cada contrato encerrado e cada saída de oferta ou de empresa virar um fim de entregas planejado: no fim do contrato, de imediato; na saída, preparado pelo plano de saída da Integração e executado na data confirmada pela Estratégia. As entregas são concluídas ou transferidas na transição combinada por Relações; o último ciclo é passado a faturar; os dados e materiais do cliente são devolvidos ou eliminados, com aprovação de pessoa, guardado só o que a lei ou o contrato mandam guardar; os recursos são liberados à Gestão; e a conclusão vai à Integração e as lições à Inteligência. |
+| OP-03 | Atender o cliente: pedidos, dúvidas e problemas, do contato à solução | 3 | Fazer cada contato de cliente ser registrado, classificado pelo nível de serviço que vale, resolvido pela base de conhecimento ou por pessoa e respondido; cada problema de tecnologia ir à Integração; cada caso sem padrão ir à Identidade e cada dúvida sobre a oferta em uso à Inteligência; cada reclamação, e cada caso que não se resolve, ir ao tratamento de reclamações; cada pedido comercial ir a Negócios; e cada atendimento deixar registro e o conteúdo que faltou. Operações atende; Negócios trata o pedido comercial. |
+| OP-04 | Tratar reclamações e incidentes de clientes e corrigir a causa | 4 | Fazer cada reclamação ou incidente de cliente ser registrado com o prazo de resposta, classificado pela gravidade e pelo risco legal, investigado até a causa e resolvido por decisão de Operações ou, acima da alçada, do executivo; quando o cliente é consumidor, oferecidas as alternativas da lei; a resposta, inclusive a de improcedência, dada por escrito e registrada; o caso sem acordo encerrado com a informação de onde mais o cliente pode recorrer; e cada causa virar ação corretiva, pedido de ajuste da oferta ou lacuna de experiência. Operações trata; a Governança avalia o dever de comunicar a autoridade; Relações recebe a reclamação com a causa. |
+| OP-05 | Garantir a qualidade e os níveis de serviço: padrões, medida e ação corretiva | 4 | Fazer os padrões de experiência de Relações e o método de cada oferta virarem procedimentos e níveis de serviço por oferta e por segmento de cliente; a qualidade e os níveis de serviço serem medidos; cada não conformidade, reclamação recorrente ou lacuna apontada ter a causa achada e uma ação corretiva decidida, implantada e conferida; a causa que Operações não consegue eliminar ir ao executivo; e o padrão que a operação não consegue cumprir voltar a Relações como lacuna. Operações define e mede; Relações define a experiência; a Inteligência publica o painel. |
+| OP-06 | Abastecer e entregar o produto físico: demanda, materiais, produção, estoque e transporte | 4 | Onde a oferta tem produto físico, fazer a previsão de vendas e os contratos virarem plano de produção e de materiais; cada material ser pedido à Gestão, recebido e inspecionado, e o não conforme recusado e reposto; cada produto ser produzido ou montado, testado pelo procedimento padrão e registrado por lote; cada defeito com risco à saúde ou à segurança ir ao pós-venda; e cada pedido ser guardado, expedido, transportado, recebido pelo cliente e passado à Gestão para faturar. Operações planeja, produz e entrega; a Gestão compra. |
+| OP-07 | Prestar o pós-venda do produto: devolução, garantia, assistência e recall | 5 | Onde a oferta tem produto físico, fazer cada pedido de devolução, garantia ou assistência ser conferido contra os termos e os prazos legais, contados pelo tipo de vício; cada vício ser sanado no prazo e, quando não for, resolvido pela escolha do cliente consumidor (troca, devolução do valor ou abatimento); cada defeito com risco à saúde ou à segurança, venha do cliente ou da própria operação, ser comunicado de imediato à autoridade e aos consumidores e virar proposta de recall decidida pelo executivo, acompanhada e encerrada; e cada causa recorrente virar ação corretiva ou cobrança do fornecedor. Operações atende e propõe; a Governança comunica a autoridade; Relações comunica o público; o executivo decide o recall. |
+
+### Círculo 8 · Gestão
+
+A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida também dos ativos. Não define as regras nem escolhe o rumo. São treze jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| GE-01 | Desdobrar o orçamento aprovado e controlar as mudanças de recurso | 3 | Fazer o orçamento aprovado pelos sócios ser desdobrado por empresa, círculo, oferta, aposta e conta, com um dono por linha; os planos de demanda, de vendas, de capacidade e de lançamento caberem nele ou terem a diferença apontada; cada pedido de recurso, liberação, congelamento ou devolução ser decidido na alçada, pela Gestão ou, acima dela, pelo executivo; e o orçamento vigente ser publicado a quem executa. Os sócios aprovam; a Gestão desdobra e controla; a realocação entre empresas fica na revisão do portfólio da Estratégia. |
+| GE-02 | Rodar o ritual de acompanhamento dos alvos e cobrar as ações | 3 | Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo. |
+| GE-03 | Faturar os clientes e receber e cobrar o que é devido | 4 | Fazer cada cliente ter o cadastro de cobrança conforme o contrato, a tabela, a ata e a divisão da oferta conjunta; cada entrega confirmada por Operações virar fatura, com a medição dos níveis de serviço e os créditos aprovados; cada recebimento ser conciliado e cada atraso cobrado, com a negociação acima do limite decidida pela Gestão, ouvido o executivo; e a situação de faturas e pagamentos de cada cliente ir a Relações e a Negócios. Operações confirma a entrega; a Gestão fatura e recebe. |
+| GE-04 | Comprar e pagar: do pedido de compra ao fornecedor e ao parceiro pagos | 5 | Fazer cada pedido de compra ser conferido contra o orçamento e a alçada; cada fornecedor ser escolhido por preço, prazo, qualidade e risco, com o contrato revisado e guardado pela Governança; cada compra ser recebida e conferida por quem pediu; cada fatura de fornecedor ser conferida com o pedido e o recebimento e paga na alçada; cada fornecedor ser avaliado e cobrado pelas falhas; a remuneração de cada parceiro ser apurada pelo contrato e paga; e os contratos de fornecedor serem encerrados ou transferidos na saída. Quem precisa pede, inclusive a Integração nas compras da implantação e de tecnologia; a Gestão compra e paga; a Governança revisa e guarda o contrato. |
+| GE-05 | Gerir o caixa, fechar as contas e os impostos e prestar contas | 3 | Fazer cada recebimento e pagamento ser registrado e conciliado; o caixa ser projetado com a previsão de receita, os compromissos e o orçamento e informado à Estratégia; cada período ser fechado por empresa e consolidado, com os impostos apurados e as obrigações entregues, o resultado, os custos e margens e a execução do orçamento publicados; e cada aporte, distribuição ou mudança de contas decidido pelos sócios ou pelo mandato ser executado na alçada. A Gestão registra, fecha e executa; os sócios decidem; a Governança recebe as demonstrações para prestar contas. |
+| GE-06 | Aplicar o rateio do custo dos círculos entre as empresas | 2 | Fazer o custo dos círculos do Ecossistema central ser repartido entre as empresas pelo critério definido pela Governança com a Estratégia: custo e uso apurados, critério aplicado, rateio conferido, aberto à opinião de cada executivo, publicado e lançado nas contas; e cada contestação do critério ir à Governança. A Governança define o critério; a Gestão aplica. |
+| GE-07 | Prover pessoas: vaga, seleção, contratação, movimentação e desligamento | 4 | Fazer cada vaga, movimentação ou desligamento pedido pelo líder, pelo plano de capacidade ou pelo mandato ser conferido contra o orçamento, o perfil do kit de cultura e a alçada; cada vaga ser preenchida por seleção pelos comportamentos esperados, com a contratação decidida pelo líder; cada pessoa ser contratada, movimentada ou desligada com o registro, a folha e os acessos atualizados; e cada pessoa nova ir à integração. O líder decide quem entra na sua equipe; a Gestão conduz e confere; o executivo decide o que passa da alçada. |
+| GE-08 | Integrar pessoas novas à cultura | 4 | Fazer cada pessoa nova, ou que mudou de papel, e cada pessoa de empresa adquirida entender o propósito, os valores e os comportamentos esperados, e sentir-se parte, antes de responder sozinha pelo seu papel: trilha montada pelo papel, conduzida com o líder, vínculos iniciais e verificação de entendimento e de pertencimento, com reforço combinado quando falta. A Identidade define o kit; a Gestão integra; o líder acompanha. |
+| GE-09 | Avaliar e desenvolver as pessoas e medir a cultura | 3 | Fazer cada pessoa ser avaliada pelos alvos e pelos comportamentos do kit de cultura, com as avaliações calibradas, as mudanças de remuneração decididas na política e um plano de desenvolvimento combinado com o líder; quem quiser, ligar o seu propósito ao seu papel, com participação voluntária, a declaração guardada pela pessoa e o ajuste de papel só com o acordo dela; e a cultura e o engajamento serem medidos sem identificar quem respondeu e entregues à Identidade e à Inteligência. O líder avalia; a Gestão calibra, desenvolve e mede. |
+| GE-13 | Calcular e pagar a folha e os encargos | 2 | Fazer cada folha ter o ponto, as variáveis, as comissões de quem vende, os reconhecimentos e as mudanças de remuneração do período apurados a partir dos registros de pessoas, conferida e aprovada pela Gestão, paga no prazo e com os encargos recolhidos. A Gestão apura, aprova e paga. |
+| GE-10 | Realizar os rituais de cultura e o reconhecimento de pessoas e equipes | 4 | Reforçar, com cadência fixa, os comportamentos que os valores pedem: cada ritual preparado pelo padrão do kit de cultura, cada indicação de reconhecimento conferida com os critérios e decidida com os líderes, o ritual conduzido pelo líder, as histórias registradas e comunicadas e os reconhecimentos levados à folha. A Identidade define o padrão; a Gestão prepara, decide com os líderes e registra; o líder conduz. |
+| GE-11 | Planejar e publicar a comunicação interna | 4 | Manter as pessoas informadas e alinhadas, com uma só voz: cada mudança na identidade, nos padrões e na estratégia, cada alvo, correção, mudança no portfólio e conteúdo externo relevante entrar na pauta; cada conteúdo ser redigido na voz e na marca vigentes, conferido, validado pela Governança quando sensível e aprovado; os materiais vencidos saírem dos canais; e o alcance e o entendimento serem medidos. A Identidade define a voz e as mensagens; a Gestão comunica para dentro; Relações, para fora. |
+| GE-12 | Gerir os ativos, os espaços e os serviços administrativos | 3 | Fazer cada pedido de ativo, de espaço ou de serviço administrativo ser atendido pela melhor opção (comprar, alugar, remanejar ativo ocioso ou recusar), decidida pela Gestão dentro do orçamento; cada ativo ser registrado com o responsável e a depreciação, mantido e inventariado; e cada ativo ocioso, perdido ou no fim da vida ser baixado (vendido, doado, reciclado ou descartado), com os dados guardados nele eliminados. A Gestão decide e controla; a compra segue a jornada de compras. |
+
+### Círculo 9 · Governança
+
+A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regras, as políticas e as alçadas de pessoas e agentes, secretaria as decisões dos sócios, gere riscos, conformidade e controles, mantém as obrigações legais e os contratos em dia, audita as entregas de pessoas e agentes, responde aos titulares de dados, conduz o comitê de crise, recebe relatos, comunica às autoridades e publica o relato de impacto. Não executa a rotina nem escolhe o rumo. São dez jornadas.
+
+| Código | Jornada | Etapas | Objetivo |
+| --- | --- | --- | --- |
+| GO-01 | Manter as regras, as políticas e as alçadas de pessoas e agentes | 3 | Fazer cada regra, política, alçada de pessoa ou de agente, regra de sigilo e de dados pessoais, regra de guarda, critério de rateio e modelo de proposta e de contrato nascer de um pedido, de uma decisão dos sócios ou de uma causa achada pela conformidade; ser redigida ouvidos os donos e, no rateio, a Estratégia; ser decidida pela Governança, dentro da sua alçada, ou pelos sócios; e ser publicada, versionada, a quem a usa. A Governança redige e publica; os sócios decidem as regras gerais e as alçadas dos executivos. |
+| GO-02 | Secretariar as decisões dos sócios e cumprir os atos societários | 3 | Fazer cada matéria que vai aos sócios chegar completa e dentro das regras, numa pauta convocada; cada decisão ser registrada em ata, com votos, responsável e prazo; cada ato societário (constituição, alteração ou encerramento de empresa) ser registrado nos órgãos; e cada decisão ter o cumprimento acompanhado e cobrado. Os círculos levam as matérias; os sócios decidem; a Governança secretaria, registra e acompanha. |
+| GO-03 | Gerir os riscos, a conformidade e os controles internos | 3 | Fazer os riscos de cada círculo, empresa, oferta, contrato e agente serem reunidos, avaliados pela matriz e tratados por decisão; os controles internos e a conformidade serem testados; cada falha de controle ou não conformidade virar plano de remediação com dono e prazo e, quando a causa pede, regra nova ou revista; e o relatório de riscos e conformidade ir aos sócios e à Estratégia. A Governança avalia, testa e relata; os donos tratam os riscos e remediam. |
+| GO-04 | Manter em dia as obrigações legais: registros, certidões, marcas, procurações e seguros | 2 | Fazer cada licença, certidão, registro de empresa e de marca, procuração e seguro estar no calendário com o prazo; cada obrigação ser cumprida antes de vencer, com as exigências do órgão atendidas e o indeferimento levado ao executivo; e as certidões e os documentos de habilitação estarem em dia para Negócios. A Governança mantém e cumpre; a Identidade decide a marca. |
+| GO-05 | Revisar os contratos, guardá-los e acompanhar prazos e obrigações | 3 | Fazer cada contrato de cliente, de fornecedor, de tecnologia, de parceria, de oferta conjunta e de compra ou venda de empresa ser comparado com o modelo, ter a cláusula fora dele e o risco revisados e os poderes de quem assina conferidos; ser guardado com partes, prazos, valores e obrigações registrados; e ter cada vencimento e obrigação avisados ao dono com antecedência, com o vencimento sem decisão levado ao executivo. A frente dona origina e negocia o contrato; a Governança revisa, guarda e acompanha. |
+| GO-06 | Auditar se as entregas de pessoas e agentes seguem a identidade e a alçada | 4 | Fazer uma amostra única de entregas de pessoas e agentes ser sorteada por círculo e por risco e servir à auditoria e à avaliação dos métodos pela Inteligência; cada entrega ser comparada com os critérios e os casos de teste da Identidade e com a alçada; cada caso de fronteira ser julgado pela Identidade e cada não conformidade pela Governança, com a causa achada; cada causa ir a quem corrige (o dono da entrega, a Identidade no padrão ambíguo, a Integração no desvio de agente); e o resultado ser publicado. A Identidade define os critérios e julga os casos de fronteira; a Governança sorteia, julga as não conformidades e publica. |
+| GO-07 | Responder aos titulares de dados pessoais | 3 | Fazer cada pedido de titular de dados ser registrado, com a identidade do titular confirmada antes de qualquer resposta; os dados dele serem localizados no catálogo de dados, com quem os guarda; a resposta ser decidida pela Governança, no papel de encarregada, pelos direitos e pelas bases legais da LGPD, com os motivos informados quando o pedido não procede no todo ou em parte; a execução ser pedida a quem guarda os dados (Relações, na base de relacionamento, e os demais círculos); e o titular receber a resposta depois de conferido o cumprimento. A Governança decide; quem guarda o dado executa. |
+| GO-08 | Conduzir o comitê de crise, da declaração ao encerramento | 3 | Fazer cada alerta de crise de Relações acionar o comitê pelo protocolo, com assento da Identidade; os fatos, o risco jurídico e o dever de comunicar à autoridade serem conferidos, e esse dever levado ao canal próprio; a crise ser declarada ou não, com a posição, o porta-voz e o que pode ser dito decididos pela Governança e aprovados pelo executivo, e a decisão avisada a Relações; a posição ser revista enquanto a crise durar e o encerramento decidido com o executivo; e as lições irem à Identidade e à conformidade. Relações monitora e comunica; a Governança, com o executivo, decide. |
+| GO-09 | Receber relatos, apurar com independência e comunicar às autoridades | 4 | Fazer cada relato de conduta, fraude ou descumprimento ser registrado com a identidade de quem relata protegida, classificado e apurado com independência, com a medida decidida com o executivo ou, se ele, a Governança ou um sócio estiver envolvido, pelos sócios não envolvidos; cada incidente ou risco que a lei manda comunicar ser comunicado à autoridade competente pela Governança, salvo o do recall, que a Governança já comunica dentro da OP-07 e aqui só registra; e cada causa ir à conformidade. A Governança recebe, apura e comunica; os donos corrigem. |
+| GO-10 | Apurar e publicar o relato anual de impacto | 3 | Fazer que, a cada ano, os temas e os indicadores de impacto sejam escolhidos pela definição da Identidade; os dados sejam coletados no catálogo de dados e analisados com avanços e lacunas; e o relato seja redigido na voz do Ecossistema, validado com os dados e o risco jurídico, aprovado pelos sócios e publicado. A Identidade define o que conta como impacto; a Governança apura e publica. |
+
+## Como o desenho foi conferido
+
+### Círculo 1 · Identidade
+
+- As jornadas ID-01, ID-03 e ID-04 vêm da versão de treze jornadas, que passou por revisão independente: 30 achados, 3 graves, corrigidos naquela versão.
+- No fechamento, um revisor independente leu as cinco jornadas junto com as da Estratégia e propôs sete mudanças. Três foram aplicadas na hora, porque tratavam de partes novas (ID-02, etapa 1; ID-05, etapa 1; fronteira com a Estratégia). As demais viraram cinco propostas: você aprovou quatro, aplicadas nesta versão, e recusou uma.
+- As fontes deste círculo foram conferidas por um segundo revisor na versão anterior (23 fontes: 18 confirmadas e 5 confirmadas em parte, corrigidas) e, neste fechamento, a do IIA.
+- Depois do fechamento, o cruzamento com a Inteligência gerou uma proposta, que você aprovou às 20:02 e está aplicada. As duas propostas seguintes (data de efeito da retirada e escolha da identidade pela Identidade, ouvido o executivo) foram aprovadas às 20:11 de 02/10/2026 e estão aplicadas. A revisão independente dessas mudanças gerou uma proposta nova (papel da marca e nome na ID-03), na aba Decisões, não aplicada.
+
+### Círculo 2 · Estratégia
+
+- Um revisor independente leu a primeira versão das seis jornadas e apontou 33 achados, 6 graves. Todos foram tratados antes do fechamento das 15:48; os que dependiam de escolha sua viraram pontos para decidir.
+- Um segundo revisor reabriu as dez fontes deste círculo: sete confirmadas e três confirmadas em parte. As correções de redação foram aplicadas na aba Fontes.
+- Depois do fechamento, um terceiro revisor independente leu a versão fechada junto com os círculos 1 e 3 e apontou 30 achados, 4 graves. Vinte e oito viraram 17 propostas, e a décima oitava veio do cruzamento com o círculo 3. Você aprovou as 18 às 20:02.
+- Em 02/10/2026, um quarto revisor independente leu a versão com as 18 mudanças aplicadas: 13 aplicadas por inteiro, 4 em parte e 1 além do aprovado, com 25 achados, 2 graves. Os dois graves e os demais defeitos da aplicação foram corrigidos; a extensão da regra do executivo à ES-02, à ES-04 e à ES-06 foi desfeita e virou proposta; o que mudava conteúdo que você já tinha fechado virou as cinco propostas da aba Decisões.
+- Dois verificadores independentes conferiram as correções em seguida. O primeiro achou 10 defeitos criados por elas, 1 grave (a ES-03 podia ficar parada à espera da alocação), todos tratados. O segundo não confirmou nenhum grave e apontou 4 defeitos médios neste círculo, também tratados. Esses últimos acertos passaram por todos os testes automáticos, mas não por nova revisão independente.
+- As cinco propostas daquela revisão foram aprovadas por você às 20:11 de 02/10/2026 e estão aplicadas, menos a troca do nome do método, que a Inteligência recebe com o nome atual. Uma revisão independente dessas mudanças apontou sete defeitos de aplicação (textos com “com o executivo”, opções de decisão misturadas na ES-01 e na ES-05, entradas que faltavam na ES-05 e arquivamentos que subiam aos sócios sem ter passado por eles); seis foram corrigidos aqui e um virou proposta no círculo 1.
+
+### Círculo 3 · Inteligência
+
+- Três revisores independentes (agentes que não participaram do desenho) leram três versões seguidas das oito jornadas. O primeiro apontou 40 achados, 8 graves. O segundo deu 26 desses 40 por tratados e 14 por resolvidos em parte, e apontou 29 achados novos, 3 graves.
+- O terceiro não achou defeito grave. Dos 45 itens da segunda revisão, deu 37 por tratados e 8 por pendentes, e apontou 11 achados médios novos. A versão que você decidiu às 20:02 tratava os 8 e os 11; um deles, a conferência de identidade em cinco jornadas, virou limite declarado.
+- As fontes foram conferidas por dois verificadores independentes. O primeiro reabriu as 23 fontes do círculo: 19 confirmadas e 4 confirmadas em parte. O segundo reabriu as 16 que mudaram depois (13 confirmadas e 3 em parte) e conferiu no PDF do APQC as 24 linhas da tabela de cobertura, com 2 rótulos de subitem corrigidos. Todas as correções foram aplicadas.
+- Em 02/10/2026, um quarto revisor independente leu a versão de fechamento. Confirmou que os pontos 2 e 5 estavam aplicados e apontou 25 achados, 3 graves: aposta devolvida sem retomada, ficha de indicador de alvo vigente alterável sem a Estratégia e ficha do dado sem o ramo do ponto 1. Os três graves e os demais defeitos foram corrigidos nesta versão, com a IN-07 reorganizada em nove etapas; a regra do preço-base ficou como pergunta para você.
+- Dois verificadores independentes conferiram as correções em seguida. O primeiro deu 16 dos 18 achados por resolvidos e apontou 10 defeitos novos, nenhum grave, todos tratados. O segundo não confirmou nenhum grave e apontou 3 defeitos médios e 1 ponto a confirmar neste círculo, também tratados. Esses últimos acertos passaram por todos os testes automáticos, mas não por nova revisão independente.
+
+### Círculo 4 · Relações
+
+- Um revisor independente (agente que não participou do desenho) leu a primeira versão das oito jornadas e apontou 30 achados, 6 graves. Todos foram tratados na segunda versão.
+- Um verificador independente reabriu as 8 fontes do círculo: 5 confirmadas e 3 confirmadas em parte. As correções de texto foram aplicadas.
+- Um segundo revisor leu a segunda versão: 17 achados resolvidos, 9 em parte, nenhum grave, e 8 defeitos médios novos. Os 8 foram tratados: 7 no fluxo e 1 como proposta à ES-04, aceita e aplicada no fechamento.
+- Um terceiro revisor conferiu esses 8 e deu 6 por resolvidos e 2 em parte. Apontou 5 defeitos novos, 1 grave: a exceção ao uso da marca estava com a Identidade, contra o círculo 1, que a dá a Relações com a Governança. Os 5 foram corrigidos e passaram por todos os testes automáticos, mas não por nova revisão independente.
+- No fechamento, às 19:05, um quarto revisor conferiu as três trocas aplicadas nos círculos 2 e 3 e os textos de fechamento. Apontou 6 defeitos, nenhum grave: a parceria não aprovada no portão e a oferta posta em espera não voltavam a Relações, e a base de relacionamento tinha ficado fora da IN-03. Os 6 foram corrigidos e passaram por todos os testes automáticos.
+
+### Círculo 5 · Negócios
+
+- Um revisor independente (agente que não participou do desenho) leu a primeira versão das sete jornadas e apontou 30 achados, 7 graves: laços entre jornadas, decisões tomadas duas vezes, dono duplo da alçada de desconto e conferência de identidade em uma só jornada. Todos foram tratados na segunda versão.
+- Um verificador independente conferiu as fontes: os códigos e nomes do APQC PCF 7.4 foram confirmados letra por letra; da Lei 14.133, os arts. 6º (XLV, XLVI, XLVIII e XLIX), 17 e 18 foram confirmados no Planalto. O texto de uso foi corrigido em três pontos, e o que a lei diz sobre prazos, recursos, adesão e convocação ficou declarado como não conferido.
+- Um segundo revisor leu a segunda versão: 18 achados resolvidos, 12 em parte, e 7 defeitos novos, 1 grave (contrato que Relações não renova terminava sem formalização). Os 7 foram corrigidos e passaram por todos os testes automáticos, mas não por nova revisão independente. Dois itens ficaram como pontos para você decidir (1 e 4) e um como limite.
+
+### Círculo 6 · Integração
+
+- Um revisor independente (agente que não participou do desenho) leu a primeira versão das oito jornadas e apontou 30 achados, 7 graves: a coordenação da saída de empresa sem gatilho, a pendência sem resposta à Estratégia, o mandato que remontava o plano, a medida do acerto do agente feita pela Integração e não pela Inteligência, e o ciclo entre método, ficha e agente.
+- Um verificador independente conferiu as fontes: os 21 códigos e nomes do APQC PCF 7.4 e as páginas da ISO 21502 e da ISO/IEC 27001 foram confirmados; as páginas da Anthropic e do NIST, que ele não conseguiu abrir, eu conferi.
+- O mesmo revisor leu a segunda e a terceira versões. Na segunda, 21 achados resolvidos, 9 em parte e 8 defeitos novos, 2 graves; na terceira, 1 defeito novo grave (a saída de empresa executada antes do mandato) e 2 médios. Todos foram corrigidos e passaram por todos os testes automáticos, mas o último acerto não passou por nova revisão independente.
+
+### Círculo 7 · Operações
+
+- Um revisor independente (agente que não participou do desenho) leu a primeira versão das oito jornadas, conferiu os 33 códigos e nomes do APQC PCF 7.4 (todos conferem) e os artigos do CDC no Planalto, e apontou 18 achados, 3 graves: a ordem da saída invertida em relação à IT-04 e à ES-04, a comunicação à autoridade presa à decisão de recall e a escolha do consumidor no vício do produto e do serviço tratada como decisão de Operações.
+- Todos foram corrigidos ou declarados como limite, e a versão corrigida passou por todos os testes automáticos. A segunda versão não passou por nova revisão independente.
+
+### Círculo 8 · Gestão
+
+- Um revisor independente (agente que não participou do desenho) leu a primeira versão das doze jornadas, conferiu os 38 códigos e nomes do APQC PCF 7.4 (todos conferem) e o art. 6º da LGPD, e apontou 22 achados, 4 graves: caminhos que caíam na etapa seguinte sem ter o que processar (orçamento, faturamento e ativos), a remuneração de parceiros sem jornada, a compra pedida pela Integração por fora da jornada de compras e o reembolso ao cliente sem pagamento.
+- Todos foram corrigidos ou declarados como limite; a folha virou jornada própria (GE-13). A versão corrigida passou por todos os testes automáticos e não passou por nova revisão independente.
+
+### Círculo 9 · Governança
+
+- Um revisor independente (agente que não participou do desenho) leu a primeira versão das dez jornadas, conferiu os 21 códigos e nomes do APQC PCF 7.4 (todos conferem) e as citações da LGPD no Planalto (corretas), e apontou 24 achados, 3 graves: a Governança julgando sozinha os casos de fronteira que o círculo 1 deu à Identidade, a revisão repetida de contratos já revisados nas jornadas donas e o indeferimento de obrigação legal seguindo como se estivesse cumprida.
+- Todos foram corrigidos ou declarados como limite. A versão corrigida passou por todos os testes automáticos e não passou por nova revisão independente.
+
+## Limites declarados
+
+### Círculo 1 · Identidade
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.
+- Na ID-02, as consultas entram pela etapa 1. Se o volume crescer, vale separar em jornada própria; hoje não há medida de volume.
+- Na ID-03, a jornada termina no pedido de registro; oposição ou recusa do registro ainda não tem caminho desenhado.
+- As oito jornadas transferidas foram assumidas pelos círculos de destino, já fechados: material de marca por quem usa a marca; integração cultural (GE-08), propósito pessoal (GE-09), rituais e reconhecimento (GE-10) e comunicação interna (GE-11) pela Gestão; comunicação externa (RE-07) e monitoramento da reputação (RE-08) por Relações; comitê de crise (GO-08), auditoria das entregas (GO-06) e relato de impacto (GO-10) pela Governança. Os rascunhos ficam aqui como histórico.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 2 · Estratégia
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
+- As cadências vêm do método de estratégia aprovado em 03/10/2026: ciclo estratégico anual, com revisão no meio do ciclo (ES-01); portfólio semestral (ES-02); alvos anuais, com o ciclo (ES-03); revisão da execução trimestral (ES-06). São escolha de desenho, sem fonte externa: recalibrar com dados depois de dois ciclos.
+- O método de estratégia tem lugar no desenho (ES-01), mas o conteúdo ainda não foi escrito: critérios dos portões, regras de realocação, critério de desvio grave e calendário.
+- As alçadas que separam a decisão da Estratégia da decisão dos sócios ainda não existem; serão definidas no círculo 9, Governança.
+- A raia “Sócios” não distingue os sócios do Ecossistema dos sócios de cada empresa. Quem delibera o quê fica para o círculo 9.
+- Fusão e cisão de empresas não estão desenhadas: a ES-05 cobre criação, aquisição, venda e encerramento.
+- O plano de saída de clientes, contratos e pessoas é pedido à Integração e conferido pela Estratégia; como ele é montado só será desenhado nos círculos 4 a 9.
+- Captar dinheiro de fora ou admitir sócio numa empresa ficam fora do desenho: a ES-05 não tem ramo para essas operações.
+- A ES-06 abre só a revisão de nível mais alto. Se essa revisão termina sem mudança (os sócios mantêm a estratégia ou a alocação), a de nível abaixo não é aberta por ela; volta na revisão seguinte da ES-06.
+- Quando uma mensagem pode tanto retomar uma jornada em espera quanto abrir outra (a alocação que chega à ES-03, a decisão do portão que chega à IN-07), a correlação fica para o motor de execução.
+- Um laço de volta refaz a etapa inteira: o desenho não marca o que já foi feito na passagem anterior.
+- As esperas por outro círculo (plano de saída, fichas dos indicadores, resposta da Inteligência) não têm prazo desenhado.
+- Na venda decidida sem comprador, a busca do comprador não está desenhada: o mandato a descreve, e a oportunidade volta à ES-05 quando houver comprador.
+- A ES-04 registra a incoerência com a identidade na avaliação e não recomenda avançar; a decisão do portão continua sendo de pessoas.
+- As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 3 · Inteligência
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
+- As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder ajusta na implantação. O prazo de resposta da IN-02 depende de volume e ficou para o gate G9 (calibração).
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024. A versão 8.0, de 27/02/2026, foi conferida só nas 13 categorias.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- Quando uma empresa sai do portfólio, a IN-07 retira as ofertas dela do catálogo e a IN-04 revê os indicadores. O destino dos dados (IN-03) e das bases (IN-05) dessa empresa ainda não está desenhado.
+- O ajuste de oferta em uso não gera aviso à Estratégia: fica registrado no catálogo de ofertas. Tratar a mudança de preço-base como revisão é leitura do desenho, a confirmar.
+- As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.
+- Quando uma mensagem pode tanto retomar uma jornada em espera quanto abrir outra, a correlação fica para o motor de execução. Um laço de volta refaz a etapa inteira.
+- As esperas por outra jornada ou por outro círculo só têm prazo onde o nome da tarefa o diz.
+- A contestação de indicador de alvo vigente espera a próxima revisão da estratégia (ES-06); não abre revisão própria.
+- O mandato de criação ou de aquisição de empresa chega à Inteligência, mas a IN-07 só age no de venda fechada ou de encerramento.
+- Exceção ao cálculo único: os indicadores de clareza e atualidade dos padrões são calculados pela Identidade (ID-05) e conferidos com a ficha na IN-04.
+- O líder do círculo aparece como dono de dado, de indicador, de tema e de melhoria. A delegação e a carga desse papel ficam para quando as pessoas forem tratadas.
+- Os indicadores do próprio círculo são calculados por ele; a conferência independente fica para a Governança, no círculo 9.
+- A comparação de desempenho com referências (benchmarking) não está desenhada.
+- O prazo de guarda vale para dados (IN-03). O registro de perguntas e respostas e o registro de lições entram no catálogo de dados como qualquer fonte, com ficha, classificação e prazo de guarda; as bases saem pela revisão da base (IN-05).
+- Cinco jornadas (IN-01, IN-02, IN-03, IN-04 e IN-08) não têm ponto de conferência com a identidade, porque produzem análise e medida para uso interno. Se a regra do círculo 1 vale para toda jornada, falta incluir o ponto nas cinco.
+- As jornadas cross da rodada 2 em que a Inteligência participava (C5, C8, C11 e V7) viraram cadeias de jornadas na consolidação de 03/10/2026 (aba Mapa de jornadas); as entregas da Inteligência a esses círculos estão no cruzamento.
+- As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
+- O desenho não tem evento de interrupção nem saída condicional. A aposta encerrada fora do portão de lançamento, com desenvolvimento em curso, entra na IN-07 como novo início, e é esse caminho que encerra o trabalho aberto; quando uma saída só existe num ramo, o nome do produto diz qual.
+- Os padrões da Identidade chegam aos agentes por dois caminhos: a carga direta pela Integração (ID-02 e ID-04) e a base de conhecimento (IN-05). Unificar a carga fica para o círculo 6.
+- Se o piloto é pago ou gratuito é decidido pela Inteligência a cada piloto, ouvido Negócios; o desenho não fixa.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 4 · Relações
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
+- As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
+- Os rascunhos de critério de oportunidade qualificada, regra de saúde do cliente e critério de crise foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 44001 e da ISO 22361 lemos só o resumo; o texto dos Barcelona Principles 3.0 foi lido numa transcrição da MEPRA, porque a página da AMEC só os oferece em anexos.
+- Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- A tarefa de quem não é do círculo (cliente, parceiro, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
+- As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
+- Programa de fidelidade e lobby não estão desenhados: nenhum círculo pediu.
+- As autorizações de uso da marca têm prazo registrado, mas o vencimento não tem vigia desenhada: só a marca retirada de uso revoga as autorizações.
+- Quando Relações indica clientes para conversar e para o piloto (IN-07), usa a base de relacionamento da RE-03; o detalhe dessa tarefa fica no círculo 3.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 5 · Negócios
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
+- As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
+- A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17 e 18; os prazos e o rito de esclarecimento, impugnação, recurso, adesão à ata e contratação direta não foram conferidos e estão como “no prazo do edital”.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
+- As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
+- Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.
+- As saídas estão listadas por etapa, não por caminho: na NE-05, etapa 4, o contrato só sai quando há contrato ou adesão, e a ata só quando há ata.
+- Se o escopo de uma oferta conjunta mudar na proposta, a divisão acordada entre as empresas precisa ser revista; o desenho não tem esse retorno.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 6 · Integração
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
+- As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
+- Os rascunhos de método de projetos, regra de prioridade, critério de liberação de agente e política de segurança foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
+- Continuidade de TI (APQC 8.3.4) e recuperação de desastre não estão desenhadas como etapa própria.
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 21502 e da ISO/IEC 27001 lemos só o resumo.
+- Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- A tarefa de quem não é do círculo (cliente, executivo, líder do círculo dono, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
+- As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
+- O rateio do custo dos círculos entre as empresas (E3) e o acordo de serviço como jornada entre empresas (E1) ficam para a consolidação das jornadas entre empresas.
+- O método de projetos, a regra de prioridade da carteira e a arquitetura da plataforma, pelos quais o líder corporativo da Integração responde, não têm jornada própria: são mantidos como documentos do círculo e mudam pela IT-08 ou por projeto na IT-01.
+- As saídas estão listadas por etapa, não por caminho: na IT-04, etapa 1, sai o plano de saída de oferta ou o de empresa, conforme o pedido.
+- O agente suspenso volta por novo pedido de correção (IT-06); o lançamento suspenso volta quando o executivo o retoma (IT-03). A Estratégia não é avisada do impedimento de lançamento: a ES-04 não tem essa entrada.
+- A capacidade feita por pessoa ou por assessoria fica “em construção” no catálogo até o projeto aberto na carteira ser entregue; a marcação como “em uso” nesse caso não tem tarefa desenhada.
+- Na saída de empresa, a conclusão do plano é informada à Estratégia dentro da ES-05, etapa 7, pela tarefa da Integração; a “Conclusão do plano de saída da oferta” vale para a ES-04.
+- A amostra de acerto do agente em uso vai à Inteligência, que avalia o método (IN-06, etapa 5); o veredito volta como mudança de método ou de base, não como decisão dentro da IT-06.
+- O projeto em espera que passa a caber volta à priorização por novo registro na IT-01, aberto pelo ciclo de acompanhamento.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 7 · Operações
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. Os únicos prazos citados são os da lei (CDC e Código Civil), com a fonte.
+- As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
+- Os rascunhos de procedimentos, níveis de serviço e garantia foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
+- O CDC vale quando o cliente é consumidor. Contrato entre empresas segue o que foi contratado e o Código Civil (arts. 421-A e 441 a 446), lido em transcrição secundária: conferir no texto oficial antes de usar.
+- Uma estratégia de recall prévia (APQC 6.1.7), a manutenção de equipamentos (APQC 4.3.1.5 e 4.3.1.6), o planejamento da distribuição (4.1.5 a 4.1.7), a governança da logística (4.4.1), o registro de produtos (6.3.1) e a estratégia de canais de atendimento (6.1.3) não têm etapa própria.
+- No contrato público, o recebimento provisório e o definitivo seguem o art. 140 da Lei 14.133, lido em transcrição secundária: a OP-02 trata os dois como aceite do cliente.
+- Quando a ação corretiva conclui, quem apontou a lacuna (Identidade, Relações ou Estratégia) vê o efeito pelo painel da Inteligência: os círculos fechados não têm entrada para um aviso direto.
+- A recusa de capacidade no plano chega a Negócios pela confirmação de capacidade feita nas jornadas de Negócios e ao executivo pelo plano publicado; Negócios não recebe o plano como entrada.
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 9001 lemos só a página oficial; da ISO 10002, só o resumo.
+- Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- A tarefa de quem não é do círculo (cliente, executivo, Negócios, Gestão, Governança) está desenhada como participação; o detalhe dela fica no círculo dono.
+- As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
+- As saídas estão listadas por etapa, não por caminho: o pedido à Integração, à Identidade ou à Inteligência só sai quando a decisão pede.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 8 · Gestão
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. O alerta do círculo 1 sobre a carga humana das jornadas transferidas continua sem medida.
+- O ritual de acompanhamento é mensal, pelo método de estratégia aprovado em 03/10/2026. As outras cadências (fechamento, folha, avaliação, rituais de cultura, comunicação interna, rateio e inventário) são decididas pelo líder do círculo, na implantação.
+- Os rascunhos de políticas de cobrança, compras, remuneração e desenvolvimento foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
+- Da área trabalhista e contábil foram lidos os prazos da folha, das férias e da rescisão (CLT), o depósito do FGTS e a escrituração (Código Civil), parte em transcrição secundária. A regra fiscal não foi citada: os tributos dependem do regime de cada empresa, que não está no modelo (empresas e pessoas ficaram para depois). A apuração segue a lei vigente, com a assessoria.
+- Estratégia e políticas de pessoas (APQC 7.1), relações sindicais e queixas (7.4), benefícios (7.5.2), reembolso de despesas (9.6.2), dívida e aplicações (9.7.4) não têm etapa própria.
+- O fornecedor não é uma parte do vocabulário do modelo: as trocas com ele aparecem como tarefas da Gestão.
+- A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.
+- O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.
+- A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
+- As saídas estão listadas por etapa, não por caminho.
+- Os números descrevem este desenho, não a operação atual.
+
+### Círculo 9 · Governança
+
+- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. Os únicos prazos citados são os da LGPD e da Resolução CD/ANPD nº 15/2024, com a fonte.
+- As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
+- As alçadas, o que a Governança decide sozinha e as regras gerais dos contratos foram aprovados em 03/10/2026 (abas Parâmetros em aberto e Propostas de parâmetros). Os rascunhos da matriz de riscos, do critério de rateio, da amostra e das regras de sigilo e guarda foram validados em 03/10/2026; o texto final é o gate G8, e o tamanho da amostra, o G9.
+- Continuidade dos negócios (APQC 11.4.2 a 11.4.4), assessoria externa (12.4.5) e litígios (12.4.7) não têm etapa própria.
+- Da LGPD foram conferidos os arts. 6º, 15, 16, 18, 19, 41 e 48 citados. O prazo de comunicação de incidente (três dias úteis, Resolução CD/ANPD nº 15/2024) foi lido em transcrição secundária, porque o texto oficial não abriu: conferir no Diário Oficial antes de usar.
+- Cada empresa do Ecossistema é um controlador e indica o seu encarregado; o modelo põe o papel de encarregado na Governança, sem desenhar a indicação nem a divulgação.
+- O desenho da amostra (estratos e tamanho) e a conferência independente dos indicadores pela amostra (GO-03, etapa 2) não têm regra escrita.
+- O referencial de processos é o APQC PCF 7.4, de agosto de 2024.
+- As trocas com os oito círculos já fechados foram conferidas dos dois lados pelo nome.
+- A tarefa de quem não é do círculo (sócios, executivo, Relações) está desenhada como participação; o detalhe dela fica no círculo dono.
+- As saídas estão listadas por etapa, não por caminho.
+- Os números descrevem este desenho, não a operação atual.
+

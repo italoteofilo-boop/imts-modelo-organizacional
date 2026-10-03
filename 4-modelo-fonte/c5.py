@@ -1,0 +1,826 @@
+# -*- coding: utf-8 -*-
+"""Círculo 5 · Negócios. Fechado em 02/10/2026: sete jornadas.
+Regra do círculo: Negócios decide o que é do seu ofício (o aceite da oportunidade, o escopo e a proposta dentro do catálogo,
+a tabela de preços e a política comercial, a concessão dentro da alçada e a participação em licitação), ouvido o executivo.
+O executivo aprova a concessão acima da alçada de quem vende e assina pela empresa; acima da alçada dele, decidem os sócios.
+Relações gera e qualifica a demanda e acompanha o cliente; a Inteligência desenha a oferta e o preço-base; a Integração
+implanta; Operações entrega; a Gestão fatura; a Governança mantém os modelos e as alçadas, revisa e guarda os contratos."""
+from dsl import configurar, T, PAR, S, D, E, I, F, TODOS
+
+NUM, NOME, SIGLA, PREF = 5, 'Negócios', 'NE', 'NE'
+LANES, PARTES = configurar(NOME, SIGLA, PREF)
+SLUG = 'circulo5-negocios'
+FECHADO = True
+STATUS = 'Fechado em 02/10/2026 · proposta do círculo 6 aplicada em 03/10/2026 · auditoria de execução aplicada em 03/10/2026'
+LEAD = ('Negócios transforma oportunidade em contrato e cuida dos contratos dos clientes. Mantém a tabela de preços e a '
+        'política comercial, planeja as vendas e prevê a receita, faz a proposta, negocia e fecha o contrato, disputa '
+        'licitações, renova, amplia, adita e encerra contratos e vende com parceiros e em oferta conjunta entre as empresas. '
+        'Não gera demanda, não desenha a oferta, não implanta, não entrega e não fatura. São sete jornadas.')
+PRINCIPIO = ('Regra do círculo, aprovada às 20:11: Negócios decide o que é do seu ofício (o aceite da oportunidade, o escopo e a '
+             'proposta dentro do catálogo, a tabela de preços e a política comercial, a concessão dentro da alçada de quem '
+             'vende e a participação em licitação), ouvido o executivo da empresa. O executivo aprova a concessão acima da '
+             'alçada de quem vende e assina pela empresa; acima da alçada dele, decidem os sócios; a faixa de desconto de quem vende é '
+             'aprovada pela Governança. Relações gera e qualifica a '
+             'demanda e acompanha o cliente; a Inteligência desenha a oferta e o preço-base; a Integração implanta; Operações '
+             'entrega; a Gestão fatura; a Governança mantém os modelos e as alçadas e revisa e guarda os contratos.')
+MUDOU_INTRO = ('Comparação com o catálogo da rodada 2 (49 jornadas e 216 workflows), que continua no documento do '
+               'projeto até cada círculo ser fechado. Azul: acrescentado. Verde: ajustado. Vermelho: retirado.')
+COBERTURA_TXT = ('Processos do APQC PCF 7.4 ligados às funções de Negócios, grupo a grupo: onde cada um está neste '
+                 'modelo. Os nomes estão como no referencial.')
+
+P, A, R = 'NEP', 'NEA', 'NER'
+
+# produtos de Negócios usados em mais de uma jornada ou esperados pelos círculos fechados
+TABELA = 'Tabela de preços e política comercial vigentes'
+PLANO_VEN = 'Plano de vendas do ciclo: alvos por empresa, oferta e canal'
+PREVISAO = 'Previsão de receita e de vendas'
+ACEITE = 'Aceite ou devolução da oportunidade, com o motivo'
+CONTRATO = 'Contrato de cliente assinado, com o escopo vendido'
+VENC = 'Vencimento do contrato e resultado da renovação'
+REGISTROS = 'Registros de propostas, vendas e contratos'
+MOTIVOS = 'Motivos de ganho e de perda de propostas'
+DESEMP_PRECO = 'Desempenho de preço: descontos dados e perdas por preço'
+PROP_NEG = 'Proposta aceita ou em negociação'
+MUD_ESCOPO = 'Mudança de escopo pedida na negociação'
+PED_CARTEIRA = 'Pedido de cliente com contrato vigente'
+EDITAL = 'Edital ou pedido de cotação de órgão público'
+ATA = 'Ata de registro de preços vigente, com saldo e órgãos participantes'
+OPORT_PARC = 'Oportunidade de parceiro ou de oferta conjunta passada à proposta'
+# produtos que Negócios entrega a círculos fechados por porta de pedido (nomes que eles já recebem)
+CONSULTA = 'Consulta sobre caso não coberto'
+PED_OFERTA = 'Pedido de ajuste ou de revisão de oferta em uso'
+IDEIA = 'Ideia ou aposta nova'
+CONTATO = 'Contato de interessado'
+ENC_PARC = 'Pedido de encerramento de parceria'
+# produtos de outros círculos
+PORTALVO = 'Portfólio-alvo: papel de cada empresa, oferta e aposta'
+ALVOS = 'Alvos e iniciativas do ciclo'
+OFERTA_LANC = 'Oferta aprovada para lançamento'
+DEC_ENCERRAR = 'Decisão de encerrar aposta em desenvolvimento ou oferta em uso'
+DATA_SAIDA = 'Data de saída confirmada da aposta ou da oferta encerrada'
+MANDATO = 'Mandato da empresa'
+OFERTA_CAT = 'Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores'
+OFERTA_FORA = 'Aposta ou oferta encerrada e fora do catálogo de ofertas'
+EM_CURSO_SAI = 'Ofertas, apostas e pilotos em curso da empresa que sai'
+RESP_OFERTA = 'Resposta ao pedido sobre oferta em uso'
+LEITURA = 'Leitura de mercado, clientes e concorrentes'
+PAINEL = 'Painel de indicadores de cada círculo, com dono e análise'
+PADROES_ID = 'Padrões de identidade vigentes'
+RESPOSTA_ID = 'Resposta à consulta'
+PACOTE_MARCA = 'Pacote de marca publicado'
+MARCA_RET = 'Marca retirada de uso'
+MAT_VENC = 'Aviso de materiais vencidos'
+POSIC = 'Posicionamento e casa de mensagens vigentes'
+LACUNAS_EXEC = 'Lacunas de execução apontadas'
+PLANO_DEM = 'Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento'
+CRITERIO = 'Critério de oportunidade qualificada combinado com Negócios'
+OPORT_Q = 'Oportunidade qualificada, com o contato, a necessidade e a origem'
+OPORT_SEM = 'Oportunidade sem resposta no prazo'
+FUNIL = 'Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas'
+BASE_REL = 'Base de relacionamento atualizada, com a base legal e o histórico'
+CX = 'Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência'
+PLANO_SUC = 'Plano de sucesso do cliente: resultados esperados, marcos e contatos'
+OPORT_REN = 'Oportunidade de renovação ou de expansão, com o histórico'
+CLI_SAIDA = 'Clientes avisados da saída, com a transição combinada'
+PARC_ATIVA = 'Parceria ativa, com plano de ativação'
+RES_PARC = 'Resultado da parceria'
+LACUNAS_PERC = 'Lacunas de percepção encaminhadas ao dono'
+ALCADAS = 'Regras e alçadas vigentes'
+MODELOS = 'Modelos de proposta e de contrato'
+HABILIT = 'Certidões e documentos de habilitação em dia'
+PLANO_SAIDA = 'Plano de saída de clientes e contratos'
+FATURAS = 'Situação de faturas e pagamentos do cliente'
+
+JORNADAS = []
+
+# ======================================================== PREÇO E PLANO COMERCIAL
+JORNADAS.append(dict(
+    code='NE-01',
+    nome='Manter a tabela de preços, a política comercial e o material de venda de cada empresa',
+    dominio='Preço e plano comercial', classe='essencial', onda=1,
+    objetivo='Ter, em cada empresa, uma tabela de preços e uma política comercial vigentes (preço de cada oferta, descontos, condições de pagamento e faixa de desconto de quem vende) que pessoas e agentes usam, a partir do preço-base decidido pela Inteligência e do papel de cada oferta no portfólio-alvo, com o material de venda de cada oferta conforme os padrões de identidade; e parar a venda da oferta encerrada. Negócios decide a tabela e a política, ouvidos o executivo e a Gestão; a faixa de desconto e as condições que mexem nos modelos de contrato são aprovadas pela Governança, dona das alçadas. O preço de tabela fica no preço-base ou acima dele; abaixo, só depois de a Inteligência rever o preço-base.',
+    frequencia='Por evento: oferta nova ou preço-base alterado no catálogo, resposta a pedido sobre o preço-base, decisão de encerrar oferta, data de saída, material vencido ou marca retirada; e na revisão da tabela (cadência: semestral, e sempre que um preço-base mudar)',
+    automacao=('média', 'Reunir as entradas, comparar o preço praticado com o preço-base, propor a tabela, conferir as alçadas e os padrões, preparar o material e publicar são de agente e automação; decidir a tabela e a política é de pessoa de Negócios.'),
+    base=['apqc', 'dmn'],
+    lanes=['EST', 'INT', 'IDE', 'GES', 'GOV', 'EXE', P, A, R],
+    inicios=[I('Oferta nova ou preço-base alterado no catálogo', 'INT', 'message'),
+             I('Resposta ao pedido sobre o preço-base recebida', 'INT', 'message'),
+             I('Decisão de encerrar oferta ou data de saída recebida', 'EST', 'message'),
+             I('Material vencido ou marca retirada avisados', 'IDE', 'message'),
+             I('Revisão da tabela iniciada', R, 'timer')],
+    fins=[F('Tabela, política e material de venda publicados', R),
+          F('Venda da oferta bloqueada, à espera da data de saída', R)],
+    etapas=[
+        E('Reunir as ofertas, o preço-base e o desempenho de preço', 'Negócios', 'Autopiloto', 'baixo',
+          [(OFERTA_CAT, 'Inteligência'), (OFERTA_FORA, 'Inteligência'), (RESP_OFERTA, 'Inteligência'),
+           (OFERTA_LANC, 'Estratégia'), (PORTALVO, 'Estratégia'), (DEC_ENCERRAR, 'Estratégia'), (DATA_SAIDA, 'Estratégia'),
+           (MAT_VENC, 'Identidade'), (MARCA_RET, 'Identidade'), ('Plano de lançamento da oferta', 'Integração'),
+           (ALCADAS, 'Governança'), (DESEMP_PRECO, 'NE-04'), (MOTIVOS, 'NE-03'), (MOTIVOS, 'NE-04'), (MOTIVOS, 'NE-05'), (MOTIVOS, 'NE-06')],
+          [T('Registrar o que abriu o trabalho e as ofertas afetadas', R),
+           D('O que abriu o trabalho?', R,
+             [S('Oferta nova, preço-base alterado, resposta da Inteligência ou revisão da tabela', 'seg'),
+              S('Decisão de encerrar oferta, ainda sem data de saída', 'F2',
+                via=[T('Bloquear novas propostas da oferta, sem mudar a tabela publicada nem avisar fora', R)]),
+              S('Data de saída confirmada', 'E3',
+                via=[T('Marcar na tabela a oferta que não pode mais ser vendida, com a data', R)]),
+              S('Material vencido ou marca retirada', 'E3',
+                via=[T('Listar o material de venda afetado e retirá-lo de uso', R)])]),
+           T('Comparar o preço-base, o preço praticado, os descontos dados e as perdas por preço', A)],
+          [('Diagnóstico de preço das ofertas', ['etapa 2'])]),
+        E('Decidir o preço de tabela e a política comercial', 'Negócios, ouvidos o executivo e a Gestão; a faixa de desconto, a Governança', 'Copiloto', 'médio',
+          [('Diagnóstico de preço das ofertas', 'etapa 1'), (MODELOS, 'Governança')],
+          [T('Propor preço de tabela, descontos, condições de pagamento e faixa de desconto por oferta', A),
+           T('Conferir a proposta com o preço-base e com as alçadas vigentes', R, 'rule'),
+           D('Algum preço de tabela fica abaixo do preço-base?', R,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Pedir à Inteligência a revisão do preço-base, com a evidência de mercado e de perdas', R),
+                                   T('Manter a oferta afetada no preço vigente até a resposta', P)])]),
+           PAR([T('Opinar sobre o preço e a política comercial da empresa', 'EXE')],
+               [T('Conferir a margem e o efeito no caixa das condições de pagamento', 'GES')]),
+           T('Decidir a tabela de preços e a política comercial, ouvidos o executivo e a Gestão', P),
+           D('A política muda a faixa de desconto de quem vende ou uma condição dos modelos de contrato?', P,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos', 'GOV')])])],
+          [('Tabela e política decididas', ['etapa 3']),
+           (PED_OFERTA, ['Inteligência'])]),
+        E('Publicar a tabela e o material de venda e avisar quem vende', 'Negócios', 'Autopiloto', 'baixo',
+          [('Tabela e política decididas', 'etapa 2'), (PACOTE_MARCA, 'Identidade'), (PADROES_ID, 'Identidade'), (POSIC, 'Identidade'),
+           (RESPOSTA_ID, 'Identidade')],
+          [T('Preparar o material de venda das ofertas novas ou mudadas com o pacote de marca', A),
+           T('Conferir o material de venda com os padrões de identidade', A),
+           D('O material de venda está conforme os padrões de identidade?', A,
+             [S('Sim', 'seg'),
+              S('Não', 'seg', via=[T('Corrigir o material no que não está conforme os padrões', P)]),
+              S('Há ponto que os padrões não cobrem', 'seg',
+                via=[T('Responder à consulta sobre o material de venda não coberto pelos padrões', 'IDE', 'call')])]),
+           T('Publicar a tabela, a política comercial e o material de venda com versão e vigência', R),
+           T('Avisar quem vende, os parceiros de venda e os círculos que usam a tabela', R)],
+          [(TABELA, ['Relações', 'Inteligência', 'Gestão', 'Operações', 'NE-02', 'NE-03', 'NE-04', 'NE-05', 'NE-06', 'NE-07']),
+           ('Material de venda das ofertas', ['NE-03', 'NE-07']),
+           (CONSULTA, ['Identidade'])]),
+    ]))
+
+JORNADAS.append(dict(
+    code='NE-02',
+    nome='Planejar as vendas do ciclo e prever a receita',
+    dominio='Preço e plano comercial', classe='essencial', onda=1,
+    objetivo='Ter, a cada ciclo, os alvos de venda de cada empresa por oferta e canal, desdobrados dos alvos do ciclo, os clientes-chave com o plano de conta de cada um, e uma previsão de receita e de vendas atualizada a cada período a partir do funil, das propostas, dos contratos, das atas e das renovações, entregue a quem precisa dela para o orçamento, o caixa, a capacidade e a implantação. Negócios decide o desdobramento e a previsão, ouvido o executivo; o desvio contra os alvos vai ao executivo e à Gestão.',
+    frequencia='A cada ciclo de vendas e a cada período de previsão (cadências: ciclo de vendas trimestral; previsão mensal) e por evento: alvos do ciclo publicados',
+    automacao=('média', 'Reunir o funil, as propostas e os contratos, calcular a previsão e comparar com os alvos são de agente e automação; desdobrar os alvos, escolher os clientes-chave e concluir a previsão são de pessoa de Negócios.'),
+    base=['apqc'],
+    lanes=['EST', 'OPE', 'ITG', 'EXE', P, A, R],
+    inicios=[I('Ciclo de vendas iniciado', R, 'timer'),
+             I('Período de previsão encerrado', R, 'timer'),
+             I('Alvos do ciclo publicados', 'EST', 'message')],
+    fins=[F('Plano de vendas e previsão publicados', R)],
+    etapas=[
+        E('Reunir alvos, demanda, funil e carteira', 'Negócios', 'Autopiloto', 'baixo',
+          [(ALVOS, 'Estratégia'), (PORTALVO, 'Estratégia'), (MANDATO, 'Estratégia'),
+           (PLANO_DEM, 'Relações'), (CRITERIO, 'Relações'), (FUNIL, 'Relações'), (LACUNAS_PERC, 'Relações'),
+           (LEITURA, 'Inteligência'), (PAINEL, 'Inteligência'), (LACUNAS_EXEC, 'Identidade'),
+           (TABELA, 'NE-01'), (REGISTROS, 'NE-03'), (REGISTROS, 'NE-04'), (ATA, 'NE-05'), (REGISTROS, 'NE-06'),
+           (VENC, 'NE-06'), ('Resultado da venda com parceiros e conjunta', 'NE-07')],
+          [T('Reunir alvos, plano de demanda, funil, propostas, contratos, atas e vencimentos do período', R),
+           T('Calcular a previsão de receita e de vendas por empresa, oferta, canal e período', A),
+           T('Comparar a previsão com os alvos e apontar desvios e lacunas que afetam a venda', A)],
+          [('Previsão proposta, com os desvios', ['etapa 2'])]),
+        E('Decidir os alvos de venda, os clientes-chave e a previsão', 'Negócios, ouvido o executivo', 'Assistido', 'médio',
+          [('Previsão proposta, com os desvios', 'etapa 1')],
+          [T('Propor o desdobramento dos alvos de venda por oferta e canal e as ações para os desvios', A),
+           PAR([T('Opinar sobre os alvos de venda e a previsão da empresa', 'EXE')],
+               [T('Confirmar a capacidade de entrega para o volume previsto', 'OPE')],
+               [T('Confirmar a capacidade de implantação para o volume previsto', 'ITG')]),
+           T('Decidir os alvos de venda e a previsão, ouvido o executivo', P),
+           T('Escolher os clientes-chave e definir o plano de conta de cada um', P),
+           T('Incluir no plano as correções das lacunas de execução e de percepção que cabem a Negócios', P),
+           D('A previsão fica abaixo dos alvos do ciclo?', P,
+             [S('Não', 'prox'),
+              S('Sim', 'prox', via=[T('Apontar o desvio ao executivo e à Gestão, com as ações de recuperação', R)])])],
+          [('Alvos de venda e previsão decididos', ['etapa 3']),
+           ('Desvio da previsão contra os alvos, com as ações', ['Executivos', 'Gestão'])]),
+        E('Publicar o plano de vendas e a previsão', 'Negócios', 'Autômato', 'baixo',
+          [('Alvos de venda e previsão decididos', 'etapa 2')],
+          [T('Publicar o plano de vendas do ciclo, os planos de conta e a previsão com versão e data', R),
+           T('Avisar quem vende, o executivo, a Gestão, Operações e a Integração', R)],
+          [(PLANO_VEN, ['NE-03', 'NE-05', 'NE-07', 'Executivos', 'Gestão']),
+           ('Plano de conta dos clientes-chave', ['NE-06']),
+           (PREVISAO, ['Gestão', 'Operações', 'Integração', 'Executivos'])]),
+    ]))
+
+# =================================================================== VENDA
+JORNADAS.append(dict(
+    code='NE-03',
+    nome='Aceitar a oportunidade, desenhar a solução e fazer a proposta',
+    dominio='Venda', classe='essencial', onda=1,
+    objetivo='Fazer cada oportunidade qualificada receber aceite ou devolução com o motivo no prazo combinado com Relações e, aceita, virar uma proposta com escopo que a operação e a implantação conseguem entregar, preço pela tabela, concessão dentro da alçada, conforme os padrões de identidade e no modelo da Governança. A oportunidade de parceiro ou de oferta conjunta já aceita na NE-07 entra direto no escopo, que é confirmado com o cliente. O que foge do catálogo vai à Inteligência ou à Estratégia, e a resposta da Inteligência retoma a proposta; o contato que chega direto a Negócios vai a Relações para ser qualificado.',
+    frequencia='Por evento: oportunidade qualificada, oportunidade sem resposta no prazo, oportunidade de parceiro ou de oferta conjunta, mudança de escopo pedida na negociação, resposta da Inteligência ou pedido que chega direto do cliente',
+    automacao=('média', 'Registrar, conferir com o critério, montar o escopo, calcular o preço, redigir, conferir os padrões e enviar são de agente e automação; aceitar, conversar com o cliente, decidir o escopo e aprovar a proposta são de pessoa de Negócios.'),
+    base=['apqc', 'dmn'],
+    lanes=['REL', 'INT', 'CLI', 'OPE', 'ITG', 'IDE', 'GOV', 'EXE', 'SOC', P, A, R],
+    inicios=[I('Oportunidade qualificada recebida', 'REL', 'message'),
+             I('Oportunidade sem resposta no prazo escalada', 'REL', 'message'),
+             I('Oportunidade de parceiro ou de oferta conjunta recebida', R, 'message'),
+             I('Mudança de escopo recebida da negociação', R, 'message'),
+             I('Resposta da Inteligência sobre o escopo recebida', 'INT', 'message'),
+             I('Pedido de proposta recebido do cliente', 'CLI', 'message')],
+    fins=[F('Proposta aceita ou em negociação, passada ao contrato', R),
+          F('Oportunidade devolvida a Relações, com o motivo', R),
+          F('Escopo fora do catálogo levado à Inteligência ou à Estratégia', R),
+          F('Contato passado a Relações para qualificar', R),
+          F('Pedido levado à jornada de contas e contratos', R),
+          F('Edital levado à jornada de licitações', R),
+          F('Proposta perdida, com o motivo', R)],
+    etapas=[
+        E('Receber a oportunidade e decidir o aceite', 'Negócios', 'Copiloto', 'médio',
+          [(OPORT_Q, 'Relações'), (OPORT_SEM, 'Relações'), (CRITERIO, 'Relações'), (BASE_REL, 'Relações'),
+           ('Pedido de proposta do cliente', 'Clientes'), (OPORT_PARC, 'NE-07'), (MUD_ESCOPO, 'NE-04'), (RESP_OFERTA, 'Inteligência'),
+           (PLANO_VEN, 'NE-02'), (TABELA, 'NE-01')],
+          [T('Registrar a oportunidade, a origem e o prazo de aceite combinado', R),
+           D('O que abriu o trabalho?', R,
+             [S('Oportunidade qualificada por Relações, ou escalada sem resposta', 'seg'),
+              S('Oportunidade de parceiro ou de oferta conjunta aceita na NE-07', 'E2',
+                via=[T('Registrar quem conduz a venda, indicado na NE-07', R)]),
+              S('Mudança de escopo pedida na negociação ou resposta da Inteligência ao pedido de ajuste', 'E2',
+                via=[T('Retomar a oportunidade com a mudança pedida ou com a resposta recebida', R)]),
+              S('Pedido de cliente sem contrato, que não passou por Relações', 'F4',
+                via=[T('Passar o contato a Relações para qualificar, com o que o cliente pediu', R)]),
+              S('Pedido de cliente com contrato vigente', 'F5',
+                via=[T('Levar o pedido à jornada de contas e contratos', R)]),
+              S('Edital, ou pedido de cotação de órgão público', 'F6',
+                via=[T('Levar o edital ou o pedido de cotação à jornada de licitações', R)])]),
+           T('Conferir a oportunidade com o critério combinado, o plano de vendas e as ofertas vendáveis', A),
+           T('Decidir o aceite ou a devolução, com o motivo, no prazo combinado', P),
+           D('Negócios aceita a oportunidade?', P,
+             [S('Sim', 'seg'),
+              S('Não', 'F2', via=[T('Devolver a oportunidade a Relações, com o motivo', R)])]),
+           T('Avisar Relações do aceite e designar quem conduz a venda', R)],
+          [(ACEITE, ['Relações']),
+           (CONTATO, ['Relações']),
+           (PED_CARTEIRA, ['NE-06']),
+           (EDITAL, ['NE-05']),
+           ('Oportunidade aceita, com quem conduz a venda', ['etapa 2'])]),
+        E('Entender a necessidade e desenhar a solução', 'Negócios, com Operações e Integração', 'Assistido', 'médio',
+          [('Oportunidade aceita, com quem conduz a venda', 'etapa 1'), (OFERTA_CAT, 'Inteligência'), (CX, 'Relações'),
+           ('Mudança de escopo pedida pelo cliente', 'etapa 4')],
+          [T('Confirmar com o cliente a necessidade, o resultado esperado, quem decide e o prazo', P, 'manual'),
+           T('Montar o escopo com as ofertas do catálogo e o que o cliente pediu', A),
+           D('O escopo cabe nas ofertas do catálogo?', P,
+             [S('Sim', 'seg'),
+              S('Não: pede ajuste de oferta ou oferta nova', 'F3',
+                via=[T('Levar o ajuste à Inteligência ou a oferta nova à Estratégia, com a necessidade do cliente', R),
+                     T('Avisar o cliente do caminho e do prazo da resposta', P, 'manual')])]),
+           PAR([T('Confirmar que consegue entregar o escopo no prazo pedido', 'OPE')],
+               [T('Confirmar o que a implantação pede: sistemas, prazos e pessoas', 'ITG')]),
+           T('Decidir o escopo da solução, com o que Operações e a Integração confirmaram', P),
+           D('Operações e a Integração conseguem entregar o escopo?', P,
+             [S('Sim', 'prox'),
+              S('Não, mas há escopo menor que serve ao cliente', 'E2'),
+              S('Não há escopo que se consiga entregar', 'F7',
+                via=[T('Registrar a perda por falta de escopo entregável e avisar o cliente', R)])])],
+          [('Escopo da solução confirmado', ['etapa 3']),
+           (PED_OFERTA, ['Inteligência']),
+           (IDEIA, ['Estratégia']),
+           (MOTIVOS, ['Inteligência', 'NE-01'])]),
+        E('Precificar e redigir a proposta', 'Negócios; a concessão acima da alçada, o executivo ou os sócios', 'Copiloto', 'médio',
+          [('Escopo da solução confirmado', 'etapa 2'), (TABELA, 'NE-01'), ('Material de venda das ofertas', 'NE-01'),
+           (ALCADAS, 'Governança'), (MODELOS, 'Governança'),
+           (PADROES_ID, 'Identidade'), (PACOTE_MARCA, 'Identidade'), (POSIC, 'Identidade'), (MAT_VENC, 'Identidade'),
+           (MARCA_RET, 'Identidade'), (RESPOSTA_ID, 'Identidade')],
+          [T('Calcular o preço pela tabela e pela política comercial', R, 'rule'),
+           D('A concessão pedida está dentro da alçada de quem vende?', R,
+             [S('Sim, ou não há concessão', 'seg'),
+              S('Acima, dentro da alçada do executivo', 'seg',
+                via=[T('Decidir a concessão acima da alçada de quem vende', 'EXE')]),
+              S('Acima da alçada do executivo', 'seg',
+                via=[T('Levar a concessão à decisão dos sócios', 'GOV', 'call'),
+                     T('Decidir a concessão pelos sócios', 'SOC', 'manual')])]),
+           T('Redigir a proposta no modelo, com o escopo, o preço, as condições e a validade', A),
+           T('Conferir a proposta com os padrões de identidade e com os materiais vencidos ou de marca retirada', A),
+           D('A proposta está conforme os padrões de identidade?', A,
+             [S('Sim', 'seg'),
+              S('Não', 'seg', via=[T('Corrigir a proposta no que não está conforme os padrões', P)]),
+              S('Há ponto que os padrões não cobrem', 'seg',
+                via=[T('Responder à consulta sobre a proposta não coberta pelos padrões', 'IDE', 'call')])]),
+           D('A proposta tem cláusula fora do modelo?', P,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Revisar a cláusula fora do modelo e o risco', 'GOV')])]),
+           T('Revisar e aprovar a proposta', P)],
+          [('Proposta aprovada para envio', ['etapa 4']),
+           (CONSULTA, ['Identidade'])]),
+        E('Enviar a proposta e acompanhar a resposta do cliente', 'Negócios', 'Autômato', 'baixo',
+          [('Proposta aprovada para envio', 'etapa 3'), ('Resposta do cliente à proposta', 'Clientes')],
+          [T('Enviar a proposta ao cliente e registrar o envio', R),
+           T('Receber a resposta do cliente ou o fim da validade da proposta', R, 'receive'),
+           D('Qual foi a resposta do cliente?', R,
+             [S('Aceitou ou quer negociar', 'prox',
+                via=[T('Passar a proposta à negociação e ao contrato', R)]),
+              S('Pediu mudança no escopo', 'E2'),
+              S('Recusou, ou a validade venceu sem resposta', 'F7',
+                via=[T('Registrar a perda e o motivo dado pelo cliente', R)])])],
+          [(PROP_NEG, ['NE-04']),
+           ('Mudança de escopo pedida pelo cliente', ['etapa 2']),
+           (MOTIVOS, ['Inteligência', 'NE-01']),
+           (REGISTROS, ['Inteligência', 'NE-02'])]),
+    ]))
+
+JORNADAS.append(dict(
+    code='NE-04',
+    nome='Negociar e fechar o contrato com o cliente',
+    dominio='Venda', classe='essencial', onda=1,
+    objetivo='Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda.',
+    frequencia='Por evento: proposta aceita ou em negociação',
+    automacao=('média', 'Simular concessões, redigir o contrato no modelo, registrar e avisar são de agente e automação; negociar, aprovar concessões e conferir o contrato são de pessoas; assinar é do executivo.'),
+    base=['apqc', 'dmn'],
+    lanes=['CLI', 'GOV', 'EXE', 'SOC', P, A, R],
+    inicios=[I('Proposta aceita ou em negociação recebida', R, 'message')],
+    fins=[F('Contrato assinado e passado a quem implanta, entrega, fatura e acompanha', R),
+          F('Negociação perdida, com o motivo', R),
+          F('Mudança de escopo devolvida à proposta', R)],
+    etapas=[
+        E('Negociar as condições com o cliente', 'Negócios; a concessão acima da alçada, o executivo ou os sócios', 'Copiloto', 'médio',
+          [(PROP_NEG, 'NE-03'), (TABELA, 'NE-01'), (ALCADAS, 'Governança')],
+          [T('Negociar com o cliente preço, prazo, condições e cláusulas', P, 'manual'),
+           T('Simular o efeito de cada concessão na margem e conferir com a política comercial', A),
+           D('A concessão negociada está dentro da alçada de quem vende?', R,
+             [S('Sim, ou não há concessão', 'seg'),
+              S('Acima, dentro da alçada do executivo', 'seg',
+                via=[T('Decidir a concessão negociada acima da alçada de quem vende', 'EXE')]),
+              S('Acima da alçada do executivo', 'seg',
+                via=[T('Levar a concessão negociada à decisão dos sócios', 'GOV', 'call'),
+                     T('Decidir a concessão negociada pelos sócios', 'SOC', 'manual')])]),
+           D('O cliente e a empresa chegaram a acordo?', P,
+             [S('Sim', 'prox'),
+              S('O cliente pede mudar o escopo', 'F3', via=[T('Devolver o pedido de mudança de escopo à proposta', R)]),
+              S('Não', 'F2', via=[T('Registrar a perda e o motivo da negociação', R)])])],
+          [('Condições acordadas com o cliente', ['etapa 2']),
+           (MUD_ESCOPO, ['NE-03']),
+           (MOTIVOS, ['Inteligência', 'NE-01'])]),
+        E('Formalizar e assinar o contrato', 'Negócios, com a Governança; assina o executivo', 'Assistido', 'alto',
+          [('Condições acordadas com o cliente', 'etapa 1'), (MODELOS, 'Governança')],
+          [T('Redigir o contrato no modelo, com o escopo vendido e as condições acordadas', A),
+           D('O contrato foge do modelo?', P,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Revisar as cláusulas fora do modelo e o risco do contrato', 'GOV', 'call')])]),
+           T('Conferir o contrato final com o que foi acordado', P),
+           T('Conferir os poderes de quem assina pela empresa e pelo cliente', 'GOV'),
+           T('Assinar o contrato em nome da empresa', 'EXE'),
+           T('Assinar o contrato', 'CLI'),
+           D('O contrato foi assinado pelas duas partes?', P,
+             [S('Sim', 'seg'),
+              S('Não: o cliente desistiu', 'F2', via=[T('Registrar a desistência do cliente e o motivo', R)])]),
+           T('Guardar o contrato assinado', 'GOV')],
+          [('Contrato assinado e guardado', ['etapa 3']),
+           ('Contrato para conferir e guardar', ['Governança']),
+           (MOTIVOS, ['Inteligência', 'NE-01'])]),
+        E('Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha', 'Negócios', 'Autômato', 'baixo',
+          [('Contrato assinado e guardado', 'etapa 2')],
+          [T('Registrar o contrato, o escopo vendido, o valor, a vigência e o vencimento', R),
+           T('Avisar a Integração, Operações, a Gestão e Relações do contrato assinado', R),
+           T('Registrar os descontos dados e o motivo do ganho', R)],
+          [(CONTRATO, ['Relações', 'Integração', 'Operações', 'Gestão', 'NE-06']),
+           (REGISTROS, ['Inteligência', 'NE-02', 'NE-07']),
+           (MOTIVOS, ['Inteligência', 'NE-01']),
+           (DESEMP_PRECO, ['NE-01'])]),
+    ]))
+
+JORNADAS.append(dict(
+    code='NE-05',
+    nome='Disputar licitações e contratar com o setor público',
+    dominio='Venda', classe='essencial', onda=1,
+    objetivo='Decidir em cada edital se a empresa participa, montar a proposta e os documentos de habilitação nas regras do edital, disputar, acompanhar o julgamento, a habilitação, os recursos e a homologação e, ganhando, assinar o contrato ou a ata de registro de preços; responder ao pedido de cotação para pesquisa de preços; e responder ao órgão não participante que pede para aderir à ata. Negócios decide participar e recorrer, ouvidos o executivo e a Governança; a Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina. Prazos e regras de impugnação, recurso, convocação e adesão seguem a lei e o edital e não foram conferidos neste desenho.',
+    frequencia='Por evento: edital ou pedido de cotação encontrado ou recebido, resultado da disputa, convocação para assinar, ou pedido de adesão à ata',
+    automacao=('média', 'Monitorar editais, conferir exigências, calcular o preço, montar os documentos, enviar e registrar são de agente e automação; decidir participar, dar lances, decidir recorrer e decidir a adesão são de pessoa de Negócios; esclarecer, impugnar e recorrer são da Governança; assinar é do executivo.'),
+    base=['l14133', 'apqc'],
+    lanes=['CLI', 'OPE', 'IDE', 'GOV', 'EXE', 'SOC', P, A, R],
+    inicios=[I('Edital ou pedido de cotação encontrado', R, 'signal'),
+             I('Edital ou pedido de cotação recebido', R, 'message'),
+             I('Pedido de adesão à ata recebido', 'CLI', 'message')],
+    fins=[F('Contrato ou ata assinado e registrado', R),
+          F('Edital sem participação, com o motivo', R),
+          F('Disputa perdida, com o resultado registrado', R),
+          F('Cotação para pesquisa de preços respondida', R),
+          F('Adesão recusada, com resposta ao órgão', R)],
+    etapas=[
+        E('Analisar o edital e decidir participar', 'Negócios, ouvido o executivo, com a Governança', 'Copiloto', 'alto',
+          [(EDITAL, 'NE-03'), ('Edital publicado e seus anexos', 'Clientes'), ('Pedido de adesão à ata de órgão não participante', 'Clientes'),
+           ('Resposta ao esclarecimento ou à impugnação, ou edital alterado', 'Clientes'),
+           (TABELA, 'NE-01'), (OFERTA_CAT, 'Inteligência'), (PLANO_VEN, 'NE-02'), (HABILIT, 'Governança')],
+          [T('Registrar o edital ou o pedido, o órgão, o objeto, as datas e as exigências', R),
+           D('O que abriu o trabalho?', R,
+             [S('Edital de licitação', 'seg'),
+              S('Pedido de cotação para pesquisa de preços do órgão', 'F4',
+                via=[T('Preparar a resposta à cotação com o preço pela tabela e pela política, sem disputa', A),
+                     T('Aprovar e enviar a resposta à cotação', P)]),
+              S('Pedido de adesão de órgão não participante', 'E4')]),
+           T('Conferir o objeto com as ofertas, a tabela, a capacidade e as exigências de habilitação', A),
+           PAR([T('Confirmar a capacidade de entregar o objeto do edital', 'OPE')],
+               [T('Conferir as exigências de habilitação e o risco das cláusulas do edital', 'GOV')]),
+           D('O edital tem exigência que pede esclarecimento ou impugnação?', P,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital', 'GOV', 'call'),
+                                   T('Receber a resposta ao esclarecimento ou à impugnação', R, 'receive'),
+                                   T('Atualizar a análise com a resposta e com o edital alterado, quando houver', A)])]),
+           T('Opinar sobre a participação da empresa no edital', 'EXE'),
+           T('Decidir se a empresa participa, ouvido o executivo', P),
+           D('A empresa participa?', P,
+             [S('Sim', 'prox'),
+              S('Não', 'F2', via=[T('Registrar o motivo de não participar', R)])])],
+          [('Edital analisado, com a decisão de participar', ['etapa 2']),
+           ('Resposta à cotação para pesquisa de preços', ['Clientes'])]),
+        E('Montar a proposta e os documentos de habilitação', 'Negócios, com a Governança; assina o executivo', 'Copiloto', 'alto',
+          [('Edital analisado, com a decisão de participar', 'etapa 1'), (ALCADAS, 'Governança'), (HABILIT, 'Governança'),
+           (PADROES_ID, 'Identidade'), (RESPOSTA_ID, 'Identidade')],
+          [T('Calcular o preço pela tabela e pela política, com os custos que o edital impõe', R, 'rule'),
+           T('Fixar o menor preço aceito na disputa', P),
+           D('O menor preço aceito está dentro da alçada de quem vende?', R,
+             [S('Sim', 'seg'),
+              S('Acima, dentro da alçada do executivo', 'seg',
+                via=[T('Decidir o menor preço da disputa acima da alçada de quem vende', 'EXE')]),
+              S('Acima da alçada do executivo', 'seg',
+                via=[T('Levar o menor preço da disputa à decisão dos sócios', 'GOV', 'call'),
+                     T('Decidir o menor preço da disputa pelos sócios', 'SOC', 'manual')])]),
+           T('Montar a proposta e a parte técnica, quando houver, nas regras do edital', A),
+           D('A parte livre da proposta está conforme os padrões de identidade?', A,
+             [S('Sim, ou o edital fixa todo o formato', 'seg'),
+              S('Não', 'seg', via=[T('Corrigir a parte livre da proposta no que não está conforme os padrões', P)]),
+              S('Há ponto que os padrões não cobrem', 'seg',
+                via=[T('Responder à consulta sobre a proposta de licitação não coberta pelos padrões', 'IDE', 'call')])]),
+           T('Reunir e conferir os documentos de habilitação pedidos no edital', 'GOV'),
+           T('Assinar a proposta e os documentos pedidos no edital em nome da empresa', 'EXE')],
+          [('Proposta e habilitação prontas para a disputa', ['etapa 3']),
+           (CONSULTA, ['Identidade'])]),
+        E('Disputar e acompanhar o julgamento, a habilitação e os recursos', 'Negócios, com a Governança', 'Copiloto', 'alto',
+          [('Proposta e habilitação prontas para a disputa', 'etapa 2'), ('Resultado do julgamento, da habilitação e dos recursos', 'Clientes')],
+          [T('Enviar a proposta e os documentos pelo meio e no prazo do edital', R),
+           T('Dar os lances na disputa, sem passar do menor preço aceito', P),
+           T('Receber o resultado do julgamento e da habilitação', R, 'receive'),
+           D('Qual é o resultado da disputa?', P,
+             [S('Vencedora e habilitada, sem recurso de concorrente', 'prox'),
+              S('Vencedora, com recurso de concorrente', 'seg',
+                via=[T('Apresentar contrarrazões ao recurso do concorrente', 'GOV', 'call')]),
+              S('Perdeu, desclassificada ou inabilitada, e Negócios decide recorrer, ouvida a Governança', 'seg',
+                via=[T('Apresentar o recurso da empresa', 'GOV', 'call')]),
+              S('Perdeu, e a empresa não recorre', 'F3',
+                via=[T('Registrar o resultado, o preço vencedor e o motivo da perda', R)])]),
+           T('Receber a decisão do recurso', R, 'receive'),
+           D('A decisão do recurso favorece a empresa?', P,
+             [S('Sim', 'prox'),
+              S('Não', 'F3', via=[T('Registrar a decisão do recurso e o motivo da perda', R)])])],
+          [('Resultado favorável da disputa', ['etapa 4']),
+           (MOTIVOS, ['Inteligência', 'NE-01']),
+           (REGISTROS, ['Inteligência'])]),
+        E('Assinar o contrato ou a ata e responder às adesões', 'Negócios; assina o executivo; a Governança confere e guarda', 'Copiloto', 'alto',
+          [('Resultado favorável da disputa', 'etapa 3'), ('Homologação e convocação para assinar', 'Clientes'),
+           ('Pedido de adesão à ata de órgão não participante', 'Clientes')],
+          [T('Conferir os poderes de quem assina pela empresa', 'GOV'),
+           D('O que se assina?', P,
+             [S('Contrato com o órgão', 'seg',
+                via=[T('Receber a homologação e a convocação para assinar o contrato', R, 'receive'),
+                     T('Assinar o contrato com o órgão em nome da empresa', 'EXE')]),
+              S('Ata de registro de preços', 'seg',
+                via=[T('Receber a homologação e a convocação para assinar a ata', R, 'receive'),
+                     T('Assinar a ata de registro de preços em nome da empresa', 'EXE')]),
+              S('Adesão de órgão não participante à ata', 'seg',
+                via=[T('Decidir se aceita fornecer ao órgão não participante, nas regras da ata e da lei', P)])]),
+           D('Há adesão a responder?', P,
+             [S('Não', 'seg'),
+              S('Sim, aceita', 'seg', via=[T('Assinar o contrato da adesão em nome da empresa', 'EXE')]),
+              S('Sim, recusada', 'F5', via=[T('Responder ao órgão não participante que a empresa não adere, com o motivo', R)])]),
+           T('Conferir o documento assinado com o resultado da disputa ou com a adesão aceita', P),
+           T('Guardar o contrato ou a ata', 'GOV'),
+           T('Registrar o contrato ou a ata, o saldo, a vigência e os órgãos participantes', R),
+           T('Avisar a Integração, Operações, a Gestão e Relações do que foi assinado', R)],
+          [(CONTRATO, ['Relações', 'Integração', 'Operações', 'Gestão', 'NE-06']),
+           (ATA, ['NE-06', 'NE-02', 'Gestão', 'Operações'])]),
+    ]))
+
+# ===================================================== CONTAS E CONTRATOS
+JORNADAS.append(dict(
+    code='NE-06',
+    nome='Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar',
+    dominio='Contas e contratos', classe='essencial', onda=1,
+    objetivo='Fazer cada contrato de cliente ser renovado, ampliado ou aditado no tempo certo, com as concessões dentro das alçadas e com o escopo novo confirmado por Operações e pela Integração, a partir da oportunidade que Relações aponta, do pedido do cliente e do plano de conta; tratar o pedido de cancelamento com uma negociação de retenção e, perdido o cliente ou vencida a vigência sem renovação, formalizar o fim do contrato e avisar quem entrega, implanta e fatura; atender a contratação de órgão participante pela ata; e, quando uma oferta é encerrada ou uma empresa sai, encerrar ou transferir os contratos pelo plano de saída coordenado pela Integração. O vencimento próximo só avisa Relações, que decide se abre a renovação. Relações acompanha o sucesso do cliente; Negócios negocia e formaliza; o executivo assina.',
+    frequencia='Por evento: oportunidade de renovação ou de expansão, vencimento próximo, pedido do cliente, contratação pela ata, pedido de cancelamento, decisão de encerrar oferta, data de saída ou mandato',
+    automacao=('média', 'Vigiar vencimentos e saldos, preparar a proposta de renovação, redigir o aditivo, registrar e avisar são de agente e automação; negociar, decidir concessões, conferir e executar a parte de Negócios do plano de saída são de pessoas; assinar é do executivo.'),
+    base=['apqc', 'dmn', 'l14133'],
+    lanes=['REL', 'EST', 'CLI', 'OPE', 'ITG', 'IDE', 'GOV', 'EXE', 'SOC', P, A, R],
+    inicios=[I('Oportunidade de renovação ou de expansão recebida', 'REL', 'message'),
+             I('Vencimento de contrato próximo', R, 'timer'),
+             I('Fim de vigência sem renovação', R, 'timer'),
+             I('Pedido de cliente com contrato vigente recebido', R, 'message'),
+             I('Pedido de contratação pela ata recebido', 'CLI', 'message'),
+             I('Pedido de cancelamento do cliente recebido', 'CLI', 'message'),
+             I('Decisão de encerrar oferta, data de saída ou mandato recebido', 'EST', 'message')],
+    fins=[F('Renovação, aditivo ou contratação assinada e registrada', R),
+          F('Contrato encerrado, com o fim formalizado e avisado', R),
+          F('Contratos da saída encerrados ou transferidos', R),
+          F('Contratos afetados listados, à espera da data de saída', R),
+          F('Mandato registrado, sem mexer nos contratos', R),
+          F('Pendência da saída apontada', R),
+          F('Vencimento avisado a Relações', R)],
+    etapas=[
+        E('Reunir a carteira e decidir o que tratar', 'Negócios', 'Autopiloto', 'baixo',
+          [(CONTRATO, 'NE-04'), (CONTRATO, 'NE-05'), (ATA, 'NE-05'), (PED_CARTEIRA, 'NE-03'),
+           ('Plano de conta dos clientes-chave', 'NE-02'),
+           (OPORT_REN, 'Relações'), (PLANO_SUC, 'Relações'), (FATURAS, 'Gestão'),
+           ('Pedido de contratação pela ata', 'Clientes'), ('Pedido de cancelamento de contrato', 'Clientes'),
+           (DEC_ENCERRAR, 'Estratégia'), (DATA_SAIDA, 'Estratégia'), (MANDATO, 'Estratégia'),
+           (PADROES_ID, 'Identidade'), (RESPOSTA_ID, 'Identidade')],
+          [T('Conferir o contrato, o saldo de ata e o que abriu o trabalho', R),
+           D('O que abriu o trabalho?', R,
+             [S('Oportunidade de renovação ou de expansão, pedido de aditivo ou pedido de cancelamento', 'seg'),
+              S('Vencimento próximo de contrato', 'F7',
+                via=[T('Avisar Relações e a Gestão do vencimento próximo do contrato', R)]),
+              S('Fim de vigência sem renovação', 'E4',
+                via=[T('Registrar o fim de vigência sem renovação e a data de fim', R)]),
+              S('Pedido de contratação pela ata', 'E4'),
+              S('Oferta encerrada, empresa que sai ou mandato', 'E3')]),
+           T('Preparar a proposta de renovação, aditivo ou retenção com o histórico, o plano de conta e a tabela', A),
+           D('A proposta está conforme os padrões de identidade?', A,
+             [S('Sim', 'seg'),
+              S('Não', 'seg', via=[T('Corrigir a proposta de renovação no que não está conforme os padrões', P)]),
+              S('Há ponto que os padrões não cobrem', 'seg',
+                via=[T('Responder à consulta sobre a proposta de renovação não coberta pelos padrões', 'IDE', 'call')])])],
+          [(VENC, ['Relações', 'Gestão', 'NE-02']),
+           (CONSULTA, ['Identidade']),
+           ('Proposta de renovação, expansão ou retenção', ['etapa 2'])]),
+        E('Negociar a renovação, a expansão, o aditivo ou a retenção', 'Negócios, com Operações e Integração; a concessão acima da alçada, o executivo ou os sócios', 'Assistido', 'médio',
+          [('Proposta de renovação, expansão ou retenção', 'etapa 1'), (TABELA, 'NE-01'), (ALCADAS, 'Governança'), (MODELOS, 'Governança')],
+          [T('Negociar com o cliente a renovação, a expansão, o aditivo ou a retenção', P, 'manual'),
+           D('O escopo muda?', P,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Confirmar que consegue entregar o escopo renovado ou ampliado', 'OPE'),
+                                   T('Confirmar o que a implantação do escopo novo pede', 'ITG')])]),
+           D('Operações e a Integração conseguem entregar o escopo combinado?', P,
+             [S('Sim, ou o escopo não muda', 'seg'),
+              S('Não, renegociar o escopo', 'E2')]),
+           D('A concessão da renovação está dentro da alçada de quem vende?', R,
+             [S('Sim, ou não há concessão', 'seg'),
+              S('Acima, dentro da alçada do executivo', 'seg',
+                via=[T('Decidir a concessão da renovação acima da alçada de quem vende', 'EXE')]),
+              S('Acima da alçada do executivo', 'seg',
+                via=[T('Levar a concessão da renovação à decisão dos sócios', 'GOV', 'call'),
+                     T('Decidir a concessão da renovação pelos sócios', 'SOC', 'manual')])]),
+           D('Qual é o resultado com o cliente?', P,
+             [S('Renovou, ampliou, aditou ou ficou', 'E4'),
+              S('Não renovou ou cancelou', 'E4',
+                via=[T('Registrar a perda, o motivo e a data de fim do contrato', R)])])],
+          [('Condições da renovação acordadas', ['etapa 4']),
+           (MOTIVOS, ['Inteligência', 'NE-01'])]),
+        E('Encerrar ou transferir os contratos da oferta ou da empresa que sai', 'Negócios, no plano de saída coordenado pela Integração', 'Assistido', 'alto',
+          [(DEC_ENCERRAR, 'Estratégia'), (DATA_SAIDA, 'Estratégia'), (MANDATO, 'Estratégia'), (EM_CURSO_SAI, 'Inteligência'),
+           (PLANO_SAIDA, 'Integração'), (CLI_SAIDA, 'Relações')],
+          [T('Listar os contratos, as atas e as propostas afetados', R),
+           D('Há data de saída confirmada?', R,
+             [S('Sim, ou venda fechada ou encerramento de empresa', 'seg',
+                via=[T('Suspender novas propostas da oferta ou da empresa que sai', R)]),
+              S('Não: decisão de encerrar, ainda sem data', 'F4',
+                via=[T('Mandar à Integração a lista de contratos afetados, sem avisar os clientes', R)]),
+              S('Mandato de busca de comprador, de criação ou de mudança de mandato', 'F5',
+                via=[T('Registrar o mandato e os contratos que ele alcança, sob sigilo', R)])]),
+           T('Executar a parte de Negócios do plano de saída: encerrar, transferir ou manter cada contrato', P, 'manual'),
+           T('Encerrar com os clientes as propostas e as negociações em curso', P, 'manual'),
+           T('Conferir o encerramento ou a transferência de cada contrato', 'GOV'),
+           D('Os contratos foram encerrados ou transferidos como planejado?', P,
+             [S('Sim', 'F3', via=[T('Registrar os contratos encerrados ou transferidos e avisar a Integração e a Gestão', R)]),
+              S('Não: há pendência', 'F6', via=[T('Apontar a pendência à Integração e ao executivo', R)])])],
+          [('Contratos afetados pela saída', ['Integração']),
+           ('Contratos encerrados ou transferidos na saída', ['Integração', 'Gestão']),
+           ('Pendência de contrato na saída', ['Integração', 'Executivos'])]),
+        E('Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato', 'Negócios, com a Governança; assina o executivo', 'Assistido', 'alto',
+          [('Condições da renovação acordadas', 'etapa 2'), (MODELOS, 'Governança'), ('Pedido de contratação pela ata', 'Clientes')],
+          [T('Redigir a renovação, o aditivo, o contrato pela ata ou o termo de encerramento, no modelo', A),
+           D('O documento foge do modelo?', P,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Revisar as cláusulas fora do modelo e o risco do aditivo', 'GOV', 'call')])]),
+           T('Conferir o documento final com o que foi acordado ou com a ata', P),
+           T('Conferir os poderes de quem assina o documento', 'GOV'),
+           T('Assinar o documento em nome da empresa', 'EXE'),
+           T('Assinar o documento pelo cliente, quando a forma pede', 'CLI'),
+           T('Guardar o documento assinado', 'GOV')],
+          [('Renovação, aditivo, contratação ou encerramento assinado', ['etapa 5'])]),
+        E('Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura', 'Negócios', 'Autômato', 'baixo',
+          [('Renovação, aditivo, contratação ou encerramento assinado', 'etapa 4')],
+          [T('Registrar o novo escopo, o valor, a vigência e o vencimento, ou a data de fim', R),
+           T('Abater do saldo da ata a contratação feita por ela, quando for o caso', R),
+           D('O contrato continua?', R,
+             [S('Sim', 'prox',
+                via=[T('Avisar Relações, Operações, a Integração e a Gestão do que mudou no contrato', R)]),
+              S('Não: contrato encerrado', 'F2',
+                via=[T('Avisar Relações, Operações, a Integração e a Gestão do fim do contrato', R)])])],
+          [(CONTRATO, ['Relações', 'Integração', 'Operações', 'Gestão']),
+           ('Contrato encerrado, com a data de fim', ['Operações', 'Integração', 'Gestão']),
+           (VENC, ['Relações', 'Gestão', 'NE-02']),
+           (REGISTROS, ['Inteligência', 'NE-02'])]),
+    ]))
+
+# ===================================================== VENDA CONJUNTA
+JORNADAS.append(dict(
+    code='NE-07',
+    nome='Vender com parceiros e em oferta conjunta entre as empresas',
+    dominio='Venda conjunta', classe='essencial', onda=2,
+    objetivo='Fazer a oportunidade trazida por um parceiro de venda ativo ser conferida com o critério combinado com Relações e com o funil e, aceita, chegar à proposta sem conflito; montar com outra empresa do Ecossistema a oferta conjunta quando o cliente de uma tem um problema que a outra resolve, com a divisão de receita e de responsabilidade decidida pelos executivos das duas empresas (exceção à regra de que o executivo opina, porque mexe no resultado de duas empresas) e formalizada pela Governança antes da proposta; e medir a venda com parceiros e conjunta. Relações forma, ativa e acompanha o parceiro; Negócios vende com ele.',
+    frequencia='Por evento: oportunidade de parceiro ou oportunidade cruzada entre empresas; e na revisão da venda com parceiros (cadência: semestral)',
+    automacao=('média', 'Registrar, conferir o funil e o parceiro, calcular o preço conjunto e medir são de agente e automação; aceitar a oportunidade do parceiro, desenhar a oferta conjunta e concluir a revisão são de pessoa de Negócios; a divisão é dos executivos.'),
+    base=['apqc'],
+    lanes=['PRC', 'EXE', 'GES', 'GOV', P, A, R],
+    inicios=[I('Oportunidade indicada por parceiro de venda', 'PRC', 'message'),
+             I('Oportunidade cruzada entre empresas apontada', 'EXE', 'message'),
+             I('Revisão da venda com parceiros iniciada', R, 'timer')],
+    fins=[F('Venda com parceiros e conjunta avaliada', R),
+          F('Oportunidade do parceiro recusada, com o motivo', R),
+          F('Oportunidade passada à proposta', R),
+          F('Oferta conjunta sem acordo, com o motivo', R)],
+    etapas=[
+        E('Receber a oportunidade do parceiro ou de outra empresa', 'Negócios', 'Copiloto', 'médio',
+          [('Oportunidade indicada por parceiro de venda', 'Parceiros'), ('Oportunidade cruzada entre empresas', 'Executivos'),
+           (PARC_ATIVA, 'Relações'), (CRITERIO, 'Relações'), (FUNIL, 'Relações'), (BASE_REL, 'Relações'),
+           (PLANO_VEN, 'NE-02'), (TABELA, 'NE-01'), ('Material de venda das ofertas', 'NE-01')],
+          [T('Registrar a oportunidade, quem indicou e o que abriu o trabalho', R),
+           D('O que abriu o trabalho?', R,
+             [S('Oportunidade de parceiro de venda', 'seg'),
+              S('Oportunidade cruzada entre empresas do Ecossistema', 'E2'),
+              S('Revisão periódica da venda com parceiros', 'E3')]),
+           T('Conferir a oportunidade com o critério, o funil e a base, e se o parceiro está ativo', A),
+           T('Decidir se a oportunidade do parceiro segue para a proposta', P),
+           D('A oportunidade é nova, atende ao critério e o parceiro está ativo?', P,
+             [S('Sim', 'F3', via=[T('Passar a oportunidade do parceiro à proposta, com a regra de remuneração do parceiro', R)]),
+              S('Não', 'F2', via=[T('Responder ao parceiro com o motivo', R)])])],
+          [(OPORT_PARC, ['NE-03']),
+           ('Resposta ao parceiro sobre a oportunidade', ['Parceiros'])]),
+        E('Montar a oferta conjunta e combinar a divisão', 'Negócios das duas empresas; a divisão, os executivos', 'Assistido', 'alto',
+          [('Oportunidade cruzada entre empresas', 'Executivos'), (OFERTA_CAT, 'Inteligência'), (TABELA, 'NE-01')],
+          [T('Desenhar com a outra empresa o escopo, quem entrega o quê e quem fala com o cliente', P, 'manual'),
+           T('Calcular o preço conjunto e propor a divisão de receita e de responsabilidade', A),
+           T('Conferir o efeito da divisão no resultado de cada empresa', 'GES'),
+           T('Decidir a divisão de receita e de responsabilidade entre as empresas', 'EXE'),
+           D('Os executivos das duas empresas chegaram a acordo?', P,
+             [S('Sim', 'F3',
+                via=[T('Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio', 'GOV', 'call'),
+                     T('Passar a oferta conjunta à proposta, com quem conduz a venda em cada empresa', R)]),
+              S('Não', 'F4', via=[T('Registrar o motivo e devolver a oportunidade à empresa de origem', R)])])],
+          [(OPORT_PARC, ['NE-03']),
+           ('Acordo de oferta conjunta entre as empresas', ['Governança', 'Gestão', 'Executivos'])]),
+        E('Medir a venda com parceiros e conjunta e rever o que mudar', 'Negócios', 'Copiloto', 'baixo',
+          [(RES_PARC, 'Relações'), (REGISTROS, 'NE-04')],
+          [T('Medir oportunidades, propostas, contratos e receita por parceiro e por oferta conjunta', A),
+           T('Concluir o que manter, mudar ou encerrar na venda com cada parceiro', P),
+           D('A venda com algum parceiro pede encerrar a parceria?', P,
+             [S('Não', 'prox'),
+              S('Sim', 'prox', via=[T('Pedir a Relações o encerramento da parceria de venda, com a evidência', R)])])],
+          [(ENC_PARC, ['Relações']),
+           ('Resultado da venda com parceiros e conjunta', ['Executivos', 'NE-02'])]),
+    ]))
+
+# -------------------------------------------------------------- domínios
+DOMINIOS = [
+    ('Preço e plano comercial', 'Manter a tabela de preços e a política comercial, planejar as vendas e prever a receita.'),
+    ('Venda', 'Aceitar a oportunidade, fazer a proposta, negociar e fechar o contrato, e disputar licitações.'),
+    ('Contas e contratos', 'Renovar, ampliar, aditar e encerrar os contratos dos clientes.'),
+    ('Venda conjunta', 'Vender com parceiros e em oferta conjunta entre as empresas do Ecossistema.'),
+]
+
+ONDAS = {
+    1: 'O que os círculos fechados já esperam de Negócios e o que transforma oportunidade em contrato e cuida dos contratos',
+    2: 'O que amplia o alcance da venda: parceiros de venda e oferta conjunta entre as empresas',
+}
+
+# ------------------------------------------------- o que usamos de cada fonte
+USO = {
+    'apqc': 'PCF 7.4. Os processos de Negócios estão em quatro grupos da categoria 3: 3.2.2 e 3.3.3, estratégia e gestão de preços, e 3.3.9, material de produto (NE-01); 3.2.3, estratégia de canais, e 3.4, estratégia de vendas, com previsão, alvos e orçamento de vendas (NE-02); e 3.5, planos de venda, com oportunidades, contas, propostas e cotações, pedidos e parceiros (NE-03 a NE-07). A tabela de cobertura, na aba Método, mostra onde cada um foi parar.',
+    'l14133': 'Fases do processo de licitação, em sequência: preparatória, divulgação do edital, apresentação de propostas e lances, quando for o caso, julgamento, habilitação, recursal e homologação (art. 17, caput); a habilitação pode vir antes das propostas e do julgamento, por ato motivado, se o edital prever (§ 1º); a forma eletrônica é a preferida (§ 2º). A NE-05 começa na divulgação do edital (art. 17, II); a fase preparatória, caracterizada pelo planejamento (art. 18, caput), não tem tarefa de Negócios, salvo responder a pedido de cotação. Sistema de registro de preços, ata de registro de preços e órgão participante e não participante (art. 6º, incisos XLV, XLVI, XLVIII e XLIX). Base das etapas da NE-05. Lidos em 03/10/2026, em transcrição secundária: esclarecimento e impugnação pedidos até três dias úteis antes da abertura, com resposta em até três dias úteis (art. 164); intenção de recorrer manifestada de imediato, recurso e contrarrazões em três dias úteis e decisão da autoridade superior em até dez dias úteis (art. 165); convocação para assinar no prazo do edital, prorrogável uma vez (art. 90). Na NE-06: a ata vale um ano, prorrogável por igual período se o preço for vantajoso (art. 84); a adesão de órgão não participante exige justificativa, preço compatível com o mercado e aceite do gerenciador e do fornecedor, até 50% dos quantitativos por órgão e, no total, até o dobro de cada item (art. 86). No desenho, os prazos seguem “nos prazos da lei e do edital”; a contratação direta não foi conferida.',
+    'dmn': 'Notação de regras de decisão. Base das tarefas de regra que aplicam a tabela de preços, a política comercial e as alçadas de concessão na NE-01, na NE-03, na NE-04 e na NE-06; a tabela de alçadas é da Governança.',
+    'bpmn': 'Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, manual, serviço, regra de negócio, script e recebimento, além da atividade de chamada.',
+    'camunda': 'Regra de nomes: tarefa com verbo no infinitivo e objeto; evento com objeto e estado; gateway com pergunta; raia com papel ou sistema.',
+    'sipoc': 'Fornecedor, entrada, processo, saída e cliente: a base de “quem gera a entrada” e “quem recebe a saída” em cada etapa.',
+}
+
+# ----------------------------------- cobertura do referencial (APQC PCF 7.4)
+COBERTURA = [
+    ('3.2.2', 'Define pricing strategy', 'NE-01, etapa 2: preço de tabela, descontos e alçada de desconto. O preço-base de cada oferta é da Inteligência (IN-07)'),
+    ('3.2.3', 'Define and manage channel strategy', 'NE-02, etapa 2, para os canais de venda; os canais de demanda são de Relações (RE-01)'),
+    ('3.3.3', 'Develop and manage pricing', 'NE-01: executar, avaliar, refinar e comunicar os preços (3.3.3.4 a 3.3.3.6 e 3.3.3.9)'),
+    ('3.3.9', 'Manage product marketing material', 'NE-01, etapa 3, para o material de venda; o material das ações de demanda é de Relações (RE-02)'),
+    ('3.4.1', 'Develop sales forecast', 'NE-02, etapa 1'),
+    ('3.4.2', 'Develop sales partner/alliance relationships', 'Fora: Relações (RE-06). Negócios vende com o parceiro ativo (NE-07)'),
+    ('3.4.3', 'Establish overall sales budgets', 'NE-02: a previsão de receita vai à Gestão, que monta o orçamento'),
+    ('3.4.4', 'Establish sales goals and measures', 'NE-02, etapa 2: alvos de venda por oferta e canal, desdobrados dos alvos do ciclo'),
+    ('3.4.5', 'Establish customer management measures', 'Fora: Relações mede a saúde do cliente (RE-05), com os indicadores da Inteligência'),
+    ('3.5.1', 'Manage leads/opportunities', 'Até a qualificação (3.5.1.1 a 3.5.1.3), Relações (RE-03). Daí em diante, NE-03 (aceite, quem conduz a venda, solução e proposta) e NE-02 (funil e previsão)'),
+    ('3.5.2', 'Manage customers and accounts', 'NE-02, etapa 2: clientes-chave e plano de conta de venda; NE-06 para os contratos. O relacionamento e o plano de sucesso são de Relações (RE-05) e os dados mestres, da base de relacionamento (RE-03)'),
+    ('3.5.3', 'Develop and manage sales proposals, bids, and quotes', 'NE-03 (propostas e cotações) e NE-05 (licitações)'),
+    ('3.5.4', 'Manage sales orders', 'NE-04, etapa 3, e NE-06, etapa 4 (contratação pela ata); o atendimento do pedido é de Operações e o faturamento, da Gestão'),
+    ('3.5.5', 'Manage sales partners and alliances', 'Capacitação e material do parceiro: Relações (RE-06). Resultado da venda com o parceiro: NE-07, etapa 3'),
+    ('3.5.6 a 3.5.8', 'Perform sales at physical outlets; Perform field sales; Perform digital sales', 'Não desenhados como jornadas próprias: o canal de venda é atributo da oportunidade e da proposta (NE-03)'),
+]
+
+# --------------------------------------------------- o que Negócios não faz
+FRONTEIRAS = [
+    ('Gerar a demanda, qualificar os contatos e acompanhar o sucesso do cliente', 'Relações',
+     'O aceite ou a devolução de cada oportunidade (NE-03), a tabela de preços (NE-01), o contrato assinado com o escopo vendido (NE-04, NE-05 e NE-06) e o vencimento e o resultado de cada renovação (NE-06).'),
+    ('Desenhar a oferta, o modelo de negócio e o preço-base', 'Inteligência',
+     'O pedido de ajuste ou de revisão de oferta em uso, quando o escopo não cabe no catálogo (NE-03) ou o preço de tabela ficaria abaixo do preço-base (NE-01); os motivos de ganho e de perda e os registros de propostas, vendas e contratos (NE-03 a NE-06).'),
+    ('Decidir o portfólio e a oferta nova', 'Estratégia',
+     'A ideia de oferta nova que nasce de uma necessidade de cliente fora do catálogo (NE-03, etapa 2).'),
+    ('Definir os padrões, a marca e o posicionamento', 'Identidade',
+     'Confere com os padrões o material de venda (NE-01), a proposta (NE-03), a parte livre da proposta de licitação (NE-05) e a proposta de renovação (NE-06) e consulta a Identidade no caso não coberto.'),
+    ('Implantar o cliente e coordenar o plano de saída', 'Integração',
+     'O contrato assinado (NE-04, NE-05 e NE-06), a previsão para a capacidade de implantação (NE-02) e a parte de Negócios do plano de saída (NE-06, etapa 3).'),
+    ('Entregar e atender', 'Operações',
+     'A confirmação de capacidade antes da proposta e do edital (NE-03 e NE-05), o contrato e a ata assinados e a previsão de vendas.'),
+    ('Faturar, cobrar, montar o orçamento e pagar a remuneração de parceiros e de quem vende', 'Gestão',
+     'O contrato e a ata assinados, a previsão de receita, o desvio contra os alvos e a margem conferida da política comercial e da oferta conjunta.'),
+    ('Manter os modelos e as alçadas, aprovar a faixa de desconto, revisar o que foge do modelo, conferir os poderes de quem assina e guardar; conduzir esclarecimentos, impugnações, recursos e contrarrazões', 'Governança',
+     'A faixa de desconto e as condições que mexem nos modelos (NE-01), a proposta e o contrato com cláusula fora do modelo, o termo de encerramento (NE-06), a concessão acima da alçada do executivo (aos sócios), a habilitação e os recursos em licitação (NE-05) e o acordo de oferta conjunta entre as empresas (NE-07).'),
+    ('Desenhar e validar a oferta, com o piloto', 'Inteligência',
+     'Negócios prepara, fecha e encerra o termo de piloto e redige os termos comerciais da oferta e dos ajustes como tarefas da IN-07, nos modelos da Governança e com a tabela (NE-01). Não há jornada própria de Negócios para isso.'),
+    ('Formar, ativar e capacitar o parceiro de venda', 'Relações',
+     'O resultado da venda com o parceiro e, quando for o caso, o pedido de encerramento da parceria (NE-07, etapa 3).'),
+]
+
+# -------------------------------------------------------- pontos para decidir
+PONTOS = []
+DECISOES = [
+    ('Negócios decide o seu ofício; o executivo opina, aprova a concessão acima da alçada de quem vende e assina',
+     'Ponto 1, aprovado por você (20:11)',
+     'Acima da alçada do executivo, decidem os sócios. A faixa de desconto de quem vende é aprovada pela Governança. A oportunidade de parceiro de venda é conferida por Negócios com o critério combinado com Relações, sem passar pela qualificação de Relações.'),
+    ('O preço de tabela fica no preço-base ou acima dele',
+     'Ponto 2, aprovado por você (20:11)',
+     'Abaixo, Negócios pede à Inteligência a revisão do preço-base e mantém a oferta no preço vigente até a resposta (NE-01). Você confirmou também que mudar o preço-base de oferta em uso é revisão, que volta ao portão de entrada.'),
+    ('Licitação é jornada própria; Negócios decide participar e recorrer, ouvidos o executivo e a Governança',
+     'Ponto 3, aprovado por você (20:11)',
+     'NE-05, nas fases da Lei 14.133. A Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina.'),
+    ('A divisão na oferta conjunta é dos executivos das duas empresas',
+     'Ponto 4, aprovado por você (20:11)',
+     'Exceção declarada à regra de que o executivo opina. A Gestão confere o efeito no resultado de cada empresa e a Governança formaliza o acordo antes da proposta (NE-07).'),
+    ('A previsão de receita e o desdobramento dos alvos de venda são de Negócios',
+     'Ponto 5, aprovado por você (20:11)',
+     'NE-02, a partir dos alvos do ciclo, do funil e dos contratos; a previsão vai à Gestão, a Operações, à Integração e ao executivo.'),
+    ('O pedido de cancelamento é tratado por Negócios, como retenção',
+     'Ponto 6, aprovado por você (20:11)',
+     'NE-06, etapa 2. Relações trata o risco de perda antes do pedido (RE-05).'),
+    ('Sete jornadas',
+     'Ponto 7, aprovado por você (20:11)',
+     'NE-01 a NE-07, como propostas.'),
+    ('Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem',
+     'Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)',
+     'De Assistido para Copiloto, pelas tarefas: NE-05 etapa 4. De Autopiloto para Autômato, pelas tarefas: NE-03 etapa 4. De Copiloto para Assistido, pelas tarefas: NE-02 etapa 2, NE-03 etapa 2, NE-06 etapa 2, NE-06 etapa 3, NE-07 etapa 2.'),
+    ('A regra de remuneração de quem vende e de parceiros é decidida pelos sócios',
+     'Decidido por você (13:09 de 03/10/2026)',
+     'Negócios propõe com a Gestão; os sócios decidem, porque mexe em custo e incentivo de todas as empresas. Também: prazos da Lei 14.133 (arts. 84, 86, 90, 164 e 165) lidos em transcrição secundária e registrados nas fontes.'),
+    ('Alçada de concessão comercial',
+     'Aprovado por você (13:51 de 03/10/2026)',
+     'A NE-01 fixa, por oferta, a faixa entre o preço de tabela e o preço-base. Quem vende concede até metade da faixa; o executivo, até o preço-base e a condição de pagamento fora da política; os sócios decidem preço abaixo do preço-base, exclusividade e prazo maior que o ciclo estratégico. No contrato público, a concessão é a que o edital permite. A fração é escolha de desenho, a recalibrar com dados.'),
+    ('Cadências e conteúdos validados; gates de implantação',
+     'Validado por você (14:07 de 03/10/2026)',
+     'NE-01 semestral; NE-02 trimestral, com previsão mensal; NE-07 semestral; estrutura dos modelos de contrato e regra de remuneração. O que depende de dado real ficou nos gates G1 a G9.'),
+]
+
+# ------------------- propostas de mudança em círculos já fechados (nenhuma)
+PROPOSTAS = []
+
+ALERTAS = [
+    ('Integração (círculo 6)', 'Negócios espera o plano de saída de clientes e contratos e a confirmação do que a implantação pede antes da proposta. Entrega o contrato assinado, a previsão de vendas, os contratos afetados pela saída e as pendências de contrato na saída.'),
+    ('Operações (círculo 7)', 'Negócios espera a confirmação de capacidade antes da proposta, do edital e da previsão. Entrega o contrato e a ata assinados, a tabela de preços e a previsão de vendas.'),
+    ('Gestão (círculo 8)', 'Negócios espera a situação de faturas e pagamentos de cada cliente e a conferência de margem da política comercial e da oferta conjunta. Entrega o contrato e a ata assinados, a previsão de receita, o desvio contra os alvos e o vencimento de cada contrato. A remuneração de quem vende e de parceiros fica com a Gestão.'),
+    ('Governança (círculo 9)', 'Negócios espera as regras e alçadas vigentes, os modelos de proposta e de contrato, as certidões e os documentos de habilitação em dia, a revisão do que foge do modelo, a condução de esclarecimentos, impugnações e recursos em licitação e a formalização do acordo de oferta conjunta. Entrega o contrato para conferir e guardar e o acordo entre as empresas.'),
+]
+
+# ------------------------------------------------ relação com o catálogo da rodada 2
+MUDANCAS = [
+    ('Ajustado', 'I-NE1 · Da oferta à tabela e política comercial', 'NE-01',
+     'Mantida, com a regra de que o preço de tabela não fica abaixo do preço-base sem revisão da Inteligência.'),
+    ('Ajustado', 'I-NE2 · Do funil à previsão', 'NE-02',
+     'Vira planejamento de vendas do ciclo e previsão de receita, com os alvos de venda desdobrados dos alvos do ciclo.'),
+    ('Ajustado', 'V3 · Da oportunidade ao contrato', 'NE-03 e NE-04',
+     'Dividida em proposta e contrato. A qualificação ficou em Relações (RE-03); Negócios começa no aceite.'),
+    ('Ajustado', 'V7 · Do resultado à renovação (parte comercial)', 'NE-06',
+     'A renovação, a expansão, o aditivo e a retenção comerciais; o acompanhamento do cliente ficou em Relações (RE-05).'),
+    ('Ajustado', 'E2 · Da oportunidade cruzada à oferta conjunta', 'NE-07',
+     'Junta a oferta conjunta entre empresas e a venda com parceiros de venda.'),
+    ('Acrescentado', 'Sem equivalente', 'NE-05',
+     'Jornada nova de licitações e contratação com o setor público, nas fases da Lei 14.133.'),
+    ('Ajustado', 'NE-01, etapa 1: sem o plano de lançamento', 'Recebe o plano de lançamento da oferta da Integração (IT-03)',
+     'Proposta do círculo 6, aprovada por você às 09:30 de 03/10/2026.'),
+]
+
+LIMITES = [
+    'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+    'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.',
+    'As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.',
+    'A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.',
+    'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17 e 18; os prazos e o rito de esclarecimento, impugnação, recurso, adesão à ata e contratação direta não foram conferidos e estão como “no prazo do edital”.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.',
+    'A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
+    'As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.',
+    'Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.',
+    'As saídas estão listadas por etapa, não por caminho: na NE-05, etapa 4, o contrato só sai quando há contrato ou adesão, e a ata só quando há ata.',
+    'Se o escopo de uma oferta conjunta mudar na proposta, a divisão acordada entre as empresas precisa ser revista; o desenho não tem esse retorno.',
+    'Os números descrevem este desenho, não a operação atual.',
+]
+
+REVISAO_TXT = [
+    'Um revisor independente (agente que não participou do desenho) leu a primeira versão das sete jornadas e apontou 30 achados, 7 graves: laços entre jornadas, decisões tomadas duas vezes, dono duplo da alçada de desconto e conferência de identidade em uma só jornada. Todos foram tratados na segunda versão.',
+    'Um verificador independente conferiu as fontes: os códigos e nomes do APQC PCF 7.4 foram confirmados letra por letra; da Lei 14.133, os arts. 6º (XLV, XLVI, XLVIII e XLIX), 17 e 18 foram confirmados no Planalto. O texto de uso foi corrigido em três pontos, e o que a lei diz sobre prazos, recursos, adesão e convocação ficou declarado como não conferido.',
+    'Um segundo revisor leu a segunda versão: 18 achados resolvidos, 12 em parte, e 7 defeitos novos, 1 grave (contrato que Relações não renova terminava sem formalização). Os 7 foram corrigidos e passaram por todos os testes automáticos, mas não por nova revisão independente. Dois itens ficaram como pontos para você decidir (1 e 4) e um como limite.',
+]

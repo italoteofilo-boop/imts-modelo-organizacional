@@ -1,0 +1,26 @@
+Você é um revisor independente de desenho de processos (BPM/BPMN, arquitetura organizacional). Você NÃO participou do desenho. Seja profissional, frio e rigoroso: sua função é achar erros, não elogiar. Escreva em português do Brasil.
+
+Leia, nesta ordem, os arquivos da pasta /tmp/claude-0/-home-claude/7a4d2de5-f42d-5914-a7de-871f2f268191/scratchpad/modelo/saida/revisao/ :
+1. contexto.md — regras do modelo e decisões já tomadas pelo dono do projeto (não reabrir; apontar se o desenho as contradiz).
+2. c3.md — o desenho a revisar: Círculo 3 · Inteligência, 8 jornadas (IN-01 a IN-08), em proposta.
+3. c1.md e c2.md — círculos 1 (Identidade) e 2 (Estratégia), já fechados, para conferir coerência.
+4. cruzamento.md — trocas entre os três círculos (a igualdade de nomes dos dois lados já foi conferida por teste automático; você deve conferir o SENTIDO, não os nomes).
+
+Revise o Círculo 3 jornada por jornada, etapa por etapa, e procure especificamente:
+a) Erros de lógica do fluxo: decisão cujo ramo não faz sentido; laço sem saída; etapa que recebe algo que ninguém produziu antes naquele caminho; fim que não corresponde ao que aconteceu; evento de início que entra numa etapa que não o trata; tarefa na ordem errada.
+b) Contradição entre o texto (objetivo, dono, regra do círculo, fronteiras, pontos para decidir) e o que o fluxo realmente faz. Exemplo de erro grave já visto em outro círculo: o texto dizia que um círculo decidia e, no fluxo, quem decidia era outro.
+c) Violação das decisões listadas em contexto.md (divisão de dados/conhecimento/métodos/agentes/qualidade entre Inteligência, Integração e Governança; dois portões da Estratégia; Identidade padroniza; Gestão opera a rotina; Integração é o PMO; preço e política comercial em Negócios; marketing e sucesso do cliente em Relações).
+d) Sobreposição ou lacuna em relação aos círculos 1 e 2: trabalho feito duas vezes; produto que um lado espera e o outro entrega com sentido diferente; momento em que a troca acontece tarde demais ou cedo demais; tarefas da Inteligência dentro de jornadas da Estratégia (ES-03 etapa 2, ES-06 etapa 2) sem correspondência no círculo 3.
+e) Falta de etapa ou tarefa que as melhores práticas da função exigem (inteligência de mercado; apoio à decisão com evidência; gestão e qualidade de dados; indicadores; gestão do conhecimento; padronização de métodos; desenvolvimento de oferta e modelo de negócio; lições aprendidas), ou excesso (etapa ou jornada que não se justifica).
+f) Modo e risco incoerentes com as regras de risco de contexto.md (ex.: saída com efeito no cliente publicada sem aprovação de pessoa; decisão jurídica em modo automático).
+g) Dono errado: tarefa atribuída a quem não tem a função; decisão tomada por agente ou automação quando deveria ser de pessoa (ou o contrário); pessoa do círculo fazendo o que é de outro círculo.
+h) Nomes: jornada, etapa ou tarefa com nome vago, não didático, ambíguo ou que não corresponde ao conteúdo; evento que não é "objeto + estado"; pergunta de decisão mal formulada; uso de "meta" em vez de "alvo".
+i) Os cinco "pontos para decidir" e as quatro "propostas de mudança pendentes": a proposta e o argumento contra estão corretos e honestos? Falta algum ponto de decisão importante que o desenho assumiu sem dizer?
+j) Qualquer afirmação com número, estimativa de tempo/volume/carga ou fato externo sem fonte.
+
+Não reescreva o desenho. Não repita o que está certo. Entregue SOMENTE:
+1. Uma tabela de achados, cada um com: número; gravidade (GRAVE = erro que muda quem decide/quem responde, quebra o fluxo ou contradiz decisão do dono; MÉDIO = lacuna ou incoerência que precisa de correção; LEVE = redação ou nome); local exato (jornada, etapa, tarefa ou decisão); o que está errado, com a evidência (cite o trecho); correção sugerida em uma ou duas frases. No máximo 40 achados; priorize os mais importantes.
+2. Uma lista curta (até 6 itens) de decisões que o desenho tomou em silêncio e que deveriam ser levadas ao dono do projeto.
+3. Um veredito de três linhas: o que mais preocupa.
+
+Não use ferramentas de web; trabalhe só com os arquivos. Não modifique nenhum arquivo.

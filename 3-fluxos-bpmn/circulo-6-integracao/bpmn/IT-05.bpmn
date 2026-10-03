@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_IT05" targetNamespace="urn:imts:modelo:circulo6-integracao" exporter="Ecossistema IMTS - fonte única do Círculo 6" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_IT05">
+    <bpmn:categoryValue id="CV_IT05_E1" value="1. Receber o pedido e achar a capacidade" />
+    <bpmn:categoryValue id="CV_IT05_E2" value="2. Desenhar a ficha da capacidade com o dono e a Inteligência" />
+    <bpmn:categoryValue id="CV_IT05_E3" value="3. Publicar ou retirar a capacidade no catálogo e pedir a construção" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_IT05">
+    <bpmn:participant id="Participant_IT05" name="IT-05 · Atender pedidos de capacidade e de serviço e manter o catálogo de capacidades" processRef="Process_IT05" />
+    <bpmn:group id="Group_IT05_E1" categoryValueRef="CV_IT05_E1" />
+    <bpmn:group id="Group_IT05_E2" categoryValueRef="CV_IT05_E2" />
+    <bpmn:group id="Group_IT05_E3" categoryValueRef="CV_IT05_E3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_IT05" name="Atender pedidos de capacidade e de serviço e manter o catálogo de capacidades" isExecutable="false">
+    <bpmn:documentation>Fazer cada pedido de serviço de uma empresa a um círculo chegar ao círculo dono da capacidade com um acordo de serviço, e cada necessidade de capacidade nova ou mudada virar uma ficha com método, conhecimento, executor (pessoa, agente, automação ou assessoria), ferramentas, acordo de serviço, indicador e alçada, aceita pelo líder do círculo dono e publicada no catálogo, ligada às jornadas e às tarefas. A Inteligência dá o método e o conhecimento; a Governança define a alçada; o líder do círculo dono aceita a capacidade.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_IT05">
+      <bpmn:lane id="Lane_IT05_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>IT05_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>IT05_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_INT" name="Inteligência">
+        <bpmn:flowNodeRef>IT05_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_S4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_GOV" name="Governança">
+        <bpmn:flowNodeRef>IT05_E2_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_LCI" name="Líder do círculo">
+        <bpmn:flowNodeRef>IT05_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E2_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_ITP" name="Integração · pessoa">
+        <bpmn:flowNodeRef>IT05_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E2_G2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_ITA" name="Integração · agente">
+        <bpmn:flowNodeRef>IT05_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E1_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT05_ITR" name="Integração · automação">
+        <bpmn:flowNodeRef>IT05_S5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_F5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_F4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_F6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_F3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT05_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="IT05_S1" name="Pedido de serviço de empresa recebido"><bpmn:outgoing>IT05_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="IT05_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT05_S2" name="Necessidade de capacidade nova ou mudada recebida"><bpmn:outgoing>IT05_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="IT05_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT05_S3" name="Capacidades pedidas por oferta recebidas"><bpmn:outgoing>IT05_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="IT05_S3_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT05_S4" name="Método publicado, retirado ou recusado avisado"><bpmn:outgoing>IT05_Flow4</bpmn:outgoing><bpmn:messageEventDefinition id="IT05_S4_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT05_S5" name="Revisão do catálogo de capacidades iniciada"><bpmn:outgoing>IT05_Flow5</bpmn:outgoing><bpmn:timerEventDefinition id="IT05_S5_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="IT05_M1"><bpmn:incoming>IT05_Flow1</bpmn:incoming><bpmn:incoming>IT05_Flow2</bpmn:incoming><bpmn:incoming>IT05_Flow3</bpmn:incoming><bpmn:incoming>IT05_Flow4</bpmn:incoming><bpmn:incoming>IT05_Flow5</bpmn:incoming><bpmn:outgoing>IT05_Flow36</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT05_E1_T1" name="Registrar o pedido, quem pede e a capacidade procurada no catálogo"><bpmn:documentation>Etapa 1: Receber o pedido e achar a capacidade. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow36</bpmn:incoming><bpmn:outgoing>IT05_Flow6</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT05_E1_G1" name="O que abriu o trabalho?"><bpmn:incoming>IT05_Flow6</bpmn:incoming><bpmn:outgoing>IT05_Flow7</bpmn:outgoing><bpmn:outgoing>IT05_Flow10</bpmn:outgoing><bpmn:outgoing>IT05_Flow12</bpmn:outgoing><bpmn:outgoing>IT05_Flow14</bpmn:outgoing><bpmn:outgoing>IT05_Flow15</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT05_E1_T2" name="Combinar o acordo de serviço com quem pediu"><bpmn:documentation>Etapa 1: Receber o pedido e achar a capacidade. Executor: Pessoa de fora do círculo (Líder do círculo). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow7</bpmn:incoming><bpmn:outgoing>IT05_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT05_E1_T3" name="Encaminhar o pedido ao círculo dono e registrar o acordo de serviço"><bpmn:documentation>Etapa 1: Receber o pedido e achar a capacidade. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow8</bpmn:incoming><bpmn:outgoing>IT05_Flow9</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT05_F2" name="Pedido de serviço encaminhado ao círculo dono, com acordo de serviço"><bpmn:incoming>IT05_Flow9</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="IT05_E1_T4" name="Avisar quem pediu a capacidade que o método não foi publicado, com o motivo"><bpmn:documentation>Etapa 1: Receber o pedido e achar a capacidade. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow10</bpmn:incoming><bpmn:outgoing>IT05_Flow11</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT05_F5" name="Necessidade sem método publicado, devolvida a quem pediu"><bpmn:incoming>IT05_Flow11</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="IT05_E1_T5" name="Marcar a capacidade a retirar e as jornadas e os agentes que a usam"><bpmn:documentation>Etapa 1: Receber o pedido e achar a capacidade. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow12</bpmn:incoming><bpmn:outgoing>IT05_Flow13</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT05_M2"><bpmn:incoming>IT05_Flow14</bpmn:incoming><bpmn:incoming>IT05_Flow15</bpmn:incoming><bpmn:outgoing>IT05_Flow37</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IT05_E1_T6" name="Estimar o ganho esperado e a prioridade da necessidade"><bpmn:documentation>Etapa 1: Receber o pedido e achar a capacidade. Executor: Agente da Integração (Integração · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow37</bpmn:incoming><bpmn:outgoing>IT05_Flow16</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IT05_M3"><bpmn:incoming>IT05_Flow16</bpmn:incoming><bpmn:incoming>IT05_Flow25</bpmn:incoming><bpmn:outgoing>IT05_Flow38</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT05_E2_G1" name="Há método publicado para a capacidade?"><bpmn:incoming>IT05_Flow38</bpmn:incoming><bpmn:outgoing>IT05_Flow17</bpmn:outgoing><bpmn:outgoing>IT05_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT05_E2_T1" name="Pedir à Inteligência o método para a capacidade, com a necessidade e o ganho"><bpmn:documentation>Etapa 2: Desenhar a ficha da capacidade com o dono e a Inteligência. Executor: Automação da Integração (Integração · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT05_Flow17</bpmn:incoming><bpmn:outgoing>IT05_Flow18</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT05_F4" name="Capacidade sem método, à espera da Inteligência"><bpmn:incoming>IT05_Flow18</bpmn:incoming></bpmn:endEvent>
+    <bpmn:serviceTask id="IT05_E2_T2" name="Propor a ficha: método, conhecimento, executor, ferramentas, acordo de serviço e indicador"><bpmn:documentation>Etapa 2: Desenhar a ficha da capacidade com o dono e a Inteligência. Executor: Agente da Integração (Integração · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT05_Flow19</bpmn:incoming><bpmn:outgoing>IT05_Flow20</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="IT05_E2_T3" name="Decidir o executor da capacidade: pessoa, agente, automação ou assessoria"><bpmn:documentation>Etapa 2: Desenhar a ficha da capacidade com o dono e a Inteligência. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT05_Flow20</bpmn:incoming><bpmn:outgoing>IT05_Flow21</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="IT05_E2_T4" name="Definir a alçada do executor da capacidade"><bpmn:documentation>Etapa 2: Desenhar a ficha da capacidade com o dono e a Inteligência. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT05_Flow21</bpmn:incoming><bpmn:outgoing>IT05_Flow22</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="IT05_E2_T5" name="Aceitar a ficha e assumir a capacidade no seu círculo"><bpmn:documentation>Etapa 2: Desenhar a ficha da capacidade com o dono e a Inteligência. Executor: Pessoa de fora do círculo (Líder do círculo). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT05_Flow22</bpmn:incoming><bpmn:outgoing>IT05_Flow23</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IT05_E2_G2" name="O líder do círculo dono aceitou a ficha?"><bpmn:incoming>IT05_Flow23</bpmn:incoming><bpmn:outgoing>IT05_Flow24</bpmn:outgoing><bpmn:outgoing>IT05_Flow25</bpmn:outgoing><bpmn:outgoing>IT05_Flow26</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT05_E2_T6" name="Registrar o motivo e avisar quem pediu a capacidade"><bpmn:documentation>Etapa 2: Desenhar a ficha da capacidade com o dono e a Inteligência. Executor: Automação da Integração (Integração · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT05_Flow26</bpmn:incoming><bpmn:outgoing>IT05_Flow27</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT05_F6" name="Capacidade não aceita pelo líder do círculo dono, com o motivo"><bpmn:incoming>IT05_Flow27</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="IT05_M4"><bpmn:incoming>IT05_Flow13</bpmn:incoming><bpmn:incoming>IT05_Flow24</bpmn:incoming><bpmn:outgoing>IT05_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT05_E3_G1" name="O que a capacidade pede?"><bpmn:incoming>IT05_Flow39</bpmn:incoming><bpmn:outgoing>IT05_Flow28</bpmn:outgoing><bpmn:outgoing>IT05_Flow29</bpmn:outgoing><bpmn:outgoing>IT05_Flow30</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT05_E3_T1" name="Pedir a montagem ou a mudança do agente ou da automação"><bpmn:documentation>Etapa 3: Publicar ou retirar a capacidade no catálogo e pedir a construção. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow28</bpmn:incoming><bpmn:outgoing>IT05_Flow32</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT05_E3_T2" name="Abrir na carteira o projeto de preparar pessoas ou contratar a assessoria"><bpmn:documentation>Etapa 3: Publicar ou retirar a capacidade no catálogo e pedir a construção. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow29</bpmn:incoming><bpmn:outgoing>IT05_Flow33</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT05_E3_T3" name="Retirar a capacidade do catálogo, pedir a retirada dos agentes e avisar os donos afetados"><bpmn:documentation>Etapa 3: Publicar ou retirar a capacidade no catálogo e pedir a construção. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow30</bpmn:incoming><bpmn:outgoing>IT05_Flow31</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT05_F3" name="Capacidade retirada do catálogo"><bpmn:incoming>IT05_Flow31</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="IT05_M5"><bpmn:incoming>IT05_Flow32</bpmn:incoming><bpmn:incoming>IT05_Flow33</bpmn:incoming><bpmn:outgoing>IT05_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT05_E3_T4" name="Versionar a ficha e ligar a capacidade às jornadas, às tarefas e aos donos"><bpmn:documentation>Etapa 3: Publicar ou retirar a capacidade no catálogo e pedir a construção. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow40</bpmn:incoming><bpmn:outgoing>IT05_Flow34</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT05_E3_T5" name="Publicar a capacidade no catálogo, em construção até o agente ou a pessoa estarem prontos"><bpmn:documentation>Etapa 3: Publicar ou retirar a capacidade no catálogo e pedir a construção. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT05_Flow34</bpmn:incoming><bpmn:outgoing>IT05_Flow35</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT05_F1" name="Capacidade publicada no catálogo"><bpmn:incoming>IT05_Flow35</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="IT05_Flow1" sourceRef="IT05_S1" targetRef="IT05_M1" />
+    <bpmn:sequenceFlow id="IT05_Flow2" sourceRef="IT05_S2" targetRef="IT05_M1" />
+    <bpmn:sequenceFlow id="IT05_Flow3" sourceRef="IT05_S3" targetRef="IT05_M1" />
+    <bpmn:sequenceFlow id="IT05_Flow4" sourceRef="IT05_S4" targetRef="IT05_M1" />
+    <bpmn:sequenceFlow id="IT05_Flow5" sourceRef="IT05_S5" targetRef="IT05_M1" />
+    <bpmn:sequenceFlow id="IT05_Flow6" sourceRef="IT05_E1_T1" targetRef="IT05_E1_G1" />
+    <bpmn:sequenceFlow id="IT05_Flow7" name="Pedido de serviço de capacidade que já existe" sourceRef="IT05_E1_G1" targetRef="IT05_E1_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Pedido de serviço de capacidade que já existe</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow8" sourceRef="IT05_E1_T2" targetRef="IT05_E1_T3" />
+    <bpmn:sequenceFlow id="IT05_Flow9" sourceRef="IT05_E1_T3" targetRef="IT05_F2" />
+    <bpmn:sequenceFlow id="IT05_Flow10" name="Método recusado ou não publicado pela Inteligência" sourceRef="IT05_E1_G1" targetRef="IT05_E1_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Método recusado ou não publicado pela Inteligência</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow11" sourceRef="IT05_E1_T4" targetRef="IT05_F5" />
+    <bpmn:sequenceFlow id="IT05_Flow12" name="Método retirado, ou capacidade sem uso na revisão" sourceRef="IT05_E1_G1" targetRef="IT05_E1_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Método retirado, ou capacidade sem uso na revisão</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow13" sourceRef="IT05_E1_T5" targetRef="IT05_M4" />
+    <bpmn:sequenceFlow id="IT05_Flow14" name="Capacidade nova, ou que falha, ou que pode mudar de modo" sourceRef="IT05_E1_G1" targetRef="IT05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Capacidade nova, ou que falha, ou que pode mudar de modo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow15" name="Método publicado que muda a capacidade, ou avaliação do método" sourceRef="IT05_E1_G1" targetRef="IT05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Método publicado que muda a capacidade, ou avaliação do método</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow16" sourceRef="IT05_E1_T6" targetRef="IT05_M3" />
+    <bpmn:sequenceFlow id="IT05_Flow17" name="Não" sourceRef="IT05_E2_G1" targetRef="IT05_E2_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow18" sourceRef="IT05_E2_T1" targetRef="IT05_F4" />
+    <bpmn:sequenceFlow id="IT05_Flow19" name="Sim" sourceRef="IT05_E2_G1" targetRef="IT05_E2_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow20" sourceRef="IT05_E2_T2" targetRef="IT05_E2_T3" />
+    <bpmn:sequenceFlow id="IT05_Flow21" sourceRef="IT05_E2_T3" targetRef="IT05_E2_T4" />
+    <bpmn:sequenceFlow id="IT05_Flow22" sourceRef="IT05_E2_T4" targetRef="IT05_E2_T5" />
+    <bpmn:sequenceFlow id="IT05_Flow23" sourceRef="IT05_E2_T5" targetRef="IT05_E2_G2" />
+    <bpmn:sequenceFlow id="IT05_Flow24" name="Sim" sourceRef="IT05_E2_G2" targetRef="IT05_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow25" name="Não, ajustar a ficha" sourceRef="IT05_E2_G2" targetRef="IT05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, ajustar a ficha</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow26" name="Não: o dono não assume a capacidade" sourceRef="IT05_E2_G2" targetRef="IT05_E2_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: o dono não assume a capacidade</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow27" sourceRef="IT05_E2_T6" targetRef="IT05_F6" />
+    <bpmn:sequenceFlow id="IT05_Flow28" name="Agente ou automação" sourceRef="IT05_E3_G1" targetRef="IT05_E3_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Agente ou automação</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow29" name="Pessoa ou assessoria" sourceRef="IT05_E3_G1" targetRef="IT05_E3_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Pessoa ou assessoria</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow30" name="Retirada da capacidade" sourceRef="IT05_E3_G1" targetRef="IT05_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Retirada da capacidade</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT05_Flow31" sourceRef="IT05_E3_T3" targetRef="IT05_F3" />
+    <bpmn:sequenceFlow id="IT05_Flow32" sourceRef="IT05_E3_T1" targetRef="IT05_M5" />
+    <bpmn:sequenceFlow id="IT05_Flow33" sourceRef="IT05_E3_T2" targetRef="IT05_M5" />
+    <bpmn:sequenceFlow id="IT05_Flow34" sourceRef="IT05_E3_T4" targetRef="IT05_E3_T5" />
+    <bpmn:sequenceFlow id="IT05_Flow35" sourceRef="IT05_E3_T5" targetRef="IT05_F1" />
+    <bpmn:sequenceFlow id="IT05_Flow36" sourceRef="IT05_M1" targetRef="IT05_E1_T1" />
+    <bpmn:sequenceFlow id="IT05_Flow37" sourceRef="IT05_M2" targetRef="IT05_E1_T6" />
+    <bpmn:sequenceFlow id="IT05_Flow38" sourceRef="IT05_M3" targetRef="IT05_E2_G1" />
+    <bpmn:sequenceFlow id="IT05_Flow39" sourceRef="IT05_M4" targetRef="IT05_E3_G1" />
+    <bpmn:sequenceFlow id="IT05_Flow40" sourceRef="IT05_M5" targetRef="IT05_E3_T4" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_IT05">
+    <bpmndi:BPMNPlane id="Plane_IT05" bpmnElement="Collab_IT05">
+      <bpmndi:BPMNShape id="Participant_IT05_di" bpmnElement="Participant_IT05" isHorizontal="true"><dc:Bounds x="0" y="0" width="6916" height="1408" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_SOL_di" bpmnElement="Lane_IT05_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_EXE_di" bpmnElement="Lane_IT05_EXE" isHorizontal="true"><dc:Bounds x="30" y="176" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_INT_di" bpmnElement="Lane_IT05_INT" isHorizontal="true"><dc:Bounds x="30" y="352" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_GOV_di" bpmnElement="Lane_IT05_GOV" isHorizontal="true"><dc:Bounds x="30" y="528" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_LCI_di" bpmnElement="Lane_IT05_LCI" isHorizontal="true"><dc:Bounds x="30" y="704" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_ITP_di" bpmnElement="Lane_IT05_ITP" isHorizontal="true"><dc:Bounds x="30" y="880" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_ITA_di" bpmnElement="Lane_IT05_ITA" isHorizontal="true"><dc:Bounds x="30" y="1056" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT05_ITR_di" bpmnElement="Lane_IT05_ITR" isHorizontal="true"><dc:Bounds x="30" y="1232" width="6886" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_S1_di" bpmnElement="IT05_S1"><dc:Bounds x="156" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="244" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_S2_di" bpmnElement="IT05_S2"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_S3_di" bpmnElement="IT05_S3"><dc:Bounds x="156" y="382" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="380" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_S4_di" bpmnElement="IT05_S4"><dc:Bounds x="156" y="462" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="460" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_S5_di" bpmnElement="IT05_S5"><dc:Bounds x="156" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1300" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_M1_di" bpmnElement="IT05_M1" isMarkerVisible="true"><dc:Bounds x="355" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_T1_di" bpmnElement="IT05_E1_T1"><dc:Bounds x="506" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_G1_di" bpmnElement="IT05_E1_G1" isMarkerVisible="true"><dc:Bounds x="767" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="680" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_T2_di" bpmnElement="IT05_E1_T2"><dc:Bounds x="918" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_T3_di" bpmnElement="IT05_E1_T3"><dc:Bounds x="1124" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_F2_di" bpmnElement="IT05_F2"><dc:Bounds x="1392" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1355" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_T4_di" bpmnElement="IT05_E1_T4"><dc:Bounds x="1536" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_F5_di" bpmnElement="IT05_F5"><dc:Bounds x="1804" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1767" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_T5_di" bpmnElement="IT05_E1_T5"><dc:Bounds x="1948" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_M2_di" bpmnElement="IT05_M2" isMarkerVisible="true"><dc:Bounds x="2209" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E1_T6_di" bpmnElement="IT05_E1_T6"><dc:Bounds x="2360" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_M3_di" bpmnElement="IT05_M3" isMarkerVisible="true"><dc:Bounds x="2621" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_G1_di" bpmnElement="IT05_E2_G1" isMarkerVisible="true"><dc:Bounds x="2827" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2740" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_T1_di" bpmnElement="IT05_E2_T1"><dc:Bounds x="2978" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_F4_di" bpmnElement="IT05_F4"><dc:Bounds x="3246" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3209" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_T2_di" bpmnElement="IT05_E2_T2"><dc:Bounds x="3390" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_T3_di" bpmnElement="IT05_E2_T3"><dc:Bounds x="3596" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_T4_di" bpmnElement="IT05_E2_T4"><dc:Bounds x="3802" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_T5_di" bpmnElement="IT05_E2_T5"><dc:Bounds x="4008" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_G2_di" bpmnElement="IT05_E2_G2" isMarkerVisible="true"><dc:Bounds x="4269" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4182" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E2_T6_di" bpmnElement="IT05_E2_T6"><dc:Bounds x="4420" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_F6_di" bpmnElement="IT05_F6"><dc:Bounds x="4688" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4651" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_M4_di" bpmnElement="IT05_M4" isMarkerVisible="true"><dc:Bounds x="4887" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E3_G1_di" bpmnElement="IT05_E3_G1" isMarkerVisible="true"><dc:Bounds x="5093" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5006" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E3_T1_di" bpmnElement="IT05_E3_T1"><dc:Bounds x="5244" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E3_T2_di" bpmnElement="IT05_E3_T2"><dc:Bounds x="5450" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E3_T3_di" bpmnElement="IT05_E3_T3"><dc:Bounds x="5656" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_F3_di" bpmnElement="IT05_F3"><dc:Bounds x="5924" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="5887" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_M5_di" bpmnElement="IT05_M5" isMarkerVisible="true"><dc:Bounds x="6123" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E3_T4_di" bpmnElement="IT05_E3_T4"><dc:Bounds x="6274" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_E3_T5_di" bpmnElement="IT05_E3_T5"><dc:Bounds x="6480" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT05_F1_di" bpmnElement="IT05_F1"><dc:Bounds x="6748" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6711" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="IT05_Flow1_di" bpmnElement="IT05_Flow1"><di:waypoint x="192" y="264" /><di:waypoint x="380" y="264" /><di:waypoint x="380" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow2_di" bpmnElement="IT05_Flow2"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow3_di" bpmnElement="IT05_Flow3"><di:waypoint x="192" y="400" /><di:waypoint x="380" y="400" /><di:waypoint x="380" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow4_di" bpmnElement="IT05_Flow4"><di:waypoint x="192" y="480" /><di:waypoint x="380" y="480" /><di:waypoint x="380" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow5_di" bpmnElement="IT05_Flow5"><di:waypoint x="192" y="1320" /><di:waypoint x="355" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow6_di" bpmnElement="IT05_Flow6"><di:waypoint x="586" y="1270" /><di:waypoint x="586" y="1144" /><di:waypoint x="767" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow7_di" bpmnElement="IT05_Flow7"><di:waypoint x="792" y="1119" /><di:waypoint x="792" y="792" /><di:waypoint x="918" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1088" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow8_di" bpmnElement="IT05_Flow8"><di:waypoint x="998" y="842" /><di:waypoint x="998" y="1320" /><di:waypoint x="1124" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow9_di" bpmnElement="IT05_Flow9"><di:waypoint x="1284" y="1320" /><di:waypoint x="1392" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow10_di" bpmnElement="IT05_Flow10"><di:waypoint x="817" y="1144" /><di:waypoint x="1616" y="1144" /><di:waypoint x="1616" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="1622" y="1150" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow11_di" bpmnElement="IT05_Flow11"><di:waypoint x="1696" y="1320" /><di:waypoint x="1804" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow12_di" bpmnElement="IT05_Flow12"><di:waypoint x="792" y="1169" /><di:waypoint x="792" y="1224" /><di:waypoint x="2028" y="1224" /><di:waypoint x="2028" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1174" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow13_di" bpmnElement="IT05_Flow13"><di:waypoint x="2028" y="1370" /><di:waypoint x="2028" y="1400" /><di:waypoint x="4912" y="1400" /><di:waypoint x="4912" y="1345" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow14_di" bpmnElement="IT05_Flow14"><di:waypoint x="817" y="1144" /><di:waypoint x="2209" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="822" y="1143" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow15_di" bpmnElement="IT05_Flow15"><di:waypoint x="817" y="1144" /><di:waypoint x="2209" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="822" y="1203" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow16_di" bpmnElement="IT05_Flow16"><di:waypoint x="2520" y="1144" /><di:waypoint x="2621" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow17_di" bpmnElement="IT05_Flow17"><di:waypoint x="2852" y="1169" /><di:waypoint x="2852" y="1320" /><di:waypoint x="2978" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="2858" y="1174" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow18_di" bpmnElement="IT05_Flow18"><di:waypoint x="3138" y="1320" /><di:waypoint x="3246" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow19_di" bpmnElement="IT05_Flow19"><di:waypoint x="2877" y="1144" /><di:waypoint x="3390" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="2882" y="1126" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow20_di" bpmnElement="IT05_Flow20"><di:waypoint x="3470" y="1094" /><di:waypoint x="3470" y="968" /><di:waypoint x="3596" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow21_di" bpmnElement="IT05_Flow21"><di:waypoint x="3676" y="918" /><di:waypoint x="3676" y="616" /><di:waypoint x="3802" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow22_di" bpmnElement="IT05_Flow22"><di:waypoint x="3882" y="666" /><di:waypoint x="3882" y="792" /><di:waypoint x="4008" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow23_di" bpmnElement="IT05_Flow23"><di:waypoint x="4088" y="842" /><di:waypoint x="4088" y="968" /><di:waypoint x="4269" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow24_di" bpmnElement="IT05_Flow24"><di:waypoint x="4319" y="968" /><di:waypoint x="4912" y="968" /><di:waypoint x="4912" y="1295" /><bpmndi:BPMNLabel><dc:Bounds x="4324" y="950" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow25_di" bpmnElement="IT05_Flow25"><di:waypoint x="4294" y="943" /><di:waypoint x="4294" y="889" /><di:waypoint x="2646" y="889" /><di:waypoint x="2646" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="4300" y="912" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow26_di" bpmnElement="IT05_Flow26"><di:waypoint x="4294" y="993" /><di:waypoint x="4294" y="1320" /><di:waypoint x="4420" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4300" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow27_di" bpmnElement="IT05_Flow27"><di:waypoint x="4580" y="1320" /><di:waypoint x="4688" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow28_di" bpmnElement="IT05_Flow28"><di:waypoint x="5143" y="1320" /><di:waypoint x="5244" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="5148" y="1289" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow29_di" bpmnElement="IT05_Flow29"><di:waypoint x="5118" y="1295" /><di:waypoint x="5118" y="1241" /><di:waypoint x="5530" y="1241" /><di:waypoint x="5530" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="5124" y="1210" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow30_di" bpmnElement="IT05_Flow30"><di:waypoint x="5118" y="1345" /><di:waypoint x="5118" y="1400" /><di:waypoint x="5736" y="1400" /><di:waypoint x="5736" y="1370" /><bpmndi:BPMNLabel><dc:Bounds x="5124" y="1350" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow31_di" bpmnElement="IT05_Flow31"><di:waypoint x="5816" y="1320" /><di:waypoint x="5924" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow32_di" bpmnElement="IT05_Flow32"><di:waypoint x="5324" y="1270" /><di:waypoint x="5324" y="1247" /><di:waypoint x="6148" y="1247" /><di:waypoint x="6148" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow33_di" bpmnElement="IT05_Flow33"><di:waypoint x="5530" y="1370" /><di:waypoint x="5530" y="1394" /><di:waypoint x="6148" y="1394" /><di:waypoint x="6148" y="1345" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow34_di" bpmnElement="IT05_Flow34"><di:waypoint x="6434" y="1320" /><di:waypoint x="6480" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow35_di" bpmnElement="IT05_Flow35"><di:waypoint x="6640" y="1320" /><di:waypoint x="6748" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow36_di" bpmnElement="IT05_Flow36"><di:waypoint x="405" y="1320" /><di:waypoint x="506" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow37_di" bpmnElement="IT05_Flow37"><di:waypoint x="2259" y="1144" /><di:waypoint x="2360" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow38_di" bpmnElement="IT05_Flow38"><di:waypoint x="2671" y="1144" /><di:waypoint x="2827" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow39_di" bpmnElement="IT05_Flow39"><di:waypoint x="4937" y="1320" /><di:waypoint x="5093" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT05_Flow40_di" bpmnElement="IT05_Flow40"><di:waypoint x="6173" y="1320" /><di:waypoint x="6274" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_IT05_E1_di" bpmnElement="Group_IT05_E1"><dc:Bounds x="285" y="-44" width="2250" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="2238" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT05_E2_di" bpmnElement="Group_IT05_E2"><dc:Bounds x="2551" y="-44" width="2044" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="2557" y="-38" width="2032" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT05_E3_di" bpmnElement="Group_IT05_E3"><dc:Bounds x="4817" y="-44" width="1838" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="4823" y="-38" width="1826" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_ID04" targetNamespace="urn:imts:modelo:identidade" exporter="Ecossistema IMTS - fonte única do Círculo 1" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_ID04">
+    <bpmn:categoryValue id="CV_ID04_E1" value="1. Receber e classificar o pedido" />
+    <bpmn:categoryValue id="CV_ID04_E2" value="2. Produzir o material no padrão" />
+    <bpmn:categoryValue id="CV_ID04_E3" value="3. Avaliar o uso por terceiro" />
+    <bpmn:categoryValue id="CV_ID04_E4" value="4. Entregar e registrar" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_ID04">
+    <bpmn:participant id="Participant_ID04" name="ID-04 · Atender pedidos de material de marca e de autorização de uso" processRef="Process_ID04" />
+    <bpmn:group id="Group_ID04_E1" categoryValueRef="CV_ID04_E1" />
+    <bpmn:group id="Group_ID04_E2" categoryValueRef="CV_ID04_E2" />
+    <bpmn:group id="Group_ID04_E3" categoryValueRef="CV_ID04_E3" />
+    <bpmn:group id="Group_ID04_E4" categoryValueRef="CV_ID04_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_ID04" name="Atender pedidos de material de marca e de autorização de uso" isExecutable="false">
+    <bpmn:documentation>Entregar rápido e dentro do padrão qualquer material de marca pedido, e controlar quem de fora pode usar as marcas.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_ID04">
+      <bpmn:lane id="Lane_ID04_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>ID04_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID04_GOV" name="Governança">
+        <bpmn:flowNodeRef>ID04_E3_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID04_IDP" name="Identidade · pessoa">
+        <bpmn:flowNodeRef>ID04_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID04_IDA" name="Identidade · agente">
+        <bpmn:flowNodeRef>ID04_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E2_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID04_IDR" name="Identidade · automação">
+        <bpmn:flowNodeRef>ID04_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E3_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID04_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="ID04_S1" name="Pedido de material ou de uso da marca recebido"><bpmn:outgoing>ID04_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="ID04_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="ID04_S2" name="Material vencido ou autorização a vencer"><bpmn:outgoing>ID04_Flow2</bpmn:outgoing><bpmn:timerEventDefinition id="ID04_S2_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ID04_M1"><bpmn:incoming>ID04_Flow1</bpmn:incoming><bpmn:incoming>ID04_Flow2</bpmn:incoming><bpmn:outgoing>ID04_Flow26</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ID04_E1_T1" name="Registrar o pedido"><bpmn:documentation>Etapa 1: Receber e classificar o pedido. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow26</bpmn:incoming><bpmn:outgoing>ID04_Flow3</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="ID04_E1_T2" name="Classificar o pedido e procurar material existente"><bpmn:documentation>Etapa 1: Receber e classificar o pedido. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow3</bpmn:incoming><bpmn:outgoing>ID04_Flow4</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="ID04_E1_G1" name="Qual é o tipo de pedido?"><bpmn:incoming>ID04_Flow4</bpmn:incoming><bpmn:outgoing>ID04_Flow5</bpmn:outgoing><bpmn:outgoing>ID04_Flow6</bpmn:outgoing><bpmn:outgoing>ID04_Flow7</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ID04_E2_T1" name="Produzir o material"><bpmn:documentation>Etapa 2: Produzir o material no padrão. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow5</bpmn:incoming><bpmn:outgoing>ID04_Flow8</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="ID04_E2_T2" name="Conferir marca, voz e mensagens do material"><bpmn:documentation>Etapa 2: Produzir o material no padrão. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow8</bpmn:incoming><bpmn:outgoing>ID04_Flow9</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="ID04_E2_G1" name="Material conforme o padrão?"><bpmn:incoming>ID04_Flow9</bpmn:incoming><bpmn:outgoing>ID04_Flow10</bpmn:outgoing><bpmn:outgoing>ID04_Flow12</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID04_E2_T3" name="Corrigir o material reprovado"><bpmn:documentation>Etapa 2: Produzir o material no padrão. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow10</bpmn:incoming><bpmn:outgoing>ID04_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID04_E2_G2" name="Material de grande alcance ou aplicação nova?"><bpmn:incoming>ID04_Flow12</bpmn:incoming><bpmn:outgoing>ID04_Flow13</bpmn:outgoing><bpmn:outgoing>ID04_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID04_E2_T4" name="Revisar e aprovar o material de grande alcance"><bpmn:documentation>Etapa 2: Produzir o material no padrão. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow14</bpmn:incoming><bpmn:outgoing>ID04_Flow15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:businessRuleTask id="ID04_E3_T1" name="Aplicar a regra de uso por terceiros"><bpmn:documentation>Etapa 3: Avaliar o uso por terceiro. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>ID04_Flow7</bpmn:incoming><bpmn:outgoing>ID04_Flow16</bpmn:outgoing></bpmn:businessRuleTask>
+    <bpmn:exclusiveGateway id="ID04_E3_G1" name="A regra resolve o caso?"><bpmn:incoming>ID04_Flow16</bpmn:incoming><bpmn:outgoing>ID04_Flow17</bpmn:outgoing><bpmn:outgoing>ID04_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID04_E3_T2" name="Decidir o caso fora da regra"><bpmn:documentation>Etapa 3: Avaliar o uso por terceiro. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>ID04_Flow17</bpmn:incoming><bpmn:outgoing>ID04_Flow19</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID04_M2"><bpmn:incoming>ID04_Flow18</bpmn:incoming><bpmn:incoming>ID04_Flow19</bpmn:incoming><bpmn:outgoing>ID04_Flow27</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ID04_E3_G2" name="Uso autorizado?"><bpmn:incoming>ID04_Flow27</bpmn:incoming><bpmn:outgoing>ID04_Flow20</bpmn:outgoing><bpmn:outgoing>ID04_Flow22</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="ID04_E3_T3" name="Emitir o termo de uso com validade"><bpmn:documentation>Etapa 3: Avaliar o uso por terceiro. Executor: Outro círculo (Governança). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>ID04_Flow20</bpmn:incoming><bpmn:outgoing>ID04_Flow21</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:scriptTask id="ID04_E3_T4" name="Informar a negativa com o motivo"><bpmn:documentation>Etapa 3: Avaliar o uso por terceiro. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>ID04_Flow22</bpmn:incoming><bpmn:outgoing>ID04_Flow23</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="ID04_F2" name="Pedido negado com motivo"><bpmn:incoming>ID04_Flow23</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="ID04_M3"><bpmn:incoming>ID04_Flow6</bpmn:incoming><bpmn:incoming>ID04_Flow11</bpmn:incoming><bpmn:incoming>ID04_Flow13</bpmn:incoming><bpmn:incoming>ID04_Flow15</bpmn:incoming><bpmn:incoming>ID04_Flow21</bpmn:incoming><bpmn:outgoing>ID04_Flow28</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ID04_E4_T1" name="Entregar ao solicitante e publicar no repositório"><bpmn:documentation>Etapa 4: Entregar e registrar. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow28</bpmn:incoming><bpmn:outgoing>ID04_Flow24</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="ID04_E4_T2" name="Registrar o pedido e a validade da autorização"><bpmn:documentation>Etapa 4: Entregar e registrar. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>ID04_Flow24</bpmn:incoming><bpmn:outgoing>ID04_Flow25</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="ID04_F1" name="Pedido atendido"><bpmn:incoming>ID04_Flow25</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="ID04_Flow1" sourceRef="ID04_S1" targetRef="ID04_M1" />
+    <bpmn:sequenceFlow id="ID04_Flow2" sourceRef="ID04_S2" targetRef="ID04_M1" />
+    <bpmn:sequenceFlow id="ID04_Flow3" sourceRef="ID04_E1_T1" targetRef="ID04_E1_T2" />
+    <bpmn:sequenceFlow id="ID04_Flow4" sourceRef="ID04_E1_T2" targetRef="ID04_E1_G1" />
+    <bpmn:sequenceFlow id="ID04_Flow5" name="Material novo ou adaptação" sourceRef="ID04_E1_G1" targetRef="ID04_E2_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Material novo ou adaptação</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow6" name="Material existente atende" sourceRef="ID04_E1_G1" targetRef="ID04_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Material existente atende</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow7" name="Uso por terceiro" sourceRef="ID04_E1_G1" targetRef="ID04_E3_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Uso por terceiro</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow8" sourceRef="ID04_E2_T1" targetRef="ID04_E2_T2" />
+    <bpmn:sequenceFlow id="ID04_Flow9" sourceRef="ID04_E2_T2" targetRef="ID04_E2_G1" />
+    <bpmn:sequenceFlow id="ID04_Flow10" name="Não" sourceRef="ID04_E2_G1" targetRef="ID04_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow11" sourceRef="ID04_E2_T3" targetRef="ID04_M3" />
+    <bpmn:sequenceFlow id="ID04_Flow12" name="Sim" sourceRef="ID04_E2_G1" targetRef="ID04_E2_G2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow13" name="Não" sourceRef="ID04_E2_G2" targetRef="ID04_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow14" name="Sim" sourceRef="ID04_E2_G2" targetRef="ID04_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow15" sourceRef="ID04_E2_T4" targetRef="ID04_M3" />
+    <bpmn:sequenceFlow id="ID04_Flow16" sourceRef="ID04_E3_T1" targetRef="ID04_E3_G1" />
+    <bpmn:sequenceFlow id="ID04_Flow17" name="Não" sourceRef="ID04_E3_G1" targetRef="ID04_E3_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow18" name="Sim" sourceRef="ID04_E3_G1" targetRef="ID04_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow19" sourceRef="ID04_E3_T2" targetRef="ID04_M2" />
+    <bpmn:sequenceFlow id="ID04_Flow20" name="Sim" sourceRef="ID04_E3_G2" targetRef="ID04_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow21" sourceRef="ID04_E3_T3" targetRef="ID04_M3" />
+    <bpmn:sequenceFlow id="ID04_Flow22" name="Não" sourceRef="ID04_E3_G2" targetRef="ID04_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID04_Flow23" sourceRef="ID04_E3_T4" targetRef="ID04_F2" />
+    <bpmn:sequenceFlow id="ID04_Flow24" sourceRef="ID04_E4_T1" targetRef="ID04_E4_T2" />
+    <bpmn:sequenceFlow id="ID04_Flow25" sourceRef="ID04_E4_T2" targetRef="ID04_F1" />
+    <bpmn:sequenceFlow id="ID04_Flow26" sourceRef="ID04_M1" targetRef="ID04_E1_T1" />
+    <bpmn:sequenceFlow id="ID04_Flow27" sourceRef="ID04_M2" targetRef="ID04_E3_G2" />
+    <bpmn:sequenceFlow id="ID04_Flow28" sourceRef="ID04_M3" targetRef="ID04_E4_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_ID04">
+    <bpmndi:BPMNPlane id="Plane_ID04" bpmnElement="Collab_ID04">
+      <bpmndi:BPMNShape id="Participant_ID04_di" bpmnElement="Participant_ID04" isHorizontal="true"><dc:Bounds x="0" y="0" width="4067" height="800" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID04_SOL_di" bpmnElement="Lane_ID04_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="4037" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID04_GOV_di" bpmnElement="Lane_ID04_GOV" isHorizontal="true"><dc:Bounds x="30" y="160" width="4037" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID04_IDP_di" bpmnElement="Lane_ID04_IDP" isHorizontal="true"><dc:Bounds x="30" y="320" width="4037" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID04_IDA_di" bpmnElement="Lane_ID04_IDA" isHorizontal="true"><dc:Bounds x="30" y="480" width="4037" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID04_IDR_di" bpmnElement="Lane_ID04_IDR" isHorizontal="true"><dc:Bounds x="30" y="640" width="4037" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_S1_di" bpmnElement="ID04_S1"><dc:Bounds x="132" y="62" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="103" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_S2_di" bpmnElement="ID04_S2"><dc:Bounds x="132" y="702" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="743" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_M1_di" bpmnElement="ID04_M1" isMarkerVisible="true"><dc:Bounds x="297" y="695" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E1_T1_di" bpmnElement="ID04_E1_T1"><dc:Bounds x="431" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E1_T2_di" bpmnElement="ID04_E1_T2"><dc:Bounds x="603" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E1_G1_di" bpmnElement="ID04_E1_G1" isMarkerVisible="true"><dc:Bounds x="813" y="535" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="726" y="587" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E2_T1_di" bpmnElement="ID04_E2_T1"><dc:Bounds x="947" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E2_T2_di" bpmnElement="ID04_E2_T2"><dc:Bounds x="1119" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E2_G1_di" bpmnElement="ID04_E2_G1" isMarkerVisible="true"><dc:Bounds x="1329" y="535" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1242" y="587" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E2_T3_di" bpmnElement="ID04_E2_T3"><dc:Bounds x="1463" y="358" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E2_G2_di" bpmnElement="ID04_E2_G2" isMarkerVisible="true"><dc:Bounds x="1673" y="695" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1586" y="747" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E2_T4_di" bpmnElement="ID04_E2_T4"><dc:Bounds x="1807" y="358" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E3_T1_di" bpmnElement="ID04_E3_T1"><dc:Bounds x="1979" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E3_G1_di" bpmnElement="ID04_E3_G1" isMarkerVisible="true"><dc:Bounds x="2189" y="695" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2102" y="747" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E3_T2_di" bpmnElement="ID04_E3_T2"><dc:Bounds x="2323" y="358" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_M2_di" bpmnElement="ID04_M2" isMarkerVisible="true"><dc:Bounds x="2533" y="695" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E3_G2_di" bpmnElement="ID04_E3_G2" isMarkerVisible="true"><dc:Bounds x="2705" y="695" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2618" y="747" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E3_T3_di" bpmnElement="ID04_E3_T3"><dc:Bounds x="2839" y="198" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E3_T4_di" bpmnElement="ID04_E3_T4"><dc:Bounds x="3011" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_F2_di" bpmnElement="ID04_F2"><dc:Bounds x="3228" y="702" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3191" y="743" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_M3_di" bpmnElement="ID04_M3" isMarkerVisible="true"><dc:Bounds x="3393" y="695" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E4_T1_di" bpmnElement="ID04_E4_T1"><dc:Bounds x="3527" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_E4_T2_di" bpmnElement="ID04_E4_T2"><dc:Bounds x="3699" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID04_F1_di" bpmnElement="ID04_F1"><dc:Bounds x="3916" y="702" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3879" y="743" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="ID04_Flow1_di" bpmnElement="ID04_Flow1"><di:waypoint x="168" y="80" /><di:waypoint x="322" y="80" /><di:waypoint x="322" y="695" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow2_di" bpmnElement="ID04_Flow2"><di:waypoint x="168" y="720" /><di:waypoint x="297" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow3_di" bpmnElement="ID04_Flow3"><di:waypoint x="494" y="678" /><di:waypoint x="494" y="560" /><di:waypoint x="603" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow4_di" bpmnElement="ID04_Flow4"><di:waypoint x="729" y="560" /><di:waypoint x="813" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow5_di" bpmnElement="ID04_Flow5"><di:waypoint x="863" y="560" /><di:waypoint x="947" y="560" /><bpmndi:BPMNLabel><dc:Bounds x="868" y="529" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow6_di" bpmnElement="ID04_Flow6"><di:waypoint x="838" y="585" /><di:waypoint x="838" y="632" /><di:waypoint x="3418" y="632" /><di:waypoint x="3418" y="695" /><bpmndi:BPMNLabel><dc:Bounds x="844" y="590" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow7_di" bpmnElement="ID04_Flow7"><di:waypoint x="838" y="535" /><di:waypoint x="838" y="489" /><di:waypoint x="2042" y="489" /><di:waypoint x="2042" y="678" /><bpmndi:BPMNLabel><dc:Bounds x="844" y="504" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow8_di" bpmnElement="ID04_Flow8"><di:waypoint x="1073" y="560" /><di:waypoint x="1119" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow9_di" bpmnElement="ID04_Flow9"><di:waypoint x="1245" y="560" /><di:waypoint x="1329" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow10_di" bpmnElement="ID04_Flow10"><di:waypoint x="1354" y="535" /><di:waypoint x="1354" y="400" /><di:waypoint x="1463" y="400" /><bpmndi:BPMNLabel><dc:Bounds x="1360" y="517" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow11_di" bpmnElement="ID04_Flow11"><di:waypoint x="1526" y="358" /><di:waypoint x="1526" y="329" /><di:waypoint x="3418" y="329" /><di:waypoint x="3418" y="695" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow12_di" bpmnElement="ID04_Flow12"><di:waypoint x="1354" y="585" /><di:waypoint x="1354" y="720" /><di:waypoint x="1673" y="720" /><bpmndi:BPMNLabel><dc:Bounds x="1360" y="590" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow13_di" bpmnElement="ID04_Flow13"><di:waypoint x="1698" y="745" /><di:waypoint x="1698" y="792" /><di:waypoint x="3418" y="792" /><di:waypoint x="3418" y="745" /><bpmndi:BPMNLabel><dc:Bounds x="1704" y="750" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow14_di" bpmnElement="ID04_Flow14"><di:waypoint x="1698" y="695" /><di:waypoint x="1698" y="400" /><di:waypoint x="1807" y="400" /><bpmndi:BPMNLabel><dc:Bounds x="1704" y="677" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow15_di" bpmnElement="ID04_Flow15"><di:waypoint x="1870" y="358" /><di:waypoint x="1870" y="329" /><di:waypoint x="3418" y="329" /><di:waypoint x="3418" y="695" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow16_di" bpmnElement="ID04_Flow16"><di:waypoint x="2105" y="720" /><di:waypoint x="2189" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow17_di" bpmnElement="ID04_Flow17"><di:waypoint x="2214" y="695" /><di:waypoint x="2214" y="400" /><di:waypoint x="2323" y="400" /><bpmndi:BPMNLabel><dc:Bounds x="2220" y="677" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow18_di" bpmnElement="ID04_Flow18"><di:waypoint x="2239" y="720" /><di:waypoint x="2533" y="720" /><bpmndi:BPMNLabel><dc:Bounds x="2244" y="702" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow19_di" bpmnElement="ID04_Flow19"><di:waypoint x="2386" y="442" /><di:waypoint x="2386" y="720" /><di:waypoint x="2533" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow20_di" bpmnElement="ID04_Flow20"><di:waypoint x="2730" y="695" /><di:waypoint x="2730" y="240" /><di:waypoint x="2839" y="240" /><bpmndi:BPMNLabel><dc:Bounds x="2736" y="677" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow21_di" bpmnElement="ID04_Flow21"><di:waypoint x="2965" y="240" /><di:waypoint x="3418" y="240" /><di:waypoint x="3418" y="695" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow22_di" bpmnElement="ID04_Flow22"><di:waypoint x="2755" y="720" /><di:waypoint x="3011" y="720" /><bpmndi:BPMNLabel><dc:Bounds x="2760" y="702" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow23_di" bpmnElement="ID04_Flow23"><di:waypoint x="3137" y="720" /><di:waypoint x="3228" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow24_di" bpmnElement="ID04_Flow24"><di:waypoint x="3653" y="720" /><di:waypoint x="3699" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow25_di" bpmnElement="ID04_Flow25"><di:waypoint x="3825" y="720" /><di:waypoint x="3916" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow26_di" bpmnElement="ID04_Flow26"><di:waypoint x="347" y="720" /><di:waypoint x="431" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow27_di" bpmnElement="ID04_Flow27"><di:waypoint x="2583" y="720" /><di:waypoint x="2705" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID04_Flow28_di" bpmnElement="ID04_Flow28"><di:waypoint x="3443" y="720" /><di:waypoint x="3527" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_ID04_E1_di" bpmnElement="Group_ID04_E1"><dc:Bounds x="244" y="-44" width="672" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="250" y="-38" width="660" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID04_E2_di" bpmnElement="Group_ID04_E2"><dc:Bounds x="932" y="-44" width="1016" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="938" y="-38" width="1004" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID04_E3_di" bpmnElement="Group_ID04_E3"><dc:Bounds x="1964" y="-44" width="1188" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="1970" y="-38" width="1176" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID04_E4_di" bpmnElement="Group_ID04_E4"><dc:Bounds x="3340" y="-44" width="500" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="3346" y="-38" width="488" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

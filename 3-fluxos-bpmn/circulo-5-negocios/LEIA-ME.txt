@@ -1,0 +1,34 @@
+Círculo 5 · Negócios — fluxos em BPMN 2.0
+Situação: Fechado em 02/10/2026 · proposta do círculo 6 aplicada em 03/10/2026 · auditoria de execução aplicada em 03/10/2026
+
+Conteúdo
+- bpmn/NE-01.bpmn a NE-07.bpmn: um arquivo por jornada, com o diagrama (raias, etapas, tarefas, decisões).
+- circulo5-negocios-fonte.json: a mesma informação em dados (jornadas, etapas, tarefas, entradas, saídas, fontes, testes).
+
+Jornadas
+- NE-01 · Manter a tabela de preços, a política comercial e o material de venda de cada empresa
+- NE-02 · Planejar as vendas do ciclo e prever a receita
+- NE-03 · Aceitar a oportunidade, desenhar a solução e fazer a proposta
+- NE-04 · Negociar e fechar o contrato com o cliente
+- NE-05 · Disputar licitações e contratar com o setor público
+- NE-06 · Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar
+- NE-07 · Vender com parceiros e em oferta conjunta entre as empresas
+
+Como abrir
+- Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.
+- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+
+Como ler
+- Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.
+- Tarefa de usuário: pessoa. Tarefa manual: conversa ou reunião. Tarefa de serviço: agente. Tarefa de script: automação.
+  Tarefa de regra de negócio: decisão por tabela. Atividade de chamada: chama jornada de outro círculo.
+  Tarefa de recebimento: o fluxo espera ali a resposta de outra jornada ou de uma pessoa.
+- As caixas tracejadas (grupos) são as etapas da jornada.
+
+Testes desta versão
+- 2745 verificações de integridade, 0 falhas.
+- 7 arquivos lidos pelo metamodelo do BPMN 2.0 e conferidos por 26 regras do bpmnlint: 0 apontamentos.
+- 7 fluxos desenhados no bpmn-js: 0 avisos; 172 nomes de tarefa conferidos, 0 encobertos ou cortados.
+- Trocas entre os círculos já desenhados: 406 produtos conferidos dos dois lados, 0 falhas.
+
+Gerado em 02/10/2026 a partir da fonte única do modelo.

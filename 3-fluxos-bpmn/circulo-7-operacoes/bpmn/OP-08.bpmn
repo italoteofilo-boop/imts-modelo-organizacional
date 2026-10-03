@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_OP08" targetNamespace="urn:imts:modelo:circulo7-operacoes" exporter="Ecossistema IMTS - fonte única do Círculo 7" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_OP08">
+    <bpmn:categoryValue id="CV_OP08_E1" value="1. Planejar o fim das entregas" />
+    <bpmn:categoryValue id="CV_OP08_E2" value="2. Concluir as entregas e devolver o que é do cliente" />
+    <bpmn:categoryValue id="CV_OP08_E3" value="3. Liberar os recursos e guardar o conhecimento" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_OP08">
+    <bpmn:participant id="Participant_OP08" name="OP-08 · Encerrar as entregas no fim do contrato ou na saída da oferta ou da empresa" processRef="Process_OP08" />
+    <bpmn:group id="Group_OP08_E1" categoryValueRef="CV_OP08_E1" />
+    <bpmn:group id="Group_OP08_E2" categoryValueRef="CV_OP08_E2" />
+    <bpmn:group id="Group_OP08_E3" categoryValueRef="CV_OP08_E3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_OP08" name="Encerrar as entregas no fim do contrato ou na saída da oferta ou da empresa" isExecutable="false">
+    <bpmn:documentation>Fazer cada contrato encerrado e cada saída de oferta ou de empresa virar um fim de entregas planejado: no fim do contrato, de imediato; na saída, preparado pelo plano de saída da Integração e executado na data confirmada pela Estratégia. As entregas são concluídas ou transferidas na transição combinada por Relações; o último ciclo é passado a faturar; os dados e materiais do cliente são devolvidos ou eliminados, com aprovação de pessoa, guardado só o que a lei ou o contrato mandam guardar; os recursos são liberados à Gestão; e a conclusão vai à Integração e as lições à Inteligência.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_OP08">
+      <bpmn:lane id="Lane_OP08_NEG" name="Negócios">
+        <bpmn:flowNodeRef>OP08_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP08_ITG" name="Integração">
+        <bpmn:flowNodeRef>OP08_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP08_EST" name="Estratégia">
+        <bpmn:flowNodeRef>OP08_S3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP08_CLI" name="Cliente">
+        <bpmn:flowNodeRef>OP08_E2_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP08_OPP" name="Operações · pessoa">
+        <bpmn:flowNodeRef>OP08_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP08_OPA" name="Operações · agente">
+        <bpmn:flowNodeRef>OP08_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E3_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP08_OPR" name="Operações · automação">
+        <bpmn:flowNodeRef>OP08_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP08_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="OP08_S1" name="Contrato encerrado recebido"><bpmn:outgoing>OP08_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="OP08_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="OP08_S2" name="Plano de saída de clientes e contratos recebido"><bpmn:outgoing>OP08_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="OP08_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="OP08_S3" name="Data de saída ou mandato recebido"><bpmn:outgoing>OP08_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="OP08_S3_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="OP08_M1"><bpmn:incoming>OP08_Flow1</bpmn:incoming><bpmn:incoming>OP08_Flow2</bpmn:incoming><bpmn:incoming>OP08_Flow3</bpmn:incoming><bpmn:outgoing>OP08_Flow20</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="OP08_E1_G1" name="O que iniciou o encerramento?"><bpmn:incoming>OP08_Flow20</bpmn:incoming><bpmn:outgoing>OP08_Flow4</bpmn:outgoing><bpmn:outgoing>OP08_Flow6</bpmn:outgoing><bpmn:outgoing>OP08_Flow8</bpmn:outgoing><bpmn:outgoing>OP08_Flow9</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="OP08_E1_T1" name="Preparar o fim das entregas pelo plano e aguardar a data de saída"><bpmn:documentation>Etapa 1: Planejar o fim das entregas. Executor: Agente de Operações (Operações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow4</bpmn:incoming><bpmn:outgoing>OP08_Flow5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="OP08_E1_T2" name="Registrar a decisão e aguardar o plano de saída da Integração"><bpmn:documentation>Etapa 1: Planejar o fim das entregas. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow6</bpmn:incoming><bpmn:outgoing>OP08_Flow7</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="OP08_M2"><bpmn:incoming>OP08_Flow5</bpmn:incoming><bpmn:incoming>OP08_Flow7</bpmn:incoming><bpmn:outgoing>OP08_Flow21</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="OP08_F2" name="Fim das entregas preparado, à espera da data ou do plano de saída"><bpmn:incoming>OP08_Flow21</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="OP08_M3"><bpmn:incoming>OP08_Flow8</bpmn:incoming><bpmn:incoming>OP08_Flow9</bpmn:incoming><bpmn:outgoing>OP08_Flow22</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="OP08_E1_T3" name="Listar as entregas em curso, os compromissos e os dados e materiais do cliente"><bpmn:documentation>Etapa 1: Planejar o fim das entregas. Executor: Agente de Operações (Operações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow22</bpmn:incoming><bpmn:outgoing>OP08_Flow10</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="OP08_E1_T4" name="Planejar o fim, a transição combinada e o destino de dados e materiais"><bpmn:documentation>Etapa 1: Planejar o fim das entregas. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow10</bpmn:incoming><bpmn:outgoing>OP08_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="OP08_E2_T1" name="Concluir ou transferir as entregas em curso conforme o plano"><bpmn:documentation>Etapa 2: Concluir as entregas e devolver o que é do cliente. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow11</bpmn:incoming><bpmn:outgoing>OP08_Flow12</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="OP08_E2_T2" name="Aprovar o que devolver, o que eliminar e o que a lei ou o contrato mandam guardar"><bpmn:documentation>Etapa 2: Concluir as entregas e devolver o que é do cliente. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow12</bpmn:incoming><bpmn:outgoing>OP08_Flow13</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="OP08_E2_T3" name="Devolver ou eliminar os dados e materiais do cliente como aprovado"><bpmn:documentation>Etapa 2: Concluir as entregas e devolver o que é do cliente. Executor: Automação de Operações (Operações · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow13</bpmn:incoming><bpmn:outgoing>OP08_Flow14</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="OP08_E2_T4" name="Confirmar o fim das entregas"><bpmn:documentation>Etapa 2: Concluir as entregas e devolver o que é do cliente. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>OP08_Flow14</bpmn:incoming><bpmn:outgoing>OP08_Flow15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="OP08_E3_T1" name="Passar o último ciclo a faturar"><bpmn:documentation>Etapa 3: Liberar os recursos e guardar o conhecimento. Executor: Automação de Operações (Operações · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>OP08_Flow15</bpmn:incoming><bpmn:outgoing>OP08_Flow16</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="OP08_E3_T2" name="Registrar a liberação de pessoas, agentes, parceiros e ativos alocados ao cliente ou à oferta"><bpmn:documentation>Etapa 3: Liberar os recursos e guardar o conhecimento. Executor: Automação de Operações (Operações · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>OP08_Flow16</bpmn:incoming><bpmn:outgoing>OP08_Flow17</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="OP08_E3_T3" name="Arquivar os registros que devem ser guardados e atualizar os sistemas"><bpmn:documentation>Etapa 3: Liberar os recursos e guardar o conhecimento. Executor: Automação de Operações (Operações · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>OP08_Flow17</bpmn:incoming><bpmn:outgoing>OP08_Flow18</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="OP08_E3_T4" name="Apontar as lições do encerramento"><bpmn:documentation>Etapa 3: Liberar os recursos e guardar o conhecimento. Executor: Agente de Operações (Operações · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>OP08_Flow18</bpmn:incoming><bpmn:outgoing>OP08_Flow19</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:endEvent id="OP08_F1" name="Entregas encerradas e recursos liberados"><bpmn:incoming>OP08_Flow19</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="OP08_Flow1" sourceRef="OP08_S1" targetRef="OP08_M1" />
+    <bpmn:sequenceFlow id="OP08_Flow2" sourceRef="OP08_S2" targetRef="OP08_M1" />
+    <bpmn:sequenceFlow id="OP08_Flow3" sourceRef="OP08_S3" targetRef="OP08_M1" />
+    <bpmn:sequenceFlow id="OP08_Flow4" name="Plano de saída, ainda sem a data" sourceRef="OP08_E1_G1" targetRef="OP08_E1_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Plano de saída, ainda sem a data</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP08_Flow5" sourceRef="OP08_E1_T1" targetRef="OP08_M2" />
+    <bpmn:sequenceFlow id="OP08_Flow6" name="Decisão de encerrar ou data, ainda sem o plano de saída" sourceRef="OP08_E1_G1" targetRef="OP08_E1_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Decisão de encerrar ou data, ainda sem o plano de saída</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP08_Flow7" sourceRef="OP08_E1_T2" targetRef="OP08_M2" />
+    <bpmn:sequenceFlow id="OP08_Flow8" name="Contrato encerrado" sourceRef="OP08_E1_G1" targetRef="OP08_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Contrato encerrado</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP08_Flow9" name="Data de saída ou mandato, com o plano de saída já recebido" sourceRef="OP08_E1_G1" targetRef="OP08_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Data de saída ou mandato, com o plano de saída já recebido</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP08_Flow10" sourceRef="OP08_E1_T3" targetRef="OP08_E1_T4" />
+    <bpmn:sequenceFlow id="OP08_Flow11" sourceRef="OP08_E1_T4" targetRef="OP08_E2_T1" />
+    <bpmn:sequenceFlow id="OP08_Flow12" sourceRef="OP08_E2_T1" targetRef="OP08_E2_T2" />
+    <bpmn:sequenceFlow id="OP08_Flow13" sourceRef="OP08_E2_T2" targetRef="OP08_E2_T3" />
+    <bpmn:sequenceFlow id="OP08_Flow14" sourceRef="OP08_E2_T3" targetRef="OP08_E2_T4" />
+    <bpmn:sequenceFlow id="OP08_Flow15" sourceRef="OP08_E2_T4" targetRef="OP08_E3_T1" />
+    <bpmn:sequenceFlow id="OP08_Flow16" sourceRef="OP08_E3_T1" targetRef="OP08_E3_T2" />
+    <bpmn:sequenceFlow id="OP08_Flow17" sourceRef="OP08_E3_T2" targetRef="OP08_E3_T3" />
+    <bpmn:sequenceFlow id="OP08_Flow18" sourceRef="OP08_E3_T3" targetRef="OP08_E3_T4" />
+    <bpmn:sequenceFlow id="OP08_Flow19" sourceRef="OP08_E3_T4" targetRef="OP08_F1" />
+    <bpmn:sequenceFlow id="OP08_Flow20" sourceRef="OP08_M1" targetRef="OP08_E1_G1" />
+    <bpmn:sequenceFlow id="OP08_Flow21" sourceRef="OP08_M2" targetRef="OP08_F2" />
+    <bpmn:sequenceFlow id="OP08_Flow22" sourceRef="OP08_M3" targetRef="OP08_E1_T3" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_OP08">
+    <bpmndi:BPMNPlane id="Plane_OP08" bpmnElement="Collab_OP08">
+      <bpmndi:BPMNShape id="Participant_OP08_di" bpmnElement="Participant_OP08" isHorizontal="true"><dc:Bounds x="0" y="0" width="4008" height="1232" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_NEG_di" bpmnElement="Lane_OP08_NEG" isHorizontal="true"><dc:Bounds x="30" y="0" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_ITG_di" bpmnElement="Lane_OP08_ITG" isHorizontal="true"><dc:Bounds x="30" y="176" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_EST_di" bpmnElement="Lane_OP08_EST" isHorizontal="true"><dc:Bounds x="30" y="352" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_CLI_di" bpmnElement="Lane_OP08_CLI" isHorizontal="true"><dc:Bounds x="30" y="528" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_OPP_di" bpmnElement="Lane_OP08_OPP" isHorizontal="true"><dc:Bounds x="30" y="704" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_OPA_di" bpmnElement="Lane_OP08_OPA" isHorizontal="true"><dc:Bounds x="30" y="880" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP08_OPR_di" bpmnElement="Lane_OP08_OPR" isHorizontal="true"><dc:Bounds x="30" y="1056" width="3978" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_S1_di" bpmnElement="OP08_S1"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_S2_di" bpmnElement="OP08_S2"><dc:Bounds x="132" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="287" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_S3_di" bpmnElement="OP08_S3"><dc:Bounds x="132" y="422" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="463" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_M1_di" bpmnElement="OP08_M1" isMarkerVisible="true"><dc:Bounds x="331" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E1_G1_di" bpmnElement="OP08_E1_G1" isMarkerVisible="true"><dc:Bounds x="537" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="450" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E1_T1_di" bpmnElement="OP08_E1_T1"><dc:Bounds x="688" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E1_T2_di" bpmnElement="OP08_E1_T2"><dc:Bounds x="894" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_M2_di" bpmnElement="OP08_M2" isMarkerVisible="true"><dc:Bounds x="1155" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_F2_di" bpmnElement="OP08_F2"><dc:Bounds x="1368" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1331" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_M3_di" bpmnElement="OP08_M3" isMarkerVisible="true"><dc:Bounds x="1567" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E1_T3_di" bpmnElement="OP08_E1_T3"><dc:Bounds x="1718" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E1_T4_di" bpmnElement="OP08_E1_T4"><dc:Bounds x="1924" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E2_T1_di" bpmnElement="OP08_E2_T1"><dc:Bounds x="2130" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E2_T2_di" bpmnElement="OP08_E2_T2"><dc:Bounds x="2336" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E2_T3_di" bpmnElement="OP08_E2_T3"><dc:Bounds x="2542" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E2_T4_di" bpmnElement="OP08_E2_T4"><dc:Bounds x="2748" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E3_T1_di" bpmnElement="OP08_E3_T1"><dc:Bounds x="2954" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E3_T2_di" bpmnElement="OP08_E3_T2"><dc:Bounds x="3160" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E3_T3_di" bpmnElement="OP08_E3_T3"><dc:Bounds x="3366" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_E3_T4_di" bpmnElement="OP08_E3_T4"><dc:Bounds x="3572" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP08_F1_di" bpmnElement="OP08_F1"><dc:Bounds x="3840" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3803" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="OP08_Flow1_di" bpmnElement="OP08_Flow1"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow2_di" bpmnElement="OP08_Flow2"><di:waypoint x="168" y="264" /><di:waypoint x="356" y="264" /><di:waypoint x="356" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow3_di" bpmnElement="OP08_Flow3"><di:waypoint x="168" y="440" /><di:waypoint x="356" y="440" /><di:waypoint x="356" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow4_di" bpmnElement="OP08_Flow4"><di:waypoint x="562" y="1119" /><di:waypoint x="562" y="968" /><di:waypoint x="688" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="568" y="1088" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow5_di" bpmnElement="OP08_Flow5"><di:waypoint x="848" y="968" /><di:waypoint x="1180" y="968" /><di:waypoint x="1180" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow6_di" bpmnElement="OP08_Flow6"><di:waypoint x="587" y="1144" /><di:waypoint x="894" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="592" y="1148" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow7_di" bpmnElement="OP08_Flow7"><di:waypoint x="1054" y="1144" /><di:waypoint x="1155" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow8_di" bpmnElement="OP08_Flow8"><di:waypoint x="562" y="1169" /><di:waypoint x="562" y="1224" /><di:waypoint x="1592" y="1224" /><di:waypoint x="1592" y="993" /><bpmndi:BPMNLabel><dc:Bounds x="568" y="1193" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow9_di" bpmnElement="OP08_Flow9"><di:waypoint x="562" y="1119" /><di:waypoint x="562" y="1065" /><di:waypoint x="1592" y="1065" /><di:waypoint x="1592" y="993" /><bpmndi:BPMNLabel><dc:Bounds x="568" y="1034" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow10_di" bpmnElement="OP08_Flow10"><di:waypoint x="1798" y="918" /><di:waypoint x="1798" y="792" /><di:waypoint x="1924" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow11_di" bpmnElement="OP08_Flow11"><di:waypoint x="2084" y="792" /><di:waypoint x="2130" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow12_di" bpmnElement="OP08_Flow12"><di:waypoint x="2290" y="792" /><di:waypoint x="2336" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow13_di" bpmnElement="OP08_Flow13"><di:waypoint x="2416" y="842" /><di:waypoint x="2416" y="1144" /><di:waypoint x="2542" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow14_di" bpmnElement="OP08_Flow14"><di:waypoint x="2622" y="1094" /><di:waypoint x="2622" y="616" /><di:waypoint x="2748" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow15_di" bpmnElement="OP08_Flow15"><di:waypoint x="2828" y="666" /><di:waypoint x="2828" y="1144" /><di:waypoint x="2954" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow16_di" bpmnElement="OP08_Flow16"><di:waypoint x="3114" y="1144" /><di:waypoint x="3160" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow17_di" bpmnElement="OP08_Flow17"><di:waypoint x="3320" y="1144" /><di:waypoint x="3366" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow18_di" bpmnElement="OP08_Flow18"><di:waypoint x="3446" y="1094" /><di:waypoint x="3446" y="968" /><di:waypoint x="3572" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow19_di" bpmnElement="OP08_Flow19"><di:waypoint x="3652" y="1018" /><di:waypoint x="3652" y="1144" /><di:waypoint x="3840" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow20_di" bpmnElement="OP08_Flow20"><di:waypoint x="381" y="1144" /><di:waypoint x="537" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow21_di" bpmnElement="OP08_Flow21"><di:waypoint x="1205" y="1144" /><di:waypoint x="1368" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP08_Flow22_di" bpmnElement="OP08_Flow22"><di:waypoint x="1617" y="968" /><di:waypoint x="1718" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_OP08_E1_di" bpmnElement="Group_OP08_E1"><dc:Bounds x="261" y="-44" width="1838" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="1826" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_OP08_E2_di" bpmnElement="Group_OP08_E2"><dc:Bounds x="2115" y="-44" width="808" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="2121" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_OP08_E3_di" bpmnElement="Group_OP08_E3"><dc:Bounds x="2939" y="-44" width="808" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="2945" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

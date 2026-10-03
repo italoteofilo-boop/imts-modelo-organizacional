@@ -1,0 +1,4136 @@
+{
+ "etapas": [
+  {
+   "circulo": "Identidade",
+   "ref": "ID-01 etapa 1",
+   "nome": "Reunir evidências",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-01 etapa 2",
+   "nome": "Redigir a proposta de declaração",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-01 etapa 3",
+   "nome": "Validar com líderes e executivos",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-01 etapa 4",
+   "nome": "Aprovar com os sócios",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-01 etapa 5",
+   "nome": "Publicar a versão e avisar quem depende dela",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-02 etapa 1",
+   "nome": "Receber o pedido e decidir se ele pede padrão novo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 4
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-02 etapa 2",
+   "nome": "Escrever os padrões em três frentes paralelas",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 12,
+   "maq": 4
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-02 etapa 3",
+   "nome": "Testar os padrões em casos reais",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-02 etapa 4",
+   "nome": "Publicar os padrões e entregar a cada círculo o que ele executa",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 1",
+   "nome": "Entender o pedido e pesquisar as marcas do portfólio e dos concorrentes",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 2",
+   "nome": "Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 3",
+   "nome": "Definir a essência da marca e o nome",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 6,
+   "maq": 3
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 4",
+   "nome": "Desenhar a identidade visual e verbal",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 4,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 5",
+   "nome": "Proteger a marca",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 6",
+   "nome": "Montar o pacote de marca",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-03 etapa 7",
+   "nome": "Publicar e entregar a quem usa a marca",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-04 etapa 1",
+   "nome": "Levantar os insumos",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-04 etapa 2",
+   "nome": "Formular o posicionamento e a promessa por público",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-04 etapa 3",
+   "nome": "Validar o posicionamento com Estratégia, Relações, Gestão e executivos",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Exclusivamente humana",
+   "n": 4,
+   "maq": 0
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-04 etapa 4",
+   "nome": "Montar as mensagens principais e a narrativa por público",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-04 etapa 5",
+   "nome": "Publicar e entregar a quem comunica",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-05 etapa 1",
+   "nome": "Reunir os resultados dos círculos que medem",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-05 etapa 2",
+   "nome": "Analisar as lacunas entre o declarado, o vivido e o percebido",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-05 etapa 3",
+   "nome": "Decidir o que rever",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Identidade",
+   "ref": "ID-05 etapa 4",
+   "nome": "Registrar a avaliação e devolver o resultado",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-01 etapa 1",
+   "nome": "Diagnosticar o cenário e a posição atual",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 4
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-01 etapa 2",
+   "nome": "Formular as escolhas do Ecossistema: onde atuar e o que não fazer",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 2
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-01 etapa 3",
+   "nome": "Formular a estratégia de cada empresa e as escolhas de cada círculo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 3
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-01 etapa 4",
+   "nome": "Aprovar a estratégia, as hipóteses e o método com os sócios",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-01 etapa 5",
+   "nome": "Fechar o texto com a decisão dos sócios, publicar a estratégia e avisar quem depende dela",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-02 etapa 1",
+   "nome": "Ler o resultado e o uso de recursos de cada unidade do portfólio",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-02 etapa 2",
+   "nome": "Propor a alocação e o destino do resultado",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 3
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-02 etapa 3",
+   "nome": "Decidir a alocação com os sócios",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-02 etapa 4",
+   "nome": "Comunicar a decisão e encaminhar a execução",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-03 etapa 1",
+   "nome": "Propor os alvos do Ecossistema",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-03 etapa 2",
+   "nome": "Combinar os alvos e as iniciativas com cada empresa e cada círculo",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 3
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-03 etapa 3",
+   "nome": "Conferir com a Gestão e a Integração se os alvos cabem nos recursos",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-03 etapa 4",
+   "nome": "Aprovar os alvos e o orçamento com os sócios",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-03 etapa 5",
+   "nome": "Publicar os alvos e entregar ao ritual de acompanhamento",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-04 etapa 1",
+   "nome": "Registrar a aposta e completar o dossiê",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 5
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-04 etapa 2",
+   "nome": "Avaliar a aposta contra os critérios do portão",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 7
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-04 etapa 3",
+   "nome": "Decidir o destino da aposta no portão ou na revisão",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 12,
+   "maq": 7
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-04 etapa 4",
+   "nome": "Encerrar aposta em desenvolvimento ou oferta em uso, com o plano de saída",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 7
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-04 etapa 5",
+   "nome": "Registrar a decisão e passar a aposta ao dono do estágio seguinte",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 6,
+   "maq": 6
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 1",
+   "nome": "Montar o caso: por que criar, adquirir, vender ou encerrar",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 6
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 2",
+   "nome": "Obter dos sócios a autorização para negociar, com limites",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 3",
+   "nome": "Apurar a empresa ou o negócio e negociar com a outra parte, quando houver",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 4",
+   "nome": "Propor a estrutura societária e de governança",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 4,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 5",
+   "nome": "Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 10,
+   "maq": 3
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 6",
+   "nome": "Emitir o mandato para os círculos que executam",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 9,
+   "maq": 6
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 7",
+   "nome": "Executar o mandato até a empresa operar ou sair do portfólio",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Conduzida por outros círculos",
+   "n": 6,
+   "maq": 1
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-05 etapa 8",
+   "nome": "Conferir o cumprimento do mandato e atualizar o portfólio",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-06 etapa 1",
+   "nome": "Reunir os resultados contra os alvos e as hipóteses",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-06 etapa 2",
+   "nome": "Separar falha de execução de hipótese errada",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 4
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-06 etapa 3",
+   "nome": "Decidir as correções de execução e abrir a revisão que os sócios decidem",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 6
+  },
+  {
+   "circulo": "Estratégia",
+   "ref": "ES-06 etapa 4",
+   "nome": "Registrar as correções e prestar contas da revisão",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-01 etapa 1",
+   "nome": "Combinar com quem decide as perguntas e os sinais a vigiar",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-01 etapa 2",
+   "nome": "Coletar e vigiar sinais de mercado, clientes e concorrentes",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-01 etapa 3",
+   "nome": "Analisar o que os sinais dizem sobre cada pergunta e cada hipótese",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-01 etapa 4",
+   "nome": "Redigir a leitura e conferi-la com quem está perto do cliente",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-01 etapa 5",
+   "nome": "Publicar a leitura, registrar o que ficou sem resposta e colher a avaliação de uso",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-02 etapa 1",
+   "nome": "Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 8,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-02 etapa 2",
+   "nome": "Buscar a evidência e avaliar se é confiável",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-02 etapa 3",
+   "nome": "Montar a resposta com fonte e grau de confiança",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-02 etapa 4",
+   "nome": "Entregar a resposta e registrar para reuso",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-03 etapa 1",
+   "nome": "Definir o dado com o dono: para que serve, de onde vem, que regra vale e por quanto tempo se guarda",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 9,
+   "maq": 5
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-03 etapa 2",
+   "nome": "Conectar a fonte e receber o dado bruto",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-03 etapa 3",
+   "nome": "Validar e corrigir o dado pelas regras de qualidade",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-03 etapa 4",
+   "nome": "Catalogar e publicar o dado para pessoas e agentes",
+   "modo": "Autômato",
+   "risco": "médio",
+   "real": "Autômata",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-03 etapa 5",
+   "nome": "Retirar o dado no fim do prazo de guarda ou quando o tratamento deixa de ser permitido",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-04 etapa 1",
+   "nome": "Definir cada indicador com o dono: o que mede, fórmula, fonte, linha de base e cadência",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 17,
+   "maq": 12
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-04 etapa 2",
+   "nome": "Calcular os indicadores do período",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-04 etapa 3",
+   "nome": "Analisar o resultado e publicar os indicadores com a conclusão",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-04 etapa 4",
+   "nome": "Rever os indicadores: o que manter, mudar ou retirar",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-04 etapa 5",
+   "nome": "Examinar a contestação de um número publicado e corrigir na origem",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 8
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-05 etapa 1",
+   "nome": "Reunir o conteúdo e classificar por tema, dono e uso",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-05 etapa 2",
+   "nome": "Curar o conteúdo com o dono do tema e classificar o sigilo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-05 etapa 3",
+   "nome": "Estruturar a base e testar com as perguntas de teste",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-05 etapa 4",
+   "nome": "Publicar a versão e servir a base aos agentes",
+   "modo": "Autômato",
+   "risco": "médio",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-05 etapa 5",
+   "nome": "Medir o uso e apontar lacunas e conteúdo vencido",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-06 etapa 1",
+   "nome": "Escolher o que vale virar método",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-06 etapa 2",
+   "nome": "Descrever o método: princípios, passos, critérios e exemplos",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 9,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-06 etapa 3",
+   "nome": "Testar o método em caso real, com quem não o descreveu",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-06 etapa 4",
+   "nome": "Testar nos agentes, publicar o método e entregar o kit",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-06 etapa 5",
+   "nome": "Avaliar e rever o método pelo resultado que ele produz",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 5
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 1",
+   "nome": "Receber o trabalho e decidir por onde ele entra",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 13,
+   "maq": 8
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 2",
+   "nome": "Classificar o pedido sobre oferta em uso e fazer o ajuste, sem portão",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 18,
+   "maq": 10
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 3",
+   "nome": "Enquadrar o problema, o público e a proposta de valor",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 4",
+   "nome": "Desenhar a solução, o método de entrega e o que será entregue",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 5",
+   "nome": "Desenhar o modelo de negócio e decidir o preço-base",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 11,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 6",
+   "nome": "Validar a oferta com clientes reais",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 22,
+   "maq": 5
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 7",
+   "nome": "Montar o pacote da oferta: escopo, conteúdo-base, termos e entrega prontos",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 14,
+   "maq": 5
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 8",
+   "nome": "Levar o pacote ao portão de lançamento",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-07 etapa 9",
+   "nome": "Tratar a decisão do portão ou o ajuste aprovado e entregar a oferta a quem vende e entrega",
+   "modo": "Autômato",
+   "risco": "médio",
+   "real": "Autômata",
+   "n": 5,
+   "maq": 5
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-08 etapa 1",
+   "nome": "Registrar cada lição com contexto, causa e evidência",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-08 etapa 2",
+   "nome": "Cruzar lições, indicadores e uso das bases e escolher o que recomendar",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-08 etapa 3",
+   "nome": "Entregar cada recomendação ao dono e registrar a resposta",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 7
+  },
+  {
+   "circulo": "Inteligência",
+   "ref": "IN-08 etapa 4",
+   "nome": "Conferir se a melhoria aceita foi feita e deu resultado",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 5
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-01 etapa 1",
+   "nome": "Reunir o que orienta a demanda do ciclo",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-01 etapa 2",
+   "nome": "Definir públicos, ofertas, canais, ações e alvos de demanda",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 7,
+   "maq": 1
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-01 etapa 3",
+   "nome": "Conferir o orçamento e aprovar o plano",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-01 etapa 4",
+   "nome": "Publicar o plano e avisar quem executa",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-02 etapa 1",
+   "nome": "Preparar a ação: mensagem, público, canal e material",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 15,
+   "maq": 6
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-02 etapa 2",
+   "nome": "Executar a ação nos canais e captar os contatos",
+   "modo": "Autômato",
+   "risco": "médio",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-02 etapa 3",
+   "nome": "Medir o resultado da ação e registrar o que aprender",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-03 etapa 1",
+   "nome": "Registrar o contato com a origem e a base legal",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-03 etapa 2",
+   "nome": "Nutrir o contato e pontuar o interesse",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-03 etapa 3",
+   "nome": "Qualificar a oportunidade com o contato",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-03 etapa 4",
+   "nome": "Entregar a oportunidade a Negócios e acompanhar o aceite",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 5,
+   "maq": 5
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-03 etapa 5",
+   "nome": "Executar os pedidos dos titulares e manter a base confiável",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-04 etapa 1",
+   "nome": "Avaliar a experiência atual dos clientes",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-04 etapa 2",
+   "nome": "Desenhar personas, mapa da jornada e padrões de experiência",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 9,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-04 etapa 3",
+   "nome": "Validar com clientes e decidir a estratégia de experiência",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Exclusivamente humana",
+   "n": 4,
+   "maq": 0
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-04 etapa 4",
+   "nome": "Publicar a estratégia e entregar a quem atende, vende e desenha ofertas",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-05 etapa 1",
+   "nome": "Receber o cliente e combinar o plano de sucesso",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 11,
+   "maq": 5
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-05 etapa 2",
+   "nome": "Medir a saúde do cliente e apontar o risco de perda",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-05 etapa 3",
+   "nome": "Apresentar o resultado ao cliente e agir sobre o risco",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 9,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-05 etapa 4",
+   "nome": "Decidir o próximo passo com o cliente: renovar, ampliar, indicar ou registrar a perda",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 9,
+   "maq": 5
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-06 etapa 1",
+   "nome": "Registrar o pedido e avaliar o encaixe da parceria",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 6
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-06 etapa 2",
+   "nome": "Negociar e formalizar a parceria",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 15,
+   "maq": 4
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-06 etapa 3",
+   "nome": "Ativar a parceria",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-06 etapa 4",
+   "nome": "Acompanhar a parceria e decidir manter, mudar ou encerrar",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-06 etapa 5",
+   "nome": "Decidir e registrar o uso da marca por terceiro",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 4
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-07 etapa 1",
+   "nome": "Decidir a pauta: o que comunicar, a quem e com que alvo",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-07 etapa 2",
+   "nome": "Produzir o conteúdo e conferir com os padrões de identidade",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-07 etapa 3",
+   "nome": "Aprovar o conteúdo e preparar os porta-vozes",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 1
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-07 etapa 4",
+   "nome": "Publicar o conteúdo, atender a imprensa e medir o efeito",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-08 etapa 1",
+   "nome": "Coletar e classificar os sinais sobre as marcas",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-08 etapa 2",
+   "nome": "Apurar o sinal e levar ao comitê de crise",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-08 etapa 3",
+   "nome": "Comunicar a posição decidida até o encerramento da crise",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 3
+  },
+  {
+   "circulo": "Relações",
+   "ref": "RE-08 etapa 4",
+   "nome": "Analisar a percepção dos públicos e entregar a quem pode agir",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-01 etapa 1",
+   "nome": "Reunir as ofertas, o preço-base e o desempenho de preço",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 5
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-01 etapa 2",
+   "nome": "Decidir o preço de tabela e a política comercial",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-01 etapa 3",
+   "nome": "Publicar a tabela e o material de venda e avisar quem vende",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-02 etapa 1",
+   "nome": "Reunir alvos, demanda, funil e carteira",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-02 etapa 2",
+   "nome": "Decidir os alvos de venda, os clientes-chave e a previsão",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 2
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-02 etapa 3",
+   "nome": "Publicar o plano de vendas e a previsão",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-03 etapa 1",
+   "nome": "Receber a oportunidade e decidir o aceite",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 9
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-03 etapa 2",
+   "nome": "Entender a necessidade e desenhar a solução",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-03 etapa 3",
+   "nome": "Precificar e redigir a proposta",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-03 etapa 4",
+   "nome": "Enviar a proposta e acompanhar a resposta do cliente",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-04 etapa 1",
+   "nome": "Negociar as condições com o cliente",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-04 etapa 2",
+   "nome": "Formalizar e assinar o contrato",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 8,
+   "maq": 2
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-04 etapa 3",
+   "nome": "Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-05 etapa 1",
+   "nome": "Analisar o edital e decidir participar",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 12,
+   "maq": 6
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-05 etapa 2",
+   "nome": "Montar a proposta e os documentos de habilitação",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 10,
+   "maq": 2
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-05 etapa 3",
+   "nome": "Disputar e acompanhar o julgamento, a habilitação e os recursos",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 5
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-05 etapa 4",
+   "nome": "Assinar o contrato ou a ata e responder às adesões",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 12,
+   "maq": 5
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-06 etapa 1",
+   "nome": "Reunir a carteira e decidir o que tratar",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-06 etapa 2",
+   "nome": "Negociar a renovação, a expansão, o aditivo ou a retenção",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 7,
+   "maq": 1
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-06 etapa 3",
+   "nome": "Encerrar ou transferir os contratos da oferta ou da empresa que sai",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 9,
+   "maq": 6
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-06 etapa 4",
+   "nome": "Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 7,
+   "maq": 1
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-06 etapa 5",
+   "nome": "Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-07 etapa 1",
+   "nome": "Receber a oportunidade do parceiro ou de outra empresa",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-07 etapa 2",
+   "nome": "Montar a oferta conjunta e combinar a divisão",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-07 etapa 3",
+   "nome": "Medir a venda com parceiros e conjunta e rever o que mudar",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-01 etapa 1",
+   "nome": "Registrar o projeto e o que ele pede",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-01 etapa 2",
+   "nome": "Priorizar o projeto na carteira",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-01 etapa 3",
+   "nome": "Acompanhar o projeto e corrigir o desvio",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 7,
+   "maq": 6
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-01 etapa 4",
+   "nome": "Encerrar o projeto e registrar as lições",
+   "modo": "Assistido",
+   "risco": "baixo",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-02 etapa 1",
+   "nome": "Planejar a implantação com o cliente e com Operações",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 6,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-02 etapa 2",
+   "nome": "Preparar o ambiente, os acessos, as pessoas e os materiais",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 8,
+   "maq": 5
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-02 etapa 3",
+   "nome": "Implantar e conferir o aceite do cliente",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-02 etapa 4",
+   "nome": "Passar o cliente a Operações e encerrar a implantação",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-03 etapa 1",
+   "nome": "Montar o plano de lançamento com o executivo e os círculos",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 9,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-03 etapa 2",
+   "nome": "Conferir a prontidão e decidir lançar",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-03 etapa 3",
+   "nome": "Lançar e acompanhar os primeiros resultados",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-04 etapa 1",
+   "nome": "Montar o plano de saída com os círculos",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 19,
+   "maq": 10
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-04 etapa 2",
+   "nome": "Coordenar a execução da saída na data confirmada",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 6
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-04 etapa 3",
+   "nome": "Concluir a saída e informar a Estratégia",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-05 etapa 1",
+   "nome": "Receber o pedido e achar a capacidade",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-05 etapa 2",
+   "nome": "Desenhar a ficha da capacidade com o dono e a Inteligência",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 6,
+   "maq": 3
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-05 etapa 3",
+   "nome": "Publicar ou retirar a capacidade no catálogo e pedir a construção",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 5,
+   "maq": 5
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-06 etapa 1",
+   "nome": "Montar ou mudar o agente pela ficha",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-06 etapa 2",
+   "nome": "Testar o agente com os casos de teste",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-06 etapa 3",
+   "nome": "Liberar o agente em uso",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 4,
+   "maq": 1
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-06 etapa 4",
+   "nome": "Monitorar o agente em uso e tratar o desvio",
+   "modo": "Autômato",
+   "risco": "médio",
+   "real": "Autômata",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-07 etapa 1",
+   "nome": "Receber e classificar o pedido, o incidente ou o risco",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-07 etapa 2",
+   "nome": "Resolver o item e implantar a mudança",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 4
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-07 etapa 3",
+   "nome": "Escolher e contratar fornecedor ou licença de tecnologia",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-07 etapa 4",
+   "nome": "Registrar e medir o serviço de tecnologia",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-08 etapa 1",
+   "nome": "Medir a jornada e achar o gargalo",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 6
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-08 etapa 2",
+   "nome": "Redesenhar a jornada com o círculo dono",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 6,
+   "maq": 2
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-08 etapa 3",
+   "nome": "Implantar o redesenho e atualizar o catálogo de jornadas",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Integração",
+   "ref": "IT-08 etapa 4",
+   "nome": "Conferir o ganho do redesenho",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-01 etapa 1",
+   "nome": "Reunir a demanda prevista e o que cada oferta exige",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-01 etapa 2",
+   "nome": "Decidir como cobrir as faltas e usar as sobras",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-01 etapa 3",
+   "nome": "Pedir os recursos e publicar o plano",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-02 etapa 1",
+   "nome": "Assumir o cliente e planejar a entrega",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-02 etapa 2",
+   "nome": "Executar as entregas do ciclo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-02 etapa 3",
+   "nome": "Confirmar a entrega com o cliente e passar a faturar",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-02 etapa 4",
+   "nome": "Registrar o ciclo e apontar o que ensina",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-08 etapa 1",
+   "nome": "Planejar o fim das entregas",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-08 etapa 2",
+   "nome": "Concluir as entregas e devolver o que é do cliente",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 4,
+   "maq": 1
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-08 etapa 3",
+   "nome": "Liberar os recursos e guardar o conhecimento",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-03 etapa 1",
+   "nome": "Receber e classificar o contato do cliente",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-03 etapa 2",
+   "nome": "Resolver e responder ao cliente",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 7,
+   "maq": 6
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-03 etapa 3",
+   "nome": "Registrar o atendimento e o que ele ensina",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-04 etapa 1",
+   "nome": "Receber e classificar a reclamação",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-04 etapa 2",
+   "nome": "Investigar e decidir a solução",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-04 etapa 3",
+   "nome": "Aplicar a solução e confirmar com o cliente",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-04 etapa 4",
+   "nome": "Tratar a causa e entregar o aprendizado",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 5
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-05 etapa 1",
+   "nome": "Definir os procedimentos e os níveis de serviço",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-05 etapa 2",
+   "nome": "Medir a qualidade e o cumprimento dos níveis de serviço",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-05 etapa 3",
+   "nome": "Achar a causa e decidir a ação corretiva",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-05 etapa 4",
+   "nome": "Implantar a ação e conferir o efeito",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-06 etapa 1",
+   "nome": "Prever a demanda e planejar materiais e produção",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-06 etapa 2",
+   "nome": "Pedir e receber os materiais e serviços",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-06 etapa 3",
+   "nome": "Produzir ou montar o produto e testá-lo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-06 etapa 4",
+   "nome": "Guardar o produto e entregá-lo ao cliente",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-07 etapa 1",
+   "nome": "Receber o pedido e avaliar o risco",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 5
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-07 etapa 2",
+   "nome": "Sanar o vício ou cumprir a escolha do cliente",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 1
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-07 etapa 3",
+   "nome": "Comunicar o risco e decidir o recall",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 3
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-07 etapa 4",
+   "nome": "Acompanhar a eficácia do recall e encerrá-lo",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Operações",
+   "ref": "OP-07 etapa 5",
+   "nome": "Registrar e tratar a causa",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 4
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-01 etapa 1",
+   "nome": "Desdobrar o orçamento aprovado e conferir os planos",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-01 etapa 2",
+   "nome": "Decidir pedidos de recurso, liberações e devoluções",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 5
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-01 etapa 3",
+   "nome": "Publicar o orçamento vigente",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 1,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-02 etapa 1",
+   "nome": "Reunir os resultados do período contra os alvos",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-02 etapa 2",
+   "nome": "Conduzir o ritual e registrar as decisões",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-02 etapa 3",
+   "nome": "Cobrar as ações até concluir",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-03 etapa 1",
+   "nome": "Cadastrar o cliente e as condições de cobrança",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-03 etapa 2",
+   "nome": "Calcular e emitir a fatura",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-03 etapa 3",
+   "nome": "Receber e cobrar",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-03 etapa 4",
+   "nome": "Informar a situação de cada cliente",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-04 etapa 1",
+   "nome": "Receber e conferir o pedido de compra",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-04 etapa 2",
+   "nome": "Escolher o fornecedor e emitir o pedido",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-04 etapa 3",
+   "nome": "Receber o que foi comprado",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-04 etapa 4",
+   "nome": "Avaliar o fornecedor e cobrar as falhas",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-04 etapa 5",
+   "nome": "Conferir a fatura e pagar",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-05 etapa 1",
+   "nome": "Registrar e conciliar o movimento e projetar o caixa",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-05 etapa 2",
+   "nome": "Fechar as contas, apurar o resultado e os impostos",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 4
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-05 etapa 3",
+   "nome": "Executar aportes, distribuição e mudanças de contas",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-06 etapa 1",
+   "nome": "Apurar o custo dos círculos e o uso de cada empresa",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-06 etapa 2",
+   "nome": "Conferir e publicar o rateio",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-07 etapa 1",
+   "nome": "Abrir a vaga ou decidir a movimentação",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-07 etapa 2",
+   "nome": "Atrair e selecionar",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 6,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-07 etapa 3",
+   "nome": "Contratar a pessoa",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-07 etapa 4",
+   "nome": "Registrar a mudança e avisar quem precisa",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-08 etapa 1",
+   "nome": "Preparar a trilha de integração",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-08 etapa 2",
+   "nome": "Apresentar propósito, valores e comportamentos",
+   "modo": "Assistido",
+   "risco": "baixo",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-08 etapa 3",
+   "nome": "Conectar a pessoa à comunidade",
+   "modo": "Assistido",
+   "risco": "baixo",
+   "real": "Exclusivamente humana",
+   "n": 2,
+   "maq": 0
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-08 etapa 4",
+   "nome": "Verificar a integração e registrar",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-09 etapa 1",
+   "nome": "Avaliar o desempenho e decidir a remuneração na política",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-09 etapa 2",
+   "nome": "Ligar o propósito ao papel e desenvolver as pessoas",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 4
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-09 etapa 3",
+   "nome": "Medir a cultura e o engajamento",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-13 etapa 1",
+   "nome": "Apurar a folha do período",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-13 etapa 2",
+   "nome": "Aprovar e pagar a folha",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-10 etapa 1",
+   "nome": "Preparar o ritual",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-10 etapa 2",
+   "nome": "Avaliar as indicações de reconhecimento",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-10 etapa 3",
+   "nome": "Realizar o ritual",
+   "modo": "Assistido",
+   "risco": "baixo",
+   "real": "Exclusivamente humana",
+   "n": 2,
+   "maq": 0
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-10 etapa 4",
+   "nome": "Comunicar e registrar",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-11 etapa 1",
+   "nome": "Planejar a pauta",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-11 etapa 2",
+   "nome": "Produzir o conteúdo",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 4
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-11 etapa 3",
+   "nome": "Publicar nos canais internos",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-11 etapa 4",
+   "nome": "Medir e registrar",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-12 etapa 1",
+   "nome": "Avaliar e atender o pedido",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-12 etapa 2",
+   "nome": "Registrar e manter os ativos e fazer o inventário",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-12 etapa 3",
+   "nome": "Baixar o ativo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-01 etapa 1",
+   "nome": "Receber o pedido e levantar o que vale",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-01 etapa 2",
+   "nome": "Redigir e decidir a regra",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 8,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-01 etapa 3",
+   "nome": "Publicar as regras vigentes",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-02 etapa 1",
+   "nome": "Montar a pauta e preparar as matérias",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-02 etapa 2",
+   "nome": "Registrar as decisões dos sócios",
+   "modo": "Assistido",
+   "risco": "médio",
+   "real": "Assistida",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-02 etapa 3",
+   "nome": "Cumprir os atos societários e acompanhar as decisões",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-03 etapa 1",
+   "nome": "Identificar e avaliar os riscos",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-03 etapa 2",
+   "nome": "Testar os controles e a conformidade",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-03 etapa 3",
+   "nome": "Relatar os riscos e a conformidade",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-04 etapa 1",
+   "nome": "Manter o calendário de obrigações",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-04 etapa 2",
+   "nome": "Cumprir a obrigação",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-05 etapa 1",
+   "nome": "Revisar o contrato",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-05 etapa 2",
+   "nome": "Guardar o contrato e registrar as obrigações",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-05 etapa 3",
+   "nome": "Acompanhar vencimentos e obrigações",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-06 etapa 1",
+   "nome": "Sortear a amostra",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-06 etapa 2",
+   "nome": "Comparar as entregas com os padrões e a alçada",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-06 etapa 3",
+   "nome": "Julgar os casos e achar a causa",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 6,
+   "maq": 4
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-06 etapa 4",
+   "nome": "Publicar o resultado da auditoria",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-07 etapa 1",
+   "nome": "Receber o pedido e localizar os dados",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-07 etapa 2",
+   "nome": "Decidir a resposta ao titular",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-07 etapa 3",
+   "nome": "Conferir o cumprimento e responder ao titular",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-08 etapa 1",
+   "nome": "Acionar o comitê e conferir os fatos",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 3
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-08 etapa 2",
+   "nome": "Decidir a declaração, a posição e o porta-voz",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Assistida",
+   "n": 5,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-08 etapa 3",
+   "nome": "Acompanhar a crise até encerrar e registrar as lições",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 4,
+   "maq": 1
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-09 etapa 1",
+   "nome": "Receber e classificar o relato ou o incidente",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-09 etapa 2",
+   "nome": "Apurar o relato e decidir a medida",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Exclusivamente humana",
+   "n": 3,
+   "maq": 0
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-09 etapa 3",
+   "nome": "Comunicar à autoridade",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-09 etapa 4",
+   "nome": "Registrar e levar a causa à conformidade",
+   "modo": "Autômato",
+   "risco": "baixo",
+   "real": "Autômata",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-10 etapa 1",
+   "nome": "Definir os temas e os indicadores",
+   "modo": "Copiloto",
+   "risco": "baixo",
+   "real": "Copiloto",
+   "n": 2,
+   "maq": 1
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-10 etapa 2",
+   "nome": "Coletar e analisar os dados",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 2,
+   "maq": 2
+  },
+  {
+   "circulo": "Governança",
+   "ref": "GO-10 etapa 3",
+   "nome": "Redigir o relato, validá-lo e publicá-lo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 5,
+   "maq": 3
+  }
+ ],
+ "achados": [
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "ID-02 etapa 1",
+   "detalhe": "O padrão vigente já resolve o pedido? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "grave",
+   "tipo": "Risco alto sem pessoa no caminho principal",
+   "onde": "ES-05 etapa 7",
+   "detalhe": "Nenhuma pessoa (do círculo, sócio, executivo ou líder) decide no caminho principal da etapa de risco alto."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-02 etapa 1",
+   "detalhe": "A pergunta cabe à Inteligência e pode ser respondida no prazo? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-02 etapa 1",
+   "detalhe": "A pergunta vem de portão ou de caso de empresa, ou pode trazer dado pessoal ou sigiloso? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-02 etapa 1",
+   "detalhe": "Há resposta registrada e ainda válida? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "IN-03 etapa 5",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-04 etapa 1",
+   "detalhe": "O pedido muda ficha já decidida de indicador de alvo vigente, sem decisão da Estratégia? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-04 etapa 1",
+   "detalhe": "Existe dado confiável para calcular cada indicador? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-04 etapa 4",
+   "detalhe": "Algum indicador apontado mede alvo vigente? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-05 etapa 2",
+   "detalhe": "O conteúdo está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-06 etapa 2",
+   "detalhe": "O método está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "IN-06 etapa 3",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-06 etapa 5",
+   "detalhe": "O resultado está abaixo do critério, ou a revisão é devida? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-07 etapa 2",
+   "detalhe": "O ajuste está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-07 etapa 6",
+   "detalhe": "A versão mínima está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-07 etapa 7",
+   "detalhe": "O pacote está completo e conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IN-08 etapa 1",
+   "detalhe": "A lição tem o mínimo para ser usada? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "IN-08 etapa 3",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-02 etapa 1",
+   "detalhe": "O material está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-03 etapa 1",
+   "detalhe": "O contato tem base legal para ser abordado? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-04 etapa 2",
+   "detalhe": "A experiência está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-05 etapa 3",
+   "detalhe": "O relatório está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-06 etapa 2",
+   "detalhe": "Os termos estão conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-06 etapa 5",
+   "detalhe": "O uso está coberto pela regra? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-07 etapa 2",
+   "detalhe": "O conteúdo está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "RE-08 etapa 1",
+   "detalhe": "O sinal pode virar crise pelo critério do protocolo? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "NE-03 etapa 3",
+   "detalhe": "A proposta está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "NE-05 etapa 2",
+   "detalhe": "A parte livre da proposta está conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-01 etapa 2",
+   "detalhe": "Há conflito de capacidade entre empresas? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-02 etapa 2",
+   "detalhe": "Os materiais estão conforme os padrões de identidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-02 etapa 2",
+   "detalhe": "Falta pessoa, compra ou assessoria para a implantação? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-02 etapa 2",
+   "detalhe": "Os agentes e os acessos ficaram prontos? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-05 etapa 2",
+   "detalhe": "Há método publicado para a capacidade? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-06 etapa 1",
+   "detalhe": "Há padrão de identidade para o canal ou o tipo de agente? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "IT-06 etapa 4",
+   "detalhe": "Há desvio no agente? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-02 etapa 2",
+   "detalhe": "A entrega passou na conferência? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "OP-02 etapa 3",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-03 etapa 2",
+   "detalhe": "O problema é de tecnologia? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-03 etapa 2",
+   "detalhe": "Falta padrão ou regra para responder? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-03 etapa 2",
+   "detalhe": "A resposta resolveu? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-03 etapa 2",
+   "detalhe": "O caso foi resolvido? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-06 etapa 3",
+   "detalhe": "O produto passou no teste? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "OP-07 etapa 1",
+   "detalhe": "O pedido está coberto? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GE-03 etapa 2",
+   "detalhe": "A fatura foge do padrão ou tem glosa ou ajuste? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "GE-04 etapa 3",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GE-04 etapa 4",
+   "detalhe": "Há falha a cobrar do fornecedor? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GE-04 etapa 5",
+   "detalhe": "Os valores batem? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Copiloto em que a pessoa no caminho é de fora do círculo",
+   "onde": "GE-08 etapa 4",
+   "detalhe": "Quem acompanha a máquina não é do círculo dono da etapa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GE-12 etapa 3",
+   "detalhe": "Há ativo a baixar? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GO-02 etapa 3",
+   "detalhe": "A decisão pede ato societário fora de um mandato? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GO-06 etapa 3",
+   "detalhe": "Há casos de fronteira? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  }
+ ],
+ "por_circulo": {
+  "Identidade": {
+   "tarefas": {
+    "A": 26,
+    "P": 27,
+    "H": 6,
+    "C": 18,
+    "R": 21,
+    "X": 1
+   },
+   "modos": {
+    "Assistido": 9,
+    "Autopiloto": 4,
+    "Copiloto": 10,
+    "Autômato": 2
+   },
+   "reais": {
+    "Assistida": 8,
+    "Autopiloto": 4,
+    "Copiloto": 10,
+    "Autômata": 2,
+    "Exclusivamente humana": 1
+   }
+  },
+  "Estratégia": {
+   "tarefas": {
+    "R": 73,
+    "P": 52,
+    "A": 33,
+    "C": 25,
+    "H": 15,
+    "X": 2
+   },
+   "modos": {
+    "Copiloto": 15,
+    "Assistido": 11,
+    "Autopiloto": 3,
+    "Autômato": 2
+   },
+   "reais": {
+    "Copiloto": 15,
+    "Assistida": 10,
+    "Autopiloto": 3,
+    "Autômata": 2,
+    "Conduzida por outros círculos": 1
+   }
+  },
+  "Inteligência": {
+   "tarefas": {
+    "A": 55,
+    "P": 56,
+    "R": 115,
+    "C": 48,
+    "H": 12,
+    "X": 1
+   },
+   "modos": {
+    "Copiloto": 21,
+    "Autopiloto": 10,
+    "Autômato": 7,
+    "Assistido": 4
+   },
+   "reais": {
+    "Copiloto": 21,
+    "Autopiloto": 10,
+    "Autômata": 7,
+    "Assistida": 4
+   }
+  },
+  "Relações": {
+   "tarefas": {
+    "R": 68,
+    "A": 34,
+    "C": 23,
+    "H": 16,
+    "P": 49
+   },
+   "modos": {
+    "Autopiloto": 6,
+    "Assistido": 5,
+    "Copiloto": 18,
+    "Autômato": 4
+   },
+   "reais": {
+    "Autopiloto": 6,
+    "Assistida": 4,
+    "Copiloto": 18,
+    "Autômata": 4,
+    "Exclusivamente humana": 1
+   }
+  },
+  "Negócios": {
+   "tarefas": {
+    "R": 67,
+    "A": 22,
+    "P": 29,
+    "H": 20,
+    "C": 34
+   },
+   "modos": {
+    "Autopiloto": 4,
+    "Copiloto": 10,
+    "Assistido": 7,
+    "Autômato": 4
+   },
+   "reais": {
+    "Autopiloto": 4,
+    "Copiloto": 10,
+    "Assistida": 7,
+    "Autômata": 4
+   }
+  },
+  "Integração": {
+   "tarefas": {
+    "R": 76,
+    "A": 25,
+    "P": 28,
+    "H": 10,
+    "C": 23
+   },
+   "modos": {
+    "Copiloto": 11,
+    "Autopiloto": 5,
+    "Assistido": 7,
+    "Autômato": 6
+   },
+   "reais": {
+    "Copiloto": 11,
+    "Autopiloto": 5,
+    "Assistida": 7,
+    "Autômata": 6
+   }
+  },
+  "Operações": {
+   "tarefas": {
+    "R": 49,
+    "A": 35,
+    "H": 8,
+    "P": 29,
+    "C": 5
+   },
+   "modos": {
+    "Autopiloto": 8,
+    "Copiloto": 19,
+    "Autômato": 1,
+    "Assistido": 2
+   },
+   "reais": {
+    "Autopiloto": 8,
+    "Copiloto": 19,
+    "Autômata": 1,
+    "Assistida": 2
+   }
+  },
+  "Gestão": {
+   "tarefas": {
+    "A": 39,
+    "P": 36,
+    "R": 51,
+    "H": 22,
+    "C": 2
+   },
+   "modos": {
+    "Copiloto": 19,
+    "Autômato": 4,
+    "Autopiloto": 14,
+    "Assistido": 7
+   },
+   "reais": {
+    "Copiloto": 19,
+    "Autômata": 4,
+    "Autopiloto": 14,
+    "Assistida": 5,
+    "Exclusivamente humana": 2
+   }
+  },
+  "Governança": {
+   "tarefas": {
+    "R": 42,
+    "A": 25,
+    "P": 27,
+    "C": 3,
+    "H": 7
+   },
+   "modos": {
+    "Autopiloto": 7,
+    "Copiloto": 16,
+    "Autômato": 5,
+    "Assistido": 3
+   },
+   "reais": {
+    "Autopiloto": 7,
+    "Copiloto": 16,
+    "Autômata": 5,
+    "Assistida": 2,
+    "Exclusivamente humana": 1
+   }
+  }
+ },
+ "participacoes": [
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "tarefas": 21
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "tarefas": 12
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "tarefas": 11
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "tarefas": 9
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "tarefas": 9
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "tarefas": 8
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "tarefas": 8
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "tarefas": 7
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "tarefas": 6
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "tarefas": 6
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "tarefas": 6
+  },
+  {
+   "quem": "Gestão",
+   "em": "Integração",
+   "tarefas": 5
+  },
+  {
+   "quem": "Gestão",
+   "em": "Estratégia",
+   "tarefas": 4
+  },
+  {
+   "quem": "Integração",
+   "em": "Estratégia",
+   "tarefas": 4
+  },
+  {
+   "quem": "Relações",
+   "em": "Inteligência",
+   "tarefas": 4
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Inteligência",
+   "tarefas": 4
+  },
+  {
+   "quem": "Identidade",
+   "em": "Negócios",
+   "tarefas": 4
+  },
+  {
+   "quem": "Operações",
+   "em": "Negócios",
+   "tarefas": 4
+  },
+  {
+   "quem": "Gestão",
+   "em": "Identidade",
+   "tarefas": 3
+  },
+  {
+   "quem": "Integração",
+   "em": "Identidade",
+   "tarefas": 3
+  },
+  {
+   "quem": "Relações",
+   "em": "Identidade",
+   "tarefas": 3
+  },
+  {
+   "quem": "Operações",
+   "em": "Inteligência",
+   "tarefas": 3
+  },
+  {
+   "quem": "Negócios",
+   "em": "Relações",
+   "tarefas": 3
+  },
+  {
+   "quem": "Gestão",
+   "em": "Relações",
+   "tarefas": 3
+  },
+  {
+   "quem": "Integração",
+   "em": "Negócios",
+   "tarefas": 3
+  },
+  {
+   "quem": "Operações",
+   "em": "Integração",
+   "tarefas": 3
+  },
+  {
+   "quem": "Governança",
+   "em": "Operações",
+   "tarefas": 3
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Identidade",
+   "tarefas": 2
+  },
+  {
+   "quem": "Integração",
+   "em": "Relações",
+   "tarefas": 2
+  },
+  {
+   "quem": "Gestão",
+   "em": "Negócios",
+   "tarefas": 2
+  },
+  {
+   "quem": "Relações",
+   "em": "Integração",
+   "tarefas": 2
+  },
+  {
+   "quem": "Negócios",
+   "em": "Integração",
+   "tarefas": 2
+  },
+  {
+   "quem": "Governança",
+   "em": "Gestão",
+   "tarefas": 2
+  },
+  {
+   "quem": "Identidade",
+   "em": "Governança",
+   "tarefas": 2
+  },
+  {
+   "quem": "Gestão",
+   "em": "Inteligência",
+   "tarefas": 1
+  },
+  {
+   "quem": "Operações",
+   "em": "Relações",
+   "tarefas": 1
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Integração",
+   "tarefas": 1
+  },
+  {
+   "quem": "Identidade",
+   "em": "Integração",
+   "tarefas": 1
+  },
+  {
+   "quem": "Inteligência",
+   "em": "Integração",
+   "tarefas": 1
+  },
+  {
+   "quem": "Negócios",
+   "em": "Operações",
+   "tarefas": 1
+  },
+  {
+   "quem": "Gestão",
+   "em": "Operações",
+   "tarefas": 1
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Governança",
+   "tarefas": 1
+  }
+ ],
+ "automacao": [
+  {
+   "code": "ID-01",
+   "circulo": "Identidade",
+   "declarado": "média",
+   "maq": 0.4666666666666667,
+   "n": 15
+  },
+  {
+   "code": "ID-02",
+   "circulo": "Identidade",
+   "declarado": "média (alta nas consultas, média na redação)",
+   "maq": 0.4666666666666667,
+   "n": 30
+  },
+  {
+   "code": "ID-03",
+   "circulo": "Identidade",
+   "declarado": "média",
+   "maq": 0.4642857142857143,
+   "n": 28
+  },
+  {
+   "code": "ID-04",
+   "circulo": "Identidade",
+   "declarado": "baixa",
+   "maq": 0.2857142857142857,
+   "n": 14
+  },
+  {
+   "code": "ID-05",
+   "circulo": "Identidade",
+   "declarado": "alta",
+   "maq": 0.75,
+   "n": 12
+  },
+  {
+   "code": "ES-01",
+   "circulo": "Estratégia",
+   "declarado": "média",
+   "maq": 0.47368421052631576,
+   "n": 38
+  },
+  {
+   "code": "ES-02",
+   "circulo": "Estratégia",
+   "declarado": "média",
+   "maq": 0.5263157894736842,
+   "n": 19
+  },
+  {
+   "code": "ES-03",
+   "circulo": "Estratégia",
+   "declarado": "média",
+   "maq": 0.4166666666666667,
+   "n": 24
+  },
+  {
+   "code": "ES-04",
+   "circulo": "Estratégia",
+   "declarado": "alta na entrada e na preparação, baixa na decisão",
+   "maq": 0.7441860465116279,
+   "n": 43
+  },
+  {
+   "code": "ES-05",
+   "circulo": "Estratégia",
+   "declarado": "média",
+   "maq": 0.38181818181818183,
+   "n": 55
+  },
+  {
+   "code": "ES-06",
+   "circulo": "Estratégia",
+   "declarado": "alta",
+   "maq": 0.7142857142857143,
+   "n": 21
+  },
+  {
+   "code": "IN-01",
+   "circulo": "Inteligência",
+   "declarado": "alta",
+   "maq": 0.7083333333333334,
+   "n": 24
+  },
+  {
+   "code": "IN-02",
+   "circulo": "Inteligência",
+   "declarado": "alta",
+   "maq": 0.7,
+   "n": 20
+  },
+  {
+   "code": "IN-03",
+   "circulo": "Inteligência",
+   "declarado": "média",
+   "maq": 0.6153846153846154,
+   "n": 26
+  },
+  {
+   "code": "IN-04",
+   "circulo": "Inteligência",
+   "declarado": "alta",
+   "maq": 0.775,
+   "n": 40
+  },
+  {
+   "code": "IN-05",
+   "circulo": "Inteligência",
+   "declarado": "alta na estrutura, na publicação e na medição; média na curadoria",
+   "maq": 0.6818181818181818,
+   "n": 22
+  },
+  {
+   "code": "IN-06",
+   "circulo": "Inteligência",
+   "declarado": "média",
+   "maq": 0.5483870967741935,
+   "n": 31
+  },
+  {
+   "code": "IN-07",
+   "circulo": "Inteligência",
+   "declarado": "média na preparação, baixa nas decisões",
+   "maq": 0.4117647058823529,
+   "n": 102
+  },
+  {
+   "code": "IN-08",
+   "circulo": "Inteligência",
+   "declarado": "alta",
+   "maq": 0.8181818181818182,
+   "n": 22
+  },
+  {
+   "code": "RE-01",
+   "circulo": "Relações",
+   "declarado": "média",
+   "maq": 0.4666666666666667,
+   "n": 15
+  },
+  {
+   "code": "RE-02",
+   "circulo": "Relações",
+   "declarado": "média (alta na execução, média na preparação)",
+   "maq": 0.47619047619047616,
+   "n": 21
+  },
+  {
+   "code": "RE-03",
+   "circulo": "Relações",
+   "declarado": "alta no registro e na nutrição, baixa na qualificação",
+   "maq": 0.84,
+   "n": 25
+  },
+  {
+   "code": "RE-04",
+   "circulo": "Relações",
+   "declarado": "média",
+   "maq": 0.38095238095238093,
+   "n": 21
+  },
+  {
+   "code": "RE-05",
+   "circulo": "Relações",
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 32
+  },
+  {
+   "code": "RE-06",
+   "circulo": "Relações",
+   "declarado": "média",
+   "maq": 0.475,
+   "n": 40
+  },
+  {
+   "code": "RE-07",
+   "circulo": "Relações",
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 18
+  },
+  {
+   "code": "RE-08",
+   "circulo": "Relações",
+   "declarado": "média (alta na coleta, baixa na crise)",
+   "maq": 0.6666666666666666,
+   "n": 18
+  },
+  {
+   "code": "NE-01",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.631578947368421,
+   "n": 19
+  },
+  {
+   "code": "NE-02",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.5384615384615384,
+   "n": 13
+  },
+  {
+   "code": "NE-03",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.59375,
+   "n": 32
+  },
+  {
+   "code": "NE-04",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.4444444444444444,
+   "n": 18
+  },
+  {
+   "code": "NE-05",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.42857142857142855,
+   "n": 42
+  },
+  {
+   "code": "NE-06",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.48484848484848486,
+   "n": 33
+  },
+  {
+   "code": "NE-07",
+   "circulo": "Negócios",
+   "declarado": "média",
+   "maq": 0.6,
+   "n": 15
+  },
+  {
+   "code": "IT-01",
+   "circulo": "Integração",
+   "declarado": "média",
+   "maq": 0.5714285714285714,
+   "n": 21
+  },
+  {
+   "code": "IT-02",
+   "circulo": "Integração",
+   "declarado": "média",
+   "maq": 0.5238095238095238,
+   "n": 21
+  },
+  {
+   "code": "IT-03",
+   "circulo": "Integração",
+   "declarado": "média",
+   "maq": 0.5294117647058824,
+   "n": 17
+  },
+  {
+   "code": "IT-04",
+   "circulo": "Integração",
+   "declarado": "média",
+   "maq": 0.6428571428571429,
+   "n": 28
+  },
+  {
+   "code": "IT-05",
+   "circulo": "Integração",
+   "declarado": "alta",
+   "maq": 0.7647058823529411,
+   "n": 17
+  },
+  {
+   "code": "IT-06",
+   "circulo": "Integração",
+   "declarado": "alta",
+   "maq": 0.6842105263157895,
+   "n": 19
+  },
+  {
+   "code": "IT-07",
+   "circulo": "Integração",
+   "declarado": "média",
+   "maq": 0.5789473684210527,
+   "n": 19
+  },
+  {
+   "code": "IT-08",
+   "circulo": "Integração",
+   "declarado": "alta",
+   "maq": 0.7,
+   "n": 20
+  },
+  {
+   "code": "OP-01",
+   "circulo": "Operações",
+   "declarado": "alta",
+   "maq": 0.7777777777777778,
+   "n": 9
+  },
+  {
+   "code": "OP-02",
+   "circulo": "Operações",
+   "declarado": "alta",
+   "maq": 0.7142857142857143,
+   "n": 14
+  },
+  {
+   "code": "OP-08",
+   "circulo": "Operações",
+   "declarado": "média",
+   "maq": 0.6666666666666666,
+   "n": 12
+  },
+  {
+   "code": "OP-03",
+   "circulo": "Operações",
+   "declarado": "alta",
+   "maq": 0.8461538461538461,
+   "n": 13
+  },
+  {
+   "code": "OP-04",
+   "circulo": "Operações",
+   "declarado": "média",
+   "maq": 0.6666666666666666,
+   "n": 21
+  },
+  {
+   "code": "OP-05",
+   "circulo": "Operações",
+   "declarado": "alta",
+   "maq": 0.7142857142857143,
+   "n": 14
+  },
+  {
+   "code": "OP-06",
+   "circulo": "Operações",
+   "declarado": "média",
+   "maq": 0.5882352941176471,
+   "n": 17
+  },
+  {
+   "code": "OP-07",
+   "circulo": "Operações",
+   "declarado": "média",
+   "maq": 0.5384615384615384,
+   "n": 26
+  },
+  {
+   "code": "GE-01",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.6666666666666666,
+   "n": 12
+  },
+  {
+   "code": "GE-02",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.6,
+   "n": 10
+  },
+  {
+   "code": "GE-03",
+   "circulo": "Gestão",
+   "declarado": "alta",
+   "maq": 0.8333333333333334,
+   "n": 12
+  },
+  {
+   "code": "GE-04",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.47058823529411764,
+   "n": 17
+  },
+  {
+   "code": "GE-05",
+   "circulo": "Gestão",
+   "declarado": "alta",
+   "maq": 0.7272727272727273,
+   "n": 11
+  },
+  {
+   "code": "GE-06",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.5714285714285714,
+   "n": 7
+  },
+  {
+   "code": "GE-07",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.4444444444444444,
+   "n": 18
+  },
+  {
+   "code": "GE-08",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 12
+  },
+  {
+   "code": "GE-09",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 16
+  },
+  {
+   "code": "GE-13",
+   "circulo": "Gestão",
+   "declarado": "alta",
+   "maq": 0.75,
+   "n": 4
+  },
+  {
+   "code": "GE-10",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.5555555555555556,
+   "n": 9
+  },
+  {
+   "code": "GE-11",
+   "circulo": "Gestão",
+   "declarado": "alta",
+   "maq": 0.6923076923076923,
+   "n": 13
+  },
+  {
+   "code": "GE-12",
+   "circulo": "Gestão",
+   "declarado": "alta",
+   "maq": 0.7777777777777778,
+   "n": 9
+  },
+  {
+   "code": "GO-01",
+   "circulo": "Governança",
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 12
+  },
+  {
+   "code": "GO-02",
+   "circulo": "Governança",
+   "declarado": "média",
+   "maq": 0.5454545454545454,
+   "n": 11
+  },
+  {
+   "code": "GO-03",
+   "circulo": "Governança",
+   "declarado": "alta",
+   "maq": 0.7,
+   "n": 10
+  },
+  {
+   "code": "GO-04",
+   "circulo": "Governança",
+   "declarado": "alta",
+   "maq": 0.7142857142857143,
+   "n": 7
+  },
+  {
+   "code": "GO-05",
+   "circulo": "Governança",
+   "declarado": "alta",
+   "maq": 0.7,
+   "n": 10
+  },
+  {
+   "code": "GO-06",
+   "circulo": "Governança",
+   "declarado": "alta",
+   "maq": 0.8461538461538461,
+   "n": 13
+  },
+  {
+   "code": "GO-07",
+   "circulo": "Governança",
+   "declarado": "alta",
+   "maq": 0.8888888888888888,
+   "n": 9
+  },
+  {
+   "code": "GO-08",
+   "circulo": "Governança",
+   "declarado": "média",
+   "maq": 0.46153846153846156,
+   "n": 13
+  },
+  {
+   "code": "GO-09",
+   "circulo": "Governança",
+   "declarado": "média",
+   "maq": 0.5,
+   "n": 10
+  },
+  {
+   "code": "GO-10",
+   "circulo": "Governança",
+   "declarado": "média",
+   "maq": 0.6666666666666666,
+   "n": 9
+  }
+ ]
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_GE06" targetNamespace="urn:imts:modelo:circulo8-gestao" exporter="Ecossistema IMTS - fonte única do Círculo 8" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_GE06">
+    <bpmn:categoryValue id="CV_GE06_E1" value="1. Apurar o custo dos círculos e o uso de cada empresa" />
+    <bpmn:categoryValue id="CV_GE06_E2" value="2. Conferir e publicar o rateio" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_GE06">
+    <bpmn:participant id="Participant_GE06" name="GE-06 · Aplicar o rateio do custo dos círculos entre as empresas" processRef="Process_GE06" />
+    <bpmn:group id="Group_GE06_E1" categoryValueRef="CV_GE06_E1" />
+    <bpmn:group id="Group_GE06_E2" categoryValueRef="CV_GE06_E2" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GE06" name="Aplicar o rateio do custo dos círculos entre as empresas" isExecutable="false">
+    <bpmn:documentation>Fazer o custo dos círculos do Ecossistema central ser repartido entre as empresas pelo critério definido pela Governança com a Estratégia: custo e uso apurados, critério aplicado, rateio conferido, aberto à opinião de cada executivo, publicado e lançado nas contas; e cada contestação do critério ir à Governança. A Governança define o critério; a Gestão aplica.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_GE06">
+      <bpmn:lane id="Lane_GE06_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>GE06_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE06_GEP" name="Gestão · pessoa">
+        <bpmn:flowNodeRef>GE06_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_E2_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE06_GEA" name="Gestão · agente">
+        <bpmn:flowNodeRef>GE06_E1_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE06_GER" name="Gestão · automação">
+        <bpmn:flowNodeRef>GE06_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE06_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="GE06_S1" name="Período de rateio iniciado"><bpmn:outgoing>GE06_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GE06_S1_def" /></bpmn:startEvent>
+    <bpmn:scriptTask id="GE06_E1_T1" name="Reunir o custo de cada círculo e o uso dos serviços por empresa"><bpmn:documentation>Etapa 1: Apurar o custo dos círculos e o uso de cada empresa. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE06_Flow1</bpmn:incoming><bpmn:outgoing>GE06_Flow2</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GE06_E1_T2" name="Aplicar o critério de rateio e calcular a parte de cada empresa"><bpmn:documentation>Etapa 1: Apurar o custo dos círculos e o uso de cada empresa. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE06_Flow2</bpmn:incoming><bpmn:outgoing>GE06_Flow3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE06_E2_T1" name="Conferir o rateio com o critério"><bpmn:documentation>Etapa 2: Conferir e publicar o rateio. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE06_Flow3</bpmn:incoming><bpmn:outgoing>GE06_Flow4</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE06_E2_T2" name="Opinar sobre o rateio da sua empresa"><bpmn:documentation>Etapa 2: Conferir e publicar o rateio. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE06_Flow4</bpmn:incoming><bpmn:outgoing>GE06_Flow5</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GE06_E2_G1" name="Há contestação do rateio?"><bpmn:incoming>GE06_Flow5</bpmn:incoming><bpmn:outgoing>GE06_Flow6</bpmn:outgoing><bpmn:outgoing>GE06_Flow7</bpmn:outgoing><bpmn:outgoing>GE06_Flow8</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GE06_E2_T3" name="Rever o cálculo e responder ao executivo"><bpmn:documentation>Etapa 2: Conferir e publicar o rateio. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE06_Flow6</bpmn:incoming><bpmn:outgoing>GE06_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="GE06_E2_T4" name="Levar a contestação do critério à Governança"><bpmn:documentation>Etapa 2: Conferir e publicar o rateio. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE06_Flow7</bpmn:incoming><bpmn:outgoing>GE06_Flow10</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="GE06_M1"><bpmn:incoming>GE06_Flow8</bpmn:incoming><bpmn:incoming>GE06_Flow9</bpmn:incoming><bpmn:incoming>GE06_Flow10</bpmn:incoming><bpmn:outgoing>GE06_Flow12</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GE06_E2_T5" name="Publicar e lançar o rateio nas contas de cada empresa"><bpmn:documentation>Etapa 2: Conferir e publicar o rateio. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>GE06_Flow12</bpmn:incoming><bpmn:outgoing>GE06_Flow11</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GE06_F1" name="Rateio publicado e lançado"><bpmn:incoming>GE06_Flow11</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="GE06_Flow1" sourceRef="GE06_S1" targetRef="GE06_E1_T1" />
+    <bpmn:sequenceFlow id="GE06_Flow2" sourceRef="GE06_E1_T1" targetRef="GE06_E1_T2" />
+    <bpmn:sequenceFlow id="GE06_Flow3" sourceRef="GE06_E1_T2" targetRef="GE06_E2_T1" />
+    <bpmn:sequenceFlow id="GE06_Flow4" sourceRef="GE06_E2_T1" targetRef="GE06_E2_T2" />
+    <bpmn:sequenceFlow id="GE06_Flow5" sourceRef="GE06_E2_T2" targetRef="GE06_E2_G1" />
+    <bpmn:sequenceFlow id="GE06_Flow6" name="Do cálculo" sourceRef="GE06_E2_G1" targetRef="GE06_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Do cálculo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE06_Flow7" name="Do critério" sourceRef="GE06_E2_G1" targetRef="GE06_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Do critério</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE06_Flow8" name="Não" sourceRef="GE06_E2_G1" targetRef="GE06_M1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE06_Flow9" sourceRef="GE06_E2_T3" targetRef="GE06_M1" />
+    <bpmn:sequenceFlow id="GE06_Flow10" sourceRef="GE06_E2_T4" targetRef="GE06_M1" />
+    <bpmn:sequenceFlow id="GE06_Flow11" sourceRef="GE06_E2_T5" targetRef="GE06_F1" />
+    <bpmn:sequenceFlow id="GE06_Flow12" sourceRef="GE06_M1" targetRef="GE06_E2_T5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_GE06">
+    <bpmndi:BPMNPlane id="Plane_GE06" bpmnElement="Collab_GE06">
+      <bpmndi:BPMNShape id="Participant_GE06_di" bpmnElement="Participant_GE06" isHorizontal="true"><dc:Bounds x="0" y="0" width="2360" height="704" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE06_EXE_di" bpmnElement="Lane_GE06_EXE" isHorizontal="true"><dc:Bounds x="30" y="0" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE06_GEP_di" bpmnElement="Lane_GE06_GEP" isHorizontal="true"><dc:Bounds x="30" y="176" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE06_GEA_di" bpmnElement="Lane_GE06_GEA" isHorizontal="true"><dc:Bounds x="30" y="352" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE06_GER_di" bpmnElement="Lane_GE06_GER" isHorizontal="true"><dc:Bounds x="30" y="528" width="2330" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_S1_di" bpmnElement="GE06_S1"><dc:Bounds x="132" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E1_T1_di" bpmnElement="GE06_E1_T1"><dc:Bounds x="276" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E1_T2_di" bpmnElement="GE06_E1_T2"><dc:Bounds x="482" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E2_T1_di" bpmnElement="GE06_E2_T1"><dc:Bounds x="688" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E2_T2_di" bpmnElement="GE06_E2_T2"><dc:Bounds x="894" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E2_G1_di" bpmnElement="GE06_E2_G1" isMarkerVisible="true"><dc:Bounds x="1155" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1068" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E2_T3_di" bpmnElement="GE06_E2_T3"><dc:Bounds x="1306" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E2_T4_di" bpmnElement="GE06_E2_T4"><dc:Bounds x="1512" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_M1_di" bpmnElement="GE06_M1" isMarkerVisible="true"><dc:Bounds x="1773" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_E2_T5_di" bpmnElement="GE06_E2_T5"><dc:Bounds x="1924" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE06_F1_di" bpmnElement="GE06_F1"><dc:Bounds x="2192" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2155" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GE06_Flow1_di" bpmnElement="GE06_Flow1"><di:waypoint x="168" y="616" /><di:waypoint x="276" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow2_di" bpmnElement="GE06_Flow2"><di:waypoint x="356" y="566" /><di:waypoint x="356" y="440" /><di:waypoint x="482" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow3_di" bpmnElement="GE06_Flow3"><di:waypoint x="562" y="390" /><di:waypoint x="562" y="264" /><di:waypoint x="688" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow4_di" bpmnElement="GE06_Flow4"><di:waypoint x="768" y="214" /><di:waypoint x="768" y="88" /><di:waypoint x="894" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow5_di" bpmnElement="GE06_Flow5"><di:waypoint x="974" y="138" /><di:waypoint x="974" y="264" /><di:waypoint x="1155" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow6_di" bpmnElement="GE06_Flow6"><di:waypoint x="1205" y="264" /><di:waypoint x="1306" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="1210" y="246" width="68" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow7_di" bpmnElement="GE06_Flow7"><di:waypoint x="1180" y="289" /><di:waypoint x="1180" y="616" /><di:waypoint x="1512" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="1186" y="294" width="74" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow8_di" bpmnElement="GE06_Flow8"><di:waypoint x="1180" y="239" /><di:waypoint x="1180" y="185" /><di:waypoint x="1798" y="185" /><di:waypoint x="1798" y="591" /><bpmndi:BPMNLabel><dc:Bounds x="1186" y="221" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow9_di" bpmnElement="GE06_Flow9"><di:waypoint x="1466" y="264" /><di:waypoint x="1798" y="264" /><di:waypoint x="1798" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow10_di" bpmnElement="GE06_Flow10"><di:waypoint x="1672" y="616" /><di:waypoint x="1773" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow11_di" bpmnElement="GE06_Flow11"><di:waypoint x="2084" y="616" /><di:waypoint x="2192" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE06_Flow12_di" bpmnElement="GE06_Flow12"><di:waypoint x="1823" y="616" /><di:waypoint x="1924" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GE06_E1_di" bpmnElement="Group_GE06_E1"><dc:Bounds x="261" y="-44" width="396" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE06_E2_di" bpmnElement="Group_GE06_E2"><dc:Bounds x="673" y="-44" width="1426" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="679" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_ID03" targetNamespace="urn:imts:modelo:circulo1-identidade" exporter="Ecossistema IMTS - fonte única do Círculo 1" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_ID03">
+    <bpmn:categoryValue id="CV_ID03_E1" value="1. Entender o pedido e pesquisar as marcas do portfólio e dos concorrentes" />
+    <bpmn:categoryValue id="CV_ID03_E2" value="2. Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada" />
+    <bpmn:categoryValue id="CV_ID03_E3" value="3. Definir a essência da marca e o nome" />
+    <bpmn:categoryValue id="CV_ID03_E4" value="4. Desenhar a identidade visual e verbal" />
+    <bpmn:categoryValue id="CV_ID03_E5" value="5. Proteger a marca" />
+    <bpmn:categoryValue id="CV_ID03_E6" value="6. Montar o pacote de marca" />
+    <bpmn:categoryValue id="CV_ID03_E7" value="7. Publicar e entregar a quem usa a marca" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_ID03">
+    <bpmn:participant id="Participant_ID03" name="ID-03 · Criar ou rever e registrar a marca de uma empresa, oferta ou projeto" processRef="Process_ID03" />
+    <bpmn:group id="Group_ID03_E1" categoryValueRef="CV_ID03_E1" />
+    <bpmn:group id="Group_ID03_E2" categoryValueRef="CV_ID03_E2" />
+    <bpmn:group id="Group_ID03_E3" categoryValueRef="CV_ID03_E3" />
+    <bpmn:group id="Group_ID03_E4" categoryValueRef="CV_ID03_E4" />
+    <bpmn:group id="Group_ID03_E5" categoryValueRef="CV_ID03_E5" />
+    <bpmn:group id="Group_ID03_E6" categoryValueRef="CV_ID03_E6" />
+    <bpmn:group id="Group_ID03_E7" categoryValueRef="CV_ID03_E7" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_ID03" name="Criar ou rever e registrar a marca de uma empresa, oferta ou projeto" isExecutable="false">
+    <bpmn:documentation>Decidir se o negócio novo usa uma marca existente ou ganha marca própria e, quando ganha, entregá-la criada, protegida e pronta para uso por pessoas e agentes. Vale também para rever uma marca existente, receber a marca de uma empresa adquirida e retirar uma marca de uso. Quem usa a marca produz os materiais com o pacote.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_ID03">
+      <bpmn:lane id="Lane_ID03_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>ID03_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_EST" name="Estratégia">
+        <bpmn:flowNodeRef>ID03_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>ID03_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E4_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_ASS" name="Assessoria externa">
+        <bpmn:flowNodeRef>ID03_E3_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_GOV" name="Governança">
+        <bpmn:flowNodeRef>ID03_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E5_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E5_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_IDP" name="Identidade · pessoa">
+        <bpmn:flowNodeRef>ID03_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E4_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E4_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E5_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E6_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_IDA" name="Identidade · agente">
+        <bpmn:flowNodeRef>ID03_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E6_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID03_IDR" name="Identidade · automação">
+        <bpmn:flowNodeRef>ID03_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E3_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E5_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E6_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E7_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_E7_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID03_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="ID03_S1" name="Pedido de marca recebido"><bpmn:outgoing>ID03_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="ID03_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="ID03_S2" name="Retirada de marca pedida"><bpmn:outgoing>ID03_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="ID03_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="ID03_S3" name="Revisão de marca decidida"><bpmn:outgoing>ID03_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="ID03_S3_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ID03_M1"><bpmn:incoming>ID03_Flow1</bpmn:incoming><bpmn:incoming>ID03_Flow2</bpmn:incoming><bpmn:incoming>ID03_Flow3</bpmn:incoming><bpmn:outgoing>ID03_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID03_E1_T1" name="Fechar o briefing com quem pediu"><bpmn:documentation>Etapa 1: Entender o pedido e pesquisar as marcas do portfólio e dos concorrentes. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow41</bpmn:incoming><bpmn:outgoing>ID03_Flow4</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="ID03_E1_T2" name="Pesquisar as marcas do portfólio e dos concorrentes"><bpmn:documentation>Etapa 1: Entender o pedido e pesquisar as marcas do portfólio e dos concorrentes. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow4</bpmn:incoming><bpmn:outgoing>ID03_Flow5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="ID03_E2_T1" name="Aplicar os critérios de escolha entre marca existente e marca própria e recomendar"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow5</bpmn:incoming><bpmn:outgoing>ID03_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:task id="ID03_E2_T2" name="Avaliar a recomendação à luz do portfólio"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Outro círculo (Estratégia). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow6</bpmn:incoming><bpmn:outgoing>ID03_Flow7</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="ID03_E2_T3" name="Opinar sobre o papel da marca do seu negócio"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow7</bpmn:incoming><bpmn:outgoing>ID03_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="ID03_E2_T4" name="Decidir o papel da marca, ouvido o executivo"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow8</bpmn:incoming><bpmn:outgoing>ID03_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID03_E2_G1" name="Que marca o negócio terá?"><bpmn:incoming>ID03_Flow9</bpmn:incoming><bpmn:outgoing>ID03_Flow10</bpmn:outgoing><bpmn:outgoing>ID03_Flow11</bpmn:outgoing><bpmn:outgoing>ID03_Flow12</bpmn:outgoing><bpmn:outgoing>ID03_Flow13</bpmn:outgoing><bpmn:outgoing>ID03_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ID03_E2_T5" name="Agendar a retirada da marca para a data de efeito que veio no pedido"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow14</bpmn:incoming><bpmn:outgoing>ID03_Flow15</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="ID03_E2_T6" name="Marcar a marca como retirada no repositório na data de efeito e avisar quem a usa"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow15</bpmn:incoming><bpmn:outgoing>ID03_Flow16</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:task id="ID03_E2_T7" name="Dar baixa ou transferir o registro da marca retirada"><bpmn:documentation>Etapa 2: Decidir que marca o negócio terá: existente, própria, recebida, revista ou retirada. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow16</bpmn:incoming><bpmn:outgoing>ID03_Flow17</bpmn:outgoing></bpmn:task>
+    <bpmn:endEvent id="ID03_F2" name="Marca retirada de uso"><bpmn:incoming>ID03_Flow17</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="ID03_M2"><bpmn:incoming>ID03_Flow10</bpmn:incoming><bpmn:incoming>ID03_Flow25</bpmn:incoming><bpmn:outgoing>ID03_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ID03_E3_T1" name="Gerar a essência da marca e nomes candidatos"><bpmn:documentation>Etapa 3: Definir a essência da marca e o nome. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow42</bpmn:incoming><bpmn:outgoing>ID03_Flow18</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="ID03_E3_T2" name="Verificar no INPI se já existe marca igual ou parecida e se os domínios estão livres"><bpmn:documentation>Etapa 3: Definir a essência da marca e o nome. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow18</bpmn:incoming><bpmn:outgoing>ID03_Flow19</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:task id="ID03_E3_T3" name="Avaliar o risco de registro dos nomes"><bpmn:documentation>Etapa 3: Definir a essência da marca e o nome. Executor: Assessoria externa (Assessoria externa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow19</bpmn:incoming><bpmn:outgoing>ID03_Flow20</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="ID03_E3_T4" name="Opinar sobre os nomes candidatos"><bpmn:documentation>Etapa 3: Definir a essência da marca e o nome. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow20</bpmn:incoming><bpmn:outgoing>ID03_Flow21</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="ID03_E3_T5" name="Escolher o nome, ouvido o executivo"><bpmn:documentation>Etapa 3: Definir a essência da marca e o nome. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow21</bpmn:incoming><bpmn:outgoing>ID03_Flow22</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID03_E3_G1" name="Nome livre e aprovado?"><bpmn:incoming>ID03_Flow22</bpmn:incoming><bpmn:outgoing>ID03_Flow23</bpmn:outgoing><bpmn:outgoing>ID03_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ID03_E3_T6" name="Reservar os domínios do nome aprovado"><bpmn:documentation>Etapa 3: Definir a essência da marca e o nome. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow23</bpmn:incoming><bpmn:outgoing>ID03_Flow24</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ID03_M3"><bpmn:incoming>ID03_Flow12</bpmn:incoming><bpmn:incoming>ID03_Flow24</bpmn:incoming><bpmn:incoming>ID03_Flow31</bpmn:incoming><bpmn:outgoing>ID03_Flow43</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ID03_E4_T1" name="Gerar alternativas de identidade visual e verbal"><bpmn:documentation>Etapa 4: Desenhar a identidade visual e verbal. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow43</bpmn:incoming><bpmn:outgoing>ID03_Flow26</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="ID03_E4_T2" name="Refinar as alternativas"><bpmn:documentation>Etapa 4: Desenhar a identidade visual e verbal. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow26</bpmn:incoming><bpmn:outgoing>ID03_Flow27</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="ID03_E4_T3" name="Opinar sobre as alternativas de identidade visual e verbal"><bpmn:documentation>Etapa 4: Desenhar a identidade visual e verbal. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow27</bpmn:incoming><bpmn:outgoing>ID03_Flow28</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="ID03_E4_T4" name="Escolher a identidade, ouvido o executivo"><bpmn:documentation>Etapa 4: Desenhar a identidade visual e verbal. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>ID03_Flow28</bpmn:incoming><bpmn:outgoing>ID03_Flow29</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID03_E4_G1" name="Identidade aprovada?"><bpmn:incoming>ID03_Flow29</bpmn:incoming><bpmn:outgoing>ID03_Flow30</bpmn:outgoing><bpmn:outgoing>ID03_Flow31</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ID03_M4"><bpmn:incoming>ID03_Flow13</bpmn:incoming><bpmn:incoming>ID03_Flow30</bpmn:incoming><bpmn:outgoing>ID03_Flow44</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID03_E5_T1" name="Decidir o que proteger: tipo de marca, classes e domínios"><bpmn:documentation>Etapa 5: Proteger a marca. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow44</bpmn:incoming><bpmn:outgoing>ID03_Flow32</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ID03_E5_T2" name="Registrar os perfis da marca"><bpmn:documentation>Etapa 5: Proteger a marca. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow32</bpmn:incoming><bpmn:outgoing>ID03_Flow33</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:task id="ID03_E5_T3" name="Depositar o pedido de registro no INPI ou transferir a titularidade da marca recebida"><bpmn:documentation>Etapa 5: Proteger a marca. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow33</bpmn:incoming><bpmn:outgoing>ID03_Flow34</bpmn:outgoing></bpmn:task>
+    <bpmn:task id="ID03_E5_T4" name="Assumir os prazos de acompanhamento e renovação"><bpmn:documentation>Etapa 5: Proteger a marca. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ID03_Flow34</bpmn:incoming><bpmn:outgoing>ID03_Flow35</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="ID03_M5"><bpmn:incoming>ID03_Flow11</bpmn:incoming><bpmn:incoming>ID03_Flow35</bpmn:incoming><bpmn:outgoing>ID03_Flow45</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ID03_E6_T1" name="Montar manual, modelos e arquivos para pessoas e agentes"><bpmn:documentation>Etapa 6: Montar o pacote de marca. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow45</bpmn:incoming><bpmn:outgoing>ID03_Flow36</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:businessRuleTask id="ID03_E6_T2" name="Conferir o pacote contra o padrão"><bpmn:documentation>Etapa 6: Montar o pacote de marca. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow36</bpmn:incoming><bpmn:outgoing>ID03_Flow37</bpmn:outgoing></bpmn:businessRuleTask>
+    <bpmn:userTask id="ID03_E6_T3" name="Revisar o pacote"><bpmn:documentation>Etapa 6: Montar o pacote de marca. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow37</bpmn:incoming><bpmn:outgoing>ID03_Flow38</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ID03_E7_T1" name="Publicar no repositório de marca"><bpmn:documentation>Etapa 7: Publicar e entregar a quem usa a marca. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow38</bpmn:incoming><bpmn:outgoing>ID03_Flow39</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="ID03_E7_T2" name="Avisar quem pediu e os círculos que usam a marca"><bpmn:documentation>Etapa 7: Publicar e entregar a quem usa a marca. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>ID03_Flow39</bpmn:incoming><bpmn:outgoing>ID03_Flow40</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="ID03_F1" name="Marca pronta para uso"><bpmn:incoming>ID03_Flow40</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="ID03_Flow1" sourceRef="ID03_S1" targetRef="ID03_M1" />
+    <bpmn:sequenceFlow id="ID03_Flow2" sourceRef="ID03_S2" targetRef="ID03_M1" />
+    <bpmn:sequenceFlow id="ID03_Flow3" sourceRef="ID03_S3" targetRef="ID03_M1" />
+    <bpmn:sequenceFlow id="ID03_Flow4" sourceRef="ID03_E1_T1" targetRef="ID03_E1_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow5" sourceRef="ID03_E1_T2" targetRef="ID03_E2_T1" />
+    <bpmn:sequenceFlow id="ID03_Flow6" sourceRef="ID03_E2_T1" targetRef="ID03_E2_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow7" sourceRef="ID03_E2_T2" targetRef="ID03_E2_T3" />
+    <bpmn:sequenceFlow id="ID03_Flow8" sourceRef="ID03_E2_T3" targetRef="ID03_E2_T4" />
+    <bpmn:sequenceFlow id="ID03_Flow9" sourceRef="ID03_E2_T4" targetRef="ID03_E2_G1" />
+    <bpmn:sequenceFlow id="ID03_Flow10" name="Marca nova" sourceRef="ID03_E2_G1" targetRef="ID03_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Marca nova</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow11" name="Marca existente" sourceRef="ID03_E2_G1" targetRef="ID03_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Marca existente</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow12" name="Revisão da marca atual" sourceRef="ID03_E2_G1" targetRef="ID03_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Revisão da marca atual</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow13" name="Marca recebida de empresa adquirida" sourceRef="ID03_E2_G1" targetRef="ID03_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Marca recebida de empresa adquirida</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow14" name="Retirada da marca" sourceRef="ID03_E2_G1" targetRef="ID03_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Retirada da marca</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow15" sourceRef="ID03_E2_T5" targetRef="ID03_E2_T6" />
+    <bpmn:sequenceFlow id="ID03_Flow16" sourceRef="ID03_E2_T6" targetRef="ID03_E2_T7" />
+    <bpmn:sequenceFlow id="ID03_Flow17" sourceRef="ID03_E2_T7" targetRef="ID03_F2" />
+    <bpmn:sequenceFlow id="ID03_Flow18" sourceRef="ID03_E3_T1" targetRef="ID03_E3_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow19" sourceRef="ID03_E3_T2" targetRef="ID03_E3_T3" />
+    <bpmn:sequenceFlow id="ID03_Flow20" sourceRef="ID03_E3_T3" targetRef="ID03_E3_T4" />
+    <bpmn:sequenceFlow id="ID03_Flow21" sourceRef="ID03_E3_T4" targetRef="ID03_E3_T5" />
+    <bpmn:sequenceFlow id="ID03_Flow22" sourceRef="ID03_E3_T5" targetRef="ID03_E3_G1" />
+    <bpmn:sequenceFlow id="ID03_Flow23" name="Sim" sourceRef="ID03_E3_G1" targetRef="ID03_E3_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow24" sourceRef="ID03_E3_T6" targetRef="ID03_M3" />
+    <bpmn:sequenceFlow id="ID03_Flow25" name="Não" sourceRef="ID03_E3_G1" targetRef="ID03_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow26" sourceRef="ID03_E4_T1" targetRef="ID03_E4_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow27" sourceRef="ID03_E4_T2" targetRef="ID03_E4_T3" />
+    <bpmn:sequenceFlow id="ID03_Flow28" sourceRef="ID03_E4_T3" targetRef="ID03_E4_T4" />
+    <bpmn:sequenceFlow id="ID03_Flow29" sourceRef="ID03_E4_T4" targetRef="ID03_E4_G1" />
+    <bpmn:sequenceFlow id="ID03_Flow30" name="Sim" sourceRef="ID03_E4_G1" targetRef="ID03_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow31" name="Não" sourceRef="ID03_E4_G1" targetRef="ID03_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID03_Flow32" sourceRef="ID03_E5_T1" targetRef="ID03_E5_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow33" sourceRef="ID03_E5_T2" targetRef="ID03_E5_T3" />
+    <bpmn:sequenceFlow id="ID03_Flow34" sourceRef="ID03_E5_T3" targetRef="ID03_E5_T4" />
+    <bpmn:sequenceFlow id="ID03_Flow35" sourceRef="ID03_E5_T4" targetRef="ID03_M5" />
+    <bpmn:sequenceFlow id="ID03_Flow36" sourceRef="ID03_E6_T1" targetRef="ID03_E6_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow37" sourceRef="ID03_E6_T2" targetRef="ID03_E6_T3" />
+    <bpmn:sequenceFlow id="ID03_Flow38" sourceRef="ID03_E6_T3" targetRef="ID03_E7_T1" />
+    <bpmn:sequenceFlow id="ID03_Flow39" sourceRef="ID03_E7_T1" targetRef="ID03_E7_T2" />
+    <bpmn:sequenceFlow id="ID03_Flow40" sourceRef="ID03_E7_T2" targetRef="ID03_F1" />
+    <bpmn:sequenceFlow id="ID03_Flow41" sourceRef="ID03_M1" targetRef="ID03_E1_T1" />
+    <bpmn:sequenceFlow id="ID03_Flow42" sourceRef="ID03_M2" targetRef="ID03_E3_T1" />
+    <bpmn:sequenceFlow id="ID03_Flow43" sourceRef="ID03_M3" targetRef="ID03_E4_T1" />
+    <bpmn:sequenceFlow id="ID03_Flow44" sourceRef="ID03_M4" targetRef="ID03_E5_T1" />
+    <bpmn:sequenceFlow id="ID03_Flow45" sourceRef="ID03_M5" targetRef="ID03_E6_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_ID03">
+    <bpmndi:BPMNPlane id="Plane_ID03" bpmnElement="Collab_ID03">
+      <bpmndi:BPMNShape id="Participant_ID03_di" bpmnElement="Participant_ID03" isHorizontal="true"><dc:Bounds x="0" y="0" width="8152" height="1408" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_SOL_di" bpmnElement="Lane_ID03_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_EST_di" bpmnElement="Lane_ID03_EST" isHorizontal="true"><dc:Bounds x="30" y="176" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_EXE_di" bpmnElement="Lane_ID03_EXE" isHorizontal="true"><dc:Bounds x="30" y="352" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_ASS_di" bpmnElement="Lane_ID03_ASS" isHorizontal="true"><dc:Bounds x="30" y="528" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_GOV_di" bpmnElement="Lane_ID03_GOV" isHorizontal="true"><dc:Bounds x="30" y="704" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_IDP_di" bpmnElement="Lane_ID03_IDP" isHorizontal="true"><dc:Bounds x="30" y="880" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_IDA_di" bpmnElement="Lane_ID03_IDA" isHorizontal="true"><dc:Bounds x="30" y="1056" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID03_IDR_di" bpmnElement="Lane_ID03_IDR" isHorizontal="true"><dc:Bounds x="30" y="1232" width="8122" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_S1_di" bpmnElement="ID03_S1"><dc:Bounds x="156" y="30" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="28" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_S2_di" bpmnElement="ID03_S2"><dc:Bounds x="156" y="110" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="108" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_S3_di" bpmnElement="ID03_S3"><dc:Bounds x="156" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1300" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_M1_di" bpmnElement="ID03_M1" isMarkerVisible="true"><dc:Bounds x="355" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E1_T1_di" bpmnElement="ID03_E1_T1"><dc:Bounds x="506" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E1_T2_di" bpmnElement="ID03_E1_T2"><dc:Bounds x="712" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T1_di" bpmnElement="ID03_E2_T1"><dc:Bounds x="918" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T2_di" bpmnElement="ID03_E2_T2"><dc:Bounds x="1124" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T3_di" bpmnElement="ID03_E2_T3"><dc:Bounds x="1330" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T4_di" bpmnElement="ID03_E2_T4"><dc:Bounds x="1536" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_G1_di" bpmnElement="ID03_E2_G1" isMarkerVisible="true"><dc:Bounds x="1797" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1710" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T5_di" bpmnElement="ID03_E2_T5"><dc:Bounds x="1948" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T6_di" bpmnElement="ID03_E2_T6"><dc:Bounds x="2154" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E2_T7_di" bpmnElement="ID03_E2_T7"><dc:Bounds x="2360" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_F2_di" bpmnElement="ID03_F2"><dc:Bounds x="2628" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2591" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_M2_di" bpmnElement="ID03_M2" isMarkerVisible="true"><dc:Bounds x="2827" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_T1_di" bpmnElement="ID03_E3_T1"><dc:Bounds x="2978" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_T2_di" bpmnElement="ID03_E3_T2"><dc:Bounds x="3184" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_T3_di" bpmnElement="ID03_E3_T3"><dc:Bounds x="3390" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_T4_di" bpmnElement="ID03_E3_T4"><dc:Bounds x="3596" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_T5_di" bpmnElement="ID03_E3_T5"><dc:Bounds x="3802" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_G1_di" bpmnElement="ID03_E3_G1" isMarkerVisible="true"><dc:Bounds x="4063" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3976" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E3_T6_di" bpmnElement="ID03_E3_T6"><dc:Bounds x="4214" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_M3_di" bpmnElement="ID03_M3" isMarkerVisible="true"><dc:Bounds x="4475" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E4_T1_di" bpmnElement="ID03_E4_T1"><dc:Bounds x="4626" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E4_T2_di" bpmnElement="ID03_E4_T2"><dc:Bounds x="4832" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E4_T3_di" bpmnElement="ID03_E4_T3"><dc:Bounds x="5038" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E4_T4_di" bpmnElement="ID03_E4_T4"><dc:Bounds x="5244" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E4_G1_di" bpmnElement="ID03_E4_G1" isMarkerVisible="true"><dc:Bounds x="5505" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5418" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_M4_di" bpmnElement="ID03_M4" isMarkerVisible="true"><dc:Bounds x="5711" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E5_T1_di" bpmnElement="ID03_E5_T1"><dc:Bounds x="5862" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E5_T2_di" bpmnElement="ID03_E5_T2"><dc:Bounds x="6068" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E5_T3_di" bpmnElement="ID03_E5_T3"><dc:Bounds x="6274" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E5_T4_di" bpmnElement="ID03_E5_T4"><dc:Bounds x="6480" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_M5_di" bpmnElement="ID03_M5" isMarkerVisible="true"><dc:Bounds x="6741" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E6_T1_di" bpmnElement="ID03_E6_T1"><dc:Bounds x="6892" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E6_T2_di" bpmnElement="ID03_E6_T2"><dc:Bounds x="7098" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E6_T3_di" bpmnElement="ID03_E6_T3"><dc:Bounds x="7304" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E7_T1_di" bpmnElement="ID03_E7_T1"><dc:Bounds x="7510" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_E7_T2_di" bpmnElement="ID03_E7_T2"><dc:Bounds x="7716" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID03_F1_di" bpmnElement="ID03_F1"><dc:Bounds x="7984" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7947" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="ID03_Flow1_di" bpmnElement="ID03_Flow1"><di:waypoint x="192" y="48" /><di:waypoint x="380" y="48" /><di:waypoint x="380" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow2_di" bpmnElement="ID03_Flow2"><di:waypoint x="192" y="128" /><di:waypoint x="380" y="128" /><di:waypoint x="380" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow3_di" bpmnElement="ID03_Flow3"><di:waypoint x="192" y="1320" /><di:waypoint x="380" y="1320" /><di:waypoint x="380" y="993" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow4_di" bpmnElement="ID03_Flow4"><di:waypoint x="586" y="1018" /><di:waypoint x="586" y="1144" /><di:waypoint x="712" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow5_di" bpmnElement="ID03_Flow5"><di:waypoint x="872" y="1144" /><di:waypoint x="918" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow6_di" bpmnElement="ID03_Flow6"><di:waypoint x="998" y="1094" /><di:waypoint x="998" y="264" /><di:waypoint x="1124" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow7_di" bpmnElement="ID03_Flow7"><di:waypoint x="1204" y="314" /><di:waypoint x="1204" y="440" /><di:waypoint x="1330" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow8_di" bpmnElement="ID03_Flow8"><di:waypoint x="1410" y="490" /><di:waypoint x="1410" y="968" /><di:waypoint x="1536" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow9_di" bpmnElement="ID03_Flow9"><di:waypoint x="1696" y="968" /><di:waypoint x="1797" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow10_di" bpmnElement="ID03_Flow10"><di:waypoint x="1847" y="968" /><di:waypoint x="2852" y="968" /><di:waypoint x="2852" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="1852" y="950" width="68" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow11_di" bpmnElement="ID03_Flow11"><di:waypoint x="1822" y="943" /><di:waypoint x="1822" y="889" /><di:waypoint x="6766" y="889" /><di:waypoint x="6766" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="912" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow12_di" bpmnElement="ID03_Flow12"><di:waypoint x="1822" y="943" /><di:waypoint x="1822" y="889" /><di:waypoint x="4500" y="889" /><di:waypoint x="4500" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="858" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow13_di" bpmnElement="ID03_Flow13"><di:waypoint x="1822" y="943" /><di:waypoint x="1822" y="889" /><di:waypoint x="5736" y="889" /><di:waypoint x="5736" y="943" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="895" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow14_di" bpmnElement="ID03_Flow14"><di:waypoint x="1822" y="993" /><di:waypoint x="1822" y="1320" /><di:waypoint x="1948" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow15_di" bpmnElement="ID03_Flow15"><di:waypoint x="2108" y="1320" /><di:waypoint x="2154" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow16_di" bpmnElement="ID03_Flow16"><di:waypoint x="2234" y="1270" /><di:waypoint x="2234" y="792" /><di:waypoint x="2360" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow17_di" bpmnElement="ID03_Flow17"><di:waypoint x="2440" y="842" /><di:waypoint x="2440" y="1320" /><di:waypoint x="2628" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow18_di" bpmnElement="ID03_Flow18"><di:waypoint x="3138" y="1144" /><di:waypoint x="3184" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow19_di" bpmnElement="ID03_Flow19"><di:waypoint x="3264" y="1094" /><di:waypoint x="3264" y="616" /><di:waypoint x="3390" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow20_di" bpmnElement="ID03_Flow20"><di:waypoint x="3470" y="566" /><di:waypoint x="3470" y="440" /><di:waypoint x="3596" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow21_di" bpmnElement="ID03_Flow21"><di:waypoint x="3676" y="490" /><di:waypoint x="3676" y="968" /><di:waypoint x="3802" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow22_di" bpmnElement="ID03_Flow22"><di:waypoint x="3962" y="968" /><di:waypoint x="4063" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow23_di" bpmnElement="ID03_Flow23"><di:waypoint x="4088" y="993" /><di:waypoint x="4088" y="1320" /><di:waypoint x="4214" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4094" y="998" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow24_di" bpmnElement="ID03_Flow24"><di:waypoint x="4294" y="1270" /><di:waypoint x="4294" y="1144" /><di:waypoint x="4475" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow25_di" bpmnElement="ID03_Flow25"><di:waypoint x="4088" y="943" /><di:waypoint x="4088" y="895" /><di:waypoint x="2852" y="895" /><di:waypoint x="2852" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="4094" y="925" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow26_di" bpmnElement="ID03_Flow26"><di:waypoint x="4706" y="1094" /><di:waypoint x="4706" y="968" /><di:waypoint x="4832" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow27_di" bpmnElement="ID03_Flow27"><di:waypoint x="4912" y="918" /><di:waypoint x="4912" y="440" /><di:waypoint x="5038" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow28_di" bpmnElement="ID03_Flow28"><di:waypoint x="5118" y="490" /><di:waypoint x="5118" y="968" /><di:waypoint x="5244" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow29_di" bpmnElement="ID03_Flow29"><di:waypoint x="5404" y="968" /><di:waypoint x="5505" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow30_di" bpmnElement="ID03_Flow30"><di:waypoint x="5555" y="968" /><di:waypoint x="5711" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="5560" y="950" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow31_di" bpmnElement="ID03_Flow31"><di:waypoint x="5530" y="943" /><di:waypoint x="5530" y="895" /><di:waypoint x="4500" y="895" /><di:waypoint x="4500" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="925" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow32_di" bpmnElement="ID03_Flow32"><di:waypoint x="5942" y="1018" /><di:waypoint x="5942" y="1320" /><di:waypoint x="6068" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow33_di" bpmnElement="ID03_Flow33"><di:waypoint x="6148" y="1270" /><di:waypoint x="6148" y="792" /><di:waypoint x="6274" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow34_di" bpmnElement="ID03_Flow34"><di:waypoint x="6434" y="792" /><di:waypoint x="6480" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow35_di" bpmnElement="ID03_Flow35"><di:waypoint x="6560" y="842" /><di:waypoint x="6560" y="1144" /><di:waypoint x="6741" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow36_di" bpmnElement="ID03_Flow36"><di:waypoint x="6972" y="1194" /><di:waypoint x="6972" y="1320" /><di:waypoint x="7098" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow37_di" bpmnElement="ID03_Flow37"><di:waypoint x="7178" y="1270" /><di:waypoint x="7178" y="968" /><di:waypoint x="7304" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow38_di" bpmnElement="ID03_Flow38"><di:waypoint x="7384" y="1018" /><di:waypoint x="7384" y="1320" /><di:waypoint x="7510" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow39_di" bpmnElement="ID03_Flow39"><di:waypoint x="7670" y="1320" /><di:waypoint x="7716" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow40_di" bpmnElement="ID03_Flow40"><di:waypoint x="7876" y="1320" /><di:waypoint x="7984" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow41_di" bpmnElement="ID03_Flow41"><di:waypoint x="405" y="968" /><di:waypoint x="506" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow42_di" bpmnElement="ID03_Flow42"><di:waypoint x="2877" y="1144" /><di:waypoint x="2978" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow43_di" bpmnElement="ID03_Flow43"><di:waypoint x="4525" y="1144" /><di:waypoint x="4626" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow44_di" bpmnElement="ID03_Flow44"><di:waypoint x="5761" y="968" /><di:waypoint x="5862" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID03_Flow45_di" bpmnElement="ID03_Flow45"><di:waypoint x="6791" y="1144" /><di:waypoint x="6892" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_ID03_E1_di" bpmnElement="Group_ID03_E1"><dc:Bounds x="285" y="-44" width="602" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID03_E2_di" bpmnElement="Group_ID03_E2"><dc:Bounds x="903" y="-44" width="1632" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="909" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID03_E3_di" bpmnElement="Group_ID03_E3"><dc:Bounds x="2757" y="-44" width="1632" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="2763" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID03_E4_di" bpmnElement="Group_ID03_E4"><dc:Bounds x="4405" y="-44" width="1220" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="4411" y="-38" width="1208" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID03_E5_di" bpmnElement="Group_ID03_E5"><dc:Bounds x="5641" y="-44" width="1014" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="5647" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID03_E6_di" bpmnElement="Group_ID03_E6"><dc:Bounds x="6671" y="-44" width="808" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="6677" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID03_E7_di" bpmnElement="Group_ID03_E7"><dc:Bounds x="7495" y="-44" width="396" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="7501" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

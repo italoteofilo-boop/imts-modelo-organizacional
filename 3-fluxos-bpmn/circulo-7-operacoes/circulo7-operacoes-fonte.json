@@ -1,0 +1,4965 @@
+{
+ "circulo": {
+  "num": 7,
+  "nome": "Operações",
+  "sigla": "OP",
+  "pref": "OP",
+  "slug": "circulo7-operacoes",
+  "status": "Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026",
+  "lead": "Operações cumpre a promessa feita ao cliente. Planeja a capacidade de entrega, assume cada cliente implantado e roda a entrega recorrente, atende pedidos e problemas, trata reclamações, garante a qualidade e os níveis de serviço e encerra as entregas no fim do contrato ou na saída. Onde há produto físico, cuida da cadeia de suprimentos e do pós-venda. Não muda o desenho, não compra e não fatura. São oito jornadas.",
+  "fechado": true,
+  "o": "Operações",
+  "do": "de Operações",
+  "ao": "a Operações"
+ },
+ "jornadas": [
+  {
+   "code": "OP-01",
+   "nome": "Planejar a capacidade de entrega de cada oferta e cobrir as faltas",
+   "dominio": "Capacidade e entrega",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer a capacidade de pessoas, agentes, parceiros, materiais e ativos acompanhar a demanda prevista: cada oferta lançada, mudada ou retirada, cada previsão de vendas, ata, parceria e mandato traduzidos em trabalho; cada falta coberta (remanejar, contratar, usar parceiro, automatizar ou recusar) por decisão de Operações ou, acima da alçada, do executivo; e um plano publicado, usado para confirmar propostas, implantações e lançamentos. Operações planeja e decide; a Gestão contrata e compra; a Integração cria a capacidade que falta.",
+   "frequencia": "A cada ciclo de planejamento (cadência: trimestral) e por evento: previsão de vendas, oferta aprovada, lançada ou retirada, parceria ativa ou mandato de empresa",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Reunir, traduzir a demanda em trabalho, comparar com a capacidade e pedir recursos são de agente e automação; decidir o plano é de pessoa de Operações; o que passa da alçada é do executivo."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Ciclo de planejamento da capacidade iniciado",
+     "raia": "Operações · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Previsão de vendas ou ata recebida",
+     "raia": "Negócios",
+     "tipo": "message"
+    },
+    {
+     "nome": "Oferta, parceria ou mandato que muda a capacidade recebido",
+     "raia": "Operações · automação",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Plano de capacidade decidido e publicado"
+   ],
+   "raias": [
+    "Negócios",
+    "Executivo da empresa",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Reunir a demanda prevista e o que cada oferta exige",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Previsão de receita e de vendas",
+       "de": "Negócios"
+      },
+      {
+       "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+       "de": "Negócios"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Painel de indicadores de cada círculo, com dono e análise",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Oferta aprovada para lançamento",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Plano de lançamento da oferta",
+       "de": "Integração"
+      },
+      {
+       "o": "Oferta lançada",
+       "de": "Integração"
+      },
+      {
+       "o": "Catálogo de capacidades atualizado",
+       "de": "Integração"
+      },
+      {
+       "o": "Parceria ativa, com plano de ativação",
+       "de": "Relações"
+      },
+      {
+       "o": "Pessoas, compras e ativos do plano confirmados",
+       "de": "Gestão"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Reunir previsão de vendas, atas, ofertas, lançamentos, parcerias, mandatos e recursos confirmados",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Traduzir a demanda prevista em trabalho por oferta, perfil e recurso",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Comparar a demanda com a capacidade de pessoas, agentes, parceiros e ativos",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Demanda e capacidade comparadas, com as faltas e as sobras",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      808.0,
+      932
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      1018.0,
+      780.0,
+      380,
+      792.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Decidir como cobrir as faltas e usar as sobras",
+     "dono": "Operações; acima da alçada, o executivo",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Demanda e capacidade comparadas, com as faltas e as sobras",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Propor como cobrir cada falta: remanejar, contratar, usar parceiro, automatizar ou recusar",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a cobertura acima da alçada de Operações",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A cobertura cabe na alçada de Operações? Não"
+      },
+      {
+       "nome": "Decidir o plano de capacidade do ciclo",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A cobertura cabe na alçada de Operações?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Decidir a cobertura acima da alçada de Operações"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de capacidade decidido",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      1109.0,
+      -44,
+      1014.0,
+      932
+     ],
+     "foco": [
+      1124.0,
+      214.0,
+      984.0,
+      452.0,
+      1204,
+      616.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Pedir os recursos e publicar o plano",
+     "dono": "Operações",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Plano de capacidade decidido",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Pedir à Integração a capacidade nova ou mudada",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O plano pede capacidade nova, agente ou automação? Sim"
+      },
+      {
+       "nome": "Pedir à Gestão as pessoas, as compras e os ativos do plano",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Publicar o plano e o mapa de capacidade usados para confirmar propostas e implantações",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O plano pede capacidade nova, agente ou automação?",
+       "quem": "Operações · automação",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Pedir à Integração a capacidade nova ou mudada"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+       "para": [
+        "Gestão",
+        "Executivos",
+        "OP-06"
+       ]
+      },
+      {
+       "o": "Necessidade de capacidade nova ou mudada",
+       "para": [
+        "Integração"
+       ]
+      }
+     ],
+     "box": [
+      2139.0,
+      -44,
+      1014.0,
+      932
+     ],
+     "foco": [
+      2209.0,
+      742.0,
+      1073.0,
+      100.0,
+      2234,
+      792.0
+     ]
+    }
+   ],
+   "size": [
+    3414,
+    880
+   ]
+  },
+  {
+   "code": "OP-02",
+   "nome": "Entregar o serviço a cada cliente, ciclo a ciclo",
+   "dominio": "Capacidade e entrega",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada cliente implantado ter um plano de entrega com escopo, nível de serviço, equipe, agentes e contatos; cada entrega feita pelo método da oferta, conferida contra o escopo e o padrão e aceita pelo cliente; cada ciclo confirmado conforme o contrato, com a medição dos níveis de serviço, e passado à Gestão para faturar; cada impasse sobre a entrega virar reclamação tratada; e cada plano de recuperação de Relações virar ajuste do plano de entrega. Operações entrega; o cliente aceita; a Gestão fatura.",
+   "frequencia": "Por cliente: ao receber o cliente implantado (novo, renovado ou ampliado) ou o plano de recuperação, e a cada ciclo de entrega do contrato (cadência do contrato)",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Programar, conferir, confirmar e registrar são de agente e automação; a entrega é de pessoa ou de agente, conforme o método da oferta; aprovar o plano e corrigir a entrega são de pessoa de Operações."
+   },
+   "base": [
+    "apqc",
+    "l14133"
+   ],
+   "inicios": [
+    {
+     "nome": "Cliente implantado recebido",
+     "raia": "Integração",
+     "tipo": "message"
+    },
+    {
+     "nome": "Plano de recuperação do cliente recebido",
+     "raia": "Relações",
+     "tipo": "message"
+    },
+    {
+     "nome": "Ciclo de entrega do cliente iniciado",
+     "raia": "Operações · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Ciclo de entrega confirmado, passado a faturar e registrado"
+   ],
+   "raias": [
+    "Integração",
+    "Relações",
+    "Cliente",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Assumir o cliente e planejar a entrega",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Cliente implantado e aceito, passado à entrega",
+       "de": "Integração"
+      },
+      {
+       "o": "Plano de implantação do cliente",
+       "de": "Integração"
+      },
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "Negócios"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "Negócios"
+      },
+      {
+       "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+       "de": "Relações"
+      },
+      {
+       "o": "Plano de recuperação do cliente",
+       "de": "Relações"
+      },
+      {
+       "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+       "de": "Relações"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Método publicado, com versão e data de revisão",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Pacote de marca publicado",
+       "de": "Identidade"
+      },
+      {
+       "o": "Marca retirada de uso",
+       "de": "Identidade"
+      },
+      {
+       "o": "Procedimentos e níveis de serviço vigentes",
+       "de": "OP-05"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Conferir o escopo vendido, os termos e o nível de serviço do contrato",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Montar ou ajustar o plano de entrega: entregas, nível de serviço, equipe, agentes e contatos",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Aprovar o plano de entrega e designar o responsável pelo cliente",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que iniciou a entrega?",
+       "quem": "Operações · automação",
+       "saidas": [
+        {
+         "rotulo": "Cliente implantado, novo, renovado ou ampliado, ou plano de recuperação",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Ciclo de entrega de cliente já assumido",
+         "via": [],
+         "vai": "vai para a etapa 2"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de entrega do cliente",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      1014.0,
+      1108
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      1128.0,
+      923.0,
+      356,
+      968.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Executar as entregas do ciclo",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Plano de entrega do cliente",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Base de conhecimento publicada",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Programar as entregas do ciclo e alocar pessoas, agentes e parceiros",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Executar as entregas feitas por agentes e automações",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Executar as entregas feitas por pessoas",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Conferir cada entrega contra o escopo e o padrão de qualidade",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir a entrega e registrar a não conformidade",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "A entrega passou na conferência? Não"
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "A entrega passou na conferência?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Corrigir a entrega e registrar a não conformidade"
+         ],
+         "vai": "volta à etapa 2"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Entregas do ciclo conferidas",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      1291.0,
+      -44,
+      1838.0,
+      1108
+     ],
+     "foco": [
+      1361.0,
+      566.0,
+      1753.0,
+      276.0,
+      1386,
+      792.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Confirmar a entrega com o cliente e passar a faturar",
+     "dono": "Operações, com o aceite do cliente",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Entregas do ciclo conferidas",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Aceitar as entregas do ciclo",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o motivo da recusa e replanejar a entrega",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": "O cliente aceitou as entregas? Não, com correção possível"
+      },
+      {
+       "nome": "Abrir a reclamação sobre a entrega não aceita",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O cliente aceitou as entregas? Não, sem acordo sobre a entrega"
+      },
+      {
+       "nome": "Confirmar a entrega conforme os termos do contrato e medir os níveis de serviço do ciclo",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O cliente aceitou as entregas?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não, com correção possível",
+         "via": [
+          "Registrar o motivo da recusa e replanejar a entrega"
+         ],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Não, sem acordo sobre a entrega",
+         "via": [
+          "Abrir a reclamação sobre a entrega não aceita"
+         ],
+         "vai": "vai para a etapa 4"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Entregas confirmadas para faturar, com a medição dos níveis de serviço",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Entrega do ciclo confirmada",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Entrega não aceita, com a reclamação aberta",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Reclamação registrada",
+       "para": [
+        "OP-04"
+       ]
+      }
+     ],
+     "box": [
+      3145.0,
+      -44,
+      1014.0,
+      1108
+     ],
+     "foco": [
+      3160.0,
+      390.0,
+      984.0,
+      628.0,
+      3240,
+      440.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Registrar o ciclo e apontar o que ensina",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Entrega do ciclo confirmada",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Entrega não aceita, com a reclamação aberta",
+       "de": "etapa 3"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar entregas, prazos, não conformidades e esforço do ciclo",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Apontar a lição do ciclo e os sinais de ampliação ou de risco do cliente",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Registros de entrega, atendimento e qualidade",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e reclamações do cliente",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Lição apontada",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      4175.0,
+      -44,
+      602.0,
+      1108
+     ],
+     "foco": [
+      4245.0,
+      742.0,
+      661.0,
+      276.0,
+      4270,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    5038,
+    1056
+   ]
+  },
+  {
+   "code": "OP-08",
+   "nome": "Encerrar as entregas no fim do contrato ou na saída da oferta ou da empresa",
+   "dominio": "Capacidade e entrega",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada contrato encerrado e cada saída de oferta ou de empresa virar um fim de entregas planejado: no fim do contrato, de imediato; na saída, preparado pelo plano de saída da Integração e executado na data confirmada pela Estratégia. As entregas são concluídas ou transferidas na transição combinada por Relações; o último ciclo é passado a faturar; os dados e materiais do cliente são devolvidos ou eliminados, com aprovação de pessoa, guardado só o que a lei ou o contrato mandam guardar; os recursos são liberados à Gestão; e a conclusão vai à Integração e as lições à Inteligência.",
+   "frequencia": "Por evento: contrato encerrado, plano de saída, data de saída confirmada ou mandato de empresa",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Listar o que está em curso, executar a devolução ou a eliminação aprovada, liberar recursos e arquivar são de agente e automação; planejar, concluir as entregas e aprovar o destino dos dados são de pessoa de Operações; o cliente confirma."
+   },
+   "base": [
+    "apqc",
+    "lgpd"
+   ],
+   "inicios": [
+    {
+     "nome": "Contrato encerrado recebido",
+     "raia": "Negócios",
+     "tipo": "message"
+    },
+    {
+     "nome": "Plano de saída de clientes e contratos recebido",
+     "raia": "Integração",
+     "tipo": "message"
+    },
+    {
+     "nome": "Data de saída ou mandato recebido",
+     "raia": "Estratégia",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Entregas encerradas e recursos liberados",
+    "Fim das entregas preparado, à espera da data ou do plano de saída"
+   ],
+   "raias": [
+    "Negócios",
+    "Integração",
+    "Estratégia",
+    "Cliente",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Planejar o fim das entregas",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Contrato encerrado, com a data de fim",
+       "de": "Negócios"
+      },
+      {
+       "o": "Plano de saída de clientes e contratos",
+       "de": "Integração"
+      },
+      {
+       "o": "Clientes avisados da saída, com a transição combinada",
+       "de": "Relações"
+      },
+      {
+       "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+       "de": "Inteligência"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Preparar o fim das entregas pelo plano e aguardar a data de saída",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": "O que iniciou o encerramento? Plano de saída, ainda sem a data"
+      },
+      {
+       "nome": "Registrar a decisão e aguardar o plano de saída da Integração",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O que iniciou o encerramento? Decisão de encerrar ou data, ainda sem o plano de saída"
+      },
+      {
+       "nome": "Listar as entregas em curso, os compromissos e os dados e materiais do cliente",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Planejar o fim, a transição combinada e o destino de dados e materiais",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que iniciou o encerramento?",
+       "quem": "Operações · automação",
+       "saidas": [
+        {
+         "rotulo": "Contrato encerrado",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Data de saída ou mandato, com o plano de saída já recebido",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Plano de saída, ainda sem a data",
+         "via": [
+          "Preparar o fim das entregas pelo plano e aguardar a data de saída"
+         ],
+         "vai": "fim: Fim das entregas preparado, à espera da data ou do plano de saída"
+        },
+        {
+         "rotulo": "Decisão de encerrar ou data, ainda sem o plano de saída",
+         "via": [
+          "Registrar a decisão e aguardar o plano de saída da Integração"
+         ],
+         "vai": "fim: Fim das entregas preparado, à espera da data ou do plano de saída"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de fim das entregas",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      1838.0,
+      1284
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      1952.0,
+      1124.0,
+      356,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Concluir as entregas e devolver o que é do cliente",
+     "dono": "Operações, com o cliente",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Plano de fim das entregas",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Regras de sigilo e de dados pessoais",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Concluir ou transferir as entregas em curso conforme o plano",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Aprovar o que devolver, o que eliminar e o que a lei ou o contrato mandam guardar",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Devolver ou eliminar os dados e materiais do cliente como aprovado",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar o fim das entregas",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Entregas encerradas",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      2115.0,
+      -44,
+      808.0,
+      1284
+     ],
+     "foco": [
+      2130.0,
+      566.0,
+      778.0,
+      628.0,
+      2210,
+      792.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Liberar os recursos e guardar o conhecimento",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Entregas encerradas",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Passar o último ciclo a faturar",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a liberação de pessoas, agentes, parceiros e ativos alocados ao cliente ou à oferta",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Arquivar os registros que devem ser guardados e atualizar os sistemas",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Apontar as lições do encerramento",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Entregas confirmadas para faturar, com a medição dos níveis de serviço",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Recursos da operação liberados, com a data",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Entregas encerradas na saída",
+       "para": [
+        "Integração"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e reclamações do cliente",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e qualidade",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Lição apontada",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      2939.0,
+      -44,
+      808.0,
+      1284
+     ],
+     "foco": [
+      2954.0,
+      918.0,
+      922.0,
+      276.0,
+      3034,
+      1144.0
+     ]
+    }
+   ],
+   "size": [
+    4008,
+    1232
+   ]
+  },
+  {
+   "code": "OP-03",
+   "nome": "Atender o cliente: pedidos, dúvidas e problemas, do contato à solução",
+   "dominio": "Atendimento e qualidade",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada contato de cliente ser registrado, classificado pelo nível de serviço que vale, resolvido pela base de conhecimento ou por pessoa e respondido; cada problema de tecnologia ir à Integração; cada caso sem padrão ir à Identidade e cada dúvida sobre a oferta em uso à Inteligência; cada reclamação, e cada caso que não se resolve, ir ao tratamento de reclamações; cada pedido comercial ir a Negócios; e cada atendimento deixar registro e o conteúdo que faltou. Operações atende; Negócios trata o pedido comercial.",
+   "frequencia": "Por evento: cada contato do cliente, em qualquer canal",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Registrar, classificar, responder o que a base cobre, consultar e registrar são de agente e automação; resolver o caso que o agente não resolve é de pessoa de Operações, só quando a resposta não resolveu."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Pedido, dúvida ou problema do cliente recebido",
+     "raia": "Cliente",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Contato resolvido, respondido e registrado",
+    "Reclamação passada ao tratamento de reclamações",
+    "Pedido comercial passado a Negócios"
+   ],
+   "raias": [
+    "Cliente",
+    "Negócios",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber e classificar o contato do cliente",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Pedido, dúvida ou problema do cliente",
+       "de": "Clientes"
+      },
+      {
+       "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+       "de": "Relações"
+      },
+      {
+       "o": "Procedimentos e níveis de serviço vigentes",
+       "de": "OP-05"
+      },
+      {
+       "o": "Regras de sigilo e de dados pessoais",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o contato, o cliente, o contrato e o canal",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Classificar o tipo, a urgência e o nível de serviço que vale",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Abrir a reclamação no tratamento de reclamações",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O que o cliente pede? Reclamação"
+      },
+      {
+       "nome": "Receber o pedido comercial do cliente e tratá-lo na proposta ou no contrato",
+       "exec": "C",
+       "raia": "Negócios",
+       "tipo": "task",
+       "cond": "O que o cliente pede? Pedido comercial: ampliação, preço ou cancelamento"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que o cliente pede?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Pedido, dúvida ou problema da entrega",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Reclamação",
+         "via": [
+          "Abrir a reclamação no tratamento de reclamações"
+         ],
+         "vai": "fim: Reclamação passada ao tratamento de reclamações"
+        },
+        {
+         "rotulo": "Pedido comercial: ampliação, preço ou cancelamento",
+         "via": [
+          "Receber o pedido comercial do cliente e tratá-lo na proposta ou no contrato"
+         ],
+         "vai": "fim: Pedido comercial passado a Negócios"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contato classificado",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Reclamação registrada",
+       "para": [
+        "OP-04"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      1014.0,
+      932
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      1272.0,
+      772.0,
+      356,
+      792.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Resolver e responder ao cliente",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Contato classificado",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Base de conhecimento publicada",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Resposta ao pedido sobre oferta em uso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Resposta à consulta",
+       "de": "Identidade"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Abrir o pedido ou o incidente na Integração e acompanhar até a solução",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O problema é de tecnologia? Sim"
+      },
+      {
+       "nome": "Consultar a Identidade sobre o caso não coberto",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "Falta padrão ou regra para responder? Falta padrão de identidade"
+      },
+      {
+       "nome": "Pedir à Inteligência a resposta sobre a oferta em uso",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "Falta padrão ou regra para responder? Falta regra da oferta em uso"
+      },
+      {
+       "nome": "Responder o que a base de conhecimento e as respostas recebidas cobrem",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Analisar e resolver o caso que o agente não resolve",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "A resposta resolveu? Não"
+      },
+      {
+       "nome": "Abrir a reclamação pelo caso não resolvido",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O caso foi resolvido? Não"
+      },
+      {
+       "nome": "Responder ao cliente e confirmar que resolveu",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O problema é de tecnologia?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Abrir o pedido ou o incidente na Integração e acompanhar até a solução"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Falta padrão ou regra para responder?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Falta padrão de identidade",
+         "via": [
+          "Consultar a Identidade sobre o caso não coberto"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Falta regra da oferta em uso",
+         "via": [
+          "Pedir à Inteligência a resposta sobre a oferta em uso"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A resposta resolveu?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Analisar e resolver o caso que o agente não resolve"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O caso foi resolvido?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Abrir a reclamação pelo caso não resolvido"
+         ],
+         "vai": "fim: Reclamação passada ao tratamento de reclamações"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contato resolvido",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Pedido, incidente ou risco de tecnologia",
+       "para": [
+        "Integração"
+       ]
+      },
+      {
+       "o": "Consulta sobre caso não coberto",
+       "para": [
+        "Identidade"
+       ]
+      },
+      {
+       "o": "Pedido de ajuste ou de revisão de oferta em uso",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Reclamação registrada",
+       "para": [
+        "OP-04"
+       ]
+      }
+     ],
+     "box": [
+      1497.0,
+      -44,
+      3280.0,
+      932
+     ],
+     "foco": [
+      1567.0,
+      390.0,
+      3195.0,
+      452.0,
+      1592,
+      616.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Registrar o atendimento e o que ele ensina",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Contato resolvido",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o atendimento, o tempo, a causa e a avaliação do cliente",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Apontar sinais de ampliação e de risco de perda e o conteúdo que faltou na base",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Registros de entrega, atendimento e qualidade",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Pedidos, reclamações e incidentes de clientes",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e reclamações do cliente",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Conteúdo novo apontado",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      4793.0,
+      -44,
+      396.0,
+      932
+     ],
+     "foco": [
+      4808.0,
+      566.0,
+      510.0,
+      276.0,
+      4888,
+      792.0
+     ]
+    }
+   ],
+   "size": [
+    5450,
+    880
+   ]
+  },
+  {
+   "code": "OP-04",
+   "nome": "Tratar reclamações e incidentes de clientes e corrigir a causa",
+   "dominio": "Atendimento e qualidade",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada reclamação ou incidente de cliente ser registrado com o prazo de resposta, classificado pela gravidade e pelo risco legal, investigado até a causa e resolvido por decisão de Operações ou, acima da alçada, do executivo; quando o cliente é consumidor, oferecidas as alternativas da lei; a resposta, inclusive a de improcedência, dada por escrito e registrada; o caso sem acordo encerrado com a informação de onde mais o cliente pode recorrer; e cada causa virar ação corretiva, pedido de ajuste da oferta ou lacuna de experiência. Operações trata; a Governança avalia o dever de comunicar a autoridade; Relações recebe a reclamação com a causa.",
+   "frequencia": "Por evento: reclamação aberta no atendimento ou na entrega, ou recebida de outro canal",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Registrar, classificar, confirmar o recebimento, propor a solução, analisar a causa e registrar são de agente e automação; conferir a classificação, decidir a solução e aplicá-la são de pessoa de Operações; o que passa da alçada é do executivo."
+   },
+   "base": [
+    "apqc",
+    "iso10002",
+    "cdc"
+   ],
+   "inicios": [
+    {
+     "nome": "Reclamação aberta no atendimento ou na entrega",
+     "raia": "Operações · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Reclamação ou incidente recebido de outro canal",
+     "raia": "Solicitante",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Reclamação resolvida ou respondida, com a causa tratada"
+   ],
+   "raias": [
+    "Solicitante",
+    "Governança",
+    "Executivo da empresa",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber e classificar a reclamação",
+     "dono": "Operações; o risco legal, com a Governança",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Reclamação registrada",
+       "de": "OP-03"
+      },
+      {
+       "o": "Reclamação registrada",
+       "de": "OP-02"
+      },
+      {
+       "o": "Reclamação ou incidente de cliente",
+       "de": "Solicitante"
+      },
+      {
+       "o": "Regras de sigilo e de dados pessoais",
+       "de": "Governança"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar a reclamação ou o incidente, o cliente, o contrato e o prazo de resposta",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Classificar a gravidade, o risco legal e quem deve resolver",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a classificação de gravidade e de risco legal",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Avaliar o risco e o dever de comunicar a autoridade",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "Há risco à saúde ou à segurança, ou dever de comunicar a autoridade? Sim"
+      },
+      {
+       "nome": "Confirmar o recebimento ao cliente, com o prazo de resposta",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há risco à saúde ou à segurança, ou dever de comunicar a autoridade?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Avaliar o risco e o dever de comunicar a autoridade"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Reclamação classificada",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Incidente ou risco a comunicar à autoridade",
+       "para": [
+        "Governança"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      1632.0,
+      1108
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      1746.0,
+      948.0,
+      356,
+      968.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Investigar e decidir a solução",
+     "dono": "Operações; acima da alçada, o executivo",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Reclamação classificada",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Investigar o fato e achar a causa provável",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Propor a solução e, se o cliente é consumidor, as alternativas da lei",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a solução proposta e a alçada que ela pede",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a solução da reclamação",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "A solução cabe na alçada de Operações? Sim"
+      },
+      {
+       "nome": "Decidir a solução acima da alçada de Operações",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A solução cabe na alçada de Operações? Não"
+      },
+      {
+       "nome": "Responder ao cliente por escrito com o motivo da improcedência",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A reclamação procede? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A solução cabe na alçada de Operações?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Decidir a solução da reclamação"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Decidir a solução acima da alçada de Operações"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A reclamação procede?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Responder ao cliente por escrito com o motivo da improcedência"
+         ],
+         "vai": "vai para a etapa 4"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Solução decidida",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Reclamação improcedente respondida",
+       "para": [
+        "etapa 4"
+       ]
+      }
+     ],
+     "box": [
+      1909.0,
+      -44,
+      2044.0,
+      1108
+     ],
+     "foco": [
+      1979.0,
+      390.0,
+      1959.0,
+      628.0,
+      2004,
+      792.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Aplicar a solução e confirmar com o cliente",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Solução decidida",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Aplicar a solução: refazer ou corrigir a entrega, ou pedir o crédito ou o reembolso",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Responder ao cliente por escrito com a solução",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a objeção do cliente e rever a solução",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": "O cliente aceitou a solução? Não, com outra solução possível"
+      },
+      {
+       "nome": "Encerrar a reclamação e informar ao cliente onde mais pode recorrer",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O cliente aceitou a solução? Não, sem acordo"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O cliente aceitou a solução?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Não, com outra solução possível",
+         "via": [
+          "Registrar a objeção do cliente e rever a solução"
+         ],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Não, sem acordo",
+         "via": [
+          "Encerrar a reclamação e informar ao cliente onde mais pode recorrer"
+         ],
+         "vai": "etapa 4"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Reclamação resolvida ou encerrada",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Crédito ou reembolso aprovado para o cliente",
+       "para": [
+        "Gestão"
+       ]
+      }
+     ],
+     "box": [
+      3969.0,
+      -44,
+      1014.0,
+      1108
+     ],
+     "foco": [
+      3984.0,
+      566.0,
+      984.0,
+      452.0,
+      4064,
+      616.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Tratar a causa e entregar o aprendizado",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Reclamação resolvida ou encerrada",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Reclamação improcedente respondida",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Analisar a causa raiz e a recorrência das reclamações",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir como tratar a causa",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Abrir a ação corretiva na qualidade",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A causa pede mudança? Na operação"
+      },
+      {
+       "nome": "Pedir o ajuste da oferta em uso à Inteligência",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A causa pede mudança? Na oferta"
+      },
+      {
+       "nome": "Apontar a lacuna de experiência a Relações",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A causa pede mudança? Na experiência"
+      },
+      {
+       "nome": "Registrar a reclamação, a causa, a solução e o prazo cumprido",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A causa pede mudança?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Na operação",
+         "via": [
+          "Abrir a ação corretiva na qualidade"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Na oferta",
+         "via": [
+          "Pedir o ajuste da oferta em uso à Inteligência"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Na experiência",
+         "via": [
+          "Apontar a lacuna de experiência a Relações"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Reclamações e incidentes de clientes, com a causa",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Pedidos, reclamações e incidentes de clientes",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Ação corretiva aberta",
+       "para": [
+        "OP-05"
+       ]
+      },
+      {
+       "o": "Pedido de ajuste ou de revisão de oferta em uso",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Lacuna de experiência apontada",
+       "para": [
+        "Relações"
+       ]
+      }
+     ],
+     "box": [
+      4999.0,
+      -44,
+      1838.0,
+      1108
+     ],
+     "foco": [
+      5069.0,
+      566.0,
+      1897.0,
+      452.0,
+      5094,
+      792.0
+     ]
+    }
+   ],
+   "size": [
+    7098,
+    1056
+   ]
+  },
+  {
+   "code": "OP-05",
+   "nome": "Garantir a qualidade e os níveis de serviço: padrões, medida e ação corretiva",
+   "dominio": "Atendimento e qualidade",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer os padrões de experiência de Relações e o método de cada oferta virarem procedimentos e níveis de serviço por oferta e por segmento de cliente; a qualidade e os níveis de serviço serem medidos; cada não conformidade, reclamação recorrente ou lacuna apontada ter a causa achada e uma ação corretiva decidida, implantada e conferida; a causa que Operações não consegue eliminar ir ao executivo; e o padrão que a operação não consegue cumprir voltar a Relações como lacuna. Operações define e mede; Relações define a experiência; a Inteligência publica o painel.",
+   "frequencia": "A cada ciclo de avaliação da qualidade (cadência: mensal) e por evento: padrão ou oferta nova ou mudada, ação corretiva aberta, lacuna de execução ou de percepção",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Traduzir padrões, medir, comparar com os alvos, analisar a causa e registrar são de agente e automação; decidir procedimentos, níveis de serviço e ação corretiva e implantá-la são de pessoa de Operações."
+   },
+   "base": [
+    "apqc",
+    "iso9001"
+   ],
+   "inicios": [
+    {
+     "nome": "Ciclo de avaliação da qualidade iniciado",
+     "raia": "Operações · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Padrão, oferta ou método novo ou mudado recebido",
+     "raia": "Operações · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Ação corretiva ou lacuna recebida",
+     "raia": "Operações · automação",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Ação corretiva concluída e registrada",
+    "Qualidade dentro dos níveis de serviço, sem ação"
+   ],
+   "raias": [
+    "Executivo da empresa",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Definir os procedimentos e os níveis de serviço",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+       "de": "Relações"
+      },
+      {
+       "o": "Avaliação da experiência sem mudança",
+       "de": "Relações"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Método publicado, com versão e data de revisão",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Método retirado de uso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "Negócios"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Traduzir os padrões de experiência e o método da oferta em procedimentos e níveis de serviço",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir os procedimentos e os níveis de serviço por oferta e por segmento de cliente",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Apontar a Relações a lacuna, com a causa e o que seria preciso",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "Algum padrão de experiência não pode ser cumprido pela operação? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que iniciou o trabalho?",
+       "quem": "Operações · automação",
+       "saidas": [
+        {
+         "rotulo": "Padrão, oferta ou método novo ou mudado",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Ciclo de avaliação",
+         "via": [],
+         "vai": "vai para a etapa 2"
+        },
+        {
+         "rotulo": "Ação corretiva ou lacuna apontada",
+         "via": [],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      },
+      {
+       "pergunta": "Algum padrão de experiência não pode ser cumprido pela operação?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Apontar a Relações a lacuna, com a causa e o que seria preciso"
+         ],
+         "vai": "etapa 2"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Procedimentos e níveis de serviço vigentes",
+       "para": [
+        "etapa 2",
+        "OP-02",
+        "OP-03"
+       ]
+      },
+      {
+       "o": "Lacuna de experiência apontada",
+       "para": [
+        "Relações"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      1220.0,
+      756
+     ],
+     "foco": [
+      60.0,
+      214.0,
+      1430.0,
+      474.0,
+      380,
+      616.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Medir a qualidade e o cumprimento dos níveis de serviço",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Procedimentos e níveis de serviço vigentes",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Painel de indicadores de cada círculo, com dono e análise",
+       "de": "Inteligência"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Medir qualidade, prazos e níveis de serviço por oferta, cliente e equipe",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Comparar com os alvos e achar as não conformidades e as tendências",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a medida do ciclo",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "Há não conformidade ou tendência que pede ação? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há não conformidade ou tendência que pede ação?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar a medida do ciclo"
+         ],
+         "vai": "fim: Qualidade dentro dos níveis de serviço, sem ação"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Não conformidades e tendências, com a evidência",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e qualidade",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      1521.0,
+      -44,
+      1014.0,
+      756
+     ],
+     "foco": [
+      1591.0,
+      390.0,
+      1073.0,
+      276.0,
+      1616,
+      616.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Achar a causa e decidir a ação corretiva",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Não conformidades e tendências, com a evidência",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Ação corretiva aberta",
+       "de": "OP-04"
+      },
+      {
+       "o": "Ação corretiva aberta",
+       "de": "OP-07"
+      },
+      {
+       "o": "Lacunas de execução apontadas",
+       "de": "Identidade"
+      },
+      {
+       "o": "Lacunas de percepção encaminhadas ao dono",
+       "de": "Relações"
+      },
+      {
+       "o": "Correções de execução publicadas, com dono e prazo",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Ação que não eliminou a causa",
+       "de": "etapa 4"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Analisar a causa raiz da não conformidade ou da lacuna",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Propor a ação corretiva, com dono, prazo e ganho esperado",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a ação corretiva",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Pedir a capacidade ou o agente à Integração, ou o ajuste da oferta à Inteligência",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A ação pede capacidade, agente ou ajuste da oferta? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A ação pede capacidade, agente ou ajuste da oferta?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Pedir a capacidade ou o agente à Integração, ou o ajuste da oferta à Inteligência"
+         ],
+         "vai": "etapa 4"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Ação corretiva decidida",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Necessidade de capacidade nova ou mudada",
+       "para": [
+        "Integração"
+       ]
+      },
+      {
+       "o": "Pedido de ajuste ou de revisão de oferta em uso",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      2757.0,
+      -44,
+      1220.0,
+      756
+     ],
+     "foco": [
+      2827.0,
+      214.0,
+      1135.0,
+      452.0,
+      2852,
+      440.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Implantar a ação e conferir o efeito",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Ação corretiva decidida",
+       "de": "etapa 3"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Implantar a ação corretiva e treinar quem executa",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Medir de novo e conferir se a causa foi eliminada",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a ação e o efeito conferido",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A ação eliminou a causa? Sim"
+      },
+      {
+       "nome": "Decidir o que fazer com a causa não eliminada",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A ação eliminou a causa? Não, a causa passa da alçada de Operações"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A ação eliminou a causa?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Registrar a ação e o efeito conferido"
+         ],
+         "vai": "fim: Ação corretiva concluída e registrada"
+        },
+        {
+         "rotulo": "Não, há outra ação possível",
+         "via": [],
+         "vai": "volta à etapa 3"
+        },
+        {
+         "rotulo": "Não, a causa passa da alçada de Operações",
+         "via": [
+          "Decidir o que fazer com a causa não eliminada"
+         ],
+         "vai": "fim: Ação corretiva concluída e registrada"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Lição apontada",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Ação que não eliminou a causa",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      3993.0,
+      -44,
+      1220.0,
+      756
+     ],
+     "foco": [
+      4063.0,
+      38.0,
+      1485.0,
+      628.0,
+      4088,
+      264.0
+     ]
+    }
+   ],
+   "size": [
+    5680,
+    704
+   ]
+  },
+  {
+   "code": "OP-06",
+   "nome": "Abastecer e entregar o produto físico: demanda, materiais, produção, estoque e transporte",
+   "dominio": "Produto físico",
+   "classe": "recomendada",
+   "onda": 2,
+   "objetivo": "Onde a oferta tem produto físico, fazer a previsão de vendas e os contratos virarem plano de produção e de materiais; cada material ser pedido à Gestão, recebido e inspecionado, e o não conforme recusado e reposto; cada produto ser produzido ou montado, testado pelo procedimento padrão e registrado por lote; cada defeito com risco à saúde ou à segurança ir ao pós-venda; e cada pedido ser guardado, expedido, transportado, recebido pelo cliente e passado à Gestão para faturar. Operações planeja, produz e entrega; a Gestão compra.",
+   "frequencia": "A cada ciclo de planejamento de suprimentos (cadência: mensal) e por contrato com produto assinado",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Prever, calcular a necessidade, pedir a compra, programar, testar, controlar o estoque, acompanhar o transporte e registrar são de agente e automação; decidir o plano, receber materiais, produzir e expedir são de pessoa de Operações."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Ciclo de planejamento de suprimentos iniciado",
+     "raia": "Operações · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Contrato com produto assinado",
+     "raia": "Negócios",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Produto entregue, passado a faturar e registrado"
+   ],
+   "raias": [
+    "Negócios",
+    "Gestão",
+    "Cliente",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Prever a demanda e planejar materiais e produção",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Previsão de receita e de vendas",
+       "de": "Negócios"
+      },
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "Negócios"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+       "de": "OP-01"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Montar a previsão de demanda por produto e conferir com a previsão de vendas e os contratos",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Calcular a necessidade de materiais e a capacidade de produção e de estoque",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o plano de produção e de materiais do ciclo",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Plano de produção e de materiais",
+       "para": [
+        "etapa 2",
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      808.0,
+      1108
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      922.0,
+      916.0,
+      356,
+      792.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Pedir e receber os materiais e serviços",
+     "dono": "Operações; a compra, com a Gestão",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Plano de produção e de materiais",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Materiais e serviços comprados, com a data de entrega",
+       "de": "Gestão"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Pedir à Gestão a compra dos materiais e serviços do plano",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Fazer a compra e informar a data de entrega",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Receber e inspecionar os materiais e guardá-los",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Recusar o material, registrar a falha do fornecedor e pedir a reposição",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O material recebido está conforme? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O material recebido está conforme?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Recusar o material, registrar a falha do fornecedor e pedir a reposição"
+         ],
+         "vai": "volta à etapa 2"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Pedido de compra de materiais e serviços",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Desempenho dos fornecedores na entrega e na qualidade",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Materiais disponíveis",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      1085.0,
+      -44,
+      1220.0,
+      1108
+     ],
+     "foco": [
+      1155.0,
+      214.0,
+      1135.0,
+      804.0,
+      1180,
+      968.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Produzir ou montar o produto e testá-lo",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Plano de produção e de materiais",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Materiais disponíveis",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Programar a produção e liberar as ordens por lote",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Produzir ou montar o produto",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Testar o produto pelo procedimento padrão e registrar o resultado",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Separar o item, refazer ou descartar e registrar a não conformidade",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "O produto passou no teste? Não"
+      },
+      {
+       "nome": "Bloquear o lote e levar o defeito ao pós-venda",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O produto passou no teste? Não: defeito com risco à saúde ou à segurança"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O produto passou no teste?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Separar o item, refazer ou descartar e registrar a não conformidade"
+         ],
+         "vai": "volta à etapa 3"
+        },
+        {
+         "rotulo": "Não: defeito com risco à saúde ou à segurança",
+         "via": [
+          "Bloquear o lote e levar o defeito ao pós-venda"
+         ],
+         "vai": "volta à etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Produto pronto, com o lote registrado",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Defeito com risco à saúde ou à segurança, com o lote",
+       "para": [
+        "OP-07"
+       ]
+      }
+     ],
+     "box": [
+      2321.0,
+      -44,
+      1426.0,
+      1108
+     ],
+     "foco": [
+      2391.0,
+      566.0,
+      1341.0,
+      452.0,
+      2416,
+      968.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Guardar o produto e entregá-lo ao cliente",
+     "dono": "Operações, com o cliente",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Produto pronto, com o lote registrado",
+       "de": "etapa 3"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Guardar o produto e controlar o estoque",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Preparar e expedir o pedido",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Acompanhar o transporte até a entrega",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar o recebimento do produto",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a entrega, o lote e o prazo cumprido e passar a faturar",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Entregas confirmadas para faturar, com a medição dos níveis de serviço",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e qualidade",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e reclamações do cliente",
+       "para": [
+        "Relações"
+       ]
+      }
+     ],
+     "box": [
+      3763.0,
+      -44,
+      1014.0,
+      1108
+     ],
+     "foco": [
+      3778.0,
+      390.0,
+      1128.0,
+      628.0,
+      3858,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    5038,
+    1056
+   ]
+  },
+  {
+   "code": "OP-07",
+   "nome": "Prestar o pós-venda do produto: devolução, garantia, assistência e recall",
+   "dominio": "Produto físico",
+   "classe": "recomendada",
+   "onda": 2,
+   "objetivo": "Onde a oferta tem produto físico, fazer cada pedido de devolução, garantia ou assistência ser conferido contra os termos e os prazos legais, contados pelo tipo de vício; cada vício ser sanado no prazo e, quando não for, resolvido pela escolha do cliente consumidor (troca, devolução do valor ou abatimento); cada defeito com risco à saúde ou à segurança, venha do cliente ou da própria operação, ser comunicado de imediato à autoridade e aos consumidores e virar proposta de recall decidida pelo executivo, acompanhada e encerrada; e cada causa recorrente virar ação corretiva ou cobrança do fornecedor. Operações atende e propõe; a Governança comunica a autoridade; Relações comunica o público; o executivo decide o recall.",
+   "frequencia": "Por evento: pedido de devolução, garantia ou assistência; defeito com risco à saúde ou à segurança",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Registrar, conferir os termos e prazos, avaliar o risco, acompanhar o recall e analisar a recorrência são de agente e automação; investigar, sanar e cumprir a escolha do cliente são de pessoa de Operações; o recall é do executivo."
+   },
+   "base": [
+    "apqc",
+    "cdc",
+    "cc2002"
+   ],
+   "inicios": [
+    {
+     "nome": "Pedido de devolução, garantia ou assistência recebido",
+     "raia": "Cliente",
+     "tipo": "message"
+    },
+    {
+     "nome": "Defeito com risco detectado na operação",
+     "raia": "Operações · automação",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Pedido de pós-venda resolvido e registrado",
+    "Pedido fora da garantia respondido e registrado"
+   ],
+   "raias": [
+    "Cliente",
+    "Governança",
+    "Executivo da empresa",
+    "Operações · pessoa",
+    "Operações · agente",
+    "Operações · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber o pedido e avaliar o risco",
+     "dono": "Operações",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Pedido de devolução, garantia ou assistência",
+       "de": "Clientes"
+      },
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "Negócios"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o pedido, o produto, o lote e a data de entrega",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Triar o relato e apontar os sinais de risco à saúde ou à segurança",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir se o defeito relatado pode pôr em risco a saúde ou a segurança",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Levar o caso à avaliação de recall",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O defeito relatado pode pôr em risco a saúde ou a segurança? Sim, ou há dúvida"
+      },
+      {
+       "nome": "Conferir o pedido contra os termos e os prazos legais, pelo tipo de vício: aparente ou oculto",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Revisar a negativa de cobertura apontada pelo agente",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "O pedido está coberto? Não"
+      },
+      {
+       "nome": "Responder ao cliente com o motivo e o caminho para contestar e registrar",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A negativa de cobertura se confirma? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que iniciou o trabalho?",
+       "quem": "Operações · automação",
+       "saidas": [
+        {
+         "rotulo": "Pedido do cliente",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Defeito com risco detectado na operação",
+         "via": [],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      },
+      {
+       "pergunta": "O defeito relatado pode pôr em risco a saúde ou a segurança?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim, ou há dúvida",
+         "via": [
+          "Levar o caso à avaliação de recall"
+         ],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      },
+      {
+       "pergunta": "O pedido está coberto?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Revisar a negativa de cobertura apontada pelo agente"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A negativa de cobertura se confirma?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Responder ao cliente com o motivo e o caminho para contestar e registrar"
+         ],
+         "vai": "fim: Pedido fora da garantia respondido e registrado"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Pedido conferido",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Caso levado à avaliação de recall",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      2456.0,
+      1108
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      2714.0,
+      948.0,
+      356,
+      968.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Sanar o vício ou cumprir a escolha do cliente",
+     "dono": "Operações",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Pedido conferido",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Receber o produto e investigar o defeito e a causa",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Reparar o produto dentro do prazo legal para sanar o vício",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Escolher a troca, a devolução do valor ou o abatimento do preço",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": "O vício foi sanado no prazo? Não"
+      },
+      {
+       "nome": "Cumprir a escolha do cliente",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "O vício foi sanado no prazo? Não"
+      },
+      {
+       "nome": "Atribuir o custo: garantia, cliente ou fornecedor",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O vício foi sanado no prazo?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Escolher a troca, a devolução do valor ou o abatimento do preço",
+          "Cumprir a escolha do cliente"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Crédito ou reembolso aprovado para o cliente",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Solução aplicada ao cliente",
+       "para": [
+        "etapa 5"
+       ]
+      }
+     ],
+     "box": [
+      2939.0,
+      -44,
+      1632.0,
+      1108
+     ],
+     "foco": [
+      3009.0,
+      38.0,
+      1547.0,
+      804.0,
+      3034,
+      616.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Comunicar o risco e decidir o recall",
+     "dono": "Operações propõe; a Governança comunica; o executivo decide",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Caso levado à avaliação de recall",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Defeito com risco à saúde ou à segurança, com o lote",
+       "de": "OP-06"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Avaliar a probabilidade e a consequência do risco e os lotes afetados",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Comunicar o risco à autoridade competente",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Pedir a Relações a comunicação aos consumidores",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Propor o recall: lotes, clientes, comunicação e solução",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o recall",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Recolher os produtos afetados e repará-los ou trocá-los",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": "O recall foi decidido? Sim"
+      },
+      {
+       "nome": "Registrar a decisão e o motivo",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "O recall foi decidido? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O recall foi decidido?",
+       "quem": "Operações · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Recolher os produtos afetados e repará-los ou trocá-los"
+         ],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar a decisão e o motivo"
+         ],
+         "vai": "vai para a etapa 5"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Incidente ou risco a comunicar à autoridade",
+       "para": [
+        "Governança"
+       ]
+      },
+      {
+       "o": "Fato a comunicar",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Recall em curso",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Recall recusado, com o motivo",
+       "para": [
+        "etapa 5"
+       ]
+      }
+     ],
+     "box": [
+      4587.0,
+      -44,
+      1838.0,
+      1108
+     ],
+     "foco": [
+      4657.0,
+      214.0,
+      1753.0,
+      804.0,
+      4682,
+      792.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Acompanhar a eficácia do recall e encerrá-lo",
+     "dono": "Operações, com a Governança",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Recall em curso",
+       "de": "etapa 3"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Acompanhar os produtos recolhidos e os clientes atendidos",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Enviar à autoridade os relatórios do recall",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Avaliar a eficácia e decidir o encerramento do recall",
+       "exec": "P",
+       "raia": "Operações · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Relatórios do recall para a autoridade",
+       "para": [
+        "Governança"
+       ]
+      },
+      {
+       "o": "Recall encerrado, com a eficácia medida",
+       "para": [
+        "etapa 5"
+       ]
+      }
+     ],
+     "box": [
+      6441.0,
+      -44,
+      602.0,
+      1108
+     ],
+     "foco": [
+      6456.0,
+      214.0,
+      572.0,
+      804.0,
+      6536,
+      968.0
+     ]
+    },
+    {
+     "n": 5,
+     "nome": "Registrar e tratar a causa",
+     "dono": "Operações",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Solução aplicada ao cliente",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Recall recusado, com o motivo",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Recall encerrado, com a eficácia medida",
+       "de": "etapa 4"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o pedido, a causa, a solução, o custo e o prazo",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Analisar a recorrência por produto, lote e fornecedor",
+       "exec": "A",
+       "raia": "Operações · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Abrir a ação corretiva na qualidade",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A causa é recorrente ou grave? Sim"
+      },
+      {
+       "nome": "Pedir à Gestão a cobrança do fornecedor pela falha",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "A causa vem do fornecedor? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A causa é recorrente ou grave?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Abrir a ação corretiva na qualidade"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A causa vem do fornecedor?",
+       "quem": "Operações · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "fim: Pedido de pós-venda resolvido e registrado"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Pedir à Gestão a cobrança do fornecedor pela falha"
+         ],
+         "vai": "fim: Pedido de pós-venda resolvido e registrado"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Registros de entrega, atendimento e qualidade",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Pedidos, reclamações e incidentes de clientes",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Registros de entrega, atendimento e reclamações do cliente",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Ação corretiva aberta",
+       "para": [
+        "OP-05"
+       ]
+      },
+      {
+       "o": "Pedido de cobrança do fornecedor pela falha",
+       "para": [
+        "Gestão"
+       ]
+      }
+     ],
+     "box": [
+      7059.0,
+      -44,
+      1632.0,
+      1108
+     ],
+     "foco": [
+      7129.0,
+      742.0,
+      1897.0,
+      276.0,
+      7154,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    9158,
+    1056
+   ]
+  }
+ ],
+ "dominios": [
+  {
+   "nome": "Capacidade e entrega",
+   "desc": "Capacidade planejada, entrega recorrente a cada cliente e encerramento das entregas."
+  },
+  {
+   "nome": "Atendimento e qualidade",
+   "desc": "Atendimento de pedidos e problemas, tratamento de reclamações, padrões, níveis de serviço e ação corretiva."
+  },
+  {
+   "nome": "Produto físico",
+   "desc": "Cadeia de suprimentos e pós-venda, só onde a oferta tem produto físico."
+  }
+ ],
+ "fontes": {
+  "apqc": {
+   "ref": "APQC, Process Classification Framework (PCF), cross-industry",
+   "uso": "PCF 7.4. Os processos de Operações estão em três categorias: 4.0, cadeia de suprimentos de produtos físicos (demanda, materiais, produção, teste, armazém e transporte), base da OP-06; 5.0, entrega de serviços (governança da entrega, recursos, início, execução e conclusão), base da OP-01, da OP-02 e da OP-08; e 6.0, atendimento ao cliente (estratégia, contatos, reclamações, devoluções, pós-venda, recall e avaliação), base da OP-03, da OP-04, da OP-05 e da OP-07. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "links": [
+    [
+     "PCF 7.4 (PDF, cópia 1)",
+     "https://www.business-analysis.com.au/wp-content/uploads/2025/04/K014750_APQC-Process-Classification-Framework-PCF-Cross-Industry-PDF-Version-7.4_January-2025.pdf"
+    ],
+    [
+     "PCF 7.4 (PDF, cópia 2)",
+     "https://solutions.ifrc.org/sites/default/files/2024-10/K014750_APQC%20Process%20Classification%20Framework%20(PCF)%20-%20Cross%20Industry%20-%20PDF%20Version%207.4.pdf"
+    ],
+    [
+     "PCF 8.0 (página oficial)",
+     "https://www.apqc.org/resource-library/resource-listing/apqc-process-classification-framework-pcf-cross-industry-excel-12"
+    ],
+    [
+     "PCF 8.0, 13 categorias",
+     "https://www.apqc.org/resource-library/resource-collection/pcf-version-80-process-definitions-and-key-measures-collection"
+    ]
+   ]
+  },
+  "bpmn": {
+   "ref": "OMG, Business Process Model and Notation (BPMN) 2.0.2; ISO/IEC 19510:2013",
+   "uso": "Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, serviço e script; a tarefa de outro círculo ou papel aparece como tarefa simples.",
+   "conf": "Páginas oficiais da OMG e da ISO abertas; a lista de tipos de tarefa foi conferida no BPMN Quick Guide; a atividade de chamada foi aceita pelo metamodelo usado nos testes. A especificação completa não foi lida.",
+   "links": [
+    [
+     "omg.org",
+     "https://www.omg.org/spec/BPMN/2.0.2/About-BPMN"
+    ],
+    [
+     "iso.org",
+     "https://www.iso.org/standard/62652.html"
+    ],
+    [
+     "BPMN Quick Guide",
+     "https://www.bpmnquickguide.com/quickguide/bpmn-quick-guide/tasks"
+    ]
+   ]
+  },
+  "camunda": {
+   "ref": "Camunda, Best Practices: Naming BPMN elements",
+   "uso": "Regra de nomes: tarefa com verbo no infinitivo e objeto; evento com objeto e estado; gateway com pergunta; raia com papel ou sistema.",
+   "conf": "Documentação oficial aberta.",
+   "links": [
+    [
+     "docs.camunda.io",
+     "https://docs.camunda.io/docs/components/best-practices/modeling/naming-bpmn-elements/"
+    ]
+   ]
+  },
+  "sipoc": {
+   "ref": "ASQ, SIPOC+CM Diagram",
+   "uso": "Fornecedor, entrada, processo, saída e cliente: a base de “quem gera a entrada” e “quem recebe a saída” em cada etapa.",
+   "conf": "Página oficial da ASQ aberta.",
+   "links": [
+    [
+     "asq.org",
+     "https://asq.org/quality-resources/sipoc"
+    ]
+   ]
+  },
+  "l14133": {
+   "ref": "Brasil, Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos)",
+   "uso": "Na OP-02, contrato público: o objeto é recebido provisoriamente pelo fiscal e definitivamente por servidor ou comissão, com termo detalhado, e pode ser rejeitado no todo ou em parte (art. 140). A OP-02 trata os dois recebimentos como aceite do cliente.",
+   "conf": "Texto aberto no site do Planalto em 02/10/2026; conferidos o art. 6º (incisos XLV, XLVI, XLVIII e XLIX), o art. 17 (caput e incisos I a VII) e o caput do art. 18. O Planalto, a Câmara e o Senado entregaram o texto só até os arts. 36, 45 e 53. Em 03/10/2026, os arts. 82 (incisos I a IX), 83, 84, 86 (caput e §§ 2º a 8º), 90 (caput e §§ 1º e 5º), 140, 141, 164 e 165 foram lidos em transcrição secundária (LegJur, uma página por artigo); conferir no texto oficial antes de usar em peça.",
+   "links": [
+    [
+     "planalto.gov.br",
+     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+    ],
+    [
+     "LegJur, art. 164 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-164"
+    ],
+    [
+     "LegJur, art. 165 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-165"
+    ],
+    [
+     "LegJur, art. 84 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-84"
+    ],
+    [
+     "LegJur, art. 86 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-86"
+    ],
+    [
+     "LegJur, art. 90 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-90"
+    ],
+    [
+     "LegJur, art. 140 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-140"
+    ]
+   ]
+  },
+  "cc2002": {
+   "ref": "Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)",
+   "uso": "Na OP-07, quando o cliente é empresa e não consumidor: a coisa com vício oculto pode ser enjeitada (art. 441) ou ter o preço abatido (art. 442); o prazo para isso é de trinta dias para coisa móvel, contado da entrega, e, se o vício só puder ser conhecido mais tarde, conta da ciência, até cento e oitenta dias (art. 445); na garantia contratual os prazos não correm, mas o defeito deve ser denunciado em trinta dias da descoberta (art. 446). O contrato entre empresas presume-se paritário e a alocação de riscos combinada é respeitada (art. 421-A).",
+   "conf": "Os arts. 389 e 395 (redação da Lei 14.905/2024) e os arts. 421 e 421-A (redação da Lei 13.874/2019) foram lidos no Planalto, nas leis que deram a redação. Os arts. 422, 441, 442, 443, 445, 446, 475, 1.179, 1.180 e 1.194 foram lidos em transcrição secundária: a página compilada do Planalto foi cortada antes deles. Conferir no oficial antes de usar em peça ou contrato.",
+   "links": [
+    [
+     "planalto.gov.br, Lei 13.874/2019",
+     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13874.htm"
+    ],
+    [
+     "planalto.gov.br, Lei 14.905/2024",
+     "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14905.htm"
+    ],
+    [
+     "Petições Online, art. 445 (secundária)",
+     "https://www.peticoesonline.com.br/art-445-cc"
+    ],
+    [
+     "Petições Online, art. 446 (secundária)",
+     "https://www.peticoesonline.com.br/art-446-cc"
+    ],
+    [
+     "Petições Online, art. 1.179 (secundária)",
+     "https://www.peticoesonline.com.br/art-1179-cc"
+    ],
+    [
+     "Petições Online, art. 1.194 (secundária)",
+     "https://www.peticoesonline.com.br/art-1194-cc"
+    ]
+   ]
+  },
+  "iso9001": {
+   "ref": "ISO 9001:2026, Quality management systems — Requirements",
+   "uso": "Norma de requisitos para o sistema de gestão da qualidade; a página oficial apresenta a edição de 2026 como a vigente e a de 2015 como retirada. Lemos só a página. Referência geral da OP-05: padrão definido, medida, não conformidade, causa, ação corretiva e efeito conferido. Não usamos nenhum requisito numerado da norma.",
+   "conf": "Página oficial da ISO aberta em 03/10/2026: apresenta a edição de 2026 como a vigente; a página da ISO 9001:2015 a mostra como retirada e substituída pela de 2026. Nenhum requisito numerado foi lido: a norma completa é paga.",
+   "links": [
+    [
+     "iso.org, ISO 9001",
+     "https://www.iso.org/9001"
+    ],
+    [
+     "iso.org, ISO 9001:2015 (retirada)",
+     "https://www.iso.org/standard/62085.html"
+    ]
+   ]
+  },
+  "iso10002": {
+   "ref": "ISO 10002:2018, Quality management — Customer satisfaction — Guidelines for complaints handling in organizations",
+   "uso": "Diretrizes para o tratamento de reclamações em organizações, do planejamento à melhoria. Lemos só o resumo. Referência da OP-04: registrar, confirmar o recebimento, classificar, investigar, responder e tratar a causa.",
+   "conf": "Página oficial da ISO aberta em 03/10/2026: resumo lido; a norma está publicada e foi confirmada em 2023. A norma completa é paga e não foi lida.",
+   "links": [
+    [
+     "iso.org",
+     "https://www.iso.org/standard/71580.html"
+    ]
+   ]
+  },
+  "cdc": {
+   "ref": "Brasil, Lei nº 8.078, de 11 de setembro de 1990 (Código de Defesa do Consumidor)",
+   "uso": "Código de Defesa do Consumidor, quando o cliente é consumidor. Na OP-04 e na OP-07: o fornecedor responde pelos vícios de qualidade do produto (art. 18) e do serviço (art. 20); não sanado o vício do produto no prazo máximo de trinta dias, o consumidor escolhe a troca, a devolução do valor ou o abatimento (art. 18, § 1º); nesse caso, o consumidor pode usar essas alternativas de imediato quando a troca das partes comprometer o produto ou ele for essencial (art. 18, § 3º); no serviço, escolhe a reexecução, a devolução do valor ou o abatimento (art. 20); o prazo para reclamar de vício aparente é de trinta dias para serviço e produto não duráveis e de noventa dias para serviço e produto duráveis (art. 26, I e II), contado da entrega ou do fim do serviço (art. 26, § 1º) e, no vício oculto, de quando o defeito aparece (art. 26, § 3º); a reclamação obsta a decadência até a resposta negativa, que deve ser transmitida de forma inequívoca (art. 26, § 2º, I), por isso a OP-04 responde por escrito. Na OP-07: quem descobre a periculosidade depois da venda comunica imediatamente as autoridades e os consumidores (art. 10, § 1º), antes e independentemente da decisão de recall.",
+   "conf": "Texto compilado aberto no site do Planalto em 03/10/2026; conferidos o art. 10 (caput e § 1º), o art. 18 (caput, § 1º, incisos I a III, e § 3º), o art. 20 (caput e incisos I a III) e o art. 26 (caput, incisos I e II, § 1º, § 2º, inciso I, e § 3º).",
+   "links": [
+    [
+     "planalto.gov.br",
+     "https://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm"
+    ]
+   ]
+  },
+  "lgpd": {
+   "ref": "Brasil, Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais)",
+   "uso": "Na OP-08: o término do tratamento e a eliminação dos dados pessoais do cliente no fim do contrato (arts. 15 e 16), conforme as regras de sigilo da Governança.",
+   "conf": "Texto aberto no site do Planalto; conferidos o art. 5º (incisos I, II, III, VI, VII e X), o art. 6º (caput e incisos I a III), o art. 7º (caput e incisos I, V e IX), o art. 8º (caput e § 5º), o art. 9º (caput), os arts. 15 e 16 (término do tratamento e eliminação dos dados), o art. 18 (caput e incisos I a IX) e o caput do art. 37. Em 03/10/2026, também o caput do art. 19 e o inciso II, o caput do art. 20, o caput do art. 41 e o § 2º, incisos I e II, e o caput do art. 48.",
+   "links": [
+    [
+     "planalto.gov.br",
+     "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm"
+    ]
+   ]
+  }
+ },
+ "mudancas": [
+  {
+   "tipo": "Ajustado",
+   "antes": "I-OP1 · Da demanda à capacidade de entrega",
+   "agora": "OP-01",
+   "nota": "Ganha o plano usado para confirmar propostas, implantações e lançamentos, a decisão do executivo acima da alçada e o pedido de capacidade à Integração."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "V5 · Da entrega ao recebimento",
+   "agora": "OP-02",
+   "nota": "A entrega recorrente de cada cliente, com aceite e confirmação a faturar; o faturamento e o recebimento ficam na Gestão."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "V6 · Do chamado à solução",
+   "agora": "OP-03",
+   "nota": "Atendimento com triagem: o problema de tecnologia vai à Integração, a reclamação à OP-04 e o pedido comercial a Negócios."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "OP-04",
+   "nota": "Tratamento de reclamações como jornada própria, pedido por Relações (RE-04 e RE-08) e pela Inteligência (IN-03)."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "I-OP2 · Da inspeção à qualidade garantida",
+   "agora": "OP-05",
+   "nota": "Ganha os procedimentos e os níveis de serviço tirados da experiência de Relações e a ação corretiva conferida."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "V8 · Da previsão ao produto entregue",
+   "agora": "OP-06",
+   "nota": "Mantida só onde há produto físico, com a compra na Gestão."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "OP-07",
+   "nota": "Pós-venda do produto físico: devolução, garantia, assistência e recall."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "OP-08",
+   "nota": "Encerramento das entregas, pedido pela Integração (IT-04) e por Negócios (NE-06)."
+  }
+ ],
+ "interfaces": [
+  {
+   "parte": "Identidade",
+   "entrega": [
+    {
+     "o": "Lacunas de execução apontadas",
+     "em": [
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Marca retirada de uso",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "o": "Pacote de marca publicado",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "o": "Padrões de identidade vigentes",
+     "em": [
+      "OP-02",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Resposta à consulta",
+     "em": [
+      "OP-03"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Consulta sobre caso não coberto",
+     "de": [
+      "OP-03"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Estratégia",
+   "entrega": [
+    {
+     "o": "Correções de execução publicadas, com dono e prazo",
+     "em": [
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+     "em": [
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+     "em": [
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Mandato da empresa",
+     "em": [
+      "OP-01",
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Oferta aprovada para lançamento",
+     "em": [
+      "OP-01"
+     ]
+    }
+   ],
+   "recebe": [],
+   "tarefas": []
+  },
+  {
+   "parte": "Inteligência",
+   "entrega": [
+    {
+     "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+     "em": [
+      "OP-01",
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Base de conhecimento publicada",
+     "em": [
+      "OP-02",
+      "OP-03"
+     ]
+    },
+    {
+     "o": "Método publicado, com versão e data de revisão",
+     "em": [
+      "OP-02",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Método retirado de uso",
+     "em": [
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+     "em": [
+      "OP-01",
+      "OP-02",
+      "OP-05",
+      "OP-06",
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Painel de indicadores de cada círculo, com dono e análise",
+     "em": [
+      "OP-01",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Resposta ao pedido sobre oferta em uso",
+     "em": [
+      "OP-03"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Conteúdo novo apontado",
+     "de": [
+      "OP-03"
+     ]
+    },
+    {
+     "o": "Lição apontada",
+     "de": [
+      "OP-02",
+      "OP-05",
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Pedido de ajuste ou de revisão de oferta em uso",
+     "de": [
+      "OP-03",
+      "OP-04",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Pedidos, reclamações e incidentes de clientes",
+     "de": [
+      "OP-03",
+      "OP-04",
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Registros de entrega, atendimento e qualidade",
+     "de": [
+      "OP-02",
+      "OP-03",
+      "OP-05",
+      "OP-06",
+      "OP-07",
+      "OP-08"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Relações",
+   "entrega": [
+    {
+     "o": "Avaliação da experiência sem mudança",
+     "em": [
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Clientes avisados da saída, com a transição combinada",
+     "em": [
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+     "em": [
+      "OP-02",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Lacunas de percepção encaminhadas ao dono",
+     "em": [
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Parceria ativa, com plano de ativação",
+     "em": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Plano de recuperação do cliente",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+     "em": [
+      "OP-02",
+      "OP-03"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Fato a comunicar",
+     "de": [
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Lacuna de experiência apontada",
+     "de": [
+      "OP-04",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Reclamações e incidentes de clientes, com a causa",
+     "de": [
+      "OP-04"
+     ]
+    },
+    {
+     "o": "Registros de entrega, atendimento e reclamações do cliente",
+     "de": [
+      "OP-02",
+      "OP-03",
+      "OP-06",
+      "OP-07",
+      "OP-08"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Negócios",
+   "entrega": [
+    {
+     "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+     "em": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Contrato de cliente assinado, com o escopo vendido",
+     "em": [
+      "OP-02",
+      "OP-05",
+      "OP-06",
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Contrato encerrado, com a data de fim",
+     "em": [
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "em": [
+      "OP-01",
+      "OP-06"
+     ]
+    },
+    {
+     "o": "Tabela de preços e política comercial vigentes",
+     "em": [
+      "OP-02"
+     ]
+    }
+   ],
+   "recebe": [],
+   "tarefas": [
+    "OP-03"
+   ]
+  },
+  {
+   "parte": "Integração",
+   "entrega": [
+    {
+     "o": "Catálogo de capacidades atualizado",
+     "em": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Cliente implantado e aceito, passado à entrega",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "o": "Oferta lançada",
+     "em": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Plano de implantação do cliente",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "em": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "em": [
+      "OP-08"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Entregas encerradas na saída",
+     "de": [
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Necessidade de capacidade nova ou mudada",
+     "de": [
+      "OP-01",
+      "OP-05"
+     ]
+    },
+    {
+     "o": "Pedido, incidente ou risco de tecnologia",
+     "de": [
+      "OP-03"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Gestão",
+   "entrega": [
+    {
+     "o": "Materiais e serviços comprados, com a data de entrega",
+     "em": [
+      "OP-06"
+     ]
+    },
+    {
+     "o": "Pessoas, compras e ativos do plano confirmados",
+     "em": [
+      "OP-01"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Crédito ou reembolso aprovado para o cliente",
+     "de": [
+      "OP-04",
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Desempenho dos fornecedores na entrega e na qualidade",
+     "de": [
+      "OP-06"
+     ]
+    },
+    {
+     "o": "Entregas confirmadas para faturar, com a medição dos níveis de serviço",
+     "de": [
+      "OP-02",
+      "OP-06",
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Pedido de cobrança do fornecedor pela falha",
+     "de": [
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Pedido de compra de materiais e serviços",
+     "de": [
+      "OP-06"
+     ]
+    },
+    {
+     "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+     "de": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Recursos da operação liberados, com a data",
+     "de": [
+      "OP-08"
+     ]
+    }
+   ],
+   "tarefas": [
+    "OP-06"
+   ]
+  },
+  {
+   "parte": "Governança",
+   "entrega": [
+    {
+     "o": "Regras de sigilo e de dados pessoais",
+     "em": [
+      "OP-03",
+      "OP-04",
+      "OP-08"
+     ]
+    },
+    {
+     "o": "Regras e alçadas vigentes",
+     "em": [
+      "OP-01",
+      "OP-04",
+      "OP-07"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Incidente ou risco a comunicar à autoridade",
+     "de": [
+      "OP-04",
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Relatórios do recall para a autoridade",
+     "de": [
+      "OP-07"
+     ]
+    }
+   ],
+   "tarefas": [
+    "OP-04",
+    "OP-07"
+   ]
+  },
+  {
+   "parte": "Executivos",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+     "de": [
+      "OP-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    "OP-01",
+    "OP-04",
+    "OP-05",
+    "OP-07"
+   ]
+  },
+  {
+   "parte": "Solicitante",
+   "entrega": [
+    {
+     "o": "Reclamação ou incidente de cliente",
+     "em": [
+      "OP-04"
+     ]
+    }
+   ],
+   "recebe": [],
+   "tarefas": []
+  },
+  {
+   "parte": "Clientes",
+   "entrega": [
+    {
+     "o": "Pedido de devolução, garantia ou assistência",
+     "em": [
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Pedido, dúvida ou problema do cliente",
+     "em": [
+      "OP-03"
+     ]
+    }
+   ],
+   "recebe": [],
+   "tarefas": [
+    "OP-02",
+    "OP-06",
+    "OP-07",
+    "OP-08"
+   ]
+  }
+ ],
+ "tarefas_fora": [
+  {
+   "parte": "Executivos",
+   "code": "OP-01",
+   "etapa": 2,
+   "nome": "Decidir a cobertura acima da alçada de Operações"
+  },
+  {
+   "parte": "Clientes",
+   "code": "OP-02",
+   "etapa": 3,
+   "nome": "Aceitar as entregas do ciclo"
+  },
+  {
+   "parte": "Clientes",
+   "code": "OP-08",
+   "etapa": 2,
+   "nome": "Confirmar o fim das entregas"
+  },
+  {
+   "parte": "Negócios",
+   "code": "OP-03",
+   "etapa": 1,
+   "nome": "Receber o pedido comercial do cliente e tratá-lo na proposta ou no contrato"
+  },
+  {
+   "parte": "Governança",
+   "code": "OP-04",
+   "etapa": 1,
+   "nome": "Avaliar o risco e o dever de comunicar a autoridade"
+  },
+  {
+   "parte": "Executivos",
+   "code": "OP-04",
+   "etapa": 2,
+   "nome": "Decidir a solução acima da alçada de Operações"
+  },
+  {
+   "parte": "Executivos",
+   "code": "OP-05",
+   "etapa": 4,
+   "nome": "Decidir o que fazer com a causa não eliminada"
+  },
+  {
+   "parte": "Gestão",
+   "code": "OP-06",
+   "etapa": 2,
+   "nome": "Fazer a compra e informar a data de entrega"
+  },
+  {
+   "parte": "Clientes",
+   "code": "OP-06",
+   "etapa": 4,
+   "nome": "Confirmar o recebimento do produto"
+  },
+  {
+   "parte": "Clientes",
+   "code": "OP-07",
+   "etapa": 2,
+   "nome": "Escolher a troca, a devolução do valor ou o abatimento do preço"
+  },
+  {
+   "parte": "Governança",
+   "code": "OP-07",
+   "etapa": 3,
+   "nome": "Comunicar o risco à autoridade competente"
+  },
+  {
+   "parte": "Executivos",
+   "code": "OP-07",
+   "etapa": 3,
+   "nome": "Decidir o recall"
+  },
+  {
+   "parte": "Governança",
+   "code": "OP-07",
+   "etapa": 4,
+   "nome": "Enviar à autoridade os relatórios do recall"
+  }
+ ],
+ "stats": {
+  "jornadas": 8,
+  "essenciais": 6,
+  "recomendadas": 2,
+  "etapas": 30,
+  "tarefas": 126,
+  "decisoes": 31,
+  "exec": {
+   "R": 49,
+   "A": 35,
+   "H": 8,
+   "P": 29,
+   "C": 5
+  },
+  "modos": {
+   "Autopiloto": 8,
+   "Copiloto": 19,
+   "Autômato": 1,
+   "Assistido": 2
+  },
+  "riscos": {
+   "baixo": 9,
+   "médio": 19,
+   "alto": 2
+  },
+  "por_jornada": {
+   "OP-01": {
+    "R": 4,
+    "A": 3,
+    "H": 1,
+    "P": 1
+   },
+   "OP-02": {
+    "A": 7,
+    "P": 3,
+    "H": 1,
+    "R": 3
+   },
+   "OP-08": {
+    "A": 3,
+    "R": 5,
+    "P": 3,
+    "H": 1
+   },
+   "OP-03": {
+    "R": 8,
+    "A": 3,
+    "C": 1,
+    "P": 1
+   },
+   "OP-04": {
+    "R": 9,
+    "A": 5,
+    "P": 5,
+    "C": 1,
+    "H": 1
+   },
+   "OP-05": {
+    "A": 5,
+    "P": 3,
+    "R": 5,
+    "H": 1
+   },
+   "OP-06": {
+    "A": 4,
+    "P": 5,
+    "R": 6,
+    "C": 1,
+    "H": 1
+   },
+   "OP-07": {
+    "R": 9,
+    "A": 5,
+    "P": 8,
+    "H": 2,
+    "C": 2
+   }
+  },
+  "verificacoes": 2189,
+  "problemas": 0
+ },
+ "exec_nome": {
+  "P": "Pessoa de Operações",
+  "A": "Agente de Operações",
+  "R": "Automação de Operações",
+  "C": "Outro círculo",
+  "H": "Pessoa de fora do círculo",
+  "X": "Assessoria externa"
+ },
+ "fronteiras": [
+  {
+   "o": "Mudar jornadas, sistemas e agentes; implantar o cliente; coordenar lançamento e saída",
+   "dono": "Integração",
+   "nota": "A necessidade de capacidade nova ou mudada (OP-01 e OP-05) e o pedido ou incidente de tecnologia (OP-03). Recebe o cliente implantado, o plano de lançamento e o plano de saída."
+  },
+  {
+   "o": "Comprar, contratar pessoas e faturar",
+   "dono": "Gestão",
+   "nota": "O plano de capacidade (OP-01), as entregas confirmadas para faturar (OP-02 e OP-06), o crédito, o reembolso ou a troca (OP-04 e OP-07), o pedido de compra e o desempenho dos fornecedores (OP-06), a cobrança do fornecedor (OP-07) e os recursos liberados (OP-08)."
+  },
+  {
+   "o": "Definir a experiência do cliente e acompanhar o sucesso de cada cliente",
+   "dono": "Relações",
+   "nota": "Os registros do cliente (OP-02, OP-03, OP-06, OP-07 e OP-08), as reclamações com a causa e a lacuna de experiência (OP-04 e OP-05) e o fato a comunicar no recall (OP-07)."
+  },
+  {
+   "o": "Vender, renovar, ampliar e cancelar contratos",
+   "dono": "Negócios",
+   "nota": "O pedido comercial do cliente recebido no atendimento é passado a Negócios dentro da OP-03."
+  },
+  {
+   "o": "Desenhar a oferta, o método e a base de conhecimento; medir os indicadores",
+   "dono": "Inteligência",
+   "nota": "Os registros de entrega, atendimento e qualidade, os pedidos e reclamações, o conteúdo que faltou, as lições e o pedido de ajuste de oferta em uso."
+  },
+  {
+   "o": "Definir a alçada, as regras de sigilo e comunicar a autoridade",
+   "dono": "Governança",
+   "nota": "O incidente ou risco a comunicar à autoridade (OP-04 e OP-07); a conferência do dever de comunicar no recall (OP-07)."
+  },
+  {
+   "o": "Decidir o que passa da alçada de Operações e o recall",
+   "dono": "Executivo da empresa",
+   "nota": "A cobertura de capacidade (OP-01), a solução de reclamação (OP-04) e o recall (OP-07)."
+  },
+  {
+   "o": "Participar das jornadas de outros círculos",
+   "dono": "Operações, como tarefa nas jornadas de outros círculos",
+   "nota": "Confirmar a capacidade (NE-02, NE-03, NE-05, NE-06, IN-07, IT-02 e IT-03), com o plano e o mapa da OP-01; dizer se a operação cumpre os padrões de experiência (RE-04); entregar o piloto ao cliente e fechar o roteiro de entrega (IN-07, etapas 6 e 7), sem abrir a OP-02; implantar junto com a Integração (IT-02); propor o fim das entregas no plano de saída (IT-04), que a OP-08 executa."
+  }
+ ],
+ "pontos": [],
+ "decisoes": [
+  {
+   "o": "Operações decide o seu ofício; o executivo decide o que passa da alçada e o recall",
+   "origem": "Ponto 1, aprovado por você (11:50 de 03/10/2026)",
+   "efeito": "Plano de capacidade, plano de entrega, procedimentos e níveis de serviço, solução de reclamação dentro da alçada e ação corretiva são de Operações. Segue a regra dos outros círculos: o executivo decide só o que passa da alçada."
+  },
+  {
+   "o": "Relações define os padrões de experiência; Operações define os níveis de serviço",
+   "origem": "Ponto 2, aprovado por você (11:50)",
+   "efeito": "OP-05, etapa 1: Operações traduz a experiência e o método em procedimentos e níveis de serviço por oferta e por segmento. O padrão que não consegue cumprir volta a Relações como lacuna."
+  },
+  {
+   "o": "Operações trata todas as reclamações sobre entrega e atendimento",
+   "origem": "Ponto 3, aprovado por você (11:50)",
+   "efeito": "OP-04. Relações recebe cada reclamação com a causa (RE-04 e RE-08); a Governança avalia o risco legal e o dever de comunicar a autoridade."
+  },
+  {
+   "o": "Operações confirma a entrega; a Gestão fatura e compra",
+   "origem": "Ponto 4, aprovado por você (11:50)",
+   "efeito": "Como diz o documento-base: Operações não fatura. OP-02 e OP-06 passam as entregas confirmadas a faturar; OP-06 pede a compra dos materiais."
+  },
+  {
+   "o": "O pedido comercial que chega ao atendimento vai a Negócios sem passar por Relações",
+   "origem": "Ponto 5, aprovado por você (11:50)",
+   "efeito": "OP-03, etapa 1: tarefa de Negócios, que o trata na proposta ou no contrato (NE-03 e NE-06). Nenhuma mudança nos círculos fechados."
+  },
+  {
+   "o": "Produto físico em duas jornadas recomendadas",
+   "origem": "Ponto 6, aprovado por você (11:50)",
+   "efeito": "OP-06 e OP-07 só existem onde a oferta tem produto físico. O recall é decidido pelo executivo."
+  },
+  {
+   "o": "Oito jornadas",
+   "origem": "Ponto 7, aprovado por você (11:50)",
+   "efeito": "OP-01 a OP-08."
+  },
+  {
+   "o": "A IT-04 recebe de Operações as entregas encerradas na saída",
+   "origem": "Proposta ao círculo 6, aprovada por você (11:50)",
+   "efeito": "IT-04, etapa 2: a conclusão da parte de Operações passa a ser uma entrada, vinda da OP-08, etapa 3."
+  },
+  {
+   "o": "Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem",
+   "origem": "Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)",
+   "efeito": "OP-08 etapa 3: a automação registra a liberação de pessoas, agentes, parceiros e ativos (item 4). OP-07 etapa 1: o agente faz a triagem e a pessoa de Operações decide se há risco à saúde ou à segurança; na dúvida, vai à avaliação de recall. A negativa de cobertura apontada pelo agente é revisada pela pessoa antes da resposta ao cliente. O modo passa de Autopiloto a Copiloto (itens 5 e 6). De Assistido para Copiloto, pelas tarefas: OP-07 etapa 3. De Autopiloto para Autômato, pelas tarefas: OP-01 etapa 3. De Copiloto para Assistido, pelas tarefas: OP-08 etapa 2, OP-07 etapa 2. Nível de automação pela faixa: OP-02 média → alta; OP-05 média → alta."
+  },
+  {
+   "o": "Fontes do pós-venda entre empresas e do recebimento público",
+   "origem": "Pedido seu (13:09 de 03/10/2026): pesquisar e resolver as fontes",
+   "efeito": "OP-07: Código Civil, arts. 421-A e 441 a 446; OP-02: Lei 14.133, art. 140. Lidos em transcrição secundária; conferir no oficial antes de usar em peça."
+  },
+  {
+   "o": "Alçadas de Operações",
+   "origem": "Aprovado por você (13:51 de 03/10/2026)",
+   "efeito": "Falta de capacidade: Operações cobre com pessoas e parceiros já contratados, dentro do orçamento; contratação nova ou fora do orçamento vai ao executivo pela GE-01. Reclamação: Operações refaz e dá crédito até o valor faturado da entrega reclamada; acima, ou com responsabilidade e indenização, o executivo com a Governança."
+  },
+  {
+   "o": "Cadências e conteúdos validados; gates de implantação",
+   "origem": "Validado por você (14:07 de 03/10/2026)",
+   "efeito": "OP-01 trimestral; OP-05 e OP-06 mensais; procedimento, três níveis de serviço e garantia por oferta. O que depende de dado real ficou nos gates G1 a G9."
+  }
+ ],
+ "alertas": [
+  {
+   "o": "Gestão (círculo 8)",
+   "nota": "Operações espera da Gestão as pessoas, as compras e os ativos do plano de capacidade, confirmados; os materiais comprados com a data de entrega; a fatura das entregas confirmadas; o crédito ou o reembolso aprovado e a cobrança do fornecedor. Entrega o plano de capacidade, as entregas confirmadas para faturar, o pedido de compra, o desempenho dos fornecedores e os recursos liberados."
+  },
+  {
+   "o": "Governança (círculo 9)",
+   "nota": "Operações espera as regras e alçadas vigentes e as regras de sigilo e de dados pessoais, a avaliação do risco legal da reclamação, a comunicação do risco do produto à autoridade e os relatórios do recall. Entrega o incidente ou risco a comunicar à autoridade e os relatórios do recall para a autoridade."
+  }
+ ],
+ "propostas": [],
+ "transferidas": [],
+ "cobertura": [
+  {
+   "ref": "4.1.1",
+   "nome": "Develop production and materials strategies",
+   "onde": "Em parte: o plano de produção e de materiais do ciclo (OP-06, etapa 1). As políticas de produção não têm etapa própria: ficam como limite"
+  },
+  {
+   "ref": "4.1.2",
+   "nome": "Manage demand for products",
+   "onde": "OP-06, etapa 1"
+  },
+  {
+   "ref": "4.1.3",
+   "nome": "Create materials plan",
+   "onde": "OP-06, etapa 1"
+  },
+  {
+   "ref": "4.1.4",
+   "nome": "Create and manage master production schedule",
+   "onde": "OP-06, etapas 1 e 3"
+  },
+  {
+   "ref": "4.1.5",
+   "nome": "Plan distribution requirements",
+   "onde": "Limite: não desenhado como etapa própria"
+  },
+  {
+   "ref": "4.1.6",
+   "nome": "Establish distribution planning constraints",
+   "onde": "Limite: não desenhado como etapa própria"
+  },
+  {
+   "ref": "4.1.7",
+   "nome": "Review distribution planning policies",
+   "onde": "Limite: não desenhado como etapa própria"
+  },
+  {
+   "ref": "4.1.8",
+   "nome": "Develop quality standards and procedures",
+   "onde": "OP-05, etapa 1"
+  },
+  {
+   "ref": "4.2",
+   "nome": "Procure materials and services",
+   "onde": "Fora: a Gestão compra. Operações pede, recebe e inspeciona (OP-06, etapa 2) e informa o desempenho dos fornecedores"
+  },
+  {
+   "ref": "4.3.1",
+   "nome": "Schedule production",
+   "onde": "OP-06, etapa 3. A manutenção preventiva e a não planejada (4.3.1.5 e 4.3.1.6) não têm etapa própria: ficam como limite"
+  },
+  {
+   "ref": "4.3.2",
+   "nome": "Produce/Assemble product",
+   "onde": "OP-06, etapa 3"
+  },
+  {
+   "ref": "4.3.3",
+   "nome": "Perform quality testing",
+   "onde": "OP-06, etapa 3"
+  },
+  {
+   "ref": "4.3.4",
+   "nome": "Maintain production records and manage lot traceability",
+   "onde": "OP-06, etapas 3 e 4"
+  },
+  {
+   "ref": "4.4.1",
+   "nome": "Provide logistics governance",
+   "onde": "Limite: não desenhado como etapa própria"
+  },
+  {
+   "ref": "4.4.2",
+   "nome": "Plan and manage inbound material flow",
+   "onde": "OP-06, etapa 2. O fluxo de produtos devolvidos (4.4.2.4) fica na OP-07"
+  },
+  {
+   "ref": "4.4.3",
+   "nome": "Operate warehousing",
+   "onde": "OP-06, etapas 2 e 4"
+  },
+  {
+   "ref": "4.4.4",
+   "nome": "Operate outbound transportation",
+   "onde": "OP-06, etapa 4"
+  },
+  {
+   "ref": "5.1.1",
+   "nome": "Establish service delivery governance",
+   "onde": "OP-05 (procedimentos, níveis de serviço e desempenho da entrega)"
+  },
+  {
+   "ref": "5.1.2",
+   "nome": "Develop service delivery strategies",
+   "onde": "OP-01 e OP-05, etapa 1"
+  },
+  {
+   "ref": "5.2.1",
+   "nome": "Manage service delivery resource demand",
+   "onde": "OP-01, etapa 1"
+  },
+  {
+   "ref": "5.2.2",
+   "nome": "Create and manage resource plan",
+   "onde": "OP-01, etapas 2 e 3"
+  },
+  {
+   "ref": "5.2.3",
+   "nome": "Enable service delivery resources",
+   "onde": "Em parte: o treino ligado à ação corretiva (OP-05, etapa 4). O desenvolvimento das pessoas é da Gestão"
+  },
+  {
+   "ref": "5.3.1",
+   "nome": "Initiate service delivery",
+   "onde": "OP-02, etapa 1"
+  },
+  {
+   "ref": "5.3.2",
+   "nome": "Execute service delivery",
+   "onde": "OP-02, etapa 2"
+  },
+  {
+   "ref": "5.3.3",
+   "nome": "Complete service delivery",
+   "onde": "OP-02, etapas 3 e 4, para o ciclo; OP-08, para o fim do contrato"
+  },
+  {
+   "ref": "6.1.1",
+   "nome": "Define customer service requirements across the enterprise",
+   "onde": "Em parte: OP-05, etapa 1, a partir da experiência definida por Relações"
+  },
+  {
+   "ref": "6.1.2",
+   "nome": "Define customer service experience",
+   "onde": "Fora: Relações define a experiência (RE-04); Operações a traduz em procedimentos (OP-05)"
+  },
+  {
+   "ref": "6.1.3",
+   "nome": "Define and manage customer service channel strategy",
+   "onde": "Limite: os canais de atendimento não têm etapa própria; os pontos de contato estão no mapa da jornada de Relações (RE-04)"
+  },
+  {
+   "ref": "6.1.4",
+   "nome": "Define customer service policies and procedures",
+   "onde": "OP-05, etapa 1"
+  },
+  {
+   "ref": "6.1.5",
+   "nome": "Establish target service level for each customer segment",
+   "onde": "OP-05, etapa 1"
+  },
+  {
+   "ref": "6.1.6",
+   "nome": "Define warranty claims",
+   "onde": "Limite: a política de garantia faz parte dos termos da oferta (IN-07) e não tem etapa própria em Operações"
+  },
+  {
+   "ref": "6.1.7",
+   "nome": "Develop recall strategy",
+   "onde": "Em parte: o recall de cada caso (OP-07, etapa 3). Uma estratégia de recall prévia não tem etapa própria: fica como limite"
+  },
+  {
+   "ref": "6.2.1",
+   "nome": "Plan and manage customer service work force",
+   "onde": "OP-01, junto com o resto da capacidade"
+  },
+  {
+   "ref": "6.2.2",
+   "nome": "Manage customer service problems, requests, and inquiries",
+   "onde": "OP-03"
+  },
+  {
+   "ref": "6.2.3",
+   "nome": "Manage customer complaints",
+   "onde": "OP-04"
+  },
+  {
+   "ref": "6.2.4",
+   "nome": "Process returns",
+   "onde": "OP-07, etapas 1 e 2"
+  },
+  {
+   "ref": "6.2.5",
+   "nome": "Report incidents and risks to regulatory bodies",
+   "onde": "OP-04, etapa 1, e OP-07, etapa 3, com a Governança"
+  },
+  {
+   "ref": "6.3.1",
+   "nome": "Register products",
+   "onde": "Limite: não desenhado como etapa própria; o lote é registrado na OP-06"
+  },
+  {
+   "ref": "6.3.2",
+   "nome": "Process warranty claims",
+   "onde": "OP-07, etapas 1 e 2"
+  },
+  {
+   "ref": "6.3.3",
+   "nome": "Manage supplier recovery",
+   "onde": "OP-07, etapa 5, com a Gestão"
+  },
+  {
+   "ref": "6.3.4",
+   "nome": "Service products",
+   "onde": "OP-07, etapa 2"
+  },
+  {
+   "ref": "6.4",
+   "nome": "Manage product recalls and regulatory audits",
+   "onde": "OP-07, etapas 3 e 4"
+  },
+  {
+   "ref": "6.5",
+   "nome": "Evaluate customer service operations and customer satisfacion",
+   "onde": "OP-05, etapa 2; a avaliação do cliente é colhida na OP-03 e a saúde do cliente é medida por Relações (RE-05). A avaliação do recall (6.5.5) fica na OP-07, etapa 4. O nome está como no referencial, com a grafia dele"
+  }
+ ],
+ "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções de Operações (categorias 4.0, 5.0 e 6.0), grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
+ "principio": "Regra do círculo, aprovada por você às 11:50 de 03/10/2026: Operações decide o que é do seu ofício (o plano de capacidade, o plano de entrega de cada cliente, os procedimentos e os níveis de serviço, a solução da reclamação dentro da alçada e a ação corretiva). O executivo decide o que passa da alçada de Operações e o recall; Relações define os padrões de experiência; a Integração muda jornadas, sistemas e agentes; a Gestão compra e fatura; a Governança define a alçada e avalia o dever de comunicar a autoridade.",
+ "limites": [
+  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. Os únicos prazos citados são os da lei (CDC e Código Civil), com a fonte.",
+  "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
+  "Os rascunhos de procedimentos, níveis de serviço e garantia foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.",
+  "O CDC vale quando o cliente é consumidor. Contrato entre empresas segue o que foi contratado e o Código Civil (arts. 421-A e 441 a 446), lido em transcrição secundária: conferir no texto oficial antes de usar.",
+  "Uma estratégia de recall prévia (APQC 6.1.7), a manutenção de equipamentos (APQC 4.3.1.5 e 4.3.1.6), o planejamento da distribuição (4.1.5 a 4.1.7), a governança da logística (4.4.1), o registro de produtos (6.3.1) e a estratégia de canais de atendimento (6.1.3) não têm etapa própria.",
+  "No contrato público, o recebimento provisório e o definitivo seguem o art. 140 da Lei 14.133, lido em transcrição secundária: a OP-02 trata os dois como aceite do cliente.",
+  "Quando a ação corretiva conclui, quem apontou a lacuna (Identidade, Relações ou Estratégia) vê o efeito pelo painel da Inteligência: os círculos fechados não têm entrada para um aviso direto.",
+  "A recusa de capacidade no plano chega a Negócios pela confirmação de capacidade feita nas jornadas de Negócios e ao executivo pelo plano publicado; Negócios não recebe o plano como entrada.",
+  "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 9001 lemos só a página oficial; da ISO 10002, só o resumo.",
+  "Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "A tarefa de quem não é do círculo (cliente, executivo, Negócios, Gestão, Governança) está desenhada como participação; o detalhe dela fica no círculo dono.",
+  "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
+  "As saídas estão listadas por etapa, não por caminho: o pedido à Integração, à Identidade ou à Inteligência só sai quando a decisão pede.",
+  "Os números descrevem este desenho, não a operação atual."
+ ],
+ "revisao": [
+  "Um revisor independente (agente que não participou do desenho) leu a primeira versão das oito jornadas, conferiu os 33 códigos e nomes do APQC PCF 7.4 (todos conferem) e os artigos do CDC no Planalto, e apontou 18 achados, 3 graves: a ordem da saída invertida em relação à IT-04 e à ES-04, a comunicação à autoridade presa à decisão de recall e a escolha do consumidor no vício do produto e do serviço tratada como decisão de Operações.",
+  "Todos foram corrigidos ou declarados como limite, e a versão corrigida passou por todos os testes automáticos. A segunda versão não passou por nova revisão independente."
+ ],
+ "ondas": {
+  "1": "O que os círculos fechados já esperam de Operações: capacidade, entrega, atendimento, reclamações, qualidade e encerramento",
+  "2": "O que só existe onde há produto físico: suprimentos, produção, logística e pós-venda"
+ }
+}

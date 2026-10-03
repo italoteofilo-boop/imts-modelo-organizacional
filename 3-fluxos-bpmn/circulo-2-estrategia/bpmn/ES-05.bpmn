@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_ES05" targetNamespace="urn:imts:modelo:circulo2-estrategia" exporter="Ecossistema IMTS - fonte única do Círculo 2" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_ES05">
+    <bpmn:categoryValue id="CV_ES05_E1" value="1. Montar o caso: por que criar, adquirir, vender ou encerrar" />
+    <bpmn:categoryValue id="CV_ES05_E2" value="2. Obter dos sócios a autorização para negociar, com limites" />
+    <bpmn:categoryValue id="CV_ES05_E3" value="3. Apurar a empresa ou o negócio e negociar com a outra parte, quando houver" />
+    <bpmn:categoryValue id="CV_ES05_E4" value="4. Propor a estrutura societária e de governança" />
+    <bpmn:categoryValue id="CV_ES05_E5" value="5. Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver" />
+    <bpmn:categoryValue id="CV_ES05_E6" value="6. Emitir o mandato para os círculos que executam" />
+    <bpmn:categoryValue id="CV_ES05_E7" value="7. Executar o mandato até a empresa operar ou sair do portfólio" />
+    <bpmn:categoryValue id="CV_ES05_E8" value="8. Conferir o cumprimento do mandato e atualizar o portfólio" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_ES05">
+    <bpmn:participant id="Participant_ES05" name="ES-05 · Decidir e estruturar a criação, a aquisição, a venda ou o encerramento de uma empresa" processRef="Process_ES05" />
+    <bpmn:group id="Group_ES05_E1" categoryValueRef="CV_ES05_E1" />
+    <bpmn:group id="Group_ES05_E2" categoryValueRef="CV_ES05_E2" />
+    <bpmn:group id="Group_ES05_E3" categoryValueRef="CV_ES05_E3" />
+    <bpmn:group id="Group_ES05_E4" categoryValueRef="CV_ES05_E4" />
+    <bpmn:group id="Group_ES05_E5" categoryValueRef="CV_ES05_E5" />
+    <bpmn:group id="Group_ES05_E6" categoryValueRef="CV_ES05_E6" />
+    <bpmn:group id="Group_ES05_E7" categoryValueRef="CV_ES05_E7" />
+    <bpmn:group id="Group_ES05_E8" categoryValueRef="CV_ES05_E8" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_ES05" name="Decidir e estruturar a criação, a aquisição, a venda ou o encerramento de uma empresa" isExecutable="false">
+    <bpmn:documentation>Decidir com um caso escrito se o Ecossistema cria, adquire, vende ou encerra uma empresa; obter dos sócios a autorização para negociar e, depois, a decisão, inclusive a de arquivar o caso que eles mandaram estudar ou cuja negociação autorizaram; firmar o contrato, quando há; emitir o mandato para os círculos que executam; e conferir o cumprimento. A Integração executa o mandato; a Estratégia confere.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_ES05">
+      <bpmn:lane id="Lane_ES05_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>ES05_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_SOC" name="Sócios">
+        <bpmn:flowNodeRef>ES05_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_G3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_ASS" name="Assessoria externa">
+        <bpmn:flowNodeRef>ES05_E4_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_GOV" name="Governança">
+        <bpmn:flowNodeRef>ES05_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_PS1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E4_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_GES" name="Gestão">
+        <bpmn:flowNodeRef>ES05_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_PJ1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_PS1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_IDE" name="Identidade">
+        <bpmn:flowNodeRef>ES05_E1_T10</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_G3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_ITG" name="Integração">
+        <bpmn:flowNodeRef>ES05_M11</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_PJ1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M12</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_T6</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_ESP" name="Estratégia · pessoa">
+        <bpmn:flowNodeRef>ES05_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E4_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M10</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E8_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E8_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_ESA" name="Estratégia · agente">
+        <bpmn:flowNodeRef>ES05_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E8_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ES05_ESR" name="Estratégia · automação">
+        <bpmn:flowNodeRef>ES05_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E1_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E3_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E5_T10</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_M8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E6_T9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E7_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_E8_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ES05_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="ES05_S1" name="Oportunidade de aquisição ou de venda recebida"><bpmn:outgoing>ES05_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="ES05_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="ES05_S2" name="Aposta aprovada para empresa própria"><bpmn:outgoing>ES05_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="ES05_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="ES05_S3" name="Estudo de saída de empresa pedido"><bpmn:outgoing>ES05_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="ES05_S3_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ES05_M1"><bpmn:incoming>ES05_Flow1</bpmn:incoming><bpmn:incoming>ES05_Flow2</bpmn:incoming><bpmn:incoming>ES05_Flow3</bpmn:incoming><bpmn:incoming>ES05_Flow17</bpmn:incoming><bpmn:incoming>ES05_Flow21</bpmn:incoming><bpmn:incoming>ES05_Flow62</bpmn:incoming><bpmn:outgoing>ES05_Flow106</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ES05_E1_T1" name="Enviar à Inteligência a pergunta de decisão do caso, com o risco e o prazo"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow106</bpmn:incoming><bpmn:outgoing>ES05_Flow4</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:receiveTask id="ES05_E1_T2" name="Receber a resposta com evidência sobre o caso, ou a pergunta devolvida"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow4</bpmn:incoming><bpmn:outgoing>ES05_Flow5</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:serviceTask id="ES05_E1_T3" name="Montar o caso e os cenários, incluindo a alternativa de não mudar"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Agente da Estratégia (Estratégia · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow5</bpmn:incoming><bpmn:outgoing>ES05_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="ES05_E1_T4" name="Conferir se o caso cabe na estratégia"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Agente da Estratégia (Estratégia · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow6</bpmn:incoming><bpmn:outgoing>ES05_Flow7</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="ES05_E1_T5" name="Concluir o caso com quem propôs"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow7</bpmn:incoming><bpmn:outgoing>ES05_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ES05_E1_G1" name="O caso se sustenta?"><bpmn:incoming>ES05_Flow8</bpmn:incoming><bpmn:outgoing>ES05_Flow9</bpmn:outgoing><bpmn:outgoing>ES05_Flow11</bpmn:outgoing><bpmn:outgoing>ES05_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E1_T6" name="Propor aos sócios arquivar o caso, com o motivo"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow9</bpmn:incoming><bpmn:outgoing>ES05_Flow10</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="ES05_E1_T7" name="Redigir a lição do caso arquivado, sem dado sigiloso"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow11</bpmn:incoming><bpmn:outgoing>ES05_Flow12</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E1_T8" name="Arquivar o caso com o motivo e avisar quem propôs e, se nasceu de aposta, a carteira"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow12</bpmn:incoming><bpmn:outgoing>ES05_Flow13</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="ES05_E1_T9" name="Conferir o caso com os critérios de decisão da identidade"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Agente da Estratégia (Estratégia · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow14</bpmn:incoming><bpmn:outgoing>ES05_Flow15</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="ES05_E1_G2" name="O caso é coerente com a identidade?"><bpmn:incoming>ES05_Flow15</bpmn:incoming><bpmn:outgoing>ES05_Flow16</bpmn:outgoing><bpmn:outgoing>ES05_Flow17</bpmn:outgoing><bpmn:outgoing>ES05_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="ES05_E1_T10" name="Julgar o caso de fronteira da empresa"><bpmn:documentation>Etapa 1: Montar o caso: por que criar, adquirir, vender ou encerrar. Executor: Outro círculo (Identidade). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow18</bpmn:incoming><bpmn:outgoing>ES05_Flow19</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="ES05_E1_G3" name="A Identidade considera o caso coerente?"><bpmn:incoming>ES05_Flow19</bpmn:incoming><bpmn:outgoing>ES05_Flow20</bpmn:outgoing><bpmn:outgoing>ES05_Flow21</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ES05_M2"><bpmn:incoming>ES05_Flow16</bpmn:incoming><bpmn:incoming>ES05_Flow20</bpmn:incoming><bpmn:outgoing>ES05_Flow107</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ES05_E2_G1" name="O caso é de aquisição ou de venda?"><bpmn:incoming>ES05_Flow107</bpmn:incoming><bpmn:outgoing>ES05_Flow22</bpmn:outgoing><bpmn:outgoing>ES05_Flow23</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E2_T1" name="Propor os limites de preço e de condições da negociação"><bpmn:documentation>Etapa 2: Obter dos sócios a autorização para negociar, com limites. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow23</bpmn:incoming><bpmn:outgoing>ES05_Flow24</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="ES05_E2_T2" name="Levar aos sócios o pedido de autorização para negociar, com os limites propostos"><bpmn:documentation>Etapa 2: Obter dos sócios a autorização para negociar, com limites. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow24</bpmn:incoming><bpmn:outgoing>ES05_Flow25</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:manualTask id="ES05_E2_T3" name="Decidir a autorização para negociar e os limites de preço e de condições"><bpmn:documentation>Etapa 2: Obter dos sócios a autorização para negociar, com limites. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow25</bpmn:incoming><bpmn:outgoing>ES05_Flow26</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="ES05_E2_G2" name="Os sócios autorizaram a negociação?"><bpmn:incoming>ES05_Flow26</bpmn:incoming><bpmn:outgoing>ES05_Flow27</bpmn:outgoing><bpmn:outgoing>ES05_Flow28</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E2_T4" name="Redigir a lição do caso que os sócios não autorizaram, sem dado sigiloso"><bpmn:documentation>Etapa 2: Obter dos sócios a autorização para negociar, com limites. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow28</bpmn:incoming><bpmn:outgoing>ES05_Flow29</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E2_T5" name="Arquivar o caso sem autorização e avisar quem propôs e, se nasceu de aposta, a carteira"><bpmn:documentation>Etapa 2: Obter dos sócios a autorização para negociar, com limites. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow29</bpmn:incoming><bpmn:outgoing>ES05_Flow30</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ES05_M3"><bpmn:incoming>ES05_Flow22</bpmn:incoming><bpmn:incoming>ES05_Flow27</bpmn:incoming><bpmn:incoming>ES05_Flow57</bpmn:incoming><bpmn:incoming>ES05_Flow72</bpmn:incoming><bpmn:outgoing>ES05_Flow108</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ES05_E3_G1" name="Qual é o caso?"><bpmn:incoming>ES05_Flow108</bpmn:incoming><bpmn:outgoing>ES05_Flow31</bpmn:outgoing><bpmn:outgoing>ES05_Flow32</bpmn:outgoing><bpmn:outgoing>ES05_Flow33</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="ES05_E3_T1" name="Firmar o acordo de confidencialidade com a outra parte"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow32</bpmn:incoming><bpmn:outgoing>ES05_Flow34</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="ES05_M4"><bpmn:incoming>ES05_Flow33</bpmn:incoming><bpmn:incoming>ES05_Flow34</bpmn:incoming><bpmn:outgoing>ES05_Flow109</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:parallelGateway id="ES05_E3_PS1"><bpmn:incoming>ES05_Flow109</bpmn:incoming><bpmn:outgoing>ES05_Flow35</bpmn:outgoing><bpmn:outgoing>ES05_Flow37</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:callActivity id="ES05_E3_T2" name="Apurar contratos, obrigações e riscos da empresa ou do negócio"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow35</bpmn:incoming><bpmn:outgoing>ES05_Flow36</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:callActivity id="ES05_E3_T3" name="Apurar contas e pessoas da empresa ou do negócio"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Outro círculo (Gestão). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow37</bpmn:incoming><bpmn:outgoing>ES05_Flow38</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:parallelGateway id="ES05_E3_PJ1"><bpmn:incoming>ES05_Flow36</bpmn:incoming><bpmn:incoming>ES05_Flow38</bpmn:incoming><bpmn:outgoing>ES05_Flow39</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:userTask id="ES05_E3_T4" name="Consolidar o resultado da apuração para decidir se o caso segue"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow39</bpmn:incoming><bpmn:outgoing>ES05_Flow40</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ES05_E3_G2" name="Há outra parte com quem negociar?"><bpmn:incoming>ES05_Flow40</bpmn:incoming><bpmn:outgoing>ES05_Flow41</bpmn:outgoing><bpmn:outgoing>ES05_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:manualTask id="ES05_E3_T5" name="Negociar preço e condições com a outra parte, dentro dos limites dos sócios"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow41</bpmn:incoming><bpmn:outgoing>ES05_Flow43</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="ES05_M5"><bpmn:incoming>ES05_Flow42</bpmn:incoming><bpmn:incoming>ES05_Flow43</bpmn:incoming><bpmn:outgoing>ES05_Flow110</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ES05_E3_G3" name="A apuração e a negociação mantêm o caso?"><bpmn:incoming>ES05_Flow110</bpmn:incoming><bpmn:outgoing>ES05_Flow44</bpmn:outgoing><bpmn:outgoing>ES05_Flow45</bpmn:outgoing><bpmn:outgoing>ES05_Flow47</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E3_T6" name="Propor aos sócios arquivar o caso depois da apuração, com o motivo"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow45</bpmn:incoming><bpmn:outgoing>ES05_Flow46</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="ES05_E3_T7" name="Redigir a lição do caso arquivado depois da apuração, sem o que é confidencial"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow47</bpmn:incoming><bpmn:outgoing>ES05_Flow48</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E3_T8" name="Arquivar o caso depois da apuração e avisar quem propôs e, se nasceu de aposta, a carteira"><bpmn:documentation>Etapa 3: Apurar a empresa ou o negócio e negociar com a outra parte, quando houver. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow48</bpmn:incoming><bpmn:outgoing>ES05_Flow49</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ES05_M6"><bpmn:incoming>ES05_Flow31</bpmn:incoming><bpmn:incoming>ES05_Flow44</bpmn:incoming><bpmn:incoming>ES05_Flow56</bpmn:incoming><bpmn:incoming>ES05_Flow103</bpmn:incoming><bpmn:outgoing>ES05_Flow111</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ES05_E4_T1" name="Comparar estruturas societárias e de governança"><bpmn:documentation>Etapa 4: Propor a estrutura societária e de governança. Executor: Agente da Estratégia (Estratégia · agente). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow111</bpmn:incoming><bpmn:outgoing>ES05_Flow50</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:task id="ES05_E4_T2" name="Avaliar os efeitos jurídicos, fiscais e contábeis"><bpmn:documentation>Etapa 4: Propor a estrutura societária e de governança. Executor: Assessoria externa (Assessoria externa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow50</bpmn:incoming><bpmn:outgoing>ES05_Flow51</bpmn:outgoing></bpmn:task>
+    <bpmn:task id="ES05_E4_T3" name="Conferir a estrutura com as regras e os riscos"><bpmn:documentation>Etapa 4: Propor a estrutura societária e de governança. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow51</bpmn:incoming><bpmn:outgoing>ES05_Flow52</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="ES05_E4_T4" name="Decidir a estrutura e o executivo a propor"><bpmn:documentation>Etapa 4: Propor a estrutura societária e de governança. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow52</bpmn:incoming><bpmn:outgoing>ES05_Flow53</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ES05_M7"><bpmn:incoming>ES05_Flow10</bpmn:incoming><bpmn:incoming>ES05_Flow46</bpmn:incoming><bpmn:incoming>ES05_Flow53</bpmn:incoming><bpmn:outgoing>ES05_Flow112</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="ES05_E5_T1" name="Levar à decisão dos sócios o caso e a estrutura, ou a proposta de arquivar o caso"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow112</bpmn:incoming><bpmn:outgoing>ES05_Flow54</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:manualTask id="ES05_E5_T2" name="Decidir sobre a criação, a aquisição, a venda, o encerramento ou o arquivamento do caso"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow54</bpmn:incoming><bpmn:outgoing>ES05_Flow55</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="ES05_E5_G1" name="O que os sócios decidem sobre o caso?"><bpmn:incoming>ES05_Flow55</bpmn:incoming><bpmn:outgoing>ES05_Flow56</bpmn:outgoing><bpmn:outgoing>ES05_Flow57</bpmn:outgoing><bpmn:outgoing>ES05_Flow58</bpmn:outgoing><bpmn:outgoing>ES05_Flow59</bpmn:outgoing><bpmn:outgoing>ES05_Flow62</bpmn:outgoing><bpmn:outgoing>ES05_Flow63</bpmn:outgoing><bpmn:outgoing>ES05_Flow66</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E5_T3" name="Redigir a lição do caso que os sócios decidiram arquivar, sem dado sigiloso"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow59</bpmn:incoming><bpmn:outgoing>ES05_Flow60</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E5_T4" name="Registrar o arquivamento pelos sócios e avisar quem propôs e, se nasceu de aposta, a carteira"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow60</bpmn:incoming><bpmn:outgoing>ES05_Flow61</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="ES05_E5_T5" name="Redigir a lição do caso que os sócios decidiram não seguir, sem dado sigiloso"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow63</bpmn:incoming><bpmn:outgoing>ES05_Flow64</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E5_T6" name="Registrar a decisão de não seguir e avisar quem propôs e, se nasceu de aposta, a carteira"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow64</bpmn:incoming><bpmn:outgoing>ES05_Flow65</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ES05_E5_G2" name="O caso aprovado tem contrato a firmar com outra parte?"><bpmn:incoming>ES05_Flow66</bpmn:incoming><bpmn:outgoing>ES05_Flow67</bpmn:outgoing><bpmn:outgoing>ES05_Flow68</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="ES05_E5_T7" name="Preparar o contrato de compra ou venda dentro do que os sócios decidiram"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow68</bpmn:incoming><bpmn:outgoing>ES05_Flow69</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:manualTask id="ES05_E5_T8" name="Assinar o contrato de compra ou venda"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow69</bpmn:incoming><bpmn:outgoing>ES05_Flow70</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="ES05_E5_G3" name="O contrato foi assinado?"><bpmn:incoming>ES05_Flow70</bpmn:incoming><bpmn:outgoing>ES05_Flow71</bpmn:outgoing><bpmn:outgoing>ES05_Flow72</bpmn:outgoing><bpmn:outgoing>ES05_Flow73</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E5_T9" name="Redigir a lição do caso em que o contrato não foi assinado, sem o que é confidencial"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow73</bpmn:incoming><bpmn:outgoing>ES05_Flow74</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E5_T10" name="Arquivar o caso sem contrato e avisar quem propôs e, se nasceu de aposta, a carteira"><bpmn:documentation>Etapa 5: Aprovar o caso e a estrutura com os sócios e firmar o contrato, quando houver. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow74</bpmn:incoming><bpmn:outgoing>ES05_Flow75</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ES05_M8"><bpmn:incoming>ES05_Flow13</bpmn:incoming><bpmn:incoming>ES05_Flow30</bpmn:incoming><bpmn:incoming>ES05_Flow49</bpmn:incoming><bpmn:incoming>ES05_Flow61</bpmn:incoming><bpmn:incoming>ES05_Flow65</bpmn:incoming><bpmn:incoming>ES05_Flow75</bpmn:incoming><bpmn:outgoing>ES05_Flow113</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="ES05_F2" name="Caso arquivado com o motivo"><bpmn:incoming>ES05_Flow113</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="ES05_M9"><bpmn:incoming>ES05_Flow67</bpmn:incoming><bpmn:incoming>ES05_Flow71</bpmn:incoming><bpmn:outgoing>ES05_Flow114</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ES05_E6_T1" name="Redigir o mandato: objetivo, estrutura, recursos, prazos e donos"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Agente da Estratégia (Estratégia · agente). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow114</bpmn:incoming><bpmn:outgoing>ES05_Flow76</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:manualTask id="ES05_E6_T2" name="Definir com a Gestão o responsável e a equipe da execução"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow76</bpmn:incoming><bpmn:outgoing>ES05_Flow77</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:exclusiveGateway id="ES05_E6_G1" name="O mandato é novo ou muda um mandato já emitido?"><bpmn:incoming>ES05_Flow77</bpmn:incoming><bpmn:outgoing>ES05_Flow78</bpmn:outgoing><bpmn:outgoing>ES05_Flow79</bpmn:outgoing><bpmn:outgoing>ES05_Flow83</bpmn:outgoing><bpmn:outgoing>ES05_Flow84</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ES05_E6_T3" name="Pedir a identidade e a marca da empresa, com a data de efeito"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow78</bpmn:incoming><bpmn:outgoing>ES05_Flow85</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="ES05_E6_T4" name="Pedir à Integração o plano de saída: clientes, contratos e pessoas"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow79</bpmn:incoming><bpmn:outgoing>ES05_Flow80</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:receiveTask id="ES05_E6_T5" name="Receber o plano de saída coordenado pela Integração"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow80</bpmn:incoming><bpmn:outgoing>ES05_Flow81</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:userTask id="ES05_E6_T6" name="Conferir o plano de saída e incluí-lo no mandato"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow81</bpmn:incoming><bpmn:outgoing>ES05_Flow82</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E6_T7" name="Pedir a retirada da marca da empresa, com a data de efeito"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow82</bpmn:incoming><bpmn:outgoing>ES05_Flow86</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ES05_M10"><bpmn:incoming>ES05_Flow83</bpmn:incoming><bpmn:incoming>ES05_Flow84</bpmn:incoming><bpmn:incoming>ES05_Flow85</bpmn:incoming><bpmn:incoming>ES05_Flow86</bpmn:incoming><bpmn:outgoing>ES05_Flow115</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ES05_E6_T8" name="Aprovar o mandato"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow115</bpmn:incoming><bpmn:outgoing>ES05_Flow87</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="ES05_E6_T9" name="Enviar o mandato a cada círculo que executa"><bpmn:documentation>Etapa 6: Emitir o mandato para os círculos que executam. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow87</bpmn:incoming><bpmn:outgoing>ES05_Flow88</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ES05_M11"><bpmn:incoming>ES05_Flow58</bpmn:incoming><bpmn:incoming>ES05_Flow88</bpmn:incoming><bpmn:incoming>ES05_Flow102</bpmn:incoming><bpmn:outgoing>ES05_Flow116</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="ES05_E7_T1" name="Coordenar a execução do mandato, ou do que falta dele, entre os círculos"><bpmn:documentation>Etapa 7: Executar o mandato até a empresa operar ou sair do portfólio. Executor: Outro círculo (Integração). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow116</bpmn:incoming><bpmn:outgoing>ES05_Flow89</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:callActivity id="ES05_E7_T2" name="Registrar a constituição, a alteração ou o encerramento da empresa"><bpmn:documentation>Etapa 7: Executar o mandato até a empresa operar ou sair do portfólio. Executor: Outro círculo (Governança). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow89</bpmn:incoming><bpmn:outgoing>ES05_Flow90</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:parallelGateway id="ES05_E7_PS1"><bpmn:incoming>ES05_Flow90</bpmn:incoming><bpmn:outgoing>ES05_Flow91</bpmn:outgoing><bpmn:outgoing>ES05_Flow93</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:callActivity id="ES05_E7_T3" name="Prover ou desmobilizar responsável, pessoas, contas e orçamento"><bpmn:documentation>Etapa 7: Executar o mandato até a empresa operar ou sair do portfólio. Executor: Outro círculo (Gestão). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow91</bpmn:incoming><bpmn:outgoing>ES05_Flow92</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:task id="ES05_E7_T4" name="Ligar a empresa aos círculos ou desligá-la: acessos e acordos de serviço"><bpmn:documentation>Etapa 7: Executar o mandato até a empresa operar ou sair do portfólio. Executor: Outro círculo (Integração). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow93</bpmn:incoming><bpmn:outgoing>ES05_Flow94</bpmn:outgoing></bpmn:task>
+    <bpmn:parallelGateway id="ES05_E7_PJ1"><bpmn:incoming>ES05_Flow92</bpmn:incoming><bpmn:incoming>ES05_Flow94</bpmn:incoming><bpmn:outgoing>ES05_Flow95</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="ES05_E7_G1" name="A Identidade já entregou a marca ou confirmou a retirada?"><bpmn:incoming>ES05_Flow95</bpmn:incoming><bpmn:outgoing>ES05_Flow96</bpmn:outgoing><bpmn:outgoing>ES05_Flow97</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:receiveTask id="ES05_E7_T5" name="Receber da Identidade a marca pronta ou a confirmação da retirada na data de efeito"><bpmn:documentation>Etapa 7: Executar o mandato até a empresa operar ou sair do portfólio. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow96</bpmn:incoming><bpmn:outgoing>ES05_Flow98</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:exclusiveGateway id="ES05_M12"><bpmn:incoming>ES05_Flow97</bpmn:incoming><bpmn:incoming>ES05_Flow98</bpmn:incoming><bpmn:outgoing>ES05_Flow117</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="ES05_E7_T6" name="Informar à Estratégia a situação da execução do mandato"><bpmn:documentation>Etapa 7: Executar o mandato até a empresa operar ou sair do portfólio. Executor: Outro círculo (Integração). Modo da etapa: Assistido; risco alto.</bpmn:documentation><bpmn:incoming>ES05_Flow117</bpmn:incoming><bpmn:outgoing>ES05_Flow99</bpmn:outgoing></bpmn:task>
+    <bpmn:serviceTask id="ES05_E8_T1" name="Conferir a execução contra o mandato"><bpmn:documentation>Etapa 8: Conferir o cumprimento do mandato e atualizar o portfólio. Executor: Agente da Estratégia (Estratégia · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow99</bpmn:incoming><bpmn:outgoing>ES05_Flow100</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="ES05_E8_T2" name="Concluir se o mandato foi cumprido"><bpmn:documentation>Etapa 8: Conferir o cumprimento do mandato e atualizar o portfólio. Executor: Pessoa da Estratégia (Estratégia · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow100</bpmn:incoming><bpmn:outgoing>ES05_Flow101</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ES05_E8_G1" name="Mandato cumprido?"><bpmn:incoming>ES05_Flow101</bpmn:incoming><bpmn:outgoing>ES05_Flow102</bpmn:outgoing><bpmn:outgoing>ES05_Flow103</bpmn:outgoing><bpmn:outgoing>ES05_Flow104</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ES05_E8_T3" name="Atualizar o portfólio e avisar quem depende dele"><bpmn:documentation>Etapa 8: Conferir o cumprimento do mandato e atualizar o portfólio. Executor: Automação da Estratégia (Estratégia · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>ES05_Flow104</bpmn:incoming><bpmn:outgoing>ES05_Flow105</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="ES05_F1" name="Mandato cumprido e portfólio atualizado"><bpmn:incoming>ES05_Flow105</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="ES05_Flow1" sourceRef="ES05_S1" targetRef="ES05_M1" />
+    <bpmn:sequenceFlow id="ES05_Flow2" sourceRef="ES05_S2" targetRef="ES05_M1" />
+    <bpmn:sequenceFlow id="ES05_Flow3" sourceRef="ES05_S3" targetRef="ES05_M1" />
+    <bpmn:sequenceFlow id="ES05_Flow4" sourceRef="ES05_E1_T1" targetRef="ES05_E1_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow5" sourceRef="ES05_E1_T2" targetRef="ES05_E1_T3" />
+    <bpmn:sequenceFlow id="ES05_Flow6" sourceRef="ES05_E1_T3" targetRef="ES05_E1_T4" />
+    <bpmn:sequenceFlow id="ES05_Flow7" sourceRef="ES05_E1_T4" targetRef="ES05_E1_T5" />
+    <bpmn:sequenceFlow id="ES05_Flow8" sourceRef="ES05_E1_T5" targetRef="ES05_E1_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow9" name="Não, e os sócios pediram o estudo ou já autorizaram a negociação" sourceRef="ES05_E1_G1" targetRef="ES05_E1_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, e os sócios pediram o estudo ou já autorizaram a negociação</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow10" sourceRef="ES05_E1_T6" targetRef="ES05_M7" />
+    <bpmn:sequenceFlow id="ES05_Flow11" name="Não, nos demais casos" sourceRef="ES05_E1_G1" targetRef="ES05_E1_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, nos demais casos</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow12" sourceRef="ES05_E1_T7" targetRef="ES05_E1_T8" />
+    <bpmn:sequenceFlow id="ES05_Flow13" sourceRef="ES05_E1_T8" targetRef="ES05_M8" />
+    <bpmn:sequenceFlow id="ES05_Flow14" name="Sim" sourceRef="ES05_E1_G1" targetRef="ES05_E1_T9"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow15" sourceRef="ES05_E1_T9" targetRef="ES05_E1_G2" />
+    <bpmn:sequenceFlow id="ES05_Flow16" name="Sim" sourceRef="ES05_E1_G2" targetRef="ES05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow17" name="Não, rever o caso" sourceRef="ES05_E1_G2" targetRef="ES05_M1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, rever o caso</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow18" name="Caso de fronteira" sourceRef="ES05_E1_G2" targetRef="ES05_E1_T10"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Caso de fronteira</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow19" sourceRef="ES05_E1_T10" targetRef="ES05_E1_G3" />
+    <bpmn:sequenceFlow id="ES05_Flow20" name="Sim" sourceRef="ES05_E1_G3" targetRef="ES05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow21" name="Não, rever o caso" sourceRef="ES05_E1_G3" targetRef="ES05_M1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, rever o caso</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow22" name="Não" sourceRef="ES05_E2_G1" targetRef="ES05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow23" name="Sim" sourceRef="ES05_E2_G1" targetRef="ES05_E2_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow24" sourceRef="ES05_E2_T1" targetRef="ES05_E2_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow25" sourceRef="ES05_E2_T2" targetRef="ES05_E2_T3" />
+    <bpmn:sequenceFlow id="ES05_Flow26" sourceRef="ES05_E2_T3" targetRef="ES05_E2_G2" />
+    <bpmn:sequenceFlow id="ES05_Flow27" name="Sim" sourceRef="ES05_E2_G2" targetRef="ES05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow28" name="Não" sourceRef="ES05_E2_G2" targetRef="ES05_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow29" sourceRef="ES05_E2_T4" targetRef="ES05_E2_T5" />
+    <bpmn:sequenceFlow id="ES05_Flow30" sourceRef="ES05_E2_T5" targetRef="ES05_M8" />
+    <bpmn:sequenceFlow id="ES05_Flow31" name="Criação de empresa nova" sourceRef="ES05_E3_G1" targetRef="ES05_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Criação de empresa nova</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow32" name="Aquisição, ou venda com comprador identificado" sourceRef="ES05_E3_G1" targetRef="ES05_E3_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Aquisição, ou venda com comprador identificado</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow33" name="Encerramento, ou venda ainda sem comprador" sourceRef="ES05_E3_G1" targetRef="ES05_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Encerramento, ou venda ainda sem comprador</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow34" sourceRef="ES05_E3_T1" targetRef="ES05_M4" />
+    <bpmn:sequenceFlow id="ES05_Flow35" sourceRef="ES05_E3_PS1" targetRef="ES05_E3_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow36" sourceRef="ES05_E3_T2" targetRef="ES05_E3_PJ1" />
+    <bpmn:sequenceFlow id="ES05_Flow37" sourceRef="ES05_E3_PS1" targetRef="ES05_E3_T3" />
+    <bpmn:sequenceFlow id="ES05_Flow38" sourceRef="ES05_E3_T3" targetRef="ES05_E3_PJ1" />
+    <bpmn:sequenceFlow id="ES05_Flow39" sourceRef="ES05_E3_PJ1" targetRef="ES05_E3_T4" />
+    <bpmn:sequenceFlow id="ES05_Flow40" sourceRef="ES05_E3_T4" targetRef="ES05_E3_G2" />
+    <bpmn:sequenceFlow id="ES05_Flow41" name="Sim" sourceRef="ES05_E3_G2" targetRef="ES05_E3_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow42" name="Não" sourceRef="ES05_E3_G2" targetRef="ES05_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow43" sourceRef="ES05_E3_T5" targetRef="ES05_M5" />
+    <bpmn:sequenceFlow id="ES05_Flow44" name="Sim" sourceRef="ES05_E3_G3" targetRef="ES05_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow45" name="Não, e os sócios autorizaram a negociação ou pediram o estudo" sourceRef="ES05_E3_G3" targetRef="ES05_E3_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, e os sócios autorizaram a negociação ou pediram o estudo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow46" sourceRef="ES05_E3_T6" targetRef="ES05_M7" />
+    <bpmn:sequenceFlow id="ES05_Flow47" name="Não, nos demais casos" sourceRef="ES05_E3_G3" targetRef="ES05_E3_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, nos demais casos</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow48" sourceRef="ES05_E3_T7" targetRef="ES05_E3_T8" />
+    <bpmn:sequenceFlow id="ES05_Flow49" sourceRef="ES05_E3_T8" targetRef="ES05_M8" />
+    <bpmn:sequenceFlow id="ES05_Flow50" sourceRef="ES05_E4_T1" targetRef="ES05_E4_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow51" sourceRef="ES05_E4_T2" targetRef="ES05_E4_T3" />
+    <bpmn:sequenceFlow id="ES05_Flow52" sourceRef="ES05_E4_T3" targetRef="ES05_E4_T4" />
+    <bpmn:sequenceFlow id="ES05_Flow53" sourceRef="ES05_E4_T4" targetRef="ES05_M7" />
+    <bpmn:sequenceFlow id="ES05_Flow54" sourceRef="ES05_E5_T1" targetRef="ES05_E5_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow55" sourceRef="ES05_E5_T2" targetRef="ES05_E5_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow56" name="Proposta de estrutura: rever a estrutura" sourceRef="ES05_E5_G1" targetRef="ES05_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de estrutura: rever a estrutura</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow57" name="Proposta de estrutura: renegociar" sourceRef="ES05_E5_G1" targetRef="ES05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de estrutura: renegociar</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow58" name="Proposta de estrutura: manter o mandato já em execução" sourceRef="ES05_E5_G1" targetRef="ES05_M11"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de estrutura: manter o mandato já em execução</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow59" name="Proposta de arquivar: arquivar" sourceRef="ES05_E5_G1" targetRef="ES05_E5_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de arquivar: arquivar</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow60" sourceRef="ES05_E5_T3" targetRef="ES05_E5_T4" />
+    <bpmn:sequenceFlow id="ES05_Flow61" sourceRef="ES05_E5_T4" targetRef="ES05_M8" />
+    <bpmn:sequenceFlow id="ES05_Flow62" name="Proposta de arquivar: estudar de novo" sourceRef="ES05_E5_G1" targetRef="ES05_M1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de arquivar: estudar de novo</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow63" name="Proposta de estrutura: arquivar (só antes de haver mandato em execução)" sourceRef="ES05_E5_G1" targetRef="ES05_E5_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de estrutura: arquivar (só antes de haver mandato em execução)</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow64" sourceRef="ES05_E5_T5" targetRef="ES05_E5_T6" />
+    <bpmn:sequenceFlow id="ES05_Flow65" sourceRef="ES05_E5_T6" targetRef="ES05_M8" />
+    <bpmn:sequenceFlow id="ES05_Flow66" name="Proposta de estrutura: aprovar o caso e a estrutura" sourceRef="ES05_E5_G1" targetRef="ES05_E5_G2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Proposta de estrutura: aprovar o caso e a estrutura</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow67" name="Não: criação, encerramento, venda ainda sem comprador ou contrato já assinado" sourceRef="ES05_E5_G2" targetRef="ES05_M9"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: criação, encerramento, venda ainda sem comprador ou contrato já assinado</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow68" name="Sim: aquisição, ou venda com comprador" sourceRef="ES05_E5_G2" targetRef="ES05_E5_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim: aquisição, ou venda com comprador</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow69" sourceRef="ES05_E5_T7" targetRef="ES05_E5_T8" />
+    <bpmn:sequenceFlow id="ES05_Flow70" sourceRef="ES05_E5_T8" targetRef="ES05_E5_G3" />
+    <bpmn:sequenceFlow id="ES05_Flow71" name="Sim" sourceRef="ES05_E5_G3" targetRef="ES05_M9"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow72" name="Não, renegociar com a outra parte" sourceRef="ES05_E5_G3" targetRef="ES05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, renegociar com a outra parte</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow73" name="Não, desistir" sourceRef="ES05_E5_G3" targetRef="ES05_E5_T9"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, desistir</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow74" sourceRef="ES05_E5_T9" targetRef="ES05_E5_T10" />
+    <bpmn:sequenceFlow id="ES05_Flow75" sourceRef="ES05_E5_T10" targetRef="ES05_M8" />
+    <bpmn:sequenceFlow id="ES05_Flow76" sourceRef="ES05_E6_T1" targetRef="ES05_E6_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow77" sourceRef="ES05_E6_T2" targetRef="ES05_E6_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow78" name="Novo, de criação ou aquisição" sourceRef="ES05_E6_G1" targetRef="ES05_E6_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Novo, de criação ou aquisição</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow79" name="Novo, de venda com comprador ou de encerramento" sourceRef="ES05_E6_G1" targetRef="ES05_E6_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Novo, de venda com comprador ou de encerramento</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow80" sourceRef="ES05_E6_T4" targetRef="ES05_E6_T5" />
+    <bpmn:sequenceFlow id="ES05_Flow81" sourceRef="ES05_E6_T5" targetRef="ES05_E6_T6" />
+    <bpmn:sequenceFlow id="ES05_Flow82" sourceRef="ES05_E6_T6" targetRef="ES05_E6_T7" />
+    <bpmn:sequenceFlow id="ES05_Flow83" name="Muda um mandato já emitido" sourceRef="ES05_E6_G1" targetRef="ES05_M10"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Muda um mandato já emitido</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow84" name="Novo, de busca de comprador para venda ainda sem comprador" sourceRef="ES05_E6_G1" targetRef="ES05_M10"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Novo, de busca de comprador para venda ainda sem comprador</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow85" sourceRef="ES05_E6_T3" targetRef="ES05_M10" />
+    <bpmn:sequenceFlow id="ES05_Flow86" sourceRef="ES05_E6_T7" targetRef="ES05_M10" />
+    <bpmn:sequenceFlow id="ES05_Flow87" sourceRef="ES05_E6_T8" targetRef="ES05_E6_T9" />
+    <bpmn:sequenceFlow id="ES05_Flow88" sourceRef="ES05_E6_T9" targetRef="ES05_M11" />
+    <bpmn:sequenceFlow id="ES05_Flow89" sourceRef="ES05_E7_T1" targetRef="ES05_E7_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow90" sourceRef="ES05_E7_T2" targetRef="ES05_E7_PS1" />
+    <bpmn:sequenceFlow id="ES05_Flow91" sourceRef="ES05_E7_PS1" targetRef="ES05_E7_T3" />
+    <bpmn:sequenceFlow id="ES05_Flow92" sourceRef="ES05_E7_T3" targetRef="ES05_E7_PJ1" />
+    <bpmn:sequenceFlow id="ES05_Flow93" sourceRef="ES05_E7_PS1" targetRef="ES05_E7_T4" />
+    <bpmn:sequenceFlow id="ES05_Flow94" sourceRef="ES05_E7_T4" targetRef="ES05_E7_PJ1" />
+    <bpmn:sequenceFlow id="ES05_Flow95" sourceRef="ES05_E7_PJ1" targetRef="ES05_E7_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow96" name="Não" sourceRef="ES05_E7_G1" targetRef="ES05_E7_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow97" name="Sim" sourceRef="ES05_E7_G1" targetRef="ES05_M12"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow98" sourceRef="ES05_E7_T5" targetRef="ES05_M12" />
+    <bpmn:sequenceFlow id="ES05_Flow99" sourceRef="ES05_E7_T6" targetRef="ES05_E8_T1" />
+    <bpmn:sequenceFlow id="ES05_Flow100" sourceRef="ES05_E8_T1" targetRef="ES05_E8_T2" />
+    <bpmn:sequenceFlow id="ES05_Flow101" sourceRef="ES05_E8_T2" targetRef="ES05_E8_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow102" name="Não, falta executar" sourceRef="ES05_E8_G1" targetRef="ES05_M11"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, falta executar</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow103" name="Não, o mandato precisa mudar" sourceRef="ES05_E8_G1" targetRef="ES05_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, o mandato precisa mudar</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow104" name="Sim" sourceRef="ES05_E8_G1" targetRef="ES05_E8_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ES05_Flow105" sourceRef="ES05_E8_T3" targetRef="ES05_F1" />
+    <bpmn:sequenceFlow id="ES05_Flow106" sourceRef="ES05_M1" targetRef="ES05_E1_T1" />
+    <bpmn:sequenceFlow id="ES05_Flow107" sourceRef="ES05_M2" targetRef="ES05_E2_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow108" sourceRef="ES05_M3" targetRef="ES05_E3_G1" />
+    <bpmn:sequenceFlow id="ES05_Flow109" sourceRef="ES05_M4" targetRef="ES05_E3_PS1" />
+    <bpmn:sequenceFlow id="ES05_Flow110" sourceRef="ES05_M5" targetRef="ES05_E3_G3" />
+    <bpmn:sequenceFlow id="ES05_Flow111" sourceRef="ES05_M6" targetRef="ES05_E4_T1" />
+    <bpmn:sequenceFlow id="ES05_Flow112" sourceRef="ES05_M7" targetRef="ES05_E5_T1" />
+    <bpmn:sequenceFlow id="ES05_Flow113" sourceRef="ES05_M8" targetRef="ES05_F2" />
+    <bpmn:sequenceFlow id="ES05_Flow114" sourceRef="ES05_M9" targetRef="ES05_E6_T1" />
+    <bpmn:sequenceFlow id="ES05_Flow115" sourceRef="ES05_M10" targetRef="ES05_E6_T8" />
+    <bpmn:sequenceFlow id="ES05_Flow116" sourceRef="ES05_M11" targetRef="ES05_E7_T1" />
+    <bpmn:sequenceFlow id="ES05_Flow117" sourceRef="ES05_M12" targetRef="ES05_E7_T6" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_ES05">
+    <bpmndi:BPMNPlane id="Plane_ES05" bpmnElement="Collab_ES05">
+      <bpmndi:BPMNShape id="Participant_ES05_di" bpmnElement="Participant_ES05" isHorizontal="true"><dc:Bounds x="0" y="0" width="18246" height="1760" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_SOL_di" bpmnElement="Lane_ES05_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_SOC_di" bpmnElement="Lane_ES05_SOC" isHorizontal="true"><dc:Bounds x="30" y="176" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_ASS_di" bpmnElement="Lane_ES05_ASS" isHorizontal="true"><dc:Bounds x="30" y="352" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_GOV_di" bpmnElement="Lane_ES05_GOV" isHorizontal="true"><dc:Bounds x="30" y="528" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_GES_di" bpmnElement="Lane_ES05_GES" isHorizontal="true"><dc:Bounds x="30" y="704" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_IDE_di" bpmnElement="Lane_ES05_IDE" isHorizontal="true"><dc:Bounds x="30" y="880" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_ITG_di" bpmnElement="Lane_ES05_ITG" isHorizontal="true"><dc:Bounds x="30" y="1056" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_ESP_di" bpmnElement="Lane_ES05_ESP" isHorizontal="true"><dc:Bounds x="30" y="1232" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_ESA_di" bpmnElement="Lane_ES05_ESA" isHorizontal="true"><dc:Bounds x="30" y="1408" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ES05_ESR_di" bpmnElement="Lane_ES05_ESR" isHorizontal="true"><dc:Bounds x="30" y="1584" width="18216" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_S1_di" bpmnElement="ES05_S1"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_S2_di" bpmnElement="ES05_S2"><dc:Bounds x="156" y="1614" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1612" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_S3_di" bpmnElement="ES05_S3"><dc:Bounds x="156" y="1694" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1692" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M1_di" bpmnElement="ES05_M1" isMarkerVisible="true"><dc:Bounds x="355" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T1_di" bpmnElement="ES05_E1_T1"><dc:Bounds x="506" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T2_di" bpmnElement="ES05_E1_T2"><dc:Bounds x="712" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T3_di" bpmnElement="ES05_E1_T3"><dc:Bounds x="918" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T4_di" bpmnElement="ES05_E1_T4"><dc:Bounds x="1124" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T5_di" bpmnElement="ES05_E1_T5"><dc:Bounds x="1330" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_G1_di" bpmnElement="ES05_E1_G1" isMarkerVisible="true"><dc:Bounds x="1591" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1504" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T6_di" bpmnElement="ES05_E1_T6"><dc:Bounds x="1742" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T7_di" bpmnElement="ES05_E1_T7"><dc:Bounds x="1948" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T8_di" bpmnElement="ES05_E1_T8"><dc:Bounds x="2154" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T9_di" bpmnElement="ES05_E1_T9"><dc:Bounds x="2360" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_G2_di" bpmnElement="ES05_E1_G2" isMarkerVisible="true"><dc:Bounds x="2621" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2534" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_T10_di" bpmnElement="ES05_E1_T10"><dc:Bounds x="2772" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E1_G3_di" bpmnElement="ES05_E1_G3" isMarkerVisible="true"><dc:Bounds x="3033" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2946" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M2_di" bpmnElement="ES05_M2" isMarkerVisible="true"><dc:Bounds x="3239" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_G1_di" bpmnElement="ES05_E2_G1" isMarkerVisible="true"><dc:Bounds x="3445" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3358" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_T1_di" bpmnElement="ES05_E2_T1"><dc:Bounds x="3596" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_T2_di" bpmnElement="ES05_E2_T2"><dc:Bounds x="3802" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_T3_di" bpmnElement="ES05_E2_T3"><dc:Bounds x="4008" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_G2_di" bpmnElement="ES05_E2_G2" isMarkerVisible="true"><dc:Bounds x="4269" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4182" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_T4_di" bpmnElement="ES05_E2_T4"><dc:Bounds x="4420" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E2_T5_di" bpmnElement="ES05_E2_T5"><dc:Bounds x="4626" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M3_di" bpmnElement="ES05_M3" isMarkerVisible="true"><dc:Bounds x="4887" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_G1_di" bpmnElement="ES05_E3_G1" isMarkerVisible="true"><dc:Bounds x="5093" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5006" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T1_di" bpmnElement="ES05_E3_T1"><dc:Bounds x="5244" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M4_di" bpmnElement="ES05_M4" isMarkerVisible="true"><dc:Bounds x="5505" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_PS1_di" bpmnElement="ES05_E3_PS1"><dc:Bounds x="5711" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T2_di" bpmnElement="ES05_E3_T2"><dc:Bounds x="5862" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T3_di" bpmnElement="ES05_E3_T3"><dc:Bounds x="6068" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_PJ1_di" bpmnElement="ES05_E3_PJ1"><dc:Bounds x="6329" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T4_di" bpmnElement="ES05_E3_T4"><dc:Bounds x="6480" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_G2_di" bpmnElement="ES05_E3_G2" isMarkerVisible="true"><dc:Bounds x="6741" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="6654" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T5_di" bpmnElement="ES05_E3_T5"><dc:Bounds x="6892" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M5_di" bpmnElement="ES05_M5" isMarkerVisible="true"><dc:Bounds x="7153" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_G3_di" bpmnElement="ES05_E3_G3" isMarkerVisible="true"><dc:Bounds x="7359" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="7272" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T6_di" bpmnElement="ES05_E3_T6"><dc:Bounds x="7510" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T7_di" bpmnElement="ES05_E3_T7"><dc:Bounds x="7716" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E3_T8_di" bpmnElement="ES05_E3_T8"><dc:Bounds x="7922" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M6_di" bpmnElement="ES05_M6" isMarkerVisible="true"><dc:Bounds x="8183" y="1471" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E4_T1_di" bpmnElement="ES05_E4_T1"><dc:Bounds x="8334" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E4_T2_di" bpmnElement="ES05_E4_T2"><dc:Bounds x="8540" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E4_T3_di" bpmnElement="ES05_E4_T3"><dc:Bounds x="8746" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E4_T4_di" bpmnElement="ES05_E4_T4"><dc:Bounds x="8952" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M7_di" bpmnElement="ES05_M7" isMarkerVisible="true"><dc:Bounds x="9213" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T1_di" bpmnElement="ES05_E5_T1"><dc:Bounds x="9364" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T2_di" bpmnElement="ES05_E5_T2"><dc:Bounds x="9570" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_G1_di" bpmnElement="ES05_E5_G1" isMarkerVisible="true"><dc:Bounds x="9831" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="9744" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T3_di" bpmnElement="ES05_E5_T3"><dc:Bounds x="9982" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T4_di" bpmnElement="ES05_E5_T4"><dc:Bounds x="10188" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T5_di" bpmnElement="ES05_E5_T5"><dc:Bounds x="10394" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T6_di" bpmnElement="ES05_E5_T6"><dc:Bounds x="10600" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_G2_di" bpmnElement="ES05_E5_G2" isMarkerVisible="true"><dc:Bounds x="10861" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="10774" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T7_di" bpmnElement="ES05_E5_T7"><dc:Bounds x="11012" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T8_di" bpmnElement="ES05_E5_T8"><dc:Bounds x="11218" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_G3_di" bpmnElement="ES05_E5_G3" isMarkerVisible="true"><dc:Bounds x="11479" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="11392" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T9_di" bpmnElement="ES05_E5_T9"><dc:Bounds x="11630" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E5_T10_di" bpmnElement="ES05_E5_T10"><dc:Bounds x="11836" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M8_di" bpmnElement="ES05_M8" isMarkerVisible="true"><dc:Bounds x="12097" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_F2_di" bpmnElement="ES05_F2"><dc:Bounds x="12310" y="1654" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="12273" y="1695" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M9_di" bpmnElement="ES05_M9" isMarkerVisible="true"><dc:Bounds x="12509" y="1471" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T1_di" bpmnElement="ES05_E6_T1"><dc:Bounds x="12660" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T2_di" bpmnElement="ES05_E6_T2"><dc:Bounds x="12866" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_G1_di" bpmnElement="ES05_E6_G1" isMarkerVisible="true"><dc:Bounds x="13127" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="13040" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T3_di" bpmnElement="ES05_E6_T3"><dc:Bounds x="13278" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T4_di" bpmnElement="ES05_E6_T4"><dc:Bounds x="13484" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T5_di" bpmnElement="ES05_E6_T5"><dc:Bounds x="13690" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T6_di" bpmnElement="ES05_E6_T6"><dc:Bounds x="13896" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T7_di" bpmnElement="ES05_E6_T7"><dc:Bounds x="14102" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M10_di" bpmnElement="ES05_M10" isMarkerVisible="true"><dc:Bounds x="14363" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T8_di" bpmnElement="ES05_E6_T8"><dc:Bounds x="14514" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E6_T9_di" bpmnElement="ES05_E6_T9"><dc:Bounds x="14720" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M11_di" bpmnElement="ES05_M11" isMarkerVisible="true"><dc:Bounds x="14981" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_T1_di" bpmnElement="ES05_E7_T1"><dc:Bounds x="15132" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_T2_di" bpmnElement="ES05_E7_T2"><dc:Bounds x="15338" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_PS1_di" bpmnElement="ES05_E7_PS1"><dc:Bounds x="15599" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_T3_di" bpmnElement="ES05_E7_T3"><dc:Bounds x="15750" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_T4_di" bpmnElement="ES05_E7_T4"><dc:Bounds x="15956" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_PJ1_di" bpmnElement="ES05_E7_PJ1"><dc:Bounds x="16217" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_G1_di" bpmnElement="ES05_E7_G1" isMarkerVisible="true"><dc:Bounds x="16423" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="16336" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_T5_di" bpmnElement="ES05_E7_T5"><dc:Bounds x="16574" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_M12_di" bpmnElement="ES05_M12" isMarkerVisible="true"><dc:Bounds x="16835" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E7_T6_di" bpmnElement="ES05_E7_T6"><dc:Bounds x="16986" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E8_T1_di" bpmnElement="ES05_E8_T1"><dc:Bounds x="17192" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E8_T2_di" bpmnElement="ES05_E8_T2"><dc:Bounds x="17398" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E8_G1_di" bpmnElement="ES05_E8_G1" isMarkerVisible="true"><dc:Bounds x="17659" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="17572" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_E8_T3_di" bpmnElement="ES05_E8_T3"><dc:Bounds x="17810" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ES05_F1_di" bpmnElement="ES05_F1"><dc:Bounds x="18078" y="1654" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="18041" y="1695" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="ES05_Flow1_di" bpmnElement="ES05_Flow1"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow2_di" bpmnElement="ES05_Flow2"><di:waypoint x="192" y="1632" /><di:waypoint x="380" y="1632" /><di:waypoint x="380" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow3_di" bpmnElement="ES05_Flow3"><di:waypoint x="192" y="1712" /><di:waypoint x="380" y="1712" /><di:waypoint x="380" y="1697" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow4_di" bpmnElement="ES05_Flow4"><di:waypoint x="666" y="1672" /><di:waypoint x="712" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow5_di" bpmnElement="ES05_Flow5"><di:waypoint x="792" y="1622" /><di:waypoint x="792" y="1496" /><di:waypoint x="918" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow6_di" bpmnElement="ES05_Flow6"><di:waypoint x="1078" y="1496" /><di:waypoint x="1124" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow7_di" bpmnElement="ES05_Flow7"><di:waypoint x="1204" y="1446" /><di:waypoint x="1204" y="1320" /><di:waypoint x="1330" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow8_di" bpmnElement="ES05_Flow8"><di:waypoint x="1490" y="1320" /><di:waypoint x="1591" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow9_di" bpmnElement="ES05_Flow9"><di:waypoint x="1641" y="1320" /><di:waypoint x="1742" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="1646" y="1289" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow10_di" bpmnElement="ES05_Flow10"><di:waypoint x="1822" y="1270" /><di:waypoint x="1822" y="1247" /><di:waypoint x="9238" y="1247" /><di:waypoint x="9238" y="641" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow11_di" bpmnElement="ES05_Flow11"><di:waypoint x="1616" y="1295" /><di:waypoint x="1616" y="1241" /><di:waypoint x="2028" y="1241" /><di:waypoint x="2028" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="1622" y="1210" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow12_di" bpmnElement="ES05_Flow12"><di:waypoint x="2028" y="1370" /><di:waypoint x="2028" y="1672" /><di:waypoint x="2154" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow13_di" bpmnElement="ES05_Flow13"><di:waypoint x="2234" y="1622" /><di:waypoint x="2234" y="1593" /><di:waypoint x="12122" y="1593" /><di:waypoint x="12122" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow14_di" bpmnElement="ES05_Flow14"><di:waypoint x="1616" y="1345" /><di:waypoint x="1616" y="1496" /><di:waypoint x="2360" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="1622" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow15_di" bpmnElement="ES05_Flow15"><di:waypoint x="2440" y="1446" /><di:waypoint x="2440" y="1320" /><di:waypoint x="2621" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow16_di" bpmnElement="ES05_Flow16"><di:waypoint x="2671" y="1320" /><di:waypoint x="3239" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="2676" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow17_di" bpmnElement="ES05_Flow17"><di:waypoint x="2646" y="1345" /><di:waypoint x="2646" y="1400" /><di:waypoint x="380" y="1400" /><di:waypoint x="380" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="2652" y="1350" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow18_di" bpmnElement="ES05_Flow18"><di:waypoint x="2646" y="1295" /><di:waypoint x="2646" y="968" /><di:waypoint x="2772" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="2652" y="1264" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow19_di" bpmnElement="ES05_Flow19"><di:waypoint x="2932" y="968" /><di:waypoint x="3033" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow20_di" bpmnElement="ES05_Flow20"><di:waypoint x="3058" y="993" /><di:waypoint x="3058" y="1320" /><di:waypoint x="3239" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="3064" y="998" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow21_di" bpmnElement="ES05_Flow21"><di:waypoint x="3058" y="943" /><di:waypoint x="3058" y="889" /><di:waypoint x="380" y="889" /><di:waypoint x="380" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="3064" y="912" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow22_di" bpmnElement="ES05_Flow22"><di:waypoint x="3470" y="1295" /><di:waypoint x="3470" y="1241" /><di:waypoint x="4912" y="1241" /><di:waypoint x="4912" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="3476" y="1277" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow23_di" bpmnElement="ES05_Flow23"><di:waypoint x="3495" y="1320" /><di:waypoint x="3596" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="3500" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow24_di" bpmnElement="ES05_Flow24"><di:waypoint x="3676" y="1270" /><di:waypoint x="3676" y="616" /><di:waypoint x="3802" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow25_di" bpmnElement="ES05_Flow25"><di:waypoint x="3882" y="566" /><di:waypoint x="3882" y="264" /><di:waypoint x="4008" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow26_di" bpmnElement="ES05_Flow26"><di:waypoint x="4168" y="264" /><di:waypoint x="4269" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow27_di" bpmnElement="ES05_Flow27"><di:waypoint x="4319" y="264" /><di:waypoint x="4912" y="264" /><di:waypoint x="4912" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="4324" y="246" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow28_di" bpmnElement="ES05_Flow28"><di:waypoint x="4294" y="289" /><di:waypoint x="4294" y="1320" /><di:waypoint x="4420" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4300" y="294" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow29_di" bpmnElement="ES05_Flow29"><di:waypoint x="4500" y="1370" /><di:waypoint x="4500" y="1672" /><di:waypoint x="4626" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow30_di" bpmnElement="ES05_Flow30"><di:waypoint x="4706" y="1622" /><di:waypoint x="4706" y="1593" /><di:waypoint x="12122" y="1593" /><di:waypoint x="12122" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow31_di" bpmnElement="ES05_Flow31"><di:waypoint x="5118" y="1697" /><di:waypoint x="5118" y="1752" /><di:waypoint x="8208" y="1752" /><di:waypoint x="8208" y="1521" /><bpmndi:BPMNLabel><dc:Bounds x="5124" y="1702" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow32_di" bpmnElement="ES05_Flow32"><di:waypoint x="5118" y="1647" /><di:waypoint x="5118" y="616" /><di:waypoint x="5244" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="5124" y="1616" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow33_di" bpmnElement="ES05_Flow33"><di:waypoint x="5143" y="1672" /><di:waypoint x="5530" y="1672" /><di:waypoint x="5530" y="641" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="1639" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow34_di" bpmnElement="ES05_Flow34"><di:waypoint x="5404" y="616" /><di:waypoint x="5505" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow35_di" bpmnElement="ES05_Flow35"><di:waypoint x="5761" y="616" /><di:waypoint x="5862" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow36_di" bpmnElement="ES05_Flow36"><di:waypoint x="6022" y="616" /><di:waypoint x="6354" y="616" /><di:waypoint x="6354" y="767" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow37_di" bpmnElement="ES05_Flow37"><di:waypoint x="5736" y="641" /><di:waypoint x="5736" y="792" /><di:waypoint x="6068" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow38_di" bpmnElement="ES05_Flow38"><di:waypoint x="6228" y="792" /><di:waypoint x="6329" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow39_di" bpmnElement="ES05_Flow39"><di:waypoint x="6354" y="817" /><di:waypoint x="6354" y="1320" /><di:waypoint x="6480" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow40_di" bpmnElement="ES05_Flow40"><di:waypoint x="6560" y="1370" /><di:waypoint x="6560" y="1672" /><di:waypoint x="6741" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow41_di" bpmnElement="ES05_Flow41"><di:waypoint x="6766" y="1647" /><di:waypoint x="6766" y="1320" /><di:waypoint x="6892" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="6772" y="1629" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow42_di" bpmnElement="ES05_Flow42"><di:waypoint x="6791" y="1672" /><di:waypoint x="7178" y="1672" /><di:waypoint x="7178" y="1345" /><bpmndi:BPMNLabel><dc:Bounds x="6796" y="1654" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow43_di" bpmnElement="ES05_Flow43"><di:waypoint x="7052" y="1320" /><di:waypoint x="7153" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow44_di" bpmnElement="ES05_Flow44"><di:waypoint x="7384" y="1345" /><di:waypoint x="7384" y="1496" /><di:waypoint x="8183" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="7390" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow45_di" bpmnElement="ES05_Flow45"><di:waypoint x="7409" y="1320" /><di:waypoint x="7510" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="7414" y="1289" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow46_di" bpmnElement="ES05_Flow46"><di:waypoint x="7590" y="1270" /><di:waypoint x="7590" y="1247" /><di:waypoint x="9238" y="1247" /><di:waypoint x="9238" y="641" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow47_di" bpmnElement="ES05_Flow47"><di:waypoint x="7384" y="1295" /><di:waypoint x="7384" y="1241" /><di:waypoint x="7796" y="1241" /><di:waypoint x="7796" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="7390" y="1210" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow48_di" bpmnElement="ES05_Flow48"><di:waypoint x="7796" y="1370" /><di:waypoint x="7796" y="1672" /><di:waypoint x="7922" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow49_di" bpmnElement="ES05_Flow49"><di:waypoint x="8002" y="1622" /><di:waypoint x="8002" y="1593" /><di:waypoint x="12122" y="1593" /><di:waypoint x="12122" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow50_di" bpmnElement="ES05_Flow50"><di:waypoint x="8414" y="1446" /><di:waypoint x="8414" y="440" /><di:waypoint x="8540" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow51_di" bpmnElement="ES05_Flow51"><di:waypoint x="8620" y="490" /><di:waypoint x="8620" y="616" /><di:waypoint x="8746" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow52_di" bpmnElement="ES05_Flow52"><di:waypoint x="8826" y="666" /><di:waypoint x="8826" y="1320" /><di:waypoint x="8952" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow53_di" bpmnElement="ES05_Flow53"><di:waypoint x="9032" y="1270" /><di:waypoint x="9032" y="616" /><di:waypoint x="9213" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow54_di" bpmnElement="ES05_Flow54"><di:waypoint x="9444" y="566" /><di:waypoint x="9444" y="264" /><di:waypoint x="9570" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow55_di" bpmnElement="ES05_Flow55"><di:waypoint x="9730" y="264" /><di:waypoint x="9831" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow56_di" bpmnElement="ES05_Flow56"><di:waypoint x="9856" y="239" /><di:waypoint x="9856" y="185" /><di:waypoint x="8208" y="185" /><di:waypoint x="8208" y="1471" /><bpmndi:BPMNLabel><dc:Bounds x="9862" y="208" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow57_di" bpmnElement="ES05_Flow57"><di:waypoint x="9856" y="239" /><di:waypoint x="9856" y="185" /><di:waypoint x="4912" y="185" /><di:waypoint x="4912" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="9862" y="154" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow58_di" bpmnElement="ES05_Flow58"><di:waypoint x="9856" y="239" /><di:waypoint x="9856" y="185" /><di:waypoint x="15006" y="185" /><di:waypoint x="15006" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="15012" y="191" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow59_di" bpmnElement="ES05_Flow59"><di:waypoint x="9856" y="289" /><di:waypoint x="9856" y="1320" /><di:waypoint x="9982" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="9862" y="294" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow60_di" bpmnElement="ES05_Flow60"><di:waypoint x="10062" y="1370" /><di:waypoint x="10062" y="1672" /><di:waypoint x="10188" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow61_di" bpmnElement="ES05_Flow61"><di:waypoint x="10268" y="1622" /><di:waypoint x="10268" y="1593" /><di:waypoint x="12122" y="1593" /><di:waypoint x="12122" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow62_di" bpmnElement="ES05_Flow62"><di:waypoint x="9856" y="239" /><di:waypoint x="9856" y="185" /><di:waypoint x="380" y="185" /><di:waypoint x="380" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="386" y="191" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow63_di" bpmnElement="ES05_Flow63"><di:waypoint x="9881" y="264" /><di:waypoint x="10474" y="264" /><di:waypoint x="10474" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="10480" y="270" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow64_di" bpmnElement="ES05_Flow64"><di:waypoint x="10474" y="1370" /><di:waypoint x="10474" y="1672" /><di:waypoint x="10600" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow65_di" bpmnElement="ES05_Flow65"><di:waypoint x="10680" y="1622" /><di:waypoint x="10680" y="1593" /><di:waypoint x="12122" y="1593" /><di:waypoint x="12122" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow66_di" bpmnElement="ES05_Flow66"><di:waypoint x="9881" y="264" /><di:waypoint x="10837" y="264" /><di:waypoint x="10837" y="1672" /><di:waypoint x="10861" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="10843" y="270" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow67_di" bpmnElement="ES05_Flow67"><di:waypoint x="10911" y="1672" /><di:waypoint x="10935" y="1672" /><di:waypoint x="10935" y="1496" /><di:waypoint x="12509" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="10916" y="1641" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow68_di" bpmnElement="ES05_Flow68"><di:waypoint x="10886" y="1647" /><di:waypoint x="10886" y="616" /><di:waypoint x="11012" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="10892" y="585" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow69_di" bpmnElement="ES05_Flow69"><di:waypoint x="11092" y="566" /><di:waypoint x="11092" y="264" /><di:waypoint x="11218" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow70_di" bpmnElement="ES05_Flow70"><di:waypoint x="11378" y="264" /><di:waypoint x="11479" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow71_di" bpmnElement="ES05_Flow71"><di:waypoint x="11529" y="264" /><di:waypoint x="12534" y="264" /><di:waypoint x="12534" y="1471" /><bpmndi:BPMNLabel><dc:Bounds x="11534" y="246" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow72_di" bpmnElement="ES05_Flow72"><di:waypoint x="11504" y="239" /><di:waypoint x="11504" y="191" /><di:waypoint x="4912" y="191" /><di:waypoint x="4912" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="11510" y="208" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow73_di" bpmnElement="ES05_Flow73"><di:waypoint x="11504" y="289" /><di:waypoint x="11504" y="1320" /><di:waypoint x="11630" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="11510" y="294" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow74_di" bpmnElement="ES05_Flow74"><di:waypoint x="11710" y="1370" /><di:waypoint x="11710" y="1672" /><di:waypoint x="11836" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow75_di" bpmnElement="ES05_Flow75"><di:waypoint x="11996" y="1672" /><di:waypoint x="12097" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow76_di" bpmnElement="ES05_Flow76"><di:waypoint x="12740" y="1446" /><di:waypoint x="12740" y="1320" /><di:waypoint x="12866" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow77_di" bpmnElement="ES05_Flow77"><di:waypoint x="12946" y="1370" /><di:waypoint x="12946" y="1672" /><di:waypoint x="13127" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow78_di" bpmnElement="ES05_Flow78"><di:waypoint x="13177" y="1672" /><di:waypoint x="13278" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="13182" y="1641" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow79_di" bpmnElement="ES05_Flow79"><di:waypoint x="13152" y="1647" /><di:waypoint x="13152" y="1593" /><di:waypoint x="13564" y="1593" /><di:waypoint x="13564" y="1622" /><bpmndi:BPMNLabel><dc:Bounds x="13158" y="1562" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow80_di" bpmnElement="ES05_Flow80"><di:waypoint x="13644" y="1672" /><di:waypoint x="13690" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow81_di" bpmnElement="ES05_Flow81"><di:waypoint x="13770" y="1622" /><di:waypoint x="13770" y="1320" /><di:waypoint x="13896" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow82_di" bpmnElement="ES05_Flow82"><di:waypoint x="13976" y="1370" /><di:waypoint x="13976" y="1672" /><di:waypoint x="14102" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow83_di" bpmnElement="ES05_Flow83"><di:waypoint x="13152" y="1697" /><di:waypoint x="13152" y="1752" /><di:waypoint x="14388" y="1752" /><di:waypoint x="14388" y="1345" /><bpmndi:BPMNLabel><dc:Bounds x="13158" y="1702" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow84_di" bpmnElement="ES05_Flow84"><di:waypoint x="13152" y="1647" /><di:waypoint x="13152" y="1593" /><di:waypoint x="14388" y="1593" /><di:waypoint x="14388" y="1345" /><bpmndi:BPMNLabel><dc:Bounds x="13158" y="1597" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow85_di" bpmnElement="ES05_Flow85"><di:waypoint x="13358" y="1622" /><di:waypoint x="13358" y="1599" /><di:waypoint x="14388" y="1599" /><di:waypoint x="14388" y="1345" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow86_di" bpmnElement="ES05_Flow86"><di:waypoint x="14182" y="1622" /><di:waypoint x="14182" y="1320" /><di:waypoint x="14363" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow87_di" bpmnElement="ES05_Flow87"><di:waypoint x="14594" y="1370" /><di:waypoint x="14594" y="1672" /><di:waypoint x="14720" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow88_di" bpmnElement="ES05_Flow88"><di:waypoint x="14800" y="1622" /><di:waypoint x="14800" y="1144" /><di:waypoint x="14981" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow89_di" bpmnElement="ES05_Flow89"><di:waypoint x="15212" y="1094" /><di:waypoint x="15212" y="616" /><di:waypoint x="15338" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow90_di" bpmnElement="ES05_Flow90"><di:waypoint x="15418" y="666" /><di:waypoint x="15418" y="792" /><di:waypoint x="15599" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow91_di" bpmnElement="ES05_Flow91"><di:waypoint x="15649" y="792" /><di:waypoint x="15750" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow92_di" bpmnElement="ES05_Flow92"><di:waypoint x="15910" y="792" /><di:waypoint x="16242" y="792" /><di:waypoint x="16242" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow93_di" bpmnElement="ES05_Flow93"><di:waypoint x="15624" y="817" /><di:waypoint x="15624" y="1144" /><di:waypoint x="15956" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow94_di" bpmnElement="ES05_Flow94"><di:waypoint x="16116" y="1144" /><di:waypoint x="16217" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow95_di" bpmnElement="ES05_Flow95"><di:waypoint x="16242" y="1169" /><di:waypoint x="16242" y="1672" /><di:waypoint x="16423" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow96_di" bpmnElement="ES05_Flow96"><di:waypoint x="16473" y="1672" /><di:waypoint x="16574" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="16478" y="1654" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow97_di" bpmnElement="ES05_Flow97"><di:waypoint x="16448" y="1647" /><di:waypoint x="16448" y="1144" /><di:waypoint x="16835" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="16454" y="1629" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow98_di" bpmnElement="ES05_Flow98"><di:waypoint x="16654" y="1622" /><di:waypoint x="16654" y="1144" /><di:waypoint x="16835" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow99_di" bpmnElement="ES05_Flow99"><di:waypoint x="17066" y="1194" /><di:waypoint x="17066" y="1496" /><di:waypoint x="17192" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow100_di" bpmnElement="ES05_Flow100"><di:waypoint x="17272" y="1446" /><di:waypoint x="17272" y="1320" /><di:waypoint x="17398" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow101_di" bpmnElement="ES05_Flow101"><di:waypoint x="17558" y="1320" /><di:waypoint x="17659" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow102_di" bpmnElement="ES05_Flow102"><di:waypoint x="17684" y="1295" /><di:waypoint x="17684" y="1241" /><di:waypoint x="15006" y="1241" /><di:waypoint x="15006" y="1169" /><bpmndi:BPMNLabel><dc:Bounds x="17690" y="1264" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow103_di" bpmnElement="ES05_Flow103"><di:waypoint x="17684" y="1295" /><di:waypoint x="17684" y="1241" /><di:waypoint x="8208" y="1241" /><di:waypoint x="8208" y="1471" /><bpmndi:BPMNLabel><dc:Bounds x="17690" y="1210" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow104_di" bpmnElement="ES05_Flow104"><di:waypoint x="17684" y="1345" /><di:waypoint x="17684" y="1672" /><di:waypoint x="17810" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="17690" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow105_di" bpmnElement="ES05_Flow105"><di:waypoint x="17970" y="1672" /><di:waypoint x="18078" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow106_di" bpmnElement="ES05_Flow106"><di:waypoint x="405" y="1672" /><di:waypoint x="506" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow107_di" bpmnElement="ES05_Flow107"><di:waypoint x="3289" y="1320" /><di:waypoint x="3445" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow108_di" bpmnElement="ES05_Flow108"><di:waypoint x="4937" y="1672" /><di:waypoint x="5093" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow109_di" bpmnElement="ES05_Flow109"><di:waypoint x="5555" y="616" /><di:waypoint x="5711" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow110_di" bpmnElement="ES05_Flow110"><di:waypoint x="7203" y="1320" /><di:waypoint x="7359" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow111_di" bpmnElement="ES05_Flow111"><di:waypoint x="8233" y="1496" /><di:waypoint x="8334" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow112_di" bpmnElement="ES05_Flow112"><di:waypoint x="9263" y="616" /><di:waypoint x="9364" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow113_di" bpmnElement="ES05_Flow113"><di:waypoint x="12147" y="1672" /><di:waypoint x="12310" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow114_di" bpmnElement="ES05_Flow114"><di:waypoint x="12559" y="1496" /><di:waypoint x="12660" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow115_di" bpmnElement="ES05_Flow115"><di:waypoint x="14413" y="1320" /><di:waypoint x="14514" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow116_di" bpmnElement="ES05_Flow116"><di:waypoint x="15031" y="1144" /><di:waypoint x="15132" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ES05_Flow117_di" bpmnElement="ES05_Flow117"><di:waypoint x="16885" y="1144" /><di:waypoint x="16986" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_ES05_E1_di" bpmnElement="Group_ES05_E1"><dc:Bounds x="285" y="-44" width="2868" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="2856" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E2_di" bpmnElement="Group_ES05_E2"><dc:Bounds x="3169" y="-44" width="1632" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="3175" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E3_di" bpmnElement="Group_ES05_E3"><dc:Bounds x="4817" y="-44" width="3280" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="4823" y="-38" width="3268" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E4_di" bpmnElement="Group_ES05_E4"><dc:Bounds x="8113" y="-44" width="1014" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="8119" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E5_di" bpmnElement="Group_ES05_E5"><dc:Bounds x="9143" y="-44" width="2868" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="9149" y="-38" width="2856" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E6_di" bpmnElement="Group_ES05_E6"><dc:Bounds x="12439" y="-44" width="2456" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="12445" y="-38" width="2444" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E7_di" bpmnElement="Group_ES05_E7"><dc:Bounds x="14911" y="-44" width="2250" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="14917" y="-38" width="2238" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ES05_E8_di" bpmnElement="Group_ES05_E8"><dc:Bounds x="17177" y="-44" width="808" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="17183" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

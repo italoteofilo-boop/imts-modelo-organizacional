@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_IT02" targetNamespace="urn:imts:modelo:circulo6-integracao" exporter="Ecossistema IMTS - fonte única do Círculo 6" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_IT02">
+    <bpmn:categoryValue id="CV_IT02_E1" value="1. Planejar a implantação com o cliente e com Operações" />
+    <bpmn:categoryValue id="CV_IT02_E2" value="2. Preparar o ambiente, os acessos, as pessoas e os materiais" />
+    <bpmn:categoryValue id="CV_IT02_E3" value="3. Implantar e conferir o aceite do cliente" />
+    <bpmn:categoryValue id="CV_IT02_E4" value="4. Passar o cliente a Operações e encerrar a implantação" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_IT02">
+    <bpmn:participant id="Participant_IT02" name="IT-02 · Implantar o cliente, do contrato assinado à operação" processRef="Process_IT02" />
+    <bpmn:group id="Group_IT02_E1" categoryValueRef="CV_IT02_E1" />
+    <bpmn:group id="Group_IT02_E2" categoryValueRef="CV_IT02_E2" />
+    <bpmn:group id="Group_IT02_E3" categoryValueRef="CV_IT02_E3" />
+    <bpmn:group id="Group_IT02_E4" categoryValueRef="CV_IT02_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_IT02" name="Implantar o cliente, do contrato assinado à operação" isExecutable="false">
+    <bpmn:documentation>Fazer cada contrato assinado virar um cliente implantado e aceito, com um plano combinado com o cliente e com Operações, ambiente, acessos, pessoas e materiais prontos, e passado a Operações para a entrega recorrente. A Integração coordena; Operações confirma a capacidade e assume a entrega; a Gestão compra o que falta; o cliente aceita.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_IT02">
+      <bpmn:lane id="Lane_IT02_NEG" name="Negócios">
+        <bpmn:flowNodeRef>IT02_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_CLI" name="Cliente">
+        <bpmn:flowNodeRef>IT02_E1_PS1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_OPE" name="Operações">
+        <bpmn:flowNodeRef>IT02_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E1_PJ1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_GES" name="Gestão">
+        <bpmn:flowNodeRef>IT02_E2_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_IDE" name="Identidade">
+        <bpmn:flowNodeRef>IT02_E2_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_ITP" name="Integração · pessoa">
+        <bpmn:flowNodeRef>IT02_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E1_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E3_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_ITA" name="Integração · agente">
+        <bpmn:flowNodeRef>IT02_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_T8</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT02_ITR" name="Integração · automação">
+        <bpmn:flowNodeRef>IT02_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT02_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="IT02_S1" name="Contrato de cliente assinado recebido"><bpmn:outgoing>IT02_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="IT02_S1_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="IT02_M1"><bpmn:incoming>IT02_Flow1</bpmn:incoming><bpmn:incoming>IT02_Flow10</bpmn:incoming><bpmn:outgoing>IT02_Flow38</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IT02_E1_T1" name="Montar o cronograma, os riscos e a lista de requisitos a partir do escopo vendido"><bpmn:documentation>Etapa 1: Planejar a implantação com o cliente e com Operações. Executor: Agente da Integração (Integração · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow38</bpmn:incoming><bpmn:outgoing>IT02_Flow2</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:manualTask id="IT02_E1_T2" name="Combinar o plano de implantação com o cliente"><bpmn:documentation>Etapa 1: Planejar a implantação com o cliente e com Operações. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow2</bpmn:incoming><bpmn:outgoing>IT02_Flow3</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:parallelGateway id="IT02_E1_PS1"><bpmn:incoming>IT02_Flow3</bpmn:incoming><bpmn:outgoing>IT02_Flow4</bpmn:outgoing><bpmn:outgoing>IT02_Flow6</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:userTask id="IT02_E1_T3" name="Confirmar o plano de implantação e os responsáveis do cliente"><bpmn:documentation>Etapa 1: Planejar a implantação com o cliente e com Operações. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow4</bpmn:incoming><bpmn:outgoing>IT02_Flow5</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="IT02_E1_T4" name="Confirmar a capacidade de entrega e quem assume o cliente"><bpmn:documentation>Etapa 1: Planejar a implantação com o cliente e com Operações. Executor: Outro círculo (Operações). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow6</bpmn:incoming><bpmn:outgoing>IT02_Flow7</bpmn:outgoing></bpmn:task>
+    <bpmn:parallelGateway id="IT02_E1_PJ1"><bpmn:incoming>IT02_Flow5</bpmn:incoming><bpmn:incoming>IT02_Flow7</bpmn:incoming><bpmn:outgoing>IT02_Flow8</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:exclusiveGateway id="IT02_E1_G1" name="Operações confirmou a capacidade?"><bpmn:incoming>IT02_Flow8</bpmn:incoming><bpmn:outgoing>IT02_Flow9</bpmn:outgoing><bpmn:outgoing>IT02_Flow11</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IT02_E1_T5" name="Rever o cronograma e os recursos com Operações"><bpmn:documentation>Etapa 1: Planejar a implantação com o cliente e com Operações. Executor: Agente da Integração (Integração · agente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow9</bpmn:incoming><bpmn:outgoing>IT02_Flow10</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="IT02_E1_T6" name="Decidir o plano de implantação e abri-lo na carteira de projetos"><bpmn:documentation>Etapa 1: Planejar a implantação com o cliente e com Operações. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow11</bpmn:incoming><bpmn:outgoing>IT02_Flow12</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT02_E2_T1" name="Pedir a configuração dos agentes e os acessos do cliente"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow12</bpmn:incoming><bpmn:outgoing>IT02_Flow13</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="IT02_E2_T2" name="Preparar os materiais e as comunicações da implantação"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Agente da Integração (Integração · agente). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow13</bpmn:incoming><bpmn:outgoing>IT02_Flow14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IT02_E2_G1" name="Os materiais estão conforme os padrões de identidade?"><bpmn:incoming>IT02_Flow14</bpmn:incoming><bpmn:outgoing>IT02_Flow15</bpmn:outgoing><bpmn:outgoing>IT02_Flow16</bpmn:outgoing><bpmn:outgoing>IT02_Flow17</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT02_E2_T3" name="Corrigir os materiais no que não está conforme os padrões"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow15</bpmn:incoming><bpmn:outgoing>IT02_Flow18</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="IT02_E2_T4" name="Responder à consulta sobre os materiais de implantação não cobertos pelos padrões"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Outro círculo (Identidade). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow16</bpmn:incoming><bpmn:outgoing>IT02_Flow19</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="IT02_M2"><bpmn:incoming>IT02_Flow17</bpmn:incoming><bpmn:incoming>IT02_Flow18</bpmn:incoming><bpmn:incoming>IT02_Flow19</bpmn:incoming><bpmn:outgoing>IT02_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT02_E2_G2" name="Falta pessoa, compra ou assessoria para a implantação?"><bpmn:incoming>IT02_Flow39</bpmn:incoming><bpmn:outgoing>IT02_Flow20</bpmn:outgoing><bpmn:outgoing>IT02_Flow21</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="IT02_E2_T5" name="Contratar ou comprar o que falta para a implantação"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Outro círculo (Gestão). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow20</bpmn:incoming><bpmn:outgoing>IT02_Flow22</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="IT02_M3"><bpmn:incoming>IT02_Flow21</bpmn:incoming><bpmn:incoming>IT02_Flow22</bpmn:incoming><bpmn:outgoing>IT02_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:receiveTask id="IT02_E2_T6" name="Receber os agentes liberados e os acessos configurados, ou o motivo de não estarem"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow40</bpmn:incoming><bpmn:outgoing>IT02_Flow23</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:exclusiveGateway id="IT02_E2_G3" name="Os agentes e os acessos ficaram prontos?"><bpmn:incoming>IT02_Flow23</bpmn:incoming><bpmn:outgoing>IT02_Flow24</bpmn:outgoing><bpmn:outgoing>IT02_Flow26</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT02_E2_T7" name="Levar ao executivo o que impede a implantação e suspender o projeto na carteira"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow24</bpmn:incoming><bpmn:outgoing>IT02_Flow25</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="IT02_E2_T8" name="Conferir a lista de requisitos atendida"><bpmn:documentation>Etapa 2: Preparar o ambiente, os acessos, as pessoas e os materiais. Executor: Agente da Integração (Integração · agente). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow26</bpmn:incoming><bpmn:outgoing>IT02_Flow27</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IT02_M4"><bpmn:incoming>IT02_Flow27</bpmn:incoming><bpmn:incoming>IT02_Flow33</bpmn:incoming><bpmn:outgoing>IT02_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:manualTask id="IT02_E3_T1" name="Implantar com Operações: configurar, migrar, treinar e testar com o cliente"><bpmn:documentation>Etapa 3: Implantar e conferir o aceite do cliente. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow41</bpmn:incoming><bpmn:outgoing>IT02_Flow28</bpmn:outgoing></bpmn:manualTask>
+    <bpmn:userTask id="IT02_E3_T2" name="Conferir a implantação com o cliente"><bpmn:documentation>Etapa 3: Implantar e conferir o aceite do cliente. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow28</bpmn:incoming><bpmn:outgoing>IT02_Flow29</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT02_E3_T3" name="Registrar o andamento e as pendências da implantação"><bpmn:documentation>Etapa 3: Implantar e conferir o aceite do cliente. Executor: Automação da Integração (Integração · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow29</bpmn:incoming><bpmn:outgoing>IT02_Flow30</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT02_E3_G1" name="O cliente aceitou a implantação?"><bpmn:incoming>IT02_Flow30</bpmn:incoming><bpmn:outgoing>IT02_Flow31</bpmn:outgoing><bpmn:outgoing>IT02_Flow32</bpmn:outgoing><bpmn:outgoing>IT02_Flow34</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT02_E3_T4" name="Corrigir a pendência apontada pelo cliente"><bpmn:documentation>Etapa 3: Implantar e conferir o aceite do cliente. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow32</bpmn:incoming><bpmn:outgoing>IT02_Flow33</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT02_E3_T5" name="Levar o impasse ao executivo, com o que falta e as opções, e suspender o projeto na carteira"><bpmn:documentation>Etapa 3: Implantar e conferir o aceite do cliente. Executor: Automação da Integração (Integração · automação). Modo da etapa: Assistido; risco médio.</bpmn:documentation><bpmn:incoming>IT02_Flow34</bpmn:incoming><bpmn:outgoing>IT02_Flow35</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT02_M5"><bpmn:incoming>IT02_Flow25</bpmn:incoming><bpmn:incoming>IT02_Flow35</bpmn:incoming><bpmn:outgoing>IT02_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="IT02_F2" name="Impasse da implantação levado ao executivo"><bpmn:incoming>IT02_Flow42</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="IT02_E4_T1" name="Passar o cliente a Operações com o registro do que foi implantado"><bpmn:documentation>Etapa 4: Passar o cliente a Operações e encerrar a implantação. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT02_Flow31</bpmn:incoming><bpmn:outgoing>IT02_Flow36</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT02_E4_T2" name="Avisar a Gestão do início da entrega e mandar à carteira a entrega, com as lições"><bpmn:documentation>Etapa 4: Passar o cliente a Operações e encerrar a implantação. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT02_Flow36</bpmn:incoming><bpmn:outgoing>IT02_Flow37</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT02_F1" name="Cliente implantado, aceito e passado a Operações"><bpmn:incoming>IT02_Flow37</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="IT02_Flow1" sourceRef="IT02_S1" targetRef="IT02_M1" />
+    <bpmn:sequenceFlow id="IT02_Flow2" sourceRef="IT02_E1_T1" targetRef="IT02_E1_T2" />
+    <bpmn:sequenceFlow id="IT02_Flow3" sourceRef="IT02_E1_T2" targetRef="IT02_E1_PS1" />
+    <bpmn:sequenceFlow id="IT02_Flow4" sourceRef="IT02_E1_PS1" targetRef="IT02_E1_T3" />
+    <bpmn:sequenceFlow id="IT02_Flow5" sourceRef="IT02_E1_T3" targetRef="IT02_E1_PJ1" />
+    <bpmn:sequenceFlow id="IT02_Flow6" sourceRef="IT02_E1_PS1" targetRef="IT02_E1_T4" />
+    <bpmn:sequenceFlow id="IT02_Flow7" sourceRef="IT02_E1_T4" targetRef="IT02_E1_PJ1" />
+    <bpmn:sequenceFlow id="IT02_Flow8" sourceRef="IT02_E1_PJ1" targetRef="IT02_E1_G1" />
+    <bpmn:sequenceFlow id="IT02_Flow9" name="Não: rever prazo ou recursos" sourceRef="IT02_E1_G1" targetRef="IT02_E1_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: rever prazo ou recursos</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow10" sourceRef="IT02_E1_T5" targetRef="IT02_M1" />
+    <bpmn:sequenceFlow id="IT02_Flow11" name="Sim" sourceRef="IT02_E1_G1" targetRef="IT02_E1_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow12" sourceRef="IT02_E1_T6" targetRef="IT02_E2_T1" />
+    <bpmn:sequenceFlow id="IT02_Flow13" sourceRef="IT02_E2_T1" targetRef="IT02_E2_T2" />
+    <bpmn:sequenceFlow id="IT02_Flow14" sourceRef="IT02_E2_T2" targetRef="IT02_E2_G1" />
+    <bpmn:sequenceFlow id="IT02_Flow15" name="Não" sourceRef="IT02_E2_G1" targetRef="IT02_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow16" name="Há ponto que os padrões não cobrem" sourceRef="IT02_E2_G1" targetRef="IT02_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Há ponto que os padrões não cobrem</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow17" name="Sim" sourceRef="IT02_E2_G1" targetRef="IT02_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow18" sourceRef="IT02_E2_T3" targetRef="IT02_M2" />
+    <bpmn:sequenceFlow id="IT02_Flow19" sourceRef="IT02_E2_T4" targetRef="IT02_M2" />
+    <bpmn:sequenceFlow id="IT02_Flow20" name="Sim" sourceRef="IT02_E2_G2" targetRef="IT02_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow21" name="Não" sourceRef="IT02_E2_G2" targetRef="IT02_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow22" sourceRef="IT02_E2_T5" targetRef="IT02_M3" />
+    <bpmn:sequenceFlow id="IT02_Flow23" sourceRef="IT02_E2_T6" targetRef="IT02_E2_G3" />
+    <bpmn:sequenceFlow id="IT02_Flow24" name="Não" sourceRef="IT02_E2_G3" targetRef="IT02_E2_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow25" sourceRef="IT02_E2_T7" targetRef="IT02_M5" />
+    <bpmn:sequenceFlow id="IT02_Flow26" name="Sim" sourceRef="IT02_E2_G3" targetRef="IT02_E2_T8"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow27" sourceRef="IT02_E2_T8" targetRef="IT02_M4" />
+    <bpmn:sequenceFlow id="IT02_Flow28" sourceRef="IT02_E3_T1" targetRef="IT02_E3_T2" />
+    <bpmn:sequenceFlow id="IT02_Flow29" sourceRef="IT02_E3_T2" targetRef="IT02_E3_T3" />
+    <bpmn:sequenceFlow id="IT02_Flow30" sourceRef="IT02_E3_T3" targetRef="IT02_E3_G1" />
+    <bpmn:sequenceFlow id="IT02_Flow31" name="Sim" sourceRef="IT02_E3_G1" targetRef="IT02_E4_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow32" name="Não: há pendência a corrigir" sourceRef="IT02_E3_G1" targetRef="IT02_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: há pendência a corrigir</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow33" sourceRef="IT02_E3_T4" targetRef="IT02_M4" />
+    <bpmn:sequenceFlow id="IT02_Flow34" name="Impasse: a pendência não se resolve na implantação" sourceRef="IT02_E3_G1" targetRef="IT02_E3_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Impasse: a pendência não se resolve na implantação</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT02_Flow35" sourceRef="IT02_E3_T5" targetRef="IT02_M5" />
+    <bpmn:sequenceFlow id="IT02_Flow36" sourceRef="IT02_E4_T1" targetRef="IT02_E4_T2" />
+    <bpmn:sequenceFlow id="IT02_Flow37" sourceRef="IT02_E4_T2" targetRef="IT02_F1" />
+    <bpmn:sequenceFlow id="IT02_Flow38" sourceRef="IT02_M1" targetRef="IT02_E1_T1" />
+    <bpmn:sequenceFlow id="IT02_Flow39" sourceRef="IT02_M2" targetRef="IT02_E2_G2" />
+    <bpmn:sequenceFlow id="IT02_Flow40" sourceRef="IT02_M3" targetRef="IT02_E2_T6" />
+    <bpmn:sequenceFlow id="IT02_Flow41" sourceRef="IT02_M4" targetRef="IT02_E3_T1" />
+    <bpmn:sequenceFlow id="IT02_Flow42" sourceRef="IT02_M5" targetRef="IT02_F2" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_IT02">
+    <bpmndi:BPMNPlane id="Plane_IT02" bpmnElement="Collab_IT02">
+      <bpmndi:BPMNShape id="Participant_IT02_di" bpmnElement="Participant_IT02" isHorizontal="true"><dc:Bounds x="0" y="0" width="7510" height="1408" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_NEG_di" bpmnElement="Lane_IT02_NEG" isHorizontal="true"><dc:Bounds x="30" y="0" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_CLI_di" bpmnElement="Lane_IT02_CLI" isHorizontal="true"><dc:Bounds x="30" y="176" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_OPE_di" bpmnElement="Lane_IT02_OPE" isHorizontal="true"><dc:Bounds x="30" y="352" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_GES_di" bpmnElement="Lane_IT02_GES" isHorizontal="true"><dc:Bounds x="30" y="528" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_IDE_di" bpmnElement="Lane_IT02_IDE" isHorizontal="true"><dc:Bounds x="30" y="704" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_ITP_di" bpmnElement="Lane_IT02_ITP" isHorizontal="true"><dc:Bounds x="30" y="880" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_ITA_di" bpmnElement="Lane_IT02_ITA" isHorizontal="true"><dc:Bounds x="30" y="1056" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT02_ITR_di" bpmnElement="Lane_IT02_ITR" isHorizontal="true"><dc:Bounds x="30" y="1232" width="7480" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_S1_di" bpmnElement="IT02_S1"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_M1_di" bpmnElement="IT02_M1" isMarkerVisible="true"><dc:Bounds x="331" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_T1_di" bpmnElement="IT02_E1_T1"><dc:Bounds x="482" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_T2_di" bpmnElement="IT02_E1_T2"><dc:Bounds x="688" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_PS1_di" bpmnElement="IT02_E1_PS1"><dc:Bounds x="949" y="239" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_T3_di" bpmnElement="IT02_E1_T3"><dc:Bounds x="1100" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_T4_di" bpmnElement="IT02_E1_T4"><dc:Bounds x="1306" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_PJ1_di" bpmnElement="IT02_E1_PJ1"><dc:Bounds x="1567" y="415" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_G1_di" bpmnElement="IT02_E1_G1" isMarkerVisible="true"><dc:Bounds x="1773" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1686" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_T5_di" bpmnElement="IT02_E1_T5"><dc:Bounds x="1924" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E1_T6_di" bpmnElement="IT02_E1_T6"><dc:Bounds x="2130" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T1_di" bpmnElement="IT02_E2_T1"><dc:Bounds x="2336" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T2_di" bpmnElement="IT02_E2_T2"><dc:Bounds x="2542" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_G1_di" bpmnElement="IT02_E2_G1" isMarkerVisible="true"><dc:Bounds x="2803" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2716" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T3_di" bpmnElement="IT02_E2_T3"><dc:Bounds x="2954" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T4_di" bpmnElement="IT02_E2_T4"><dc:Bounds x="3160" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_M2_di" bpmnElement="IT02_M2" isMarkerVisible="true"><dc:Bounds x="3421" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_G2_di" bpmnElement="IT02_E2_G2" isMarkerVisible="true"><dc:Bounds x="3627" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3540" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T5_di" bpmnElement="IT02_E2_T5"><dc:Bounds x="3778" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_M3_di" bpmnElement="IT02_M3" isMarkerVisible="true"><dc:Bounds x="4039" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T6_di" bpmnElement="IT02_E2_T6"><dc:Bounds x="4190" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_G3_di" bpmnElement="IT02_E2_G3" isMarkerVisible="true"><dc:Bounds x="4451" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4364" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T7_di" bpmnElement="IT02_E2_T7"><dc:Bounds x="4602" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E2_T8_di" bpmnElement="IT02_E2_T8"><dc:Bounds x="4808" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_M4_di" bpmnElement="IT02_M4" isMarkerVisible="true"><dc:Bounds x="5069" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E3_T1_di" bpmnElement="IT02_E3_T1"><dc:Bounds x="5220" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E3_T2_di" bpmnElement="IT02_E3_T2"><dc:Bounds x="5426" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E3_T3_di" bpmnElement="IT02_E3_T3"><dc:Bounds x="5632" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E3_G1_di" bpmnElement="IT02_E3_G1" isMarkerVisible="true"><dc:Bounds x="5893" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5806" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E3_T4_di" bpmnElement="IT02_E3_T4"><dc:Bounds x="6044" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E3_T5_di" bpmnElement="IT02_E3_T5"><dc:Bounds x="6250" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_M5_di" bpmnElement="IT02_M5" isMarkerVisible="true"><dc:Bounds x="6511" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_F2_di" bpmnElement="IT02_F2"><dc:Bounds x="6724" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6687" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E4_T1_di" bpmnElement="IT02_E4_T1"><dc:Bounds x="6868" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_E4_T2_di" bpmnElement="IT02_E4_T2"><dc:Bounds x="7074" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT02_F1_di" bpmnElement="IT02_F1"><dc:Bounds x="7342" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7305" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="IT02_Flow1_di" bpmnElement="IT02_Flow1"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow2_di" bpmnElement="IT02_Flow2"><di:waypoint x="562" y="1094" /><di:waypoint x="562" y="968" /><di:waypoint x="688" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow3_di" bpmnElement="IT02_Flow3"><di:waypoint x="768" y="918" /><di:waypoint x="768" y="264" /><di:waypoint x="949" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow4_di" bpmnElement="IT02_Flow4"><di:waypoint x="999" y="264" /><di:waypoint x="1100" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow5_di" bpmnElement="IT02_Flow5"><di:waypoint x="1260" y="264" /><di:waypoint x="1592" y="264" /><di:waypoint x="1592" y="415" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow6_di" bpmnElement="IT02_Flow6"><di:waypoint x="974" y="289" /><di:waypoint x="974" y="440" /><di:waypoint x="1306" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow7_di" bpmnElement="IT02_Flow7"><di:waypoint x="1466" y="440" /><di:waypoint x="1567" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow8_di" bpmnElement="IT02_Flow8"><di:waypoint x="1592" y="465" /><di:waypoint x="1592" y="968" /><di:waypoint x="1773" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow9_di" bpmnElement="IT02_Flow9"><di:waypoint x="1798" y="993" /><di:waypoint x="1798" y="1144" /><di:waypoint x="1924" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="1804" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow10_di" bpmnElement="IT02_Flow10"><di:waypoint x="2004" y="1094" /><di:waypoint x="2004" y="1065" /><di:waypoint x="356" y="1065" /><di:waypoint x="356" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow11_di" bpmnElement="IT02_Flow11"><di:waypoint x="1823" y="968" /><di:waypoint x="2130" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="950" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow12_di" bpmnElement="IT02_Flow12"><di:waypoint x="2210" y="1018" /><di:waypoint x="2210" y="1320" /><di:waypoint x="2336" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow13_di" bpmnElement="IT02_Flow13"><di:waypoint x="2416" y="1270" /><di:waypoint x="2416" y="1144" /><di:waypoint x="2542" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow14_di" bpmnElement="IT02_Flow14"><di:waypoint x="2702" y="1144" /><di:waypoint x="2803" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow15_di" bpmnElement="IT02_Flow15"><di:waypoint x="2828" y="1119" /><di:waypoint x="2828" y="968" /><di:waypoint x="2954" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="1101" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow16_di" bpmnElement="IT02_Flow16"><di:waypoint x="2853" y="1144" /><di:waypoint x="3136" y="1144" /><di:waypoint x="3136" y="792" /><di:waypoint x="3160" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="3142" y="1111" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow17_di" bpmnElement="IT02_Flow17"><di:waypoint x="2828" y="1169" /><di:waypoint x="2828" y="1224" /><di:waypoint x="3446" y="1224" /><di:waypoint x="3446" y="1169" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="1174" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow18_di" bpmnElement="IT02_Flow18"><di:waypoint x="3114" y="968" /><di:waypoint x="3446" y="968" /><di:waypoint x="3446" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow19_di" bpmnElement="IT02_Flow19"><di:waypoint x="3240" y="842" /><di:waypoint x="3240" y="1144" /><di:waypoint x="3421" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow20_di" bpmnElement="IT02_Flow20"><di:waypoint x="3652" y="1119" /><di:waypoint x="3652" y="616" /><di:waypoint x="3778" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="3658" y="1101" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow21_di" bpmnElement="IT02_Flow21"><di:waypoint x="3652" y="1169" /><di:waypoint x="3652" y="1320" /><di:waypoint x="4039" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="3658" y="1174" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow22_di" bpmnElement="IT02_Flow22"><di:waypoint x="3858" y="666" /><di:waypoint x="3858" y="1320" /><di:waypoint x="4039" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow23_di" bpmnElement="IT02_Flow23"><di:waypoint x="4270" y="1270" /><di:waypoint x="4270" y="1144" /><di:waypoint x="4451" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow24_di" bpmnElement="IT02_Flow24"><di:waypoint x="4476" y="1169" /><di:waypoint x="4476" y="1320" /><di:waypoint x="4602" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4482" y="1174" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow25_di" bpmnElement="IT02_Flow25"><di:waypoint x="4682" y="1270" /><di:waypoint x="4682" y="1241" /><di:waypoint x="6536" y="1241" /><di:waypoint x="6536" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow26_di" bpmnElement="IT02_Flow26"><di:waypoint x="4501" y="1144" /><di:waypoint x="4808" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="4506" y="1126" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow27_di" bpmnElement="IT02_Flow27"><di:waypoint x="4888" y="1094" /><di:waypoint x="4888" y="968" /><di:waypoint x="5069" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow28_di" bpmnElement="IT02_Flow28"><di:waypoint x="5300" y="918" /><di:waypoint x="5300" y="264" /><di:waypoint x="5426" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow29_di" bpmnElement="IT02_Flow29"><di:waypoint x="5506" y="314" /><di:waypoint x="5506" y="1320" /><di:waypoint x="5632" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow30_di" bpmnElement="IT02_Flow30"><di:waypoint x="5712" y="1270" /><di:waypoint x="5712" y="968" /><di:waypoint x="5893" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow31_di" bpmnElement="IT02_Flow31"><di:waypoint x="5918" y="943" /><di:waypoint x="5918" y="889" /><di:waypoint x="6948" y="889" /><di:waypoint x="6948" y="1270" /><bpmndi:BPMNLabel><dc:Bounds x="5924" y="925" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow32_di" bpmnElement="IT02_Flow32"><di:waypoint x="5943" y="968" /><di:waypoint x="6044" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="5948" y="972" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow33_di" bpmnElement="IT02_Flow33"><di:waypoint x="6124" y="918" /><di:waypoint x="6124" y="895" /><di:waypoint x="5094" y="895" /><di:waypoint x="5094" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow34_di" bpmnElement="IT02_Flow34"><di:waypoint x="5918" y="993" /><di:waypoint x="5918" y="1320" /><di:waypoint x="6250" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="5924" y="1289" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow35_di" bpmnElement="IT02_Flow35"><di:waypoint x="6410" y="1320" /><di:waypoint x="6511" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow36_di" bpmnElement="IT02_Flow36"><di:waypoint x="7028" y="1320" /><di:waypoint x="7074" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow37_di" bpmnElement="IT02_Flow37"><di:waypoint x="7234" y="1320" /><di:waypoint x="7342" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow38_di" bpmnElement="IT02_Flow38"><di:waypoint x="381" y="1144" /><di:waypoint x="482" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow39_di" bpmnElement="IT02_Flow39"><di:waypoint x="3471" y="1144" /><di:waypoint x="3627" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow40_di" bpmnElement="IT02_Flow40"><di:waypoint x="4089" y="1320" /><di:waypoint x="4190" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow41_di" bpmnElement="IT02_Flow41"><di:waypoint x="5119" y="968" /><di:waypoint x="5220" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT02_Flow42_di" bpmnElement="IT02_Flow42"><di:waypoint x="6561" y="1320" /><di:waypoint x="6724" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_IT02_E1_di" bpmnElement="Group_IT02_E1"><dc:Bounds x="261" y="-44" width="2044" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="2032" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT02_E2_di" bpmnElement="Group_IT02_E2"><dc:Bounds x="2321" y="-44" width="2662" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="2327" y="-38" width="2650" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT02_E3_di" bpmnElement="Group_IT02_E3"><dc:Bounds x="4999" y="-44" width="1426" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="5005" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT02_E4_di" bpmnElement="Group_IT02_E4"><dc:Bounds x="6853" y="-44" width="396" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="6859" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

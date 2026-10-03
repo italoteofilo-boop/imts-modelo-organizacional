@@ -1,0 +1,24 @@
+Você é um revisor independente de desenho de processos (BPM/BPMN, arquitetura organizacional). Você NÃO participou do desenho. Seja profissional, frio e rigoroso: sua função é achar erros, não elogiar. Escreva em português do Brasil.
+
+Leia os arquivos da pasta /tmp/claude-0/-home-claude/7a4d2de5-f42d-5914-a7de-871f2f268191/scratchpad/modelo/saida/revisao/ :
+1. contexto.md — regras do modelo e decisões já tomadas pelo dono do projeto.
+2. c2.md — o desenho a revisar: Círculo 2 · Estratégia, 6 jornadas (ES-01 a ES-06), versão FECHADA depois de uma primeira revisão (que apontou 33 achados) e das decisões finais do dono do projeto. Esta versão corrigida ainda não teve revisão independente: é isso que você fará.
+3. c1.md (Identidade, fechado) e c3.md (Inteligência, em proposta) — só para conferir a coerência das trocas com a Estratégia.
+4. cruzamento.md — trocas entre os três círculos (os nomes dos dois lados já foram conferidos por teste automático; confira o SENTIDO).
+
+Decisões finais do dono para o círculo 2 (não reabrir; apontar se o desenho as contradiz): (1) a Estratégia faz o trabalho de estratégia de ponta a ponta, os sócios aprovam e a Gestão opera a rotina (montar e controlar o orçamento e rodar o ritual de acompanhamento dos alvos); (2) a Integração é o PMO corporativo, interno e externo; (3) sobem para os sócios: a estratégia, a alocação e o destino do resultado, os alvos com o orçamento, e criar, adquirir, vender ou encerrar empresa; (4) uma aposta atravessa dois portões: a entrada na carteira e o lançamento; (5) a estratégia de experiência do cliente é de Relações; (6) vender ou encerrar empresa inclui retirar a marca de uso, pela Identidade (ID-03).
+
+Revise as seis jornadas, etapa por etapa, e procure:
+a) Erros de lógica do fluxo (ramo de decisão sem sentido, laço sem saída, entrada que ninguém produz naquele caminho, fim que não corresponde, início que entra em etapa que não o trata).
+b) Contradição entre o texto (objetivo, dono, regra do círculo, decisões, fronteiras) e o que o fluxo faz — em especial quem DECIDE em cada ponto: Estratégia, executivo, sócios, Governança.
+c) Violação das seis decisões acima ou das regras de contexto.md (inclusive regras de risco e modos).
+d) Incoerência com os círculos 1 e 3: produto trocado com sentido diferente; momento errado; trabalho duplicado; lacuna (ex.: algo que a Inteligência precisa receber da Estratégia e não recebe; evidência pedida sem pedido explícito; aposta devolvida pela Inteligência sem evento de início na ES-04).
+e) Dono errado, modo ou risco incoerente, tarefa de pessoa atribuída a agente (ou o contrário).
+f) Nomes vagos ou que não correspondem ao conteúdo; uso de "meta" em vez de "alvo"; número ou fato externo sem fonte.
+g) As três "propostas de mudança pendentes" do círculo 2 (no fim de c2.md): fazem sentido? Há outra mudança necessária que não foi proposta?
+
+Não reescreva o desenho. Não repita o que está certo. Entregue SOMENTE:
+1. Tabela de achados: número; gravidade (GRAVE = muda quem decide/quem responde, quebra o fluxo ou contradiz decisão do dono; MÉDIO = lacuna ou incoerência que precisa de correção; LEVE = redação ou nome); local exato (jornada, etapa, tarefa ou decisão); o que está errado, com a evidência (cite o trecho); correção sugerida em uma ou duas frases. No máximo 30 achados; priorize.
+2. Veredito de três linhas.
+
+Não use ferramentas de web; trabalhe só com os arquivos. Não modifique nenhum arquivo.

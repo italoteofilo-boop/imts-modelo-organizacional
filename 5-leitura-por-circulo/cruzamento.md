@@ -1,0 +1,591 @@
+# Trocas entre os círculos (o nome de cada produto já foi conferido dos dois lados por teste automático)
+
+- Identidade → Estratégia: Declaração de identidade vigente [sai em ID-01 etapa 5; entra em ES-01 etapa 1, ES-01 etapa 2, ES-01 etapa 3, ES-05 etapa 1, ES-05 etapa 7; chega: direto]
+- Identidade → Estratégia: Relatório de alinhamento [sai em ID-05 etapa 2; entra em ES-01 etapa 1; chega: direto]
+- Identidade → Estratégia: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em ES-01 etapa 2, ES-01 etapa 3, ES-02 etapa 2, ES-03 etapa 1, ES-04 etapa 2, ES-05 etapa 1; chega: a todos]
+- Identidade → Estratégia: Resposta à consulta [sai em ID-02 etapa 1; entra em ES-01 etapa 2, ES-01 etapa 3, ES-02 etapa 2, ES-03 etapa 1, ES-04 etapa 2, ES-05 etapa 1; chega: a quem pediu]
+- Identidade → Estratégia: Definição do que conta como impacto [sai em ID-02 etapa 4; entra em ES-03 etapa 1; chega: direto]
+- Identidade → Estratégia: Decisão sobre a marca do negócio [sai em ID-03 etapa 2; entra em ES-05 etapa 7; chega: direto]
+- Identidade → Estratégia: Pacote de marca publicado [sai em ID-03 etapa 7; entra em ES-05 etapa 7; chega: a quem pediu]
+- Identidade → Estratégia: Marca retirada de uso [sai em ID-03 etapa 2; entra em ES-05 etapa 7; chega: a quem pediu]
+- Identidade → Inteligência: Indicadores de clareza e atualidade dos padrões [sai em ID-05 etapa 2; entra em IN-04 etapa 2; chega: direto]
+- Identidade → Inteligência: Declaração de identidade vigente [sai em ID-01 etapa 5; entra em IN-05 etapa 1, IN-07 etapa 3; chega: a todos]
+- Identidade → Inteligência: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em IN-05 etapa 1, IN-05 etapa 2, IN-06 etapa 2, IN-07 etapa 2, IN-07 etapa 6, IN-07 etapa 7; chega: a todos]
+- Identidade → Inteligência: Resposta à consulta [sai em ID-02 etapa 1; entra em IN-05 etapa 2, IN-06 etapa 2, IN-07 etapa 2, IN-07 etapa 6, IN-07 etapa 7; chega: a quem pediu]
+- Identidade → Inteligência: Posicionamento e casa de mensagens vigentes [sai em ID-04 etapa 5; entra em IN-07 etapa 3; chega: direto]
+- Identidade → Inteligência: Decisão sobre a marca do negócio [sai em ID-03 etapa 2; entra em IN-07 etapa 7; chega: a quem pediu]
+- Identidade → Inteligência: Pacote de marca publicado [sai em ID-03 etapa 7; entra em IN-07 etapa 7; chega: a quem pediu]
+- Identidade → Inteligência: Resumo da avaliação dos padrões [sai em ID-05 etapa 4; entra em IN-08 etapa 1; chega: direto]
+- Identidade → Relações: Posicionamento e casa de mensagens vigentes [sai em ID-04 etapa 5; entra em RE-01 etapa 1, RE-02 etapa 1, RE-04 etapa 2, RE-07 etapa 2, RE-08 etapa 1; chega: direto]
+- Identidade → Relações: Pacote de marca publicado [sai em ID-03 etapa 7; entra em RE-02 etapa 1, RE-06 etapa 3, RE-06 etapa 5, RE-07 etapa 2; chega: direto]
+- Identidade → Relações: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em RE-02 etapa 1, RE-04 etapa 2, RE-05 etapa 3, RE-06 etapa 2, RE-07 etapa 2, RE-08 etapa 3; chega: a todos]
+- Identidade → Relações: Resposta à consulta [sai em ID-02 etapa 1; entra em RE-02 etapa 1, RE-04 etapa 2, RE-05 etapa 3, RE-06 etapa 2, RE-06 etapa 5, RE-07 etapa 2; chega: a quem pediu]
+- Identidade → Relações: Aviso de materiais vencidos [sai em ID-02 etapa 4; entra em RE-02 etapa 1; chega: direto]
+- Identidade → Relações: Marca retirada de uso [sai em ID-03 etapa 2; entra em RE-02 etapa 1, RE-06 etapa 1, RE-07 etapa 1; chega: direto]
+- Identidade → Relações: Lacunas de execução apontadas [sai em ID-05 etapa 3; entra em RE-02 etapa 1, RE-04 etapa 1, RE-07 etapa 1, RE-08 etapa 4; chega: direto]
+- Identidade → Relações: Declaração de identidade vigente [sai em ID-01 etapa 5; entra em RE-04 etapa 2; chega: a todos]
+- Identidade → Relações: Regra de uso da marca por terceiros [sai em ID-02 etapa 4; entra em RE-06 etapa 5; chega: direto]
+- Identidade → Relações: Mudança na declaração a comunicar [sai em ID-01 etapa 5; entra em RE-07 etapa 1; chega: direto]
+- Identidade → Relações: Protocolo de crise [sai em ID-02 etapa 4; entra em RE-08 etapa 1, RE-08 etapa 2, RE-08 etapa 3; chega: direto]
+- Identidade → Relações: Resumo da avaliação dos padrões [sai em ID-05 etapa 4; entra em RE-08 etapa 4; chega: direto]
+- Identidade → Negócios: Aviso de materiais vencidos [sai em ID-02 etapa 4; entra em NE-01 etapa 1, NE-03 etapa 3; chega: direto]
+- Identidade → Negócios: Marca retirada de uso [sai em ID-03 etapa 2; entra em NE-01 etapa 1, NE-03 etapa 3; chega: direto]
+- Identidade → Negócios: Pacote de marca publicado [sai em ID-03 etapa 7; entra em NE-01 etapa 3, NE-03 etapa 3; chega: direto]
+- Identidade → Negócios: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em NE-01 etapa 3, NE-03 etapa 3, NE-05 etapa 2, NE-06 etapa 1; chega: a todos]
+- Identidade → Negócios: Posicionamento e casa de mensagens vigentes [sai em ID-04 etapa 5; entra em NE-01 etapa 3, NE-03 etapa 3; chega: direto]
+- Identidade → Negócios: Resposta à consulta [sai em ID-02 etapa 1; entra em NE-01 etapa 3, NE-03 etapa 3, NE-05 etapa 2, NE-06 etapa 1; chega: a quem pediu]
+- Identidade → Negócios: Lacunas de execução apontadas [sai em ID-05 etapa 3; entra em NE-02 etapa 1; chega: direto]
+- Identidade → Integração: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em IT-02 etapa 2, IT-05 etapa 2, IT-06 etapa 1; chega: a todos]
+- Identidade → Integração: Resposta à consulta [sai em ID-02 etapa 1; entra em IT-02 etapa 2; chega: a quem pediu]
+- Identidade → Integração: Critérios de auditoria e casos de teste [sai em ID-02 etapa 4; entra em IT-06 etapa 1; chega: direto]
+- Identidade → Integração: Posicionamento e casa de mensagens vigentes [sai em ID-04 etapa 5; entra em IT-06 etapa 1; chega: direto]
+- Identidade → Integração: Pacote de marca publicado [sai em ID-03 etapa 7; entra em IT-06 etapa 1; chega: direto]
+- Identidade → Integração: Marca retirada de uso [sai em ID-03 etapa 2; entra em IT-06 etapa 1; chega: direto]
+- Identidade → Integração: Lacunas de execução apontadas [sai em ID-05 etapa 3; entra em IT-08 etapa 1; chega: direto]
+- Identidade → Operações: Pacote de marca publicado [sai em ID-03 etapa 7; entra em OP-02 etapa 1; chega: direto]
+- Identidade → Operações: Marca retirada de uso [sai em ID-03 etapa 2; entra em OP-02 etapa 1; chega: direto]
+- Identidade → Operações: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em OP-02 etapa 2, OP-05 etapa 1; chega: a todos]
+- Identidade → Operações: Resposta à consulta [sai em ID-02 etapa 1; entra em OP-03 etapa 2; chega: a quem pediu]
+- Identidade → Operações: Lacunas de execução apontadas [sai em ID-05 etapa 3; entra em OP-05 etapa 3; chega: direto]
+- Identidade → Gestão: Kit de cultura e pessoas [sai em ID-02 etapa 4; entra em GE-07 etapa 1, GE-08 etapa 1, GE-09 etapa 1, GE-10 etapa 1; chega: direto]
+- Identidade → Gestão: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em GE-08 etapa 1, GE-10 etapa 1, GE-11 etapa 1; chega: a todos]
+- Identidade → Gestão: Lacunas de execução apontadas [sai em ID-05 etapa 3; entra em GE-09 etapa 1; chega: direto]
+- Identidade → Gestão: Resumo da avaliação dos padrões [sai em ID-05 etapa 4; entra em GE-09 etapa 1; chega: direto]
+- Identidade → Gestão: Mudança na declaração a comunicar [sai em ID-01 etapa 5; entra em GE-11 etapa 1; chega: direto]
+- Identidade → Gestão: Mudança nos padrões a comunicar [sai em ID-02 etapa 4; entra em GE-11 etapa 1; chega: direto]
+- Identidade → Gestão: Posicionamento e casa de mensagens vigentes [sai em ID-04 etapa 5; entra em GE-11 etapa 1; chega: direto]
+- Identidade → Gestão: Pacote de marca publicado [sai em ID-03 etapa 7; entra em GE-11 etapa 2; chega: direto]
+- Identidade → Gestão: Marca retirada de uso [sai em ID-03 etapa 2; entra em GE-11 etapa 2; chega: direto]
+- Identidade → Gestão: Resposta à consulta [sai em ID-02 etapa 1; entra em GE-11 etapa 2; chega: a quem pediu]
+- Identidade → Gestão: Aviso de materiais vencidos [sai em ID-02 etapa 4; entra em GE-11 etapa 3; chega: direto]
+- Identidade → Governança: Decisão dos sócios sobre critérios e limites [sai em ID-02 etapa 3; entra em GO-01 etapa 1, GO-02 etapa 2; chega: direto]
+- Identidade → Governança: Regra de uso da marca por terceiros [sai em ID-02 etapa 4; entra em GO-01 etapa 1; chega: direto]
+- Identidade → Governança: Decisão dos sócios registrada [sai em ID-01 etapa 4; entra em GO-02 etapa 2; chega: direto]
+- Identidade → Governança: Lacunas de execução apontadas [sai em ID-05 etapa 3; entra em GO-03 etapa 1, GO-06 etapa 1; chega: direto]
+- Identidade → Governança: Pedido de registro depositado e prazos [sai em ID-03 etapa 5; entra em GO-04 etapa 1; chega: direto]
+- Identidade → Governança: Marca retirada de uso [sai em ID-03 etapa 2; entra em GO-04 etapa 1; chega: direto]
+- Identidade → Governança: Critérios de auditoria e casos de teste [sai em ID-02 etapa 4; entra em GO-06 etapa 1; chega: direto]
+- Identidade → Governança: Resumo da avaliação dos padrões [sai em ID-05 etapa 4; entra em GO-06 etapa 1; chega: direto]
+- Identidade → Governança: Padrões de identidade vigentes [sai em ID-02 etapa 4; entra em GO-06 etapa 2; chega: a todos]
+- Identidade → Governança: Protocolo de crise [sai em ID-02 etapa 4; entra em GO-08 etapa 1; chega: direto]
+- Identidade → Governança: Posicionamento e casa de mensagens vigentes [sai em ID-04 etapa 5; entra em GO-08 etapa 1, GO-10 etapa 3; chega: direto]
+- Identidade → Governança: Definição do que conta como impacto [sai em ID-02 etapa 4; entra em GO-10 etapa 1; chega: direto]
+- Estratégia → Identidade: Direção estratégica e públicos prioritários [sai em ES-01 etapa 5; entra em ID-01 etapa 1, ID-03 etapa 2, ID-04 etapa 1; chega: direto]
+- Estratégia → Identidade: Pedido de identidade para empresa nova [sai em ES-05 etapa 6; entra em ID-01 etapa 1; chega: direto]
+- Estratégia → Identidade: Portfólio de empresas atualizado [sai em ES-05 etapa 8; entra em ID-05 etapa 1; chega: direto]
+- Estratégia → Identidade: Consulta sobre caso não coberto [sai em ES-01 etapa 2, ES-01 etapa 3, ES-02 etapa 2, ES-03 etapa 1, ES-04 etapa 2, ES-05 etapa 1; entra em ID-02 etapa 1; chega: como pedido]
+- Estratégia → Identidade: Pedido de retirada de marca [sai em ES-04 etapa 4, ES-05 etapa 6; entra em ID-03 etapa 1; chega: como pedido]
+- Estratégia → Identidade: Pedido de marca [sai em ES-05 etapa 6; entra em ID-03 etapa 1; chega: como pedido]
+- Estratégia → Inteligência: Perguntas do diagnóstico [sai em ES-01 etapa 1; entra em IN-01 etapa 1; chega: direto]
+- Estratégia → Inteligência: Hipóteses da estratégia e sinais a vigiar [sai em ES-01 etapa 5; entra em IN-01 etapa 1; chega: direto]
+- Estratégia → Inteligência: Portfólio-alvo: papel de cada empresa, oferta e aposta [sai em ES-01 etapa 5, ES-02 etapa 4; entra em IN-01 etapa 1, IN-07 etapa 3; chega: direto]
+- Estratégia → Inteligência: Portfólio de empresas atualizado [sai em ES-05 etapa 8; entra em IN-01 etapa 1, IN-04 etapa 1; chega: direto]
+- Estratégia → Inteligência: Direção estratégica e públicos prioritários [sai em ES-01 etapa 5; entra em IN-01 etapa 1, IN-05 etapa 1, IN-07 etapa 3; chega: a todos]
+- Estratégia → Inteligência: Diagnóstico e decisão de manter a estratégia [sai em ES-01 etapa 4; entra em IN-01 etapa 1; chega: direto]
+- Estratégia → Inteligência: Alvos propostos, para definição das fichas dos indicadores [sai em ES-03 etapa 2; entra em IN-04 etapa 1; chega: direto]
+- Estratégia → Inteligência: Alvos e iniciativas do ciclo [sai em ES-03 etapa 5; entra em IN-04 etapa 1, IN-04 etapa 3; chega: direto]
+- Estratégia → Inteligência: Decisão sobre a contestação do indicador de alvo [sai em ES-06 etapa 2; entra em IN-04 etapa 1; chega: direto]
+- Estratégia → Inteligência: Aposta aprovada para desenho e validação da oferta, com recursos [sai em ES-04 etapa 5; entra em IN-07 etapa 1; chega: direto]
+- Estratégia → Inteligência: Aposta em espera ou devolvida [sai em ES-04 etapa 3; entra em IN-07 etapa 1, IN-07 etapa 9; chega: direto]
+- Estratégia → Inteligência: Aposta mantida depois da revisão [sai em ES-04 etapa 3; entra em IN-07 etapa 1; chega: direto]
+- Estratégia → Inteligência: Decisão de encerrar aposta em desenvolvimento ou oferta em uso [sai em ES-04 etapa 3; entra em IN-07 etapa 1, IN-07 etapa 9; chega: direto]
+- Estratégia → Inteligência: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em IN-07 etapa 1; chega: direto]
+- Estratégia → Inteligência: Mandato da empresa [sai em ES-05 etapa 6; entra em IN-07 etapa 1; chega: direto]
+- Estratégia → Inteligência: Método de estratégia vigente: critérios dos portões, regras de realocação e calendário [sai em ES-01 etapa 5; entra em IN-07 etapa 5, IN-07 etapa 7; chega: direto]
+- Estratégia → Inteligência: Oferta aprovada para lançamento [sai em ES-04 etapa 5; entra em IN-07 etapa 9; chega: direto]
+- Estratégia → Inteligência: Lição da aposta encerrada [sai em ES-04 etapa 3, ES-04 etapa 4; entra em IN-08 etapa 1; chega: direto]
+- Estratégia → Inteligência: Lições da revisão da estratégia [sai em ES-06 etapa 4; entra em IN-08 etapa 1; chega: direto]
+- Estratégia → Inteligência: Lição do caso arquivado, sem dado sigiloso [sai em ES-05 etapa 1, ES-05 etapa 2, ES-05 etapa 3, ES-05 etapa 5; entra em IN-08 etapa 1; chega: direto]
+- Estratégia → Inteligência: Aposta devolvida com o que falta [sai em ES-04 etapa 1; entra em IN-08 etapa 1, IN-08 etapa 3; chega: a quem pediu]
+- Estratégia → Inteligência: Leitura do portfólio: resultado, recursos e papel de cada unidade [sai em ES-02 etapa 1; entra em IN-08 etapa 2; chega: direto]
+- Estratégia → Inteligência: Pedido de ajuste ou de revisão de oferta em uso [sai em ES-04 etapa 1; entra em IN-07 etapa 1; chega: como pedido]
+- Estratégia → Inteligência: Pergunta de decisão, com a decisão apoiada, o risco e o prazo [sai em ES-04 etapa 2, ES-05 etapa 1, ES-06 etapa 2; entra em IN-02 etapa 1; chega: como pedido]
+- Estratégia → Relações: Direção estratégica e públicos prioritários [sai em ES-01 etapa 5; entra em RE-01 etapa 1, RE-06 etapa 1; chega: a todos]
+- Estratégia → Relações: Alvos e iniciativas do ciclo [sai em ES-03 etapa 5; entra em RE-01 etapa 1; chega: a todos]
+- Estratégia → Relações: Oferta aprovada para lançamento [sai em ES-04 etapa 5; entra em RE-01 etapa 1, RE-04 etapa 1, RE-07 etapa 1; chega: direto]
+- Estratégia → Relações: Mandato da empresa [sai em ES-05 etapa 6; entra em RE-01 etapa 1, RE-05 etapa 1, RE-07 etapa 1; chega: direto]
+- Estratégia → Relações: Decisão de encerrar aposta em desenvolvimento ou oferta em uso [sai em ES-04 etapa 3; entra em RE-05 etapa 1; chega: direto]
+- Estratégia → Relações: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em RE-05 etapa 1; chega: direto]
+- Estratégia → Relações: Aposta mantida depois da revisão [sai em ES-04 etapa 3; entra em RE-05 etapa 1; chega: direto]
+- Estratégia → Relações: Aposta em espera ou devolvida [sai em ES-04 etapa 3; entra em RE-05 etapa 1, RE-06 etapa 1; chega: direto]
+- Estratégia → Relações: Parceria aprovada no portão, para formalizar [sai em ES-04 etapa 5; entra em RE-06 etapa 1; chega: direto]
+- Estratégia → Relações: Lição da aposta encerrada [sai em ES-04 etapa 3, ES-04 etapa 4; entra em RE-06 etapa 1; chega: direto]
+- Estratégia → Relações: Mudança na estratégia a comunicar [sai em ES-01 etapa 5; entra em RE-07 etapa 1; chega: direto]
+- Estratégia → Negócios: Oferta aprovada para lançamento [sai em ES-04 etapa 5; entra em NE-01 etapa 1; chega: direto]
+- Estratégia → Negócios: Portfólio-alvo: papel de cada empresa, oferta e aposta [sai em ES-01 etapa 5, ES-02 etapa 4; entra em NE-01 etapa 1, NE-02 etapa 1; chega: direto]
+- Estratégia → Negócios: Decisão de encerrar aposta em desenvolvimento ou oferta em uso [sai em ES-04 etapa 3; entra em NE-01 etapa 1, NE-06 etapa 1, NE-06 etapa 3; chega: direto]
+- Estratégia → Negócios: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em NE-01 etapa 1, NE-06 etapa 1, NE-06 etapa 3; chega: direto]
+- Estratégia → Negócios: Alvos e iniciativas do ciclo [sai em ES-03 etapa 5; entra em NE-02 etapa 1; chega: a todos]
+- Estratégia → Negócios: Mandato da empresa [sai em ES-05 etapa 6; entra em NE-02 etapa 1, NE-06 etapa 1, NE-06 etapa 3; chega: direto]
+- Estratégia → Integração: Alvos e iniciativas do ciclo [sai em ES-03 etapa 5; entra em IT-01 etapa 1; chega: direto]
+- Estratégia → Integração: Método de estratégia vigente: critérios dos portões, regras de realocação e calendário [sai em ES-01 etapa 5; entra em IT-01 etapa 1; chega: direto]
+- Estratégia → Integração: Decisão do portão [sai em ES-04 etapa 3; entra em IT-01 etapa 1; chega: direto]
+- Estratégia → Integração: Decisão de encerrar aposta em desenvolvimento ou oferta em uso [sai em ES-04 etapa 3; entra em IT-01 etapa 1, IT-04 etapa 1; chega: direto]
+- Estratégia → Integração: Oferta aprovada para lançamento [sai em ES-04 etapa 5; entra em IT-03 etapa 1; chega: direto]
+- Estratégia → Integração: Pedido de plano de saída da oferta: clientes e contratos [sai em ES-04 etapa 4; entra em IT-04 etapa 1; chega: direto]
+- Estratégia → Integração: Pedido de plano de saída: clientes, contratos e pessoas [sai em ES-05 etapa 6; entra em IT-04 etapa 1; chega: direto]
+- Estratégia → Integração: Mandato da empresa [sai em ES-05 etapa 6; entra em IT-04 etapa 1, IT-04 etapa 2; chega: direto]
+- Estratégia → Integração: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em IT-04 etapa 2; chega: direto]
+- Estratégia → Integração: Pendência da saída da oferta encerrada [sai em ES-04 etapa 4; entra em IT-04 etapa 2; chega: direto]
+- Estratégia → Operações: Oferta aprovada para lançamento [sai em ES-04 etapa 5; entra em OP-01 etapa 1; chega: direto]
+- Estratégia → Operações: Mandato da empresa [sai em ES-05 etapa 6; entra em OP-01 etapa 1, OP-08 etapa 1; chega: direto]
+- Estratégia → Operações: Decisão de encerrar aposta em desenvolvimento ou oferta em uso [sai em ES-04 etapa 3; entra em OP-08 etapa 1; chega: direto]
+- Estratégia → Operações: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em OP-08 etapa 1; chega: direto]
+- Estratégia → Operações: Correções de execução publicadas, com dono e prazo [sai em ES-06 etapa 4; entra em OP-05 etapa 3; chega: a todos]
+- Estratégia → Gestão: Decisão dos sócios sobre alvos e orçamento [sai em ES-03 etapa 4; entra em GE-01 etapa 1; chega: direto]
+- Estratégia → Gestão: Alvos e iniciativas do ciclo [sai em ES-03 etapa 5; entra em GE-01 etapa 1, GE-02 etapa 1, GE-09 etapa 1, GE-10 etapa 1, GE-11 etapa 1; chega: direto]
+- Estratégia → Gestão: Alocação de recursos por empresa, oferta e aposta [sai em ES-02 etapa 4; entra em GE-01 etapa 1, GE-05 etapa 3; chega: direto]
+- Estratégia → Gestão: Método de estratégia vigente: critérios dos portões, regras de realocação e calendário [sai em ES-01 etapa 5; entra em GE-01 etapa 1, GE-02 etapa 1; chega: direto]
+- Estratégia → Gestão: Recursos aprovados para a aposta [sai em ES-04 etapa 5; entra em GE-01 etapa 2; chega: direto]
+- Estratégia → Gestão: Recursos da aposta encerrada a devolver [sai em ES-04 etapa 3, ES-04 etapa 4; entra em GE-01 etapa 2; chega: direto]
+- Estratégia → Gestão: Aposta em espera ou devolvida [sai em ES-04 etapa 3; entra em GE-01 etapa 2; chega: direto]
+- Estratégia → Gestão: Aposta mantida depois da revisão [sai em ES-04 etapa 3; entra em GE-01 etapa 2; chega: direto]
+- Estratégia → Gestão: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em GE-01 etapa 2, GE-04 etapa 1, GE-07 etapa 1; chega: direto]
+- Estratégia → Gestão: Pedido de plano de correção [sai em ES-06 etapa 3; entra em GE-02 etapa 2; chega: direto]
+- Estratégia → Gestão: Correções de execução publicadas, com dono e prazo [sai em ES-06 etapa 4; entra em GE-02 etapa 2, GE-11 etapa 1; chega: direto]
+- Estratégia → Gestão: Revisão sem correção registrada [sai em ES-06 etapa 2; entra em GE-02 etapa 2; chega: direto]
+- Estratégia → Gestão: Mandato da empresa [sai em ES-05 etapa 6; entra em GE-04 etapa 1, GE-05 etapa 3, GE-07 etapa 1; chega: direto]
+- Estratégia → Gestão: Decisão de alocação e de destino do resultado [sai em ES-02 etapa 3; entra em GE-05 etapa 3; chega: direto]
+- Estratégia → Gestão: Portfólio de empresas atualizado [sai em ES-05 etapa 8; entra em GE-05 etapa 3, GE-06 etapa 1, GE-11 etapa 1; chega: direto]
+- Estratégia → Gestão: Lista de pessoas da empresa adquirida [sai em ES-05 etapa 6; entra em GE-07 etapa 1, GE-08 etapa 1; chega: direto]
+- Estratégia → Gestão: Mudança na estratégia a comunicar [sai em ES-01 etapa 5; entra em GE-11 etapa 1; chega: direto]
+- Estratégia → Governança: Decisão dos sócios sobre a estratégia [sai em ES-01 etapa 4; entra em GO-01 etapa 1, GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Método de estratégia vigente: critérios dos portões, regras de realocação e calendário [sai em ES-01 etapa 5; entra em GO-01 etapa 1, GO-02 etapa 1; chega: direto]
+- Estratégia → Governança: Portfólio de empresas atualizado [sai em ES-05 etapa 8; entra em GO-01 etapa 1, GO-02 etapa 3, GO-03 etapa 1, GO-04 etapa 1; chega: direto]
+- Estratégia → Governança: Diagnóstico e decisão de manter a estratégia [sai em ES-01 etapa 4; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Decisão dos sócios sobre alvos e orçamento [sai em ES-03 etapa 4; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Decisão de alocação e de destino do resultado [sai em ES-02 etapa 3; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Decisão do portão [sai em ES-04 etapa 3; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Autorização dos sócios para negociar, com os limites [sai em ES-05 etapa 2; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Decisão dos sócios sobre a empresa [sai em ES-05 etapa 5; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Caso arquivado, com o motivo [sai em ES-05 etapa 1, ES-05 etapa 2, ES-05 etapa 3, ES-05 etapa 5; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Resultado da revisão da estratégia [sai em ES-06 etapa 4; entra em GO-02 etapa 2; chega: direto]
+- Estratégia → Governança: Mandato da empresa [sai em ES-05 etapa 6; entra em GO-02 etapa 3, GO-04 etapa 1; chega: direto]
+- Estratégia → Governança: Contrato de compra ou venda assinado [sai em ES-05 etapa 5; entra em GO-02 etapa 3, GO-04 etapa 1, GO-05 etapa 1; chega: direto]
+- Inteligência → Identidade: Posicionamento da oferta e público-alvo [sai em IN-07 etapa 7; entra em ID-03 etapa 1; chega: direto]
+- Inteligência → Identidade: Leitura de mercado, clientes e concorrentes [sai em IN-01 etapa 5; entra em ID-03 etapa 1, ID-04 etapa 1; chega: direto]
+- Inteligência → Identidade: Indicadores de marca, cultura e reputação [sai em IN-04 etapa 3; entra em ID-05 etapa 1; chega: direto]
+- Inteligência → Identidade: Consulta sobre caso não coberto [sai em IN-05 etapa 2, IN-06 etapa 2, IN-07 etapa 2, IN-07 etapa 6, IN-07 etapa 7; entra em ID-02 etapa 1; chega: como pedido]
+- Inteligência → Identidade: Pedido de marca [sai em IN-07 etapa 7; entra em ID-03 etapa 1; chega: como pedido]
+- Inteligência → Estratégia: Leitura de mercado, clientes e concorrentes [sai em IN-01 etapa 5; entra em ES-01 etapa 1, ES-06 etapa 1; chega: direto]
+- Inteligência → Estratégia: Aviso de mudança relevante de cenário [sai em IN-01 etapa 3; entra em ES-01 etapa 1; chega: direto]
+- Inteligência → Estratégia: Aviso de leitura sem novidade [sai em IN-01 etapa 3; entra em ES-01 etapa 1; chega: a quem pediu]
+- Inteligência → Estratégia: Indicadores e análises por empresa, oferta e aposta [sai em IN-04 etapa 3; entra em ES-02 etapa 1, ES-03 etapa 1, ES-04 etapa 2, ES-06 etapa 1; chega: direto]
+- Inteligência → Estratégia: Fichas dos indicadores decididas e confirmadas pelos donos [sai em IN-04 etapa 1; entra em ES-03 etapa 2; chega: direto]
+- Inteligência → Estratégia: Pedido de revisão da aposta ou da oferta [sai em IN-07 etapa 2; entra em ES-04 etapa 1; chega: direto]
+- Inteligência → Estratégia: Pacote da oferta pronta para lançamento [sai em IN-07 etapa 8; entra em ES-04 etapa 1; chega: direto]
+- Inteligência → Estratégia: Aposta devolvida com evidência e recomendação [sai em IN-07 etapa 3, IN-07 etapa 5, IN-07 etapa 6; entra em ES-04 etapa 1; chega: direto]
+- Inteligência → Estratégia: Resposta com evidência, fonte e grau de confiança [sai em IN-02 etapa 4; entra em ES-04 etapa 2, ES-05 etapa 1, ES-06 etapa 2; chega: a quem pediu]
+- Inteligência → Estratégia: Pergunta devolvida com o motivo [sai em IN-02 etapa 1; entra em ES-04 etapa 2, ES-05 etapa 1, ES-06 etapa 2; chega: a quem pediu]
+- Inteligência → Estratégia: Contestação de indicador de alvo vigente [sai em IN-04 etapa 1, IN-04 etapa 4, IN-04 etapa 5; entra em ES-06 etapa 1; chega: direto]
+- Inteligência → Estratégia: Ideia ou aposta nova [sai em IN-01 etapa 4, IN-08 etapa 3; entra em ES-04 etapa 1; chega: como pedido]
+- Inteligência → Relações: Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores [sai em IN-07 etapa 9; entra em RE-01 etapa 1, RE-02 etapa 1, RE-03 etapa 2, RE-04 etapa 1, RE-06 etapa 3; chega: direto]
+- Inteligência → Relações: Posicionamento da oferta e público-alvo [sai em IN-07 etapa 7; entra em RE-01 etapa 1, RE-02 etapa 1; chega: direto]
+- Inteligência → Relações: Leitura de mercado, clientes e concorrentes [sai em IN-01 etapa 5; entra em RE-01 etapa 1, RE-04 etapa 1, RE-06 etapa 1, RE-08 etapa 1; chega: direto]
+- Inteligência → Relações: Painel de indicadores de cada círculo, com dono e análise [sai em IN-04 etapa 3; entra em RE-01 etapa 1, RE-04 etapa 1, RE-05 etapa 2, RE-06 etapa 4; chega: a todos]
+- Inteligência → Relações: Aposta ou oferta encerrada e fora do catálogo de ofertas [sai em IN-07 etapa 1; entra em RE-05 etapa 1; chega: direto]
+- Inteligência → Negócios: Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores [sai em IN-07 etapa 9; entra em NE-01 etapa 1, NE-03 etapa 2, NE-05 etapa 1, NE-07 etapa 2; chega: direto]
+- Inteligência → Negócios: Aposta ou oferta encerrada e fora do catálogo de ofertas [sai em IN-07 etapa 1; entra em NE-01 etapa 1; chega: direto]
+- Inteligência → Negócios: Resposta ao pedido sobre oferta em uso [sai em IN-07 etapa 2, IN-07 etapa 9; entra em NE-01 etapa 1, NE-03 etapa 1; chega: a quem pediu]
+- Inteligência → Negócios: Leitura de mercado, clientes e concorrentes [sai em IN-01 etapa 5; entra em NE-02 etapa 1; chega: direto]
+- Inteligência → Negócios: Painel de indicadores de cada círculo, com dono e análise [sai em IN-04 etapa 3; entra em NE-02 etapa 1; chega: a todos]
+- Inteligência → Negócios: Ofertas, apostas e pilotos em curso da empresa que sai [sai em IN-07 etapa 1; entra em NE-06 etapa 3; chega: direto]
+- Inteligência → Integração: Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia [sai em IN-07 etapa 3, IN-07 etapa 5, IN-07 etapa 6; entra em IT-01 etapa 1; chega: direto]
+- Inteligência → Integração: Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores [sai em IN-07 etapa 9; entra em IT-03 etapa 1; chega: direto]
+- Inteligência → Integração: Capacidades necessárias para a oferta [sai em IN-07 etapa 4; entra em IT-03 etapa 1, IT-05 etapa 1; chega: direto]
+- Inteligência → Integração: Painel de indicadores de cada círculo, com dono e análise [sai em IN-04 etapa 3; entra em IT-03 etapa 3, IT-08 etapa 1, IT-08 etapa 4; chega: a todos]
+- Inteligência → Integração: Aposta ou oferta encerrada e fora do catálogo de ofertas [sai em IN-07 etapa 1; entra em IT-04 etapa 1; chega: direto]
+- Inteligência → Integração: Ofertas, apostas e pilotos em curso da empresa que sai [sai em IN-07 etapa 1; entra em IT-04 etapa 1; chega: direto]
+- Inteligência → Integração: Método publicado, com versão e data de revisão [sai em IN-06 etapa 4; entra em IT-05 etapa 1; chega: direto]
+- Inteligência → Integração: Método retirado de uso [sai em IN-06 etapa 5; entra em IT-05 etapa 1; chega: direto]
+- Inteligência → Integração: Método recusado ou não publicado, com o motivo [sai em IN-06 etapa 1, IN-06 etapa 3; entra em IT-05 etapa 1; chega: direto]
+- Inteligência → Integração: Resultado da avaliação do método [sai em IN-06 etapa 5; entra em IT-05 etapa 1; chega: direto]
+- Inteligência → Integração: Kit do método para agentes: passos, conhecimento, casos de teste e critério de sucesso [sai em IN-06 etapa 4; entra em IT-05 etapa 2, IT-06 etapa 1; chega: direto]
+- Inteligência → Integração: Base de conhecimento publicada [sai em IN-05 etapa 4; entra em IT-05 etapa 2, IT-06 etapa 1; chega: direto]
+- Inteligência → Integração: Perguntas de teste da base, com a resposta esperada [sai em IN-05 etapa 4; entra em IT-06 etapa 1; chega: direto]
+- Inteligência → Integração: Catálogo de dados, com dono e classificação de cada dado [sai em IN-03 etapa 4; entra em IT-07 etapa 1; chega: direto]
+- Inteligência → Integração: Dado retirado do catálogo de dados [sai em IN-03 etapa 5; entra em IT-07 etapa 1; chega: direto]
+- Inteligência → Integração: Recomendação de melhoria, com evidência, ganho esperado e dono sugerido [sai em IN-08 etapa 3; entra em IT-08 etapa 1; chega: direto]
+- Inteligência → Operações: Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores [sai em IN-07 etapa 9; entra em OP-01 etapa 1, OP-02 etapa 1, OP-05 etapa 1, OP-06 etapa 1, OP-07 etapa 1; chega: direto]
+- Inteligência → Operações: Aposta ou oferta encerrada e fora do catálogo de ofertas [sai em IN-07 etapa 1; entra em OP-01 etapa 1, OP-08 etapa 1; chega: direto]
+- Inteligência → Operações: Painel de indicadores de cada círculo, com dono e análise [sai em IN-04 etapa 3; entra em OP-01 etapa 1, OP-05 etapa 2; chega: a todos]
+- Inteligência → Operações: Método publicado, com versão e data de revisão [sai em IN-06 etapa 4; entra em OP-02 etapa 1, OP-05 etapa 1; chega: a todos]
+- Inteligência → Operações: Base de conhecimento publicada [sai em IN-05 etapa 4; entra em OP-02 etapa 2, OP-03 etapa 2; chega: a todos]
+- Inteligência → Operações: Resposta ao pedido sobre oferta em uso [sai em IN-07 etapa 2, IN-07 etapa 9; entra em OP-03 etapa 2; chega: a quem pediu]
+- Inteligência → Operações: Método retirado de uso [sai em IN-06 etapa 5; entra em OP-05 etapa 1; chega: a todos]
+- Inteligência → Gestão: Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia [sai em IN-07 etapa 3, IN-07 etapa 5, IN-07 etapa 6; entra em GE-01 etapa 2; chega: direto]
+- Inteligência → Gestão: Aposta ou oferta encerrada e fora do catálogo de ofertas [sai em IN-07 etapa 1; entra em GE-01 etapa 2; chega: direto]
+- Inteligência → Gestão: Indicadores e análises por empresa, oferta e aposta [sai em IN-04 etapa 3; entra em GE-02 etapa 1; chega: direto]
+- Inteligência → Gestão: Resultado da revisão dos indicadores, com as contestações de indicador de alvo vigente [sai em IN-04 etapa 4; entra em GE-02 etapa 1; chega: direto]
+- Inteligência → Gestão: Painel de indicadores de cada círculo, com dono e análise [sai em IN-04 etapa 3; entra em GE-02 etapa 1; chega: a todos]
+- Inteligência → Governança: Catálogo de dados, com dono e classificação de cada dado [sai em IN-03 etapa 4; entra em GO-01 etapa 1, GO-07 etapa 1; chega: direto]
+- Inteligência → Governança: Dado retirado do catálogo de dados [sai em IN-03 etapa 5; entra em GO-01 etapa 1; chega: direto]
+- Inteligência → Governança: Painel de indicadores de cada círculo, com dono e análise [sai em IN-04 etapa 3; entra em GO-03 etapa 1, GO-10 etapa 1; chega: a todos]
+- Inteligência → Governança: Dado confiável publicado no catálogo de dados [sai em IN-03 etapa 4; entra em GO-10 etapa 2; chega: a todos]
+- Relações → Identidade: Escuta dos públicos [sai em RE-08 etapa 4; entra em ID-01 etapa 1; chega: direto]
+- Relações → Identidade: Percepção dos públicos e sinais de reputação [sai em RE-08 etapa 4; entra em ID-05 etapa 1; chega: direto]
+- Relações → Identidade: Consulta sobre caso não coberto [sai em RE-02 etapa 1, RE-04 etapa 2, RE-05 etapa 3, RE-06 etapa 2, RE-06 etapa 5, RE-07 etapa 2; entra em ID-02 etapa 1; chega: como pedido]
+- Relações → Estratégia: Ideia ou aposta nova [sai em RE-06 etapa 2; entra em ES-04 etapa 1; chega: como pedido]
+- Relações → Inteligência: Percepção dos públicos e sinais de reputação [sai em RE-08 etapa 4; entra em IN-03 etapa 2; chega: direto]
+- Relações → Inteligência: Sinais de clientes, parceiros e concorrentes vistos no relacionamento [sai em RE-05 etapa 4, RE-06 etapa 4; entra em IN-03 etapa 2; chega: direto]
+- Relações → Inteligência: Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas [sai em RE-03 etapa 4; entra em IN-03 etapa 2; chega: direto]
+- Relações → Inteligência: Resultado das ações de demanda por canal e oferta [sai em RE-02 etapa 3; entra em IN-03 etapa 2; chega: direto]
+- Relações → Inteligência: Base de relacionamento atualizada, com a base legal e o histórico [sai em RE-03 etapa 5; entra em IN-03 etapa 2; chega: direto]
+- Relações → Inteligência: Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência [sai em RE-04 etapa 4; entra em IN-07 etapa 4; chega: direto]
+- Relações → Inteligência: Lições de clientes perdidos, renovados e ampliados [sai em RE-05 etapa 4; entra em IN-08 etapa 1; chega: direto]
+- Relações → Inteligência: Conteúdo novo apontado [sai em RE-04 etapa 4; entra em IN-05 etapa 1; chega: como pedido]
+- Relações → Inteligência: Lição apontada [sai em RE-08 etapa 3; entra em IN-08 etapa 1; chega: como pedido]
+- Relações → Negócios: Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento [sai em RE-01 etapa 4; entra em NE-02 etapa 1; chega: direto]
+- Relações → Negócios: Critério de oportunidade qualificada combinado com Negócios [sai em RE-01 etapa 4; entra em NE-02 etapa 1, NE-03 etapa 1, NE-07 etapa 1; chega: direto]
+- Relações → Negócios: Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas [sai em RE-03 etapa 4; entra em NE-02 etapa 1, NE-07 etapa 1; chega: direto]
+- Relações → Negócios: Lacunas de percepção encaminhadas ao dono [sai em RE-08 etapa 4; entra em NE-02 etapa 1; chega: direto]
+- Relações → Negócios: Oportunidade qualificada, com o contato, a necessidade e a origem [sai em RE-03 etapa 4; entra em NE-03 etapa 1; chega: direto]
+- Relações → Negócios: Oportunidade sem resposta no prazo [sai em RE-03 etapa 4; entra em NE-03 etapa 1; chega: direto]
+- Relações → Negócios: Base de relacionamento atualizada, com a base legal e o histórico [sai em RE-03 etapa 5; entra em NE-03 etapa 1, NE-07 etapa 1; chega: direto]
+- Relações → Negócios: Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência [sai em RE-04 etapa 4; entra em NE-03 etapa 2; chega: direto]
+- Relações → Negócios: Oportunidade de renovação ou de expansão, com o histórico [sai em RE-05 etapa 4; entra em NE-06 etapa 1; chega: direto]
+- Relações → Negócios: Plano de sucesso do cliente: resultados esperados, marcos e contatos [sai em RE-05 etapa 1; entra em NE-06 etapa 1; chega: direto]
+- Relações → Negócios: Clientes avisados da saída, com a transição combinada [sai em RE-05 etapa 1; entra em NE-06 etapa 3; chega: direto]
+- Relações → Negócios: Parceria ativa, com plano de ativação [sai em RE-06 etapa 3; entra em NE-07 etapa 1; chega: direto]
+- Relações → Negócios: Resultado da parceria [sai em RE-06 etapa 4; entra em NE-07 etapa 3; chega: direto]
+- Relações → Integração: Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência [sai em RE-04 etapa 4; entra em IT-02 etapa 1, IT-08 etapa 1; chega: direto]
+- Relações → Integração: Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento [sai em RE-01 etapa 4; entra em IT-03 etapa 1; chega: direto]
+- Relações → Integração: Clientes avisados da saída, com a transição combinada [sai em RE-05 etapa 1; entra em IT-04 etapa 2; chega: direto]
+- Relações → Operações: Parceria ativa, com plano de ativação [sai em RE-06 etapa 3; entra em OP-01 etapa 1; chega: direto]
+- Relações → Operações: Plano de sucesso do cliente: resultados esperados, marcos e contatos [sai em RE-05 etapa 1; entra em OP-02 etapa 1, OP-03 etapa 1; chega: direto]
+- Relações → Operações: Plano de recuperação do cliente [sai em RE-05 etapa 3; entra em OP-02 etapa 1; chega: direto]
+- Relações → Operações: Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência [sai em RE-04 etapa 4; entra em OP-02 etapa 1, OP-05 etapa 1; chega: direto]
+- Relações → Operações: Clientes avisados da saída, com a transição combinada [sai em RE-05 etapa 1; entra em OP-08 etapa 1; chega: direto]
+- Relações → Operações: Avaliação da experiência sem mudança [sai em RE-04 etapa 1; entra em OP-05 etapa 1; chega: direto]
+- Relações → Operações: Lacunas de percepção encaminhadas ao dono [sai em RE-08 etapa 4; entra em OP-05 etapa 3; chega: direto]
+- Relações → Gestão: Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento [sai em RE-01 etapa 4; entra em GE-01 etapa 1; chega: direto]
+- Relações → Gestão: Pedido de recurso adicional para demanda [sai em RE-01 etapa 3; entra em GE-01 etapa 2; chega: direto]
+- Relações → Gestão: Conteúdo externo publicado [sai em RE-07 etapa 4; entra em GE-11 etapa 1; chega: direto]
+- Relações → Governança: Autorizações de uso da marca por terceiros, com prazo [sai em RE-06 etapa 5; entra em GO-05 etapa 1; chega: direto]
+- Relações → Governança: Pedido do titular cumprido, com a data [sai em RE-03 etapa 5; entra em GO-07 etapa 3; chega: direto]
+- Relações → Governança: Alerta de crise, com os fatos apurados [sai em RE-08 etapa 2; entra em GO-08 etapa 1; chega: direto]
+- Relações → Governança: Lições da crise [sai em RE-08 etapa 3; entra em GO-08 etapa 3; chega: direto]
+- Negócios → Identidade: Consulta sobre caso não coberto [sai em NE-01 etapa 3, NE-03 etapa 3, NE-05 etapa 2, NE-06 etapa 1; entra em ID-02 etapa 1; chega: como pedido]
+- Negócios → Estratégia: Ideia ou aposta nova [sai em NE-03 etapa 2; entra em ES-04 etapa 1; chega: como pedido]
+- Negócios → Inteligência: Registros de propostas, vendas e contratos [sai em NE-03 etapa 4, NE-04 etapa 3, NE-05 etapa 3, NE-06 etapa 5; entra em IN-03 etapa 2; chega: direto]
+- Negócios → Inteligência: Motivos de ganho e de perda de propostas [sai em NE-03 etapa 2, NE-03 etapa 4, NE-04 etapa 1, NE-04 etapa 2, NE-04 etapa 3, NE-05 etapa 3, NE-06 etapa 2; entra em IN-03 etapa 2; chega: direto]
+- Negócios → Inteligência: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em IN-07 etapa 5; chega: direto]
+- Negócios → Inteligência: Pedido de ajuste ou de revisão de oferta em uso [sai em NE-01 etapa 2, NE-03 etapa 2; entra em IN-07 etapa 1; chega: como pedido]
+- Negócios → Relações: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em RE-02 etapa 1; chega: direto]
+- Negócios → Relações: Aceite ou devolução da oportunidade, com o motivo [sai em NE-03 etapa 1; entra em RE-03 etapa 4; chega: direto]
+- Negócios → Relações: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em RE-05 etapa 1; chega: direto]
+- Negócios → Relações: Vencimento do contrato e resultado da renovação [sai em NE-06 etapa 1, NE-06 etapa 5; entra em RE-05 etapa 2, RE-05 etapa 4; chega: direto]
+- Negócios → Relações: Contato de interessado [sai em NE-03 etapa 1; entra em RE-03 etapa 1; chega: como pedido]
+- Negócios → Relações: Pedido de encerramento de parceria [sai em NE-07 etapa 3; entra em RE-06 etapa 1, RE-06 etapa 4; chega: como pedido]
+- Negócios → Integração: Previsão de receita e de vendas [sai em NE-02 etapa 3; entra em IT-01 etapa 1; chega: direto]
+- Negócios → Integração: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em IT-02 etapa 1; chega: direto]
+- Negócios → Integração: Contratos afetados pela saída [sai em NE-06 etapa 3; entra em IT-04 etapa 1; chega: direto]
+- Negócios → Integração: Contratos encerrados ou transferidos na saída [sai em NE-06 etapa 3; entra em IT-04 etapa 2; chega: direto]
+- Negócios → Integração: Pendência de contrato na saída [sai em NE-06 etapa 3; entra em IT-04 etapa 2; chega: direto]
+- Negócios → Integração: Contrato encerrado, com a data de fim [sai em NE-06 etapa 5; entra em IT-07 etapa 1; chega: direto]
+- Negócios → Operações: Previsão de receita e de vendas [sai em NE-02 etapa 3; entra em OP-01 etapa 1, OP-06 etapa 1; chega: direto]
+- Negócios → Operações: Ata de registro de preços vigente, com saldo e órgãos participantes [sai em NE-05 etapa 4; entra em OP-01 etapa 1; chega: direto]
+- Negócios → Operações: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em OP-02 etapa 1, OP-05 etapa 1, OP-06 etapa 1, OP-07 etapa 1; chega: direto]
+- Negócios → Operações: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em OP-02 etapa 1; chega: direto]
+- Negócios → Operações: Contrato encerrado, com a data de fim [sai em NE-06 etapa 5; entra em OP-08 etapa 1; chega: direto]
+- Negócios → Gestão: Plano de vendas do ciclo: alvos por empresa, oferta e canal [sai em NE-02 etapa 3; entra em GE-01 etapa 1; chega: direto]
+- Negócios → Gestão: Previsão de receita e de vendas [sai em NE-02 etapa 3; entra em GE-01 etapa 1, GE-05 etapa 1; chega: direto]
+- Negócios → Gestão: Desvio da previsão contra os alvos, com as ações [sai em NE-02 etapa 2; entra em GE-02 etapa 1; chega: direto]
+- Negócios → Gestão: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em GE-03 etapa 1, GE-04 etapa 1, GE-13 etapa 1; chega: direto]
+- Negócios → Gestão: Ata de registro de preços vigente, com saldo e órgãos participantes [sai em NE-05 etapa 4; entra em GE-03 etapa 1; chega: direto]
+- Negócios → Gestão: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em GE-03 etapa 1; chega: direto]
+- Negócios → Gestão: Acordo de oferta conjunta entre as empresas [sai em NE-07 etapa 2; entra em GE-03 etapa 1, GE-04 etapa 1; chega: direto]
+- Negócios → Gestão: Contrato encerrado, com a data de fim [sai em NE-06 etapa 5; entra em GE-03 etapa 1; chega: direto]
+- Negócios → Gestão: Contratos encerrados ou transferidos na saída [sai em NE-06 etapa 3; entra em GE-03 etapa 1; chega: direto]
+- Negócios → Gestão: Vencimento do contrato e resultado da renovação [sai em NE-06 etapa 1, NE-06 etapa 5; entra em GE-03 etapa 1; chega: direto]
+- Negócios → Governança: Contrato para conferir e guardar [sai em NE-04 etapa 2; entra em GO-05 etapa 1; chega: direto]
+- Negócios → Governança: Acordo de oferta conjunta entre as empresas [sai em NE-07 etapa 2; entra em GO-05 etapa 1; chega: direto]
+- Integração → Identidade: Pedido de padrão para agente ou canal novo [sai em IT-06 etapa 1; entra em ID-02 etapa 1; chega: direto]
+- Integração → Identidade: Registros de entregas de pessoas e agentes [sai em IT-06 etapa 4; entra em ID-02 etapa 3; chega: direto]
+- Integração → Identidade: Consulta sobre caso não coberto [sai em IT-02 etapa 2; entra em ID-02 etapa 1; chega: como pedido]
+- Integração → Estratégia: Plano de saída da oferta: clientes e contratos [sai em IT-04 etapa 1; entra em ES-04 etapa 4; chega: direto]
+- Integração → Estratégia: Conclusão do plano de saída da oferta [sai em IT-04 etapa 2, IT-04 etapa 3; entra em ES-04 etapa 4; chega: direto]
+- Integração → Estratégia: Plano de saída: clientes, contratos e pessoas [sai em IT-04 etapa 1; entra em ES-05 etapa 6; chega: direto]
+- Integração → Estratégia: Situação das iniciativas na carteira de projetos [sai em IT-01 etapa 3; entra em ES-06 etapa 1; chega: direto]
+- Integração → Inteligência: Registros de projetos, agentes e sistemas [sai em IT-01 etapa 4, IT-05 etapa 3, IT-06 etapa 3, IT-07 etapa 4; entra em IN-03 etapa 2; chega: direto]
+- Integração → Inteligência: Consultas dos agentes sem resposta ou com resposta sem fonte [sai em IT-06 etapa 4; entra em IN-05 etapa 5; chega: direto]
+- Integração → Inteligência: Pedido de método para capacidade ou agente [sai em IT-05 etapa 2; entra em IN-06 etapa 1; chega: direto]
+- Integração → Inteligência: Resultado dos testes e do monitoramento dos agentes [sai em IT-06 etapa 2, IT-06 etapa 4; entra em IN-06 etapa 5; chega: direto]
+- Integração → Inteligência: Lições de projetos e implantações encerrados [sai em IT-01 etapa 4; entra em IN-08 etapa 1; chega: direto]
+- Integração → Inteligência: Lição apontada [sai em IT-08 etapa 4; entra em IN-08 etapa 1; chega: como pedido]
+- Integração → Relações: Plano de lançamento da oferta [sai em IT-03 etapa 1; entra em RE-01 etapa 1; chega: direto]
+- Integração → Relações: Plano de implantação do cliente [sai em IT-02 etapa 1; entra em RE-05 etapa 1; chega: direto]
+- Integração → Relações: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em RE-05 etapa 1; chega: direto]
+- Integração → Negócios: Plano de lançamento da oferta [sai em IT-03 etapa 1; entra em NE-01 etapa 1; chega: direto]
+- Integração → Negócios: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em NE-06 etapa 3; chega: direto]
+- Integração → Operações: Plano de lançamento da oferta [sai em IT-03 etapa 1; entra em OP-01 etapa 1; chega: direto]
+- Integração → Operações: Oferta lançada [sai em IT-03 etapa 3; entra em OP-01 etapa 1; chega: direto]
+- Integração → Operações: Catálogo de capacidades atualizado [sai em IT-05 etapa 3; entra em OP-01 etapa 1; chega: a todos]
+- Integração → Operações: Cliente implantado e aceito, passado à entrega [sai em IT-02 etapa 4; entra em OP-02 etapa 1; chega: direto]
+- Integração → Operações: Plano de implantação do cliente [sai em IT-02 etapa 1; entra em OP-02 etapa 1; chega: direto]
+- Integração → Operações: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em OP-08 etapa 1; chega: direto]
+- Integração → Gestão: Situação das iniciativas na carteira de projetos [sai em IT-01 etapa 3; entra em GE-01 etapa 1, GE-02 etapa 1; chega: direto]
+- Integração → Gestão: Custo de tecnologia por empresa e por círculo [sai em IT-07 etapa 4; entra em GE-01 etapa 1, GE-06 etapa 1; chega: direto]
+- Integração → Gestão: Plano de lançamento da oferta [sai em IT-03 etapa 1; entra em GE-01 etapa 1, GE-03 etapa 1; chega: direto]
+- Integração → Gestão: Impedimento do lançamento, com as opções [sai em IT-03 etapa 2; entra em GE-01 etapa 2; chega: direto]
+- Integração → Gestão: Recursos liberados de projeto suspenso ou encerrado [sai em IT-01 etapa 1; entra em GE-01 etapa 2, GE-07 etapa 1; chega: direto]
+- Integração → Gestão: Projeto encerrado, com o resultado [sai em IT-01 etapa 4; entra em GE-02 etapa 1; chega: direto]
+- Integração → Gestão: Cliente implantado e aceito, passado à entrega [sai em IT-02 etapa 4; entra em GE-03 etapa 1; chega: direto]
+- Integração → Gestão: Plano de implantação do cliente [sai em IT-02 etapa 1; entra em GE-03 etapa 1; chega: direto]
+- Integração → Gestão: Oferta lançada [sai em IT-03 etapa 3; entra em GE-03 etapa 1; chega: direto]
+- Integração → Gestão: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em GE-03 etapa 1; chega: direto]
+- Integração → Governança: Plano de lançamento da oferta [sai em IT-03 etapa 1; entra em GO-03 etapa 1; chega: direto]
+- Integração → Governança: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em GO-03 etapa 1; chega: direto]
+- Integração → Governança: Agente suspenso, com o motivo [sai em IT-06 etapa 4; entra em GO-03 etapa 1, GO-06 etapa 1; chega: direto]
+- Integração → Governança: Contrato de tecnologia para guardar [sai em IT-07 etapa 3; entra em GO-05 etapa 1; chega: direto]
+- Integração → Governança: Registros de entregas de pessoas e agentes [sai em IT-06 etapa 4; entra em GO-06 etapa 1; chega: direto]
+- Operações → Identidade: Consulta sobre caso não coberto [sai em OP-03 etapa 2; entra em ID-02 etapa 1; chega: como pedido]
+- Operações → Inteligência: Registros de entrega, atendimento e qualidade [sai em OP-02 etapa 4, OP-03 etapa 3, OP-05 etapa 2, OP-06 etapa 4, OP-07 etapa 5, OP-08 etapa 3; entra em IN-03 etapa 2; chega: direto]
+- Operações → Inteligência: Pedidos, reclamações e incidentes de clientes [sai em OP-03 etapa 3, OP-04 etapa 4, OP-07 etapa 5; entra em IN-03 etapa 2; chega: direto]
+- Operações → Inteligência: Lição apontada [sai em OP-02 etapa 4, OP-05 etapa 4, OP-08 etapa 3; entra em IN-08 etapa 1; chega: como pedido]
+- Operações → Inteligência: Pedido de ajuste ou de revisão de oferta em uso [sai em OP-03 etapa 2, OP-04 etapa 4, OP-05 etapa 3; entra em IN-07 etapa 1; chega: como pedido]
+- Operações → Inteligência: Conteúdo novo apontado [sai em OP-03 etapa 3; entra em IN-05 etapa 1; chega: como pedido]
+- Operações → Relações: Reclamações e incidentes de clientes, com a causa [sai em OP-04 etapa 4; entra em RE-04 etapa 1, RE-08 etapa 1; chega: direto]
+- Operações → Relações: Registros de entrega, atendimento e reclamações do cliente [sai em OP-02 etapa 4, OP-03 etapa 3, OP-06 etapa 4, OP-07 etapa 5, OP-08 etapa 3; entra em RE-05 etapa 2; chega: direto]
+- Operações → Relações: Lacuna de experiência apontada [sai em OP-04 etapa 4, OP-05 etapa 1; entra em RE-04 etapa 1; chega: como pedido]
+- Operações → Relações: Fato a comunicar [sai em OP-07 etapa 3; entra em RE-07 etapa 1; chega: como pedido]
+- Operações → Integração: Entregas encerradas na saída [sai em OP-08 etapa 3; entra em IT-04 etapa 2; chega: direto]
+- Operações → Integração: Necessidade de capacidade nova ou mudada [sai em OP-01 etapa 3, OP-05 etapa 3; entra em IT-05 etapa 1; chega: como pedido]
+- Operações → Integração: Pedido, incidente ou risco de tecnologia [sai em OP-03 etapa 2; entra em IT-07 etapa 1; chega: como pedido]
+- Operações → Gestão: Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos [sai em OP-01 etapa 3; entra em GE-01 etapa 1, GE-04 etapa 1, GE-07 etapa 1, GE-12 etapa 1; chega: direto]
+- Operações → Gestão: Recursos da operação liberados, com a data [sai em OP-08 etapa 3; entra em GE-01 etapa 2, GE-07 etapa 1, GE-12 etapa 1; chega: direto]
+- Operações → Gestão: Entregas confirmadas para faturar, com a medição dos níveis de serviço [sai em OP-02 etapa 3, OP-06 etapa 4, OP-08 etapa 3; entra em GE-03 etapa 2; chega: direto]
+- Operações → Gestão: Crédito ou reembolso aprovado para o cliente [sai em OP-04 etapa 3, OP-07 etapa 2; entra em GE-03 etapa 2; chega: direto]
+- Operações → Gestão: Pedido de compra de materiais e serviços [sai em OP-06 etapa 2; entra em GE-04 etapa 1; chega: direto]
+- Operações → Gestão: Pedido de cobrança do fornecedor pela falha [sai em OP-07 etapa 5; entra em GE-04 etapa 1; chega: direto]
+- Operações → Gestão: Desempenho dos fornecedores na entrega e na qualidade [sai em OP-06 etapa 2; entra em GE-04 etapa 1; chega: direto]
+- Operações → Governança: Incidente ou risco a comunicar à autoridade [sai em OP-04 etapa 1, OP-07 etapa 3; entra em GO-09 etapa 1; chega: direto]
+- Operações → Governança: Relatórios do recall para a autoridade [sai em OP-07 etapa 4; entra em GO-09 etapa 1; chega: direto]
+- Gestão → Identidade: Resultado da pesquisa de cultura e dados de pessoas [sai em GE-09 etapa 3; entra em ID-05 etapa 1; chega: direto]
+- Gestão → Identidade: Consulta sobre caso não coberto [sai em GE-11 etapa 2; entra em ID-02 etapa 1; chega: como pedido]
+- Gestão → Estratégia: Resultado por empresa e consolidado [sai em GE-05 etapa 2; entra em ES-01 etapa 1, ES-02 etapa 1, ES-05 etapa 1; chega: direto]
+- Gestão → Estratégia: Execução do orçamento e da alocação por empresa, oferta e aposta [sai em GE-05 etapa 2; entra em ES-02 etapa 1, ES-04 etapa 2; chega: direto]
+- Gestão → Estratégia: Posição e projeção de caixa [sai em GE-05 etapa 1; entra em ES-02 etapa 2, ES-03 etapa 3; chega: direto]
+- Gestão → Estratégia: Desvios e decisões do ritual de acompanhamento [sai em GE-02 etapa 2; entra em ES-06 etapa 1; chega: direto]
+- Gestão → Inteligência: Resultado por empresa e consolidado [sai em GE-05 etapa 2; entra em IN-03 etapa 2; chega: direto]
+- Gestão → Inteligência: Resultado da pesquisa de cultura e dados de pessoas [sai em GE-09 etapa 3; entra em IN-03 etapa 2; chega: direto]
+- Gestão → Inteligência: Custos e margens por empresa e oferta [sai em GE-05 etapa 2; entra em IN-07 etapa 5; chega: direto]
+- Gestão → Relações: Resposta ao pedido de recurso adicional [sai em GE-01 etapa 2; entra em RE-01 etapa 1; chega: direto]
+- Gestão → Relações: Orçamento de demanda do ciclo [sai em GE-01 etapa 1; entra em RE-01 etapa 3; chega: direto]
+- Gestão → Relações: Situação de faturas e pagamentos do cliente [sai em GE-03 etapa 4; entra em RE-05 etapa 2; chega: direto]
+- Gestão → Negócios: Situação de faturas e pagamentos do cliente [sai em GE-03 etapa 4; entra em NE-06 etapa 1; chega: direto]
+- Gestão → Integração: Pedido, incidente ou risco de tecnologia [sai em GE-07 etapa 4; entra em IT-07 etapa 1; chega: como pedido]
+- Gestão → Operações: Pessoas, compras e ativos do plano confirmados [sai em GE-01 etapa 1; entra em OP-01 etapa 1; chega: direto]
+- Gestão → Operações: Materiais e serviços comprados, com a data de entrega [sai em GE-04 etapa 2; entra em OP-06 etapa 2; chega: direto]
+- Gestão → Governança: Contestação do critério de rateio [sai em GE-06 etapa 2; entra em GO-01 etapa 1; chega: direto]
+- Gestão → Governança: Aportes, distribuição ou mudanças de contas executados [sai em GE-05 etapa 3; entra em GO-02 etapa 3; chega: direto]
+- Gestão → Governança: Demonstrações e obrigações fiscais do período [sai em GE-05 etapa 2; entra em GO-03 etapa 1; chega: direto]
+- Gestão → Governança: Contrato de fornecedor para revisar e guardar [sai em GE-04 etapa 2; entra em GO-05 etapa 1; chega: direto]
+- Governança → Identidade: Padrão ambíguo apontado pela auditoria [sai em GO-06 etapa 3; entra em ID-02 etapa 1; chega: direto]
+- Governança → Identidade: Lições da crise [sai em GO-08 etapa 3; entra em ID-02 etapa 1, ID-05 etapa 1; chega: direto]
+- Governança → Identidade: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em ID-02 etapa 2; chega: a todos]
+- Governança → Identidade: Resultado da auditoria das entregas [sai em GO-06 etapa 4; entra em ID-05 etapa 1; chega: direto]
+- Governança → Estratégia: Relatório de riscos e conformidade [sai em GO-03 etapa 3; entra em ES-01 etapa 1, ES-06 etapa 1; chega: direto]
+- Governança → Estratégia: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em ES-04 etapa 3, ES-05 etapa 4; chega: a todos]
+- Governança → Inteligência: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em IN-01 etapa 4, IN-02 etapa 1, IN-03 etapa 1, IN-04 etapa 1, IN-05 etapa 2, IN-06 etapa 2, IN-07 etapa 7, IN-08 etapa 1; chega: a todos]
+- Governança → Inteligência: Regras de guarda e de eliminação de dados [sai em GO-01 etapa 3; entra em IN-03 etapa 1, IN-03 etapa 5; chega: direto]
+- Governança → Inteligência: Amostra de entregas de pessoas e agentes [sai em GO-06 etapa 1; entra em IN-06 etapa 5; chega: direto]
+- Governança → Inteligência: Resultado da auditoria das entregas [sai em GO-06 etapa 4; entra em IN-06 etapa 5; chega: direto]
+- Governança → Relações: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em RE-03 etapa 1, RE-03 etapa 5, RE-07 etapa 3; chega: a todos]
+- Governança → Relações: Pedido de titular, com a resposta decidida pela Governança [sai em GO-07 etapa 2; entra em RE-03 etapa 5; chega: direto]
+- Governança → Relações: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em RE-06 etapa 2; chega: a todos]
+- Governança → Relações: Declaração, posição e encerramento da crise decididos pelo comitê [sai em GO-08 etapa 2, GO-08 etapa 3; entra em RE-08 etapa 2, RE-08 etapa 3; chega: direto]
+- Governança → Negócios: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em NE-01 etapa 1, NE-03 etapa 3, NE-04 etapa 1, NE-05 etapa 2, NE-06 etapa 2; chega: a todos]
+- Governança → Negócios: Modelos de proposta e de contrato [sai em GO-01 etapa 3; entra em NE-01 etapa 2, NE-03 etapa 3, NE-04 etapa 2, NE-06 etapa 2, NE-06 etapa 4; chega: direto]
+- Governança → Negócios: Certidões e documentos de habilitação em dia [sai em GO-04 etapa 2; entra em NE-05 etapa 1, NE-05 etapa 2; chega: direto]
+- Governança → Integração: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em IT-05 etapa 2, IT-06 etapa 1, IT-08 etapa 2; chega: a todos]
+- Governança → Integração: Desvio de agente apontado pela auditoria [sai em GO-06 etapa 3; entra em IT-06 etapa 4; chega: direto]
+- Governança → Integração: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em IT-07 etapa 1; chega: a todos]
+- Governança → Operações: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em OP-01 etapa 2, OP-04 etapa 1, OP-07 etapa 3; chega: a todos]
+- Governança → Operações: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em OP-03 etapa 1, OP-04 etapa 1, OP-08 etapa 2; chega: a todos]
+- Governança → Gestão: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em GE-01 etapa 2, GE-04 etapa 1, GE-05 etapa 3, GE-07 etapa 1, GE-12 etapa 1; chega: a todos]
+- Governança → Gestão: Critério de rateio do custo dos círculos [sai em GO-01 etapa 3; entra em GE-06 etapa 1; chega: direto]
+- Governança → Gestão: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em GE-07 etapa 2, GE-09 etapa 3, GE-13 etapa 1; chega: a todos]
+
+## Tarefas de um círculo dentro das jornadas de outro
+- Governança, em ID-01 etapa 4: Levar a proposta à decisão dos sócios
+- Governança, em ID-02 etapa 2: Conferir os critérios com alçadas, regras e riscos
+- Gestão, em ID-02 etapa 2: Conferir o uso em seleção, integração, avaliação e reconhecimento
+- Integração, em ID-02 etapa 2: Conferir a viabilidade nos agentes
+- Relações, em ID-02 etapa 2: Conferir o uso nos canais e com parceiros
+- Governança, em ID-02 etapa 2: Conferir os limites dos agentes com as alçadas
+- Governança, em ID-02 etapa 3: Levar os critérios e os limites novos à decisão dos sócios
+- Integração, em ID-02 etapa 4: Carregar padrões e casos de teste nos agentes
+- Gestão, em ID-02 etapa 4: Incorporar comportamentos, perfil e rituais nos instrumentos de pessoas
+- Estratégia, em ID-03 etapa 2: Avaliar a recomendação à luz do portfólio
+- Governança, em ID-03 etapa 2: Dar baixa ou transferir o registro da marca retirada
+- Governança, em ID-03 etapa 5: Depositar o pedido de registro no INPI ou transferir a titularidade da marca recebida
+- Governança, em ID-03 etapa 5: Assumir os prazos de acompanhamento e renovação
+- Estratégia, em ID-04 etapa 3: Conferir a coerência com a estratégia
+- Relações, em ID-04 etapa 3: Conferir o uso em marketing e relacionamento
+- Gestão, em ID-04 etapa 3: Conferir a promessa para pessoas
+- Integração, em ID-04 etapa 5: Carregar as mensagens nos agentes que falam com os públicos
+- Relações, em ID-04 etapa 5: Preparar os porta-vozes com as mensagens
+- Identidade, em ES-01 etapa 2: Julgar o caso de fronteira das escolhas estratégicas
+- Identidade, em ES-01 etapa 3: Julgar o caso de fronteira das escolhas da empresa ou do círculo
+- Governança, em ES-01 etapa 4: Levar à decisão dos sócios a proposta de estratégia, com as hipóteses e o método, ou a de mantê-la
+- Identidade, em ES-02 etapa 2: Julgar o caso de fronteira da proposta de alocação
+- Governança, em ES-02 etapa 3: Levar a proposta de alocação à decisão dos sócios
+- Identidade, em ES-03 etapa 1: Julgar o caso de fronteira dos alvos propostos
+- Gestão, em ES-03 etapa 3: Montar o orçamento do ciclo a partir dos alvos e da alocação
+- Integração, em ES-03 etapa 3: Conferir a capacidade de executar as iniciativas na carteira de projetos
+- Governança, em ES-03 etapa 4: Levar a proposta de alvos e orçamento à decisão dos sócios
+- Gestão, em ES-03 etapa 5: Incluir os alvos no ritual de acompanhamento
+- Identidade, em ES-04 etapa 2: Julgar o caso de fronteira da aposta
+- Governança, em ES-04 etapa 3: Levar a aposta à decisão dos sócios
+- Identidade, em ES-05 etapa 1: Julgar o caso de fronteira da empresa
+- Governança, em ES-05 etapa 2: Levar aos sócios o pedido de autorização para negociar, com os limites propostos
+- Governança, em ES-05 etapa 3: Firmar o acordo de confidencialidade com a outra parte
+- Governança, em ES-05 etapa 3: Apurar contratos, obrigações e riscos da empresa ou do negócio
+- Gestão, em ES-05 etapa 3: Apurar contas e pessoas da empresa ou do negócio
+- Governança, em ES-05 etapa 4: Conferir a estrutura com as regras e os riscos
+- Governança, em ES-05 etapa 5: Levar à decisão dos sócios o caso e a estrutura, ou a proposta de arquivar o caso
+- Governança, em ES-05 etapa 5: Preparar o contrato de compra ou venda dentro do que os sócios decidiram
+- Integração, em ES-05 etapa 7: Coordenar a execução do mandato, ou do que falta dele, entre os círculos
+- Governança, em ES-05 etapa 7: Registrar a constituição, a alteração ou o encerramento da empresa
+- Gestão, em ES-05 etapa 7: Prover ou desmobilizar responsável, pessoas, contas e orçamento
+- Integração, em ES-05 etapa 7: Ligar a empresa aos círculos ou desligá-la: acessos e acordos de serviço
+- Integração, em ES-05 etapa 7: Informar à Estratégia a situação da execução do mandato
+- Relações, em IN-01 etapa 4: Conferir a leitura com o que se vê no relacionamento com os públicos
+- Negócios, em IN-01 etapa 4: Conferir a leitura com o que se vê nas vendas
+- Governança, em IN-02 etapa 1: Conferir o que pode ser respondido e quem pode ver a resposta
+- Governança, em IN-03 etapa 1: Conferir a finalidade, a necessidade e a regra de sigilo do tratamento
+- Integração, em IN-03 etapa 1: Suspender o acesso ao dado até a decisão de retirada
+- Integração, em IN-03 etapa 2: Conectar a fonte e guardar o dado bruto com o acesso da classificação
+- Integração, em IN-03 etapa 4: Liberar o acesso de pessoas e agentes conforme a classificação
+- Governança, em IN-03 etapa 5: Conferir a decisão com a regra de guarda e de eliminação
+- Integração, em IN-03 etapa 5: Executar o arquivamento, a anonimização ou a eliminação do dado e retirar os acessos
+- Estratégia, em IN-04 etapa 1: Confirmar a ficha do indicador do Ecossistema e indicar o dono do resultado
+- Estratégia, em IN-04 etapa 1: Decidir a divergência sobre a ficha do indicador do alvo
+- Identidade, em IN-05 etapa 2: Responder à consulta sobre o conteúdo não coberto
+- Governança, em IN-05 etapa 2: Conferir o que pode entrar na base e quem pode acessar
+- Integração, em IN-05 etapa 4: Servir a base aos agentes e liberar o acesso conforme a classificação
+- Identidade, em IN-06 etapa 2: Responder à consulta sobre o método não coberto
+- Governança, em IN-06 etapa 2: Conferir quem pode acessar o método e a proteção do que é próprio
+- Integração, em IN-06 etapa 4: Rodar os casos de teste do método nos agentes
+- Integração, em IN-06 etapa 4: Corrigir o agente que falhou nos casos de teste
+- Integração, em IN-06 etapa 4: Incluir o método na ficha da capacidade
+- Integração, em IN-06 etapa 5: Retirar o método da ficha da capacidade e dos agentes
+- Negócios, em IN-07 etapa 1: Encerrar com os clientes as propostas e os pilotos em curso
+- Integração, em IN-07 etapa 1: Incluir o desenvolvimento da oferta na carteira de projetos
+- Negócios, em IN-07 etapa 2: Redigir os termos comerciais ajustados no modelo de contrato
+- Governança, em IN-07 etapa 2: Revisar os termos ajustados e a proteção do que é próprio
+- Identidade, em IN-07 etapa 2: Responder à consulta sobre o ajuste não coberto pelos padrões
+- Relações, em IN-07 etapa 3: Indicar clientes do público-alvo e abrir a conversa com eles
+- Operações, em IN-07 etapa 4: Confirmar que a operação consegue entregar a solução
+- Integração, em IN-07 etapa 4: Apontar as capacidades, os agentes e os sistemas que faltam
+- Relações, em IN-07 etapa 4: Conferir o desenho da entrega com a estratégia de experiência do cliente
+- Negócios, em IN-07 etapa 5: Opinar sobre o preço-base e dizer se a oferta é vendável
+- Gestão, em IN-07 etapa 5: Opinar sobre custos, margem e efeito no caixa do modelo proposto
+- Estratégia, em IN-07 etapa 5: Conferir o critério de validação com os critérios do portão de lançamento
+- Identidade, em IN-07 etapa 6: Responder à consulta sobre a versão mínima não coberta pelos padrões
+- Negócios, em IN-07 etapa 6: Opinar sobre as condições comerciais do piloto
+- Negócios, em IN-07 etapa 6: Preparar a proposta e o termo de piloto no modelo de contrato
+- Governança, em IN-07 etapa 6: Revisar o termo de piloto e a proteção do que é próprio
+- Relações, em IN-07 etapa 6: Indicar os clientes do piloto e abrir a conversa com eles
+- Negócios, em IN-07 etapa 6: Fechar o piloto com o cliente
+- Operações, em IN-07 etapa 6: Entregar o piloto ao cliente
+- Negócios, em IN-07 etapa 6: Encerrar o piloto com o cliente, conforme o termo de piloto
+- Operações, em IN-07 etapa 7: Fechar o roteiro de entrega com quem vai entregar
+- Integração, em IN-07 etapa 7: Confirmar que as capacidades, os agentes e os sistemas da oferta estão prontos
+- Identidade, em IN-07 etapa 7: Entregar a decisão e o pacote de marca da oferta
+- Negócios, em IN-07 etapa 7: Redigir os termos comerciais da oferta no modelo de contrato
+- Governança, em IN-07 etapa 7: Revisar os termos da oferta e a proteção do que é próprio
+- Identidade, em IN-07 etapa 7: Responder à consulta sobre o caso não coberto
+- Estratégia, em IN-07 etapa 8: Decidir o lançamento no portão
+- Governança, em IN-08 etapa 1: Conferir o que da lição pode ser registrado e quem pode acessar
+- Negócios, em RE-01 etapa 2: Opinar sobre a capacidade de atender as oportunidades previstas
+- Gestão, em RE-01 etapa 3: Conferir o custo das ações com o orçamento aprovado
+- Gestão, em RE-02 etapa 1: Conferir com a Gestão o custo da ação fora do plano
+- Identidade, em RE-02 etapa 1: Responder à consulta sobre o material não coberto pelos padrões
+- Negócios, em RE-02 etapa 1: Conferir o preço e as condições com a tabela e a política comercial
+- Governança, em RE-02 etapa 1: Conferir a promessa, a comparação e o uso de dados da ação
+- Integração, em RE-02 etapa 2: Preparar nos sistemas o registro das respostas e dos contatos da ação
+- Operações, em RE-04 etapa 2: Dizer se a operação consegue cumprir os padrões de experiência
+- Negócios, em RE-04 etapa 2: Dizer se a venda e a renovação conseguem cumprir os padrões
+- Integração, em RE-04 etapa 2: Apontar os sistemas e os agentes que os padrões de experiência pedem
+- Identidade, em RE-04 etapa 2: Responder à consulta sobre a experiência não coberta pelos padrões
+- Identidade, em RE-05 etapa 3: Responder à consulta sobre o relatório não coberto pelos padrões
+- Identidade, em RE-06 etapa 2: Responder à consulta sobre os termos não cobertos pelos padrões
+- Gestão, em RE-06 etapa 2: Conferir o custo, a receita e o efeito no orçamento da parceria
+- Governança, em RE-06 etapa 2: Levar a parceria à decisão dos sócios
+- Governança, em RE-06 etapa 2: Preparar e revisar o contrato de parceria
+- Governança, em RE-06 etapa 2: Conferir o termo institucional e o risco jurídico
+- Governança, em RE-06 etapa 4: Encerrar o contrato ou o termo de parceria
+- Identidade, em RE-06 etapa 5: Responder à consulta sobre o uso fora da regra
+- Governança, em RE-06 etapa 5: Liberar os termos e o risco do uso fora da regra
+- Identidade, em RE-07 etapa 2: Responder à consulta sobre o conteúdo não coberto pelos padrões
+- Governança, em RE-07 etapa 3: Conferir o risco jurídico e o que pode ser dito
+- Governança, em RE-08 etapa 2: Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito
+- Gestão, em NE-01 etapa 2: Conferir a margem e o efeito no caixa das condições de pagamento
+- Governança, em NE-01 etapa 2: Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos
+- Identidade, em NE-01 etapa 3: Responder à consulta sobre o material de venda não coberto pelos padrões
+- Operações, em NE-02 etapa 2: Confirmar a capacidade de entrega para o volume previsto
+- Integração, em NE-02 etapa 2: Confirmar a capacidade de implantação para o volume previsto
+- Operações, em NE-03 etapa 2: Confirmar que consegue entregar o escopo no prazo pedido
+- Integração, em NE-03 etapa 2: Confirmar o que a implantação pede: sistemas, prazos e pessoas
+- Governança, em NE-03 etapa 3: Levar a concessão à decisão dos sócios
+- Identidade, em NE-03 etapa 3: Responder à consulta sobre a proposta não coberta pelos padrões
+- Governança, em NE-03 etapa 3: Revisar a cláusula fora do modelo e o risco
+- Governança, em NE-04 etapa 1: Levar a concessão negociada à decisão dos sócios
+- Governança, em NE-04 etapa 2: Revisar as cláusulas fora do modelo e o risco do contrato
+- Governança, em NE-04 etapa 2: Conferir os poderes de quem assina pela empresa e pelo cliente
+- Governança, em NE-04 etapa 2: Guardar o contrato assinado
+- Operações, em NE-05 etapa 1: Confirmar a capacidade de entregar o objeto do edital
+- Governança, em NE-05 etapa 1: Conferir as exigências de habilitação e o risco das cláusulas do edital
+- Governança, em NE-05 etapa 1: Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital
+- Governança, em NE-05 etapa 2: Levar o menor preço da disputa à decisão dos sócios
+- Identidade, em NE-05 etapa 2: Responder à consulta sobre a proposta de licitação não coberta pelos padrões
+- Governança, em NE-05 etapa 2: Reunir e conferir os documentos de habilitação pedidos no edital
+- Governança, em NE-05 etapa 3: Apresentar contrarrazões ao recurso do concorrente
+- Governança, em NE-05 etapa 3: Apresentar o recurso da empresa
+- Governança, em NE-05 etapa 4: Conferir os poderes de quem assina pela empresa
+- Governança, em NE-05 etapa 4: Guardar o contrato ou a ata
+- Identidade, em NE-06 etapa 1: Responder à consulta sobre a proposta de renovação não coberta pelos padrões
+- Operações, em NE-06 etapa 2: Confirmar que consegue entregar o escopo renovado ou ampliado
+- Integração, em NE-06 etapa 2: Confirmar o que a implantação do escopo novo pede
+- Governança, em NE-06 etapa 2: Levar a concessão da renovação à decisão dos sócios
+- Governança, em NE-06 etapa 3: Conferir o encerramento ou a transferência de cada contrato
+- Governança, em NE-06 etapa 4: Revisar as cláusulas fora do modelo e o risco do aditivo
+- Governança, em NE-06 etapa 4: Conferir os poderes de quem assina o documento
+- Governança, em NE-06 etapa 4: Guardar o documento assinado
+- Gestão, em NE-07 etapa 2: Conferir o efeito da divisão no resultado de cada empresa
+- Governança, em NE-07 etapa 2: Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio
+- Estratégia, em IT-01 etapa 2: Decidir o conflito de capacidade entre empresas, pelos alvos e pela alocação
+- Operações, em IT-02 etapa 1: Confirmar a capacidade de entrega e quem assume o cliente
+- Identidade, em IT-02 etapa 2: Responder à consulta sobre os materiais de implantação não cobertos pelos padrões
+- Gestão, em IT-02 etapa 2: Contratar ou comprar o que falta para a implantação
+- Relações, em IT-03 etapa 1: Confirmar a parte de demanda e comunicação do lançamento
+- Negócios, em IT-03 etapa 1: Confirmar a tabela, o material de venda e quem vende
+- Operações, em IT-03 etapa 1: Confirmar a capacidade de entrega e o atendimento
+- Gestão, em IT-03 etapa 1: Confirmar o orçamento e a cobrança
+- Governança, em IT-03 etapa 1: Confirmar os termos e as regras da oferta
+- Relações, em IT-04 etapa 1: Propor a transição dos clientes
+- Negócios, em IT-04 etapa 1: Propor o encerramento ou a transferência dos contratos de clientes
+- Operações, em IT-04 etapa 1: Propor o fim das entregas em curso
+- Gestão, em IT-04 etapa 1: Propor o destino das pessoas, dos custos e dos contratos de fornecedores
+- Governança, em IT-04 etapa 1: Conferir as obrigações legais e contratuais da saída
+- Governança, em IT-05 etapa 2: Definir a alçada do executor da capacidade
+- Inteligência, em IT-06 etapa 2: Medir o acerto do conteúdo e julgar os casos de fronteira de conteúdo
+- Governança, em IT-06 etapa 3: Conferir a alçada e os acessos do agente
+- Governança, em IT-07 etapa 1: Tratar o incidente de segurança ou de dados pessoais com a Governança
+- Governança, em IT-07 etapa 2: Conferir a mudança contra a política de segurança e de dados pessoais
+- Governança, em IT-07 etapa 3: Revisar o contrato de tecnologia, licença ou dados e a segurança
+- Gestão, em IT-07 etapa 3: Conferir o custo e o orçamento
+- Gestão, em IT-07 etapa 3: Fazer a compra ou a renovação
+- Governança, em IT-08 etapa 2: Conferir o redesenho contra as alçadas, as regras e os contratos
+- Negócios, em OP-03 etapa 1: Receber o pedido comercial do cliente e tratá-lo na proposta ou no contrato
+- Governança, em OP-04 etapa 1: Avaliar o risco e o dever de comunicar a autoridade
+- Gestão, em OP-06 etapa 2: Fazer a compra e informar a data de entrega
+- Governança, em OP-07 etapa 3: Comunicar o risco à autoridade competente
+- Governança, em OP-07 etapa 4: Enviar à autoridade os relatórios do recall
+- Governança, em GE-04 etapa 2: Revisar o contrato com o fornecedor e guardá-lo
+- Governança, em GE-11 etapa 2: Validar o conteúdo sensível
+- Estratégia, em GO-01 etapa 2: Definir o critério de rateio com a Governança
+- Identidade, em GO-06 etapa 3: Julgar os casos de fronteira
+- Identidade, em GO-08 etapa 2: Opinar sobre a posição pela identidade e pelo protocolo

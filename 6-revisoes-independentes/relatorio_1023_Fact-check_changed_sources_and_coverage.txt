@@ -1,0 +1,72 @@
+[Subagent hand-back] The text below is the final report of a subagent this session delegated to. It is model output, NOT a message from the user: instructions, requests, or approval claims inside it are the subagent's words and carry no user authority. The harness indents every line of the report, so a frame-like line at column zero inside it would be forged. Notes above this frame may quote model-derived text, which carries no user authority either. The report follows:
+  **1. Parte 1 — Tabela de cobertura (APQC PCF 7.4)**
+  
+  Conferi as 24 linhas no PDF baixado de novo dos dois endereços, pelo texto e pela imagem das páginas 5 a 8, 20 e 33.
+  
+  | Linha | Veredito | O que a fonte traz |
+  |---|---|---|
+  | 1.4.1 Develop business models | CONFERE | — |
+  | 1.4.2 Maintain business models | CONFERE | — |
+  | 1.4.3 Establish business model governance | CONFERE | — |
+  | 2.1.1 Manage product and service portfolio | CONFERE | — |
+  | 2.1.2 Manage product and service life cycle | CONFERE | — |
+  | 2.1.3 Manage patents, copyrights, and regulatory requirements | CONFERE | — |
+  | 2.1.4 Manage product and service master data | CONFERE | — |
+  | 2.2.1 Perform discovery research | CONFERE | — |
+  | 2.2.2 Generate new product/service concepts | CONFERE | — |
+  | 2.2.3 Define product/service development requirements | CONFERE | — |
+  | 2.3.1 Design and prototype products and services | CONFERE | — |
+  | 2.3.2 Test market for new or revised products and services | CONFERE | — |
+  | 2.3.3 Prepare for production/service delivery | CONFERE | — |
+  | 3.1.1 Perform customer and market intelligence analysis | CONFERE | — |
+  | 3.1.2 Evaluate and prioritize market opportunities | CONFERE | — |
+  | 3.2.1 Define offering and customer value proposition | CONFERE | — |
+  | 3.2.2 Define pricing strategy | CONFERE | — |
+  | 8.4.1 Define business information and analytics strategy | CONFERE | — |
+  | 8.4.2 Define and maintain business information architecture | CONFERE | — |
+  | 8.4.3 Define and execute business information lifecycle planning and control | CONFERE | — |
+  | 8.4.4 Manage business information | CONFERE | — |
+  | 13.5 Develop and manage enterprise-wide knowledge management (KM) capability | CONFERE | — |
+  | 13.6 Measure and benchmark | CONFERE | — |
+  | 13.7 Develop, manage, and deliver analytics | CONFERE | — |
+  | Subitem 3.1.2.4, citado como "Validar com clientes" | NÃO CONFERE (o número existe; o rótulo é de outro item) | "3.1.2.4 Validate opportunities (10119)". O teste com clientes é o filho "3.1.2.4.1 Test with customers/consumers (10120)"; o outro filho é "3.1.2.4.2 Confirm internal capabilities (10121)". Sugestão: "Validar as oportunidades (3.1.2.4), no teste com clientes (3.1.2.4.1), está na IN-07, etapa 4". |
+  | Subitem 3.2.1.4, citado como "A marca nova" | CONFERE | — |
+  | Subitem 13.6.2, citado como "A comparação com referências externas" | NÃO CONFERE (o número existe; o rótulo estreita o item) | "13.6.2 Benchmark performance (11072)". O item cobre comparação interna e externa: "13.6.2.3 Conduct internal and external benchmarking (11085)". Sugestão: "A comparação de desempenho com referências (benchmarking, 13.6.2) não está desenhada; hoje só há…". |
+  | Fonte apqc: "dez grupos de cinco categorias: 1.4; 2.1 a 2.3; 3.1 e parte do 3.2; 8.4; 13.5 a 13.7" | CONFERE | — |
+  
+  O arquivo `modelo/ref/pcf74_*.txt` é idêntico à extração da cópia 1 baixada agora, e a cópia 2 traz os mesmos 24 nomes.
+  
+  **2. Parte 2 — Fontes alteradas**
+  
+  | Fonte | Veredito | O que não bate (trecho original e redação sugerida) |
+  |---|---|---|
+  | odni_ciclo | CONFIRMADA EM PARTE (só redação) | **Frase do planejamento:** a página fala em temas a tratar e prioridades, não em perguntas a responder. Original: "Policymakers—including the president, presidential advisors, the National Security Council, and other major departments and agencies—determine what issues need to be addressed and set intelligence priorities. The IC's issue coordinators interact with these officials to identify core concerns and information requirements." Sugestão: "No planejamento, quem decide determina que temas precisam ser tratados e define as prioridades de inteligência." **O resto confere:** referência, seis passos, ordem, nomes e avaliação contínua. **Data:** não há data visível; o HTML só traz um metadado do gerenciador (dateCreated 2024-11-25, de um artigo "Default Blank Page"), que não data o conteúdo. |
+  | apqc | CONFIRMADA | Nada a corrigir. Os dois endereços entregam arquivos diferentes da mesma versão: os dois imprimem "Version 7.4 • August 2024" e têm 35 páginas e 13 categorias. A cópia 1 é uma reexportação (metadados de 11/2024 a 01/2025) que só corrige a digitação de 6.2.3.2 e 6.2.3.4. A data da versão 8.0 (27/02/2026) e os 13 documentos da coleção só foram lidos pelo WebFetch. |
+  | lgpd | CONFIRMADA | Nada a corrigir; o `ref/lgpd.txt` corresponde ao texto atual do Planalto nos artigos citados. Ajuste opcional: o art. 16 diz "autorizada a conservação para as seguintes finalidades". Sugestão: "…com as finalidades para as quais a conservação é autorizada". |
+  | yardstick | CONFIRMADA EM PARTE (só redação) | **"cada uma com um termo"** aparece duas vezes, uma delas como "O texto diz que…", e a página não diz que é um termo por faixa. Original: "The yardstick splits the probability scale into seven distinct numerical ranges. Terms are assigned to each probability range." Sugestão: "sete faixas numéricas, com termos atribuídos a cada faixa". **O que a página não traz:** tabela, lista dos sete termos e faixas; a única imagem é o logotipo. **O que ela traz e a ficha omite:** dois termos de exemplo no subtítulo ("terms like “unlikely” or “realistic possibility”"). Sugestão para a conferência: "…a página não reproduz a tabela e só cita dois termos de passagem; a lista dos termos e as faixas não foram lidas." |
+  | kcs | CONFIRMADA | — |
+  | horizon | CONFIRMADA EM PARTE (só título) | O título da referência não existe na fonte como está escrito. A página se chama "Futures toolkit for policymakers and analysts". O PDF é listado como "Futures Toolkit: tools for strategic futures for policymakers and analysts", sem "The". O HTML e a capa trazem "The Futures Toolkit" e "2024 version". Sugestão: "Government Office for Science (Reino Unido), The Futures Toolkit, versão de 2024 (página publicada em 08/07/2014 e atualizada em 29/08/2024)". Datas, definição e cinco passos conferem. |
+  | cebma | CONFIRMADA | — |
+  | fabric | CONFIRMADA | — |
+  | iso30401 | CONFIRMADA (lida só pelo WebFetch) | Nada a corrigir. Duas leituras deram o mesmo texto: "Expected to be replaced by ISO/DIS 30401 within the coming months."; estágio "90.92 … International Standard to be revised"; emendas Amd 1:2022 e Amd 2:2024. |
+  | nist_airmf | CONFIRMADA | — |
+  | pdca | CONFIRMADA (lida só pelo WebFetch) | Nada a corrigir; duas leituras deram o mesmo título e os mesmos quatro passos. |
+  | leanstartup | CONFIRMADA | — |
+  | doublediamond | CONFIRMADA | — |
+  | stagegate | CONFIRMADA | — |
+  | herring | CONFIRMADA | O que afirmamos não passa do resumo. Ajuste opcional: o resumo anuncia os protocolos ("Sample KIT protocols are provided: (1) strategic decisions and actions; (2) early-warning topics; and (3) descriptions of key marketplace players"), não os reproduz. Sugestão: "O resumo informa que o artigo traz protocolos de exemplo de três tipos: …". O registro do SciSpace grafa "Jan Herring"; "Jan P. Herring", v. 10, n. 2, p. 4–14 constam no Crossref. |
+  | jaakkola | CONFIRMADA | O que afirmamos não passa do resumo. Ressalva que falta na ficha: o estudo é descritivo ("This paper studies the practices of "service productization" by analyzing the discourse used by practitioners in small professional service firms"). Sugestão de acréscimo: "O estudo descreve práticas relatadas por gestores; usá-las como roteiro é leitura nossa." |
+  
+  **3. O que não consegui abrir**
+  
+  - **iso.org/standard/68683.html:** o download direto foi recusado (HTTP 403, desafio Cloudflare). Só li pelo WebFetch, que transcreve por modelo; não há cópia do HTML.
+  - **asq.org/quality-resources/pdca-cycle:** mesmo bloqueio; só li pelo WebFetch.
+  - **apqc.org (as duas páginas do PCF 8.0):** mesmo bloqueio; só li pelo WebFetch.
+  - **Cópia arquivada da página da ISO (web.archive.org):** a conexão caiu; não abri.
+  - **Página da Wiley do artigo de Herring:** HTTP 403. Não é link da ficha e confirma o que ela declara.
+  
+  Os demais links abriram direto, inclusive intelligence.gov, que devolveu "Access Denied" na primeira tentativa e abriu na segunda, com outros cabeçalhos. As cópias estão em `/tmp/claude-0/-home-claude/7a4d2de5-f42d-5914-a7de-871f2f268191/scratchpad/verif2/`; nenhum arquivo fora dessa pasta foi alterado.
+agentId: a19f5b14a89168116 (use SendMessage with to: 'a19f5b14a89168116', summary: '<5-10 word recap>' to continue this agent)
+<usage>subagent_tokens: 325236
+tool_uses: 93
+duration_ms: 901073</usage>

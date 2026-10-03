@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_GE08" targetNamespace="urn:imts:modelo:circulo8-gestao" exporter="Ecossistema IMTS - fonte única do Círculo 8" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_GE08">
+    <bpmn:categoryValue id="CV_GE08_E1" value="1. Preparar a trilha de integração" />
+    <bpmn:categoryValue id="CV_GE08_E2" value="2. Apresentar propósito, valores e comportamentos" />
+    <bpmn:categoryValue id="CV_GE08_E3" value="3. Conectar a pessoa à comunidade" />
+    <bpmn:categoryValue id="CV_GE08_E4" value="4. Verificar a integração e registrar" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_GE08">
+    <bpmn:participant id="Participant_GE08" name="GE-08 · Integrar pessoas novas à cultura" processRef="Process_GE08" />
+    <bpmn:group id="Group_GE08_E1" categoryValueRef="CV_GE08_E1" />
+    <bpmn:group id="Group_GE08_E2" categoryValueRef="CV_GE08_E2" />
+    <bpmn:group id="Group_GE08_E3" categoryValueRef="CV_GE08_E3" />
+    <bpmn:group id="Group_GE08_E4" categoryValueRef="CV_GE08_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GE08" name="Integrar pessoas novas à cultura" isExecutable="false">
+    <bpmn:documentation>Fazer cada pessoa nova, ou que mudou de papel, e cada pessoa de empresa adquirida entender o propósito, os valores e os comportamentos esperados, e sentir-se parte, antes de responder sozinha pelo seu papel: trilha montada pelo papel, conduzida com o líder, vínculos iniciais e verificação de entendimento e de pertencimento, com reforço combinado quando falta. A Identidade define o kit; a Gestão integra; o líder acompanha.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_GE08">
+      <bpmn:lane id="Lane_GE08_LID" name="Líder da equipe">
+        <bpmn:flowNodeRef>GE08_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E4_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE08_PES" name="Pessoa">
+        <bpmn:flowNodeRef>GE08_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE08_GEP" name="Gestão · pessoa">
+        <bpmn:flowNodeRef>GE08_E4_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE08_GEA" name="Gestão · agente">
+        <bpmn:flowNodeRef>GE08_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E4_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE08_GER" name="Gestão · automação">
+        <bpmn:flowNodeRef>GE08_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E4_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_E4_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE08_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="GE08_S1" name="Pessoa contratada ou com papel novo"><bpmn:outgoing>GE08_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="GE08_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="GE08_S2" name="Pessoas de empresa adquirida recebidas"><bpmn:outgoing>GE08_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="GE08_S2_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="GE08_M1"><bpmn:incoming>GE08_Flow1</bpmn:incoming><bpmn:incoming>GE08_Flow2</bpmn:incoming><bpmn:outgoing>GE08_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GE08_E1_T1" name="Abrir a integração e agendar os marcos"><bpmn:documentation>Etapa 1: Preparar a trilha de integração. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow18</bpmn:incoming><bpmn:outgoing>GE08_Flow3</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GE08_E1_T2" name="Montar a trilha conforme o papel"><bpmn:documentation>Etapa 1: Preparar a trilha de integração. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow3</bpmn:incoming><bpmn:outgoing>GE08_Flow4</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="GE08_M2"><bpmn:incoming>GE08_Flow4</bpmn:incoming><bpmn:incoming>GE08_Flow13</bpmn:incoming><bpmn:outgoing>GE08_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="GE08_E2_T1" name="Conduzir a trilha e tirar dúvidas"><bpmn:documentation>Etapa 2: Apresentar propósito, valores e comportamentos. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow19</bpmn:incoming><bpmn:outgoing>GE08_Flow5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE08_E2_T2" name="Conversar sobre como os valores aparecem no dia a dia da função"><bpmn:documentation>Etapa 2: Apresentar propósito, valores e comportamentos. Executor: Pessoa de fora do círculo (Líder da equipe). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow5</bpmn:incoming><bpmn:outgoing>GE08_Flow6</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE08_E2_T3" name="Concluir a trilha"><bpmn:documentation>Etapa 2: Apresentar propósito, valores e comportamentos. Executor: Pessoa de fora do círculo (Pessoa). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow6</bpmn:incoming><bpmn:outgoing>GE08_Flow7</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE08_E3_T1" name="Indicar um padrinho ou uma madrinha"><bpmn:documentation>Etapa 3: Conectar a pessoa à comunidade. Executor: Pessoa de fora do círculo (Líder da equipe). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow7</bpmn:incoming><bpmn:outgoing>GE08_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GE08_E3_T2" name="Participar do primeiro ritual"><bpmn:documentation>Etapa 3: Conectar a pessoa à comunidade. Executor: Pessoa de fora do círculo (Pessoa). Modo da etapa: Assistido; risco baixo.</bpmn:documentation><bpmn:incoming>GE08_Flow8</bpmn:incoming><bpmn:outgoing>GE08_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="GE08_E4_T1" name="Aplicar a verificação de entendimento e de pertencimento"><bpmn:documentation>Etapa 4: Verificar a integração e registrar. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE08_Flow9</bpmn:incoming><bpmn:outgoing>GE08_Flow10</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE08_E4_T2" name="Confirmar os comportamentos observados"><bpmn:documentation>Etapa 4: Verificar a integração e registrar. Executor: Pessoa de fora do círculo (Líder da equipe). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE08_Flow10</bpmn:incoming><bpmn:outgoing>GE08_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GE08_E4_G1" name="A pessoa se integrou?"><bpmn:incoming>GE08_Flow11</bpmn:incoming><bpmn:outgoing>GE08_Flow12</bpmn:outgoing><bpmn:outgoing>GE08_Flow14</bpmn:outgoing><bpmn:outgoing>GE08_Flow15</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GE08_E4_T3" name="Combinar o reforço com o líder"><bpmn:documentation>Etapa 4: Verificar a integração e registrar. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE08_Flow12</bpmn:incoming><bpmn:outgoing>GE08_Flow13</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="GE08_E4_T4" name="Levar ao líder e ao executivo a decisão sobre a permanência"><bpmn:documentation>Etapa 4: Verificar a integração e registrar. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE08_Flow14</bpmn:incoming><bpmn:outgoing>GE08_Flow16</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="GE08_M3"><bpmn:incoming>GE08_Flow15</bpmn:incoming><bpmn:incoming>GE08_Flow16</bpmn:incoming><bpmn:outgoing>GE08_Flow20</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GE08_E4_T5" name="Registrar a conclusão, avisar o líder e enviar os dados agregados à pesquisa"><bpmn:documentation>Etapa 4: Verificar a integração e registrar. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE08_Flow20</bpmn:incoming><bpmn:outgoing>GE08_Flow17</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GE08_F1" name="Integração cultural concluída e registrada"><bpmn:incoming>GE08_Flow17</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="GE08_Flow1" sourceRef="GE08_S1" targetRef="GE08_M1" />
+    <bpmn:sequenceFlow id="GE08_Flow2" sourceRef="GE08_S2" targetRef="GE08_M1" />
+    <bpmn:sequenceFlow id="GE08_Flow3" sourceRef="GE08_E1_T1" targetRef="GE08_E1_T2" />
+    <bpmn:sequenceFlow id="GE08_Flow4" sourceRef="GE08_E1_T2" targetRef="GE08_M2" />
+    <bpmn:sequenceFlow id="GE08_Flow5" sourceRef="GE08_E2_T1" targetRef="GE08_E2_T2" />
+    <bpmn:sequenceFlow id="GE08_Flow6" sourceRef="GE08_E2_T2" targetRef="GE08_E2_T3" />
+    <bpmn:sequenceFlow id="GE08_Flow7" sourceRef="GE08_E2_T3" targetRef="GE08_E3_T1" />
+    <bpmn:sequenceFlow id="GE08_Flow8" sourceRef="GE08_E3_T1" targetRef="GE08_E3_T2" />
+    <bpmn:sequenceFlow id="GE08_Flow9" sourceRef="GE08_E3_T2" targetRef="GE08_E4_T1" />
+    <bpmn:sequenceFlow id="GE08_Flow10" sourceRef="GE08_E4_T1" targetRef="GE08_E4_T2" />
+    <bpmn:sequenceFlow id="GE08_Flow11" sourceRef="GE08_E4_T2" targetRef="GE08_E4_G1" />
+    <bpmn:sequenceFlow id="GE08_Flow12" name="Não, com reforço possível" sourceRef="GE08_E4_G1" targetRef="GE08_E4_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, com reforço possível</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE08_Flow13" sourceRef="GE08_E4_T3" targetRef="GE08_M2" />
+    <bpmn:sequenceFlow id="GE08_Flow14" name="Não, sem condição de seguir no papel" sourceRef="GE08_E4_G1" targetRef="GE08_E4_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, sem condição de seguir no papel</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE08_Flow15" name="Sim" sourceRef="GE08_E4_G1" targetRef="GE08_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE08_Flow16" sourceRef="GE08_E4_T4" targetRef="GE08_M3" />
+    <bpmn:sequenceFlow id="GE08_Flow17" sourceRef="GE08_E4_T5" targetRef="GE08_F1" />
+    <bpmn:sequenceFlow id="GE08_Flow18" sourceRef="GE08_M1" targetRef="GE08_E1_T1" />
+    <bpmn:sequenceFlow id="GE08_Flow19" sourceRef="GE08_M2" targetRef="GE08_E2_T1" />
+    <bpmn:sequenceFlow id="GE08_Flow20" sourceRef="GE08_M3" targetRef="GE08_E4_T5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_GE08">
+    <bpmndi:BPMNPlane id="Plane_GE08" bpmnElement="Collab_GE08">
+      <bpmndi:BPMNShape id="Participant_GE08_di" bpmnElement="Participant_GE08" isHorizontal="true"><dc:Bounds x="0" y="0" width="3826" height="880" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE08_LID_di" bpmnElement="Lane_GE08_LID" isHorizontal="true"><dc:Bounds x="30" y="0" width="3796" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE08_PES_di" bpmnElement="Lane_GE08_PES" isHorizontal="true"><dc:Bounds x="30" y="176" width="3796" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE08_GEP_di" bpmnElement="Lane_GE08_GEP" isHorizontal="true"><dc:Bounds x="30" y="352" width="3796" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE08_GEA_di" bpmnElement="Lane_GE08_GEA" isHorizontal="true"><dc:Bounds x="30" y="528" width="3796" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE08_GER_di" bpmnElement="Lane_GE08_GER" isHorizontal="true"><dc:Bounds x="30" y="704" width="3796" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_S1_di" bpmnElement="GE08_S1"><dc:Bounds x="156" y="734" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="732" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_S2_di" bpmnElement="GE08_S2"><dc:Bounds x="156" y="814" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="812" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_M1_di" bpmnElement="GE08_M1" isMarkerVisible="true"><dc:Bounds x="355" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E1_T1_di" bpmnElement="GE08_E1_T1"><dc:Bounds x="506" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E1_T2_di" bpmnElement="GE08_E1_T2"><dc:Bounds x="712" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_M2_di" bpmnElement="GE08_M2" isMarkerVisible="true"><dc:Bounds x="973" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E2_T1_di" bpmnElement="GE08_E2_T1"><dc:Bounds x="1124" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E2_T2_di" bpmnElement="GE08_E2_T2"><dc:Bounds x="1330" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E2_T3_di" bpmnElement="GE08_E2_T3"><dc:Bounds x="1536" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E3_T1_di" bpmnElement="GE08_E3_T1"><dc:Bounds x="1742" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E3_T2_di" bpmnElement="GE08_E3_T2"><dc:Bounds x="1948" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E4_T1_di" bpmnElement="GE08_E4_T1"><dc:Bounds x="2154" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E4_T2_di" bpmnElement="GE08_E4_T2"><dc:Bounds x="2360" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E4_G1_di" bpmnElement="GE08_E4_G1" isMarkerVisible="true"><dc:Bounds x="2621" y="63" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2534" y="115" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E4_T3_di" bpmnElement="GE08_E4_T3"><dc:Bounds x="2772" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E4_T4_di" bpmnElement="GE08_E4_T4"><dc:Bounds x="2978" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_M3_di" bpmnElement="GE08_M3" isMarkerVisible="true"><dc:Bounds x="3239" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_E4_T5_di" bpmnElement="GE08_E4_T5"><dc:Bounds x="3390" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE08_F1_di" bpmnElement="GE08_F1"><dc:Bounds x="3658" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3621" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GE08_Flow1_di" bpmnElement="GE08_Flow1"><di:waypoint x="192" y="752" /><di:waypoint x="380" y="752" /><di:waypoint x="380" y="767" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow2_di" bpmnElement="GE08_Flow2"><di:waypoint x="192" y="832" /><di:waypoint x="380" y="832" /><di:waypoint x="380" y="817" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow3_di" bpmnElement="GE08_Flow3"><di:waypoint x="586" y="742" /><di:waypoint x="586" y="616" /><di:waypoint x="712" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow4_di" bpmnElement="GE08_Flow4"><di:waypoint x="872" y="616" /><di:waypoint x="973" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow5_di" bpmnElement="GE08_Flow5"><di:waypoint x="1204" y="566" /><di:waypoint x="1204" y="88" /><di:waypoint x="1330" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow6_di" bpmnElement="GE08_Flow6"><di:waypoint x="1410" y="138" /><di:waypoint x="1410" y="264" /><di:waypoint x="1536" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow7_di" bpmnElement="GE08_Flow7"><di:waypoint x="1616" y="214" /><di:waypoint x="1616" y="88" /><di:waypoint x="1742" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow8_di" bpmnElement="GE08_Flow8"><di:waypoint x="1822" y="138" /><di:waypoint x="1822" y="264" /><di:waypoint x="1948" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow9_di" bpmnElement="GE08_Flow9"><di:waypoint x="2028" y="314" /><di:waypoint x="2028" y="616" /><di:waypoint x="2154" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow10_di" bpmnElement="GE08_Flow10"><di:waypoint x="2234" y="566" /><di:waypoint x="2234" y="88" /><di:waypoint x="2360" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow11_di" bpmnElement="GE08_Flow11"><di:waypoint x="2520" y="88" /><di:waypoint x="2621" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow12_di" bpmnElement="GE08_Flow12"><di:waypoint x="2646" y="113" /><di:waypoint x="2646" y="440" /><di:waypoint x="2772" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="2652" y="118" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow13_di" bpmnElement="GE08_Flow13"><di:waypoint x="2852" y="390" /><di:waypoint x="2852" y="361" /><di:waypoint x="998" y="361" /><di:waypoint x="998" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow14_di" bpmnElement="GE08_Flow14"><di:waypoint x="2671" y="88" /><di:waypoint x="3058" y="88" /><di:waypoint x="3058" y="742" /><bpmndi:BPMNLabel><dc:Bounds x="2676" y="57" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow15_di" bpmnElement="GE08_Flow15"><di:waypoint x="2646" y="63" /><di:waypoint x="2646" y="9" /><di:waypoint x="3264" y="9" /><di:waypoint x="3264" y="767" /><bpmndi:BPMNLabel><dc:Bounds x="2652" y="-9" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow16_di" bpmnElement="GE08_Flow16"><di:waypoint x="3138" y="792" /><di:waypoint x="3239" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow17_di" bpmnElement="GE08_Flow17"><di:waypoint x="3550" y="792" /><di:waypoint x="3658" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow18_di" bpmnElement="GE08_Flow18"><di:waypoint x="405" y="792" /><di:waypoint x="506" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow19_di" bpmnElement="GE08_Flow19"><di:waypoint x="1023" y="616" /><di:waypoint x="1124" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE08_Flow20_di" bpmnElement="GE08_Flow20"><di:waypoint x="3289" y="792" /><di:waypoint x="3390" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GE08_E1_di" bpmnElement="Group_GE08_E1"><dc:Bounds x="285" y="-44" width="602" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE08_E2_di" bpmnElement="Group_GE08_E2"><dc:Bounds x="903" y="-44" width="808" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="909" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE08_E3_di" bpmnElement="Group_GE08_E3"><dc:Bounds x="1727" y="-44" width="396" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="1733" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE08_E4_di" bpmnElement="Group_GE08_E4"><dc:Bounds x="2139" y="-44" width="1426" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="2145" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

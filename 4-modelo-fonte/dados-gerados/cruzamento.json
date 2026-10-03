@@ -1,0 +1,8477 @@
+{
+ "circulos": [
+  "Identidade",
+  "Estratégia",
+  "Inteligência",
+  "Relações",
+  "Negócios",
+  "Integração",
+  "Operações",
+  "Gestão",
+  "Governança"
+ ],
+ "trocas": [
+  {
+   "o": "Declaração de identidade vigente",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "ID-01 etapa 5"
+   ],
+   "entra": [
+    "ES-01 etapa 1",
+    "ES-01 etapa 2",
+    "ES-01 etapa 3",
+    "ES-05 etapa 1",
+    "ES-05 etapa 7"
+   ]
+  },
+  {
+   "o": "Relatório de alinhamento",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 2"
+   ],
+   "entra": [
+    "ES-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "ES-01 etapa 2",
+    "ES-01 etapa 3",
+    "ES-02 etapa 2",
+    "ES-03 etapa 1",
+    "ES-04 etapa 2",
+    "ES-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "ES-01 etapa 2",
+    "ES-01 etapa 3",
+    "ES-02 etapa 2",
+    "ES-03 etapa 1",
+    "ES-04 etapa 2",
+    "ES-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Definição do que conta como impacto",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "ES-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão sobre a marca do negócio",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "ES-05 etapa 7"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "ES-05 etapa 7"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Estratégia",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "ES-05 etapa 7"
+   ]
+  },
+  {
+   "o": "Indicadores de clareza e atualidade dos padrões",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 2"
+   ],
+   "entra": [
+    "IN-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Declaração de identidade vigente",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "a todos",
+   "sai": [
+    "ID-01 etapa 5"
+   ],
+   "entra": [
+    "IN-05 etapa 1",
+    "IN-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "IN-05 etapa 1",
+    "IN-05 etapa 2",
+    "IN-06 etapa 2",
+    "IN-07 etapa 2",
+    "IN-07 etapa 6",
+    "IN-07 etapa 7"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "IN-05 etapa 2",
+    "IN-06 etapa 2",
+    "IN-07 etapa 2",
+    "IN-07 etapa 6",
+    "IN-07 etapa 7"
+   ]
+  },
+  {
+   "o": "Posicionamento e casa de mensagens vigentes",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ID-04 etapa 5"
+   ],
+   "entra": [
+    "IN-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Decisão sobre a marca do negócio",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "IN-07 etapa 7"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "IN-07 etapa 7"
+   ]
+  },
+  {
+   "o": "Resumo da avaliação dos padrões",
+   "de": "Identidade",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 4"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Posicionamento e casa de mensagens vigentes",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-04 etapa 5"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-02 etapa 1",
+    "RE-04 etapa 2",
+    "RE-07 etapa 2",
+    "RE-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "RE-02 etapa 1",
+    "RE-06 etapa 3",
+    "RE-06 etapa 5",
+    "RE-07 etapa 2"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "RE-02 etapa 1",
+    "RE-04 etapa 2",
+    "RE-05 etapa 3",
+    "RE-06 etapa 2",
+    "RE-07 etapa 2",
+    "RE-08 etapa 3"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "RE-02 etapa 1",
+    "RE-04 etapa 2",
+    "RE-05 etapa 3",
+    "RE-06 etapa 2",
+    "RE-06 etapa 5",
+    "RE-07 etapa 2"
+   ]
+  },
+  {
+   "o": "Aviso de materiais vencidos",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "RE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "RE-02 etapa 1",
+    "RE-06 etapa 1",
+    "RE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Lacunas de execução apontadas",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 3"
+   ],
+   "entra": [
+    "RE-02 etapa 1",
+    "RE-04 etapa 1",
+    "RE-07 etapa 1",
+    "RE-08 etapa 4"
+   ]
+  },
+  {
+   "o": "Declaração de identidade vigente",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "ID-01 etapa 5"
+   ],
+   "entra": [
+    "RE-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Regra de uso da marca por terceiros",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "RE-06 etapa 5"
+   ]
+  },
+  {
+   "o": "Mudança na declaração a comunicar",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-01 etapa 5"
+   ],
+   "entra": [
+    "RE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Protocolo de crise",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "RE-08 etapa 1",
+    "RE-08 etapa 2",
+    "RE-08 etapa 3"
+   ]
+  },
+  {
+   "o": "Resumo da avaliação dos padrões",
+   "de": "Identidade",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 4"
+   ],
+   "entra": [
+    "RE-08 etapa 4"
+   ]
+  },
+  {
+   "o": "Aviso de materiais vencidos",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-03 etapa 3"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-03 etapa 3"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "NE-01 etapa 3",
+    "NE-03 etapa 3"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "NE-01 etapa 3",
+    "NE-03 etapa 3",
+    "NE-05 etapa 2",
+    "NE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Posicionamento e casa de mensagens vigentes",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ID-04 etapa 5"
+   ],
+   "entra": [
+    "NE-01 etapa 3",
+    "NE-03 etapa 3"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "NE-01 etapa 3",
+    "NE-03 etapa 3",
+    "NE-05 etapa 2",
+    "NE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Lacunas de execução apontadas",
+   "de": "Identidade",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 3"
+   ],
+   "entra": [
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "IT-02 etapa 2",
+    "IT-05 etapa 2",
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "IT-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Critérios de auditoria e casos de teste",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Posicionamento e casa de mensagens vigentes",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ID-04 etapa 5"
+   ],
+   "entra": [
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Lacunas de execução apontadas",
+   "de": "Identidade",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 3"
+   ],
+   "entra": [
+    "IT-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "OP-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "OP-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "OP-02 etapa 2",
+    "OP-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Operações",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "OP-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Lacunas de execução apontadas",
+   "de": "Identidade",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 3"
+   ],
+   "entra": [
+    "OP-05 etapa 3"
+   ]
+  },
+  {
+   "o": "Kit de cultura e pessoas",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GE-07 etapa 1",
+    "GE-08 etapa 1",
+    "GE-09 etapa 1",
+    "GE-10 etapa 1"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GE-08 etapa 1",
+    "GE-10 etapa 1",
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Lacunas de execução apontadas",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 3"
+   ],
+   "entra": [
+    "GE-09 etapa 1"
+   ]
+  },
+  {
+   "o": "Resumo da avaliação dos padrões",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 4"
+   ],
+   "entra": [
+    "GE-09 etapa 1"
+   ]
+  },
+  {
+   "o": "Mudança na declaração a comunicar",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-01 etapa 5"
+   ],
+   "entra": [
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Mudança nos padrões a comunicar",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Posicionamento e casa de mensagens vigentes",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-04 etapa 5"
+   ],
+   "entra": [
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Pacote de marca publicado",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 7"
+   ],
+   "entra": [
+    "GE-11 etapa 2"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "GE-11 etapa 2"
+   ]
+  },
+  {
+   "o": "Resposta à consulta",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "a quem pediu",
+   "sai": [
+    "ID-02 etapa 1"
+   ],
+   "entra": [
+    "GE-11 etapa 2"
+   ]
+  },
+  {
+   "o": "Aviso de materiais vencidos",
+   "de": "Identidade",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GE-11 etapa 3"
+   ]
+  },
+  {
+   "o": "Decisão dos sócios sobre critérios e limites",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 3"
+   ],
+   "entra": [
+    "GO-01 etapa 1",
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Regra de uso da marca por terceiros",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GO-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão dos sócios registrada",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-01 etapa 4"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Lacunas de execução apontadas",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 3"
+   ],
+   "entra": [
+    "GO-03 etapa 1",
+    "GO-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de registro depositado e prazos",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 5"
+   ],
+   "entra": [
+    "GO-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Marca retirada de uso",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-03 etapa 2"
+   ],
+   "entra": [
+    "GO-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Critérios de auditoria e casos de teste",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GO-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Resumo da avaliação dos padrões",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-05 etapa 4"
+   ],
+   "entra": [
+    "GO-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Padrões de identidade vigentes",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "a todos",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GO-06 etapa 2"
+   ]
+  },
+  {
+   "o": "Protocolo de crise",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GO-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Posicionamento e casa de mensagens vigentes",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-04 etapa 5"
+   ],
+   "entra": [
+    "GO-08 etapa 1",
+    "GO-10 etapa 3"
+   ]
+  },
+  {
+   "o": "Definição do que conta como impacto",
+   "de": "Identidade",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ID-02 etapa 4"
+   ],
+   "entra": [
+    "GO-10 etapa 1"
+   ]
+  },
+  {
+   "o": "Direção estratégica e públicos prioritários",
+   "de": "Estratégia",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "ID-01 etapa 1",
+    "ID-03 etapa 2",
+    "ID-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de identidade para empresa nova",
+   "de": "Estratégia",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "ID-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Portfólio de empresas atualizado",
+   "de": "Estratégia",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 8"
+   ],
+   "entra": [
+    "ID-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Estratégia",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "ES-01 etapa 2",
+    "ES-01 etapa 3",
+    "ES-02 etapa 2",
+    "ES-03 etapa 1",
+    "ES-04 etapa 2",
+    "ES-05 etapa 1"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de retirada de marca",
+   "de": "Estratégia",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "ES-04 etapa 4",
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "ID-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de marca",
+   "de": "Estratégia",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "ID-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Perguntas do diagnóstico",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 1"
+   ],
+   "entra": [
+    "IN-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Hipóteses da estratégia e sinais a vigiar",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "IN-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5",
+    "ES-02 etapa 4"
+   ],
+   "entra": [
+    "IN-01 etapa 1",
+    "IN-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Portfólio de empresas atualizado",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 8"
+   ],
+   "entra": [
+    "IN-01 etapa 1",
+    "IN-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Direção estratégica e públicos prioritários",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "a todos",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "IN-01 etapa 1",
+    "IN-05 etapa 1",
+    "IN-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Diagnóstico e decisão de manter a estratégia",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 4"
+   ],
+   "entra": [
+    "IN-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Alvos propostos, para definição das fichas dos indicadores",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-03 etapa 2"
+   ],
+   "entra": [
+    "IN-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Alvos e iniciativas do ciclo",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-03 etapa 5"
+   ],
+   "entra": [
+    "IN-04 etapa 1",
+    "IN-04 etapa 3"
+   ]
+  },
+  {
+   "o": "Decisão sobre a contestação do indicador de alvo",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-06 etapa 2"
+   ],
+   "entra": [
+    "IN-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta aprovada para desenho e validação da oferta, com recursos",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta em espera ou devolvida",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "IN-07 etapa 1",
+    "IN-07 etapa 9"
+   ]
+  },
+  {
+   "o": "Aposta mantida depois da revisão",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "IN-07 etapa 1",
+    "IN-07 etapa 9"
+   ]
+  },
+  {
+   "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "IN-07 etapa 5",
+    "IN-07 etapa 7"
+   ]
+  },
+  {
+   "o": "Oferta aprovada para lançamento",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "IN-07 etapa 9"
+   ]
+  },
+  {
+   "o": "Lição da aposta encerrada",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3",
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Lições da revisão da estratégia",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-06 etapa 4"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Lição do caso arquivado, sem dado sigiloso",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 1",
+    "ES-05 etapa 2",
+    "ES-05 etapa 3",
+    "ES-05 etapa 5"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta devolvida com o que falta",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "a quem pediu",
+   "sai": [
+    "ES-04 etapa 1"
+   ],
+   "entra": [
+    "IN-08 etapa 1",
+    "IN-08 etapa 3"
+   ]
+  },
+  {
+   "o": "Leitura do portfólio: resultado, recursos e papel de cada unidade",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "ES-02 etapa 1"
+   ],
+   "entra": [
+    "IN-08 etapa 2"
+   ]
+  },
+  {
+   "o": "Pedido de ajuste ou de revisão de oferta em uso",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "ES-04 etapa 1"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Pergunta de decisão, com a decisão apoiada, o risco e o prazo",
+   "de": "Estratégia",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "ES-04 etapa 2",
+    "ES-05 etapa 1",
+    "ES-06 etapa 2"
+   ],
+   "entra": [
+    "IN-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Direção estratégica e públicos prioritários",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Alvos e iniciativas do ciclo",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "ES-03 etapa 5"
+   ],
+   "entra": [
+    "RE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta aprovada para lançamento",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-04 etapa 1",
+    "RE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-05 etapa 1",
+    "RE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta mantida depois da revisão",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta em espera ou devolvida",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "RE-05 etapa 1",
+    "RE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Parceria aprovada no portão, para formalizar",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "RE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Lição da aposta encerrada",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3",
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "RE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Mudança na estratégia a comunicar",
+   "de": "Estratégia",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "RE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta aprovada para lançamento",
+   "de": "Estratégia",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "NE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+   "de": "Estratégia",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5",
+    "ES-02 etapa 4"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+   "de": "Estratégia",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-06 etapa 1",
+    "NE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-06 etapa 1",
+    "NE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Alvos e iniciativas do ciclo",
+   "de": "Estratégia",
+   "para": "Negócios",
+   "via": "a todos",
+   "sai": [
+    "ES-03 etapa 5"
+   ],
+   "entra": [
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "NE-02 etapa 1",
+    "NE-06 etapa 1",
+    "NE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Alvos e iniciativas do ciclo",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-03 etapa 5"
+   ],
+   "entra": [
+    "IT-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "IT-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão do portão",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "IT-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "IT-01 etapa 1",
+    "IT-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta aprovada para lançamento",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "IT-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de plano de saída da oferta: clientes e contratos",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "IT-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de plano de saída: clientes, contratos e pessoas",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "IT-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "IT-04 etapa 1",
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Pendência da saída da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Oferta aprovada para lançamento",
+   "de": "Estratégia",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "OP-01 etapa 1",
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+   "de": "Estratégia",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Correções de execução publicadas, com dono e prazo",
+   "de": "Estratégia",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "ES-06 etapa 4"
+   ],
+   "entra": [
+    "OP-05 etapa 3"
+   ]
+  },
+  {
+   "o": "Decisão dos sócios sobre alvos e orçamento",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-03 etapa 4"
+   ],
+   "entra": [
+    "GE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Alvos e iniciativas do ciclo",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-03 etapa 5"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-02 etapa 1",
+    "GE-09 etapa 1",
+    "GE-10 etapa 1",
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Alocação de recursos por empresa, oferta e aposta",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-02 etapa 4"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-05 etapa 3"
+   ]
+  },
+  {
+   "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Recursos aprovados para a aposta",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 5"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Recursos da aposta encerrada a devolver",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3",
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Aposta em espera ou devolvida",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Aposta mantida depois da revisão",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 4"
+   ],
+   "entra": [
+    "GE-01 etapa 2",
+    "GE-04 etapa 1",
+    "GE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de plano de correção",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-06 etapa 3"
+   ],
+   "entra": [
+    "GE-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Correções de execução publicadas, com dono e prazo",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-06 etapa 4"
+   ],
+   "entra": [
+    "GE-02 etapa 2",
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Revisão sem correção registrada",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-06 etapa 2"
+   ],
+   "entra": [
+    "GE-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "GE-04 etapa 1",
+    "GE-05 etapa 3",
+    "GE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão de alocação e de destino do resultado",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-02 etapa 3"
+   ],
+   "entra": [
+    "GE-05 etapa 3"
+   ]
+  },
+  {
+   "o": "Portfólio de empresas atualizado",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 8"
+   ],
+   "entra": [
+    "GE-05 etapa 3",
+    "GE-06 etapa 1",
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Lista de pessoas da empresa adquirida",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "GE-07 etapa 1",
+    "GE-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Mudança na estratégia a comunicar",
+   "de": "Estratégia",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Decisão dos sócios sobre a estratégia",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 4"
+   ],
+   "entra": [
+    "GO-01 etapa 1",
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 5"
+   ],
+   "entra": [
+    "GO-01 etapa 1",
+    "GO-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Portfólio de empresas atualizado",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 8"
+   ],
+   "entra": [
+    "GO-01 etapa 1",
+    "GO-02 etapa 3",
+    "GO-03 etapa 1",
+    "GO-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Diagnóstico e decisão de manter a estratégia",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-01 etapa 4"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Decisão dos sócios sobre alvos e orçamento",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-03 etapa 4"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Decisão de alocação e de destino do resultado",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-02 etapa 3"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Decisão do portão",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-04 etapa 3"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Autorização dos sócios para negociar, com os limites",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 2"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Decisão dos sócios sobre a empresa",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 5"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Caso arquivado, com o motivo",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 1",
+    "ES-05 etapa 2",
+    "ES-05 etapa 3",
+    "ES-05 etapa 5"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Resultado da revisão da estratégia",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-06 etapa 4"
+   ],
+   "entra": [
+    "GO-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Mandato da empresa",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 6"
+   ],
+   "entra": [
+    "GO-02 etapa 3",
+    "GO-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato de compra ou venda assinado",
+   "de": "Estratégia",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "ES-05 etapa 5"
+   ],
+   "entra": [
+    "GO-02 etapa 3",
+    "GO-04 etapa 1",
+    "GO-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Posicionamento da oferta e público-alvo",
+   "de": "Inteligência",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 7"
+   ],
+   "entra": [
+    "ID-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Leitura de mercado, clientes e concorrentes",
+   "de": "Inteligência",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "IN-01 etapa 5"
+   ],
+   "entra": [
+    "ID-03 etapa 1",
+    "ID-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Indicadores de marca, cultura e reputação",
+   "de": "Inteligência",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "ID-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Inteligência",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "IN-05 etapa 2",
+    "IN-06 etapa 2",
+    "IN-07 etapa 2",
+    "IN-07 etapa 6",
+    "IN-07 etapa 7"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de marca",
+   "de": "Inteligência",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "IN-07 etapa 7"
+   ],
+   "entra": [
+    "ID-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Leitura de mercado, clientes e concorrentes",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-01 etapa 5"
+   ],
+   "entra": [
+    "ES-01 etapa 1",
+    "ES-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Aviso de mudança relevante de cenário",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-01 etapa 3"
+   ],
+   "entra": [
+    "ES-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Aviso de leitura sem novidade",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "a quem pediu",
+   "sai": [
+    "IN-01 etapa 3"
+   ],
+   "entra": [
+    "ES-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Indicadores e análises por empresa, oferta e aposta",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "ES-02 etapa 1",
+    "ES-03 etapa 1",
+    "ES-04 etapa 2",
+    "ES-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Fichas dos indicadores decididas e confirmadas pelos donos",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-04 etapa 1"
+   ],
+   "entra": [
+    "ES-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Pedido de revisão da aposta ou da oferta",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 2"
+   ],
+   "entra": [
+    "ES-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Pacote da oferta pronta para lançamento",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 8"
+   ],
+   "entra": [
+    "ES-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta devolvida com evidência e recomendação",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 3",
+    "IN-07 etapa 5",
+    "IN-07 etapa 6"
+   ],
+   "entra": [
+    "ES-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Resposta com evidência, fonte e grau de confiança",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "a quem pediu",
+   "sai": [
+    "IN-02 etapa 4"
+   ],
+   "entra": [
+    "ES-04 etapa 2",
+    "ES-05 etapa 1",
+    "ES-06 etapa 2"
+   ]
+  },
+  {
+   "o": "Pergunta devolvida com o motivo",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "a quem pediu",
+   "sai": [
+    "IN-02 etapa 1"
+   ],
+   "entra": [
+    "ES-04 etapa 2",
+    "ES-05 etapa 1",
+    "ES-06 etapa 2"
+   ]
+  },
+  {
+   "o": "Contestação de indicador de alvo vigente",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IN-04 etapa 1",
+    "IN-04 etapa 4",
+    "IN-04 etapa 5"
+   ],
+   "entra": [
+    "ES-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Ideia ou aposta nova",
+   "de": "Inteligência",
+   "para": "Estratégia",
+   "via": "como pedido",
+   "sai": [
+    "IN-01 etapa 4",
+    "IN-08 etapa 3"
+   ],
+   "entra": [
+    "ES-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+   "de": "Inteligência",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 9"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-02 etapa 1",
+    "RE-03 etapa 2",
+    "RE-04 etapa 1",
+    "RE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Posicionamento da oferta e público-alvo",
+   "de": "Inteligência",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 7"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Leitura de mercado, clientes e concorrentes",
+   "de": "Inteligência",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IN-01 etapa 5"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-04 etapa 1",
+    "RE-06 etapa 1",
+    "RE-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Painel de indicadores de cada círculo, com dono e análise",
+   "de": "Inteligência",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "RE-01 etapa 1",
+    "RE-04 etapa 1",
+    "RE-05 etapa 2",
+    "RE-06 etapa 4"
+   ]
+  },
+  {
+   "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+   "de": "Inteligência",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+   "de": "Inteligência",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 9"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-03 etapa 2",
+    "NE-05 etapa 1",
+    "NE-07 etapa 2"
+   ]
+  },
+  {
+   "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+   "de": "Inteligência",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "NE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Resposta ao pedido sobre oferta em uso",
+   "de": "Inteligência",
+   "para": "Negócios",
+   "via": "a quem pediu",
+   "sai": [
+    "IN-07 etapa 2",
+    "IN-07 etapa 9"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Leitura de mercado, clientes e concorrentes",
+   "de": "Inteligência",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "IN-01 etapa 5"
+   ],
+   "entra": [
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Painel de indicadores de cada círculo, com dono e análise",
+   "de": "Inteligência",
+   "para": "Negócios",
+   "via": "a todos",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Ofertas, apostas e pilotos em curso da empresa que sai",
+   "de": "Inteligência",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "NE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 3",
+    "IN-07 etapa 5",
+    "IN-07 etapa 6"
+   ],
+   "entra": [
+    "IT-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 9"
+   ],
+   "entra": [
+    "IT-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Capacidades necessárias para a oferta",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 4"
+   ],
+   "entra": [
+    "IT-03 etapa 1",
+    "IT-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Painel de indicadores de cada círculo, com dono e análise",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "a todos",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "IT-03 etapa 3",
+    "IT-08 etapa 1",
+    "IT-08 etapa 4"
+   ]
+  },
+  {
+   "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "IT-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Ofertas, apostas e pilotos em curso da empresa que sai",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "IT-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Método publicado, com versão e data de revisão",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-06 etapa 4"
+   ],
+   "entra": [
+    "IT-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Método retirado de uso",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-06 etapa 5"
+   ],
+   "entra": [
+    "IT-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Método recusado ou não publicado, com o motivo",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-06 etapa 1",
+    "IN-06 etapa 3"
+   ],
+   "entra": [
+    "IT-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado da avaliação do método",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-06 etapa 5"
+   ],
+   "entra": [
+    "IT-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Kit do método para agentes: passos, conhecimento, casos de teste e critério de sucesso",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-06 etapa 4"
+   ],
+   "entra": [
+    "IT-05 etapa 2",
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Base de conhecimento publicada",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-05 etapa 4"
+   ],
+   "entra": [
+    "IT-05 etapa 2",
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Perguntas de teste da base, com a resposta esperada",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-05 etapa 4"
+   ],
+   "entra": [
+    "IT-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Catálogo de dados, com dono e classificação de cada dado",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-03 etapa 4"
+   ],
+   "entra": [
+    "IT-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Dado retirado do catálogo de dados",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-03 etapa 5"
+   ],
+   "entra": [
+    "IT-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Recomendação de melhoria, com evidência, ganho esperado e dono sugerido",
+   "de": "Inteligência",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "IN-08 etapa 3"
+   ],
+   "entra": [
+    "IT-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 9"
+   ],
+   "entra": [
+    "OP-01 etapa 1",
+    "OP-02 etapa 1",
+    "OP-05 etapa 1",
+    "OP-06 etapa 1",
+    "OP-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "OP-01 etapa 1",
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Painel de indicadores de cada círculo, com dono e análise",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "OP-01 etapa 1",
+    "OP-05 etapa 2"
+   ]
+  },
+  {
+   "o": "Método publicado, com versão e data de revisão",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "IN-06 etapa 4"
+   ],
+   "entra": [
+    "OP-02 etapa 1",
+    "OP-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Base de conhecimento publicada",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "IN-05 etapa 4"
+   ],
+   "entra": [
+    "OP-02 etapa 2",
+    "OP-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Resposta ao pedido sobre oferta em uso",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "a quem pediu",
+   "sai": [
+    "IN-07 etapa 2",
+    "IN-07 etapa 9"
+   ],
+   "entra": [
+    "OP-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Método retirado de uso",
+   "de": "Inteligência",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "IN-06 etapa 5"
+   ],
+   "entra": [
+    "OP-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia",
+   "de": "Inteligência",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 3",
+    "IN-07 etapa 5",
+    "IN-07 etapa 6"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+   "de": "Inteligência",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IN-07 etapa 1"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Indicadores e análises por empresa, oferta e aposta",
+   "de": "Inteligência",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado da revisão dos indicadores, com as contestações de indicador de alvo vigente",
+   "de": "Inteligência",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IN-04 etapa 4"
+   ],
+   "entra": [
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Painel de indicadores de cada círculo, com dono e análise",
+   "de": "Inteligência",
+   "para": "Gestão",
+   "via": "a todos",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Catálogo de dados, com dono e classificação de cada dado",
+   "de": "Inteligência",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IN-03 etapa 4"
+   ],
+   "entra": [
+    "GO-01 etapa 1",
+    "GO-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Dado retirado do catálogo de dados",
+   "de": "Inteligência",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IN-03 etapa 5"
+   ],
+   "entra": [
+    "GO-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Painel de indicadores de cada círculo, com dono e análise",
+   "de": "Inteligência",
+   "para": "Governança",
+   "via": "a todos",
+   "sai": [
+    "IN-04 etapa 3"
+   ],
+   "entra": [
+    "GO-03 etapa 1",
+    "GO-10 etapa 1"
+   ]
+  },
+  {
+   "o": "Dado confiável publicado no catálogo de dados",
+   "de": "Inteligência",
+   "para": "Governança",
+   "via": "a todos",
+   "sai": [
+    "IN-03 etapa 4"
+   ],
+   "entra": [
+    "GO-10 etapa 2"
+   ]
+  },
+  {
+   "o": "Escuta dos públicos",
+   "de": "Relações",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 4"
+   ],
+   "entra": [
+    "ID-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Percepção dos públicos e sinais de reputação",
+   "de": "Relações",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 4"
+   ],
+   "entra": [
+    "ID-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Relações",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "RE-02 etapa 1",
+    "RE-04 etapa 2",
+    "RE-05 etapa 3",
+    "RE-06 etapa 2",
+    "RE-06 etapa 5",
+    "RE-07 etapa 2"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Ideia ou aposta nova",
+   "de": "Relações",
+   "para": "Estratégia",
+   "via": "como pedido",
+   "sai": [
+    "RE-06 etapa 2"
+   ],
+   "entra": [
+    "ES-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Percepção dos públicos e sinais de reputação",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 4"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Sinais de clientes, parceiros e concorrentes vistos no relacionamento",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 4",
+    "RE-06 etapa 4"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 4"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Resultado das ações de demanda por canal e oferta",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-02 etapa 3"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Base de relacionamento atualizada, com a base legal e o histórico",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 5"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-04 etapa 4"
+   ],
+   "entra": [
+    "IN-07 etapa 4"
+   ]
+  },
+  {
+   "o": "Lições de clientes perdidos, renovados e ampliados",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 4"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Conteúdo novo apontado",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "RE-04 etapa 4"
+   ],
+   "entra": [
+    "IN-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Lição apontada",
+   "de": "Relações",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "RE-08 etapa 3"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-01 etapa 4"
+   ],
+   "entra": [
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Critério de oportunidade qualificada combinado com Negócios",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-01 etapa 4"
+   ],
+   "entra": [
+    "NE-02 etapa 1",
+    "NE-03 etapa 1",
+    "NE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 4"
+   ],
+   "entra": [
+    "NE-02 etapa 1",
+    "NE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Lacunas de percepção encaminhadas ao dono",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 4"
+   ],
+   "entra": [
+    "NE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Oportunidade qualificada, com o contato, a necessidade e a origem",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 4"
+   ],
+   "entra": [
+    "NE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Oportunidade sem resposta no prazo",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 4"
+   ],
+   "entra": [
+    "NE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Base de relacionamento atualizada, com a base legal e o histórico",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 5"
+   ],
+   "entra": [
+    "NE-03 etapa 1",
+    "NE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-04 etapa 4"
+   ],
+   "entra": [
+    "NE-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Oportunidade de renovação ou de expansão, com o histórico",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 4"
+   ],
+   "entra": [
+    "NE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 1"
+   ],
+   "entra": [
+    "NE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Clientes avisados da saída, com a transição combinada",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 1"
+   ],
+   "entra": [
+    "NE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Parceria ativa, com plano de ativação",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-06 etapa 3"
+   ],
+   "entra": [
+    "NE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado da parceria",
+   "de": "Relações",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "RE-06 etapa 4"
+   ],
+   "entra": [
+    "NE-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+   "de": "Relações",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "RE-04 etapa 4"
+   ],
+   "entra": [
+    "IT-02 etapa 1",
+    "IT-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+   "de": "Relações",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "RE-01 etapa 4"
+   ],
+   "entra": [
+    "IT-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Clientes avisados da saída, com a transição combinada",
+   "de": "Relações",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 1"
+   ],
+   "entra": [
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Parceria ativa, com plano de ativação",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-06 etapa 3"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 1"
+   ],
+   "entra": [
+    "OP-02 etapa 1",
+    "OP-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de recuperação do cliente",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 3"
+   ],
+   "entra": [
+    "OP-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-04 etapa 4"
+   ],
+   "entra": [
+    "OP-02 etapa 1",
+    "OP-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Clientes avisados da saída, com a transição combinada",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-05 etapa 1"
+   ],
+   "entra": [
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Avaliação da experiência sem mudança",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-04 etapa 1"
+   ],
+   "entra": [
+    "OP-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Lacunas de percepção encaminhadas ao dono",
+   "de": "Relações",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 4"
+   ],
+   "entra": [
+    "OP-05 etapa 3"
+   ]
+  },
+  {
+   "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+   "de": "Relações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "RE-01 etapa 4"
+   ],
+   "entra": [
+    "GE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de recurso adicional para demanda",
+   "de": "Relações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "RE-01 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Conteúdo externo publicado",
+   "de": "Relações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "RE-07 etapa 4"
+   ],
+   "entra": [
+    "GE-11 etapa 1"
+   ]
+  },
+  {
+   "o": "Autorizações de uso da marca por terceiros, com prazo",
+   "de": "Relações",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "RE-06 etapa 5"
+   ],
+   "entra": [
+    "GO-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido do titular cumprido, com a data",
+   "de": "Relações",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "RE-03 etapa 5"
+   ],
+   "entra": [
+    "GO-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Alerta de crise, com os fatos apurados",
+   "de": "Relações",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 2"
+   ],
+   "entra": [
+    "GO-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Lições da crise",
+   "de": "Relações",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "RE-08 etapa 3"
+   ],
+   "entra": [
+    "GO-08 etapa 3"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Negócios",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "NE-01 etapa 3",
+    "NE-03 etapa 3",
+    "NE-05 etapa 2",
+    "NE-06 etapa 1"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Ideia ou aposta nova",
+   "de": "Negócios",
+   "para": "Estratégia",
+   "via": "como pedido",
+   "sai": [
+    "NE-03 etapa 2"
+   ],
+   "entra": [
+    "ES-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Registros de propostas, vendas e contratos",
+   "de": "Negócios",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "NE-03 etapa 4",
+    "NE-04 etapa 3",
+    "NE-05 etapa 3",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Motivos de ganho e de perda de propostas",
+   "de": "Negócios",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "NE-03 etapa 2",
+    "NE-03 etapa 4",
+    "NE-04 etapa 1",
+    "NE-04 etapa 2",
+    "NE-04 etapa 3",
+    "NE-05 etapa 3",
+    "NE-06 etapa 2"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Tabela de preços e política comercial vigentes",
+   "de": "Negócios",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "NE-01 etapa 3"
+   ],
+   "entra": [
+    "IN-07 etapa 5"
+   ]
+  },
+  {
+   "o": "Pedido de ajuste ou de revisão de oferta em uso",
+   "de": "Negócios",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "NE-01 etapa 2",
+    "NE-03 etapa 2"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Tabela de preços e política comercial vigentes",
+   "de": "Negócios",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "NE-01 etapa 3"
+   ],
+   "entra": [
+    "RE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Aceite ou devolução da oportunidade, com o motivo",
+   "de": "Negócios",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "NE-03 etapa 1"
+   ],
+   "entra": [
+    "RE-03 etapa 4"
+   ]
+  },
+  {
+   "o": "Contrato de cliente assinado, com o escopo vendido",
+   "de": "Negócios",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "NE-04 etapa 3",
+    "NE-05 etapa 4",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Vencimento do contrato e resultado da renovação",
+   "de": "Negócios",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 1",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "RE-05 etapa 2",
+    "RE-05 etapa 4"
+   ]
+  },
+  {
+   "o": "Contato de interessado",
+   "de": "Negócios",
+   "para": "Relações",
+   "via": "como pedido",
+   "sai": [
+    "NE-03 etapa 1"
+   ],
+   "entra": [
+    "RE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de encerramento de parceria",
+   "de": "Negócios",
+   "para": "Relações",
+   "via": "como pedido",
+   "sai": [
+    "NE-07 etapa 3"
+   ],
+   "entra": [
+    "RE-06 etapa 1",
+    "RE-06 etapa 4"
+   ]
+  },
+  {
+   "o": "Previsão de receita e de vendas",
+   "de": "Negócios",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "NE-02 etapa 3"
+   ],
+   "entra": [
+    "IT-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato de cliente assinado, com o escopo vendido",
+   "de": "Negócios",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "NE-04 etapa 3",
+    "NE-05 etapa 4",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "IT-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Contratos afetados pela saída",
+   "de": "Negócios",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 3"
+   ],
+   "entra": [
+    "IT-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Contratos encerrados ou transferidos na saída",
+   "de": "Negócios",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 3"
+   ],
+   "entra": [
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Pendência de contrato na saída",
+   "de": "Negócios",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 3"
+   ],
+   "entra": [
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Contrato encerrado, com a data de fim",
+   "de": "Negócios",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "IT-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Previsão de receita e de vendas",
+   "de": "Negócios",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "NE-02 etapa 3"
+   ],
+   "entra": [
+    "OP-01 etapa 1",
+    "OP-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+   "de": "Negócios",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "NE-05 etapa 4"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato de cliente assinado, com o escopo vendido",
+   "de": "Negócios",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "NE-04 etapa 3",
+    "NE-05 etapa 4",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "OP-02 etapa 1",
+    "OP-05 etapa 1",
+    "OP-06 etapa 1",
+    "OP-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Tabela de preços e política comercial vigentes",
+   "de": "Negócios",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "NE-01 etapa 3"
+   ],
+   "entra": [
+    "OP-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato encerrado, com a data de fim",
+   "de": "Negócios",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-02 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Previsão de receita e de vendas",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-02 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Desvio da previsão contra os alvos, com as ações",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-02 etapa 2"
+   ],
+   "entra": [
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato de cliente assinado, com o escopo vendido",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-04 etapa 3",
+    "NE-05 etapa 4",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "GE-03 etapa 1",
+    "GE-04 etapa 1",
+    "GE-13 etapa 1"
+   ]
+  },
+  {
+   "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-05 etapa 4"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Tabela de preços e política comercial vigentes",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-01 etapa 3"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Acordo de oferta conjunta entre as empresas",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-07 etapa 2"
+   ],
+   "entra": [
+    "GE-03 etapa 1",
+    "GE-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato encerrado, com a data de fim",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Contratos encerrados ou transferidos na saída",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 3"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Vencimento do contrato e resultado da renovação",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-06 etapa 1",
+    "NE-06 etapa 5"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato para conferir e guardar",
+   "de": "Negócios",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "NE-04 etapa 2"
+   ],
+   "entra": [
+    "GO-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Acordo de oferta conjunta entre as empresas",
+   "de": "Negócios",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "NE-07 etapa 2"
+   ],
+   "entra": [
+    "GO-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de padrão para agente ou canal novo",
+   "de": "Integração",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "IT-06 etapa 1"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Registros de entregas de pessoas e agentes",
+   "de": "Integração",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "IT-06 etapa 4"
+   ],
+   "entra": [
+    "ID-02 etapa 3"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Integração",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "IT-02 etapa 2"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de saída da oferta: clientes e contratos",
+   "de": "Integração",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "ES-04 etapa 4"
+   ]
+  },
+  {
+   "o": "Conclusão do plano de saída da oferta",
+   "de": "Integração",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 2",
+    "IT-04 etapa 3"
+   ],
+   "entra": [
+    "ES-04 etapa 4"
+   ]
+  },
+  {
+   "o": "Plano de saída: clientes, contratos e pessoas",
+   "de": "Integração",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "ES-05 etapa 6"
+   ]
+  },
+  {
+   "o": "Situação das iniciativas na carteira de projetos",
+   "de": "Integração",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "IT-01 etapa 3"
+   ],
+   "entra": [
+    "ES-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Registros de projetos, agentes e sistemas",
+   "de": "Integração",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "IT-01 etapa 4",
+    "IT-05 etapa 3",
+    "IT-06 etapa 3",
+    "IT-07 etapa 4"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Consultas dos agentes sem resposta ou com resposta sem fonte",
+   "de": "Integração",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "IT-06 etapa 4"
+   ],
+   "entra": [
+    "IN-05 etapa 5"
+   ]
+  },
+  {
+   "o": "Pedido de método para capacidade ou agente",
+   "de": "Integração",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "IT-05 etapa 2"
+   ],
+   "entra": [
+    "IN-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado dos testes e do monitoramento dos agentes",
+   "de": "Integração",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "IT-06 etapa 2",
+    "IT-06 etapa 4"
+   ],
+   "entra": [
+    "IN-06 etapa 5"
+   ]
+  },
+  {
+   "o": "Lições de projetos e implantações encerrados",
+   "de": "Integração",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "IT-01 etapa 4"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Lição apontada",
+   "de": "Integração",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "IT-08 etapa 4"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de lançamento da oferta",
+   "de": "Integração",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 1"
+   ],
+   "entra": [
+    "RE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de implantação do cliente",
+   "de": "Integração",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IT-02 etapa 1"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de saída de clientes e contratos",
+   "de": "Integração",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "RE-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de lançamento da oferta",
+   "de": "Integração",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 1"
+   ],
+   "entra": [
+    "NE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de saída de clientes e contratos",
+   "de": "Integração",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "NE-06 etapa 3"
+   ]
+  },
+  {
+   "o": "Plano de lançamento da oferta",
+   "de": "Integração",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 1"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta lançada",
+   "de": "Integração",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 3"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Catálogo de capacidades atualizado",
+   "de": "Integração",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "IT-05 etapa 3"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Cliente implantado e aceito, passado à entrega",
+   "de": "Integração",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IT-02 etapa 4"
+   ],
+   "entra": [
+    "OP-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de implantação do cliente",
+   "de": "Integração",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IT-02 etapa 1"
+   ],
+   "entra": [
+    "OP-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de saída de clientes e contratos",
+   "de": "Integração",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "OP-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Situação das iniciativas na carteira de projetos",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-01 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Custo de tecnologia por empresa e por círculo",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-07 etapa 4"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de lançamento da oferta",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 1"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Impedimento do lançamento, com as opções",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 2"
+   ],
+   "entra": [
+    "GE-01 etapa 2"
+   ]
+  },
+  {
+   "o": "Recursos liberados de projeto suspenso ou encerrado",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-01 etapa 1"
+   ],
+   "entra": [
+    "GE-01 etapa 2",
+    "GE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Projeto encerrado, com o resultado",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-01 etapa 4"
+   ],
+   "entra": [
+    "GE-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Cliente implantado e aceito, passado à entrega",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-02 etapa 4"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de implantação do cliente",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-02 etapa 1"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Oferta lançada",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 3"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de saída de clientes e contratos",
+   "de": "Integração",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "GE-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de lançamento da oferta",
+   "de": "Integração",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IT-03 etapa 1"
+   ],
+   "entra": [
+    "GO-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de saída de clientes e contratos",
+   "de": "Integração",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IT-04 etapa 1"
+   ],
+   "entra": [
+    "GO-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Agente suspenso, com o motivo",
+   "de": "Integração",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IT-06 etapa 4"
+   ],
+   "entra": [
+    "GO-03 etapa 1",
+    "GO-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato de tecnologia para guardar",
+   "de": "Integração",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IT-07 etapa 3"
+   ],
+   "entra": [
+    "GO-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Registros de entregas de pessoas e agentes",
+   "de": "Integração",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "IT-06 etapa 4"
+   ],
+   "entra": [
+    "GO-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Operações",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "OP-03 etapa 2"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Registros de entrega, atendimento e qualidade",
+   "de": "Operações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "OP-02 etapa 4",
+    "OP-03 etapa 3",
+    "OP-05 etapa 2",
+    "OP-06 etapa 4",
+    "OP-07 etapa 5",
+    "OP-08 etapa 3"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Pedidos, reclamações e incidentes de clientes",
+   "de": "Operações",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "OP-03 etapa 3",
+    "OP-04 etapa 4",
+    "OP-07 etapa 5"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Lição apontada",
+   "de": "Operações",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "OP-02 etapa 4",
+    "OP-05 etapa 4",
+    "OP-08 etapa 3"
+   ],
+   "entra": [
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de ajuste ou de revisão de oferta em uso",
+   "de": "Operações",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "OP-03 etapa 2",
+    "OP-04 etapa 4",
+    "OP-05 etapa 3"
+   ],
+   "entra": [
+    "IN-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Conteúdo novo apontado",
+   "de": "Operações",
+   "para": "Inteligência",
+   "via": "como pedido",
+   "sai": [
+    "OP-03 etapa 3"
+   ],
+   "entra": [
+    "IN-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Reclamações e incidentes de clientes, com a causa",
+   "de": "Operações",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "OP-04 etapa 4"
+   ],
+   "entra": [
+    "RE-04 etapa 1",
+    "RE-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Registros de entrega, atendimento e reclamações do cliente",
+   "de": "Operações",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "OP-02 etapa 4",
+    "OP-03 etapa 3",
+    "OP-06 etapa 4",
+    "OP-07 etapa 5",
+    "OP-08 etapa 3"
+   ],
+   "entra": [
+    "RE-05 etapa 2"
+   ]
+  },
+  {
+   "o": "Lacuna de experiência apontada",
+   "de": "Operações",
+   "para": "Relações",
+   "via": "como pedido",
+   "sai": [
+    "OP-04 etapa 4",
+    "OP-05 etapa 1"
+   ],
+   "entra": [
+    "RE-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Fato a comunicar",
+   "de": "Operações",
+   "para": "Relações",
+   "via": "como pedido",
+   "sai": [
+    "OP-07 etapa 3"
+   ],
+   "entra": [
+    "RE-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Entregas encerradas na saída",
+   "de": "Operações",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "OP-08 etapa 3"
+   ],
+   "entra": [
+    "IT-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Necessidade de capacidade nova ou mudada",
+   "de": "Operações",
+   "para": "Integração",
+   "via": "como pedido",
+   "sai": [
+    "OP-01 etapa 3",
+    "OP-05 etapa 3"
+   ],
+   "entra": [
+    "IT-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido, incidente ou risco de tecnologia",
+   "de": "Operações",
+   "para": "Integração",
+   "via": "como pedido",
+   "sai": [
+    "OP-03 etapa 2"
+   ],
+   "entra": [
+    "IT-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-01 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 1",
+    "GE-04 etapa 1",
+    "GE-07 etapa 1",
+    "GE-12 etapa 1"
+   ]
+  },
+  {
+   "o": "Recursos da operação liberados, com a data",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-08 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 2",
+    "GE-07 etapa 1",
+    "GE-12 etapa 1"
+   ]
+  },
+  {
+   "o": "Entregas confirmadas para faturar, com a medição dos níveis de serviço",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-02 etapa 3",
+    "OP-06 etapa 4",
+    "OP-08 etapa 3"
+   ],
+   "entra": [
+    "GE-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Crédito ou reembolso aprovado para o cliente",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-04 etapa 3",
+    "OP-07 etapa 2"
+   ],
+   "entra": [
+    "GE-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Pedido de compra de materiais e serviços",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-06 etapa 2"
+   ],
+   "entra": [
+    "GE-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido de cobrança do fornecedor pela falha",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-07 etapa 5"
+   ],
+   "entra": [
+    "GE-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Desempenho dos fornecedores na entrega e na qualidade",
+   "de": "Operações",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "OP-06 etapa 2"
+   ],
+   "entra": [
+    "GE-04 etapa 1"
+   ]
+  },
+  {
+   "o": "Incidente ou risco a comunicar à autoridade",
+   "de": "Operações",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "OP-04 etapa 1",
+    "OP-07 etapa 3"
+   ],
+   "entra": [
+    "GO-09 etapa 1"
+   ]
+  },
+  {
+   "o": "Relatórios do recall para a autoridade",
+   "de": "Operações",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "OP-07 etapa 4"
+   ],
+   "entra": [
+    "GO-09 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado da pesquisa de cultura e dados de pessoas",
+   "de": "Gestão",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "GE-09 etapa 3"
+   ],
+   "entra": [
+    "ID-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Consulta sobre caso não coberto",
+   "de": "Gestão",
+   "para": "Identidade",
+   "via": "como pedido",
+   "sai": [
+    "GE-11 etapa 2"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado por empresa e consolidado",
+   "de": "Gestão",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 2"
+   ],
+   "entra": [
+    "ES-01 etapa 1",
+    "ES-02 etapa 1",
+    "ES-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Execução do orçamento e da alocação por empresa, oferta e aposta",
+   "de": "Gestão",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 2"
+   ],
+   "entra": [
+    "ES-02 etapa 1",
+    "ES-04 etapa 2"
+   ]
+  },
+  {
+   "o": "Posição e projeção de caixa",
+   "de": "Gestão",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 1"
+   ],
+   "entra": [
+    "ES-02 etapa 2",
+    "ES-03 etapa 3"
+   ]
+  },
+  {
+   "o": "Desvios e decisões do ritual de acompanhamento",
+   "de": "Gestão",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "GE-02 etapa 2"
+   ],
+   "entra": [
+    "ES-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Resultado por empresa e consolidado",
+   "de": "Gestão",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 2"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Resultado da pesquisa de cultura e dados de pessoas",
+   "de": "Gestão",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "GE-09 etapa 3"
+   ],
+   "entra": [
+    "IN-03 etapa 2"
+   ]
+  },
+  {
+   "o": "Custos e margens por empresa e oferta",
+   "de": "Gestão",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 2"
+   ],
+   "entra": [
+    "IN-07 etapa 5"
+   ]
+  },
+  {
+   "o": "Resposta ao pedido de recurso adicional",
+   "de": "Gestão",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "GE-01 etapa 2"
+   ],
+   "entra": [
+    "RE-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Orçamento de demanda do ciclo",
+   "de": "Gestão",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "GE-01 etapa 1"
+   ],
+   "entra": [
+    "RE-01 etapa 3"
+   ]
+  },
+  {
+   "o": "Situação de faturas e pagamentos do cliente",
+   "de": "Gestão",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "GE-03 etapa 4"
+   ],
+   "entra": [
+    "RE-05 etapa 2"
+   ]
+  },
+  {
+   "o": "Situação de faturas e pagamentos do cliente",
+   "de": "Gestão",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "GE-03 etapa 4"
+   ],
+   "entra": [
+    "NE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Pedido, incidente ou risco de tecnologia",
+   "de": "Gestão",
+   "para": "Integração",
+   "via": "como pedido",
+   "sai": [
+    "GE-07 etapa 4"
+   ],
+   "entra": [
+    "IT-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Pessoas, compras e ativos do plano confirmados",
+   "de": "Gestão",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "GE-01 etapa 1"
+   ],
+   "entra": [
+    "OP-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Materiais e serviços comprados, com a data de entrega",
+   "de": "Gestão",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "GE-04 etapa 2"
+   ],
+   "entra": [
+    "OP-06 etapa 2"
+   ]
+  },
+  {
+   "o": "Contestação do critério de rateio",
+   "de": "Gestão",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "GE-06 etapa 2"
+   ],
+   "entra": [
+    "GO-01 etapa 1"
+   ]
+  },
+  {
+   "o": "Aportes, distribuição ou mudanças de contas executados",
+   "de": "Gestão",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 3"
+   ],
+   "entra": [
+    "GO-02 etapa 3"
+   ]
+  },
+  {
+   "o": "Demonstrações e obrigações fiscais do período",
+   "de": "Gestão",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "GE-05 etapa 2"
+   ],
+   "entra": [
+    "GO-03 etapa 1"
+   ]
+  },
+  {
+   "o": "Contrato de fornecedor para revisar e guardar",
+   "de": "Gestão",
+   "para": "Governança",
+   "via": "direto",
+   "sai": [
+    "GE-04 etapa 2"
+   ],
+   "entra": [
+    "GO-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Padrão ambíguo apontado pela auditoria",
+   "de": "Governança",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "GO-06 etapa 3"
+   ],
+   "entra": [
+    "ID-02 etapa 1"
+   ]
+  },
+  {
+   "o": "Lições da crise",
+   "de": "Governança",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "GO-08 etapa 3"
+   ],
+   "entra": [
+    "ID-02 etapa 1",
+    "ID-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Identidade",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "ID-02 etapa 2"
+   ]
+  },
+  {
+   "o": "Resultado da auditoria das entregas",
+   "de": "Governança",
+   "para": "Identidade",
+   "via": "direto",
+   "sai": [
+    "GO-06 etapa 4"
+   ],
+   "entra": [
+    "ID-05 etapa 1"
+   ]
+  },
+  {
+   "o": "Relatório de riscos e conformidade",
+   "de": "Governança",
+   "para": "Estratégia",
+   "via": "direto",
+   "sai": [
+    "GO-03 etapa 3"
+   ],
+   "entra": [
+    "ES-01 etapa 1",
+    "ES-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Estratégia",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "ES-04 etapa 3",
+    "ES-05 etapa 4"
+   ]
+  },
+  {
+   "o": "Regras de sigilo e de dados pessoais",
+   "de": "Governança",
+   "para": "Inteligência",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "IN-01 etapa 4",
+    "IN-02 etapa 1",
+    "IN-03 etapa 1",
+    "IN-04 etapa 1",
+    "IN-05 etapa 2",
+    "IN-06 etapa 2",
+    "IN-07 etapa 7",
+    "IN-08 etapa 1"
+   ]
+  },
+  {
+   "o": "Regras de guarda e de eliminação de dados",
+   "de": "Governança",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "IN-03 etapa 1",
+    "IN-03 etapa 5"
+   ]
+  },
+  {
+   "o": "Amostra de entregas de pessoas e agentes",
+   "de": "Governança",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "GO-06 etapa 1"
+   ],
+   "entra": [
+    "IN-06 etapa 5"
+   ]
+  },
+  {
+   "o": "Resultado da auditoria das entregas",
+   "de": "Governança",
+   "para": "Inteligência",
+   "via": "direto",
+   "sai": [
+    "GO-06 etapa 4"
+   ],
+   "entra": [
+    "IN-06 etapa 5"
+   ]
+  },
+  {
+   "o": "Regras de sigilo e de dados pessoais",
+   "de": "Governança",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "RE-03 etapa 1",
+    "RE-03 etapa 5",
+    "RE-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Pedido de titular, com a resposta decidida pela Governança",
+   "de": "Governança",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "GO-07 etapa 2"
+   ],
+   "entra": [
+    "RE-03 etapa 5"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Relações",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "RE-06 etapa 2"
+   ]
+  },
+  {
+   "o": "Declaração, posição e encerramento da crise decididos pelo comitê",
+   "de": "Governança",
+   "para": "Relações",
+   "via": "direto",
+   "sai": [
+    "GO-08 etapa 2",
+    "GO-08 etapa 3"
+   ],
+   "entra": [
+    "RE-08 etapa 2",
+    "RE-08 etapa 3"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Negócios",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "NE-01 etapa 1",
+    "NE-03 etapa 3",
+    "NE-04 etapa 1",
+    "NE-05 etapa 2",
+    "NE-06 etapa 2"
+   ]
+  },
+  {
+   "o": "Modelos de proposta e de contrato",
+   "de": "Governança",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "NE-01 etapa 2",
+    "NE-03 etapa 3",
+    "NE-04 etapa 2",
+    "NE-06 etapa 2",
+    "NE-06 etapa 4"
+   ]
+  },
+  {
+   "o": "Certidões e documentos de habilitação em dia",
+   "de": "Governança",
+   "para": "Negócios",
+   "via": "direto",
+   "sai": [
+    "GO-04 etapa 2"
+   ],
+   "entra": [
+    "NE-05 etapa 1",
+    "NE-05 etapa 2"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Integração",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "IT-05 etapa 2",
+    "IT-06 etapa 1",
+    "IT-08 etapa 2"
+   ]
+  },
+  {
+   "o": "Desvio de agente apontado pela auditoria",
+   "de": "Governança",
+   "para": "Integração",
+   "via": "direto",
+   "sai": [
+    "GO-06 etapa 3"
+   ],
+   "entra": [
+    "IT-06 etapa 4"
+   ]
+  },
+  {
+   "o": "Regras de sigilo e de dados pessoais",
+   "de": "Governança",
+   "para": "Integração",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "IT-07 etapa 1"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "OP-01 etapa 2",
+    "OP-04 etapa 1",
+    "OP-07 etapa 3"
+   ]
+  },
+  {
+   "o": "Regras de sigilo e de dados pessoais",
+   "de": "Governança",
+   "para": "Operações",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "OP-03 etapa 1",
+    "OP-04 etapa 1",
+    "OP-08 etapa 2"
+   ]
+  },
+  {
+   "o": "Regras e alçadas vigentes",
+   "de": "Governança",
+   "para": "Gestão",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "GE-01 etapa 2",
+    "GE-04 etapa 1",
+    "GE-05 etapa 3",
+    "GE-07 etapa 1",
+    "GE-12 etapa 1"
+   ]
+  },
+  {
+   "o": "Critério de rateio do custo dos círculos",
+   "de": "Governança",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "GE-06 etapa 1"
+   ]
+  },
+  {
+   "o": "Regras de sigilo e de dados pessoais",
+   "de": "Governança",
+   "para": "Gestão",
+   "via": "a todos",
+   "sai": [
+    "GO-01 etapa 3"
+   ],
+   "entra": [
+    "GE-07 etapa 2",
+    "GE-09 etapa 3",
+    "GE-13 etapa 1"
+   ]
+  }
+ ],
+ "problemas": [],
+ "verificacoes": 1039,
+ "tarefas": [
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-01",
+   "etapa": 4,
+   "nome": "Levar a proposta à decisão dos sócios"
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 2,
+   "nome": "Conferir os critérios com alçadas, regras e riscos"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 2,
+   "nome": "Conferir o uso em seleção, integração, avaliação e reconhecimento"
+  },
+  {
+   "quem": "Integração",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 2,
+   "nome": "Conferir a viabilidade nos agentes"
+  },
+  {
+   "quem": "Relações",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 2,
+   "nome": "Conferir o uso nos canais e com parceiros"
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 2,
+   "nome": "Conferir os limites dos agentes com as alçadas"
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 3,
+   "nome": "Levar os critérios e os limites novos à decisão dos sócios"
+  },
+  {
+   "quem": "Integração",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 4,
+   "nome": "Carregar padrões e casos de teste nos agentes"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Identidade",
+   "code": "ID-02",
+   "etapa": 4,
+   "nome": "Incorporar comportamentos, perfil e rituais nos instrumentos de pessoas"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Identidade",
+   "code": "ID-03",
+   "etapa": 2,
+   "nome": "Avaliar a recomendação à luz do portfólio"
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-03",
+   "etapa": 2,
+   "nome": "Dar baixa ou transferir o registro da marca retirada"
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-03",
+   "etapa": 5,
+   "nome": "Depositar o pedido de registro no INPI ou transferir a titularidade da marca recebida"
+  },
+  {
+   "quem": "Governança",
+   "em": "Identidade",
+   "code": "ID-03",
+   "etapa": 5,
+   "nome": "Assumir os prazos de acompanhamento e renovação"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Identidade",
+   "code": "ID-04",
+   "etapa": 3,
+   "nome": "Conferir a coerência com a estratégia"
+  },
+  {
+   "quem": "Relações",
+   "em": "Identidade",
+   "code": "ID-04",
+   "etapa": 3,
+   "nome": "Conferir o uso em marketing e relacionamento"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Identidade",
+   "code": "ID-04",
+   "etapa": 3,
+   "nome": "Conferir a promessa para pessoas"
+  },
+  {
+   "quem": "Integração",
+   "em": "Identidade",
+   "code": "ID-04",
+   "etapa": 5,
+   "nome": "Carregar as mensagens nos agentes que falam com os públicos"
+  },
+  {
+   "quem": "Relações",
+   "em": "Identidade",
+   "code": "ID-04",
+   "etapa": 5,
+   "nome": "Preparar os porta-vozes com as mensagens"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "code": "ES-01",
+   "etapa": 2,
+   "nome": "Julgar o caso de fronteira das escolhas estratégicas"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "code": "ES-01",
+   "etapa": 3,
+   "nome": "Julgar o caso de fronteira das escolhas da empresa ou do círculo"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-01",
+   "etapa": 4,
+   "nome": "Levar à decisão dos sócios a proposta de estratégia, com as hipóteses e o método, ou a de mantê-la"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "code": "ES-02",
+   "etapa": 2,
+   "nome": "Julgar o caso de fronteira da proposta de alocação"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-02",
+   "etapa": 3,
+   "nome": "Levar a proposta de alocação à decisão dos sócios"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "code": "ES-03",
+   "etapa": 1,
+   "nome": "Julgar o caso de fronteira dos alvos propostos"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Estratégia",
+   "code": "ES-03",
+   "etapa": 3,
+   "nome": "Montar o orçamento do ciclo a partir dos alvos e da alocação"
+  },
+  {
+   "quem": "Integração",
+   "em": "Estratégia",
+   "code": "ES-03",
+   "etapa": 3,
+   "nome": "Conferir a capacidade de executar as iniciativas na carteira de projetos"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-03",
+   "etapa": 4,
+   "nome": "Levar a proposta de alvos e orçamento à decisão dos sócios"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Estratégia",
+   "code": "ES-03",
+   "etapa": 5,
+   "nome": "Incluir os alvos no ritual de acompanhamento"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "code": "ES-04",
+   "etapa": 2,
+   "nome": "Julgar o caso de fronteira da aposta"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-04",
+   "etapa": 3,
+   "nome": "Levar a aposta à decisão dos sócios"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 1,
+   "nome": "Julgar o caso de fronteira da empresa"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 2,
+   "nome": "Levar aos sócios o pedido de autorização para negociar, com os limites propostos"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 3,
+   "nome": "Firmar o acordo de confidencialidade com a outra parte"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 3,
+   "nome": "Apurar contratos, obrigações e riscos da empresa ou do negócio"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 3,
+   "nome": "Apurar contas e pessoas da empresa ou do negócio"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 4,
+   "nome": "Conferir a estrutura com as regras e os riscos"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 5,
+   "nome": "Levar à decisão dos sócios o caso e a estrutura, ou a proposta de arquivar o caso"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 5,
+   "nome": "Preparar o contrato de compra ou venda dentro do que os sócios decidiram"
+  },
+  {
+   "quem": "Integração",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 7,
+   "nome": "Coordenar a execução do mandato, ou do que falta dele, entre os círculos"
+  },
+  {
+   "quem": "Governança",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 7,
+   "nome": "Registrar a constituição, a alteração ou o encerramento da empresa"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 7,
+   "nome": "Prover ou desmobilizar responsável, pessoas, contas e orçamento"
+  },
+  {
+   "quem": "Integração",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 7,
+   "nome": "Ligar a empresa aos círculos ou desligá-la: acessos e acordos de serviço"
+  },
+  {
+   "quem": "Integração",
+   "em": "Estratégia",
+   "code": "ES-05",
+   "etapa": 7,
+   "nome": "Informar à Estratégia a situação da execução do mandato"
+  },
+  {
+   "quem": "Relações",
+   "em": "Inteligência",
+   "code": "IN-01",
+   "etapa": 4,
+   "nome": "Conferir a leitura com o que se vê no relacionamento com os públicos"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-01",
+   "etapa": 4,
+   "nome": "Conferir a leitura com o que se vê nas vendas"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-02",
+   "etapa": 1,
+   "nome": "Conferir o que pode ser respondido e quem pode ver a resposta"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-03",
+   "etapa": 1,
+   "nome": "Conferir a finalidade, a necessidade e a regra de sigilo do tratamento"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-03",
+   "etapa": 1,
+   "nome": "Suspender o acesso ao dado até a decisão de retirada"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-03",
+   "etapa": 2,
+   "nome": "Conectar a fonte e guardar o dado bruto com o acesso da classificação"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-03",
+   "etapa": 4,
+   "nome": "Liberar o acesso de pessoas e agentes conforme a classificação"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-03",
+   "etapa": 5,
+   "nome": "Conferir a decisão com a regra de guarda e de eliminação"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-03",
+   "etapa": 5,
+   "nome": "Executar o arquivamento, a anonimização ou a eliminação do dado e retirar os acessos"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Inteligência",
+   "code": "IN-04",
+   "etapa": 1,
+   "nome": "Confirmar a ficha do indicador do Ecossistema e indicar o dono do resultado"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Inteligência",
+   "code": "IN-04",
+   "etapa": 1,
+   "nome": "Decidir a divergência sobre a ficha do indicador do alvo"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "code": "IN-05",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre o conteúdo não coberto"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-05",
+   "etapa": 2,
+   "nome": "Conferir o que pode entrar na base e quem pode acessar"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-05",
+   "etapa": 4,
+   "nome": "Servir a base aos agentes e liberar o acesso conforme a classificação"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "code": "IN-06",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre o método não coberto"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-06",
+   "etapa": 2,
+   "nome": "Conferir quem pode acessar o método e a proteção do que é próprio"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-06",
+   "etapa": 4,
+   "nome": "Rodar os casos de teste do método nos agentes"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-06",
+   "etapa": 4,
+   "nome": "Corrigir o agente que falhou nos casos de teste"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-06",
+   "etapa": 4,
+   "nome": "Incluir o método na ficha da capacidade"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-06",
+   "etapa": 5,
+   "nome": "Retirar o método da ficha da capacidade e dos agentes"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 1,
+   "nome": "Encerrar com os clientes as propostas e os pilotos em curso"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 1,
+   "nome": "Incluir o desenvolvimento da oferta na carteira de projetos"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 2,
+   "nome": "Redigir os termos comerciais ajustados no modelo de contrato"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 2,
+   "nome": "Revisar os termos ajustados e a proteção do que é próprio"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre o ajuste não coberto pelos padrões"
+  },
+  {
+   "quem": "Relações",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 3,
+   "nome": "Indicar clientes do público-alvo e abrir a conversa com eles"
+  },
+  {
+   "quem": "Operações",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 4,
+   "nome": "Confirmar que a operação consegue entregar a solução"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 4,
+   "nome": "Apontar as capacidades, os agentes e os sistemas que faltam"
+  },
+  {
+   "quem": "Relações",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 4,
+   "nome": "Conferir o desenho da entrega com a estratégia de experiência do cliente"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 5,
+   "nome": "Opinar sobre o preço-base e dizer se a oferta é vendável"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 5,
+   "nome": "Opinar sobre custos, margem e efeito no caixa do modelo proposto"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 5,
+   "nome": "Conferir o critério de validação com os critérios do portão de lançamento"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Responder à consulta sobre a versão mínima não coberta pelos padrões"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Opinar sobre as condições comerciais do piloto"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Preparar a proposta e o termo de piloto no modelo de contrato"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Revisar o termo de piloto e a proteção do que é próprio"
+  },
+  {
+   "quem": "Relações",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Indicar os clientes do piloto e abrir a conversa com eles"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Fechar o piloto com o cliente"
+  },
+  {
+   "quem": "Operações",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Entregar o piloto ao cliente"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 6,
+   "nome": "Encerrar o piloto com o cliente, conforme o termo de piloto"
+  },
+  {
+   "quem": "Operações",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 7,
+   "nome": "Fechar o roteiro de entrega com quem vai entregar"
+  },
+  {
+   "quem": "Integração",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 7,
+   "nome": "Confirmar que as capacidades, os agentes e os sistemas da oferta estão prontos"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 7,
+   "nome": "Entregar a decisão e o pacote de marca da oferta"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 7,
+   "nome": "Redigir os termos comerciais da oferta no modelo de contrato"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 7,
+   "nome": "Revisar os termos da oferta e a proteção do que é próprio"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 7,
+   "nome": "Responder à consulta sobre o caso não coberto"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Inteligência",
+   "code": "IN-07",
+   "etapa": 8,
+   "nome": "Decidir o lançamento no portão"
+  },
+  {
+   "quem": "Governança",
+   "em": "Inteligência",
+   "code": "IN-08",
+   "etapa": 1,
+   "nome": "Conferir o que da lição pode ser registrado e quem pode acessar"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Relações",
+   "code": "RE-01",
+   "etapa": 2,
+   "nome": "Opinar sobre a capacidade de atender as oportunidades previstas"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Relações",
+   "code": "RE-01",
+   "etapa": 3,
+   "nome": "Conferir o custo das ações com o orçamento aprovado"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Relações",
+   "code": "RE-02",
+   "etapa": 1,
+   "nome": "Conferir com a Gestão o custo da ação fora do plano"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "code": "RE-02",
+   "etapa": 1,
+   "nome": "Responder à consulta sobre o material não coberto pelos padrões"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Relações",
+   "code": "RE-02",
+   "etapa": 1,
+   "nome": "Conferir o preço e as condições com a tabela e a política comercial"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-02",
+   "etapa": 1,
+   "nome": "Conferir a promessa, a comparação e o uso de dados da ação"
+  },
+  {
+   "quem": "Integração",
+   "em": "Relações",
+   "code": "RE-02",
+   "etapa": 2,
+   "nome": "Preparar nos sistemas o registro das respostas e dos contatos da ação"
+  },
+  {
+   "quem": "Operações",
+   "em": "Relações",
+   "code": "RE-04",
+   "etapa": 2,
+   "nome": "Dizer se a operação consegue cumprir os padrões de experiência"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Relações",
+   "code": "RE-04",
+   "etapa": 2,
+   "nome": "Dizer se a venda e a renovação conseguem cumprir os padrões"
+  },
+  {
+   "quem": "Integração",
+   "em": "Relações",
+   "code": "RE-04",
+   "etapa": 2,
+   "nome": "Apontar os sistemas e os agentes que os padrões de experiência pedem"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "code": "RE-04",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre a experiência não coberta pelos padrões"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "code": "RE-05",
+   "etapa": 3,
+   "nome": "Responder à consulta sobre o relatório não coberto pelos padrões"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre os termos não cobertos pelos padrões"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 2,
+   "nome": "Conferir o custo, a receita e o efeito no orçamento da parceria"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 2,
+   "nome": "Levar a parceria à decisão dos sócios"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 2,
+   "nome": "Preparar e revisar o contrato de parceria"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 2,
+   "nome": "Conferir o termo institucional e o risco jurídico"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 4,
+   "nome": "Encerrar o contrato ou o termo de parceria"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 5,
+   "nome": "Responder à consulta sobre o uso fora da regra"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-06",
+   "etapa": 5,
+   "nome": "Liberar os termos e o risco do uso fora da regra"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Relações",
+   "code": "RE-07",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre o conteúdo não coberto pelos padrões"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-07",
+   "etapa": 3,
+   "nome": "Conferir o risco jurídico e o que pode ser dito"
+  },
+  {
+   "quem": "Governança",
+   "em": "Relações",
+   "code": "RE-08",
+   "etapa": 2,
+   "nome": "Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Negócios",
+   "code": "NE-01",
+   "etapa": 2,
+   "nome": "Conferir a margem e o efeito no caixa das condições de pagamento"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-01",
+   "etapa": 2,
+   "nome": "Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Negócios",
+   "code": "NE-01",
+   "etapa": 3,
+   "nome": "Responder à consulta sobre o material de venda não coberto pelos padrões"
+  },
+  {
+   "quem": "Operações",
+   "em": "Negócios",
+   "code": "NE-02",
+   "etapa": 2,
+   "nome": "Confirmar a capacidade de entrega para o volume previsto"
+  },
+  {
+   "quem": "Integração",
+   "em": "Negócios",
+   "code": "NE-02",
+   "etapa": 2,
+   "nome": "Confirmar a capacidade de implantação para o volume previsto"
+  },
+  {
+   "quem": "Operações",
+   "em": "Negócios",
+   "code": "NE-03",
+   "etapa": 2,
+   "nome": "Confirmar que consegue entregar o escopo no prazo pedido"
+  },
+  {
+   "quem": "Integração",
+   "em": "Negócios",
+   "code": "NE-03",
+   "etapa": 2,
+   "nome": "Confirmar o que a implantação pede: sistemas, prazos e pessoas"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Levar a concessão à decisão dos sócios"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Negócios",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Responder à consulta sobre a proposta não coberta pelos padrões"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Revisar a cláusula fora do modelo e o risco"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-04",
+   "etapa": 1,
+   "nome": "Levar a concessão negociada à decisão dos sócios"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Revisar as cláusulas fora do modelo e o risco do contrato"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Conferir os poderes de quem assina pela empresa e pelo cliente"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Guardar o contrato assinado"
+  },
+  {
+   "quem": "Operações",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Confirmar a capacidade de entregar o objeto do edital"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Conferir as exigências de habilitação e o risco das cláusulas do edital"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Levar o menor preço da disputa à decisão dos sócios"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre a proposta de licitação não coberta pelos padrões"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Reunir e conferir os documentos de habilitação pedidos no edital"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 3,
+   "nome": "Apresentar contrarrazões ao recurso do concorrente"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 3,
+   "nome": "Apresentar o recurso da empresa"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Conferir os poderes de quem assina pela empresa"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Guardar o contrato ou a ata"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 1,
+   "nome": "Responder à consulta sobre a proposta de renovação não coberta pelos padrões"
+  },
+  {
+   "quem": "Operações",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Confirmar que consegue entregar o escopo renovado ou ampliado"
+  },
+  {
+   "quem": "Integração",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Confirmar o que a implantação do escopo novo pede"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Levar a concessão da renovação à decisão dos sócios"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 3,
+   "nome": "Conferir o encerramento ou a transferência de cada contrato"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Revisar as cláusulas fora do modelo e o risco do aditivo"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Conferir os poderes de quem assina o documento"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Guardar o documento assinado"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Negócios",
+   "code": "NE-07",
+   "etapa": 2,
+   "nome": "Conferir o efeito da divisão no resultado de cada empresa"
+  },
+  {
+   "quem": "Governança",
+   "em": "Negócios",
+   "code": "NE-07",
+   "etapa": 2,
+   "nome": "Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Integração",
+   "code": "IT-01",
+   "etapa": 2,
+   "nome": "Decidir o conflito de capacidade entre empresas, pelos alvos e pela alocação"
+  },
+  {
+   "quem": "Operações",
+   "em": "Integração",
+   "code": "IT-02",
+   "etapa": 1,
+   "nome": "Confirmar a capacidade de entrega e quem assume o cliente"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Integração",
+   "code": "IT-02",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre os materiais de implantação não cobertos pelos padrões"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Integração",
+   "code": "IT-02",
+   "etapa": 2,
+   "nome": "Contratar ou comprar o que falta para a implantação"
+  },
+  {
+   "quem": "Relações",
+   "em": "Integração",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar a parte de demanda e comunicação do lançamento"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Integração",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar a tabela, o material de venda e quem vende"
+  },
+  {
+   "quem": "Operações",
+   "em": "Integração",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar a capacidade de entrega e o atendimento"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Integração",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar o orçamento e a cobrança"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar os termos e as regras da oferta"
+  },
+  {
+   "quem": "Relações",
+   "em": "Integração",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor a transição dos clientes"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Integração",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor o encerramento ou a transferência dos contratos de clientes"
+  },
+  {
+   "quem": "Operações",
+   "em": "Integração",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor o fim das entregas em curso"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Integração",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor o destino das pessoas, dos custos e dos contratos de fornecedores"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Conferir as obrigações legais e contratuais da saída"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-05",
+   "etapa": 2,
+   "nome": "Definir a alçada do executor da capacidade"
+  },
+  {
+   "quem": "Inteligência",
+   "em": "Integração",
+   "code": "IT-06",
+   "etapa": 2,
+   "nome": "Medir o acerto do conteúdo e julgar os casos de fronteira de conteúdo"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-06",
+   "etapa": 3,
+   "nome": "Conferir a alçada e os acessos do agente"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-07",
+   "etapa": 1,
+   "nome": "Tratar o incidente de segurança ou de dados pessoais com a Governança"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-07",
+   "etapa": 2,
+   "nome": "Conferir a mudança contra a política de segurança e de dados pessoais"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-07",
+   "etapa": 3,
+   "nome": "Revisar o contrato de tecnologia, licença ou dados e a segurança"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Integração",
+   "code": "IT-07",
+   "etapa": 3,
+   "nome": "Conferir o custo e o orçamento"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Integração",
+   "code": "IT-07",
+   "etapa": 3,
+   "nome": "Fazer a compra ou a renovação"
+  },
+  {
+   "quem": "Governança",
+   "em": "Integração",
+   "code": "IT-08",
+   "etapa": 2,
+   "nome": "Conferir o redesenho contra as alçadas, as regras e os contratos"
+  },
+  {
+   "quem": "Negócios",
+   "em": "Operações",
+   "code": "OP-03",
+   "etapa": 1,
+   "nome": "Receber o pedido comercial do cliente e tratá-lo na proposta ou no contrato"
+  },
+  {
+   "quem": "Governança",
+   "em": "Operações",
+   "code": "OP-04",
+   "etapa": 1,
+   "nome": "Avaliar o risco e o dever de comunicar a autoridade"
+  },
+  {
+   "quem": "Gestão",
+   "em": "Operações",
+   "code": "OP-06",
+   "etapa": 2,
+   "nome": "Fazer a compra e informar a data de entrega"
+  },
+  {
+   "quem": "Governança",
+   "em": "Operações",
+   "code": "OP-07",
+   "etapa": 3,
+   "nome": "Comunicar o risco à autoridade competente"
+  },
+  {
+   "quem": "Governança",
+   "em": "Operações",
+   "code": "OP-07",
+   "etapa": 4,
+   "nome": "Enviar à autoridade os relatórios do recall"
+  },
+  {
+   "quem": "Governança",
+   "em": "Gestão",
+   "code": "GE-04",
+   "etapa": 2,
+   "nome": "Revisar o contrato com o fornecedor e guardá-lo"
+  },
+  {
+   "quem": "Governança",
+   "em": "Gestão",
+   "code": "GE-11",
+   "etapa": 2,
+   "nome": "Validar o conteúdo sensível"
+  },
+  {
+   "quem": "Estratégia",
+   "em": "Governança",
+   "code": "GO-01",
+   "etapa": 2,
+   "nome": "Definir o critério de rateio com a Governança"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Governança",
+   "code": "GO-06",
+   "etapa": 3,
+   "nome": "Julgar os casos de fronteira"
+  },
+  {
+   "quem": "Identidade",
+   "em": "Governança",
+   "code": "GO-08",
+   "etapa": 2,
+   "nome": "Opinar sobre a posição pela identidade e pelo protocolo"
+  }
+ ],
+ "requisitos": [
+  {
+   "parte": "Sócios",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Caso arquivado, com o motivo",
+     "de": [
+      "ES-05"
+     ]
+    },
+    {
+     "o": "Diagnóstico e decisão de manter a estratégia",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Estratégia vigente do Ecossistema e das empresas",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Relatório de alinhamento",
+     "de": [
+      "ID-05"
+     ]
+    },
+    {
+     "o": "Relatório de riscos e conformidade",
+     "de": [
+      "GO-03"
+     ]
+    },
+    {
+     "o": "Resultado da revisão da estratégia",
+     "de": [
+      "ES-06"
+     ]
+    },
+    {
+     "o": "Resultado das melhorias conferidas",
+     "de": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Resumo da avaliação dos padrões",
+     "de": [
+      "ID-05"
+     ]
+    },
+    {
+     "o": "Revisão sem correção registrada",
+     "de": [
+      "ES-06"
+     ]
+    },
+    {
+     "o": "Situação do cumprimento das decisões dos sócios",
+     "de": [
+      "GO-02"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Aprovar o relato",
+     "em": [
+      "GO-10"
+     ]
+    },
+    {
+     "nome": "Assinar o contrato de compra ou venda",
+     "em": [
+      "ES-05"
+     ]
+    },
+    {
+     "nome": "Decidir a alocação e o destino do resultado",
+     "em": [
+      "ES-02"
+     ]
+    },
+    {
+     "nome": "Decidir a autorização para negociar e os limites de preço e de condições",
+     "em": [
+      "ES-05"
+     ]
+    },
+    {
+     "nome": "Decidir a concessão da renovação pelos sócios",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "nome": "Decidir a concessão negociada pelos sócios",
+     "em": [
+      "NE-04"
+     ]
+    },
+    {
+     "nome": "Decidir a concessão pelos sócios",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "nome": "Decidir a medida e a correção da causa pelos sócios não envolvidos",
+     "em": [
+      "GO-09"
+     ]
+    },
+    {
+     "nome": "Decidir a parceria pelos sócios",
+     "em": [
+      "RE-06"
+     ]
+    },
+    {
+     "nome": "Decidir a regra",
+     "em": [
+      "GO-01"
+     ]
+    },
+    {
+     "nome": "Decidir as matérias da pauta",
+     "em": [
+      "GO-02"
+     ]
+    },
+    {
+     "nome": "Decidir o destino da aposta pelos sócios",
+     "em": [
+      "ES-04"
+     ]
+    },
+    {
+     "nome": "Decidir o menor preço da disputa pelos sócios",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Decidir sobre a criação, a aquisição, a venda, o encerramento ou o arquivamento do caso",
+     "em": [
+      "ES-05"
+     ]
+    },
+    {
+     "nome": "Decidir sobre a declaração",
+     "em": [
+      "ID-01"
+     ]
+    },
+    {
+     "nome": "Decidir sobre a estratégia, as hipóteses, o método e as divergências",
+     "em": [
+      "ES-01"
+     ]
+    },
+    {
+     "nome": "Decidir sobre os alvos, o orçamento e as divergências",
+     "em": [
+      "ES-03"
+     ]
+    },
+    {
+     "nome": "Decidir sobre os critérios e os limites novos",
+     "em": [
+      "ID-02"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Executivos",
+   "entrega": [
+    {
+     "o": "Oportunidade cruzada entre empresas",
+     "em": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Pedido de serviço de empresa",
+     "em": [
+      "IT-05"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Acordo de oferta conjunta entre as empresas",
+     "de": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Alerta de crise, com os fatos apurados",
+     "de": [
+      "RE-08"
+     ]
+    },
+    {
+     "o": "Alocação de recursos por empresa, oferta e aposta",
+     "de": [
+      "ES-02"
+     ]
+    },
+    {
+     "o": "Aportes, distribuição ou mudanças de contas executados",
+     "de": [
+      "GE-05"
+     ]
+    },
+    {
+     "o": "Aposta mantida depois da revisão",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Avaliação da experiência sem mudança",
+     "de": [
+      "RE-04"
+     ]
+    },
+    {
+     "o": "Aviso de mudança relevante de cenário",
+     "de": [
+      "IN-01"
+     ]
+    },
+    {
+     "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Decisão sobre o recurso pedido, com o motivo",
+     "de": [
+      "GE-01"
+     ]
+    },
+    {
+     "o": "Decisões dos sócios registradas, com responsável e prazo",
+     "de": [
+      "GO-02"
+     ]
+    },
+    {
+     "o": "Desvio da previsão contra os alvos, com as ações",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+     "de": [
+      "RE-04"
+     ]
+    },
+    {
+     "o": "Estratégia vigente do Ecossistema e das empresas",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Impasse da implantação, com as opções",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Impedimento do lançamento, com as opções",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Indicadores e análises por empresa, oferta e aposta",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Lacunas de percepção encaminhadas ao dono",
+     "de": [
+      "RE-08"
+     ]
+    },
+    {
+     "o": "Leitura de mercado, clientes e concorrentes",
+     "de": [
+      "IN-01"
+     ]
+    },
+    {
+     "o": "Mandato da empresa",
+     "de": [
+      "ES-05"
+     ]
+    },
+    {
+     "o": "Melhoria não feita, apontada ao executivo",
+     "de": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Método retirado de uso",
+     "de": [
+      "IN-06"
+     ]
+    },
+    {
+     "o": "Oferta aprovada para lançamento",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Oferta lançada",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+     "de": [
+      "IN-07"
+     ]
+    },
+    {
+     "o": "Oportunidade sem resposta no prazo",
+     "de": [
+      "RE-03"
+     ]
+    },
+    {
+     "o": "Orçamento vigente por empresa, círculo, oferta e aposta",
+     "de": [
+      "GE-01"
+     ]
+    },
+    {
+     "o": "Pedido de plano de correção",
+     "de": [
+      "ES-06"
+     ]
+    },
+    {
+     "o": "Pedido de serviço encaminhado, com acordo de serviço",
+     "de": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Pendência da saída da oferta encerrada",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Pendência da saída, com o efeito",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Pendência de contrato na saída",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Percepção dos públicos e sinais de reputação",
+     "de": [
+      "RE-08"
+     ]
+    },
+    {
+     "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+     "de": [
+      "OP-01"
+     ]
+    },
+    {
+     "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+     "de": [
+      "RE-01"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de recuperação do cliente",
+     "de": [
+      "RE-05"
+     ]
+    },
+    {
+     "o": "Plano de remediação, com dono e prazo",
+     "de": [
+      "GO-03"
+     ]
+    },
+    {
+     "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+     "de": [
+      "ES-01",
+      "ES-02"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Projeto encerrado, com o resultado",
+     "de": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Protocolo de crise",
+     "de": [
+      "ID-02"
+     ]
+    },
+    {
+     "o": "Rateio do custo dos círculos por empresa",
+     "de": [
+      "GE-06"
+     ]
+    },
+    {
+     "o": "Recomendação de melhoria, com evidência, ganho esperado e dono sugerido",
+     "de": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Relatório de alinhamento",
+     "de": [
+      "ID-05"
+     ]
+    },
+    {
+     "o": "Resultado da comunicação externa",
+     "de": [
+      "RE-07"
+     ]
+    },
+    {
+     "o": "Resultado da parceria",
+     "de": [
+      "RE-06"
+     ]
+    },
+    {
+     "o": "Resultado da revisão dos indicadores, com as contestações de indicador de alvo vigente",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Resultado da venda com parceiros e conjunta",
+     "de": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Resultado das ações de demanda por canal e oferta",
+     "de": [
+      "RE-02"
+     ]
+    },
+    {
+     "o": "Resultado das melhorias conferidas",
+     "de": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Resumo da avaliação dos padrões",
+     "de": [
+      "ID-05"
+     ]
+    },
+    {
+     "o": "Saúde dos clientes e motivos de perda",
+     "de": [
+      "RE-05"
+     ]
+    },
+    {
+     "o": "Situação das ações do ritual",
+     "de": [
+      "GE-02"
+     ]
+    },
+    {
+     "o": "Situação das iniciativas na carteira de projetos",
+     "de": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Situação do cumprimento das decisões dos sócios",
+     "de": [
+      "GO-02"
+     ]
+    },
+    {
+     "o": "Vencimentos e obrigações de contratos avisados",
+     "de": [
+      "GO-05"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Apontar objeções e ajustes",
+     "em": [
+      "ID-01"
+     ]
+    },
+    {
+     "nome": "Aprovar a comunicação da posição da empresa",
+     "em": [
+      "RE-08"
+     ]
+    },
+    {
+     "nome": "Aprovar a decisão do comitê",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
+     "nome": "Aprovar o encerramento da crise",
+     "em": [
+      "GO-08"
+     ]
+    },
+    {
+     "nome": "Aprovar o pedido fora do orçamento ou acima da alçada",
+     "em": [
+      "GE-04"
+     ]
+    },
+    {
+     "nome": "Aprovar o que a ação diz em nome da empresa",
+     "em": [
+      "RE-02"
+     ]
+    },
+    {
+     "nome": "Aprovar o que a empresa diz e quem fala por ela",
+     "em": [
+      "RE-07"
+     ]
+    },
+    {
+     "nome": "Aprovar o termo institucional em nome da empresa",
+     "em": [
+      "RE-06"
+     ]
+    },
+    {
+     "nome": "Assinar a ata de registro de preços em nome da empresa",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Assinar a proposta e os documentos pedidos no edital em nome da empresa",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Assinar o contrato com o órgão em nome da empresa",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Assinar o contrato da adesão em nome da empresa",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Assinar o contrato de parceria em nome da empresa",
+     "em": [
+      "RE-06"
+     ]
+    },
+    {
+     "nome": "Assinar o contrato em nome da empresa",
+     "em": [
+      "NE-04"
+     ]
+    },
+    {
+     "nome": "Assinar o documento em nome da empresa",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "nome": "Autorizar a execução acima da alçada da Gestão",
+     "em": [
+      "GE-05"
+     ]
+    },
+    {
+     "nome": "Confirmar a ficha do indicador da empresa e assumir o resultado",
+     "em": [
+      "IN-04"
+     ]
+    },
+    {
+     "nome": "Decidir a ação acima da alçada do líder",
+     "em": [
+      "GE-02"
+     ]
+    },
+    {
+     "nome": "Decidir a cobertura acima da alçada de Operações",
+     "em": [
+      "OP-01"
+     ]
+    },
+    {
+     "nome": "Decidir a concessão acima da alçada de quem vende",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "nome": "Decidir a concessão da renovação acima da alçada de quem vende",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "nome": "Decidir a concessão negociada acima da alçada de quem vende",
+     "em": [
+      "NE-04"
+     ]
+    },
+    {
+     "nome": "Decidir a divisão de receita e de responsabilidade entre as empresas",
+     "em": [
+      "NE-07"
+     ]
+    },
+    {
+     "nome": "Decidir a medida e a correção da causa",
+     "em": [
+      "GO-09"
+     ]
+    },
+    {
+     "nome": "Decidir a prioridade dos projetos da sua empresa",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "nome": "Decidir a solução acima da alçada de Operações",
+     "em": [
+      "OP-04"
+     ]
+    },
+    {
+     "nome": "Decidir o critério de oportunidade qualificada da empresa, sem acordo",
+     "em": [
+      "RE-01"
+     ]
+    },
+    {
+     "nome": "Decidir o desligamento com o líder",
+     "em": [
+      "GE-07"
+     ]
+    },
+    {
+     "nome": "Decidir o menor preço da disputa acima da alçada de quem vende",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Decidir o pedido acima da alçada da Gestão",
+     "em": [
+      "GE-01",
+      "GE-07"
+     ]
+    },
+    {
+     "nome": "Decidir o que fazer com a causa não eliminada",
+     "em": [
+      "OP-05"
+     ]
+    },
+    {
+     "nome": "Decidir o recall",
+     "em": [
+      "OP-07"
+     ]
+    },
+    {
+     "nome": "Opinar sobre a estratégia de experiência da empresa",
+     "em": [
+      "RE-04"
+     ]
+    },
+    {
+     "nome": "Opinar sobre a mudança de papel da sua empresa, oferta ou aposta",
+     "em": [
+      "ES-02"
+     ]
+    },
+    {
+     "nome": "Opinar sobre a participação da empresa no edital",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "nome": "Opinar sobre as alternativas de correção da execução",
+     "em": [
+      "ES-06"
+     ]
+    },
+    {
+     "nome": "Opinar sobre as alternativas de identidade visual e verbal",
+     "em": [
+      "ID-03"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o caminho da oferta depois do piloto",
+     "em": [
+      "IN-07"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o destino da aposta e se ela vira oferta ou empresa própria",
+     "em": [
+      "ES-04"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o enquadramento proposto para a oferta",
+     "em": [
+      "IN-07"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o modelo de negócio e o preço-base propostos",
+     "em": [
+      "IN-07"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o papel da marca do seu negócio",
+     "em": [
+      "ID-03"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o pedido de ajuste ou de revisão da oferta em uso",
+     "em": [
+      "IN-07"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o plano de recuperação do cliente",
+     "em": [
+      "RE-05"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o plano de saída da sua empresa",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o plano de saída e a data de saída",
+     "em": [
+      "ES-04"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o plano e a data de lançamento da sua empresa",
+     "em": [
+      "IT-03"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o preço e a política comercial da empresa",
+     "em": [
+      "NE-01"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o próximo passo com o cliente",
+     "em": [
+      "RE-05"
+     ]
+    },
+    {
+     "nome": "Opinar sobre o rateio da sua empresa",
+     "em": [
+      "GE-06"
+     ]
+    },
+    {
+     "nome": "Opinar sobre os alvos de venda e a previsão da empresa",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "nome": "Opinar sobre os nomes candidatos",
+     "em": [
+      "ID-03"
+     ]
+    },
+    {
+     "nome": "Opinar sobre os públicos e as ofertas prioritárias da empresa",
+     "em": [
+      "RE-01"
+     ]
+    },
+    {
+     "nome": "Opinar sobre os temas que falam em nome da empresa",
+     "em": [
+      "RE-07"
+     ]
+    },
+    {
+     "nome": "Propor as escolhas da empresa: público, oferta e vantagem",
+     "em": [
+      "ES-01"
+     ]
+    },
+    {
+     "nome": "Propor os alvos e as iniciativas da empresa",
+     "em": [
+      "ES-03"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "entrega": [
+    {
+     "o": "Entrega do projeto",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Prontidão de cada círculo para o lançamento",
+     "em": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Situação, marco ou desvio informado pelo dono do projeto",
+     "em": [
+      "IT-01"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Agente suspenso, com o motivo",
+     "de": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Correção pedida ao dono da entrega",
+     "de": [
+      "GO-06"
+     ]
+    },
+    {
+     "o": "Decisão sobre o recurso pedido, com o motivo",
+     "de": [
+      "GE-01"
+     ]
+    },
+    {
+     "o": "Decisões dos sócios registradas, com responsável e prazo",
+     "de": [
+      "GO-02"
+     ]
+    },
+    {
+     "o": "Estratégia vigente do Ecossistema e das empresas",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Falha apontada em conteúdo aprovado por quem publica",
+     "de": [
+      "IN-05"
+     ]
+    },
+    {
+     "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Orçamento vigente por empresa, círculo, oferta e aposta",
+     "de": [
+      "GE-01"
+     ]
+    },
+    {
+     "o": "Painel de indicadores de cada círculo, com dono e análise",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Pedido de execução a quem guarda os dados",
+     "de": [
+      "GO-07"
+     ]
+    },
+    {
+     "o": "Pedido de plano de correção",
+     "de": [
+      "ES-06"
+     ]
+    },
+    {
+     "o": "Pedido de serviço encaminhado, com acordo de serviço",
+     "de": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Plano de remediação, com dono e prazo",
+     "de": [
+      "GO-03"
+     ]
+    },
+    {
+     "o": "Recomendação de melhoria, com evidência, ganho esperado e dono sugerido",
+     "de": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Relatório de alinhamento",
+     "de": [
+      "ID-05"
+     ]
+    },
+    {
+     "o": "Resultado da avaliação do método",
+     "de": [
+      "IN-06"
+     ]
+    },
+    {
+     "o": "Resultado da revisão dos indicadores, com as contestações de indicador de alvo vigente",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Resultado das melhorias conferidas",
+     "de": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Resumo da avaliação dos padrões",
+     "de": [
+      "ID-05"
+     ]
+    },
+    {
+     "o": "Situação das ações do ritual",
+     "de": [
+      "GE-02"
+     ]
+    },
+    {
+     "o": "Vencimentos e obrigações de contratos avisados",
+     "de": [
+      "GO-05"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Aceitar a ficha e assumir a capacidade no seu círculo",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "nome": "Aceitar o agente na capacidade do seu círculo",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "nome": "Apresentar os desvios e propor as ações",
+     "em": [
+      "GE-02"
+     ]
+    },
+    {
+     "nome": "Combinar o acordo de serviço com quem pediu",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "nome": "Confirmar a ficha do indicador do círculo e assumir o resultado",
+     "em": [
+      "IN-04"
+     ]
+    },
+    {
+     "nome": "Confirmar a ficha e assumir a responsabilidade pelo dado",
+     "em": [
+      "IN-03"
+     ]
+    },
+    {
+     "nome": "Confirmar a parte do redesenho que passa por cada círculo afetado",
+     "em": [
+      "IT-08"
+     ]
+    },
+    {
+     "nome": "Decidir a ação na sua alçada",
+     "em": [
+      "GE-02"
+     ]
+    },
+    {
+     "nome": "Decidir o redesenho da jornada do seu círculo",
+     "em": [
+      "IT-08"
+     ]
+    },
+    {
+     "nome": "Decidir se o dado é arquivado, anonimizado ou eliminado",
+     "em": [
+      "IN-03"
+     ]
+    },
+    {
+     "nome": "Propor as escolhas do círculo: o que é serviço comum, o que construir e o que comprar",
+     "em": [
+      "ES-01"
+     ]
+    },
+    {
+     "nome": "Propor os alvos e as iniciativas do círculo",
+     "em": [
+      "ES-03"
+     ]
+    },
+    {
+     "nome": "Responder à recomendação: aceitar, adiar ou recusar, com o motivo",
+     "em": [
+      "IN-08"
+     ]
+    },
+    {
+     "nome": "Validar o que vale hoje no tema e as respostas esperadas das perguntas de teste",
+     "em": [
+      "IN-05"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Solicitante",
+   "entrega": [
+    {
+     "o": "Consulta sobre caso não coberto",
+     "em": [
+      "ID-02"
+     ]
+    },
+    {
+     "o": "Contato de interessado",
+     "em": [
+      "RE-03"
+     ]
+    },
+    {
+     "o": "Contestação de número publicado",
+     "em": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Conteúdo novo apontado",
+     "em": [
+      "IN-05"
+     ]
+    },
+    {
+     "o": "Contrato para revisar ou guardar",
+     "em": [
+      "GO-05"
+     ]
+    },
+    {
+     "o": "Fato a comunicar",
+     "em": [
+      "RE-07"
+     ]
+    },
+    {
+     "o": "Ideia ou aposta nova",
+     "em": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Incidente de segurança com dados pessoais",
+     "em": [
+      "GO-09"
+     ]
+    },
+    {
+     "o": "Lacuna de experiência apontada",
+     "em": [
+      "RE-04"
+     ]
+    },
+    {
+     "o": "Lição apontada",
+     "em": [
+      "IN-08"
+     ]
+    },
+    {
+     "o": "Matéria para decisão dos sócios",
+     "em": [
+      "GO-02"
+     ]
+    },
+    {
+     "o": "Necessidade de capacidade nova ou mudada",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Oportunidade de aquisição ou de venda",
+     "em": [
+      "ES-05"
+     ]
+    },
+    {
+     "o": "Pedido de ajuste ou de revisão de oferta em uso",
+     "em": [
+      "ES-04",
+      "IN-07"
+     ]
+    },
+    {
+     "o": "Pedido de ativo, de espaço ou de serviço administrativo",
+     "em": [
+      "GE-12"
+     ]
+    },
+    {
+     "o": "Pedido de ação fora do plano",
+     "em": [
+      "RE-02"
+     ]
+    },
+    {
+     "o": "Pedido de compra",
+     "em": [
+      "GE-04"
+     ]
+    },
+    {
+     "o": "Pedido de dado ou de fonte nova",
+     "em": [
+      "IN-03"
+     ]
+    },
+    {
+     "o": "Pedido de documento, registro ou certidão",
+     "em": [
+      "GO-04"
+     ]
+    },
+    {
+     "o": "Pedido de encerramento de parceria",
+     "em": [
+      "RE-06"
+     ]
+    },
+    {
+     "o": "Pedido de imprensa",
+     "em": [
+      "RE-07"
+     ]
+    },
+    {
+     "o": "Pedido de indicador",
+     "em": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Pedido de marca",
+     "em": [
+      "ID-03"
+     ]
+    },
+    {
+     "o": "Pedido de regra, de alçada ou de modelo",
+     "em": [
+      "GO-01"
+     ]
+    },
+    {
+     "o": "Pedido de retirada de marca",
+     "em": [
+      "ID-03"
+     ]
+    },
+    {
+     "o": "Pedido de revisão da aposta ou da oferta",
+     "em": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Pedido de titular de dados",
+     "em": [
+      "GO-07"
+     ]
+    },
+    {
+     "o": "Pedido de uso da marca por terceiro",
+     "em": [
+      "RE-06"
+     ]
+    },
+    {
+     "o": "Pedido, incidente ou risco de tecnologia",
+     "em": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Pergunta de decisão, com a decisão apoiada, o risco e o prazo",
+     "em": [
+      "IN-02"
+     ]
+    },
+    {
+     "o": "Proposta de parceria ou de relação institucional",
+     "em": [
+      "RE-06"
+     ]
+    },
+    {
+     "o": "Prática apontada",
+     "em": [
+      "IN-06"
+     ]
+    },
+    {
+     "o": "Reclamação ou incidente de cliente",
+     "em": [
+      "OP-04"
+     ]
+    },
+    {
+     "o": "Relato de conduta, fraude ou descumprimento",
+     "em": [
+      "GO-09"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Aposta devolvida com o que falta",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Aposta em espera ou devolvida",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Aposta mantida depois da revisão",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Avaliação da experiência sem mudança",
+     "de": [
+      "RE-04"
+     ]
+    },
+    {
+     "o": "Aviso de leitura sem novidade",
+     "de": [
+      "IN-01"
+     ]
+    },
+    {
+     "o": "Caso arquivado, com o motivo",
+     "de": [
+      "ES-05"
+     ]
+    },
+    {
+     "o": "Decisão sobre a marca do negócio",
+     "de": [
+      "ID-03"
+     ]
+    },
+    {
+     "o": "Fichas dos indicadores decididas e confirmadas pelos donos",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Lição da aposta encerrada",
+     "de": [
+      "ES-04"
+     ]
+    },
+    {
+     "o": "Marca retirada de uso",
+     "de": [
+      "ID-03"
+     ]
+    },
+    {
+     "o": "Método recusado ou não publicado, com o motivo",
+     "de": [
+      "IN-06"
+     ]
+    },
+    {
+     "o": "Pacote de marca publicado",
+     "de": [
+      "ID-03"
+     ]
+    },
+    {
+     "o": "Pedido de dado não atendido, com o motivo",
+     "de": [
+      "IN-03"
+     ]
+    },
+    {
+     "o": "Pergunta devolvida com o motivo",
+     "de": [
+      "IN-02"
+     ]
+    },
+    {
+     "o": "Resposta ao pedido de ação fora do plano",
+     "de": [
+      "RE-02"
+     ]
+    },
+    {
+     "o": "Resposta ao pedido de uso da marca",
+     "de": [
+      "RE-06"
+     ]
+    },
+    {
+     "o": "Resposta ao pedido sobre oferta em uso",
+     "de": [
+      "IN-07"
+     ]
+    },
+    {
+     "o": "Resposta ao relato",
+     "de": [
+      "GO-09"
+     ]
+    },
+    {
+     "o": "Resposta ao titular",
+     "de": [
+      "GO-07"
+     ]
+    },
+    {
+     "o": "Resposta com evidência, fonte e grau de confiança",
+     "de": [
+      "IN-02"
+     ]
+    },
+    {
+     "o": "Resposta à consulta",
+     "de": [
+      "ID-02"
+     ]
+    },
+    {
+     "o": "Resposta à contestação do número",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Resposta à proposta de parceria",
+     "de": [
+      "RE-06"
+     ]
+    },
+    {
+     "o": "Resultado da avaliação do método",
+     "de": [
+      "IN-06"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Explicar a prática ou a necessidade e validar a descrição",
+     "em": [
+      "IN-06"
+     ]
+    },
+    {
+     "nome": "Receber e conferir o que foi entregue",
+     "em": [
+      "GE-04"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Todos (pessoas e agentes)",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Alvos e iniciativas do ciclo",
+     "de": [
+      "ES-03"
+     ]
+    },
+    {
+     "o": "Base de conhecimento publicada",
+     "de": [
+      "IN-05"
+     ]
+    },
+    {
+     "o": "Catálogo de capacidades atualizado",
+     "de": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Catálogo de jornadas atualizado",
+     "de": [
+      "IT-08"
+     ]
+    },
+    {
+     "o": "Correções de execução publicadas, com dono e prazo",
+     "de": [
+      "ES-06"
+     ]
+    },
+    {
+     "o": "Dado confiável publicado no catálogo de dados",
+     "de": [
+      "IN-03"
+     ]
+    },
+    {
+     "o": "Dado marcado como não confiável no catálogo de dados",
+     "de": [
+      "IN-03"
+     ]
+    },
+    {
+     "o": "Dado retirado do catálogo de dados",
+     "de": [
+      "IN-03"
+     ]
+    },
+    {
+     "o": "Declaração de identidade vigente",
+     "de": [
+      "ID-01"
+     ]
+    },
+    {
+     "o": "Direção estratégica e públicos prioritários",
+     "de": [
+      "ES-01"
+     ]
+    },
+    {
+     "o": "Método publicado, com versão e data de revisão",
+     "de": [
+      "IN-06"
+     ]
+    },
+    {
+     "o": "Método retirado de uso",
+     "de": [
+      "IN-06"
+     ]
+    },
+    {
+     "o": "Padrões de identidade vigentes",
+     "de": [
+      "ID-02"
+     ]
+    },
+    {
+     "o": "Painel de indicadores de cada círculo, com dono e análise",
+     "de": [
+      "IN-04"
+     ]
+    },
+    {
+     "o": "Regras de sigilo e de dados pessoais",
+     "de": [
+      "GO-01"
+     ]
+    },
+    {
+     "o": "Regras e alçadas vigentes",
+     "de": [
+      "GO-01"
+     ]
+    },
+    {
+     "o": "Relato de impacto publicado",
+     "de": [
+      "GO-10"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Assessoria externa",
+   "entrega": [],
+   "recebe": [],
+   "tarefas": [
+    {
+     "nome": "Avaliar o enquadramento fiscal e contábil da oferta",
+     "em": [
+      "IN-07"
+     ]
+    },
+    {
+     "nome": "Avaliar o risco de registro dos nomes",
+     "em": [
+      "ID-03"
+     ]
+    },
+    {
+     "nome": "Avaliar os efeitos jurídicos, fiscais e contábeis",
+     "em": [
+      "ES-05"
+     ]
+    },
+    {
+     "nome": "Avaliar os efeitos societários, fiscais e contábeis das alternativas",
+     "em": [
+      "ES-02"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Pessoas",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Comunicação interna publicada",
+     "de": [
+      "GE-11"
+     ]
+    },
+    {
+     "o": "Trilha de integração",
+     "de": [
+      "GE-08"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Aplicar o método em caso real ou no piloto da oferta, como aplicador que não o descreveu",
+     "em": [
+      "IN-06"
+     ]
+    },
+    {
+     "nome": "Concluir a trilha",
+     "em": [
+      "GE-08"
+     ]
+    },
+    {
+     "nome": "Conversar com o líder sobre propósito e papel e fechar o plano",
+     "em": [
+      "GE-09"
+     ]
+    },
+    {
+     "nome": "Escrever a declaração de propósito e escolher o que compartilha",
+     "em": [
+      "GE-09"
+     ]
+    },
+    {
+     "nome": "Fazer a autoavaliação e combinar o plano",
+     "em": [
+      "GE-09"
+     ]
+    },
+    {
+     "nome": "Participar do primeiro ritual",
+     "em": [
+      "GE-08"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Públicos externos",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Comunicação da posição sobre a crise",
+     "de": [
+      "RE-08"
+     ]
+    },
+    {
+     "o": "Conteúdo externo publicado",
+     "de": [
+      "RE-07"
+     ]
+    },
+    {
+     "o": "Relato de impacto publicado",
+     "de": [
+      "GO-10"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Clientes",
+   "entrega": [
+    {
+     "o": "Edital publicado e seus anexos",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Homologação e convocação para assinar",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Pedido de adesão à ata de órgão não participante",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Pedido de cancelamento de contrato",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pedido de contratação pela ata",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pedido de devolução, garantia ou assistência",
+     "em": [
+      "OP-07"
+     ]
+    },
+    {
+     "o": "Pedido de proposta do cliente",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Pedido, dúvida ou problema do cliente",
+     "em": [
+      "OP-03"
+     ]
+    },
+    {
+     "o": "Resposta ao esclarecimento ou à impugnação, ou edital alterado",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Resposta do cliente à proposta",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Resultado do julgamento, da habilitação e dos recursos",
+     "em": [
+      "NE-05"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Fatura emitida",
+     "de": [
+      "GE-03"
+     ]
+    },
+    {
+     "o": "Reembolso pago ao cliente",
+     "de": [
+      "GE-03"
+     ]
+    },
+    {
+     "o": "Resposta à cotação para pesquisa de preços",
+     "de": [
+      "NE-05"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Aceitar as entregas do ciclo",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "nome": "Assinar o contrato",
+     "em": [
+      "NE-04"
+     ]
+    },
+    {
+     "nome": "Assinar o documento pelo cliente, quando a forma pede",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "nome": "Avaliar o mapa da jornada e os padrões propostos",
+     "em": [
+      "RE-04"
+     ]
+    },
+    {
+     "nome": "Avaliar o resultado apresentado e dizer o que espera a seguir",
+     "em": [
+      "RE-05"
+     ]
+    },
+    {
+     "nome": "Conferir a implantação com o cliente",
+     "em": [
+      "IT-02"
+     ]
+    },
+    {
+     "nome": "Confirmar o fim das entregas",
+     "em": [
+      "OP-08"
+     ]
+    },
+    {
+     "nome": "Confirmar o plano de implantação e os responsáveis do cliente",
+     "em": [
+      "IT-02"
+     ]
+    },
+    {
+     "nome": "Confirmar o plano de sucesso e os contatos do cliente",
+     "em": [
+      "RE-05"
+     ]
+    },
+    {
+     "nome": "Confirmar o recebimento do produto",
+     "em": [
+      "OP-06"
+     ]
+    },
+    {
+     "nome": "Escolher a troca, a devolução do valor ou o abatimento do preço",
+     "em": [
+      "OP-07"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Parceiros",
+   "entrega": [
+    {
+     "o": "Oportunidade indicada por parceiro de venda",
+     "em": [
+      "NE-07"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Resposta ao parceiro sobre a oportunidade",
+     "de": [
+      "NE-07"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Confirmar o plano de ativação e os contatos do parceiro",
+     "em": [
+      "RE-06"
+     ]
+    }
+   ]
+  },
+  {
+   "parte": "Líderes",
+   "entrega": [
+    {
+     "o": "Indicações de reconhecimento",
+     "em": [
+      "GE-10"
+     ]
+    },
+    {
+     "o": "Pedido de vaga, de movimentação ou de desligamento",
+     "em": [
+      "GE-07"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Integração cultural concluída, com o resultado da verificação",
+     "de": [
+      "GE-08"
+     ]
+    },
+    {
+     "o": "Mudança de pessoas registrada",
+     "de": [
+      "GE-07"
+     ]
+    },
+    {
+     "o": "Pessoa contratada, com papel e líder",
+     "de": [
+      "GE-07"
+     ]
+    },
+    {
+     "o": "Plano de desenvolvimento ligado ao propósito",
+     "de": [
+      "GE-09"
+     ]
+    },
+    {
+     "o": "Retorno sobre as indicações",
+     "de": [
+      "GE-10"
+     ]
+    },
+    {
+     "o": "Trilha de integração",
+     "de": [
+      "GE-08"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "nome": "Avaliar a pessoa e combinar o plano de desenvolvimento",
+     "em": [
+      "GE-09"
+     ]
+    },
+    {
+     "nome": "Conduzir o ritual",
+     "em": [
+      "GE-10"
+     ]
+    },
+    {
+     "nome": "Confirmar os comportamentos observados",
+     "em": [
+      "GE-08"
+     ]
+    },
+    {
+     "nome": "Conversar sobre como os valores aparecem no dia a dia da função",
+     "em": [
+      "GE-08"
+     ]
+    },
+    {
+     "nome": "Decidir a contratação",
+     "em": [
+      "GE-07"
+     ]
+    },
+    {
+     "nome": "Entrevistar e avaliar os finalistas",
+     "em": [
+      "GE-07"
+     ]
+    },
+    {
+     "nome": "Indicar um padrinho ou uma madrinha",
+     "em": [
+      "GE-08"
+     ]
+    }
+   ]
+  }
+ ]
+}

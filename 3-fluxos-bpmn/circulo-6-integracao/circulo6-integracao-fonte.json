@@ -1,0 +1,5770 @@
+{
+ "circulo": {
+  "num": 6,
+  "nome": "Integração",
+  "sigla": "IT",
+  "pref": "IT",
+  "slug": "circulo6-integracao",
+  "status": "Fechado em 03/10/2026 · propostas dos círculos 7 e 9 aplicadas em 03/10/2026 · auditoria de execução aplicada em 03/10/2026",
+  "lead": "A Integração faz o todo funcionar como um só. É o escritório de projetos do Ecossistema: mantém a carteira de projetos, implanta os clientes, coordena o lançamento das ofertas e a saída de ofertas e empresas. Mantém o catálogo de capacidades e as jornadas ponta a ponta, monta, testa, libera e monitora agentes e automações e opera a tecnologia. Não decide o que o agente precisa saber, não roda a entrega recorrente e não define as regras. São oito jornadas.",
+  "fechado": true,
+  "o": "a Integração",
+  "do": "da Integração",
+  "ao": "à Integração"
+ },
+ "jornadas": [
+  {
+   "code": "IT-01",
+   "nome": "Gerir a carteira de projetos do Ecossistema e das empresas",
+   "dominio": "Projetos e implantação",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada projeto, interno ou de cliente, entrar numa carteira única com objetivo, dono, prazo, custo e empresa; ser priorizado contra a capacidade; ser acompanhado com o desvio apontado a tempo; e ser encerrado com a entrega conferida e as lições registradas. O executivo decide a prioridade dos projetos da sua empresa; a Integração decide a dos projetos corporativos e o método; o conflito de capacidade entre empresas sobe à Estratégia. A Integração informa a situação da carteira à Estratégia e à Gestão.",
+   "frequencia": "Por evento: iniciativa aprovada, decisão de portão, oferta para lançamento, implantação de cliente, capacidade nova, plano de saída, aposta devolvida ou encerrada; e a cada ciclo de acompanhamento (cadência: mensal)",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Registrar, estimar, simular a carga, coletar a situação e apontar desvios são de agente e automação; definir objetivo e dono, priorizar os projetos corporativos e decidir a correção são de pessoa da Integração; a prioridade dos projetos de cada empresa é do executivo."
+   },
+   "base": [
+    "iso21502",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Iniciativa, decisão de portão ou de encerramento recebida",
+     "raia": "Estratégia",
+     "tipo": "message"
+    },
+    {
+     "nome": "Projeto aberto por outra jornada da Integração",
+     "raia": "Integração · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Aposta devolvida ou encerrada avisada",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Ciclo de acompanhamento da carteira iniciado",
+     "raia": "Integração · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Projeto encerrado, com a entrega conferida e as lições registradas",
+    "Projeto suspenso ou encerrado antes da entrega, com recursos liberados",
+    "Situação da carteira informada",
+    "Projeto não priorizado, em espera",
+    "Projeto atualizado com a decisão do portão"
+   ],
+   "raias": [
+    "Estratégia",
+    "Inteligência",
+    "Executivo da empresa",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Registrar o projeto e o que ele pede",
+     "dono": "Integração",
+     "modo": "Copiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Alvos e iniciativas do ciclo",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Decisão do portão",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Previsão de receita e de vendas",
+       "de": "Negócios"
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "de": "IT-02"
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "de": "IT-03"
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "de": "IT-04"
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "de": "IT-05"
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "de": "IT-08"
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "de": "IT-02"
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "de": "IT-03"
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "de": "IT-04"
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "de": "IT-08"
+      },
+      {
+       "o": "Projeto reativado",
+       "de": "IT-03"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o que abriu o trabalho, a empresa e o projeto afetado",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Suspender ou encerrar o projeto e avisar a Gestão dos recursos liberados",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Aposta devolvida ou encerrada, oferta encerrada, ou projeto suspenso por outra jornada"
+      },
+      {
+       "nome": "Estimar prazo, custo, pessoas, agentes e dependências do projeto",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Definir o objetivo, o dono e o alvo ou o contrato a que o projeto se liga",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Projeto novo ou reativado: iniciativa, implantação, lançamento, capacidade, redesenho ou saída",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Aposta devolvida ou encerrada, oferta encerrada, ou projeto suspenso por outra jornada",
+         "via": [
+          "Suspender ou encerrar o projeto e avisar a Gestão dos recursos liberados"
+         ],
+         "vai": "fim: Projeto suspenso ou encerrado antes da entrega, com recursos liberados"
+        },
+        {
+         "rotulo": "Decisão do portão sobre aposta que já está na carteira, ou ciclo de acompanhamento",
+         "via": [],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Projeto registrado, com estimativa",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Recursos liberados de projeto suspenso ou encerrado",
+       "para": [
+        "Gestão"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      1426.0,
+      1108
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      1636.0,
+      956.0,
+      380,
+      968.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Priorizar o projeto na carteira",
+     "dono": "Integração; o executivo, nos projetos da sua empresa; o conflito entre empresas, a Estratégia",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Projeto registrado, com estimativa",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Simular a carga da carteira com o projeto novo e apontar os conflitos de capacidade",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Propor a ordem dos projetos pela regra de prioridade e pelos alvos",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a prioridade dos projetos da sua empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "De quem é a prioridade? Projeto de uma empresa"
+      },
+      {
+       "nome": "Decidir a prioridade dos projetos corporativos, pelos alvos e pelo método de estratégia",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "De quem é a prioridade? Projeto corporativo ou de círculo"
+      },
+      {
+       "nome": "Decidir o conflito de capacidade entre empresas, pelos alvos e pela alocação",
+       "exec": "C",
+       "raia": "Estratégia",
+       "tipo": "call",
+       "cond": "Há conflito de capacidade entre empresas? Sim"
+      },
+      {
+       "nome": "Fechar a carteira priorizada e avisar os donos dos projetos",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "O projeto entra agora? Sim"
+      },
+      {
+       "nome": "Registrar o projeto em espera, com a condição para entrar, e avisar o dono",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O projeto entra agora? Não: espera capacidade ou prioridade"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "De quem é a prioridade?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Projeto de uma empresa",
+         "via": [
+          "Decidir a prioridade dos projetos da sua empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Projeto corporativo ou de círculo",
+         "via": [
+          "Decidir a prioridade dos projetos corporativos, pelos alvos e pelo método de estratégia"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Há conflito de capacidade entre empresas?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Decidir o conflito de capacidade entre empresas, pelos alvos e pela alocação"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O projeto entra agora?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Fechar a carteira priorizada e avisar os donos dos projetos"
+         ],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não: espera capacidade ou prioridade",
+         "via": [
+          "Registrar o projeto em espera, com a condição para entrar, e avisar o dono"
+         ],
+         "vai": "fim: Projeto não priorizado, em espera"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Projeto priorizado, com início e marcos",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      1727.0,
+      -44,
+      2456.0,
+      1108
+     ],
+     "foco": [
+      1742.0,
+      38.0,
+      2570.0,
+      980.0,
+      1822,
+      792.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Acompanhar o projeto e corrigir o desvio",
+     "dono": "Integração, com o dono do projeto",
+     "modo": "Autopiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Projeto priorizado, com início e marcos",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Situação, marco ou desvio informado pelo dono do projeto",
+       "de": "Líderes dos círculos"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Rever os projetos em espera e devolver à priorização os que já cabem",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": "O que chegou à etapa? Ciclo de acompanhamento da carteira"
+      },
+      {
+       "nome": "Informar a situação da carteira à Estratégia, à Gestão e aos executivos",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que chegou à etapa? Ciclo de acompanhamento da carteira"
+      },
+      {
+       "nome": "Atualizar o projeto com a decisão do portão",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que chegou à etapa? Decisão do portão sobre aposta da carteira"
+      },
+      {
+       "nome": "Receber a situação, o marco, o desvio ou a conclusão de cada projeto",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Comparar prazo, custo e entrega com o plano e apontar o desvio",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Atualizar a situação da carteira",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Como está o projeto? Em andamento, sem desvio"
+      },
+      {
+       "nome": "Decidir a correção com o dono do projeto e avisar o executivo quando o desvio é dele",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "Como está o projeto? Em andamento, com desvio"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que chegou à etapa?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Ciclo de acompanhamento da carteira",
+         "via": [
+          "Rever os projetos em espera e devolver à priorização os que já cabem",
+          "Informar a situação da carteira à Estratégia, à Gestão e aos executivos"
+         ],
+         "vai": "fim: Situação da carteira informada"
+        },
+        {
+         "rotulo": "Decisão do portão sobre aposta da carteira",
+         "via": [
+          "Atualizar o projeto com a decisão do portão"
+         ],
+         "vai": "fim: Projeto atualizado com a decisão do portão"
+        },
+        {
+         "rotulo": "Projeto priorizado",
+         "via": [],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Como está o projeto?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Em andamento, sem desvio",
+         "via": [
+          "Atualizar a situação da carteira"
+         ],
+         "vai": "volta à etapa 3"
+        },
+        {
+         "rotulo": "Em andamento, com desvio",
+         "via": [
+          "Decidir a correção com o dono do projeto e avisar o executivo quando o desvio é dele"
+         ],
+         "vai": "volta à etapa 3"
+        },
+        {
+         "rotulo": "Concluído",
+         "via": [],
+         "vai": "etapa 4"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Situação das iniciativas na carteira de projetos",
+       "para": [
+        "Estratégia",
+        "Gestão",
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      4405.0,
+      -44,
+      2456.0,
+      1108
+     ],
+     "foco": [
+      4475.0,
+      566.0,
+      2371.0,
+      452.0,
+      4500,
+      968.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Encerrar o projeto e registrar as lições",
+     "dono": "Integração, com o dono do projeto",
+     "modo": "Assistido",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Entrega do projeto",
+       "de": "Líderes dos círculos"
+      },
+      {
+       "o": "Entrega do projeto",
+       "de": "IT-02"
+      },
+      {
+       "o": "Entrega do projeto",
+       "de": "IT-03"
+      },
+      {
+       "o": "Entrega do projeto",
+       "de": "IT-04"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Conferir a entrega com o objetivo, o prazo e o custo do projeto",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar o aceite do dono do projeto: cliente, executivo ou líder do círculo",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o encerramento, o resultado e as lições do projeto",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Lições de projetos e implantações encerrados",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Registros de projetos, agentes e sistemas",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Projeto encerrado, com o resultado",
+       "para": [
+        "Gestão",
+        "Executivos"
+       ]
+      },
+      {
+       "o": "Entrega do projeto a quem o pediu",
+       "para": [
+        "IT-08"
+       ]
+      }
+     ],
+     "box": [
+      6877.0,
+      -44,
+      602.0,
+      1108
+     ],
+     "foco": [
+      6892.0,
+      566.0,
+      716.0,
+      452.0,
+      6972,
+      616.0
+     ]
+    }
+   ],
+   "size": [
+    7740,
+    1056
+   ]
+  },
+  {
+   "code": "IT-02",
+   "nome": "Implantar o cliente, do contrato assinado à operação",
+   "dominio": "Projetos e implantação",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada contrato assinado virar um cliente implantado e aceito, com um plano combinado com o cliente e com Operações, ambiente, acessos, pessoas e materiais prontos, e passado a Operações para a entrega recorrente. A Integração coordena; Operações confirma a capacidade e assume a entrega; a Gestão compra o que falta; o cliente aceita.",
+   "frequencia": "Por evento: contrato de cliente assinado ou com escopo novo",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Montar o cronograma e os riscos, configurar acessos, conferir requisitos, os padrões e acompanhar são de agente e automação; combinar o plano com o cliente, implantar e conferir o aceite são de pessoas."
+   },
+   "base": [
+    "iso21502",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Contrato de cliente assinado recebido",
+     "raia": "Negócios",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Cliente implantado, aceito e passado a Operações",
+    "Impasse da implantação levado ao executivo"
+   ],
+   "raias": [
+    "Negócios",
+    "Cliente",
+    "Operações",
+    "Gestão",
+    "Identidade",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Planejar a implantação com o cliente e com Operações",
+     "dono": "Integração, com o cliente e Operações",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "Negócios"
+      },
+      {
+       "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+       "de": "Relações"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Montar o cronograma, os riscos e a lista de requisitos a partir do escopo vendido",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Combinar o plano de implantação com o cliente",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar o plano de implantação e os responsáveis do cliente",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a capacidade de entrega e quem assume o cliente",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Rever o cronograma e os recursos com Operações",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": "Operações confirmou a capacidade? Não: rever prazo ou recursos"
+      },
+      {
+       "nome": "Decidir o plano de implantação e abri-lo na carteira de projetos",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "Operações confirmou a capacidade?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não: rever prazo ou recursos",
+         "via": [
+          "Rever o cronograma e os recursos com Operações"
+         ],
+         "vai": "volta à etapa 1"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de implantação do cliente",
+       "para": [
+        "Relações",
+        "Operações",
+        "Gestão",
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      2044.0,
+      1460
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      2158.0,
+      1124.0,
+      356,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Preparar o ambiente, os acessos, as pessoas e os materiais",
+     "dono": "Integração, com Operações e Gestão",
+     "modo": "Autopiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Plano de implantação do cliente",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Resposta à consulta",
+       "de": "Identidade"
+      },
+      {
+       "o": "Agente liberado para quem pediu",
+       "de": "IT-06"
+      },
+      {
+       "o": "Item de tecnologia resolvido para quem pediu",
+       "de": "IT-07"
+      },
+      {
+       "o": "Agente ou acesso não entregue, com o motivo",
+       "de": "IT-06"
+      },
+      {
+       "o": "Agente ou acesso não entregue, com o motivo",
+       "de": "IT-07"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Pedir a configuração dos agentes e os acessos do cliente",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Preparar os materiais e as comunicações da implantação",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir os materiais no que não está conforme os padrões",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "Os materiais estão conforme os padrões de identidade? Não"
+      },
+      {
+       "nome": "Responder à consulta sobre os materiais de implantação não cobertos pelos padrões",
+       "exec": "C",
+       "raia": "Identidade",
+       "tipo": "call",
+       "cond": "Os materiais estão conforme os padrões de identidade? Há ponto que os padrões não cobrem"
+      },
+      {
+       "nome": "Contratar ou comprar o que falta para a implantação",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": "Falta pessoa, compra ou assessoria para a implantação? Sim"
+      },
+      {
+       "nome": "Receber os agentes liberados e os acessos configurados, ou o motivo de não estarem",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Levar ao executivo o que impede a implantação e suspender o projeto na carteira",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Os agentes e os acessos ficaram prontos? Não"
+      },
+      {
+       "nome": "Conferir a lista de requisitos atendida",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Os materiais estão conforme os padrões de identidade?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Corrigir os materiais no que não está conforme os padrões"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Há ponto que os padrões não cobrem",
+         "via": [
+          "Responder à consulta sobre os materiais de implantação não cobertos pelos padrões"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Falta pessoa, compra ou assessoria para a implantação?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Contratar ou comprar o que falta para a implantação"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Os agentes e os acessos ficaram prontos?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Levar ao executivo o que impede a implantação e suspender o projeto na carteira"
+         ],
+         "vai": "fim: Impasse da implantação levado ao executivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Ambiente, acessos, pessoas e materiais prontos",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
+       "o": "Pedido de montagem ou de mudança de agente ou automação",
+       "para": [
+        "IT-06"
+       ]
+      },
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "para": [
+        "IT-07"
+       ]
+      },
+      {
+       "o": "Consulta sobre caso não coberto",
+       "para": [
+        "Identidade"
+       ]
+      }
+     ],
+     "box": [
+      2321.0,
+      -44,
+      2662.0,
+      1460
+     ],
+     "foco": [
+      2336.0,
+      566.0,
+      2632.0,
+      804.0,
+      2416,
+      1320.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Implantar e conferir o aceite do cliente",
+     "dono": "Integração, com Operações e o cliente",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Ambiente, acessos, pessoas e materiais prontos",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Implantar com Operações: configurar, migrar, treinar e testar com o cliente",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a implantação com o cliente",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o andamento e as pendências da implantação",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir a pendência apontada pelo cliente",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "O cliente aceitou a implantação? Não: há pendência a corrigir"
+      },
+      {
+       "nome": "Levar o impasse ao executivo, com o que falta e as opções, e suspender o projeto na carteira",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O cliente aceitou a implantação? Impasse: a pendência não se resolve na implantação"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O cliente aceitou a implantação?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Não: há pendência a corrigir",
+         "via": [
+          "Corrigir a pendência apontada pelo cliente"
+         ],
+         "vai": "volta à etapa 3"
+        },
+        {
+         "rotulo": "Impasse: a pendência não se resolve na implantação",
+         "via": [
+          "Levar o impasse ao executivo, com o que falta e as opções, e suspender o projeto na carteira"
+         ],
+         "vai": "fim: Impasse da implantação levado ao executivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Implantação aceita pelo cliente",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Impasse da implantação, com as opções",
+       "para": [
+        "Executivos"
+       ]
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      4999.0,
+      -44,
+      1426.0,
+      1460
+     ],
+     "foco": [
+      5069.0,
+      214.0,
+      1691.0,
+      1156.0,
+      5094,
+      968.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Passar o cliente a Operações e encerrar a implantação",
+     "dono": "Integração",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Implantação aceita pelo cliente",
+       "de": "etapa 3"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Passar o cliente a Operações com o registro do que foi implantado",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar a Gestão do início da entrega e mandar à carteira a entrega, com as lições",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Cliente implantado e aceito, passado à entrega",
+       "para": [
+        "Operações",
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Entrega do projeto",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      6853.0,
+      -44,
+      396.0,
+      1460
+     ],
+     "foco": [
+      6868.0,
+      1270.0,
+      510.0,
+      100.0,
+      6948,
+      1320.0
+     ]
+    }
+   ],
+   "size": [
+    7510,
+    1408
+   ]
+  },
+  {
+   "code": "IT-03",
+   "nome": "Coordenar o lançamento da oferta aprovada",
+   "dominio": "Projetos e implantação",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada oferta aprovada no portão de lançamento chegar ao mercado com um plano único: quem faz o quê em Relações, Negócios, Operações, Gestão e Governança, com marcos e riscos, a prontidão conferida antes de lançar e os primeiros resultados acompanhados. A Integração coordena com o executivo da empresa; cada círculo executa a sua parte.",
+   "frequencia": "Por evento: oferta aprovada para lançamento",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Montar o plano, coletar a prontidão e acompanhar os primeiros indicadores são de agente e automação; fechar o plano e decidir lançar são de pessoa da Integração, ouvido o executivo."
+   },
+   "base": [
+    "iso21502",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Oferta aprovada para lançamento recebida",
+     "raia": "Estratégia",
+     "tipo": "message"
+    },
+    {
+     "nome": "Lançamento retomado pelo executivo",
+     "raia": "Executivo da empresa",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Oferta lançada e primeiros resultados acompanhados",
+    "Lançamento suspenso, com o impedimento levado ao executivo"
+   ],
+   "raias": [
+    "Estratégia",
+    "Relações",
+    "Negócios",
+    "Operações",
+    "Gestão",
+    "Governança",
+    "Executivo da empresa",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Montar o plano de lançamento com o executivo e os círculos",
+     "dono": "Integração, ouvido o executivo",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Oferta aprovada para lançamento",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Capacidades necessárias para a oferta",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+       "de": "Relações"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Reativar o projeto na carteira e propor a nova data, com o que impedia resolvido",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": "O que abriu o trabalho? Lançamento retomado depois de impedimento"
+      },
+      {
+       "nome": "Propor o plano: marcos, a parte de cada círculo, capacidades, riscos e data",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a parte de demanda e comunicação do lançamento",
+       "exec": "C",
+       "raia": "Relações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a tabela, o material de venda e quem vende",
+       "exec": "C",
+       "raia": "Negócios",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a capacidade de entrega e o atendimento",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar o orçamento e a cobrança",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar os termos e as regras da oferta",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Opinar sobre o plano e a data de lançamento da sua empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o plano de lançamento, ouvido o executivo",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Oferta aprovada para lançamento",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Lançamento retomado depois de impedimento",
+         "via": [
+          "Reativar o projeto na carteira e propor a nova data, com o que impedia resolvido"
+         ],
+         "vai": "vai para a etapa 2"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de lançamento da oferta",
+       "para": [
+        "Relações",
+        "Negócios",
+        "Operações",
+        "Gestão",
+        "Governança",
+        "Executivos",
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      2662.0,
+      1812
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      2776.0,
+      1627.0,
+      356,
+      1672.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Conferir a prontidão e decidir lançar",
+     "dono": "Integração, ouvido o executivo",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Plano de lançamento da oferta",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Prontidão de cada círculo para o lançamento",
+       "de": "Líderes dos círculos"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Receber a prontidão de cada círculo no marco combinado",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a prontidão contra o plano e apontar o que falta",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a prontidão com o executivo da empresa",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Cobrar o item que falta do círculo dono, com o novo prazo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "A oferta está pronta para lançar? Falta item com prazo de solução"
+      },
+      {
+       "nome": "Levar o impedimento ao executivo e à Gestão e suspender o projeto na carteira",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "A oferta está pronta para lançar? Falta o que impede o lançamento"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A oferta está pronta para lançar?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Falta item com prazo de solução",
+         "via": [
+          "Cobrar o item que falta do círculo dono, com o novo prazo"
+         ],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Falta o que impede o lançamento",
+         "via": [
+          "Levar o impedimento ao executivo e à Gestão e suspender o projeto na carteira"
+         ],
+         "vai": "fim: Lançamento suspenso, com o impedimento levado ao executivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Lançamento autorizado",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Projeto reativado",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
+       "o": "Impedimento do lançamento, com as opções",
+       "para": [
+        "Executivos",
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      2939.0,
+      -44,
+      1426.0,
+      1812
+     ],
+     "foco": [
+      3009.0,
+      1270.0,
+      1485.0,
+      452.0,
+      3034,
+      1672.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Lançar e acompanhar os primeiros resultados",
+     "dono": "Integração",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Lançamento autorizado",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Painel de indicadores de cada círculo, com dono e análise",
+       "de": "Inteligência"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Avisar os círculos e o executivo do lançamento na data",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Acompanhar os primeiros indicadores e apontar os problemas de entrega, venda ou demanda",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Mandar à carteira a entrega do lançamento, com as lições",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Oferta lançada",
+       "para": [
+        "Operações",
+        "Gestão",
+        "Executivos"
+       ]
+      },
+      {
+       "o": "Entrega do projeto",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      4587.0,
+      -44,
+      602.0,
+      1812
+     ],
+     "foco": [
+      4602.0,
+      1446.0,
+      716.0,
+      276.0,
+      4682,
+      1672.0
+     ]
+    }
+   ],
+   "size": [
+    5450,
+    1760
+   ]
+  },
+  {
+   "code": "IT-04",
+   "nome": "Montar e coordenar o plano de saída de oferta ou de empresa",
+   "dominio": "Projetos e implantação",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada oferta encerrada ou empresa que sai do portfólio ter um plano de saída de clientes, contratos, pessoas, sistemas e dados, montado com os círculos que executam e entregue à Estratégia, que decide a data; e, com a data confirmada, coordenar a execução até a conclusão, apontando as pendências. No mandato de criação ou de aquisição, a Integração abre na carteira o projeto de ligar a empresa aos círculos. Cada círculo executa a sua parte; a Integração coordena.",
+   "frequencia": "Por evento: pedido de plano de saída, mandato de empresa, data de saída confirmada ou pendência apontada",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Levantar o que é afetado e acompanhar são de agente e automação; montar o plano com os círculos, fechar o plano e coordenar a execução são de pessoa da Integração."
+   },
+   "base": [
+    "iso21502",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Pedido de plano de saída recebido",
+     "raia": "Estratégia",
+     "tipo": "message"
+    },
+    {
+     "nome": "Mandato da empresa recebido",
+     "raia": "Estratégia",
+     "tipo": "message"
+    },
+    {
+     "nome": "Pendência da saída apontada pela Estratégia",
+     "raia": "Estratégia",
+     "tipo": "message"
+    },
+    {
+     "nome": "Data de saída confirmada recebida",
+     "raia": "Estratégia",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Saída concluída e informada à Estratégia",
+    "Projeto de ligação da empresa aberto na carteira",
+    "Pendência da saída apontada à Estratégia e ao executivo",
+    "Mandato registrado sob sigilo",
+    "Plano de saída entregue à Estratégia, à espera da data",
+    "Pendência apontada pela Estratégia tratada com o círculo dono"
+   ],
+   "raias": [
+    "Estratégia",
+    "Relações",
+    "Negócios",
+    "Operações",
+    "Gestão",
+    "Governança",
+    "Executivo da empresa",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Montar o plano de saída com os círculos",
+     "dono": "Integração, com Relações, Negócios, Operações, Gestão e Governança",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Pedido de plano de saída da oferta: clientes e contratos",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Pedido de plano de saída: clientes, contratos e pessoas",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Ofertas, apostas e pilotos em curso da empresa que sai",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Contratos afetados pela saída",
+       "de": "Negócios"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o pedido ou o mandato e o que ele alcança",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Retomar o plano de saída já entregue, com a data confirmada",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Data de saída confirmada da oferta"
+      },
+      {
+       "nome": "Retomar o plano de saída conferido e incluído no mandato",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Mandato de venda ou de encerramento de empresa, com o plano conferido"
+      },
+      {
+       "nome": "Coordenar com o círculo dono a pendência apontada",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "manual",
+       "cond": "O que abriu o trabalho? Pendência da saída apontada pela Estratégia depois da conclusão"
+      },
+      {
+       "nome": "Apontar ao executivo o resultado da pendência",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Pendência da saída apontada pela Estratégia depois da conclusão"
+      },
+      {
+       "nome": "Abrir na carteira o projeto de ligar a empresa aos círculos e aos acordos de serviço",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Mandato de criação ou de aquisição de empresa"
+      },
+      {
+       "nome": "Pedir os acessos e os acordos de serviço da empresa a ligar",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Mandato de criação ou de aquisição de empresa"
+      },
+      {
+       "nome": "Registrar o mandato sob sigilo e abrir na carteira o que ele pede",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Mandato de busca de comprador ou de mudança de mandato"
+      },
+      {
+       "nome": "Levantar clientes, contratos, pessoas, sistemas, dados e projetos afetados",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Propor a transição dos clientes",
+       "exec": "C",
+       "raia": "Relações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Propor o encerramento ou a transferência dos contratos de clientes",
+       "exec": "C",
+       "raia": "Negócios",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Propor o fim das entregas em curso",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Propor o destino das pessoas, dos custos e dos contratos de fornecedores",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Conferir as obrigações legais e contratuais da saída",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Opinar sobre o plano de saída da sua empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Fechar o plano de saída com prazos, responsáveis e riscos",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Entregar o plano à Estratégia e registrar que a saída espera a data ou o mandato",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O plano está fechado? Sim"
+      },
+      {
+       "nome": "Completar o plano com o círculo que falta",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "manual",
+       "cond": "O plano está fechado? Não, falta a parte de um círculo"
+      },
+      {
+       "nome": "Entregar o plano completo à Estratégia e registrar a espera",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O plano está fechado? Não, falta a parte de um círculo"
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Pedido de plano de saída de oferta ou de empresa",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Data de saída confirmada da oferta",
+         "via": [
+          "Retomar o plano de saída já entregue, com a data confirmada"
+         ],
+         "vai": "vai para a etapa 2"
+        },
+        {
+         "rotulo": "Mandato de venda ou de encerramento de empresa, com o plano conferido",
+         "via": [
+          "Retomar o plano de saída conferido e incluído no mandato"
+         ],
+         "vai": "vai para a etapa 2"
+        },
+        {
+         "rotulo": "Pendência da saída apontada pela Estratégia depois da conclusão",
+         "via": [
+          "Coordenar com o círculo dono a pendência apontada",
+          "Apontar ao executivo o resultado da pendência"
+         ],
+         "vai": "fim: Pendência apontada pela Estratégia tratada com o círculo dono"
+        },
+        {
+         "rotulo": "Mandato de criação ou de aquisição de empresa",
+         "via": [
+          "Abrir na carteira o projeto de ligar a empresa aos círculos e aos acordos de serviço",
+          "Pedir os acessos e os acordos de serviço da empresa a ligar"
+         ],
+         "vai": "fim: Projeto de ligação da empresa aberto na carteira"
+        },
+        {
+         "rotulo": "Mandato de busca de comprador ou de mudança de mandato",
+         "via": [
+          "Registrar o mandato sob sigilo e abrir na carteira o que ele pede"
+         ],
+         "vai": "fim: Mandato registrado sob sigilo"
+        }
+       ]
+      },
+      {
+       "pergunta": "O plano está fechado?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Entregar o plano à Estratégia e registrar que a saída espera a data ou o mandato"
+         ],
+         "vai": "fim: Plano de saída entregue à Estratégia, à espera da data"
+        },
+        {
+         "rotulo": "Não, falta a parte de um círculo",
+         "via": [
+          "Completar o plano com o círculo que falta",
+          "Entregar o plano completo à Estratégia e registrar a espera"
+         ],
+         "vai": "fim: Plano de saída entregue à Estratégia, à espera da data"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano de saída da oferta: clientes e contratos",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
+       "o": "Plano de saída: clientes, contratos e pessoas",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "para": [
+        "IT-07"
+       ]
+      },
+      {
+       "o": "Pedido de serviço da empresa a ligar",
+       "para": [
+        "IT-05"
+       ]
+      },
+      {
+       "o": "Plano de saída de clientes e contratos",
+       "para": [
+        "Relações",
+        "Negócios",
+        "Operações",
+        "Gestão",
+        "Governança"
+       ]
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
+       "o": "Plano de saída fechado",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      879.0,
+      -44,
+      5546.0,
+      1812
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      6628.0,
+      1652.0,
+      974,
+      1672.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Coordenar a execução da saída na data confirmada",
+     "dono": "Integração, com os círculos que executam",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Plano de saída fechado",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Pendência da saída da oferta encerrada",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Clientes avisados da saída, com a transição combinada",
+       "de": "Relações"
+      },
+      {
+       "o": "Contratos encerrados ou transferidos na saída",
+       "de": "Negócios"
+      },
+      {
+       "o": "Pendência de contrato na saída",
+       "de": "Negócios"
+      },
+      {
+       "o": "Entregas encerradas na saída",
+       "de": "Operações"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar a data de saída ou a data do mandato e o plano que vale",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar cada círculo da data e dos marcos da sua parte",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Coordenar a execução entre os círculos e tratar os bloqueios",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Pedir a retirada dos acessos e o destino dos dados e dos sistemas da saída",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Receber de cada círculo a conclusão da sua parte",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Cobrar a pendência do círculo dono, com o novo prazo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "A saída foi concluída como planejado? Há pendência que o círculo dono resolve no prazo"
+      },
+      {
+       "nome": "Informar à Estratégia a conclusão com a pendência, suspender o projeto e apontá-la ao executivo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "A saída foi concluída como planejado? Há pendência que não se resolve no plano"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A saída foi concluída como planejado?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Há pendência que o círculo dono resolve no prazo",
+         "via": [
+          "Cobrar a pendência do círculo dono, com o novo prazo"
+         ],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Há pendência que não se resolve no plano",
+         "via": [
+          "Informar à Estratégia a conclusão com a pendência, suspender o projeto e apontá-la ao executivo"
+         ],
+         "vai": "fim: Pendência da saída apontada à Estratégia e ao executivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "para": [
+        "IT-07"
+       ]
+      },
+      {
+       "o": "Conclusão do plano de saída da oferta",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
+       "o": "Pendência da saída, com o efeito",
+       "para": [
+        "Executivos"
+       ]
+      },
+      {
+       "o": "Saída executada",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      6853.0,
+      -44,
+      1838.0,
+      1812
+     ],
+     "foco": [
+      6923.0,
+      1270.0,
+      1897.0,
+      452.0,
+      6948,
+      1672.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Concluir a saída e informar a Estratégia",
+     "dono": "Integração",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Saída executada",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar a conclusão da saída e informar a Estratégia",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Mandar à carteira a entrega da saída, com as lições",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Conclusão do plano de saída da oferta",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
+       "o": "Entrega do projeto",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      8913.0,
+      -44,
+      396.0,
+      1812
+     ],
+     "foco": [
+      8928.0,
+      1622.0,
+      510.0,
+      100.0,
+      9008,
+      1672.0
+     ]
+    }
+   ],
+   "size": [
+    9570,
+    1760
+   ]
+  },
+  {
+   "code": "IT-05",
+   "nome": "Atender pedidos de capacidade e de serviço e manter o catálogo de capacidades",
+   "dominio": "Capacidades e agentes",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada pedido de serviço de uma empresa a um círculo chegar ao círculo dono da capacidade com um acordo de serviço, e cada necessidade de capacidade nova ou mudada virar uma ficha com método, conhecimento, executor (pessoa, agente, automação ou assessoria), ferramentas, acordo de serviço, indicador e alçada, aceita pelo líder do círculo dono e publicada no catálogo, ligada às jornadas e às tarefas. A Inteligência dá o método e o conhecimento; a Governança define a alçada; o líder do círculo dono aceita a capacidade.",
+   "frequencia": "Por evento: pedido de serviço, necessidade de capacidade, capacidades pedidas por oferta, método publicado, retirado ou recusado; e na revisão do catálogo (cadência: trimestral)",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Registrar, identificar a capacidade, encaminhar, propor a ficha e versionar o catálogo são de agente e automação; decidir a ficha e o executor é de pessoa da Integração; aceitar a capacidade é do líder do círculo dono; a alçada é da Governança."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Pedido de serviço de empresa recebido",
+     "raia": "Executivo da empresa",
+     "tipo": "message"
+    },
+    {
+     "nome": "Necessidade de capacidade nova ou mudada recebida",
+     "raia": "Solicitante",
+     "tipo": "message"
+    },
+    {
+     "nome": "Capacidades pedidas por oferta recebidas",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Método publicado, retirado ou recusado avisado",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Revisão do catálogo de capacidades iniciada",
+     "raia": "Integração · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Capacidade publicada no catálogo",
+    "Pedido de serviço encaminhado ao círculo dono, com acordo de serviço",
+    "Capacidade retirada do catálogo",
+    "Capacidade sem método, à espera da Inteligência",
+    "Necessidade sem método publicado, devolvida a quem pediu",
+    "Capacidade não aceita pelo líder do círculo dono, com o motivo"
+   ],
+   "raias": [
+    "Solicitante",
+    "Executivo da empresa",
+    "Inteligência",
+    "Governança",
+    "Líder do círculo",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber o pedido e achar a capacidade",
+     "dono": "Integração",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Pedido de serviço de empresa",
+       "de": "Executivos"
+      },
+      {
+       "o": "Pedido de serviço da empresa a ligar",
+       "de": "IT-04"
+      },
+      {
+       "o": "Necessidade de capacidade nova ou mudada",
+       "de": "Solicitante"
+      },
+      {
+       "o": "Capacidades necessárias para a oferta",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Método publicado, com versão e data de revisão",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Método retirado de uso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Método recusado ou não publicado, com o motivo",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Resultado da avaliação do método",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Redesenho que pede capacidade nova ou mudada",
+       "de": "IT-08"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o pedido, quem pede e a capacidade procurada no catálogo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Combinar o acordo de serviço com quem pediu",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": "O que abriu o trabalho? Pedido de serviço de capacidade que já existe"
+      },
+      {
+       "nome": "Encaminhar o pedido ao círculo dono e registrar o acordo de serviço",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Pedido de serviço de capacidade que já existe"
+      },
+      {
+       "nome": "Avisar quem pediu a capacidade que o método não foi publicado, com o motivo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Método recusado ou não publicado pela Inteligência"
+      },
+      {
+       "nome": "Marcar a capacidade a retirar e as jornadas e os agentes que a usam",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Método retirado, ou capacidade sem uso na revisão"
+      },
+      {
+       "nome": "Estimar o ganho esperado e a prioridade da necessidade",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Pedido de serviço de capacidade que já existe",
+         "via": [
+          "Combinar o acordo de serviço com quem pediu",
+          "Encaminhar o pedido ao círculo dono e registrar o acordo de serviço"
+         ],
+         "vai": "fim: Pedido de serviço encaminhado ao círculo dono, com acordo de serviço"
+        },
+        {
+         "rotulo": "Capacidade nova, ou que falha, ou que pode mudar de modo",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Método publicado que muda a capacidade, ou avaliação do método",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Método recusado ou não publicado pela Inteligência",
+         "via": [
+          "Avisar quem pediu a capacidade que o método não foi publicado, com o motivo"
+         ],
+         "vai": "fim: Necessidade sem método publicado, devolvida a quem pediu"
+        },
+        {
+         "rotulo": "Método retirado, ou capacidade sem uso na revisão",
+         "via": [
+          "Marcar a capacidade a retirar e as jornadas e os agentes que a usam"
+         ],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Necessidade de capacidade priorizada",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Pedido de serviço encaminhado, com acordo de serviço",
+       "para": [
+        "Executivos",
+        "Líderes dos círculos"
+       ]
+      },
+      {
+       "o": "Capacidade não criada, com o motivo",
+       "para": [
+        "IT-08"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      2250.0,
+      1460
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      2460.0,
+      1300.0,
+      380,
+      1320.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Desenhar a ficha da capacidade com o dono e a Inteligência",
+     "dono": "Integração, com o círculo dono, a Inteligência e a Governança",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Necessidade de capacidade priorizada",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Kit do método para agentes: passos, conhecimento, casos de teste e critério de sucesso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Base de conhecimento publicada",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Pedir à Inteligência o método para a capacidade, com a necessidade e o ganho",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Há método publicado para a capacidade? Não"
+      },
+      {
+       "nome": "Propor a ficha: método, conhecimento, executor, ferramentas, acordo de serviço e indicador",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o executor da capacidade: pessoa, agente, automação ou assessoria",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Definir a alçada do executor da capacidade",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Aceitar a ficha e assumir a capacidade no seu círculo",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o motivo e avisar quem pediu a capacidade",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O líder do círculo dono aceitou a ficha? Não: o dono não assume a capacidade"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há método publicado para a capacidade?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Pedir à Inteligência o método para a capacidade, com a necessidade e o ganho"
+         ],
+         "vai": "fim: Capacidade sem método, à espera da Inteligência"
+        }
+       ]
+      },
+      {
+       "pergunta": "O líder do círculo dono aceitou a ficha?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não, ajustar a ficha",
+         "via": [],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Não: o dono não assume a capacidade",
+         "via": [
+          "Registrar o motivo e avisar quem pediu a capacidade"
+         ],
+         "vai": "fim: Capacidade não aceita pelo líder do círculo dono, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Ficha da capacidade: método, conhecimento, executor, ferramentas, acordo de serviço e indicador",
+       "para": [
+        "etapa 3",
+        "IT-06"
+       ]
+      },
+      {
+       "o": "Pedido de método para capacidade ou agente",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Capacidade não criada, com o motivo",
+       "para": [
+        "IT-08"
+       ]
+      }
+     ],
+     "box": [
+      2551.0,
+      -44,
+      2044.0,
+      1460
+     ],
+     "foco": [
+      2621.0,
+      566.0,
+      2103.0,
+      804.0,
+      2646,
+      1144.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Publicar ou retirar a capacidade no catálogo e pedir a construção",
+     "dono": "Integração",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Ficha da capacidade: método, conhecimento, executor, ferramentas, acordo de serviço e indicador",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Pedir a montagem ou a mudança do agente ou da automação",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que a capacidade pede? Agente ou automação"
+      },
+      {
+       "nome": "Abrir na carteira o projeto de preparar pessoas ou contratar a assessoria",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que a capacidade pede? Pessoa ou assessoria"
+      },
+      {
+       "nome": "Retirar a capacidade do catálogo, pedir a retirada dos agentes e avisar os donos afetados",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que a capacidade pede? Retirada da capacidade"
+      },
+      {
+       "nome": "Versionar a ficha e ligar a capacidade às jornadas, às tarefas e aos donos",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Publicar a capacidade no catálogo, em construção até o agente ou a pessoa estarem prontos",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que a capacidade pede?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Agente ou automação",
+         "via": [
+          "Pedir a montagem ou a mudança do agente ou da automação"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Pessoa ou assessoria",
+         "via": [
+          "Abrir na carteira o projeto de preparar pessoas ou contratar a assessoria"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Retirada da capacidade",
+         "via": [
+          "Retirar a capacidade do catálogo, pedir a retirada dos agentes e avisar os donos afetados"
+         ],
+         "vai": "fim: Capacidade retirada do catálogo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Pedido de montagem ou de mudança de agente ou automação",
+       "para": [
+        "IT-06"
+       ]
+      },
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
+       "o": "Catálogo de capacidades atualizado",
+       "para": [
+        "Todos (pessoas e agentes)"
+       ]
+      },
+      {
+       "o": "Registros de projetos, agentes e sistemas",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      4817.0,
+      -44,
+      1838.0,
+      1460
+     ],
+     "foco": [
+      4887.0,
+      1270.0,
+      1897.0,
+      100.0,
+      4912,
+      1320.0
+     ]
+    }
+   ],
+   "size": [
+    6916,
+    1408
+   ]
+  },
+  {
+   "code": "IT-06",
+   "nome": "Cuidar dos agentes e automações: montar, testar, liberar, monitorar e corrigir",
+   "dominio": "Capacidades e agentes",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada agente ou automação ser montado pela ficha da capacidade, com o método, o conhecimento, os padrões de identidade e a alçada; passar nos casos de teste da Inteligência e da Identidade antes de entrar em uso; ser aceito pelo líder do círculo dono; e ser monitorado em uso, com o desvio corrigido, suspenso quando sai da alçada e retirado quando o método, a base ou a marca saem de uso. A Inteligência diz o que o agente precisa saber e mede se ele acertou; a Integração monta, testa, libera e mantém; a Governança define a alçada e audita.",
+   "frequencia": "Por evento: pedido de montagem ou de mudança, método, base, padrão ou marca alterados, falha ou desvio detectado; e a cada ciclo de monitoramento (cadência: mensal)",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Montar, rodar os casos de teste, medir o acerto e monitorar são de agente e automação; decidir a arquitetura, julgar os casos de fronteira, liberar e decidir a correção são de pessoa da Integração; aceitar o agente é do líder do círculo dono; a alçada é da Governança."
+   },
+   "base": [
+    "anthropic_evals",
+    "nist_airmf",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Pedido de montagem, de mudança ou de retirada de agente recebido",
+     "raia": "Integração · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Base de conhecimento ou perguntas de teste alteradas",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Padrão, posicionamento ou marca alterados",
+     "raia": "Identidade",
+     "tipo": "message"
+    },
+    {
+     "nome": "Falha ou desvio de agente detectado",
+     "raia": "Integração · automação",
+     "tipo": "signal"
+    },
+    {
+     "nome": "Ciclo de monitoramento dos agentes iniciado",
+     "raia": "Integração · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Agente em uso, monitorado",
+    "Agente retirado de uso",
+    "Agente suspenso, com a Governança e o dono avisados",
+    "Falha devolvida à Inteligência: método ou base"
+   ],
+   "raias": [
+    "Inteligência",
+    "Identidade",
+    "Governança",
+    "Líder do círculo",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Montar ou mudar o agente pela ficha",
+     "dono": "Integração",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Pedido de montagem ou de mudança de agente ou automação",
+       "de": "IT-05"
+      },
+      {
+       "o": "Pedido de montagem ou de mudança de agente ou automação",
+       "de": "IT-02"
+      },
+      {
+       "o": "Ficha da capacidade: método, conhecimento, executor, ferramentas, acordo de serviço e indicador",
+       "de": "IT-05"
+      },
+      {
+       "o": "Kit do método para agentes: passos, conhecimento, casos de teste e critério de sucesso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Base de conhecimento publicada",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Perguntas de teste da base, com a resposta esperada",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Critérios de auditoria e casos de teste",
+       "de": "Identidade"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Posicionamento e casa de mensagens vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Pacote de marca publicado",
+       "de": "Identidade"
+      },
+      {
+       "o": "Marca retirada de uso",
+       "de": "Identidade"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      },
+      {
+       "o": "Desvio a corrigir no agente",
+       "de": "etapa 4"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o que abriu o trabalho e os agentes afetados",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Retirar o agente ou o conteúdo de uso e avisar o dono da capacidade",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Retirada pedida pelo catálogo, ou marca retirada de uso"
+      },
+      {
+       "nome": "Pedir à Identidade o padrão para o agente ou o canal novo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Há padrão de identidade para o canal ou o tipo de agente? Não"
+      },
+      {
+       "nome": "Receber os padrões e os casos de teste da Identidade",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "receive",
+       "cond": "Há padrão de identidade para o canal ou o tipo de agente? Não"
+      },
+      {
+       "nome": "Decidir a arquitetura do agente: modelo, ferramentas, conhecimento e integrações",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Montar as instruções, o conhecimento, as ferramentas, a voz e a alçada do agente",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Agente novo, mudança pedida, conteúdo alterado ou desvio a corrigir",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Retirada pedida pelo catálogo, ou marca retirada de uso",
+         "via": [
+          "Retirar o agente ou o conteúdo de uso e avisar o dono da capacidade"
+         ],
+         "vai": "fim: Agente retirado de uso"
+        },
+        {
+         "rotulo": "Ciclo de monitoramento",
+         "via": [],
+         "vai": "vai para a etapa 4"
+        }
+       ]
+      },
+      {
+       "pergunta": "Há padrão de identidade para o canal ou o tipo de agente?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Pedir à Identidade o padrão para o agente ou o canal novo",
+          "Receber os padrões e os casos de teste da Identidade"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Agente montado",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Pedido de padrão para agente ou canal novo",
+       "para": [
+        "Identidade"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      2250.0,
+      1284
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      2460.0,
+      1146.0,
+      380,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Testar o agente com os casos de teste",
+     "dono": "Integração, com a Inteligência",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Agente montado",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Rodar os casos de teste do método, da base e da Identidade",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Medir o acerto do conteúdo e julgar os casos de fronteira de conteúdo",
+       "exec": "C",
+       "raia": "Inteligência",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Medir erro, tempo e custo e julgar os casos de fronteira de operação",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Apontar a falha do agente e o que corrigir",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": "O agente atinge o critério de sucesso? Não: falha do agente"
+      },
+      {
+       "nome": "Devolver à Inteligência o resultado dos testes, com os casos que falham",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O agente atinge o critério de sucesso? Não: o método ou a base é que falha"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O agente atinge o critério de sucesso?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não: falha do agente",
+         "via": [
+          "Apontar a falha do agente e o que corrigir"
+         ],
+         "vai": "volta à etapa 1"
+        },
+        {
+         "rotulo": "Não: o método ou a base é que falha",
+         "via": [
+          "Devolver à Inteligência o resultado dos testes, com os casos que falham"
+         ],
+         "vai": "fim: Falha devolvida à Inteligência: método ou base"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Agente aprovado nos testes",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Agente ou acesso não entregue, com o motivo",
+       "para": [
+        "IT-02"
+       ]
+      },
+      {
+       "o": "Resultado dos testes e do monitoramento dos agentes",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      2551.0,
+      -44,
+      1220.0,
+      1284
+     ],
+     "foco": [
+      2566.0,
+      38.0,
+      1334.0,
+      1156.0,
+      2646,
+      1144.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Liberar o agente em uso",
+     "dono": "Integração; aceita o líder do círculo dono; a Governança confere a alçada",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Agente aprovado nos testes",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Conferir a alçada e os acessos do agente",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Aceitar o agente na capacidade do seu círculo",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Liberar o agente em uso",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a versão liberada, a alçada e o dono e marcar a capacidade como em uso",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A Governança e o líder do círculo dono aceitaram o agente?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não, ajustar",
+         "via": [],
+         "vai": "volta à etapa 1"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Agente em uso",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Agente liberado para quem pediu",
+       "para": [
+        "IT-02"
+       ]
+      },
+      {
+       "o": "Registros de projetos, agentes e sistemas",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      3993.0,
+      -44,
+      1014.0,
+      1284
+     ],
+     "foco": [
+      4008.0,
+      390.0,
+      984.0,
+      804.0,
+      4088,
+      440.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Monitorar o agente em uso e tratar o desvio",
+     "dono": "Integração",
+     "modo": "Autômato",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Agente em uso",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Desvio de agente apontado pela auditoria",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Monitorar erro, disponibilidade, custo e consultas e mandar a amostra à Inteligência",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Registrar as entregas dos agentes para a auditoria e para a Identidade",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Abrir a correção do agente",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Há desvio no agente? Sim, corrigível na montagem"
+      },
+      {
+       "nome": "Suspender o agente, avisar a Governança e o dono e registrar a correção pendente",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Há desvio no agente? Sim: risco ou decisão fora da alçada"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há desvio no agente?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "fim: Agente em uso, monitorado"
+        },
+        {
+         "rotulo": "Sim, corrigível na montagem",
+         "via": [
+          "Abrir a correção do agente"
+         ],
+         "vai": "volta à etapa 1"
+        },
+        {
+         "rotulo": "Sim: risco ou decisão fora da alçada",
+         "via": [
+          "Suspender o agente, avisar a Governança e o dono e registrar a correção pendente"
+         ],
+         "vai": "fim: Agente suspenso, com a Governança e o dono avisados"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Resultado dos testes e do monitoramento dos agentes",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Consultas dos agentes sem resposta ou com resposta sem fonte",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Registros de entregas de pessoas e agentes",
+       "para": [
+        "Identidade",
+        "Governança"
+       ]
+      },
+      {
+       "o": "Desvio a corrigir no agente",
+       "para": [
+        "etapa 1"
+       ]
+      },
+      {
+       "o": "Agente suspenso, com o motivo",
+       "para": [
+        "Governança",
+        "Líderes dos círculos"
+       ]
+      },
+      {
+       "o": "Agente ou acesso não entregue, com o motivo",
+       "para": [
+        "IT-02"
+       ]
+      }
+     ],
+     "box": [
+      5023.0,
+      -44,
+      1220.0,
+      1284
+     ],
+     "foco": [
+      5093.0,
+      943.0,
+      1485.0,
+      251.0,
+      5118,
+      1144.0
+     ]
+    }
+   ],
+   "size": [
+    6710,
+    1232
+   ]
+  },
+  {
+   "code": "IT-07",
+   "nome": "Operar a tecnologia: pedidos, incidentes, acessos, mudanças e fornecedores",
+   "dominio": "Tecnologia e jornadas",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada pedido, incidente ou risco de tecnologia ser resolvido no prazo; cada acesso a dados e sistemas ser dado e retirado pela classificação do dado e pelo pedido; cada mudança em sistema ser testada, aprovada e reversível; cada incidente de segurança ou de dados pessoais ser tratado com a Governança; e cada fornecedor e licença de tecnologia ser escolhido, contratado e controlado com a Gestão e a Governança. A Integração opera e protege; a Governança define a política e verifica; a Gestão compra e paga.",
+   "frequencia": "Por evento: pedido, incidente ou risco de tecnologia, contrato de cliente encerrado, pedido de acesso ou de retirada vindo de outra jornada, pedido de fornecedor ou licença, renovação próxima",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Receber, classificar, resolver o que é conhecido, conceder e retirar acessos pela regra, testar e implantar mudanças padrão e registrar são de agente e automação; resolver o caso novo, aprovar mudança e escolher fornecedor são de pessoa da Integração."
+   },
+   "base": [
+    "iso27001",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Pedido, incidente ou risco de tecnologia recebido",
+     "raia": "Solicitante",
+     "tipo": "message"
+    },
+    {
+     "nome": "Contrato de cliente encerrado",
+     "raia": "Negócios",
+     "tipo": "message"
+    },
+    {
+     "nome": "Renovação de licença ou de contrato de tecnologia próxima",
+     "raia": "Integração · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Pedido de acesso ou de mudança vindo de outra jornada",
+     "raia": "Integração · automação",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Item de tecnologia resolvido ou contratado e registrado",
+    "Mudança desfeita, com o motivo"
+   ],
+   "raias": [
+    "Solicitante",
+    "Negócios",
+    "Governança",
+    "Gestão",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber e classificar o pedido, o incidente ou o risco",
+     "dono": "Integração",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Pedido, incidente ou risco de tecnologia",
+       "de": "Solicitante"
+      },
+      {
+       "o": "Catálogo de dados, com dono e classificação de cada dado",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Dado retirado do catálogo de dados",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Contrato encerrado, com a data de fim",
+       "de": "Negócios"
+      },
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "de": "IT-02"
+      },
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "de": "IT-04"
+      },
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "de": "IT-08"
+      },
+      {
+       "o": "Regras de sigilo e de dados pessoais",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o item, quem pede, o sistema e o dado afetados",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Classificar o tipo, a urgência, o risco e o prazo",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Tratar o incidente de segurança ou de dados pessoais com a Governança",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "É incidente de segurança ou de dados pessoais? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "É incidente de segurança ou de dados pessoais?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Tratar o incidente de segurança ou de dados pessoais com a Governança"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O que o item pede?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Acesso, retirada de acesso, solução conhecida ou mudança",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Fornecedor, licença ou serviço de tecnologia novo, ou renovação",
+         "via": [],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Item classificado e priorizado",
+       "para": [
+        "etapa 2",
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      1426.0,
+      1284
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      1581.0,
+      1132.0,
+      380,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Resolver o item e implantar a mudança",
+     "dono": "Integração; a mudança de risco, com a Governança",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Item classificado e priorizado",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Conceder ou retirar o acesso pela classificação do dado, ou aplicar a solução conhecida",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O item pede mudança em sistema? Não: acesso ou solução conhecida"
+      },
+      {
+       "nome": "Preparar e testar a mudança, com o caminho de volta",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": "O item pede mudança em sistema? Sim"
+      },
+      {
+       "nome": "Aprovar a mudança e a janela de implantação",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "O item pede mudança em sistema? Sim"
+      },
+      {
+       "nome": "Conferir a mudança contra a política de segurança e de dados pessoais",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "A mudança mexe em dado pessoal, acesso privilegiado ou segurança? Sim"
+      },
+      {
+       "nome": "Resolver o caso novo que o agente não resolve",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Implantar a mudança ou fechar o item e avisar quem pediu",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Desfazer a mudança, voltar ao estado anterior e registrar o motivo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O item foi resolvido? Não: a mudança falhou"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O item pede mudança em sistema?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Não: acesso ou solução conhecida",
+         "via": [
+          "Conceder ou retirar o acesso pela classificação do dado, ou aplicar a solução conhecida"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Preparar e testar a mudança, com o caminho de volta",
+          "Aprovar a mudança e a janela de implantação"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A mudança mexe em dado pessoal, acesso privilegiado ou segurança?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não, ou não há mudança",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Conferir a mudança contra a política de segurança e de dados pessoais"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O item foi resolvido?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "vai para a etapa 4"
+        },
+        {
+         "rotulo": "Não: a mudança falhou",
+         "via": [
+          "Desfazer a mudança, voltar ao estado anterior e registrar o motivo"
+         ],
+         "vai": "fim: Mudança desfeita, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Item resolvido",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Agente ou acesso não entregue, com o motivo",
+       "para": [
+        "IT-02"
+       ]
+      }
+     ],
+     "box": [
+      1727.0,
+      -44,
+      2456.0,
+      1284
+     ],
+     "foco": [
+      1797.0,
+      390.0,
+      2515.0,
+      804.0,
+      1822,
+      1144.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Escolher e contratar fornecedor ou licença de tecnologia",
+     "dono": "Integração, com a Gestão e a Governança",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Item classificado e priorizado",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Comparar fornecedores e licenças, ou o uso da que vence: requisito, segurança, custo e saída",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Escolher o fornecedor ou a licença, ou decidir renovar",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Revisar o contrato de tecnologia, licença ou dados e a segurança",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o custo e o orçamento",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Rever a escolha com o motivo da recusa",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": "A contratação foi aprovada? Não"
+      },
+      {
+       "nome": "Fazer a compra ou a renovação",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o fornecedor, a licença, o custo e a data de renovação",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A contratação foi aprovada?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Rever a escolha com o motivo da recusa"
+         ],
+         "vai": "volta à etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Fornecedor ou licença contratado",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Contrato de tecnologia para guardar",
+       "para": [
+        "Governança"
+       ]
+      }
+     ],
+     "box": [
+      4405.0,
+      -44,
+      1838.0,
+      1284
+     ],
+     "foco": [
+      4475.0,
+      390.0,
+      1753.0,
+      804.0,
+      4500,
+      968.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Registrar e medir o serviço de tecnologia",
+     "dono": "Integração",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Item resolvido",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Fornecedor ou licença contratado",
+       "de": "etapa 3"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o item, o tempo, a causa e o custo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Medir disponibilidade, erros, custo e prazo dos serviços de tecnologia",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Registros de projetos, agentes e sistemas",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Item de tecnologia resolvido para quem pediu",
+       "para": [
+        "IT-02"
+       ]
+      },
+      {
+       "o": "Custo de tecnologia por empresa e por círculo",
+       "para": [
+        "Gestão"
+       ]
+      }
+     ],
+     "box": [
+      6259.0,
+      -44,
+      602.0,
+      1284
+     ],
+     "foco": [
+      6329.0,
+      1094.0,
+      661.0,
+      100.0,
+      6354,
+      1144.0
+     ]
+    }
+   ],
+   "size": [
+    7122,
+    1232
+   ]
+  },
+  {
+   "code": "IT-08",
+   "nome": "Medir e redesenhar as jornadas ponta a ponta e manter o catálogo de jornadas",
+   "dominio": "Tecnologia e jornadas",
+   "classe": "essencial",
+   "onda": 2,
+   "objetivo": "Fazer cada jornada ponta a ponta ser medida, ter o gargalo achado com evidência, ser redesenhada com o círculo dono e com os círculos por onde passa, ter o redesenho decidido pelo líder do círculo dono e conferido pela Governança quando mexe em alçada, regra ou contrato, ser implantada e ter o ganho conferido; e manter o catálogo de jornadas, etapas e tarefas íntegro e versionado. A Integração mede, propõe e implanta; o líder do círculo dono decide.",
+   "frequencia": "A cada ciclo de melhoria (cadência: trimestral) e por evento: recomendação de melhoria, lacuna de execução ou mudança aprovada em outra jornada",
+   "automacao": {
+    "nivel": "alta",
+    "motivo": "Medir, achar o gargalo, versionar o catálogo e conferir o ganho são de agente e automação; propor o redesenho é de pessoa da Integração; decidir é do líder do círculo dono."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Ciclo de melhoria das jornadas iniciado",
+     "raia": "Integração · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Capacidade do redesenho não criada",
+     "raia": "Integração · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Recomendação de melhoria recebida",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Lacunas de execução apontadas recebidas",
+     "raia": "Identidade",
+     "tipo": "message"
+    },
+    {
+     "nome": "Projeto do redesenho entregue",
+     "raia": "Integração · automação",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Jornada redesenhada, implantada e com o ganho conferido",
+    "Redesenho não aprovado, com o motivo",
+    "Jornada sem gargalo que justifique mudança",
+    "Redesenho à espera do projeto",
+    "Redesenho sem a capacidade pedida, com o motivo"
+   ],
+   "raias": [
+    "Inteligência",
+    "Identidade",
+    "Governança",
+    "Líder do círculo",
+    "Integração · pessoa",
+    "Integração · agente",
+    "Integração · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Medir a jornada e achar o gargalo",
+     "dono": "Integração, com a Inteligência",
+     "modo": "Copiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Painel de indicadores de cada círculo, com dono e análise",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Recomendação de melhoria, com evidência, ganho esperado e dono sugerido",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Lacunas de execução apontadas",
+       "de": "Identidade"
+      },
+      {
+       "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+       "de": "Relações"
+      },
+      {
+       "o": "Entrega do projeto a quem o pediu",
+       "de": "IT-01"
+      },
+      {
+       "o": "Capacidade não criada, com o motivo",
+       "de": "IT-05"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Retomar o redesenho com a entrega do projeto",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Entrega do projeto de um redesenho aprovado"
+      },
+      {
+       "nome": "Suspender o projeto do redesenho e avisar o líder do círculo dono, com o motivo",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Capacidade pedida pelo redesenho não foi criada"
+      },
+      {
+       "nome": "Propor as jornadas do ciclo pela recomendação, pela lacuna e pelos indicadores",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir as jornadas do ciclo",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Medir volume, custo, qualidade, tempo e resultado da jornada",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Analisar tempos, filas e retrabalho e apontar o gargalo, com a causa provável",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a medida da jornada e responder a quem recomendou",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "Há gargalo que justifica mudar a jornada? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Ciclo, recomendação ou lacuna",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Entrega do projeto de um redesenho aprovado",
+         "via": [
+          "Retomar o redesenho com a entrega do projeto"
+         ],
+         "vai": "vai para a etapa 3"
+        },
+        {
+         "rotulo": "Capacidade pedida pelo redesenho não foi criada",
+         "via": [
+          "Suspender o projeto do redesenho e avisar o líder do círculo dono, com o motivo"
+         ],
+         "vai": "fim: Redesenho sem a capacidade pedida, com o motivo"
+        }
+       ]
+      },
+      {
+       "pergunta": "Há gargalo que justifica mudar a jornada?",
+       "quem": "Integração · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar a medida da jornada e responder a quem recomendou"
+         ],
+         "vai": "fim: Jornada sem gargalo que justifique mudança"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Gargalo da jornada, com evidência",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Projeto suspenso ou encerrado por outra jornada",
+       "para": [
+        "IT-01"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      2250.0,
+      1284
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      2604.0,
+      1146.0,
+      380,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Redesenhar a jornada com o círculo dono",
+     "dono": "Integração; decide o líder do círculo dono",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Gargalo da jornada, com evidência",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Propor o redesenho: etapas, tarefas, executores, entradas e saídas e o ganho esperado",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Montar o fluxo do redesenho e conferir as trocas com os outros círculos",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o redesenho contra as alçadas, as regras e os contratos",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "O redesenho mexe em alçada, regra ou contrato? Sim"
+      },
+      {
+       "nome": "Confirmar a parte do redesenho que passa por cada círculo afetado",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o redesenho da jornada do seu círculo",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o motivo e responder a quem recomendou",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O líder do círculo dono aprovou o redesenho? Não: fica como está"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O redesenho mexe em alçada, regra ou contrato?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Conferir o redesenho contra as alçadas, as regras e os contratos"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O líder do círculo dono aprovou o redesenho?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não, ajustar",
+         "via": [],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Não: fica como está",
+         "via": [
+          "Registrar o motivo e responder a quem recomendou"
+         ],
+         "vai": "fim: Redesenho não aprovado, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Redesenho aprovado",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      2757.0,
+      -44,
+      2044.0,
+      1284
+     ],
+     "foco": [
+      2827.0,
+      390.0,
+      2103.0,
+      804.0,
+      2852,
+      792.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Implantar o redesenho e atualizar o catálogo de jornadas",
+     "dono": "Integração",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Redesenho aprovado",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Abrir o projeto do redesenho e pedir a capacidade, o agente ou a mudança em sistema",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O redesenho pede capacidade, agente, sistema ou projeto ainda não entregue? Sim"
+      },
+      {
+       "nome": "Versionar a jornada no catálogo e refazer as ligações com etapas, tarefas e donos",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar os círculos por onde a jornada passa",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O redesenho pede capacidade, agente, sistema ou projeto ainda não entregue?",
+       "quem": "Integração · automação",
+       "saidas": [
+        {
+         "rotulo": "Não, ou o projeto já foi entregue",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Abrir o projeto do redesenho e pedir a capacidade, o agente ou a mudança em sistema"
+         ],
+         "vai": "fim: Redesenho à espera do projeto"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
+       "o": "Redesenho que pede capacidade nova ou mudada",
+       "para": [
+        "IT-05"
+       ]
+      },
+      {
+       "o": "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+       "para": [
+        "IT-07"
+       ]
+      },
+      {
+       "o": "Catálogo de jornadas atualizado",
+       "para": [
+        "Todos (pessoas e agentes)"
+       ]
+      },
+      {
+       "o": "Jornada implantada",
+       "para": [
+        "etapa 4"
+       ]
+      }
+     ],
+     "box": [
+      5023.0,
+      -44,
+      1220.0,
+      1284
+     ],
+     "foco": [
+      5093.0,
+      1094.0,
+      1135.0,
+      100.0,
+      5118,
+      1144.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Conferir o ganho do redesenho",
+     "dono": "Integração, com a Inteligência",
+     "modo": "Copiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Jornada implantada",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Painel de indicadores de cada círculo, com dono e análise",
+       "de": "Inteligência"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Medir a jornada depois do redesenho e comparar com o ganho esperado",
+       "exec": "A",
+       "raia": "Integração · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Concluir se o ganho veio e o que aprender",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o ganho conferido",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O ganho esperado veio? Sim"
+      },
+      {
+       "nome": "Registrar a lição e levar à Inteligência",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O ganho esperado veio? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O ganho esperado veio?",
+       "quem": "Integração · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Registrar o ganho conferido"
+         ],
+         "vai": "fim: Jornada redesenhada, implantada e com o ganho conferido"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar a lição e levar à Inteligência"
+         ],
+         "vai": "fim: Jornada redesenhada, implantada e com o ganho conferido"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Lição apontada",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      6259.0,
+      -44,
+      1014.0,
+      1284
+     ],
+     "foco": [
+      6274.0,
+      742.0,
+      1334.0,
+      452.0,
+      6354,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    7740,
+    1232
+   ]
+  }
+ ],
+ "dominios": [
+  {
+   "nome": "Projetos e implantação",
+   "desc": "Carteira de projetos, implantação de clientes, lançamento de ofertas e saída de ofertas e empresas: a Integração como escritório de projetos."
+  },
+  {
+   "nome": "Capacidades e agentes",
+   "desc": "Catálogo de capacidades, pedidos de serviço entre empresas e círculos, e agentes e automações do desenho ao uso."
+  },
+  {
+   "nome": "Tecnologia e jornadas",
+   "desc": "Operação da tecnologia e melhoria das jornadas ponta a ponta."
+  }
+ ],
+ "fontes": {
+  "apqc": {
+   "ref": "APQC, Process Classification Framework (PCF), cross-industry",
+   "uso": "PCF 7.4. Os processos da Integração estão em duas categorias: 8.0, tecnologia da informação (arquitetura, portfólio de TI, segurança, identidade e acesso, criação e teste de soluções, implantação, controle de mudança e suporte), base da IT-06 e da IT-07; e 13.0, capacidades do negócio (processos, portfólio e projetos, mudança), base da IT-01 a IT-05 e da IT-08. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "links": [
+    [
+     "PCF 7.4 (PDF, cópia 1)",
+     "https://www.business-analysis.com.au/wp-content/uploads/2025/04/K014750_APQC-Process-Classification-Framework-PCF-Cross-Industry-PDF-Version-7.4_January-2025.pdf"
+    ],
+    [
+     "PCF 7.4 (PDF, cópia 2)",
+     "https://solutions.ifrc.org/sites/default/files/2024-10/K014750_APQC%20Process%20Classification%20Framework%20(PCF)%20-%20Cross%20Industry%20-%20PDF%20Version%207.4.pdf"
+    ],
+    [
+     "PCF 8.0 (página oficial)",
+     "https://www.apqc.org/resource-library/resource-listing/apqc-process-classification-framework-pcf-cross-industry-excel-12"
+    ],
+    [
+     "PCF 8.0, 13 categorias",
+     "https://www.apqc.org/resource-library/resource-collection/pcf-version-80-process-definitions-and-key-measures-collection"
+    ]
+   ]
+  },
+  "bpmn": {
+   "ref": "OMG, Business Process Model and Notation (BPMN) 2.0.2; ISO/IEC 19510:2013",
+   "uso": "Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, manual, serviço, script e recebimento, além da atividade de chamada.",
+   "conf": "Páginas oficiais da OMG e da ISO abertas; a lista de tipos de tarefa foi conferida no BPMN Quick Guide; a atividade de chamada foi aceita pelo metamodelo usado nos testes. A especificação completa não foi lida.",
+   "links": [
+    [
+     "omg.org",
+     "https://www.omg.org/spec/BPMN/2.0.2/About-BPMN"
+    ],
+    [
+     "iso.org",
+     "https://www.iso.org/standard/62652.html"
+    ],
+    [
+     "BPMN Quick Guide",
+     "https://www.bpmnquickguide.com/quickguide/bpmn-quick-guide/tasks"
+    ]
+   ]
+  },
+  "camunda": {
+   "ref": "Camunda, Best Practices: Naming BPMN elements",
+   "uso": "Regra de nomes: tarefa com verbo no infinitivo e objeto; evento com objeto e estado; gateway com pergunta; raia com papel ou sistema.",
+   "conf": "Documentação oficial aberta.",
+   "links": [
+    [
+     "docs.camunda.io",
+     "https://docs.camunda.io/docs/components/best-practices/modeling/naming-bpmn-elements/"
+    ]
+   ]
+  },
+  "sipoc": {
+   "ref": "ASQ, SIPOC+CM Diagram",
+   "uso": "Fornecedor, entrada, processo, saída e cliente: a base de “quem gera a entrada” e “quem recebe a saída” em cada etapa.",
+   "conf": "Página oficial da ASQ aberta.",
+   "links": [
+    [
+     "asq.org",
+     "https://asq.org/quality-resources/sipoc"
+    ]
+   ]
+  },
+  "iso21502": {
+   "ref": "ISO 21502:2020, Project, programme and portfolio management — Guidance on project management",
+   "uso": "Norma de orientação para gestão de projetos, aplicável a qualquer organização e a qualquer tipo de projeto; não trata de programas nem de portfólios. Lemos só o resumo; a norma está publicada e marcada para revisão. Referência do ciclo de projeto (registrar, planejar, acompanhar e encerrar com lições) na IT-01, na IT-02, na IT-03 e na IT-04; o portfólio vem do APQC (13.2.1).",
+   "conf": "Página oficial da ISO aberta em 02/10/2026: resumo lido; a norma está publicada, no estágio 90.92 (a ser revista). A norma completa é paga e não foi lida.",
+   "links": [
+    [
+     "iso.org",
+     "https://www.iso.org/standard/74947.html"
+    ]
+   ]
+  },
+  "iso27001": {
+   "ref": "ISO/IEC 27001:2022, Information security, cybersecurity and privacy protection — Information security management systems — Requirements",
+   "uso": "Norma de requisitos para o sistema de gestão da segurança da informação. Lemos só o resumo. Referência da operação segura da IT-07: acesso pela classificação, mudança testada e reversível e incidente de segurança tratado com a Governança, que define a política.",
+   "conf": "Página oficial da ISO aberta em 02/10/2026: resumo lido. A norma completa é paga e não foi lida.",
+   "links": [
+    [
+     "iso.org",
+     "https://www.iso.org/standard/27001"
+    ]
+   ]
+  },
+  "anthropic_evals": {
+   "ref": "Anthropic, Define success criteria and build evaluations (documentação da plataforma Claude)",
+   "uso": "Critério de sucesso específico e mensurável; avaliações que espelham a tarefa real e são automatizadas quando possível; correção por código, por pessoa e por modelo. Base dos casos de teste, do julgamento dos casos de fronteira e do critério de liberação na IT-06.",
+   "conf": "Página oficial aberta em platform.claude.com.",
+   "links": [
+    [
+     "platform.claude.com",
+     "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+    ]
+   ]
+  },
+  "nist_airmf": {
+   "ref": "National Institute of Standards and Technology (NIST), Artificial Intelligence Risk Management Framework (AI RMF 1.0), 2023",
+   "uso": "O núcleo tem quatro funções: governar, mapear, medir e gerir. Base do monitoramento em uso e da suspensão do agente que sai da alçada na IT-06. O framework trata de risco de IA; usá-lo para a operação do agente é leitura nossa.",
+   "conf": "Página do núcleo do framework aberta no site do NIST (AI Resource Center); o documento completo não foi lido. A página avisa que a versão 1.0 está em atualização.",
+   "links": [
+    [
+     "airc.nist.gov",
+     "https://airc.nist.gov/airmf-resources/airmf/5-sec-core/"
+    ]
+   ]
+  }
+ },
+ "mudancas": [
+  {
+   "tipo": "Ajustado",
+   "antes": "I-IT3 · Da carteira de projetos à entrega",
+   "agora": "IT-01",
+   "nota": "Carteira única de projetos internos e de clientes, com a prioridade dos projetos de cada empresa decidida pelo executivo e o conflito entre empresas levado à Estratégia."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "V4 · Do contrato à operação",
+   "agora": "IT-02",
+   "nota": "Mantida na Integração, com Operações confirmando a capacidade, implantando junto e assumindo a entrega."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "IT-03",
+   "nota": "Coordenação do lançamento da oferta, decidida em 01/10/2026: a Integração coordena com o executivo depois do portão de lançamento."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "IT-04",
+   "nota": "Plano de saída de oferta ou de empresa, pedido pela Estratégia (ES-04 e ES-05) e confirmado por você às 20:11 de 02/10/2026."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "C5 · Da necessidade à capacidade, I-IT1 · Da mudança ao catálogo atualizado e E1 · Do pedido ao serviço",
+   "agora": "IT-05",
+   "nota": "Juntas numa jornada: pedido de serviço com acordo, necessidade de capacidade, ficha aceita pelo líder do círculo dono e catálogo versionado."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "I-IT2 · Do desenho ao agente liberado",
+   "agora": "IT-06",
+   "nota": "Ganha o padrão de identidade para canal novo, a aceitação pelo líder do círculo dono, o monitoramento em uso e a suspensão do agente que sai da alçada."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "C10 · Do pedido de tecnologia ao serviço estável",
+   "agora": "IT-07",
+   "nota": "Ganha o acesso pela classificação do dado, o incidente de segurança com a Governança e o contrato de tecnologia."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "I-IT4 · Da jornada medida à jornada melhorada",
+   "agora": "IT-08",
+   "nota": "O redesenho passa a ser decidido pelo líder do círculo dono, e o catálogo de jornadas entra na mesma jornada."
+  }
+ ],
+ "interfaces": [
+  {
+   "parte": "Identidade",
+   "entrega": [
+    {
+     "o": "Critérios de auditoria e casos de teste",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Lacunas de execução apontadas",
+     "em": [
+      "IT-08"
+     ]
+    },
+    {
+     "o": "Marca retirada de uso",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Pacote de marca publicado",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Padrões de identidade vigentes",
+     "em": [
+      "IT-02",
+      "IT-05",
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Posicionamento e casa de mensagens vigentes",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Resposta à consulta",
+     "em": [
+      "IT-02"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Consulta sobre caso não coberto",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Pedido de padrão para agente ou canal novo",
+     "de": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Registros de entregas de pessoas e agentes",
+     "de": [
+      "IT-06"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-02"
+   ]
+  },
+  {
+   "parte": "Estratégia",
+   "entrega": [
+    {
+     "o": "Alvos e iniciativas do ciclo",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+     "em": [
+      "IT-01",
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Decisão do portão",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Mandato da empresa",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Oferta aprovada para lançamento",
+     "em": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Pedido de plano de saída da oferta: clientes e contratos",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Pedido de plano de saída: clientes, contratos e pessoas",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Pendência da saída da oferta encerrada",
+     "em": [
+      "IT-04"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Conclusão do plano de saída da oferta",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Plano de saída da oferta: clientes e contratos",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Plano de saída: clientes, contratos e pessoas",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Situação das iniciativas na carteira de projetos",
+     "de": [
+      "IT-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-01"
+   ]
+  },
+  {
+   "parte": "Inteligência",
+   "entrega": [
+    {
+     "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Base de conhecimento publicada",
+     "em": [
+      "IT-05",
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Capacidades necessárias para a oferta",
+     "em": [
+      "IT-03",
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Catálogo de dados, com dono e classificação de cada dado",
+     "em": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Dado retirado do catálogo de dados",
+     "em": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Kit do método para agentes: passos, conhecimento, casos de teste e critério de sucesso",
+     "em": [
+      "IT-05",
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Método publicado, com versão e data de revisão",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Método recusado ou não publicado, com o motivo",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Método retirado de uso",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+     "em": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Ofertas, apostas e pilotos em curso da empresa que sai",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Painel de indicadores de cada círculo, com dono e análise",
+     "em": [
+      "IT-03",
+      "IT-08"
+     ]
+    },
+    {
+     "o": "Perguntas de teste da base, com a resposta esperada",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Recomendação de melhoria, com evidência, ganho esperado e dono sugerido",
+     "em": [
+      "IT-08"
+     ]
+    },
+    {
+     "o": "Resultado da avaliação do método",
+     "em": [
+      "IT-05"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Consultas dos agentes sem resposta ou com resposta sem fonte",
+     "de": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Lição apontada",
+     "de": [
+      "IT-08"
+     ]
+    },
+    {
+     "o": "Lições de projetos e implantações encerrados",
+     "de": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Pedido de método para capacidade ou agente",
+     "de": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Registros de projetos, agentes e sistemas",
+     "de": [
+      "IT-01",
+      "IT-05",
+      "IT-06",
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Resultado dos testes e do monitoramento dos agentes",
+     "de": [
+      "IT-06"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-06"
+   ]
+  },
+  {
+   "parte": "Relações",
+   "entrega": [
+    {
+     "o": "Clientes avisados da saída, com a transição combinada",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+     "em": [
+      "IT-02",
+      "IT-08"
+     ]
+    },
+    {
+     "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+     "em": [
+      "IT-03"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Plano de implantação do cliente",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "de": [
+      "IT-04"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-03",
+    "IT-04"
+   ]
+  },
+  {
+   "parte": "Negócios",
+   "entrega": [
+    {
+     "o": "Contrato de cliente assinado, com o escopo vendido",
+     "em": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Contrato encerrado, com a data de fim",
+     "em": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Contratos afetados pela saída",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Contratos encerrados ou transferidos na saída",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Pendência de contrato na saída",
+     "em": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "em": [
+      "IT-01"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "de": [
+      "IT-04"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-03",
+    "IT-04"
+   ]
+  },
+  {
+   "parte": "Operações",
+   "entrega": [
+    {
+     "o": "Entregas encerradas na saída",
+     "em": [
+      "IT-04"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Cliente implantado e aceito, passado à entrega",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Oferta lançada",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de implantação do cliente",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "de": [
+      "IT-04"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-02",
+    "IT-03",
+    "IT-04"
+   ]
+  },
+  {
+   "parte": "Gestão",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Cliente implantado e aceito, passado à entrega",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Custo de tecnologia por empresa e por círculo",
+     "de": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Impedimento do lançamento, com as opções",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Oferta lançada",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de implantação do cliente",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Projeto encerrado, com o resultado",
+     "de": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Recursos liberados de projeto suspenso ou encerrado",
+     "de": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Situação das iniciativas na carteira de projetos",
+     "de": [
+      "IT-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-02",
+    "IT-03",
+    "IT-04",
+    "IT-07"
+   ]
+  },
+  {
+   "parte": "Governança",
+   "entrega": [
+    {
+     "o": "Desvio de agente apontado pela auditoria",
+     "em": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Regras de sigilo e de dados pessoais",
+     "em": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Regras e alçadas vigentes",
+     "em": [
+      "IT-05",
+      "IT-06",
+      "IT-08"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Agente suspenso, com o motivo",
+     "de": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Contrato de tecnologia para guardar",
+     "de": [
+      "IT-07"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Registros de entregas de pessoas e agentes",
+     "de": [
+      "IT-06"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-03",
+    "IT-04",
+    "IT-05",
+    "IT-06",
+    "IT-07",
+    "IT-08"
+   ]
+  },
+  {
+   "parte": "Executivos",
+   "entrega": [
+    {
+     "o": "Pedido de serviço de empresa",
+     "em": [
+      "IT-05"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Impasse da implantação, com as opções",
+     "de": [
+      "IT-02"
+     ]
+    },
+    {
+     "o": "Impedimento do lançamento, com as opções",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Oferta lançada",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Pedido de serviço encaminhado, com acordo de serviço",
+     "de": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Pendência da saída, com o efeito",
+     "de": [
+      "IT-04"
+     ]
+    },
+    {
+     "o": "Plano de lançamento da oferta",
+     "de": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Projeto encerrado, com o resultado",
+     "de": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Situação das iniciativas na carteira de projetos",
+     "de": [
+      "IT-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-01",
+    "IT-03",
+    "IT-04"
+   ]
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "entrega": [
+    {
+     "o": "Entrega do projeto",
+     "em": [
+      "IT-01"
+     ]
+    },
+    {
+     "o": "Prontidão de cada círculo para o lançamento",
+     "em": [
+      "IT-03"
+     ]
+    },
+    {
+     "o": "Situação, marco ou desvio informado pelo dono do projeto",
+     "em": [
+      "IT-01"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Agente suspenso, com o motivo",
+     "de": [
+      "IT-06"
+     ]
+    },
+    {
+     "o": "Pedido de serviço encaminhado, com acordo de serviço",
+     "de": [
+      "IT-05"
+     ]
+    }
+   ],
+   "tarefas": [
+    "IT-05",
+    "IT-06",
+    "IT-08"
+   ]
+  },
+  {
+   "parte": "Solicitante",
+   "entrega": [
+    {
+     "o": "Necessidade de capacidade nova ou mudada",
+     "em": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Pedido, incidente ou risco de tecnologia",
+     "em": [
+      "IT-07"
+     ]
+    }
+   ],
+   "recebe": [],
+   "tarefas": []
+  },
+  {
+   "parte": "Clientes",
+   "entrega": [],
+   "recebe": [],
+   "tarefas": [
+    "IT-02"
+   ]
+  },
+  {
+   "parte": "Todos (pessoas e agentes)",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Catálogo de capacidades atualizado",
+     "de": [
+      "IT-05"
+     ]
+    },
+    {
+     "o": "Catálogo de jornadas atualizado",
+     "de": [
+      "IT-08"
+     ]
+    }
+   ],
+   "tarefas": []
+  }
+ ],
+ "tarefas_fora": [
+  {
+   "parte": "Executivos",
+   "code": "IT-01",
+   "etapa": 2,
+   "nome": "Decidir a prioridade dos projetos da sua empresa"
+  },
+  {
+   "parte": "Estratégia",
+   "code": "IT-01",
+   "etapa": 2,
+   "nome": "Decidir o conflito de capacidade entre empresas, pelos alvos e pela alocação"
+  },
+  {
+   "parte": "Clientes",
+   "code": "IT-02",
+   "etapa": 1,
+   "nome": "Confirmar o plano de implantação e os responsáveis do cliente"
+  },
+  {
+   "parte": "Operações",
+   "code": "IT-02",
+   "etapa": 1,
+   "nome": "Confirmar a capacidade de entrega e quem assume o cliente"
+  },
+  {
+   "parte": "Identidade",
+   "code": "IT-02",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre os materiais de implantação não cobertos pelos padrões"
+  },
+  {
+   "parte": "Gestão",
+   "code": "IT-02",
+   "etapa": 2,
+   "nome": "Contratar ou comprar o que falta para a implantação"
+  },
+  {
+   "parte": "Clientes",
+   "code": "IT-02",
+   "etapa": 3,
+   "nome": "Conferir a implantação com o cliente"
+  },
+  {
+   "parte": "Relações",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar a parte de demanda e comunicação do lançamento"
+  },
+  {
+   "parte": "Negócios",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar a tabela, o material de venda e quem vende"
+  },
+  {
+   "parte": "Operações",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar a capacidade de entrega e o atendimento"
+  },
+  {
+   "parte": "Gestão",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar o orçamento e a cobrança"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Confirmar os termos e as regras da oferta"
+  },
+  {
+   "parte": "Executivos",
+   "code": "IT-03",
+   "etapa": 1,
+   "nome": "Opinar sobre o plano e a data de lançamento da sua empresa"
+  },
+  {
+   "parte": "Relações",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor a transição dos clientes"
+  },
+  {
+   "parte": "Negócios",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor o encerramento ou a transferência dos contratos de clientes"
+  },
+  {
+   "parte": "Operações",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor o fim das entregas em curso"
+  },
+  {
+   "parte": "Gestão",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Propor o destino das pessoas, dos custos e dos contratos de fornecedores"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Conferir as obrigações legais e contratuais da saída"
+  },
+  {
+   "parte": "Executivos",
+   "code": "IT-04",
+   "etapa": 1,
+   "nome": "Opinar sobre o plano de saída da sua empresa"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "IT-05",
+   "etapa": 1,
+   "nome": "Combinar o acordo de serviço com quem pediu"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-05",
+   "etapa": 2,
+   "nome": "Definir a alçada do executor da capacidade"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "IT-05",
+   "etapa": 2,
+   "nome": "Aceitar a ficha e assumir a capacidade no seu círculo"
+  },
+  {
+   "parte": "Inteligência",
+   "code": "IT-06",
+   "etapa": 2,
+   "nome": "Medir o acerto do conteúdo e julgar os casos de fronteira de conteúdo"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-06",
+   "etapa": 3,
+   "nome": "Conferir a alçada e os acessos do agente"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "IT-06",
+   "etapa": 3,
+   "nome": "Aceitar o agente na capacidade do seu círculo"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-07",
+   "etapa": 1,
+   "nome": "Tratar o incidente de segurança ou de dados pessoais com a Governança"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-07",
+   "etapa": 2,
+   "nome": "Conferir a mudança contra a política de segurança e de dados pessoais"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-07",
+   "etapa": 3,
+   "nome": "Revisar o contrato de tecnologia, licença ou dados e a segurança"
+  },
+  {
+   "parte": "Gestão",
+   "code": "IT-07",
+   "etapa": 3,
+   "nome": "Conferir o custo e o orçamento"
+  },
+  {
+   "parte": "Gestão",
+   "code": "IT-07",
+   "etapa": 3,
+   "nome": "Fazer a compra ou a renovação"
+  },
+  {
+   "parte": "Governança",
+   "code": "IT-08",
+   "etapa": 2,
+   "nome": "Conferir o redesenho contra as alçadas, as regras e os contratos"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "IT-08",
+   "etapa": 2,
+   "nome": "Confirmar a parte do redesenho que passa por cada círculo afetado"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "IT-08",
+   "etapa": 2,
+   "nome": "Decidir o redesenho da jornada do seu círculo"
+  }
+ ],
+ "stats": {
+  "jornadas": 8,
+  "essenciais": 8,
+  "recomendadas": 0,
+  "etapas": 29,
+  "tarefas": 162,
+  "decisoes": 37,
+  "exec": {
+   "R": 76,
+   "A": 25,
+   "P": 28,
+   "H": 10,
+   "C": 23
+  },
+  "modos": {
+   "Copiloto": 11,
+   "Autopiloto": 5,
+   "Assistido": 7,
+   "Autômato": 6
+  },
+  "riscos": {
+   "baixo": 12,
+   "médio": 14,
+   "alto": 3
+  },
+  "por_jornada": {
+   "IT-01": {
+    "R": 8,
+    "A": 4,
+    "P": 7,
+    "H": 1,
+    "C": 1
+   },
+   "IT-02": {
+    "A": 4,
+    "P": 5,
+    "H": 2,
+    "C": 3,
+    "R": 7
+   },
+   "IT-03": {
+    "A": 4,
+    "C": 5,
+    "H": 1,
+    "P": 2,
+    "R": 5
+   },
+   "IT-04": {
+    "R": 17,
+    "P": 4,
+    "A": 1,
+    "C": 5,
+    "H": 1
+   },
+   "IT-05": {
+    "R": 11,
+    "H": 2,
+    "A": 2,
+    "P": 1,
+    "C": 1
+   },
+   "IT-06": {
+    "R": 11,
+    "P": 3,
+    "A": 2,
+    "C": 2,
+    "H": 1
+   },
+   "IT-07": {
+    "R": 7,
+    "A": 4,
+    "C": 5,
+    "P": 3
+   },
+   "IT-08": {
+    "R": 10,
+    "A": 4,
+    "P": 3,
+    "C": 1,
+    "H": 2
+   }
+  },
+  "verificacoes": 2706,
+  "problemas": 0
+ },
+ "exec_nome": {
+  "P": "Pessoa da Integração",
+  "A": "Agente da Integração",
+  "R": "Automação da Integração",
+  "C": "Outro círculo",
+  "H": "Pessoa de fora do círculo",
+  "X": "Assessoria externa"
+ },
+ "fronteiras": [
+  {
+   "o": "Decidir o que o agente precisa saber e medir se ele acertou; definir e catalogar o dado",
+   "dono": "Inteligência",
+   "nota": "O pedido de método (IT-05), o resultado dos testes e do monitoramento, as consultas sem resposta (IT-06), os registros de projetos, agentes e sistemas e as lições dos projetos encerrados."
+  },
+  {
+   "o": "Rodar a entrega recorrente e atender",
+   "dono": "Operações",
+   "nota": "O plano de implantação e o cliente implantado e aceito (IT-02), o plano de lançamento e a oferta lançada (IT-03) e o plano de saída (IT-04)."
+  },
+  {
+   "o": "Definir a política, as alçadas e a segurança; guardar os contratos; auditar",
+   "dono": "Governança",
+   "nota": "A alçada da capacidade e do agente (IT-05 e IT-06), a conferência de mudança que mexe em dado pessoal ou segurança e o incidente de segurança (IT-07), o contrato de tecnologia (IT-07) e o redesenho que mexe em alçada (IT-08)."
+  },
+  {
+   "o": "Comprar, pagar e montar o orçamento",
+   "dono": "Gestão",
+   "nota": "O que falta para a implantação (IT-02), a compra de fornecedor e licença (IT-07), o custo de tecnologia, a situação da carteira e os recursos liberados de projeto suspenso."
+  },
+  {
+   "o": "Decidir o portfólio, a aposta, o lançamento e a data de saída",
+   "dono": "Estratégia",
+   "nota": "A situação da carteira (IT-01), o conflito de capacidade entre empresas (IT-01, etapa 2), o plano de saída e a sua conclusão (IT-04)."
+  },
+  {
+   "o": "Definir os padrões, a marca e a voz",
+   "dono": "Identidade",
+   "nota": "O pedido de padrão para agente ou canal novo e os registros de entregas de pessoas e agentes (IT-06); a consulta sobre materiais de implantação não cobertos (IT-02)."
+  },
+  {
+   "o": "Vender e cuidar do cliente",
+   "dono": "Negócios e Relações",
+   "nota": "Relações recebe o plano de implantação (IT-02), o plano de lançamento (IT-03) e o plano de saída de clientes e contratos (IT-04); Negócios recebe o plano de lançamento (IT-03) e o plano de saída (IT-04)."
+  },
+  {
+   "o": "Medir o acerto do agente e incluir o método na ficha",
+   "dono": "Inteligência",
+   "nota": "A Inteligência mede o acerto de conteúdo nos testes e na amostra em uso (IT-06). O agente de teste de um método ainda não publicado é montado como tarefa da IN-06, sem ficha; a ficha da capacidade vem com o método publicado (IT-05). A tarefa da IN-06 de incluir o método na ficha é feita pela IT-05, com a decisão da Integração e o aceite do líder do círculo dono."
+  },
+  {
+   "o": "Coordenar a execução do mandato e informar a Estratégia",
+   "dono": "Integração, como tarefa da ES-05, etapa 7",
+   "nota": "O mandato de venda ou de encerramento usa o plano de saída da IT-04; o de criação ou de aquisição abre na carteira o projeto de ligar a empresa (IT-04 e IT-01). A situação da execução é informada dentro da ES-05."
+  },
+  {
+   "o": "Executar cada projeto no círculo dono",
+   "dono": "O círculo dono do projeto",
+   "nota": "A Integração registra, prioriza, acompanha e encerra na carteira (IT-01); o trabalho do projeto roda na jornada do círculo dono."
+  }
+ ],
+ "pontos": [],
+ "decisoes": [
+  {
+   "o": "A Integração decide o seu ofício; o executivo decide a prioridade dos projetos da sua empresa",
+   "origem": "Ponto 1, aprovado por você (09:30 de 03/10/2026)",
+   "efeito": "Método de projetos, arquitetura e plataforma, ficha técnica da capacidade, liberação do agente pelos testes e mudança em sistemas são da Integração, ouvidos os donos. A prioridade dos projetos de cada empresa é do executivo, exceção declarada que vem do documento-base."
+  },
+  {
+   "o": "O conflito de capacidade entre empresas sobe à Estratégia",
+   "origem": "Ponto 2, aprovado por você (09:30)",
+   "efeito": "IT-01, etapa 2."
+  },
+  {
+   "o": "A Integração libera o agente depois dos testes; a Governança confere a alçada; o líder do círculo dono aceita",
+   "origem": "Ponto 3, aprovado por você (09:30)",
+   "efeito": "IT-06, etapa 3. A Inteligência mede o acerto de conteúdo."
+  },
+  {
+   "o": "O líder do círculo dono decide o redesenho da jornada",
+   "origem": "Ponto 4, aprovado por você (09:30)",
+   "efeito": "IT-08. Os círculos por onde a jornada passa confirmam a sua parte; a Governança confere quando mexe em alçada, regra ou contrato."
+  },
+  {
+   "o": "A Integração decide o plano e a data do lançamento, ouvido o executivo",
+   "origem": "Ponto 5, aprovado por você (09:30)",
+   "efeito": "IT-03. O lançamento só sai com a prontidão conferida."
+  },
+  {
+   "o": "O pedido de serviço de uma empresa aos círculos fica na IT-05",
+   "origem": "Ponto 6, aprovado por você (09:30)",
+   "efeito": "Com acordo de serviço combinado com o líder do círculo dono. O rateio fica para a consolidação das jornadas entre empresas."
+  },
+  {
+   "o": "Oito jornadas",
+   "origem": "Ponto 7, aprovado por você (09:30)",
+   "efeito": "IT-01 a IT-08, como propostas."
+  },
+  {
+   "o": "A NE-01 recebe o plano de lançamento",
+   "origem": "Proposta aprovada por você (09:30)",
+   "efeito": "Aplicada no círculo 5: a IT-03 entrega o plano a Negócios."
+  },
+  {
+   "o": "A IT-04 recebe de Operações as entregas encerradas na saída",
+   "origem": "Proposta do círculo 7, aprovada por você às 11:50 de 03/10/2026",
+   "efeito": "IT-04, etapa 2: a conclusão da parte de Operações na saída passa a ser uma entrada, vinda da OP-08."
+  },
+  {
+   "o": "A IT-06 recebe da Governança o desvio de agente apontado pela auditoria",
+   "origem": "Proposta do círculo 9, aprovada por você às 11:50 de 03/10/2026",
+   "efeito": "IT-06, etapa 4: o desvio achado na auditoria (GO-06) entra no tratamento de desvio, como o achado pelo monitoramento."
+  },
+  {
+   "o": "Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem",
+   "origem": "Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)",
+   "efeito": "IT-08 etapa 1: o agente propõe as jornadas do ciclo e a pessoa da Integração decide; o modo passa de Autopiloto a Copiloto (item 3). De Autopiloto para Autômato, pelas tarefas: IT-05 etapa 3, IT-06 etapa 4, IT-08 etapa 3. De Copiloto para Assistido, pelas tarefas: IT-01 etapa 4, IT-02 etapa 1, IT-02 etapa 3, IT-03 etapa 1, IT-05 etapa 2, IT-06 etapa 3, IT-08 etapa 2. Nível de automação pela faixa: IT-04 baixa → média; IT-05 média → alta; IT-06 média → alta; IT-07 alta → média; IT-08 média → alta."
+  },
+  {
+   "o": "Cadências e conteúdos validados; gates de implantação",
+   "origem": "Validado por você (14:07 de 03/10/2026)",
+   "efeito": "IT-01 mensal; IT-05 trimestral; IT-06 mensal; IT-08 trimestral; método de projetos, prioridade da carteira, critério de liberação de agente (cinco testes) e política de segurança. O que depende de dado real ficou nos gates G1 a G9."
+  }
+ ],
+ "alertas": [
+  {
+   "o": "Operações (círculo 7)",
+   "nota": "A Integração espera de Operações a confirmação de capacidade antes da implantação e do lançamento, a implantação feita em conjunto e o fim das entregas na saída. Entrega o cliente implantado e aceito, o plano de implantação, o plano de lançamento, a oferta lançada e o plano de saída."
+  },
+  {
+   "o": "Gestão (círculo 8)",
+   "nota": "A Integração entrega também os planos de implantação, de lançamento e de saída. Espera que a Gestão compre o que falta para a implantação, compre fornecedores e licenças de tecnologia, confira o orçamento do lançamento e proponha o destino das pessoas e dos custos na saída. Entrega a situação da carteira, os recursos liberados, o custo de tecnologia por empresa e por círculo e o cliente implantado para iniciar a cobrança."
+  },
+  {
+   "o": "Governança (círculo 9)",
+   "nota": "A Integração entrega também os planos de lançamento e de saída. Espera as regras e alçadas vigentes, as regras de sigilo e de dados pessoais, a alçada de cada capacidade e de cada agente, a conferência de mudança que mexe em dado pessoal ou segurança, o tratamento do incidente de segurança, a revisão do contrato de tecnologia e as obrigações legais da saída. Entrega o contrato de tecnologia para guardar, os registros de entregas de pessoas e agentes e o agente suspenso, com o motivo."
+  }
+ ],
+ "propostas": [],
+ "transferidas": [],
+ "cobertura": [
+  {
+   "ref": "8.1",
+   "nome": "Develop and manage IT customer relationships",
+   "onde": "IT-05 (pedido de serviço e acordo de serviço) e IT-07 (pedidos de tecnologia)"
+  },
+  {
+   "ref": "8.2.3",
+   "nome": "Define and maintain enterprise architecture",
+   "onde": "Em parte: a arquitetura de cada agente (IT-06, etapa 1) e a mudança em sistema (IT-07, etapa 2). A arquitetura da plataforma como um todo não tem jornada própria: fica como limite"
+  },
+  {
+   "ref": "8.2.6",
+   "nome": "Manage IT value portfolio",
+   "onde": "IT-01: os projetos de tecnologia entram na carteira única"
+  },
+  {
+   "ref": "8.3.3",
+   "nome": "Control IT risk, compliance, and security",
+   "onde": "IT-07, com a Governança, que define a política e verifica"
+  },
+  {
+   "ref": "8.3.4",
+   "nome": "Plan and manage IT continuity",
+   "onde": "Não desenhado como etapa própria: fica como limite"
+  },
+  {
+   "ref": "8.3.5",
+   "nome": "Develop and manage IT security, privacy, and data protection",
+   "onde": "IT-07, etapas 1 e 2: incidente de segurança ou de dados pessoais e mudança que mexe em dado pessoal, com a Governança"
+  },
+  {
+   "ref": "8.3.8",
+   "nome": "Manage IT user identity and authorization",
+   "onde": "IT-07, etapa 2: acesso pela classificação do dado (IN-03) e pelo pedido"
+  },
+  {
+   "ref": "8.4",
+   "nome": "Manage information",
+   "onde": "Fora: a Inteligência define e cataloga o dado (IN-03); a Integração conecta, guarda e dá o acesso, como tarefas da IN-03 e na IT-07"
+  },
+  {
+   "ref": "8.5.4",
+   "nome": "Execute IT service/solution creation and testing",
+   "onde": "IT-06, etapas 1 e 2"
+  },
+  {
+   "ref": "8.6.2",
+   "nome": "Plan service and solution implementation",
+   "onde": "IT-02, etapa 1, para o cliente; IT-06, etapa 3, para o agente"
+  },
+  {
+   "ref": "8.6.3",
+   "nome": "Manage change deployment control",
+   "onde": "IT-07, etapa 2"
+  },
+  {
+   "ref": "8.6.5",
+   "nome": "Perform service and solution rollout",
+   "onde": "IT-02, etapas 2 e 3; IT-06, etapa 3"
+  },
+  {
+   "ref": "8.7.8",
+   "nome": "Operate IT user support",
+   "onde": "IT-07"
+  },
+  {
+   "ref": "13.1",
+   "nome": "Manage business processes",
+   "onde": "IT-08: catálogo de jornadas (13.1.2), medida (13.1.4) e melhoria (13.1.5)"
+  },
+  {
+   "ref": "13.2.1",
+   "nome": "Manage portfolio",
+   "onde": "IT-01, etapas 2 e 3"
+  },
+  {
+   "ref": "13.2.3",
+   "nome": "Manage projects",
+   "onde": "IT-01 (registrar, acompanhar e encerrar), IT-02 (implantação), IT-03 (lançamento) e IT-04 (saída)"
+  },
+  {
+   "ref": "13.4",
+   "nome": "Manage change",
+   "onde": "IT-03 e IT-08, para a mudança que o lançamento e o redesenho pedem aos círculos"
+  },
+  {
+   "ref": "13.5",
+   "nome": "Develop and manage enterprise-wide knowledge management (KM) capability",
+   "onde": "Fora: Inteligência (IN-05). A Integração serve as bases aos agentes (IT-06)"
+  }
+ ],
+ "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções da Integração, grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
+ "principio": "Regra do círculo, aprovada às 09:30 de 03/10/2026: a Integração decide o que é do seu ofício (o método de projetos, a arquitetura e a plataforma, a ficha técnica de cada capacidade, a liberação do agente pelos casos de teste e a mudança em sistemas), ouvidos os donos. O executivo decide a prioridade dos projetos da sua empresa, como diz o documento-base; o líder do círculo dono decide o redesenho da jornada do seu círculo e aceita a capacidade e o agente; a Inteligência diz o que o agente precisa saber e mede se ele acertou; a Governança define a alçada, confere a segurança e audita.",
+ "limites": [
+  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
+  "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
+  "Os rascunhos de método de projetos, regra de prioridade, critério de liberação de agente e política de segurança foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.",
+  "Continuidade de TI (APQC 8.3.4) e recuperação de desastre não estão desenhadas como etapa própria.",
+  "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 21502 e da ISO/IEC 27001 lemos só o resumo.",
+  "Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "A tarefa de quem não é do círculo (cliente, executivo, líder do círculo dono, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.",
+  "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
+  "O rateio do custo dos círculos entre as empresas (E3) e o acordo de serviço como jornada entre empresas (E1) ficam para a consolidação das jornadas entre empresas.",
+  "O método de projetos, a regra de prioridade da carteira e a arquitetura da plataforma, pelos quais o líder corporativo da Integração responde, não têm jornada própria: são mantidos como documentos do círculo e mudam pela IT-08 ou por projeto na IT-01.",
+  "As saídas estão listadas por etapa, não por caminho: na IT-04, etapa 1, sai o plano de saída de oferta ou o de empresa, conforme o pedido.",
+  "O agente suspenso volta por novo pedido de correção (IT-06); o lançamento suspenso volta quando o executivo o retoma (IT-03). A Estratégia não é avisada do impedimento de lançamento: a ES-04 não tem essa entrada.",
+  "A capacidade feita por pessoa ou por assessoria fica “em construção” no catálogo até o projeto aberto na carteira ser entregue; a marcação como “em uso” nesse caso não tem tarefa desenhada.",
+  "Na saída de empresa, a conclusão do plano é informada à Estratégia dentro da ES-05, etapa 7, pela tarefa da Integração; a “Conclusão do plano de saída da oferta” vale para a ES-04.",
+  "A amostra de acerto do agente em uso vai à Inteligência, que avalia o método (IN-06, etapa 5); o veredito volta como mudança de método ou de base, não como decisão dentro da IT-06.",
+  "O projeto em espera que passa a caber volta à priorização por novo registro na IT-01, aberto pelo ciclo de acompanhamento.",
+  "Os números descrevem este desenho, não a operação atual."
+ ],
+ "revisao": [
+  "Um revisor independente (agente que não participou do desenho) leu a primeira versão das oito jornadas e apontou 30 achados, 7 graves: a coordenação da saída de empresa sem gatilho, a pendência sem resposta à Estratégia, o mandato que remontava o plano, a medida do acerto do agente feita pela Integração e não pela Inteligência, e o ciclo entre método, ficha e agente.",
+  "Um verificador independente conferiu as fontes: os 21 códigos e nomes do APQC PCF 7.4 e as páginas da ISO 21502 e da ISO/IEC 27001 foram confirmados; as páginas da Anthropic e do NIST, que ele não conseguiu abrir, eu conferi.",
+  "O mesmo revisor leu a segunda e a terceira versões. Na segunda, 21 achados resolvidos, 9 em parte e 8 defeitos novos, 2 graves; na terceira, 1 defeito novo grave (a saída de empresa executada antes do mandato) e 2 médios. Todos foram corrigidos e passaram por todos os testes automáticos, mas o último acerto não passou por nova revisão independente."
+ ],
+ "ondas": {
+  "1": "O que os círculos fechados já esperam da Integração: projetos, implantação, lançamento, saída, capacidades, agentes e tecnologia",
+  "2": "O que melhora o todo com o tempo: medir e redesenhar as jornadas ponta a ponta"
+ }
+}

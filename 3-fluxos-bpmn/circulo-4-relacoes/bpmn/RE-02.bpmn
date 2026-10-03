@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_RE02" targetNamespace="urn:imts:modelo:circulo4-relacoes" exporter="Ecossistema IMTS - fonte única do Círculo 4" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_RE02">
+    <bpmn:categoryValue id="CV_RE02_E1" value="1. Preparar a ação: mensagem, público, canal e material" />
+    <bpmn:categoryValue id="CV_RE02_E2" value="2. Executar a ação nos canais e captar os contatos" />
+    <bpmn:categoryValue id="CV_RE02_E3" value="3. Medir o resultado da ação e registrar o que aprender" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_RE02">
+    <bpmn:participant id="Participant_RE02" name="RE-02 · Executar as ações de demanda e medir o resultado" processRef="Process_RE02" />
+    <bpmn:group id="Group_RE02_E1" categoryValueRef="CV_RE02_E1" />
+    <bpmn:group id="Group_RE02_E2" categoryValueRef="CV_RE02_E2" />
+    <bpmn:group id="Group_RE02_E3" categoryValueRef="CV_RE02_E3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_RE02" name="Executar as ações de demanda e medir o resultado" isExecutable="false">
+    <bpmn:documentation>Levar cada ação do plano aos públicos certos, com material conforme os padrões de identidade e só para quem pode ser abordado, captar os contatos com a base legal e medir o resultado de cada ação contra o alvo, e não só pelo alcance; e recolher o material em circulação quando a marca sai de uso ou o material vence.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_RE02">
+      <bpmn:lane id="Lane_RE02_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>RE02_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_IDE" name="Identidade">
+        <bpmn:flowNodeRef>RE02_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T11</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_NEG" name="Negócios">
+        <bpmn:flowNodeRef>RE02_E1_T12</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_GES" name="Gestão">
+        <bpmn:flowNodeRef>RE02_E1_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_GOV" name="Governança">
+        <bpmn:flowNodeRef>RE02_E1_T13</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>RE02_E1_T14</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_ITG" name="Integração">
+        <bpmn:flowNodeRef>RE02_E2_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_REP" name="Relações · pessoa">
+        <bpmn:flowNodeRef>RE02_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T10</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_G4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_G5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_G6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T15</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E3_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_REA" name="Relações · agente">
+        <bpmn:flowNodeRef>RE02_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E3_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_RE02_RER" name="Relações · automação">
+        <bpmn:flowNodeRef>RE02_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_F3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E1_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_M7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RE02_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="RE02_S1" name="Ação do plano de demanda iniciada"><bpmn:outgoing>RE02_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="RE02_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="RE02_S2" name="Ação fora do plano pedida"><bpmn:outgoing>RE02_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="RE02_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="RE02_S3" name="Marca retirada ou material vencido avisado"><bpmn:outgoing>RE02_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="RE02_S3_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="RE02_M1"><bpmn:incoming>RE02_Flow1</bpmn:incoming><bpmn:incoming>RE02_Flow2</bpmn:incoming><bpmn:incoming>RE02_Flow3</bpmn:incoming><bpmn:outgoing>RE02_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="RE02_E1_G1" name="O que abriu o trabalho?"><bpmn:incoming>RE02_Flow41</bpmn:incoming><bpmn:outgoing>RE02_Flow4</bpmn:outgoing><bpmn:outgoing>RE02_Flow6</bpmn:outgoing><bpmn:outgoing>RE02_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="RE02_E1_T1" name="Conferir com a Gestão o custo da ação fora do plano"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Outro círculo (Gestão). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow4</bpmn:incoming><bpmn:outgoing>RE02_Flow5</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="RE02_E1_T2" name="Decidir se a ação fora do plano entra, com o recurso conferido"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Pessoa de Relações (Relações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow5</bpmn:incoming><bpmn:outgoing>RE02_Flow11</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="RE02_E1_T3" name="Listar o material em circulação com a marca retirada ou vencido"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Agente de Relações (Relações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow6</bpmn:incoming><bpmn:outgoing>RE02_Flow7</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="RE02_E1_T4" name="Retirar o material dos canais e trocar pelo vigente"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Automação de Relações (Relações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow7</bpmn:incoming><bpmn:outgoing>RE02_Flow8</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="RE02_E1_T5" name="Conferir a troca e avisar quem usa o material"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Pessoa de Relações (Relações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow8</bpmn:incoming><bpmn:outgoing>RE02_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:endEvent id="RE02_F3" name="Material recolhido e substituído"><bpmn:incoming>RE02_Flow9</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="RE02_M2"><bpmn:incoming>RE02_Flow10</bpmn:incoming><bpmn:incoming>RE02_Flow11</bpmn:incoming><bpmn:outgoing>RE02_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="RE02_E1_G2" name="A ação vai ser feita?"><bpmn:incoming>RE02_Flow42</bpmn:incoming><bpmn:outgoing>RE02_Flow12</bpmn:outgoing><bpmn:outgoing>RE02_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="RE02_E1_T6" name="Avisar quem pediu de que a ação não será feita, com o motivo"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Automação de Relações (Relações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow12</bpmn:incoming><bpmn:outgoing>RE02_Flow13</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="RE02_F2" name="Ação recusada, com o motivo"><bpmn:incoming>RE02_Flow13</bpmn:incoming></bpmn:endEvent>
+    <bpmn:serviceTask id="RE02_E1_T7" name="Redigir mensagem e material, corrigindo as lacunas de execução já apontadas"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Agente de Relações (Relações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow14</bpmn:incoming><bpmn:outgoing>RE02_Flow15</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="RE02_E1_T8" name="Montar o público da ação na base, só com quem pode ser abordado"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Agente de Relações (Relações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow15</bpmn:incoming><bpmn:outgoing>RE02_Flow16</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="RE02_E1_T9" name="Conferir mensagem e material com os padrões de identidade"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Agente de Relações (Relações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow16</bpmn:incoming><bpmn:outgoing>RE02_Flow17</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="RE02_E1_G3" name="O material está conforme os padrões de identidade?"><bpmn:incoming>RE02_Flow17</bpmn:incoming><bpmn:outgoing>RE02_Flow18</bpmn:outgoing><bpmn:outgoing>RE02_Flow19</bpmn:outgoing><bpmn:outgoing>RE02_Flow20</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="RE02_E1_T10" name="Corrigir o material no que não está conforme os padrões"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Pessoa de Relações (Relações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow18</bpmn:incoming><bpmn:outgoing>RE02_Flow21</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="RE02_E1_T11" name="Responder à consulta sobre o material não coberto pelos padrões"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Outro círculo (Identidade). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow19</bpmn:incoming><bpmn:outgoing>RE02_Flow22</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="RE02_M3"><bpmn:incoming>RE02_Flow20</bpmn:incoming><bpmn:incoming>RE02_Flow21</bpmn:incoming><bpmn:incoming>RE02_Flow22</bpmn:incoming><bpmn:outgoing>RE02_Flow43</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="RE02_E1_G4" name="A ação traz preço ou condição comercial?"><bpmn:incoming>RE02_Flow43</bpmn:incoming><bpmn:outgoing>RE02_Flow23</bpmn:outgoing><bpmn:outgoing>RE02_Flow24</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="RE02_E1_T12" name="Conferir o preço e as condições com a tabela e a política comercial"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Outro círculo (Negócios). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow23</bpmn:incoming><bpmn:outgoing>RE02_Flow25</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="RE02_M4"><bpmn:incoming>RE02_Flow24</bpmn:incoming><bpmn:incoming>RE02_Flow25</bpmn:incoming><bpmn:outgoing>RE02_Flow44</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="RE02_E1_G5" name="A ação traz promessa, dado pessoal ou comparação com concorrente?"><bpmn:incoming>RE02_Flow44</bpmn:incoming><bpmn:outgoing>RE02_Flow26</bpmn:outgoing><bpmn:outgoing>RE02_Flow27</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="RE02_E1_T13" name="Conferir a promessa, a comparação e o uso de dados da ação"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow26</bpmn:incoming><bpmn:outgoing>RE02_Flow28</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="RE02_M5"><bpmn:incoming>RE02_Flow27</bpmn:incoming><bpmn:incoming>RE02_Flow28</bpmn:incoming><bpmn:outgoing>RE02_Flow45</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="RE02_E1_G6" name="A ação fala em nome da empresa ou de quem a dirige?"><bpmn:incoming>RE02_Flow45</bpmn:incoming><bpmn:outgoing>RE02_Flow29</bpmn:outgoing><bpmn:outgoing>RE02_Flow30</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="RE02_E1_T14" name="Aprovar o que a ação diz em nome da empresa"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow29</bpmn:incoming><bpmn:outgoing>RE02_Flow31</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="RE02_M6"><bpmn:incoming>RE02_Flow30</bpmn:incoming><bpmn:incoming>RE02_Flow31</bpmn:incoming><bpmn:outgoing>RE02_Flow46</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="RE02_E1_T15" name="Aprovar a ação, o material e o público"><bpmn:documentation>Etapa 1: Preparar a ação: mensagem, público, canal e material. Executor: Pessoa de Relações (Relações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow46</bpmn:incoming><bpmn:outgoing>RE02_Flow32</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="RE02_E2_T1" name="Preparar nos sistemas o registro das respostas e dos contatos da ação"><bpmn:documentation>Etapa 2: Executar a ação nos canais e captar os contatos. Executor: Outro círculo (Integração). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow32</bpmn:incoming><bpmn:outgoing>RE02_Flow33</bpmn:outgoing></bpmn:task>
+    <bpmn:scriptTask id="RE02_E2_T2" name="Publicar ou enviar a ação aprovada nos canais escolhidos, no calendário"><bpmn:documentation>Etapa 2: Executar a ação nos canais e captar os contatos. Executor: Automação de Relações (Relações · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow33</bpmn:incoming><bpmn:outgoing>RE02_Flow34</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="RE02_E2_T3" name="Registrar as respostas e os contatos captados, com o consentimento dado"><bpmn:documentation>Etapa 2: Executar a ação nos canais e captar os contatos. Executor: Automação de Relações (Relações · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>RE02_Flow34</bpmn:incoming><bpmn:outgoing>RE02_Flow35</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="RE02_E3_T1" name="Medir alcance, respostas, oportunidades geradas e resultado contra o alvo da ação"><bpmn:documentation>Etapa 3: Medir o resultado da ação e registrar o que aprender. Executor: Agente de Relações (Relações · agente). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>RE02_Flow35</bpmn:incoming><bpmn:outgoing>RE02_Flow36</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="RE02_E3_T2" name="Concluir o que funcionou e o que mudar nas próximas ações"><bpmn:documentation>Etapa 3: Medir o resultado da ação e registrar o que aprender. Executor: Pessoa de Relações (Relações · pessoa). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>RE02_Flow36</bpmn:incoming><bpmn:outgoing>RE02_Flow37</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="RE02_E3_G1" name="O resultado pede rever o plano de demanda?"><bpmn:incoming>RE02_Flow37</bpmn:incoming><bpmn:outgoing>RE02_Flow38</bpmn:outgoing><bpmn:outgoing>RE02_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="RE02_E3_T3" name="Pedir a revisão do plano de demanda, com a evidência"><bpmn:documentation>Etapa 3: Medir o resultado da ação e registrar o que aprender. Executor: Automação de Relações (Relações · automação). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>RE02_Flow39</bpmn:incoming><bpmn:outgoing>RE02_Flow40</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="RE02_M7"><bpmn:incoming>RE02_Flow38</bpmn:incoming><bpmn:incoming>RE02_Flow40</bpmn:incoming><bpmn:outgoing>RE02_Flow47</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="RE02_F1" name="Ação concluída e medida"><bpmn:incoming>RE02_Flow47</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="RE02_Flow1" sourceRef="RE02_S1" targetRef="RE02_M1" />
+    <bpmn:sequenceFlow id="RE02_Flow2" sourceRef="RE02_S2" targetRef="RE02_M1" />
+    <bpmn:sequenceFlow id="RE02_Flow3" sourceRef="RE02_S3" targetRef="RE02_M1" />
+    <bpmn:sequenceFlow id="RE02_Flow4" name="Ação fora do plano" sourceRef="RE02_E1_G1" targetRef="RE02_E1_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Ação fora do plano</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow5" sourceRef="RE02_E1_T1" targetRef="RE02_E1_T2" />
+    <bpmn:sequenceFlow id="RE02_Flow6" name="Marca retirada ou material vencido" sourceRef="RE02_E1_G1" targetRef="RE02_E1_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Marca retirada ou material vencido</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow7" sourceRef="RE02_E1_T3" targetRef="RE02_E1_T4" />
+    <bpmn:sequenceFlow id="RE02_Flow8" sourceRef="RE02_E1_T4" targetRef="RE02_E1_T5" />
+    <bpmn:sequenceFlow id="RE02_Flow9" sourceRef="RE02_E1_T5" targetRef="RE02_F3" />
+    <bpmn:sequenceFlow id="RE02_Flow10" name="Ação do plano" sourceRef="RE02_E1_G1" targetRef="RE02_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Ação do plano</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow11" sourceRef="RE02_E1_T2" targetRef="RE02_M2" />
+    <bpmn:sequenceFlow id="RE02_Flow12" name="Não" sourceRef="RE02_E1_G2" targetRef="RE02_E1_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow13" sourceRef="RE02_E1_T6" targetRef="RE02_F2" />
+    <bpmn:sequenceFlow id="RE02_Flow14" name="Sim" sourceRef="RE02_E1_G2" targetRef="RE02_E1_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow15" sourceRef="RE02_E1_T7" targetRef="RE02_E1_T8" />
+    <bpmn:sequenceFlow id="RE02_Flow16" sourceRef="RE02_E1_T8" targetRef="RE02_E1_T9" />
+    <bpmn:sequenceFlow id="RE02_Flow17" sourceRef="RE02_E1_T9" targetRef="RE02_E1_G3" />
+    <bpmn:sequenceFlow id="RE02_Flow18" name="Não" sourceRef="RE02_E1_G3" targetRef="RE02_E1_T10"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow19" name="Há ponto que os padrões não cobrem" sourceRef="RE02_E1_G3" targetRef="RE02_E1_T11"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Há ponto que os padrões não cobrem</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow20" name="Sim" sourceRef="RE02_E1_G3" targetRef="RE02_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow21" sourceRef="RE02_E1_T10" targetRef="RE02_M3" />
+    <bpmn:sequenceFlow id="RE02_Flow22" sourceRef="RE02_E1_T11" targetRef="RE02_M3" />
+    <bpmn:sequenceFlow id="RE02_Flow23" name="Sim" sourceRef="RE02_E1_G4" targetRef="RE02_E1_T12"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow24" name="Não" sourceRef="RE02_E1_G4" targetRef="RE02_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow25" sourceRef="RE02_E1_T12" targetRef="RE02_M4" />
+    <bpmn:sequenceFlow id="RE02_Flow26" name="Sim" sourceRef="RE02_E1_G5" targetRef="RE02_E1_T13"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow27" name="Não" sourceRef="RE02_E1_G5" targetRef="RE02_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow28" sourceRef="RE02_E1_T13" targetRef="RE02_M5" />
+    <bpmn:sequenceFlow id="RE02_Flow29" name="Sim" sourceRef="RE02_E1_G6" targetRef="RE02_E1_T14"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow30" name="Não" sourceRef="RE02_E1_G6" targetRef="RE02_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow31" sourceRef="RE02_E1_T14" targetRef="RE02_M6" />
+    <bpmn:sequenceFlow id="RE02_Flow32" sourceRef="RE02_E1_T15" targetRef="RE02_E2_T1" />
+    <bpmn:sequenceFlow id="RE02_Flow33" sourceRef="RE02_E2_T1" targetRef="RE02_E2_T2" />
+    <bpmn:sequenceFlow id="RE02_Flow34" sourceRef="RE02_E2_T2" targetRef="RE02_E2_T3" />
+    <bpmn:sequenceFlow id="RE02_Flow35" sourceRef="RE02_E2_T3" targetRef="RE02_E3_T1" />
+    <bpmn:sequenceFlow id="RE02_Flow36" sourceRef="RE02_E3_T1" targetRef="RE02_E3_T2" />
+    <bpmn:sequenceFlow id="RE02_Flow37" sourceRef="RE02_E3_T2" targetRef="RE02_E3_G1" />
+    <bpmn:sequenceFlow id="RE02_Flow38" name="Não" sourceRef="RE02_E3_G1" targetRef="RE02_M7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow39" name="Sim" sourceRef="RE02_E3_G1" targetRef="RE02_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="RE02_Flow40" sourceRef="RE02_E3_T3" targetRef="RE02_M7" />
+    <bpmn:sequenceFlow id="RE02_Flow41" sourceRef="RE02_M1" targetRef="RE02_E1_G1" />
+    <bpmn:sequenceFlow id="RE02_Flow42" sourceRef="RE02_M2" targetRef="RE02_E1_G2" />
+    <bpmn:sequenceFlow id="RE02_Flow43" sourceRef="RE02_M3" targetRef="RE02_E1_G4" />
+    <bpmn:sequenceFlow id="RE02_Flow44" sourceRef="RE02_M4" targetRef="RE02_E1_G5" />
+    <bpmn:sequenceFlow id="RE02_Flow45" sourceRef="RE02_M5" targetRef="RE02_E1_G6" />
+    <bpmn:sequenceFlow id="RE02_Flow46" sourceRef="RE02_M6" targetRef="RE02_E1_T15" />
+    <bpmn:sequenceFlow id="RE02_Flow47" sourceRef="RE02_M7" targetRef="RE02_F1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_RE02">
+    <bpmndi:BPMNPlane id="Plane_RE02" bpmnElement="Collab_RE02">
+      <bpmndi:BPMNShape id="Participant_RE02_di" bpmnElement="Participant_RE02" isHorizontal="true"><dc:Bounds x="0" y="0" width="8128" height="1760" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_SOL_di" bpmnElement="Lane_RE02_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_IDE_di" bpmnElement="Lane_RE02_IDE" isHorizontal="true"><dc:Bounds x="30" y="176" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_NEG_di" bpmnElement="Lane_RE02_NEG" isHorizontal="true"><dc:Bounds x="30" y="352" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_GES_di" bpmnElement="Lane_RE02_GES" isHorizontal="true"><dc:Bounds x="30" y="528" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_GOV_di" bpmnElement="Lane_RE02_GOV" isHorizontal="true"><dc:Bounds x="30" y="704" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_EXE_di" bpmnElement="Lane_RE02_EXE" isHorizontal="true"><dc:Bounds x="30" y="880" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_ITG_di" bpmnElement="Lane_RE02_ITG" isHorizontal="true"><dc:Bounds x="30" y="1056" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_REP_di" bpmnElement="Lane_RE02_REP" isHorizontal="true"><dc:Bounds x="30" y="1232" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_REA_di" bpmnElement="Lane_RE02_REA" isHorizontal="true"><dc:Bounds x="30" y="1408" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_RE02_RER_di" bpmnElement="Lane_RE02_RER" isHorizontal="true"><dc:Bounds x="30" y="1584" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_S1_di" bpmnElement="RE02_S1"><dc:Bounds x="132" y="1654" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="1695" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_S2_di" bpmnElement="RE02_S2"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_S3_di" bpmnElement="RE02_S3"><dc:Bounds x="132" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="287" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M1_di" bpmnElement="RE02_M1" isMarkerVisible="true"><dc:Bounds x="331" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_G1_di" bpmnElement="RE02_E1_G1" isMarkerVisible="true"><dc:Bounds x="537" y="1647" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="450" y="1699" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T1_di" bpmnElement="RE02_E1_T1"><dc:Bounds x="688" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T2_di" bpmnElement="RE02_E1_T2"><dc:Bounds x="894" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T3_di" bpmnElement="RE02_E1_T3"><dc:Bounds x="1100" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T4_di" bpmnElement="RE02_E1_T4"><dc:Bounds x="1306" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T5_di" bpmnElement="RE02_E1_T5"><dc:Bounds x="1512" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_F3_di" bpmnElement="RE02_F3"><dc:Bounds x="1780" y="1654" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1743" y="1695" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M2_di" bpmnElement="RE02_M2" isMarkerVisible="true"><dc:Bounds x="1979" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_G2_di" bpmnElement="RE02_E1_G2" isMarkerVisible="true"><dc:Bounds x="2185" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2098" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T6_di" bpmnElement="RE02_E1_T6"><dc:Bounds x="2336" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_F2_di" bpmnElement="RE02_F2"><dc:Bounds x="2604" y="1654" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2567" y="1695" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T7_di" bpmnElement="RE02_E1_T7"><dc:Bounds x="2748" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T8_di" bpmnElement="RE02_E1_T8"><dc:Bounds x="2954" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T9_di" bpmnElement="RE02_E1_T9"><dc:Bounds x="3160" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_G3_di" bpmnElement="RE02_E1_G3" isMarkerVisible="true"><dc:Bounds x="3421" y="1471" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3334" y="1523" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T10_di" bpmnElement="RE02_E1_T10"><dc:Bounds x="3572" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T11_di" bpmnElement="RE02_E1_T11"><dc:Bounds x="3778" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M3_di" bpmnElement="RE02_M3" isMarkerVisible="true"><dc:Bounds x="4039" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_G4_di" bpmnElement="RE02_E1_G4" isMarkerVisible="true"><dc:Bounds x="4245" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4158" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T12_di" bpmnElement="RE02_E1_T12"><dc:Bounds x="4396" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M4_di" bpmnElement="RE02_M4" isMarkerVisible="true"><dc:Bounds x="4657" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_G5_di" bpmnElement="RE02_E1_G5" isMarkerVisible="true"><dc:Bounds x="4863" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4776" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T13_di" bpmnElement="RE02_E1_T13"><dc:Bounds x="5014" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M5_di" bpmnElement="RE02_M5" isMarkerVisible="true"><dc:Bounds x="5275" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_G6_di" bpmnElement="RE02_E1_G6" isMarkerVisible="true"><dc:Bounds x="5481" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5394" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T14_di" bpmnElement="RE02_E1_T14"><dc:Bounds x="5632" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M6_di" bpmnElement="RE02_M6" isMarkerVisible="true"><dc:Bounds x="5893" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E1_T15_di" bpmnElement="RE02_E1_T15"><dc:Bounds x="6044" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E2_T1_di" bpmnElement="RE02_E2_T1"><dc:Bounds x="6250" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E2_T2_di" bpmnElement="RE02_E2_T2"><dc:Bounds x="6456" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E2_T3_di" bpmnElement="RE02_E2_T3"><dc:Bounds x="6662" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E3_T1_di" bpmnElement="RE02_E3_T1"><dc:Bounds x="6868" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E3_T2_di" bpmnElement="RE02_E3_T2"><dc:Bounds x="7074" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E3_G1_di" bpmnElement="RE02_E3_G1" isMarkerVisible="true"><dc:Bounds x="7335" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="7248" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_E3_T3_di" bpmnElement="RE02_E3_T3"><dc:Bounds x="7486" y="1622" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_M7_di" bpmnElement="RE02_M7" isMarkerVisible="true"><dc:Bounds x="7747" y="1647" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="RE02_F1_di" bpmnElement="RE02_F1"><dc:Bounds x="7960" y="1654" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7923" y="1695" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="RE02_Flow1_di" bpmnElement="RE02_Flow1"><di:waypoint x="168" y="1672" /><di:waypoint x="331" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow2_di" bpmnElement="RE02_Flow2"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow3_di" bpmnElement="RE02_Flow3"><di:waypoint x="168" y="264" /><di:waypoint x="356" y="264" /><di:waypoint x="356" y="1647" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow4_di" bpmnElement="RE02_Flow4"><di:waypoint x="562" y="1647" /><di:waypoint x="562" y="616" /><di:waypoint x="688" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="568" y="1616" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow5_di" bpmnElement="RE02_Flow5"><di:waypoint x="768" y="666" /><di:waypoint x="768" y="1320" /><di:waypoint x="894" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow6_di" bpmnElement="RE02_Flow6"><di:waypoint x="587" y="1672" /><di:waypoint x="1076" y="1672" /><di:waypoint x="1076" y="1496" /><di:waypoint x="1100" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="1082" y="1639" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow7_di" bpmnElement="RE02_Flow7"><di:waypoint x="1180" y="1546" /><di:waypoint x="1180" y="1672" /><di:waypoint x="1306" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow8_di" bpmnElement="RE02_Flow8"><di:waypoint x="1386" y="1622" /><di:waypoint x="1386" y="1320" /><di:waypoint x="1512" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow9_di" bpmnElement="RE02_Flow9"><di:waypoint x="1592" y="1370" /><di:waypoint x="1592" y="1672" /><di:waypoint x="1780" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow10_di" bpmnElement="RE02_Flow10"><di:waypoint x="562" y="1697" /><di:waypoint x="562" y="1752" /><di:waypoint x="2004" y="1752" /><di:waypoint x="2004" y="1345" /><bpmndi:BPMNLabel><dc:Bounds x="568" y="1702" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow11_di" bpmnElement="RE02_Flow11"><di:waypoint x="974" y="1270" /><di:waypoint x="974" y="1241" /><di:waypoint x="2004" y="1241" /><di:waypoint x="2004" y="1295" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow12_di" bpmnElement="RE02_Flow12"><di:waypoint x="2210" y="1345" /><di:waypoint x="2210" y="1672" /><di:waypoint x="2336" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="2216" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow13_di" bpmnElement="RE02_Flow13"><di:waypoint x="2496" y="1672" /><di:waypoint x="2604" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow14_di" bpmnElement="RE02_Flow14"><di:waypoint x="2235" y="1320" /><di:waypoint x="2828" y="1320" /><di:waypoint x="2828" y="1446" /><bpmndi:BPMNLabel><dc:Bounds x="2240" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow15_di" bpmnElement="RE02_Flow15"><di:waypoint x="2908" y="1496" /><di:waypoint x="2954" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow16_di" bpmnElement="RE02_Flow16"><di:waypoint x="3114" y="1496" /><di:waypoint x="3160" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow17_di" bpmnElement="RE02_Flow17"><di:waypoint x="3320" y="1496" /><di:waypoint x="3421" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow18_di" bpmnElement="RE02_Flow18"><di:waypoint x="3446" y="1471" /><di:waypoint x="3446" y="1320" /><di:waypoint x="3572" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="3452" y="1453" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow19_di" bpmnElement="RE02_Flow19"><di:waypoint x="3471" y="1496" /><di:waypoint x="3754" y="1496" /><di:waypoint x="3754" y="264" /><di:waypoint x="3778" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="3760" y="1463" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow20_di" bpmnElement="RE02_Flow20"><di:waypoint x="3446" y="1521" /><di:waypoint x="3446" y="1576" /><di:waypoint x="4064" y="1576" /><di:waypoint x="4064" y="1345" /><bpmndi:BPMNLabel><dc:Bounds x="3452" y="1526" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow21_di" bpmnElement="RE02_Flow21"><di:waypoint x="3732" y="1320" /><di:waypoint x="4039" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow22_di" bpmnElement="RE02_Flow22"><di:waypoint x="3858" y="314" /><di:waypoint x="3858" y="1320" /><di:waypoint x="4039" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow23_di" bpmnElement="RE02_Flow23"><di:waypoint x="4270" y="1295" /><di:waypoint x="4270" y="440" /><di:waypoint x="4396" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="4276" y="1277" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow24_di" bpmnElement="RE02_Flow24"><di:waypoint x="4295" y="1320" /><di:waypoint x="4657" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4300" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow25_di" bpmnElement="RE02_Flow25"><di:waypoint x="4476" y="490" /><di:waypoint x="4476" y="1320" /><di:waypoint x="4657" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow26_di" bpmnElement="RE02_Flow26"><di:waypoint x="4888" y="1295" /><di:waypoint x="4888" y="792" /><di:waypoint x="5014" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="4894" y="1277" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow27_di" bpmnElement="RE02_Flow27"><di:waypoint x="4913" y="1320" /><di:waypoint x="5275" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4918" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow28_di" bpmnElement="RE02_Flow28"><di:waypoint x="5094" y="842" /><di:waypoint x="5094" y="1320" /><di:waypoint x="5275" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow29_di" bpmnElement="RE02_Flow29"><di:waypoint x="5506" y="1295" /><di:waypoint x="5506" y="968" /><di:waypoint x="5632" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="5512" y="1277" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow30_di" bpmnElement="RE02_Flow30"><di:waypoint x="5531" y="1320" /><di:waypoint x="5893" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow31_di" bpmnElement="RE02_Flow31"><di:waypoint x="5712" y="1018" /><di:waypoint x="5712" y="1320" /><di:waypoint x="5893" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow32_di" bpmnElement="RE02_Flow32"><di:waypoint x="6124" y="1270" /><di:waypoint x="6124" y="1144" /><di:waypoint x="6250" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow33_di" bpmnElement="RE02_Flow33"><di:waypoint x="6330" y="1194" /><di:waypoint x="6330" y="1672" /><di:waypoint x="6456" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow34_di" bpmnElement="RE02_Flow34"><di:waypoint x="6616" y="1672" /><di:waypoint x="6662" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow35_di" bpmnElement="RE02_Flow35"><di:waypoint x="6742" y="1622" /><di:waypoint x="6742" y="1496" /><di:waypoint x="6868" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow36_di" bpmnElement="RE02_Flow36"><di:waypoint x="6948" y="1446" /><di:waypoint x="6948" y="1320" /><di:waypoint x="7074" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow37_di" bpmnElement="RE02_Flow37"><di:waypoint x="7234" y="1320" /><di:waypoint x="7335" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow38_di" bpmnElement="RE02_Flow38"><di:waypoint x="7385" y="1320" /><di:waypoint x="7772" y="1320" /><di:waypoint x="7772" y="1647" /><bpmndi:BPMNLabel><dc:Bounds x="7390" y="1302" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow39_di" bpmnElement="RE02_Flow39"><di:waypoint x="7360" y="1345" /><di:waypoint x="7360" y="1672" /><di:waypoint x="7486" y="1672" /><bpmndi:BPMNLabel><dc:Bounds x="7366" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow40_di" bpmnElement="RE02_Flow40"><di:waypoint x="7646" y="1672" /><di:waypoint x="7747" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow41_di" bpmnElement="RE02_Flow41"><di:waypoint x="381" y="1672" /><di:waypoint x="537" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow42_di" bpmnElement="RE02_Flow42"><di:waypoint x="2029" y="1320" /><di:waypoint x="2185" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow43_di" bpmnElement="RE02_Flow43"><di:waypoint x="4089" y="1320" /><di:waypoint x="4245" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow44_di" bpmnElement="RE02_Flow44"><di:waypoint x="4707" y="1320" /><di:waypoint x="4863" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow45_di" bpmnElement="RE02_Flow45"><di:waypoint x="5325" y="1320" /><di:waypoint x="5481" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow46_di" bpmnElement="RE02_Flow46"><di:waypoint x="5943" y="1320" /><di:waypoint x="6044" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="RE02_Flow47_di" bpmnElement="RE02_Flow47"><di:waypoint x="7797" y="1672" /><di:waypoint x="7960" y="1672" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_RE02_E1_di" bpmnElement="Group_RE02_E1"><dc:Bounds x="261" y="-44" width="5958" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="5946" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_RE02_E2_di" bpmnElement="Group_RE02_E2"><dc:Bounds x="6235" y="-44" width="602" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="6241" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_RE02_E3_di" bpmnElement="Group_RE02_E3"><dc:Bounds x="6853" y="-44" width="808" height="1812" /><bpmndi:BPMNLabel><dc:Bounds x="6859" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

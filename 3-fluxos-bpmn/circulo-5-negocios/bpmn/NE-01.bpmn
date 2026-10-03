@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_NE01" targetNamespace="urn:imts:modelo:circulo5-negocios" exporter="Ecossistema IMTS - fonte única do Círculo 5" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_NE01">
+    <bpmn:categoryValue id="CV_NE01_E1" value="1. Reunir as ofertas, o preço-base e o desempenho de preço" />
+    <bpmn:categoryValue id="CV_NE01_E2" value="2. Decidir o preço de tabela e a política comercial" />
+    <bpmn:categoryValue id="CV_NE01_E3" value="3. Publicar a tabela e o material de venda e avisar quem vende" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_NE01">
+    <bpmn:participant id="Participant_NE01" name="NE-01 · Manter a tabela de preços, a política comercial e o material de venda de cada empresa" processRef="Process_NE01" />
+    <bpmn:group id="Group_NE01_E1" categoryValueRef="CV_NE01_E1" />
+    <bpmn:group id="Group_NE01_E2" categoryValueRef="CV_NE01_E2" />
+    <bpmn:group id="Group_NE01_E3" categoryValueRef="CV_NE01_E3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_NE01" name="Manter a tabela de preços, a política comercial e o material de venda de cada empresa" isExecutable="false">
+    <bpmn:documentation>Ter, em cada empresa, uma tabela de preços e uma política comercial vigentes (preço de cada oferta, descontos, condições de pagamento e faixa de desconto de quem vende) que pessoas e agentes usam, a partir do preço-base decidido pela Inteligência e do papel de cada oferta no portfólio-alvo, com o material de venda de cada oferta conforme os padrões de identidade; e parar a venda da oferta encerrada. Negócios decide a tabela e a política, ouvidos o executivo e a Gestão; a faixa de desconto e as condições que mexem nos modelos de contrato são aprovadas pela Governança, dona das alçadas. O preço de tabela fica no preço-base ou acima dele; abaixo, só depois de a Inteligência rever o preço-base.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_NE01">
+      <bpmn:lane id="Lane_NE01_EST" name="Estratégia">
+        <bpmn:flowNodeRef>NE01_S3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_INT" name="Inteligência">
+        <bpmn:flowNodeRef>NE01_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_IDE" name="Identidade">
+        <bpmn:flowNodeRef>NE01_S4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_GES" name="Gestão">
+        <bpmn:flowNodeRef>NE01_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_PJ1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_GOV" name="Governança">
+        <bpmn:flowNodeRef>NE01_E2_T8</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>NE01_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_PS1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_NEP" name="Negócios · pessoa">
+        <bpmn:flowNodeRef>NE01_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_NEA" name="Negócios · agente">
+        <bpmn:flowNodeRef>NE01_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_NE01_NER" name="Negócios · automação">
+        <bpmn:flowNodeRef>NE01_S5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_E3_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>NE01_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="NE01_S1" name="Oferta nova ou preço-base alterado no catálogo"><bpmn:outgoing>NE01_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="NE01_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE01_S2" name="Resposta ao pedido sobre o preço-base recebida"><bpmn:outgoing>NE01_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="NE01_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE01_S3" name="Decisão de encerrar oferta ou data de saída recebida"><bpmn:outgoing>NE01_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="NE01_S3_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE01_S4" name="Material vencido ou marca retirada avisados"><bpmn:outgoing>NE01_Flow4</bpmn:outgoing><bpmn:messageEventDefinition id="NE01_S4_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="NE01_S5" name="Revisão da tabela iniciada"><bpmn:outgoing>NE01_Flow5</bpmn:outgoing><bpmn:timerEventDefinition id="NE01_S5_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="NE01_M1"><bpmn:incoming>NE01_Flow1</bpmn:incoming><bpmn:incoming>NE01_Flow2</bpmn:incoming><bpmn:incoming>NE01_Flow3</bpmn:incoming><bpmn:incoming>NE01_Flow4</bpmn:incoming><bpmn:incoming>NE01_Flow5</bpmn:incoming><bpmn:outgoing>NE01_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE01_E1_T1" name="Registrar o que abriu o trabalho e as ofertas afetadas"><bpmn:documentation>Etapa 1: Reunir as ofertas, o preço-base e o desempenho de preço. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow39</bpmn:incoming><bpmn:outgoing>NE01_Flow6</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="NE01_E1_G1" name="O que abriu o trabalho?"><bpmn:incoming>NE01_Flow6</bpmn:incoming><bpmn:outgoing>NE01_Flow7</bpmn:outgoing><bpmn:outgoing>NE01_Flow9</bpmn:outgoing><bpmn:outgoing>NE01_Flow11</bpmn:outgoing><bpmn:outgoing>NE01_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE01_E1_T2" name="Bloquear novas propostas da oferta, sem mudar a tabela publicada nem avisar fora"><bpmn:documentation>Etapa 1: Reunir as ofertas, o preço-base e o desempenho de preço. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow7</bpmn:incoming><bpmn:outgoing>NE01_Flow8</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE01_F2" name="Venda da oferta bloqueada, à espera da data de saída"><bpmn:incoming>NE01_Flow8</bpmn:incoming></bpmn:endEvent>
+    <bpmn:scriptTask id="NE01_E1_T3" name="Marcar na tabela a oferta que não pode mais ser vendida, com a data"><bpmn:documentation>Etapa 1: Reunir as ofertas, o preço-base e o desempenho de preço. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow9</bpmn:incoming><bpmn:outgoing>NE01_Flow10</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE01_E1_T4" name="Listar o material de venda afetado e retirá-lo de uso"><bpmn:documentation>Etapa 1: Reunir as ofertas, o preço-base e o desempenho de preço. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow11</bpmn:incoming><bpmn:outgoing>NE01_Flow12</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="NE01_E1_T5" name="Comparar o preço-base, o preço praticado, os descontos dados e as perdas por preço"><bpmn:documentation>Etapa 1: Reunir as ofertas, o preço-base e o desempenho de preço. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow13</bpmn:incoming><bpmn:outgoing>NE01_Flow14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="NE01_E2_T1" name="Propor preço de tabela, descontos, condições de pagamento e faixa de desconto por oferta"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow14</bpmn:incoming><bpmn:outgoing>NE01_Flow15</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:businessRuleTask id="NE01_E2_T2" name="Conferir a proposta com o preço-base e com as alçadas vigentes"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow15</bpmn:incoming><bpmn:outgoing>NE01_Flow16</bpmn:outgoing></bpmn:businessRuleTask>
+    <bpmn:exclusiveGateway id="NE01_E2_G1" name="Algum preço de tabela fica abaixo do preço-base?"><bpmn:incoming>NE01_Flow16</bpmn:incoming><bpmn:outgoing>NE01_Flow17</bpmn:outgoing><bpmn:outgoing>NE01_Flow19</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE01_E2_T3" name="Pedir à Inteligência a revisão do preço-base, com a evidência de mercado e de perdas"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow17</bpmn:incoming><bpmn:outgoing>NE01_Flow18</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="NE01_E2_T4" name="Manter a oferta afetada no preço vigente até a resposta"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow18</bpmn:incoming><bpmn:outgoing>NE01_Flow20</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="NE01_M2"><bpmn:incoming>NE01_Flow19</bpmn:incoming><bpmn:incoming>NE01_Flow20</bpmn:incoming><bpmn:outgoing>NE01_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:parallelGateway id="NE01_E2_PS1"><bpmn:incoming>NE01_Flow40</bpmn:incoming><bpmn:outgoing>NE01_Flow21</bpmn:outgoing><bpmn:outgoing>NE01_Flow23</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:userTask id="NE01_E2_T5" name="Opinar sobre o preço e a política comercial da empresa"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow21</bpmn:incoming><bpmn:outgoing>NE01_Flow22</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="NE01_E2_T6" name="Conferir a margem e o efeito no caixa das condições de pagamento"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Outro círculo (Gestão). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow23</bpmn:incoming><bpmn:outgoing>NE01_Flow24</bpmn:outgoing></bpmn:task>
+    <bpmn:parallelGateway id="NE01_E2_PJ1"><bpmn:incoming>NE01_Flow22</bpmn:incoming><bpmn:incoming>NE01_Flow24</bpmn:incoming><bpmn:outgoing>NE01_Flow25</bpmn:outgoing></bpmn:parallelGateway>
+    <bpmn:userTask id="NE01_E2_T7" name="Decidir a tabela de preços e a política comercial, ouvidos o executivo e a Gestão"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow25</bpmn:incoming><bpmn:outgoing>NE01_Flow26</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="NE01_E2_G2" name="A política muda a faixa de desconto de quem vende ou uma condição dos modelos de contrato?"><bpmn:incoming>NE01_Flow26</bpmn:incoming><bpmn:outgoing>NE01_Flow27</bpmn:outgoing><bpmn:outgoing>NE01_Flow28</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="NE01_E2_T8" name="Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos"><bpmn:documentation>Etapa 2: Decidir o preço de tabela e a política comercial. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>NE01_Flow27</bpmn:incoming><bpmn:outgoing>NE01_Flow29</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="NE01_M3"><bpmn:incoming>NE01_Flow10</bpmn:incoming><bpmn:incoming>NE01_Flow12</bpmn:incoming><bpmn:incoming>NE01_Flow28</bpmn:incoming><bpmn:incoming>NE01_Flow29</bpmn:incoming><bpmn:outgoing>NE01_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="NE01_E3_T1" name="Preparar o material de venda das ofertas novas ou mudadas com o pacote de marca"><bpmn:documentation>Etapa 3: Publicar a tabela e o material de venda e avisar quem vende. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow41</bpmn:incoming><bpmn:outgoing>NE01_Flow30</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="NE01_E3_T2" name="Conferir o material de venda com os padrões de identidade"><bpmn:documentation>Etapa 3: Publicar a tabela e o material de venda e avisar quem vende. Executor: Agente de Negócios (Negócios · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow30</bpmn:incoming><bpmn:outgoing>NE01_Flow31</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="NE01_E3_G1" name="O material de venda está conforme os padrões de identidade?"><bpmn:incoming>NE01_Flow31</bpmn:incoming><bpmn:outgoing>NE01_Flow32</bpmn:outgoing><bpmn:outgoing>NE01_Flow33</bpmn:outgoing><bpmn:outgoing>NE01_Flow34</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="NE01_E3_T3" name="Corrigir o material no que não está conforme os padrões"><bpmn:documentation>Etapa 3: Publicar a tabela e o material de venda e avisar quem vende. Executor: Pessoa de Negócios (Negócios · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow32</bpmn:incoming><bpmn:outgoing>NE01_Flow35</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="NE01_E3_T4" name="Responder à consulta sobre o material de venda não coberto pelos padrões"><bpmn:documentation>Etapa 3: Publicar a tabela e o material de venda e avisar quem vende. Executor: Outro círculo (Identidade). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow33</bpmn:incoming><bpmn:outgoing>NE01_Flow36</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="NE01_M4"><bpmn:incoming>NE01_Flow34</bpmn:incoming><bpmn:incoming>NE01_Flow35</bpmn:incoming><bpmn:incoming>NE01_Flow36</bpmn:incoming><bpmn:outgoing>NE01_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="NE01_E3_T5" name="Publicar a tabela, a política comercial e o material de venda com versão e vigência"><bpmn:documentation>Etapa 3: Publicar a tabela e o material de venda e avisar quem vende. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow42</bpmn:incoming><bpmn:outgoing>NE01_Flow37</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="NE01_E3_T6" name="Avisar quem vende, os parceiros de venda e os círculos que usam a tabela"><bpmn:documentation>Etapa 3: Publicar a tabela e o material de venda e avisar quem vende. Executor: Automação de Negócios (Negócios · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>NE01_Flow37</bpmn:incoming><bpmn:outgoing>NE01_Flow38</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="NE01_F1" name="Tabela, política e material de venda publicados"><bpmn:incoming>NE01_Flow38</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="NE01_Flow1" sourceRef="NE01_S1" targetRef="NE01_M1" />
+    <bpmn:sequenceFlow id="NE01_Flow2" sourceRef="NE01_S2" targetRef="NE01_M1" />
+    <bpmn:sequenceFlow id="NE01_Flow3" sourceRef="NE01_S3" targetRef="NE01_M1" />
+    <bpmn:sequenceFlow id="NE01_Flow4" sourceRef="NE01_S4" targetRef="NE01_M1" />
+    <bpmn:sequenceFlow id="NE01_Flow5" sourceRef="NE01_S5" targetRef="NE01_M1" />
+    <bpmn:sequenceFlow id="NE01_Flow6" sourceRef="NE01_E1_T1" targetRef="NE01_E1_G1" />
+    <bpmn:sequenceFlow id="NE01_Flow7" name="Decisão de encerrar oferta, ainda sem data de saída" sourceRef="NE01_E1_G1" targetRef="NE01_E1_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Decisão de encerrar oferta, ainda sem data de saída</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow8" sourceRef="NE01_E1_T2" targetRef="NE01_F2" />
+    <bpmn:sequenceFlow id="NE01_Flow9" name="Data de saída confirmada" sourceRef="NE01_E1_G1" targetRef="NE01_E1_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Data de saída confirmada</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow10" sourceRef="NE01_E1_T3" targetRef="NE01_M3" />
+    <bpmn:sequenceFlow id="NE01_Flow11" name="Material vencido ou marca retirada" sourceRef="NE01_E1_G1" targetRef="NE01_E1_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Material vencido ou marca retirada</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow12" sourceRef="NE01_E1_T4" targetRef="NE01_M3" />
+    <bpmn:sequenceFlow id="NE01_Flow13" name="Oferta nova, preço-base alterado, resposta da Inteligência ou revisão da tabela" sourceRef="NE01_E1_G1" targetRef="NE01_E1_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Oferta nova, preço-base alterado, resposta da Inteligência ou revisão da tabela</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow14" sourceRef="NE01_E1_T5" targetRef="NE01_E2_T1" />
+    <bpmn:sequenceFlow id="NE01_Flow15" sourceRef="NE01_E2_T1" targetRef="NE01_E2_T2" />
+    <bpmn:sequenceFlow id="NE01_Flow16" sourceRef="NE01_E2_T2" targetRef="NE01_E2_G1" />
+    <bpmn:sequenceFlow id="NE01_Flow17" name="Sim" sourceRef="NE01_E2_G1" targetRef="NE01_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow18" sourceRef="NE01_E2_T3" targetRef="NE01_E2_T4" />
+    <bpmn:sequenceFlow id="NE01_Flow19" name="Não" sourceRef="NE01_E2_G1" targetRef="NE01_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow20" sourceRef="NE01_E2_T4" targetRef="NE01_M2" />
+    <bpmn:sequenceFlow id="NE01_Flow21" sourceRef="NE01_E2_PS1" targetRef="NE01_E2_T5" />
+    <bpmn:sequenceFlow id="NE01_Flow22" sourceRef="NE01_E2_T5" targetRef="NE01_E2_PJ1" />
+    <bpmn:sequenceFlow id="NE01_Flow23" sourceRef="NE01_E2_PS1" targetRef="NE01_E2_T6" />
+    <bpmn:sequenceFlow id="NE01_Flow24" sourceRef="NE01_E2_T6" targetRef="NE01_E2_PJ1" />
+    <bpmn:sequenceFlow id="NE01_Flow25" sourceRef="NE01_E2_PJ1" targetRef="NE01_E2_T7" />
+    <bpmn:sequenceFlow id="NE01_Flow26" sourceRef="NE01_E2_T7" targetRef="NE01_E2_G2" />
+    <bpmn:sequenceFlow id="NE01_Flow27" name="Sim" sourceRef="NE01_E2_G2" targetRef="NE01_E2_T8"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow28" name="Não" sourceRef="NE01_E2_G2" targetRef="NE01_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow29" sourceRef="NE01_E2_T8" targetRef="NE01_M3" />
+    <bpmn:sequenceFlow id="NE01_Flow30" sourceRef="NE01_E3_T1" targetRef="NE01_E3_T2" />
+    <bpmn:sequenceFlow id="NE01_Flow31" sourceRef="NE01_E3_T2" targetRef="NE01_E3_G1" />
+    <bpmn:sequenceFlow id="NE01_Flow32" name="Não" sourceRef="NE01_E3_G1" targetRef="NE01_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow33" name="Há ponto que os padrões não cobrem" sourceRef="NE01_E3_G1" targetRef="NE01_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Há ponto que os padrões não cobrem</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow34" name="Sim" sourceRef="NE01_E3_G1" targetRef="NE01_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="NE01_Flow35" sourceRef="NE01_E3_T3" targetRef="NE01_M4" />
+    <bpmn:sequenceFlow id="NE01_Flow36" sourceRef="NE01_E3_T4" targetRef="NE01_M4" />
+    <bpmn:sequenceFlow id="NE01_Flow37" sourceRef="NE01_E3_T5" targetRef="NE01_E3_T6" />
+    <bpmn:sequenceFlow id="NE01_Flow38" sourceRef="NE01_E3_T6" targetRef="NE01_F1" />
+    <bpmn:sequenceFlow id="NE01_Flow39" sourceRef="NE01_M1" targetRef="NE01_E1_T1" />
+    <bpmn:sequenceFlow id="NE01_Flow40" sourceRef="NE01_M2" targetRef="NE01_E2_PS1" />
+    <bpmn:sequenceFlow id="NE01_Flow41" sourceRef="NE01_M3" targetRef="NE01_E3_T1" />
+    <bpmn:sequenceFlow id="NE01_Flow42" sourceRef="NE01_M4" targetRef="NE01_E3_T5" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_NE01">
+    <bpmndi:BPMNPlane id="Plane_NE01" bpmnElement="Collab_NE01">
+      <bpmndi:BPMNShape id="Participant_NE01_di" bpmnElement="Participant_NE01" isHorizontal="true"><dc:Bounds x="0" y="0" width="6710" height="1584" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_EST_di" bpmnElement="Lane_NE01_EST" isHorizontal="true"><dc:Bounds x="30" y="0" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_INT_di" bpmnElement="Lane_NE01_INT" isHorizontal="true"><dc:Bounds x="30" y="176" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_IDE_di" bpmnElement="Lane_NE01_IDE" isHorizontal="true"><dc:Bounds x="30" y="352" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_GES_di" bpmnElement="Lane_NE01_GES" isHorizontal="true"><dc:Bounds x="30" y="528" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_GOV_di" bpmnElement="Lane_NE01_GOV" isHorizontal="true"><dc:Bounds x="30" y="704" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_EXE_di" bpmnElement="Lane_NE01_EXE" isHorizontal="true"><dc:Bounds x="30" y="880" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_NEP_di" bpmnElement="Lane_NE01_NEP" isHorizontal="true"><dc:Bounds x="30" y="1056" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_NEA_di" bpmnElement="Lane_NE01_NEA" isHorizontal="true"><dc:Bounds x="30" y="1232" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_NE01_NER_di" bpmnElement="Lane_NE01_NER" isHorizontal="true"><dc:Bounds x="30" y="1408" width="6680" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_S1_di" bpmnElement="NE01_S1"><dc:Bounds x="156" y="206" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="204" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_S2_di" bpmnElement="NE01_S2"><dc:Bounds x="156" y="286" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="284" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_S3_di" bpmnElement="NE01_S3"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_S4_di" bpmnElement="NE01_S4"><dc:Bounds x="156" y="422" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="420" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_S5_di" bpmnElement="NE01_S5"><dc:Bounds x="156" y="1478" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1476" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_M1_di" bpmnElement="NE01_M1" isMarkerVisible="true"><dc:Bounds x="355" y="1471" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E1_T1_di" bpmnElement="NE01_E1_T1"><dc:Bounds x="506" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E1_G1_di" bpmnElement="NE01_E1_G1" isMarkerVisible="true"><dc:Bounds x="767" y="1471" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="680" y="1523" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E1_T2_di" bpmnElement="NE01_E1_T2"><dc:Bounds x="918" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_F2_di" bpmnElement="NE01_F2"><dc:Bounds x="1186" y="1478" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1149" y="1519" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E1_T3_di" bpmnElement="NE01_E1_T3"><dc:Bounds x="1330" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E1_T4_di" bpmnElement="NE01_E1_T4"><dc:Bounds x="1536" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E1_T5_di" bpmnElement="NE01_E1_T5"><dc:Bounds x="1742" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T1_di" bpmnElement="NE01_E2_T1"><dc:Bounds x="1948" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T2_di" bpmnElement="NE01_E2_T2"><dc:Bounds x="2154" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_G1_di" bpmnElement="NE01_E2_G1" isMarkerVisible="true"><dc:Bounds x="2415" y="1471" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2328" y="1523" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T3_di" bpmnElement="NE01_E2_T3"><dc:Bounds x="2566" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T4_di" bpmnElement="NE01_E2_T4"><dc:Bounds x="2772" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_M2_di" bpmnElement="NE01_M2" isMarkerVisible="true"><dc:Bounds x="3033" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_PS1_di" bpmnElement="NE01_E2_PS1"><dc:Bounds x="3239" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T5_di" bpmnElement="NE01_E2_T5"><dc:Bounds x="3390" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T6_di" bpmnElement="NE01_E2_T6"><dc:Bounds x="3596" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_PJ1_di" bpmnElement="NE01_E2_PJ1"><dc:Bounds x="3857" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T7_di" bpmnElement="NE01_E2_T7"><dc:Bounds x="4008" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_G2_di" bpmnElement="NE01_E2_G2" isMarkerVisible="true"><dc:Bounds x="4269" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4182" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E2_T8_di" bpmnElement="NE01_E2_T8"><dc:Bounds x="4420" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_M3_di" bpmnElement="NE01_M3" isMarkerVisible="true"><dc:Bounds x="4681" y="1295" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_T1_di" bpmnElement="NE01_E3_T1"><dc:Bounds x="4832" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_T2_di" bpmnElement="NE01_E3_T2"><dc:Bounds x="5038" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_G1_di" bpmnElement="NE01_E3_G1" isMarkerVisible="true"><dc:Bounds x="5299" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5212" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_T3_di" bpmnElement="NE01_E3_T3"><dc:Bounds x="5450" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_T4_di" bpmnElement="NE01_E3_T4"><dc:Bounds x="5656" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_M4_di" bpmnElement="NE01_M4" isMarkerVisible="true"><dc:Bounds x="5917" y="1471" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_T5_di" bpmnElement="NE01_E3_T5"><dc:Bounds x="6068" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_E3_T6_di" bpmnElement="NE01_E3_T6"><dc:Bounds x="6274" y="1446" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="NE01_F1_di" bpmnElement="NE01_F1"><dc:Bounds x="6542" y="1478" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6505" y="1519" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="NE01_Flow1_di" bpmnElement="NE01_Flow1"><di:waypoint x="192" y="224" /><di:waypoint x="380" y="224" /><di:waypoint x="380" y="1471" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow2_di" bpmnElement="NE01_Flow2"><di:waypoint x="192" y="304" /><di:waypoint x="380" y="304" /><di:waypoint x="380" y="1471" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow3_di" bpmnElement="NE01_Flow3"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="1471" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow4_di" bpmnElement="NE01_Flow4"><di:waypoint x="192" y="440" /><di:waypoint x="380" y="440" /><di:waypoint x="380" y="1471" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow5_di" bpmnElement="NE01_Flow5"><di:waypoint x="192" y="1496" /><di:waypoint x="355" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow6_di" bpmnElement="NE01_Flow6"><di:waypoint x="666" y="1496" /><di:waypoint x="767" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow7_di" bpmnElement="NE01_Flow7"><di:waypoint x="817" y="1496" /><di:waypoint x="918" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="822" y="1465" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow8_di" bpmnElement="NE01_Flow8"><di:waypoint x="1078" y="1496" /><di:waypoint x="1186" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow9_di" bpmnElement="NE01_Flow9"><di:waypoint x="792" y="1471" /><di:waypoint x="792" y="1417" /><di:waypoint x="1410" y="1417" /><di:waypoint x="1410" y="1446" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1386" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow10_di" bpmnElement="NE01_Flow10"><di:waypoint x="1410" y="1546" /><di:waypoint x="1410" y="1570" /><di:waypoint x="4706" y="1570" /><di:waypoint x="4706" y="1345" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow11_di" bpmnElement="NE01_Flow11"><di:waypoint x="792" y="1521" /><di:waypoint x="792" y="1576" /><di:waypoint x="1616" y="1576" /><di:waypoint x="1616" y="1546" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1526" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow12_di" bpmnElement="NE01_Flow12"><di:waypoint x="1616" y="1446" /><di:waypoint x="1616" y="1417" /><di:waypoint x="4706" y="1417" /><di:waypoint x="4706" y="1345" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow13_di" bpmnElement="NE01_Flow13"><di:waypoint x="792" y="1471" /><di:waypoint x="792" y="1320" /><di:waypoint x="1742" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="1289" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow14_di" bpmnElement="NE01_Flow14"><di:waypoint x="1902" y="1320" /><di:waypoint x="1948" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow15_di" bpmnElement="NE01_Flow15"><di:waypoint x="2028" y="1370" /><di:waypoint x="2028" y="1496" /><di:waypoint x="2154" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow16_di" bpmnElement="NE01_Flow16"><di:waypoint x="2314" y="1496" /><di:waypoint x="2415" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow17_di" bpmnElement="NE01_Flow17"><di:waypoint x="2465" y="1496" /><di:waypoint x="2566" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="2470" y="1478" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow18_di" bpmnElement="NE01_Flow18"><di:waypoint x="2646" y="1446" /><di:waypoint x="2646" y="1144" /><di:waypoint x="2772" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow19_di" bpmnElement="NE01_Flow19"><di:waypoint x="2440" y="1471" /><di:waypoint x="2440" y="968" /><di:waypoint x="3033" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="2446" y="1453" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow20_di" bpmnElement="NE01_Flow20"><di:waypoint x="2852" y="1094" /><di:waypoint x="2852" y="968" /><di:waypoint x="3033" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow21_di" bpmnElement="NE01_Flow21"><di:waypoint x="3289" y="968" /><di:waypoint x="3390" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow22_di" bpmnElement="NE01_Flow22"><di:waypoint x="3550" y="968" /><di:waypoint x="3833" y="968" /><di:waypoint x="3833" y="616" /><di:waypoint x="3857" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow23_di" bpmnElement="NE01_Flow23"><di:waypoint x="3264" y="943" /><di:waypoint x="3264" y="616" /><di:waypoint x="3596" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow24_di" bpmnElement="NE01_Flow24"><di:waypoint x="3756" y="616" /><di:waypoint x="3857" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow25_di" bpmnElement="NE01_Flow25"><di:waypoint x="3882" y="641" /><di:waypoint x="3882" y="1144" /><di:waypoint x="4008" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow26_di" bpmnElement="NE01_Flow26"><di:waypoint x="4168" y="1144" /><di:waypoint x="4269" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow27_di" bpmnElement="NE01_Flow27"><di:waypoint x="4294" y="1119" /><di:waypoint x="4294" y="792" /><di:waypoint x="4420" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="4300" y="1101" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow28_di" bpmnElement="NE01_Flow28"><di:waypoint x="4294" y="1169" /><di:waypoint x="4294" y="1320" /><di:waypoint x="4681" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4300" y="1174" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow29_di" bpmnElement="NE01_Flow29"><di:waypoint x="4500" y="842" /><di:waypoint x="4500" y="1320" /><di:waypoint x="4681" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow30_di" bpmnElement="NE01_Flow30"><di:waypoint x="4992" y="1320" /><di:waypoint x="5038" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow31_di" bpmnElement="NE01_Flow31"><di:waypoint x="5198" y="1320" /><di:waypoint x="5299" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow32_di" bpmnElement="NE01_Flow32"><di:waypoint x="5324" y="1295" /><di:waypoint x="5324" y="1144" /><di:waypoint x="5450" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="5330" y="1277" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow33_di" bpmnElement="NE01_Flow33"><di:waypoint x="5349" y="1320" /><di:waypoint x="5632" y="1320" /><di:waypoint x="5632" y="440" /><di:waypoint x="5656" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="5638" y="1287" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow34_di" bpmnElement="NE01_Flow34"><di:waypoint x="5324" y="1345" /><di:waypoint x="5324" y="1496" /><di:waypoint x="5917" y="1496" /><bpmndi:BPMNLabel><dc:Bounds x="5330" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow35_di" bpmnElement="NE01_Flow35"><di:waypoint x="5530" y="1194" /><di:waypoint x="5530" y="1496" /><di:waypoint x="5917" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow36_di" bpmnElement="NE01_Flow36"><di:waypoint x="5736" y="490" /><di:waypoint x="5736" y="1496" /><di:waypoint x="5917" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow37_di" bpmnElement="NE01_Flow37"><di:waypoint x="6228" y="1496" /><di:waypoint x="6274" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow38_di" bpmnElement="NE01_Flow38"><di:waypoint x="6434" y="1496" /><di:waypoint x="6542" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow39_di" bpmnElement="NE01_Flow39"><di:waypoint x="405" y="1496" /><di:waypoint x="506" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow40_di" bpmnElement="NE01_Flow40"><di:waypoint x="3083" y="968" /><di:waypoint x="3239" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow41_di" bpmnElement="NE01_Flow41"><di:waypoint x="4731" y="1320" /><di:waypoint x="4832" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="NE01_Flow42_di" bpmnElement="NE01_Flow42"><di:waypoint x="5967" y="1496" /><di:waypoint x="6068" y="1496" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_NE01_E1_di" bpmnElement="Group_NE01_E1"><dc:Bounds x="285" y="-44" width="1632" height="1636" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE01_E2_di" bpmnElement="Group_NE01_E2"><dc:Bounds x="1933" y="-44" width="2662" height="1636" /><bpmndi:BPMNLabel><dc:Bounds x="1939" y="-38" width="2650" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_NE01_E3_di" bpmnElement="Group_NE01_E3"><dc:Bounds x="4611" y="-44" width="1838" height="1636" /><bpmndi:BPMNLabel><dc:Bounds x="4617" y="-38" width="1826" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,5863 @@
+{
+ "circulo": {
+  "num": 5,
+  "nome": "Negócios",
+  "sigla": "NE",
+  "pref": "NE",
+  "slug": "circulo5-negocios",
+  "status": "Fechado em 02/10/2026 · proposta do círculo 6 aplicada em 03/10/2026 · auditoria de execução aplicada em 03/10/2026",
+  "lead": "Negócios transforma oportunidade em contrato e cuida dos contratos dos clientes. Mantém a tabela de preços e a política comercial, planeja as vendas e prevê a receita, faz a proposta, negocia e fecha o contrato, disputa licitações, renova, amplia, adita e encerra contratos e vende com parceiros e em oferta conjunta entre as empresas. Não gera demanda, não desenha a oferta, não implanta, não entrega e não fatura. São sete jornadas.",
+  "fechado": true,
+  "o": "Negócios",
+  "do": "de Negócios",
+  "ao": "a Negócios"
+ },
+ "jornadas": [
+  {
+   "code": "NE-01",
+   "nome": "Manter a tabela de preços, a política comercial e o material de venda de cada empresa",
+   "dominio": "Preço e plano comercial",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Ter, em cada empresa, uma tabela de preços e uma política comercial vigentes (preço de cada oferta, descontos, condições de pagamento e faixa de desconto de quem vende) que pessoas e agentes usam, a partir do preço-base decidido pela Inteligência e do papel de cada oferta no portfólio-alvo, com o material de venda de cada oferta conforme os padrões de identidade; e parar a venda da oferta encerrada. Negócios decide a tabela e a política, ouvidos o executivo e a Gestão; a faixa de desconto e as condições que mexem nos modelos de contrato são aprovadas pela Governança, dona das alçadas. O preço de tabela fica no preço-base ou acima dele; abaixo, só depois de a Inteligência rever o preço-base.",
+   "frequencia": "Por evento: oferta nova ou preço-base alterado no catálogo, resposta a pedido sobre o preço-base, decisão de encerrar oferta, data de saída, material vencido ou marca retirada; e na revisão da tabela (cadência: semestral, e sempre que um preço-base mudar)",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Reunir as entradas, comparar o preço praticado com o preço-base, propor a tabela, conferir as alçadas e os padrões, preparar o material e publicar são de agente e automação; decidir a tabela e a política é de pessoa de Negócios."
+   },
+   "base": [
+    "apqc",
+    "dmn"
+   ],
+   "inicios": [
+    {
+     "nome": "Oferta nova ou preço-base alterado no catálogo",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Resposta ao pedido sobre o preço-base recebida",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Decisão de encerrar oferta ou data de saída recebida",
+     "raia": "Estratégia",
+     "tipo": "message"
+    },
+    {
+     "nome": "Material vencido ou marca retirada avisados",
+     "raia": "Identidade",
+     "tipo": "message"
+    },
+    {
+     "nome": "Revisão da tabela iniciada",
+     "raia": "Negócios · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Tabela, política e material de venda publicados",
+    "Venda da oferta bloqueada, à espera da data de saída"
+   ],
+   "raias": [
+    "Estratégia",
+    "Inteligência",
+    "Identidade",
+    "Gestão",
+    "Governança",
+    "Executivo da empresa",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Reunir as ofertas, o preço-base e o desempenho de preço",
+     "dono": "Negócios",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Resposta ao pedido sobre oferta em uso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Oferta aprovada para lançamento",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Aviso de materiais vencidos",
+       "de": "Identidade"
+      },
+      {
+       "o": "Marca retirada de uso",
+       "de": "Identidade"
+      },
+      {
+       "o": "Plano de lançamento da oferta",
+       "de": "Integração"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      },
+      {
+       "o": "Desempenho de preço: descontos dados e perdas por preço",
+       "de": "NE-04"
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "de": "NE-03"
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "de": "NE-04"
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "de": "NE-05"
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "de": "NE-06"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o que abriu o trabalho e as ofertas afetadas",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Bloquear novas propostas da oferta, sem mudar a tabela publicada nem avisar fora",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Decisão de encerrar oferta, ainda sem data de saída"
+      },
+      {
+       "nome": "Marcar na tabela a oferta que não pode mais ser vendida, com a data",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Data de saída confirmada"
+      },
+      {
+       "nome": "Listar o material de venda afetado e retirá-lo de uso",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Material vencido ou marca retirada"
+      },
+      {
+       "nome": "Comparar o preço-base, o preço praticado, os descontos dados e as perdas por preço",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Oferta nova, preço-base alterado, resposta da Inteligência ou revisão da tabela",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Decisão de encerrar oferta, ainda sem data de saída",
+         "via": [
+          "Bloquear novas propostas da oferta, sem mudar a tabela publicada nem avisar fora"
+         ],
+         "vai": "fim: Venda da oferta bloqueada, à espera da data de saída"
+        },
+        {
+         "rotulo": "Data de saída confirmada",
+         "via": [
+          "Marcar na tabela a oferta que não pode mais ser vendida, com a data"
+         ],
+         "vai": "vai para a etapa 3"
+        },
+        {
+         "rotulo": "Material vencido ou marca retirada",
+         "via": [
+          "Listar o material de venda afetado e retirá-lo de uso"
+         ],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Diagnóstico de preço das ofertas",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      1632.0,
+      1636
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      1842.0,
+      1476.0,
+      380,
+      1496.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Decidir o preço de tabela e a política comercial",
+     "dono": "Negócios, ouvidos o executivo e a Gestão; a faixa de desconto, a Governança",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Diagnóstico de preço das ofertas",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Modelos de proposta e de contrato",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Propor preço de tabela, descontos, condições de pagamento e faixa de desconto por oferta",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a proposta com o preço-base e com as alçadas vigentes",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "rule",
+       "cond": null
+      },
+      {
+       "nome": "Pedir à Inteligência a revisão do preço-base, com a evidência de mercado e de perdas",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Algum preço de tabela fica abaixo do preço-base? Sim"
+      },
+      {
+       "nome": "Manter a oferta afetada no preço vigente até a resposta",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "Algum preço de tabela fica abaixo do preço-base? Sim"
+      },
+      {
+       "nome": "Opinar sobre o preço e a política comercial da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a margem e o efeito no caixa das condições de pagamento",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a tabela de preços e a política comercial, ouvidos o executivo e a Gestão",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "A política muda a faixa de desconto de quem vende ou uma condição dos modelos de contrato? Sim"
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "Algum preço de tabela fica abaixo do preço-base?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Pedir à Inteligência a revisão do preço-base, com a evidência de mercado e de perdas",
+          "Manter a oferta afetada no preço vigente até a resposta"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A política muda a faixa de desconto de quem vende ou uma condição dos modelos de contrato?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Tabela e política decididas",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Pedido de ajuste ou de revisão de oferta em uso",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      1933.0,
+      -44,
+      2662.0,
+      1636
+     ],
+     "foco": [
+      1948.0,
+      566.0,
+      2632.0,
+      980.0,
+      2028,
+      1320.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Publicar a tabela e o material de venda e avisar quem vende",
+     "dono": "Negócios",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Tabela e política decididas",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Pacote de marca publicado",
+       "de": "Identidade"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Posicionamento e casa de mensagens vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Resposta à consulta",
+       "de": "Identidade"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Preparar o material de venda das ofertas novas ou mudadas com o pacote de marca",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o material de venda com os padrões de identidade",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir o material no que não está conforme os padrões",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "O material de venda está conforme os padrões de identidade? Não"
+      },
+      {
+       "nome": "Responder à consulta sobre o material de venda não coberto pelos padrões",
+       "exec": "C",
+       "raia": "Identidade",
+       "tipo": "call",
+       "cond": "O material de venda está conforme os padrões de identidade? Há ponto que os padrões não cobrem"
+      },
+      {
+       "nome": "Publicar a tabela, a política comercial e o material de venda com versão e vigência",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar quem vende, os parceiros de venda e os círculos que usam a tabela",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O material de venda está conforme os padrões de identidade?",
+       "quem": "Negócios · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Corrigir o material no que não está conforme os padrões"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Há ponto que os padrões não cobrem",
+         "via": [
+          "Responder à consulta sobre o material de venda não coberto pelos padrões"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "para": [
+        "Relações",
+        "Inteligência",
+        "Gestão",
+        "Operações",
+        "NE-02",
+        "NE-03",
+        "NE-04",
+        "NE-05",
+        "NE-06",
+        "NE-07"
+       ]
+      },
+      {
+       "o": "Material de venda das ofertas",
+       "para": [
+        "NE-03",
+        "NE-07"
+       ]
+      },
+      {
+       "o": "Consulta sobre caso não coberto",
+       "para": [
+        "Identidade"
+       ]
+      }
+     ],
+     "box": [
+      4611.0,
+      -44,
+      1838.0,
+      1636
+     ],
+     "foco": [
+      4681.0,
+      390.0,
+      1897.0,
+      1156.0,
+      4706,
+      1320.0
+     ]
+    }
+   ],
+   "size": [
+    6710,
+    1584
+   ]
+  },
+  {
+   "code": "NE-02",
+   "nome": "Planejar as vendas do ciclo e prever a receita",
+   "dominio": "Preço e plano comercial",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Ter, a cada ciclo, os alvos de venda de cada empresa por oferta e canal, desdobrados dos alvos do ciclo, os clientes-chave com o plano de conta de cada um, e uma previsão de receita e de vendas atualizada a cada período a partir do funil, das propostas, dos contratos, das atas e das renovações, entregue a quem precisa dela para o orçamento, o caixa, a capacidade e a implantação. Negócios decide o desdobramento e a previsão, ouvido o executivo; o desvio contra os alvos vai ao executivo e à Gestão.",
+   "frequencia": "A cada ciclo de vendas e a cada período de previsão (cadências: ciclo de vendas trimestral; previsão mensal) e por evento: alvos do ciclo publicados",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Reunir o funil, as propostas e os contratos, calcular a previsão e comparar com os alvos são de agente e automação; desdobrar os alvos, escolher os clientes-chave e concluir a previsão são de pessoa de Negócios."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Ciclo de vendas iniciado",
+     "raia": "Negócios · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Período de previsão encerrado",
+     "raia": "Negócios · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Alvos do ciclo publicados",
+     "raia": "Estratégia",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Plano de vendas e previsão publicados"
+   ],
+   "raias": [
+    "Estratégia",
+    "Operações",
+    "Integração",
+    "Executivo da empresa",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Reunir alvos, demanda, funil e carteira",
+     "dono": "Negócios",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Alvos e iniciativas do ciclo",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+       "de": "Relações"
+      },
+      {
+       "o": "Critério de oportunidade qualificada combinado com Negócios",
+       "de": "Relações"
+      },
+      {
+       "o": "Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas",
+       "de": "Relações"
+      },
+      {
+       "o": "Lacunas de percepção encaminhadas ao dono",
+       "de": "Relações"
+      },
+      {
+       "o": "Leitura de mercado, clientes e concorrentes",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Painel de indicadores de cada círculo, com dono e análise",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Lacunas de execução apontadas",
+       "de": "Identidade"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "de": "NE-03"
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "de": "NE-04"
+      },
+      {
+       "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+       "de": "NE-05"
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "de": "NE-06"
+      },
+      {
+       "o": "Vencimento do contrato e resultado da renovação",
+       "de": "NE-06"
+      },
+      {
+       "o": "Resultado da venda com parceiros e conjunta",
+       "de": "NE-07"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Reunir alvos, plano de demanda, funil, propostas, contratos, atas e vencimentos do período",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Calcular a previsão de receita e de vendas por empresa, oferta, canal e período",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Comparar a previsão com os alvos e apontar desvios e lacunas que afetam a venda",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Previsão proposta, com os desvios",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      808.0,
+      1284
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      1018.0,
+      1132.0,
+      380,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Decidir os alvos de venda, os clientes-chave e a previsão",
+     "dono": "Negócios, ouvido o executivo",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Previsão proposta, com os desvios",
+       "de": "etapa 1"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Propor o desdobramento dos alvos de venda por oferta e canal e as ações para os desvios",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Opinar sobre os alvos de venda e a previsão da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a capacidade de entrega para o volume previsto",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a capacidade de implantação para o volume previsto",
+       "exec": "C",
+       "raia": "Integração",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Decidir os alvos de venda e a previsão, ouvido o executivo",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Escolher os clientes-chave e definir o plano de conta de cada um",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Incluir no plano as correções das lacunas de execução e de percepção que cabem a Negócios",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Apontar o desvio ao executivo e à Gestão, com as ações de recuperação",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "A previsão fica abaixo dos alvos do ciclo? Sim"
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "A previsão fica abaixo dos alvos do ciclo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Apontar o desvio ao executivo e à Gestão, com as ações de recuperação"
+         ],
+         "vai": "etapa 3"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Alvos de venda e previsão decididos",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Desvio da previsão contra os alvos, com as ações",
+       "para": [
+        "Executivos",
+        "Gestão"
+       ]
+      }
+     ],
+     "box": [
+      1109.0,
+      -44,
+      2250.0,
+      1284
+     ],
+     "foco": [
+      1124.0,
+      214.0,
+      2220.0,
+      980.0,
+      1204,
+      968.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Publicar o plano de vendas e a previsão",
+     "dono": "Negócios",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Alvos de venda e previsão decididos",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Publicar o plano de vendas do ciclo, os planos de conta e a previsão com versão e data",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar quem vende, o executivo, a Gestão, Operações e a Integração",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+       "para": [
+        "NE-03",
+        "NE-05",
+        "NE-07",
+        "Executivos",
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Plano de conta dos clientes-chave",
+       "para": [
+        "NE-06"
+       ]
+      },
+      {
+       "o": "Previsão de receita e de vendas",
+       "para": [
+        "Gestão",
+        "Operações",
+        "Integração",
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      3375.0,
+      -44,
+      602.0,
+      1284
+     ],
+     "foco": [
+      3445.0,
+      1094.0,
+      661.0,
+      100.0,
+      3470,
+      1144.0
+     ]
+    }
+   ],
+   "size": [
+    4238,
+    1232
+   ]
+  },
+  {
+   "code": "NE-03",
+   "nome": "Aceitar a oportunidade, desenhar a solução e fazer a proposta",
+   "dominio": "Venda",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada oportunidade qualificada receber aceite ou devolução com o motivo no prazo combinado com Relações e, aceita, virar uma proposta com escopo que a operação e a implantação conseguem entregar, preço pela tabela, concessão dentro da alçada, conforme os padrões de identidade e no modelo da Governança. A oportunidade de parceiro ou de oferta conjunta já aceita na NE-07 entra direto no escopo, que é confirmado com o cliente. O que foge do catálogo vai à Inteligência ou à Estratégia, e a resposta da Inteligência retoma a proposta; o contato que chega direto a Negócios vai a Relações para ser qualificado.",
+   "frequencia": "Por evento: oportunidade qualificada, oportunidade sem resposta no prazo, oportunidade de parceiro ou de oferta conjunta, mudança de escopo pedida na negociação, resposta da Inteligência ou pedido que chega direto do cliente",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Registrar, conferir com o critério, montar o escopo, calcular o preço, redigir, conferir os padrões e enviar são de agente e automação; aceitar, conversar com o cliente, decidir o escopo e aprovar a proposta são de pessoa de Negócios."
+   },
+   "base": [
+    "apqc",
+    "dmn"
+   ],
+   "inicios": [
+    {
+     "nome": "Oportunidade qualificada recebida",
+     "raia": "Relações",
+     "tipo": "message"
+    },
+    {
+     "nome": "Oportunidade sem resposta no prazo escalada",
+     "raia": "Relações",
+     "tipo": "message"
+    },
+    {
+     "nome": "Oportunidade de parceiro ou de oferta conjunta recebida",
+     "raia": "Negócios · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Mudança de escopo recebida da negociação",
+     "raia": "Negócios · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Resposta da Inteligência sobre o escopo recebida",
+     "raia": "Inteligência",
+     "tipo": "message"
+    },
+    {
+     "nome": "Pedido de proposta recebido do cliente",
+     "raia": "Cliente",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Proposta aceita ou em negociação, passada ao contrato",
+    "Oportunidade devolvida a Relações, com o motivo",
+    "Escopo fora do catálogo levado à Inteligência ou à Estratégia",
+    "Contato passado a Relações para qualificar",
+    "Pedido levado à jornada de contas e contratos",
+    "Edital levado à jornada de licitações",
+    "Proposta perdida, com o motivo"
+   ],
+   "raias": [
+    "Relações",
+    "Inteligência",
+    "Cliente",
+    "Operações",
+    "Integração",
+    "Identidade",
+    "Governança",
+    "Executivo da empresa",
+    "Sócios",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber a oportunidade e decidir o aceite",
+     "dono": "Negócios",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Oportunidade qualificada, com o contato, a necessidade e a origem",
+       "de": "Relações"
+      },
+      {
+       "o": "Oportunidade sem resposta no prazo",
+       "de": "Relações"
+      },
+      {
+       "o": "Critério de oportunidade qualificada combinado com Negócios",
+       "de": "Relações"
+      },
+      {
+       "o": "Base de relacionamento atualizada, com a base legal e o histórico",
+       "de": "Relações"
+      },
+      {
+       "o": "Pedido de proposta do cliente",
+       "de": "Clientes"
+      },
+      {
+       "o": "Oportunidade de parceiro ou de oferta conjunta passada à proposta",
+       "de": "NE-07"
+      },
+      {
+       "o": "Mudança de escopo pedida na negociação",
+       "de": "NE-04"
+      },
+      {
+       "o": "Resposta ao pedido sobre oferta em uso",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+       "de": "NE-02"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar a oportunidade, a origem e o prazo de aceite combinado",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Registrar quem conduz a venda, indicado na NE-07",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Oportunidade de parceiro ou de oferta conjunta aceita na NE-07"
+      },
+      {
+       "nome": "Retomar a oportunidade com a mudança pedida ou com a resposta recebida",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Mudança de escopo pedida na negociação ou resposta da Inteligência ao pedido de ajuste"
+      },
+      {
+       "nome": "Passar o contato a Relações para qualificar, com o que o cliente pediu",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Pedido de cliente sem contrato, que não passou por Relações"
+      },
+      {
+       "nome": "Levar o pedido à jornada de contas e contratos",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Pedido de cliente com contrato vigente"
+      },
+      {
+       "nome": "Levar o edital ou o pedido de cotação à jornada de licitações",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Edital, ou pedido de cotação de órgão público"
+      },
+      {
+       "nome": "Conferir a oportunidade com o critério combinado, o plano de vendas e as ofertas vendáveis",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o aceite ou a devolução, com o motivo, no prazo combinado",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Devolver a oportunidade a Relações, com o motivo",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Negócios aceita a oportunidade? Não"
+      },
+      {
+       "nome": "Avisar Relações do aceite e designar quem conduz a venda",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Oportunidade qualificada por Relações, ou escalada sem resposta",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Oportunidade de parceiro ou de oferta conjunta aceita na NE-07",
+         "via": [
+          "Registrar quem conduz a venda, indicado na NE-07"
+         ],
+         "vai": "vai para a etapa 2"
+        },
+        {
+         "rotulo": "Mudança de escopo pedida na negociação ou resposta da Inteligência ao pedido de ajuste",
+         "via": [
+          "Retomar a oportunidade com a mudança pedida ou com a resposta recebida"
+         ],
+         "vai": "vai para a etapa 2"
+        },
+        {
+         "rotulo": "Pedido de cliente sem contrato, que não passou por Relações",
+         "via": [
+          "Passar o contato a Relações para qualificar, com o que o cliente pediu"
+         ],
+         "vai": "fim: Contato passado a Relações para qualificar"
+        },
+        {
+         "rotulo": "Pedido de cliente com contrato vigente",
+         "via": [
+          "Levar o pedido à jornada de contas e contratos"
+         ],
+         "vai": "fim: Pedido levado à jornada de contas e contratos"
+        },
+        {
+         "rotulo": "Edital, ou pedido de cotação de órgão público",
+         "via": [
+          "Levar o edital ou o pedido de cotação à jornada de licitações"
+         ],
+         "vai": "fim: Edital levado à jornada de licitações"
+        }
+       ]
+      },
+      {
+       "pergunta": "Negócios aceita a oportunidade?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Devolver a oportunidade a Relações, com o motivo"
+         ],
+         "vai": "fim: Oportunidade devolvida a Relações, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Aceite ou devolução da oportunidade, com o motivo",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Contato de interessado",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Pedido de cliente com contrato vigente",
+       "para": [
+        "NE-06"
+       ]
+      },
+      {
+       "o": "Edital ou pedido de cotação de órgão público",
+       "para": [
+        "NE-05"
+       ]
+      },
+      {
+       "o": "Oportunidade aceita, com quem conduz a venda",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      3486.0,
+      2164
+     ],
+     "foco": [
+      60.0,
+      30.0,
+      3696.0,
+      2052.0,
+      380,
+      2024.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Entender a necessidade e desenhar a solução",
+     "dono": "Negócios, com Operações e Integração",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Oportunidade aceita, com quem conduz a venda",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+       "de": "Relações"
+      },
+      {
+       "o": "Mudança de escopo pedida pelo cliente",
+       "de": "etapa 4"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Confirmar com o cliente a necessidade, o resultado esperado, quem decide e o prazo",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Montar o escopo com as ofertas do catálogo e o que o cliente pediu",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Levar o ajuste à Inteligência ou a oferta nova à Estratégia, com a necessidade do cliente",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O escopo cabe nas ofertas do catálogo? Não: pede ajuste de oferta ou oferta nova"
+      },
+      {
+       "nome": "Avisar o cliente do caminho e do prazo da resposta",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": "O escopo cabe nas ofertas do catálogo? Não: pede ajuste de oferta ou oferta nova"
+      },
+      {
+       "nome": "Confirmar que consegue entregar o escopo no prazo pedido",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar o que a implantação pede: sistemas, prazos e pessoas",
+       "exec": "C",
+       "raia": "Integração",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o escopo da solução, com o que Operações e a Integração confirmaram",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a perda por falta de escopo entregável e avisar o cliente",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Operações e a Integração conseguem entregar o escopo? Não há escopo que se consiga entregar"
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "O escopo cabe nas ofertas do catálogo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não: pede ajuste de oferta ou oferta nova",
+         "via": [
+          "Levar o ajuste à Inteligência ou a oferta nova à Estratégia, com a necessidade do cliente",
+          "Avisar o cliente do caminho e do prazo da resposta"
+         ],
+         "vai": "fim: Escopo fora do catálogo levado à Inteligência ou à Estratégia"
+        }
+       ]
+      },
+      {
+       "pergunta": "Operações e a Integração conseguem entregar o escopo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 3"
+        },
+        {
+         "rotulo": "Não, mas há escopo menor que serve ao cliente",
+         "via": [],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Não há escopo que se consiga entregar",
+         "via": [
+          "Registrar a perda por falta de escopo entregável e avisar o cliente"
+         ],
+         "vai": "fim: Proposta perdida, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Escopo da solução confirmado",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Pedido de ajuste ou de revisão de oferta em uso",
+       "para": [
+        "Inteligência"
+       ]
+      },
+      {
+       "o": "Ideia ou aposta nova",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      }
+     ],
+     "box": [
+      3787.0,
+      -44,
+      2868.0,
+      2164
+     ],
+     "foco": [
+      3857.0,
+      566.0,
+      2783.0,
+      1508.0,
+      3882,
+      1672.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Precificar e redigir a proposta",
+     "dono": "Negócios; a concessão acima da alçada, o executivo ou os sócios",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Escopo da solução confirmado",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      },
+      {
+       "o": "Material de venda das ofertas",
+       "de": "NE-01"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      },
+      {
+       "o": "Modelos de proposta e de contrato",
+       "de": "Governança"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Pacote de marca publicado",
+       "de": "Identidade"
+      },
+      {
+       "o": "Posicionamento e casa de mensagens vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Aviso de materiais vencidos",
+       "de": "Identidade"
+      },
+      {
+       "o": "Marca retirada de uso",
+       "de": "Identidade"
+      },
+      {
+       "o": "Resposta à consulta",
+       "de": "Identidade"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Calcular o preço pela tabela e pela política comercial",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "rule",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a concessão acima da alçada de quem vende",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A concessão pedida está dentro da alçada de quem vende? Acima, dentro da alçada do executivo"
+      },
+      {
+       "nome": "Levar a concessão à decisão dos sócios",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "A concessão pedida está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Decidir a concessão pelos sócios",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "A concessão pedida está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Redigir a proposta no modelo, com o escopo, o preço, as condições e a validade",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a proposta com os padrões de identidade e com os materiais vencidos ou de marca retirada",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir a proposta no que não está conforme os padrões",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "A proposta está conforme os padrões de identidade? Não"
+      },
+      {
+       "nome": "Responder à consulta sobre a proposta não coberta pelos padrões",
+       "exec": "C",
+       "raia": "Identidade",
+       "tipo": "call",
+       "cond": "A proposta está conforme os padrões de identidade? Há ponto que os padrões não cobrem"
+      },
+      {
+       "nome": "Revisar a cláusula fora do modelo e o risco",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "A proposta tem cláusula fora do modelo? Sim"
+      },
+      {
+       "nome": "Revisar e aprovar a proposta",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A concessão pedida está dentro da alçada de quem vende?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Sim, ou não há concessão",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima, dentro da alçada do executivo",
+         "via": [
+          "Decidir a concessão acima da alçada de quem vende"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima da alçada do executivo",
+         "via": [
+          "Levar a concessão à decisão dos sócios",
+          "Decidir a concessão pelos sócios"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A proposta está conforme os padrões de identidade?",
+       "quem": "Negócios · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Corrigir a proposta no que não está conforme os padrões"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Há ponto que os padrões não cobrem",
+         "via": [
+          "Responder à consulta sobre a proposta não coberta pelos padrões"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A proposta tem cláusula fora do modelo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Revisar a cláusula fora do modelo e o risco"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Proposta aprovada para envio",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Consulta sobre caso não coberto",
+       "para": [
+        "Identidade"
+       ]
+      }
+     ],
+     "box": [
+      6671.0,
+      -44,
+      3280.0,
+      2164
+     ],
+     "foco": [
+      6686.0,
+      918.0,
+      3250.0,
+      1156.0,
+      6766,
+      2024.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Enviar a proposta e acompanhar a resposta do cliente",
+     "dono": "Negócios",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Proposta aprovada para envio",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Resposta do cliente à proposta",
+       "de": "Clientes"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Enviar a proposta ao cliente e registrar o envio",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Receber a resposta do cliente ou o fim da validade da proposta",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Passar a proposta à negociação e ao contrato",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Qual foi a resposta do cliente? Aceitou ou quer negociar"
+      },
+      {
+       "nome": "Registrar a perda e o motivo dado pelo cliente",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Qual foi a resposta do cliente? Recusou, ou a validade venceu sem resposta"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Qual foi a resposta do cliente?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Aceitou ou quer negociar",
+         "via": [
+          "Passar a proposta à negociação e ao contrato"
+         ],
+         "vai": "fim: Proposta aceita ou em negociação, passada ao contrato"
+        },
+        {
+         "rotulo": "Pediu mudança no escopo",
+         "via": [],
+         "vai": "volta à etapa 2"
+        },
+        {
+         "rotulo": "Recusou, ou a validade venceu sem resposta",
+         "via": [
+          "Registrar a perda e o motivo dado pelo cliente"
+         ],
+         "vai": "fim: Proposta perdida, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Proposta aceita ou em negociação",
+       "para": [
+        "NE-04"
+       ]
+      },
+      {
+       "o": "Mudança de escopo pedida pelo cliente",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "para": [
+        "Inteligência",
+        "NE-02"
+       ]
+      }
+     ],
+     "box": [
+      9967.0,
+      -44,
+      1014.0,
+      2164
+     ],
+     "foco": [
+      9982.0,
+      1974.0,
+      1540.0,
+      100.0,
+      10062,
+      2024.0
+     ]
+    }
+   ],
+   "size": [
+    11654,
+    2112
+   ]
+  },
+  {
+   "code": "NE-04",
+   "nome": "Negociar e fechar o contrato com o cliente",
+   "dominio": "Venda",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda.",
+   "frequencia": "Por evento: proposta aceita ou em negociação",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Simular concessões, redigir o contrato no modelo, registrar e avisar são de agente e automação; negociar, aprovar concessões e conferir o contrato são de pessoas; assinar é do executivo."
+   },
+   "base": [
+    "apqc",
+    "dmn"
+   ],
+   "inicios": [
+    {
+     "nome": "Proposta aceita ou em negociação recebida",
+     "raia": "Negócios · automação",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Contrato assinado e passado a quem implanta, entrega, fatura e acompanha",
+    "Negociação perdida, com o motivo",
+    "Mudança de escopo devolvida à proposta"
+   ],
+   "raias": [
+    "Cliente",
+    "Governança",
+    "Executivo da empresa",
+    "Sócios",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Negociar as condições com o cliente",
+     "dono": "Negócios; a concessão acima da alçada, o executivo ou os sócios",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Proposta aceita ou em negociação",
+       "de": "NE-03"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Negociar com o cliente preço, prazo, condições e cláusulas",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Simular o efeito de cada concessão na margem e conferir com a política comercial",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a concessão negociada acima da alçada de quem vende",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A concessão negociada está dentro da alçada de quem vende? Acima, dentro da alçada do executivo"
+      },
+      {
+       "nome": "Levar a concessão negociada à decisão dos sócios",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "A concessão negociada está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Decidir a concessão negociada pelos sócios",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "A concessão negociada está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Devolver o pedido de mudança de escopo à proposta",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O cliente e a empresa chegaram a acordo? O cliente pede mudar o escopo"
+      },
+      {
+       "nome": "Registrar a perda e o motivo da negociação",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O cliente e a empresa chegaram a acordo? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A concessão negociada está dentro da alçada de quem vende?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Sim, ou não há concessão",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima, dentro da alçada do executivo",
+         "via": [
+          "Decidir a concessão negociada acima da alçada de quem vende"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima da alçada do executivo",
+         "via": [
+          "Levar a concessão negociada à decisão dos sócios",
+          "Decidir a concessão negociada pelos sócios"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O cliente e a empresa chegaram a acordo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "O cliente pede mudar o escopo",
+         "via": [
+          "Devolver o pedido de mudança de escopo à proposta"
+         ],
+         "vai": "fim: Mudança de escopo devolvida à proposta"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar a perda e o motivo da negociação"
+         ],
+         "vai": "fim: Negociação perdida, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Condições acordadas com o cliente",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Mudança de escopo pedida na negociação",
+       "para": [
+        "NE-03"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      2250.0,
+      1284
+     ],
+     "foco": [
+      132.0,
+      214.0,
+      2364.0,
+      980.0,
+      356,
+      792.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Formalizar e assinar o contrato",
+     "dono": "Negócios, com a Governança; assina o executivo",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Condições acordadas com o cliente",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Modelos de proposta e de contrato",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Redigir o contrato no modelo, com o escopo vendido e as condições acordadas",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Revisar as cláusulas fora do modelo e o risco do contrato",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "O contrato foge do modelo? Sim"
+      },
+      {
+       "nome": "Conferir o contrato final com o que foi acordado",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Conferir os poderes de quem assina pela empresa e pelo cliente",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Assinar o contrato em nome da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Assinar o contrato",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a desistência do cliente e o motivo",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O contrato foi assinado pelas duas partes? Não: o cliente desistiu"
+      },
+      {
+       "nome": "Guardar o contrato assinado",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O contrato foge do modelo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Revisar as cláusulas fora do modelo e o risco do contrato"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O contrato foi assinado pelas duas partes?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não: o cliente desistiu",
+         "via": [
+          "Registrar a desistência do cliente e o motivo"
+         ],
+         "vai": "fim: Negociação perdida, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contrato assinado e guardado",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Contrato para conferir e guardar",
+       "para": [
+        "Governança"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      }
+     ],
+     "box": [
+      2527.0,
+      -44,
+      2662.0,
+      1284
+     ],
+     "foco": [
+      2542.0,
+      38.0,
+      2632.0,
+      1156.0,
+      2622,
+      968.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha",
+     "dono": "Negócios",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Contrato assinado e guardado",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o contrato, o escopo vendido, o valor, a vigência e o vencimento",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar a Integração, Operações, a Gestão e Relações do contrato assinado",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Registrar os descontos dados e o motivo do ganho",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "para": [
+        "Relações",
+        "Integração",
+        "Operações",
+        "Gestão",
+        "NE-06"
+       ]
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "para": [
+        "Inteligência",
+        "NE-02",
+        "NE-07"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      },
+      {
+       "o": "Desempenho de preço: descontos dados e perdas por preço",
+       "para": [
+        "NE-01"
+       ]
+      }
+     ],
+     "box": [
+      5205.0,
+      -44,
+      602.0,
+      1284
+     ],
+     "foco": [
+      5220.0,
+      1094.0,
+      716.0,
+      100.0,
+      5300,
+      1144.0
+     ]
+    }
+   ],
+   "size": [
+    6068,
+    1232
+   ]
+  },
+  {
+   "code": "NE-05",
+   "nome": "Disputar licitações e contratar com o setor público",
+   "dominio": "Venda",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Decidir em cada edital se a empresa participa, montar a proposta e os documentos de habilitação nas regras do edital, disputar, acompanhar o julgamento, a habilitação, os recursos e a homologação e, ganhando, assinar o contrato ou a ata de registro de preços; responder ao pedido de cotação para pesquisa de preços; e responder ao órgão não participante que pede para aderir à ata. Negócios decide participar e recorrer, ouvidos o executivo e a Governança; a Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina. Prazos e regras de impugnação, recurso, convocação e adesão seguem a lei e o edital e não foram conferidos neste desenho.",
+   "frequencia": "Por evento: edital ou pedido de cotação encontrado ou recebido, resultado da disputa, convocação para assinar, ou pedido de adesão à ata",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Monitorar editais, conferir exigências, calcular o preço, montar os documentos, enviar e registrar são de agente e automação; decidir participar, dar lances, decidir recorrer e decidir a adesão são de pessoa de Negócios; esclarecer, impugnar e recorrer são da Governança; assinar é do executivo."
+   },
+   "base": [
+    "l14133",
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Edital ou pedido de cotação encontrado",
+     "raia": "Negócios · automação",
+     "tipo": "signal"
+    },
+    {
+     "nome": "Edital ou pedido de cotação recebido",
+     "raia": "Negócios · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Pedido de adesão à ata recebido",
+     "raia": "Cliente",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Contrato ou ata assinado e registrado",
+    "Edital sem participação, com o motivo",
+    "Disputa perdida, com o resultado registrado",
+    "Cotação para pesquisa de preços respondida",
+    "Adesão recusada, com resposta ao órgão"
+   ],
+   "raias": [
+    "Cliente",
+    "Operações",
+    "Identidade",
+    "Governança",
+    "Executivo da empresa",
+    "Sócios",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Analisar o edital e decidir participar",
+     "dono": "Negócios, ouvido o executivo, com a Governança",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Edital ou pedido de cotação de órgão público",
+       "de": "NE-03"
+      },
+      {
+       "o": "Edital publicado e seus anexos",
+       "de": "Clientes"
+      },
+      {
+       "o": "Pedido de adesão à ata de órgão não participante",
+       "de": "Clientes"
+      },
+      {
+       "o": "Resposta ao esclarecimento ou à impugnação, ou edital alterado",
+       "de": "Clientes"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+       "de": "NE-02"
+      },
+      {
+       "o": "Certidões e documentos de habilitação em dia",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o edital ou o pedido, o órgão, o objeto, as datas e as exigências",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Preparar a resposta à cotação com o preço pela tabela e pela política, sem disputa",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": "O que abriu o trabalho? Pedido de cotação para pesquisa de preços do órgão"
+      },
+      {
+       "nome": "Aprovar e enviar a resposta à cotação",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "O que abriu o trabalho? Pedido de cotação para pesquisa de preços do órgão"
+      },
+      {
+       "nome": "Conferir o objeto com as ofertas, a tabela, a capacidade e as exigências de habilitação",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar a capacidade de entregar o objeto do edital",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Conferir as exigências de habilitação e o risco das cláusulas do edital",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "O edital tem exigência que pede esclarecimento ou impugnação? Sim"
+      },
+      {
+       "nome": "Receber a resposta ao esclarecimento ou à impugnação",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "receive",
+       "cond": "O edital tem exigência que pede esclarecimento ou impugnação? Sim"
+      },
+      {
+       "nome": "Atualizar a análise com a resposta e com o edital alterado, quando houver",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": "O edital tem exigência que pede esclarecimento ou impugnação? Sim"
+      },
+      {
+       "nome": "Opinar sobre a participação da empresa no edital",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir se a empresa participa, ouvido o executivo",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o motivo de não participar",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "A empresa participa? Não"
+      }
+     ],
+     "paralelo": true,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Edital de licitação",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Pedido de cotação para pesquisa de preços do órgão",
+         "via": [
+          "Preparar a resposta à cotação com o preço pela tabela e pela política, sem disputa",
+          "Aprovar e enviar a resposta à cotação"
+         ],
+         "vai": "fim: Cotação para pesquisa de preços respondida"
+        },
+        {
+         "rotulo": "Pedido de adesão de órgão não participante",
+         "via": [],
+         "vai": "vai para a etapa 4"
+        }
+       ]
+      },
+      {
+       "pergunta": "O edital tem exigência que pede esclarecimento ou impugnação?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital",
+          "Receber a resposta ao esclarecimento ou à impugnação",
+          "Atualizar a análise com a resposta e com o edital alterado, quando houver"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A empresa participa?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar o motivo de não participar"
+         ],
+         "vai": "fim: Edital sem participação, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Edital analisado, com a decisão de participar",
+       "para": [
+        "etapa 2"
+       ]
+      },
+      {
+       "o": "Resposta à cotação para pesquisa de preços",
+       "para": [
+        "Clientes"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      4104.0,
+      1636
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      4458.0,
+      1484.0,
+      380,
+      1496.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Montar a proposta e os documentos de habilitação",
+     "dono": "Negócios, com a Governança; assina o executivo",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Edital analisado, com a decisão de participar",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      },
+      {
+       "o": "Certidões e documentos de habilitação em dia",
+       "de": "Governança"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Resposta à consulta",
+       "de": "Identidade"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Calcular o preço pela tabela e pela política, com os custos que o edital impõe",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "rule",
+       "cond": null
+      },
+      {
+       "nome": "Fixar o menor preço aceito na disputa",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir o menor preço da disputa acima da alçada de quem vende",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "O menor preço aceito está dentro da alçada de quem vende? Acima, dentro da alçada do executivo"
+      },
+      {
+       "nome": "Levar o menor preço da disputa à decisão dos sócios",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "O menor preço aceito está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Decidir o menor preço da disputa pelos sócios",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "O menor preço aceito está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Montar a proposta e a parte técnica, quando houver, nas regras do edital",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir a parte livre da proposta no que não está conforme os padrões",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "A parte livre da proposta está conforme os padrões de identidade? Não"
+      },
+      {
+       "nome": "Responder à consulta sobre a proposta de licitação não coberta pelos padrões",
+       "exec": "C",
+       "raia": "Identidade",
+       "tipo": "call",
+       "cond": "A parte livre da proposta está conforme os padrões de identidade? Há ponto que os padrões não cobrem"
+      },
+      {
+       "nome": "Reunir e conferir os documentos de habilitação pedidos no edital",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Assinar a proposta e os documentos pedidos no edital em nome da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O menor preço aceito está dentro da alçada de quem vende?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima, dentro da alçada do executivo",
+         "via": [
+          "Decidir o menor preço da disputa acima da alçada de quem vende"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima da alçada do executivo",
+         "via": [
+          "Levar o menor preço da disputa à decisão dos sócios",
+          "Decidir o menor preço da disputa pelos sócios"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "A parte livre da proposta está conforme os padrões de identidade?",
+       "quem": "Negócios · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim, ou o edital fixa todo o formato",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Corrigir a parte livre da proposta no que não está conforme os padrões"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Há ponto que os padrões não cobrem",
+         "via": [
+          "Responder à consulta sobre a proposta de licitação não coberta pelos padrões"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Proposta e habilitação prontas para a disputa",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Consulta sobre caso não coberto",
+       "para": [
+        "Identidade"
+       ]
+      }
+     ],
+     "box": [
+      4611.0,
+      -44,
+      2868.0,
+      1636
+     ],
+     "foco": [
+      4626.0,
+      390.0,
+      2838.0,
+      1156.0,
+      4706,
+      1496.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Disputar e acompanhar o julgamento, a habilitação e os recursos",
+     "dono": "Negócios, com a Governança",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Proposta e habilitação prontas para a disputa",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Resultado do julgamento, da habilitação e dos recursos",
+       "de": "Clientes"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Enviar a proposta e os documentos pelo meio e no prazo do edital",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Dar os lances na disputa, sem passar do menor preço aceito",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Receber o resultado do julgamento e da habilitação",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Apresentar contrarrazões ao recurso do concorrente",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "Qual é o resultado da disputa? Vencedora, com recurso de concorrente"
+      },
+      {
+       "nome": "Apresentar o recurso da empresa",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "Qual é o resultado da disputa? Perdeu, desclassificada ou inabilitada, e Negócios decide recorrer, ouvida a Governança"
+      },
+      {
+       "nome": "Registrar o resultado, o preço vencedor e o motivo da perda",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Qual é o resultado da disputa? Perdeu, e a empresa não recorre"
+      },
+      {
+       "nome": "Receber a decisão do recurso",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "receive",
+       "cond": null
+      },
+      {
+       "nome": "Registrar a decisão do recurso e o motivo da perda",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "A decisão do recurso favorece a empresa? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Qual é o resultado da disputa?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Vencedora e habilitada, sem recurso de concorrente",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Vencedora, com recurso de concorrente",
+         "via": [
+          "Apresentar contrarrazões ao recurso do concorrente"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Perdeu, desclassificada ou inabilitada, e Negócios decide recorrer, ouvida a Governança",
+         "via": [
+          "Apresentar o recurso da empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Perdeu, e a empresa não recorre",
+         "via": [
+          "Registrar o resultado, o preço vencedor e o motivo da perda"
+         ],
+         "vai": "fim: Disputa perdida, com o resultado registrado"
+        }
+       ]
+      },
+      {
+       "pergunta": "A decisão do recurso favorece a empresa?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar a decisão do recurso e o motivo da perda"
+         ],
+         "vai": "fim: Disputa perdida, com o resultado registrado"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Resultado favorável da disputa",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "para": [
+        "Inteligência"
+       ]
+      }
+     ],
+     "box": [
+      7495.0,
+      -44,
+      2250.0,
+      1636
+     ],
+     "foco": [
+      7510.0,
+      566.0,
+      2570.0,
+      980.0,
+      7590,
+      1496.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Assinar o contrato ou a ata e responder às adesões",
+     "dono": "Negócios; assina o executivo; a Governança confere e guarda",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Resultado favorável da disputa",
+       "de": "etapa 3"
+      },
+      {
+       "o": "Homologação e convocação para assinar",
+       "de": "Clientes"
+      },
+      {
+       "o": "Pedido de adesão à ata de órgão não participante",
+       "de": "Clientes"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Conferir os poderes de quem assina pela empresa",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Receber a homologação e a convocação para assinar o contrato",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "receive",
+       "cond": "O que se assina? Contrato com o órgão"
+      },
+      {
+       "nome": "Assinar o contrato com o órgão em nome da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "O que se assina? Contrato com o órgão"
+      },
+      {
+       "nome": "Receber a homologação e a convocação para assinar a ata",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "receive",
+       "cond": "O que se assina? Ata de registro de preços"
+      },
+      {
+       "nome": "Assinar a ata de registro de preços em nome da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "O que se assina? Ata de registro de preços"
+      },
+      {
+       "nome": "Decidir se aceita fornecer ao órgão não participante, nas regras da ata e da lei",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "O que se assina? Adesão de órgão não participante à ata"
+      },
+      {
+       "nome": "Assinar o contrato da adesão em nome da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "Há adesão a responder? Sim, aceita"
+      },
+      {
+       "nome": "Responder ao órgão não participante que a empresa não adere, com o motivo",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Há adesão a responder? Sim, recusada"
+      },
+      {
+       "nome": "Conferir o documento assinado com o resultado da disputa ou com a adesão aceita",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Guardar o contrato ou a ata",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o contrato ou a ata, o saldo, a vigência e os órgãos participantes",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar a Integração, Operações, a Gestão e Relações do que foi assinado",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que se assina?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Contrato com o órgão",
+         "via": [
+          "Receber a homologação e a convocação para assinar o contrato",
+          "Assinar o contrato com o órgão em nome da empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Ata de registro de preços",
+         "via": [
+          "Receber a homologação e a convocação para assinar a ata",
+          "Assinar a ata de registro de preços em nome da empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Adesão de órgão não participante à ata",
+         "via": [
+          "Decidir se aceita fornecer ao órgão não participante, nas regras da ata e da lei"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Há adesão a responder?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim, aceita",
+         "via": [
+          "Assinar o contrato da adesão em nome da empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim, recusada",
+         "via": [
+          "Responder ao órgão não participante que a empresa não adere, com o motivo"
+         ],
+         "vai": "fim: Adesão recusada, com resposta ao órgão"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "para": [
+        "Relações",
+        "Integração",
+        "Operações",
+        "Gestão",
+        "NE-06"
+       ]
+      },
+      {
+       "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+       "para": [
+        "NE-06",
+        "NE-02",
+        "Gestão",
+        "Operações"
+       ]
+      }
+     ],
+     "box": [
+      10173.0,
+      -44,
+      3692.0,
+      1636
+     ],
+     "foco": [
+      10243.0,
+      566.0,
+      3751.0,
+      980.0,
+      10268,
+      616.0
+     ]
+    }
+   ],
+   "size": [
+    14126,
+    1584
+   ]
+  },
+  {
+   "code": "NE-06",
+   "nome": "Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar",
+   "dominio": "Contas e contratos",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada contrato de cliente ser renovado, ampliado ou aditado no tempo certo, com as concessões dentro das alçadas e com o escopo novo confirmado por Operações e pela Integração, a partir da oportunidade que Relações aponta, do pedido do cliente e do plano de conta; tratar o pedido de cancelamento com uma negociação de retenção e, perdido o cliente ou vencida a vigência sem renovação, formalizar o fim do contrato e avisar quem entrega, implanta e fatura; atender a contratação de órgão participante pela ata; e, quando uma oferta é encerrada ou uma empresa sai, encerrar ou transferir os contratos pelo plano de saída coordenado pela Integração. O vencimento próximo só avisa Relações, que decide se abre a renovação. Relações acompanha o sucesso do cliente; Negócios negocia e formaliza; o executivo assina.",
+   "frequencia": "Por evento: oportunidade de renovação ou de expansão, vencimento próximo, pedido do cliente, contratação pela ata, pedido de cancelamento, decisão de encerrar oferta, data de saída ou mandato",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Vigiar vencimentos e saldos, preparar a proposta de renovação, redigir o aditivo, registrar e avisar são de agente e automação; negociar, decidir concessões, conferir e executar a parte de Negócios do plano de saída são de pessoas; assinar é do executivo."
+   },
+   "base": [
+    "apqc",
+    "dmn",
+    "l14133"
+   ],
+   "inicios": [
+    {
+     "nome": "Oportunidade de renovação ou de expansão recebida",
+     "raia": "Relações",
+     "tipo": "message"
+    },
+    {
+     "nome": "Vencimento de contrato próximo",
+     "raia": "Negócios · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Fim de vigência sem renovação",
+     "raia": "Negócios · automação",
+     "tipo": "timer"
+    },
+    {
+     "nome": "Pedido de cliente com contrato vigente recebido",
+     "raia": "Negócios · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Pedido de contratação pela ata recebido",
+     "raia": "Cliente",
+     "tipo": "message"
+    },
+    {
+     "nome": "Pedido de cancelamento do cliente recebido",
+     "raia": "Cliente",
+     "tipo": "message"
+    },
+    {
+     "nome": "Decisão de encerrar oferta, data de saída ou mandato recebido",
+     "raia": "Estratégia",
+     "tipo": "message"
+    }
+   ],
+   "fins": [
+    "Renovação, aditivo ou contratação assinada e registrada",
+    "Contrato encerrado, com o fim formalizado e avisado",
+    "Contratos da saída encerrados ou transferidos",
+    "Contratos afetados listados, à espera da data de saída",
+    "Mandato registrado, sem mexer nos contratos",
+    "Pendência da saída apontada",
+    "Vencimento avisado a Relações"
+   ],
+   "raias": [
+    "Relações",
+    "Estratégia",
+    "Cliente",
+    "Operações",
+    "Integração",
+    "Identidade",
+    "Governança",
+    "Executivo da empresa",
+    "Sócios",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Reunir a carteira e decidir o que tratar",
+     "dono": "Negócios",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "NE-04"
+      },
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "de": "NE-05"
+      },
+      {
+       "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+       "de": "NE-05"
+      },
+      {
+       "o": "Pedido de cliente com contrato vigente",
+       "de": "NE-03"
+      },
+      {
+       "o": "Plano de conta dos clientes-chave",
+       "de": "NE-02"
+      },
+      {
+       "o": "Oportunidade de renovação ou de expansão, com o histórico",
+       "de": "Relações"
+      },
+      {
+       "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+       "de": "Relações"
+      },
+      {
+       "o": "Situação de faturas e pagamentos do cliente",
+       "de": "Gestão"
+      },
+      {
+       "o": "Pedido de contratação pela ata",
+       "de": "Clientes"
+      },
+      {
+       "o": "Pedido de cancelamento de contrato",
+       "de": "Clientes"
+      },
+      {
+       "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Padrões de identidade vigentes",
+       "de": "Identidade"
+      },
+      {
+       "o": "Resposta à consulta",
+       "de": "Identidade"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Conferir o contrato, o saldo de ata e o que abriu o trabalho",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar Relações e a Gestão do vencimento próximo do contrato",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Vencimento próximo de contrato"
+      },
+      {
+       "nome": "Registrar o fim de vigência sem renovação e a data de fim",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O que abriu o trabalho? Fim de vigência sem renovação"
+      },
+      {
+       "nome": "Preparar a proposta de renovação, aditivo ou retenção com o histórico, o plano de conta e a tabela",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Corrigir a proposta de renovação no que não está conforme os padrões",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": "A proposta está conforme os padrões de identidade? Não"
+      },
+      {
+       "nome": "Responder à consulta sobre a proposta de renovação não coberta pelos padrões",
+       "exec": "C",
+       "raia": "Identidade",
+       "tipo": "call",
+       "cond": "A proposta está conforme os padrões de identidade? Há ponto que os padrões não cobrem"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Oportunidade de renovação ou de expansão, pedido de aditivo ou pedido de cancelamento",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Vencimento próximo de contrato",
+         "via": [
+          "Avisar Relações e a Gestão do vencimento próximo do contrato"
+         ],
+         "vai": "fim: Vencimento avisado a Relações"
+        },
+        {
+         "rotulo": "Fim de vigência sem renovação",
+         "via": [
+          "Registrar o fim de vigência sem renovação e a data de fim"
+         ],
+         "vai": "vai para a etapa 4"
+        },
+        {
+         "rotulo": "Pedido de contratação pela ata",
+         "via": [],
+         "vai": "vai para a etapa 4"
+        },
+        {
+         "rotulo": "Oferta encerrada, empresa que sai ou mandato",
+         "via": [],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      },
+      {
+       "pergunta": "A proposta está conforme os padrões de identidade?",
+       "quem": "Negócios · agente",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Corrigir a proposta de renovação no que não está conforme os padrões"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Há ponto que os padrões não cobrem",
+         "via": [
+          "Responder à consulta sobre a proposta de renovação não coberta pelos padrões"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Vencimento do contrato e resultado da renovação",
+       "para": [
+        "Relações",
+        "Gestão",
+        "NE-02"
+       ]
+      },
+      {
+       "o": "Consulta sobre caso não coberto",
+       "para": [
+        "Identidade"
+       ]
+      },
+      {
+       "o": "Proposta de renovação, expansão ou retenção",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      2044.0,
+      2164
+     ],
+     "foco": [
+      60.0,
+      70.0,
+      2254.0,
+      2026.0,
+      380,
+      2024.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Negociar a renovação, a expansão, o aditivo ou a retenção",
+     "dono": "Negócios, com Operações e Integração; a concessão acima da alçada, o executivo ou os sócios",
+     "modo": "Assistido",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Proposta de renovação, expansão ou retenção",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      },
+      {
+       "o": "Modelos de proposta e de contrato",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Negociar com o cliente a renovação, a expansão, o aditivo ou a retenção",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Confirmar que consegue entregar o escopo renovado ou ampliado",
+       "exec": "C",
+       "raia": "Operações",
+       "tipo": "task",
+       "cond": "O escopo muda? Sim"
+      },
+      {
+       "nome": "Confirmar o que a implantação do escopo novo pede",
+       "exec": "C",
+       "raia": "Integração",
+       "tipo": "task",
+       "cond": "O escopo muda? Sim"
+      },
+      {
+       "nome": "Decidir a concessão da renovação acima da alçada de quem vende",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A concessão da renovação está dentro da alçada de quem vende? Acima, dentro da alçada do executivo"
+      },
+      {
+       "nome": "Levar a concessão da renovação à decisão dos sócios",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "A concessão da renovação está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Decidir a concessão da renovação pelos sócios",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "A concessão da renovação está dentro da alçada de quem vende? Acima da alçada do executivo"
+      },
+      {
+       "nome": "Registrar a perda, o motivo e a data de fim do contrato",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Qual é o resultado com o cliente? Não renovou ou cancelou"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O escopo muda?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Confirmar que consegue entregar o escopo renovado ou ampliado",
+          "Confirmar o que a implantação do escopo novo pede"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Operações e a Integração conseguem entregar o escopo combinado?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim, ou o escopo não muda",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não, renegociar o escopo",
+         "via": [],
+         "vai": "volta à etapa 2"
+        }
+       ]
+      },
+      {
+       "pergunta": "A concessão da renovação está dentro da alçada de quem vende?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Sim, ou não há concessão",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima, dentro da alçada do executivo",
+         "via": [
+          "Decidir a concessão da renovação acima da alçada de quem vende"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Acima da alçada do executivo",
+         "via": [
+          "Levar a concessão da renovação à decisão dos sócios",
+          "Decidir a concessão da renovação pelos sócios"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Qual é o resultado com o cliente?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Renovou, ampliou, aditou ou ficou",
+         "via": [],
+         "vai": "vai para a etapa 4"
+        },
+        {
+         "rotulo": "Não renovou ou cancelou",
+         "via": [
+          "Registrar a perda, o motivo e a data de fim do contrato"
+         ],
+         "vai": "vai para a etapa 4"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Condições da renovação acordadas",
+       "para": [
+        "etapa 4"
+       ]
+      },
+      {
+       "o": "Motivos de ganho e de perda de propostas",
+       "para": [
+        "Inteligência",
+        "NE-01"
+       ]
+      }
+     ],
+     "box": [
+      2345.0,
+      -44,
+      2868.0,
+      2164
+     ],
+     "foco": [
+      2415.0,
+      566.0,
+      2783.0,
+      1508.0,
+      2440,
+      1672.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Encerrar ou transferir os contratos da oferta ou da empresa que sai",
+     "dono": "Negócios, no plano de saída coordenado pela Integração",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Mandato da empresa",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Ofertas, apostas e pilotos em curso da empresa que sai",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Plano de saída de clientes e contratos",
+       "de": "Integração"
+      },
+      {
+       "o": "Clientes avisados da saída, com a transição combinada",
+       "de": "Relações"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Listar os contratos, as atas e as propostas afetados",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Suspender novas propostas da oferta ou da empresa que sai",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Há data de saída confirmada? Sim, ou venda fechada ou encerramento de empresa"
+      },
+      {
+       "nome": "Mandar à Integração a lista de contratos afetados, sem avisar os clientes",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Há data de saída confirmada? Não: decisão de encerrar, ainda sem data"
+      },
+      {
+       "nome": "Registrar o mandato e os contratos que ele alcança, sob sigilo",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Há data de saída confirmada? Mandato de busca de comprador, de criação ou de mudança de mandato"
+      },
+      {
+       "nome": "Executar a parte de Negócios do plano de saída: encerrar, transferir ou manter cada contrato",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Encerrar com os clientes as propostas e as negociações em curso",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o encerramento ou a transferência de cada contrato",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Registrar os contratos encerrados ou transferidos e avisar a Integração e a Gestão",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Os contratos foram encerrados ou transferidos como planejado? Sim"
+      },
+      {
+       "nome": "Apontar a pendência à Integração e ao executivo",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Os contratos foram encerrados ou transferidos como planejado? Não: há pendência"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há data de saída confirmada?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Sim, ou venda fechada ou encerramento de empresa",
+         "via": [
+          "Suspender novas propostas da oferta ou da empresa que sai"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não: decisão de encerrar, ainda sem data",
+         "via": [
+          "Mandar à Integração a lista de contratos afetados, sem avisar os clientes"
+         ],
+         "vai": "fim: Contratos afetados listados, à espera da data de saída"
+        },
+        {
+         "rotulo": "Mandato de busca de comprador, de criação ou de mudança de mandato",
+         "via": [
+          "Registrar o mandato e os contratos que ele alcança, sob sigilo"
+         ],
+         "vai": "fim: Mandato registrado, sem mexer nos contratos"
+        }
+       ]
+      },
+      {
+       "pergunta": "Os contratos foram encerrados ou transferidos como planejado?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Registrar os contratos encerrados ou transferidos e avisar a Integração e a Gestão"
+         ],
+         "vai": "fim: Contratos da saída encerrados ou transferidos"
+        },
+        {
+         "rotulo": "Não: há pendência",
+         "via": [
+          "Apontar a pendência à Integração e ao executivo"
+         ],
+         "vai": "fim: Pendência da saída apontada"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contratos afetados pela saída",
+       "para": [
+        "Integração"
+       ]
+      },
+      {
+       "o": "Contratos encerrados ou transferidos na saída",
+       "para": [
+        "Integração",
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Pendência de contrato na saída",
+       "para": [
+        "Integração",
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      5229.0,
+      -44,
+      2868.0,
+      2164
+     ],
+     "foco": [
+      5244.0,
+      1094.0,
+      2982.0,
+      980.0,
+      5324,
+      2024.0
+     ]
+    },
+    {
+     "n": 4,
+     "nome": "Formalizar a renovação, o aditivo, a contratação pela ata ou o fim do contrato",
+     "dono": "Negócios, com a Governança; assina o executivo",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Condições da renovação acordadas",
+       "de": "etapa 2"
+      },
+      {
+       "o": "Modelos de proposta e de contrato",
+       "de": "Governança"
+      },
+      {
+       "o": "Pedido de contratação pela ata",
+       "de": "Clientes"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Redigir a renovação, o aditivo, o contrato pela ata ou o termo de encerramento, no modelo",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Revisar as cláusulas fora do modelo e o risco do aditivo",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "O documento foge do modelo? Sim"
+      },
+      {
+       "nome": "Conferir o documento final com o que foi acordado ou com a ata",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Conferir os poderes de quem assina o documento",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Assinar o documento em nome da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Assinar o documento pelo cliente, quando a forma pede",
+       "exec": "H",
+       "raia": "Cliente",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Guardar o documento assinado",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O documento foge do modelo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Revisar as cláusulas fora do modelo e o risco do aditivo"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Renovação, aditivo, contratação ou encerramento assinado",
+       "para": [
+        "etapa 5"
+       ]
+      }
+     ],
+     "box": [
+      8319.0,
+      -44,
+      2044.0,
+      2164
+     ],
+     "foco": [
+      8389.0,
+      390.0,
+      1959.0,
+      1508.0,
+      8414,
+      1848.0
+     ]
+    },
+    {
+     "n": 5,
+     "nome": "Registrar o resultado e avisar quem acompanha, entrega, implanta e fatura",
+     "dono": "Negócios",
+     "modo": "Autômato",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Renovação, aditivo, contratação ou encerramento assinado",
+       "de": "etapa 4"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o novo escopo, o valor, a vigência e o vencimento, ou a data de fim",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Abater do saldo da ata a contratação feita por ela, quando for o caso",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Avisar Relações, Operações, a Integração e a Gestão do que mudou no contrato",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O contrato continua? Sim"
+      },
+      {
+       "nome": "Avisar Relações, Operações, a Integração e a Gestão do fim do contrato",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "O contrato continua? Não: contrato encerrado"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O contrato continua?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Avisar Relações, Operações, a Integração e a Gestão do que mudou no contrato"
+         ],
+         "vai": "fim: Renovação, aditivo ou contratação assinada e registrada"
+        },
+        {
+         "rotulo": "Não: contrato encerrado",
+         "via": [
+          "Avisar Relações, Operações, a Integração e a Gestão do fim do contrato"
+         ],
+         "vai": "fim: Contrato encerrado, com o fim formalizado e avisado"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contrato de cliente assinado, com o escopo vendido",
+       "para": [
+        "Relações",
+        "Integração",
+        "Operações",
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Contrato encerrado, com a data de fim",
+       "para": [
+        "Operações",
+        "Integração",
+        "Gestão"
+       ]
+      },
+      {
+       "o": "Vencimento do contrato e resultado da renovação",
+       "para": [
+        "Relações",
+        "Gestão",
+        "NE-02"
+       ]
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "para": [
+        "Inteligência",
+        "NE-02"
+       ]
+      }
+     ],
+     "box": [
+      10379.0,
+      -44,
+      1014.0,
+      2164
+     ],
+     "foco": [
+      10394.0,
+      1974.0,
+      1334.0,
+      100.0,
+      10474,
+      2024.0
+     ]
+    }
+   ],
+   "size": [
+    11860,
+    2112
+   ]
+  },
+  {
+   "code": "NE-07",
+   "nome": "Vender com parceiros e em oferta conjunta entre as empresas",
+   "dominio": "Venda conjunta",
+   "classe": "essencial",
+   "onda": 2,
+   "objetivo": "Fazer a oportunidade trazida por um parceiro de venda ativo ser conferida com o critério combinado com Relações e com o funil e, aceita, chegar à proposta sem conflito; montar com outra empresa do Ecossistema a oferta conjunta quando o cliente de uma tem um problema que a outra resolve, com a divisão de receita e de responsabilidade decidida pelos executivos das duas empresas (exceção à regra de que o executivo opina, porque mexe no resultado de duas empresas) e formalizada pela Governança antes da proposta; e medir a venda com parceiros e conjunta. Relações forma, ativa e acompanha o parceiro; Negócios vende com ele.",
+   "frequencia": "Por evento: oportunidade de parceiro ou oportunidade cruzada entre empresas; e na revisão da venda com parceiros (cadência: semestral)",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Registrar, conferir o funil e o parceiro, calcular o preço conjunto e medir são de agente e automação; aceitar a oportunidade do parceiro, desenhar a oferta conjunta e concluir a revisão são de pessoa de Negócios; a divisão é dos executivos."
+   },
+   "base": [
+    "apqc"
+   ],
+   "inicios": [
+    {
+     "nome": "Oportunidade indicada por parceiro de venda",
+     "raia": "Parceiro",
+     "tipo": "message"
+    },
+    {
+     "nome": "Oportunidade cruzada entre empresas apontada",
+     "raia": "Executivo da empresa",
+     "tipo": "message"
+    },
+    {
+     "nome": "Revisão da venda com parceiros iniciada",
+     "raia": "Negócios · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Venda com parceiros e conjunta avaliada",
+    "Oportunidade do parceiro recusada, com o motivo",
+    "Oportunidade passada à proposta",
+    "Oferta conjunta sem acordo, com o motivo"
+   ],
+   "raias": [
+    "Parceiro",
+    "Executivo da empresa",
+    "Gestão",
+    "Governança",
+    "Negócios · pessoa",
+    "Negócios · agente",
+    "Negócios · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Receber a oportunidade do parceiro ou de outra empresa",
+     "dono": "Negócios",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Oportunidade indicada por parceiro de venda",
+       "de": "Parceiros"
+      },
+      {
+       "o": "Oportunidade cruzada entre empresas",
+       "de": "Executivos"
+      },
+      {
+       "o": "Parceria ativa, com plano de ativação",
+       "de": "Relações"
+      },
+      {
+       "o": "Critério de oportunidade qualificada combinado com Negócios",
+       "de": "Relações"
+      },
+      {
+       "o": "Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas",
+       "de": "Relações"
+      },
+      {
+       "o": "Base de relacionamento atualizada, com a base legal e o histórico",
+       "de": "Relações"
+      },
+      {
+       "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+       "de": "NE-02"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      },
+      {
+       "o": "Material de venda das ofertas",
+       "de": "NE-01"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar a oportunidade, quem indicou e o que abriu o trabalho",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a oportunidade com o critério, o funil e a base, e se o parceiro está ativo",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Decidir se a oportunidade do parceiro segue para a proposta",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Passar a oportunidade do parceiro à proposta, com a regra de remuneração do parceiro",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "A oportunidade é nova, atende ao critério e o parceiro está ativo? Sim"
+      },
+      {
+       "nome": "Responder ao parceiro com o motivo",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "A oportunidade é nova, atende ao critério e o parceiro está ativo? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "O que abriu o trabalho?",
+       "quem": "Negócios · automação",
+       "saidas": [
+        {
+         "rotulo": "Oportunidade de parceiro de venda",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Oportunidade cruzada entre empresas do Ecossistema",
+         "via": [],
+         "vai": "vai para a etapa 2"
+        },
+        {
+         "rotulo": "Revisão periódica da venda com parceiros",
+         "via": [],
+         "vai": "vai para a etapa 3"
+        }
+       ]
+      },
+      {
+       "pergunta": "A oportunidade é nova, atende ao critério e o parceiro está ativo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Passar a oportunidade do parceiro à proposta, com a regra de remuneração do parceiro"
+         ],
+         "vai": "fim: Oportunidade passada à proposta"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Responder ao parceiro com o motivo"
+         ],
+         "vai": "fim: Oportunidade do parceiro recusada, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Oportunidade de parceiro ou de oferta conjunta passada à proposta",
+       "para": [
+        "NE-03"
+       ]
+      },
+      {
+       "o": "Resposta ao parceiro sobre a oportunidade",
+       "para": [
+        "Parceiros"
+       ]
+      }
+     ],
+     "box": [
+      261.0,
+      -44,
+      1632.0,
+      1284
+     ],
+     "foco": [
+      132.0,
+      70.0,
+      1890.0,
+      1124.0,
+      356,
+      1144.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Montar a oferta conjunta e combinar a divisão",
+     "dono": "Negócios das duas empresas; a divisão, os executivos",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Oportunidade cruzada entre empresas",
+       "de": "Executivos"
+      },
+      {
+       "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+       "de": "Inteligência"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Desenhar com a outra empresa o escopo, quem entrega o quê e quem fala com o cliente",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "manual",
+       "cond": null
+      },
+      {
+       "nome": "Calcular o preço conjunto e propor a divisão de receita e de responsabilidade",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o efeito da divisão no resultado de cada empresa",
+       "exec": "C",
+       "raia": "Gestão",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Decidir a divisão de receita e de responsabilidade entre as empresas",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "Os executivos das duas empresas chegaram a acordo? Sim"
+      },
+      {
+       "nome": "Passar a oferta conjunta à proposta, com quem conduz a venda em cada empresa",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Os executivos das duas empresas chegaram a acordo? Sim"
+      },
+      {
+       "nome": "Registrar o motivo e devolver a oportunidade à empresa de origem",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "Os executivos das duas empresas chegaram a acordo? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Os executivos das duas empresas chegaram a acordo?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio",
+          "Passar a oferta conjunta à proposta, com quem conduz a venda em cada empresa"
+         ],
+         "vai": "fim: Oportunidade passada à proposta"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Registrar o motivo e devolver a oportunidade à empresa de origem"
+         ],
+         "vai": "fim: Oferta conjunta sem acordo, com o motivo"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Oportunidade de parceiro ou de oferta conjunta passada à proposta",
+       "para": [
+        "NE-03"
+       ]
+      },
+      {
+       "o": "Acordo de oferta conjunta entre as empresas",
+       "para": [
+        "Governança",
+        "Gestão",
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      2115.0,
+      -44,
+      2044.0,
+      1284
+     ],
+     "foco": [
+      2130.0,
+      214.0,
+      2158.0,
+      980.0,
+      2210,
+      792.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Medir a venda com parceiros e conjunta e rever o que mudar",
+     "dono": "Negócios",
+     "modo": "Copiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Resultado da parceria",
+       "de": "Relações"
+      },
+      {
+       "o": "Registros de propostas, vendas e contratos",
+       "de": "NE-04"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Medir oportunidades, propostas, contratos e receita por parceiro e por oferta conjunta",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Concluir o que manter, mudar ou encerrar na venda com cada parceiro",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Pedir a Relações o encerramento da parceria de venda, com a evidência",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": "A venda com algum parceiro pede encerrar a parceria? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A venda com algum parceiro pede encerrar a parceria?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "fim: Venda com parceiros e conjunta avaliada"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Pedir a Relações o encerramento da parceria de venda, com a evidência"
+         ],
+         "vai": "fim: Venda com parceiros e conjunta avaliada"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Pedido de encerramento de parceria",
+       "para": [
+        "Relações"
+       ]
+      },
+      {
+       "o": "Resultado da venda com parceiros e conjunta",
+       "para": [
+        "Executivos",
+        "NE-02"
+       ]
+      }
+     ],
+     "box": [
+      4381.0,
+      -44,
+      808.0,
+      1284
+     ],
+     "foco": [
+      4396.0,
+      742.0,
+      1128.0,
+      452.0,
+      4476,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    5656,
+    1232
+   ]
+  }
+ ],
+ "dominios": [
+  {
+   "nome": "Preço e plano comercial",
+   "desc": "Manter a tabela de preços e a política comercial, planejar as vendas e prever a receita."
+  },
+  {
+   "nome": "Venda",
+   "desc": "Aceitar a oportunidade, fazer a proposta, negociar e fechar o contrato, e disputar licitações."
+  },
+  {
+   "nome": "Contas e contratos",
+   "desc": "Renovar, ampliar, aditar e encerrar os contratos dos clientes."
+  },
+  {
+   "nome": "Venda conjunta",
+   "desc": "Vender com parceiros e em oferta conjunta entre as empresas do Ecossistema."
+  }
+ ],
+ "fontes": {
+  "apqc": {
+   "ref": "APQC, Process Classification Framework (PCF), cross-industry",
+   "uso": "PCF 7.4. Os processos de Negócios estão em quatro grupos da categoria 3: 3.2.2 e 3.3.3, estratégia e gestão de preços, e 3.3.9, material de produto (NE-01); 3.2.3, estratégia de canais, e 3.4, estratégia de vendas, com previsão, alvos e orçamento de vendas (NE-02); e 3.5, planos de venda, com oportunidades, contas, propostas e cotações, pedidos e parceiros (NE-03 a NE-07). A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "links": [
+    [
+     "PCF 7.4 (PDF, cópia 1)",
+     "https://www.business-analysis.com.au/wp-content/uploads/2025/04/K014750_APQC-Process-Classification-Framework-PCF-Cross-Industry-PDF-Version-7.4_January-2025.pdf"
+    ],
+    [
+     "PCF 7.4 (PDF, cópia 2)",
+     "https://solutions.ifrc.org/sites/default/files/2024-10/K014750_APQC%20Process%20Classification%20Framework%20(PCF)%20-%20Cross%20Industry%20-%20PDF%20Version%207.4.pdf"
+    ],
+    [
+     "PCF 8.0 (página oficial)",
+     "https://www.apqc.org/resource-library/resource-listing/apqc-process-classification-framework-pcf-cross-industry-excel-12"
+    ],
+    [
+     "PCF 8.0, 13 categorias",
+     "https://www.apqc.org/resource-library/resource-collection/pcf-version-80-process-definitions-and-key-measures-collection"
+    ]
+   ]
+  },
+  "bpmn": {
+   "ref": "OMG, Business Process Model and Notation (BPMN) 2.0.2; ISO/IEC 19510:2013",
+   "uso": "Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, manual, serviço, regra de negócio, script e recebimento, além da atividade de chamada.",
+   "conf": "Páginas oficiais da OMG e da ISO abertas; a lista de tipos de tarefa foi conferida no BPMN Quick Guide; a atividade de chamada foi aceita pelo metamodelo usado nos testes. A especificação completa não foi lida.",
+   "links": [
+    [
+     "omg.org",
+     "https://www.omg.org/spec/BPMN/2.0.2/About-BPMN"
+    ],
+    [
+     "iso.org",
+     "https://www.iso.org/standard/62652.html"
+    ],
+    [
+     "BPMN Quick Guide",
+     "https://www.bpmnquickguide.com/quickguide/bpmn-quick-guide/tasks"
+    ]
+   ]
+  },
+  "camunda": {
+   "ref": "Camunda, Best Practices: Naming BPMN elements",
+   "uso": "Regra de nomes: tarefa com verbo no infinitivo e objeto; evento com objeto e estado; gateway com pergunta; raia com papel ou sistema.",
+   "conf": "Documentação oficial aberta.",
+   "links": [
+    [
+     "docs.camunda.io",
+     "https://docs.camunda.io/docs/components/best-practices/modeling/naming-bpmn-elements/"
+    ]
+   ]
+  },
+  "dmn": {
+   "ref": "OMG, Decision Model and Notation (DMN)",
+   "uso": "Notação de regras de decisão. Base das tarefas de regra que aplicam a tabela de preços, a política comercial e as alçadas de concessão na NE-01, na NE-03, na NE-04 e na NE-06; a tabela de alçadas é da Governança.",
+   "conf": "Página oficial da OMG aberta.",
+   "links": [
+    [
+     "omg.org",
+     "https://www.omg.org/spec/DMN"
+    ]
+   ]
+  },
+  "sipoc": {
+   "ref": "ASQ, SIPOC+CM Diagram",
+   "uso": "Fornecedor, entrada, processo, saída e cliente: a base de “quem gera a entrada” e “quem recebe a saída” em cada etapa.",
+   "conf": "Página oficial da ASQ aberta.",
+   "links": [
+    [
+     "asq.org",
+     "https://asq.org/quality-resources/sipoc"
+    ]
+   ]
+  },
+  "l14133": {
+   "ref": "Brasil, Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos)",
+   "uso": "Fases do processo de licitação, em sequência: preparatória, divulgação do edital, apresentação de propostas e lances, quando for o caso, julgamento, habilitação, recursal e homologação (art. 17, caput); a habilitação pode vir antes das propostas e do julgamento, por ato motivado, se o edital prever (§ 1º); a forma eletrônica é a preferida (§ 2º). A NE-05 começa na divulgação do edital (art. 17, II); a fase preparatória, caracterizada pelo planejamento (art. 18, caput), não tem tarefa de Negócios, salvo responder a pedido de cotação. Sistema de registro de preços, ata de registro de preços e órgão participante e não participante (art. 6º, incisos XLV, XLVI, XLVIII e XLIX). Base das etapas da NE-05. Lidos em 03/10/2026, em transcrição secundária: esclarecimento e impugnação pedidos até três dias úteis antes da abertura, com resposta em até três dias úteis (art. 164); intenção de recorrer manifestada de imediato, recurso e contrarrazões em três dias úteis e decisão da autoridade superior em até dez dias úteis (art. 165); convocação para assinar no prazo do edital, prorrogável uma vez (art. 90). Na NE-06: a ata vale um ano, prorrogável por igual período se o preço for vantajoso (art. 84); a adesão de órgão não participante exige justificativa, preço compatível com o mercado e aceite do gerenciador e do fornecedor, até 50% dos quantitativos por órgão e, no total, até o dobro de cada item (art. 86). No desenho, os prazos seguem “nos prazos da lei e do edital”; a contratação direta não foi conferida.",
+   "conf": "Texto aberto no site do Planalto em 02/10/2026; conferidos o art. 6º (incisos XLV, XLVI, XLVIII e XLIX), o art. 17 (caput e incisos I a VII) e o caput do art. 18. O Planalto, a Câmara e o Senado entregaram o texto só até os arts. 36, 45 e 53. Em 03/10/2026, os arts. 82 (incisos I a IX), 83, 84, 86 (caput e §§ 2º a 8º), 90 (caput e §§ 1º e 5º), 140, 141, 164 e 165 foram lidos em transcrição secundária (LegJur, uma página por artigo); conferir no texto oficial antes de usar em peça.",
+   "links": [
+    [
+     "planalto.gov.br",
+     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
+    ],
+    [
+     "LegJur, art. 164 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-164"
+    ],
+    [
+     "LegJur, art. 165 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-165"
+    ],
+    [
+     "LegJur, art. 84 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-84"
+    ],
+    [
+     "LegJur, art. 86 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-86"
+    ],
+    [
+     "LegJur, art. 90 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-90"
+    ],
+    [
+     "LegJur, art. 140 (secundária)",
+     "https://www.legjur.com/legislacao/art/LEI_00141332021-140"
+    ]
+   ]
+  }
+ },
+ "mudancas": [
+  {
+   "tipo": "Ajustado",
+   "antes": "I-NE1 · Da oferta à tabela e política comercial",
+   "agora": "NE-01",
+   "nota": "Mantida, com a regra de que o preço de tabela não fica abaixo do preço-base sem revisão da Inteligência."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "I-NE2 · Do funil à previsão",
+   "agora": "NE-02",
+   "nota": "Vira planejamento de vendas do ciclo e previsão de receita, com os alvos de venda desdobrados dos alvos do ciclo."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "V3 · Da oportunidade ao contrato",
+   "agora": "NE-03 e NE-04",
+   "nota": "Dividida em proposta e contrato. A qualificação ficou em Relações (RE-03); Negócios começa no aceite."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "V7 · Do resultado à renovação (parte comercial)",
+   "agora": "NE-06",
+   "nota": "A renovação, a expansão, o aditivo e a retenção comerciais; o acompanhamento do cliente ficou em Relações (RE-05)."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "E2 · Da oportunidade cruzada à oferta conjunta",
+   "agora": "NE-07",
+   "nota": "Junta a oferta conjunta entre empresas e a venda com parceiros de venda."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "NE-05",
+   "nota": "Jornada nova de licitações e contratação com o setor público, nas fases da Lei 14.133."
+  },
+  {
+   "tipo": "Ajustado",
+   "antes": "NE-01, etapa 1: sem o plano de lançamento",
+   "agora": "Recebe o plano de lançamento da oferta da Integração (IT-03)",
+   "nota": "Proposta do círculo 6, aprovada por você às 09:30 de 03/10/2026."
+  }
+ ],
+ "interfaces": [
+  {
+   "parte": "Identidade",
+   "entrega": [
+    {
+     "o": "Aviso de materiais vencidos",
+     "em": [
+      "NE-01",
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Lacunas de execução apontadas",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Marca retirada de uso",
+     "em": [
+      "NE-01",
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Pacote de marca publicado",
+     "em": [
+      "NE-01",
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Padrões de identidade vigentes",
+     "em": [
+      "NE-01",
+      "NE-03",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Posicionamento e casa de mensagens vigentes",
+     "em": [
+      "NE-01",
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Resposta à consulta",
+     "em": [
+      "NE-01",
+      "NE-03",
+      "NE-05",
+      "NE-06"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Consulta sobre caso não coberto",
+     "de": [
+      "NE-01",
+      "NE-03",
+      "NE-05",
+      "NE-06"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-01",
+    "NE-03",
+    "NE-05",
+    "NE-06"
+   ]
+  },
+  {
+   "parte": "Estratégia",
+   "entrega": [
+    {
+     "o": "Alvos e iniciativas do ciclo",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Data de saída confirmada da aposta ou da oferta encerrada",
+     "em": [
+      "NE-01",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+     "em": [
+      "NE-01",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Mandato da empresa",
+     "em": [
+      "NE-02",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Oferta aprovada para lançamento",
+     "em": [
+      "NE-01"
+     ]
+    },
+    {
+     "o": "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+     "em": [
+      "NE-01",
+      "NE-02"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Ideia ou aposta nova",
+     "de": [
+      "NE-03"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Inteligência",
+   "entrega": [
+    {
+     "o": "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+     "em": [
+      "NE-01"
+     ]
+    },
+    {
+     "o": "Leitura de mercado, clientes e concorrentes",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+     "em": [
+      "NE-01",
+      "NE-03",
+      "NE-05",
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Ofertas, apostas e pilotos em curso da empresa que sai",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Painel de indicadores de cada círculo, com dono e análise",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Resposta ao pedido sobre oferta em uso",
+     "em": [
+      "NE-01",
+      "NE-03"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Motivos de ganho e de perda de propostas",
+     "de": [
+      "NE-03",
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pedido de ajuste ou de revisão de oferta em uso",
+     "de": [
+      "NE-01",
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Registros de propostas, vendas e contratos",
+     "de": [
+      "NE-03",
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Tabela de preços e política comercial vigentes",
+     "de": [
+      "NE-01"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Relações",
+   "entrega": [
+    {
+     "o": "Base de relacionamento atualizada, com a base legal e o histórico",
+     "em": [
+      "NE-03",
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Clientes avisados da saída, com a transição combinada",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Critério de oportunidade qualificada combinado com Negócios",
+     "em": [
+      "NE-02",
+      "NE-03",
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Lacunas de percepção encaminhadas ao dono",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Oportunidade de renovação ou de expansão, com o histórico",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Oportunidade qualificada, com o contato, a necessidade e a origem",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Oportunidade sem resposta no prazo",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Parceria ativa, com plano de ativação",
+     "em": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+     "em": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Resultado da parceria",
+     "em": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas",
+     "em": [
+      "NE-02",
+      "NE-07"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Aceite ou devolução da oportunidade, com o motivo",
+     "de": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Contato de interessado",
+     "de": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Contrato de cliente assinado, com o escopo vendido",
+     "de": [
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pedido de encerramento de parceria",
+     "de": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Tabela de preços e política comercial vigentes",
+     "de": [
+      "NE-01"
+     ]
+    },
+    {
+     "o": "Vencimento do contrato e resultado da renovação",
+     "de": [
+      "NE-06"
+     ]
+    }
+   ],
+   "tarefas": []
+  },
+  {
+   "parte": "Integração",
+   "entrega": [
+    {
+     "o": "Plano de lançamento da oferta",
+     "em": [
+      "NE-01"
+     ]
+    },
+    {
+     "o": "Plano de saída de clientes e contratos",
+     "em": [
+      "NE-06"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Contrato de cliente assinado, com o escopo vendido",
+     "de": [
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Contrato encerrado, com a data de fim",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Contratos afetados pela saída",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Contratos encerrados ou transferidos na saída",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pendência de contrato na saída",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "de": [
+      "NE-02"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-02",
+    "NE-03",
+    "NE-06"
+   ]
+  },
+  {
+   "parte": "Operações",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+     "de": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Contrato de cliente assinado, com o escopo vendido",
+     "de": [
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Contrato encerrado, com a data de fim",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Tabela de preços e política comercial vigentes",
+     "de": [
+      "NE-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-02",
+    "NE-03",
+    "NE-05",
+    "NE-06"
+   ]
+  },
+  {
+   "parte": "Gestão",
+   "entrega": [
+    {
+     "o": "Situação de faturas e pagamentos do cliente",
+     "em": [
+      "NE-06"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Acordo de oferta conjunta entre as empresas",
+     "de": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+     "de": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Contrato de cliente assinado, com o escopo vendido",
+     "de": [
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Contrato encerrado, com a data de fim",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Contratos encerrados ou transferidos na saída",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Desvio da previsão contra os alvos, com as ações",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Tabela de preços e política comercial vigentes",
+     "de": [
+      "NE-01"
+     ]
+    },
+    {
+     "o": "Vencimento do contrato e resultado da renovação",
+     "de": [
+      "NE-06"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-01",
+    "NE-07"
+   ]
+  },
+  {
+   "parte": "Governança",
+   "entrega": [
+    {
+     "o": "Certidões e documentos de habilitação em dia",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Modelos de proposta e de contrato",
+     "em": [
+      "NE-01",
+      "NE-03",
+      "NE-04",
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Regras e alçadas vigentes",
+     "em": [
+      "NE-01",
+      "NE-03",
+      "NE-04",
+      "NE-05",
+      "NE-06"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Acordo de oferta conjunta entre as empresas",
+     "de": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Contrato para conferir e guardar",
+     "de": [
+      "NE-04"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-01",
+    "NE-03",
+    "NE-04",
+    "NE-05",
+    "NE-06",
+    "NE-07"
+   ]
+  },
+  {
+   "parte": "Sócios",
+   "entrega": [],
+   "recebe": [],
+   "tarefas": [
+    "NE-03",
+    "NE-04",
+    "NE-05",
+    "NE-06"
+   ]
+  },
+  {
+   "parte": "Executivos",
+   "entrega": [
+    {
+     "o": "Oportunidade cruzada entre empresas",
+     "em": [
+      "NE-07"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Acordo de oferta conjunta entre as empresas",
+     "de": [
+      "NE-07"
+     ]
+    },
+    {
+     "o": "Desvio da previsão contra os alvos, com as ações",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Pendência de contrato na saída",
+     "de": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Previsão de receita e de vendas",
+     "de": [
+      "NE-02"
+     ]
+    },
+    {
+     "o": "Resultado da venda com parceiros e conjunta",
+     "de": [
+      "NE-07"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-01",
+    "NE-02",
+    "NE-03",
+    "NE-04",
+    "NE-05",
+    "NE-06",
+    "NE-07"
+   ]
+  },
+  {
+   "parte": "Clientes",
+   "entrega": [
+    {
+     "o": "Edital publicado e seus anexos",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Homologação e convocação para assinar",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Pedido de adesão à ata de órgão não participante",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Pedido de cancelamento de contrato",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pedido de contratação pela ata",
+     "em": [
+      "NE-06"
+     ]
+    },
+    {
+     "o": "Pedido de proposta do cliente",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Resposta ao esclarecimento ou à impugnação, ou edital alterado",
+     "em": [
+      "NE-05"
+     ]
+    },
+    {
+     "o": "Resposta do cliente à proposta",
+     "em": [
+      "NE-03"
+     ]
+    },
+    {
+     "o": "Resultado do julgamento, da habilitação e dos recursos",
+     "em": [
+      "NE-05"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Resposta à cotação para pesquisa de preços",
+     "de": [
+      "NE-05"
+     ]
+    }
+   ],
+   "tarefas": [
+    "NE-04",
+    "NE-06"
+   ]
+  },
+  {
+   "parte": "Parceiros",
+   "entrega": [
+    {
+     "o": "Oportunidade indicada por parceiro de venda",
+     "em": [
+      "NE-07"
+     ]
+    }
+   ],
+   "recebe": [
+    {
+     "o": "Resposta ao parceiro sobre a oportunidade",
+     "de": [
+      "NE-07"
+     ]
+    }
+   ],
+   "tarefas": []
+  }
+ ],
+ "tarefas_fora": [
+  {
+   "parte": "Executivos",
+   "code": "NE-01",
+   "etapa": 2,
+   "nome": "Opinar sobre o preço e a política comercial da empresa"
+  },
+  {
+   "parte": "Gestão",
+   "code": "NE-01",
+   "etapa": 2,
+   "nome": "Conferir a margem e o efeito no caixa das condições de pagamento"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-01",
+   "etapa": 2,
+   "nome": "Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos"
+  },
+  {
+   "parte": "Identidade",
+   "code": "NE-01",
+   "etapa": 3,
+   "nome": "Responder à consulta sobre o material de venda não coberto pelos padrões"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-02",
+   "etapa": 2,
+   "nome": "Opinar sobre os alvos de venda e a previsão da empresa"
+  },
+  {
+   "parte": "Operações",
+   "code": "NE-02",
+   "etapa": 2,
+   "nome": "Confirmar a capacidade de entrega para o volume previsto"
+  },
+  {
+   "parte": "Integração",
+   "code": "NE-02",
+   "etapa": 2,
+   "nome": "Confirmar a capacidade de implantação para o volume previsto"
+  },
+  {
+   "parte": "Operações",
+   "code": "NE-03",
+   "etapa": 2,
+   "nome": "Confirmar que consegue entregar o escopo no prazo pedido"
+  },
+  {
+   "parte": "Integração",
+   "code": "NE-03",
+   "etapa": 2,
+   "nome": "Confirmar o que a implantação pede: sistemas, prazos e pessoas"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Decidir a concessão acima da alçada de quem vende"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Levar a concessão à decisão dos sócios"
+  },
+  {
+   "parte": "Sócios",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Decidir a concessão pelos sócios"
+  },
+  {
+   "parte": "Identidade",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Responder à consulta sobre a proposta não coberta pelos padrões"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-03",
+   "etapa": 3,
+   "nome": "Revisar a cláusula fora do modelo e o risco"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-04",
+   "etapa": 1,
+   "nome": "Decidir a concessão negociada acima da alçada de quem vende"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-04",
+   "etapa": 1,
+   "nome": "Levar a concessão negociada à decisão dos sócios"
+  },
+  {
+   "parte": "Sócios",
+   "code": "NE-04",
+   "etapa": 1,
+   "nome": "Decidir a concessão negociada pelos sócios"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Revisar as cláusulas fora do modelo e o risco do contrato"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Conferir os poderes de quem assina pela empresa e pelo cliente"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Assinar o contrato em nome da empresa"
+  },
+  {
+   "parte": "Clientes",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Assinar o contrato"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-04",
+   "etapa": 2,
+   "nome": "Guardar o contrato assinado"
+  },
+  {
+   "parte": "Operações",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Confirmar a capacidade de entregar o objeto do edital"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Conferir as exigências de habilitação e o risco das cláusulas do edital"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-05",
+   "etapa": 1,
+   "nome": "Opinar sobre a participação da empresa no edital"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Decidir o menor preço da disputa acima da alçada de quem vende"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Levar o menor preço da disputa à decisão dos sócios"
+  },
+  {
+   "parte": "Sócios",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Decidir o menor preço da disputa pelos sócios"
+  },
+  {
+   "parte": "Identidade",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Responder à consulta sobre a proposta de licitação não coberta pelos padrões"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Reunir e conferir os documentos de habilitação pedidos no edital"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-05",
+   "etapa": 2,
+   "nome": "Assinar a proposta e os documentos pedidos no edital em nome da empresa"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 3,
+   "nome": "Apresentar contrarrazões ao recurso do concorrente"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 3,
+   "nome": "Apresentar o recurso da empresa"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Conferir os poderes de quem assina pela empresa"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Assinar o contrato com o órgão em nome da empresa"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Assinar a ata de registro de preços em nome da empresa"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Assinar o contrato da adesão em nome da empresa"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-05",
+   "etapa": 4,
+   "nome": "Guardar o contrato ou a ata"
+  },
+  {
+   "parte": "Identidade",
+   "code": "NE-06",
+   "etapa": 1,
+   "nome": "Responder à consulta sobre a proposta de renovação não coberta pelos padrões"
+  },
+  {
+   "parte": "Operações",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Confirmar que consegue entregar o escopo renovado ou ampliado"
+  },
+  {
+   "parte": "Integração",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Confirmar o que a implantação do escopo novo pede"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Decidir a concessão da renovação acima da alçada de quem vende"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Levar a concessão da renovação à decisão dos sócios"
+  },
+  {
+   "parte": "Sócios",
+   "code": "NE-06",
+   "etapa": 2,
+   "nome": "Decidir a concessão da renovação pelos sócios"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-06",
+   "etapa": 3,
+   "nome": "Conferir o encerramento ou a transferência de cada contrato"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Revisar as cláusulas fora do modelo e o risco do aditivo"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Conferir os poderes de quem assina o documento"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Assinar o documento em nome da empresa"
+  },
+  {
+   "parte": "Clientes",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Assinar o documento pelo cliente, quando a forma pede"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-06",
+   "etapa": 4,
+   "nome": "Guardar o documento assinado"
+  },
+  {
+   "parte": "Gestão",
+   "code": "NE-07",
+   "etapa": 2,
+   "nome": "Conferir o efeito da divisão no resultado de cada empresa"
+  },
+  {
+   "parte": "Executivos",
+   "code": "NE-07",
+   "etapa": 2,
+   "nome": "Decidir a divisão de receita e de responsabilidade entre as empresas"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-07",
+   "etapa": 2,
+   "nome": "Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio"
+  }
+ ],
+ "stats": {
+  "jornadas": 7,
+  "essenciais": 7,
+  "recomendadas": 0,
+  "etapas": 25,
+  "tarefas": 172,
+  "decisoes": 40,
+  "exec": {
+   "R": 67,
+   "A": 22,
+   "P": 29,
+   "H": 20,
+   "C": 34
+  },
+  "modos": {
+   "Autopiloto": 4,
+   "Copiloto": 10,
+   "Assistido": 7,
+   "Autômato": 4
+  },
+  "riscos": {
+   "baixo": 9,
+   "médio": 8,
+   "alto": 8
+  },
+  "por_jornada": {
+   "NE-01": {
+    "R": 8,
+    "A": 4,
+    "P": 3,
+    "H": 1,
+    "C": 3
+   },
+   "NE-02": {
+    "R": 4,
+    "A": 3,
+    "H": 1,
+    "C": 2,
+    "P": 3
+   },
+   "NE-03": {
+    "R": 15,
+    "A": 4,
+    "P": 6,
+    "C": 5,
+    "H": 2
+   },
+   "NE-04": {
+    "P": 2,
+    "A": 2,
+    "H": 4,
+    "C": 4,
+    "R": 6
+   },
+   "NE-05": {
+    "R": 14,
+    "A": 4,
+    "P": 7,
+    "C": 10,
+    "H": 7
+   },
+   "NE-06": {
+    "R": 14,
+    "A": 2,
+    "P": 5,
+    "C": 8,
+    "H": 4
+   },
+   "NE-07": {
+    "R": 6,
+    "A": 3,
+    "P": 3,
+    "C": 2,
+    "H": 1
+   }
+  },
+  "verificacoes": 2745,
+  "problemas": 0
+ },
+ "exec_nome": {
+  "P": "Pessoa de Negócios",
+  "A": "Agente de Negócios",
+  "R": "Automação de Negócios",
+  "C": "Outro círculo",
+  "H": "Pessoa de fora do círculo",
+  "X": "Assessoria externa"
+ },
+ "fronteiras": [
+  {
+   "o": "Gerar a demanda, qualificar os contatos e acompanhar o sucesso do cliente",
+   "dono": "Relações",
+   "nota": "O aceite ou a devolução de cada oportunidade (NE-03), a tabela de preços (NE-01), o contrato assinado com o escopo vendido (NE-04, NE-05 e NE-06) e o vencimento e o resultado de cada renovação (NE-06)."
+  },
+  {
+   "o": "Desenhar a oferta, o modelo de negócio e o preço-base",
+   "dono": "Inteligência",
+   "nota": "O pedido de ajuste ou de revisão de oferta em uso, quando o escopo não cabe no catálogo (NE-03) ou o preço de tabela ficaria abaixo do preço-base (NE-01); os motivos de ganho e de perda e os registros de propostas, vendas e contratos (NE-03 a NE-06)."
+  },
+  {
+   "o": "Decidir o portfólio e a oferta nova",
+   "dono": "Estratégia",
+   "nota": "A ideia de oferta nova que nasce de uma necessidade de cliente fora do catálogo (NE-03, etapa 2)."
+  },
+  {
+   "o": "Definir os padrões, a marca e o posicionamento",
+   "dono": "Identidade",
+   "nota": "Confere com os padrões o material de venda (NE-01), a proposta (NE-03), a parte livre da proposta de licitação (NE-05) e a proposta de renovação (NE-06) e consulta a Identidade no caso não coberto."
+  },
+  {
+   "o": "Implantar o cliente e coordenar o plano de saída",
+   "dono": "Integração",
+   "nota": "O contrato assinado (NE-04, NE-05 e NE-06), a previsão para a capacidade de implantação (NE-02) e a parte de Negócios do plano de saída (NE-06, etapa 3)."
+  },
+  {
+   "o": "Entregar e atender",
+   "dono": "Operações",
+   "nota": "A confirmação de capacidade antes da proposta e do edital (NE-03 e NE-05), o contrato e a ata assinados e a previsão de vendas."
+  },
+  {
+   "o": "Faturar, cobrar, montar o orçamento e pagar a remuneração de parceiros e de quem vende",
+   "dono": "Gestão",
+   "nota": "O contrato e a ata assinados, a previsão de receita, o desvio contra os alvos e a margem conferida da política comercial e da oferta conjunta."
+  },
+  {
+   "o": "Manter os modelos e as alçadas, aprovar a faixa de desconto, revisar o que foge do modelo, conferir os poderes de quem assina e guardar; conduzir esclarecimentos, impugnações, recursos e contrarrazões",
+   "dono": "Governança",
+   "nota": "A faixa de desconto e as condições que mexem nos modelos (NE-01), a proposta e o contrato com cláusula fora do modelo, o termo de encerramento (NE-06), a concessão acima da alçada do executivo (aos sócios), a habilitação e os recursos em licitação (NE-05) e o acordo de oferta conjunta entre as empresas (NE-07)."
+  },
+  {
+   "o": "Desenhar e validar a oferta, com o piloto",
+   "dono": "Inteligência",
+   "nota": "Negócios prepara, fecha e encerra o termo de piloto e redige os termos comerciais da oferta e dos ajustes como tarefas da IN-07, nos modelos da Governança e com a tabela (NE-01). Não há jornada própria de Negócios para isso."
+  },
+  {
+   "o": "Formar, ativar e capacitar o parceiro de venda",
+   "dono": "Relações",
+   "nota": "O resultado da venda com o parceiro e, quando for o caso, o pedido de encerramento da parceria (NE-07, etapa 3)."
+  }
+ ],
+ "pontos": [],
+ "decisoes": [
+  {
+   "o": "Negócios decide o seu ofício; o executivo opina, aprova a concessão acima da alçada de quem vende e assina",
+   "origem": "Ponto 1, aprovado por você (20:11)",
+   "efeito": "Acima da alçada do executivo, decidem os sócios. A faixa de desconto de quem vende é aprovada pela Governança. A oportunidade de parceiro de venda é conferida por Negócios com o critério combinado com Relações, sem passar pela qualificação de Relações."
+  },
+  {
+   "o": "O preço de tabela fica no preço-base ou acima dele",
+   "origem": "Ponto 2, aprovado por você (20:11)",
+   "efeito": "Abaixo, Negócios pede à Inteligência a revisão do preço-base e mantém a oferta no preço vigente até a resposta (NE-01). Você confirmou também que mudar o preço-base de oferta em uso é revisão, que volta ao portão de entrada."
+  },
+  {
+   "o": "Licitação é jornada própria; Negócios decide participar e recorrer, ouvidos o executivo e a Governança",
+   "origem": "Ponto 3, aprovado por você (20:11)",
+   "efeito": "NE-05, nas fases da Lei 14.133. A Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina."
+  },
+  {
+   "o": "A divisão na oferta conjunta é dos executivos das duas empresas",
+   "origem": "Ponto 4, aprovado por você (20:11)",
+   "efeito": "Exceção declarada à regra de que o executivo opina. A Gestão confere o efeito no resultado de cada empresa e a Governança formaliza o acordo antes da proposta (NE-07)."
+  },
+  {
+   "o": "A previsão de receita e o desdobramento dos alvos de venda são de Negócios",
+   "origem": "Ponto 5, aprovado por você (20:11)",
+   "efeito": "NE-02, a partir dos alvos do ciclo, do funil e dos contratos; a previsão vai à Gestão, a Operações, à Integração e ao executivo."
+  },
+  {
+   "o": "O pedido de cancelamento é tratado por Negócios, como retenção",
+   "origem": "Ponto 6, aprovado por você (20:11)",
+   "efeito": "NE-06, etapa 2. Relações trata o risco de perda antes do pedido (RE-05)."
+  },
+  {
+   "o": "Sete jornadas",
+   "origem": "Ponto 7, aprovado por você (20:11)",
+   "efeito": "NE-01 a NE-07, como propostas."
+  },
+  {
+   "o": "Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem",
+   "origem": "Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)",
+   "efeito": "De Assistido para Copiloto, pelas tarefas: NE-05 etapa 4. De Autopiloto para Autômato, pelas tarefas: NE-03 etapa 4. De Copiloto para Assistido, pelas tarefas: NE-02 etapa 2, NE-03 etapa 2, NE-06 etapa 2, NE-06 etapa 3, NE-07 etapa 2."
+  },
+  {
+   "o": "A regra de remuneração de quem vende e de parceiros é decidida pelos sócios",
+   "origem": "Decidido por você (13:09 de 03/10/2026)",
+   "efeito": "Negócios propõe com a Gestão; os sócios decidem, porque mexe em custo e incentivo de todas as empresas. Também: prazos da Lei 14.133 (arts. 84, 86, 90, 164 e 165) lidos em transcrição secundária e registrados nas fontes."
+  },
+  {
+   "o": "Alçada de concessão comercial",
+   "origem": "Aprovado por você (13:51 de 03/10/2026)",
+   "efeito": "A NE-01 fixa, por oferta, a faixa entre o preço de tabela e o preço-base. Quem vende concede até metade da faixa; o executivo, até o preço-base e a condição de pagamento fora da política; os sócios decidem preço abaixo do preço-base, exclusividade e prazo maior que o ciclo estratégico. No contrato público, a concessão é a que o edital permite. A fração é escolha de desenho, a recalibrar com dados."
+  },
+  {
+   "o": "Cadências e conteúdos validados; gates de implantação",
+   "origem": "Validado por você (14:07 de 03/10/2026)",
+   "efeito": "NE-01 semestral; NE-02 trimestral, com previsão mensal; NE-07 semestral; estrutura dos modelos de contrato e regra de remuneração. O que depende de dado real ficou nos gates G1 a G9."
+  }
+ ],
+ "alertas": [
+  {
+   "o": "Integração (círculo 6)",
+   "nota": "Negócios espera o plano de saída de clientes e contratos e a confirmação do que a implantação pede antes da proposta. Entrega o contrato assinado, a previsão de vendas, os contratos afetados pela saída e as pendências de contrato na saída."
+  },
+  {
+   "o": "Operações (círculo 7)",
+   "nota": "Negócios espera a confirmação de capacidade antes da proposta, do edital e da previsão. Entrega o contrato e a ata assinados, a tabela de preços e a previsão de vendas."
+  },
+  {
+   "o": "Gestão (círculo 8)",
+   "nota": "Negócios espera a situação de faturas e pagamentos de cada cliente e a conferência de margem da política comercial e da oferta conjunta. Entrega o contrato e a ata assinados, a previsão de receita, o desvio contra os alvos e o vencimento de cada contrato. A remuneração de quem vende e de parceiros fica com a Gestão."
+  },
+  {
+   "o": "Governança (círculo 9)",
+   "nota": "Negócios espera as regras e alçadas vigentes, os modelos de proposta e de contrato, as certidões e os documentos de habilitação em dia, a revisão do que foge do modelo, a condução de esclarecimentos, impugnações e recursos em licitação e a formalização do acordo de oferta conjunta. Entrega o contrato para conferir e guardar e o acordo entre as empresas."
+  }
+ ],
+ "propostas": [],
+ "transferidas": [],
+ "cobertura": [
+  {
+   "ref": "3.2.2",
+   "nome": "Define pricing strategy",
+   "onde": "NE-01, etapa 2: preço de tabela, descontos e alçada de desconto. O preço-base de cada oferta é da Inteligência (IN-07)"
+  },
+  {
+   "ref": "3.2.3",
+   "nome": "Define and manage channel strategy",
+   "onde": "NE-02, etapa 2, para os canais de venda; os canais de demanda são de Relações (RE-01)"
+  },
+  {
+   "ref": "3.3.3",
+   "nome": "Develop and manage pricing",
+   "onde": "NE-01: executar, avaliar, refinar e comunicar os preços (3.3.3.4 a 3.3.3.6 e 3.3.3.9)"
+  },
+  {
+   "ref": "3.3.9",
+   "nome": "Manage product marketing material",
+   "onde": "NE-01, etapa 3, para o material de venda; o material das ações de demanda é de Relações (RE-02)"
+  },
+  {
+   "ref": "3.4.1",
+   "nome": "Develop sales forecast",
+   "onde": "NE-02, etapa 1"
+  },
+  {
+   "ref": "3.4.2",
+   "nome": "Develop sales partner/alliance relationships",
+   "onde": "Fora: Relações (RE-06). Negócios vende com o parceiro ativo (NE-07)"
+  },
+  {
+   "ref": "3.4.3",
+   "nome": "Establish overall sales budgets",
+   "onde": "NE-02: a previsão de receita vai à Gestão, que monta o orçamento"
+  },
+  {
+   "ref": "3.4.4",
+   "nome": "Establish sales goals and measures",
+   "onde": "NE-02, etapa 2: alvos de venda por oferta e canal, desdobrados dos alvos do ciclo"
+  },
+  {
+   "ref": "3.4.5",
+   "nome": "Establish customer management measures",
+   "onde": "Fora: Relações mede a saúde do cliente (RE-05), com os indicadores da Inteligência"
+  },
+  {
+   "ref": "3.5.1",
+   "nome": "Manage leads/opportunities",
+   "onde": "Até a qualificação (3.5.1.1 a 3.5.1.3), Relações (RE-03). Daí em diante, NE-03 (aceite, quem conduz a venda, solução e proposta) e NE-02 (funil e previsão)"
+  },
+  {
+   "ref": "3.5.2",
+   "nome": "Manage customers and accounts",
+   "onde": "NE-02, etapa 2: clientes-chave e plano de conta de venda; NE-06 para os contratos. O relacionamento e o plano de sucesso são de Relações (RE-05) e os dados mestres, da base de relacionamento (RE-03)"
+  },
+  {
+   "ref": "3.5.3",
+   "nome": "Develop and manage sales proposals, bids, and quotes",
+   "onde": "NE-03 (propostas e cotações) e NE-05 (licitações)"
+  },
+  {
+   "ref": "3.5.4",
+   "nome": "Manage sales orders",
+   "onde": "NE-04, etapa 3, e NE-06, etapa 4 (contratação pela ata); o atendimento do pedido é de Operações e o faturamento, da Gestão"
+  },
+  {
+   "ref": "3.5.5",
+   "nome": "Manage sales partners and alliances",
+   "onde": "Capacitação e material do parceiro: Relações (RE-06). Resultado da venda com o parceiro: NE-07, etapa 3"
+  },
+  {
+   "ref": "3.5.6 a 3.5.8",
+   "nome": "Perform sales at physical outlets; Perform field sales; Perform digital sales",
+   "onde": "Não desenhados como jornadas próprias: o canal de venda é atributo da oportunidade e da proposta (NE-03)"
+  }
+ ],
+ "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções de Negócios, grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
+ "principio": "Regra do círculo, aprovada às 20:11: Negócios decide o que é do seu ofício (o aceite da oportunidade, o escopo e a proposta dentro do catálogo, a tabela de preços e a política comercial, a concessão dentro da alçada de quem vende e a participação em licitação), ouvido o executivo da empresa. O executivo aprova a concessão acima da alçada de quem vende e assina pela empresa; acima da alçada dele, decidem os sócios; a faixa de desconto de quem vende é aprovada pela Governança. Relações gera e qualifica a demanda e acompanha o cliente; a Inteligência desenha a oferta e o preço-base; a Integração implanta; Operações entrega; a Gestão fatura; a Governança mantém os modelos e as alçadas e revisa e guarda os contratos.",
+ "limites": [
+  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
+  "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
+  "A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.",
+  "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17 e 18; os prazos e o rito de esclarecimento, impugnação, recurso, adesão à ata e contratação direta não foram conferidos e estão como “no prazo do edital”.",
+  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.",
+  "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
+  "Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.",
+  "As saídas estão listadas por etapa, não por caminho: na NE-05, etapa 4, o contrato só sai quando há contrato ou adesão, e a ata só quando há ata.",
+  "Se o escopo de uma oferta conjunta mudar na proposta, a divisão acordada entre as empresas precisa ser revista; o desenho não tem esse retorno.",
+  "Os números descrevem este desenho, não a operação atual."
+ ],
+ "revisao": [
+  "Um revisor independente (agente que não participou do desenho) leu a primeira versão das sete jornadas e apontou 30 achados, 7 graves: laços entre jornadas, decisões tomadas duas vezes, dono duplo da alçada de desconto e conferência de identidade em uma só jornada. Todos foram tratados na segunda versão.",
+  "Um verificador independente conferiu as fontes: os códigos e nomes do APQC PCF 7.4 foram confirmados letra por letra; da Lei 14.133, os arts. 6º (XLV, XLVI, XLVIII e XLIX), 17 e 18 foram confirmados no Planalto. O texto de uso foi corrigido em três pontos, e o que a lei diz sobre prazos, recursos, adesão e convocação ficou declarado como não conferido.",
+  "Um segundo revisor leu a segunda versão: 18 achados resolvidos, 12 em parte, e 7 defeitos novos, 1 grave (contrato que Relações não renova terminava sem formalização). Os 7 foram corrigidos e passaram por todos os testes automáticos, mas não por nova revisão independente. Dois itens ficaram como pontos para você decidir (1 e 4) e um como limite."
+ ],
+ "ondas": {
+  "1": "O que os círculos fechados já esperam de Negócios e o que transforma oportunidade em contrato e cuida dos contratos",
+  "2": "O que amplia o alcance da venda: parceiros de venda e oferta conjunta entre as empresas"
+ }
+}

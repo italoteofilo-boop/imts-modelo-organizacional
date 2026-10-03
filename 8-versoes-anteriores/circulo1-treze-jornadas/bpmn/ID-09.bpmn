@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_ID09" targetNamespace="urn:imts:modelo:identidade" exporter="Ecossistema IMTS - fonte única do Círculo 1" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_ID09">
+    <bpmn:categoryValue id="CV_ID09_E1" value="1. Planejar a pauta" />
+    <bpmn:categoryValue id="CV_ID09_E2" value="2. Produzir o conteúdo" />
+    <bpmn:categoryValue id="CV_ID09_E3" value="3. Publicar nos canais" />
+    <bpmn:categoryValue id="CV_ID09_E4" value="4. Medir e registrar" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_ID09">
+    <bpmn:participant id="Participant_ID09" name="ID-09 · Planejar e publicar a comunicação interna e institucional" processRef="Process_ID09" />
+    <bpmn:group id="Group_ID09_E1" categoryValueRef="CV_ID09_E1" />
+    <bpmn:group id="Group_ID09_E2" categoryValueRef="CV_ID09_E2" />
+    <bpmn:group id="Group_ID09_E3" categoryValueRef="CV_ID09_E3" />
+    <bpmn:group id="Group_ID09_E4" categoryValueRef="CV_ID09_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_ID09" name="Planejar e publicar a comunicação interna e institucional" isExecutable="false">
+    <bpmn:documentation>Manter as pessoas informadas e alinhadas e comunicar os fatos importantes com uma só voz, dentro e fora do Ecossistema.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_ID09">
+      <bpmn:lane id="Lane_ID09_GOV" name="Governança">
+        <bpmn:flowNodeRef>ID09_E2_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID09_REL" name="Relações">
+        <bpmn:flowNodeRef>ID09_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID09_IDP" name="Identidade · pessoa">
+        <bpmn:flowNodeRef>ID09_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID09_IDA" name="Identidade · agente">
+        <bpmn:flowNodeRef>ID09_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E4_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_ID09_IDR" name="Identidade · automação">
+        <bpmn:flowNodeRef>ID09_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ID09_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="ID09_S1" name="Fato importante a comunicar recebido"><bpmn:outgoing>ID09_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="ID09_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="ID09_S2" name="Ciclo de pauta iniciado"><bpmn:outgoing>ID09_Flow2</bpmn:outgoing><bpmn:timerEventDefinition id="ID09_S2_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ID09_M1"><bpmn:incoming>ID09_Flow1</bpmn:incoming><bpmn:incoming>ID09_Flow2</bpmn:incoming><bpmn:outgoing>ID09_Flow22</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ID09_E1_T1" name="Propor pauta e calendário a partir dos fatos"><bpmn:documentation>Etapa 1: Planejar a pauta. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow22</bpmn:incoming><bpmn:outgoing>ID09_Flow3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="ID09_E1_T2" name="Decidir pauta, público, canal e o que é sensível"><bpmn:documentation>Etapa 1: Planejar a pauta. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow3</bpmn:incoming><bpmn:outgoing>ID09_Flow4</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="ID09_E2_T1" name="Redigir o conteúdo na voz do Ecossistema"><bpmn:documentation>Etapa 2: Produzir o conteúdo. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow4</bpmn:incoming><bpmn:outgoing>ID09_Flow5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="ID09_E2_T2" name="Conferir o conteúdo com o guia de voz e as mensagens"><bpmn:documentation>Etapa 2: Produzir o conteúdo. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow5</bpmn:incoming><bpmn:outgoing>ID09_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="ID09_E2_G1" name="Conteúdo conforme o padrão?"><bpmn:incoming>ID09_Flow6</bpmn:incoming><bpmn:outgoing>ID09_Flow7</bpmn:outgoing><bpmn:outgoing>ID09_Flow8</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID09_E2_T3" name="Corrigir o conteúdo reprovado"><bpmn:documentation>Etapa 2: Produzir o conteúdo. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow7</bpmn:incoming><bpmn:outgoing>ID09_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID09_M2"><bpmn:incoming>ID09_Flow8</bpmn:incoming><bpmn:incoming>ID09_Flow9</bpmn:incoming><bpmn:outgoing>ID09_Flow23</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ID09_E2_G2" name="Pauta marcada como sensível?"><bpmn:incoming>ID09_Flow23</bpmn:incoming><bpmn:outgoing>ID09_Flow10</bpmn:outgoing><bpmn:outgoing>ID09_Flow11</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="ID09_E2_T4" name="Validar o conteúdo sensível"><bpmn:documentation>Etapa 2: Produzir o conteúdo. Executor: Outro círculo (Governança). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow10</bpmn:incoming><bpmn:outgoing>ID09_Flow12</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="ID09_M3"><bpmn:incoming>ID09_Flow11</bpmn:incoming><bpmn:incoming>ID09_Flow12</bpmn:incoming><bpmn:outgoing>ID09_Flow24</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ID09_E2_G3" name="Conteúdo sensível ou para público externo?"><bpmn:incoming>ID09_Flow24</bpmn:incoming><bpmn:outgoing>ID09_Flow13</bpmn:outgoing><bpmn:outgoing>ID09_Flow14</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="ID09_E2_T5" name="Aprovar o conteúdo"><bpmn:documentation>Etapa 2: Produzir o conteúdo. Executor: Pessoa da Identidade (Identidade · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow14</bpmn:incoming><bpmn:outgoing>ID09_Flow15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="ID09_M4"><bpmn:incoming>ID09_Flow13</bpmn:incoming><bpmn:incoming>ID09_Flow15</bpmn:incoming><bpmn:outgoing>ID09_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="ID09_E3_T1" name="Publicar nos canais internos"><bpmn:documentation>Etapa 3: Publicar nos canais. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow25</bpmn:incoming><bpmn:outgoing>ID09_Flow16</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="ID09_E3_G1" name="Vai para públicos externos?"><bpmn:incoming>ID09_Flow16</bpmn:incoming><bpmn:outgoing>ID09_Flow17</bpmn:outgoing><bpmn:outgoing>ID09_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="ID09_E3_T2" name="Publicar nos canais externos"><bpmn:documentation>Etapa 3: Publicar nos canais. Executor: Outro círculo (Relações). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow18</bpmn:incoming><bpmn:outgoing>ID09_Flow19</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="ID09_M5"><bpmn:incoming>ID09_Flow17</bpmn:incoming><bpmn:incoming>ID09_Flow19</bpmn:incoming><bpmn:outgoing>ID09_Flow26</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ID09_E4_T1" name="Medir alcance e entendimento"><bpmn:documentation>Etapa 4: Medir e registrar. Executor: Agente da Identidade (Identidade · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow26</bpmn:incoming><bpmn:outgoing>ID09_Flow20</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="ID09_E4_T2" name="Registrar a medição para o próximo ciclo"><bpmn:documentation>Etapa 4: Medir e registrar. Executor: Automação da Identidade (Identidade · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>ID09_Flow20</bpmn:incoming><bpmn:outgoing>ID09_Flow21</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="ID09_F1" name="Comunicação publicada e medida"><bpmn:incoming>ID09_Flow21</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="ID09_Flow1" sourceRef="ID09_S1" targetRef="ID09_M1" />
+    <bpmn:sequenceFlow id="ID09_Flow2" sourceRef="ID09_S2" targetRef="ID09_M1" />
+    <bpmn:sequenceFlow id="ID09_Flow3" sourceRef="ID09_E1_T1" targetRef="ID09_E1_T2" />
+    <bpmn:sequenceFlow id="ID09_Flow4" sourceRef="ID09_E1_T2" targetRef="ID09_E2_T1" />
+    <bpmn:sequenceFlow id="ID09_Flow5" sourceRef="ID09_E2_T1" targetRef="ID09_E2_T2" />
+    <bpmn:sequenceFlow id="ID09_Flow6" sourceRef="ID09_E2_T2" targetRef="ID09_E2_G1" />
+    <bpmn:sequenceFlow id="ID09_Flow7" name="Não" sourceRef="ID09_E2_G1" targetRef="ID09_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow8" name="Sim" sourceRef="ID09_E2_G1" targetRef="ID09_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow9" sourceRef="ID09_E2_T3" targetRef="ID09_M2" />
+    <bpmn:sequenceFlow id="ID09_Flow10" name="Sim" sourceRef="ID09_E2_G2" targetRef="ID09_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow11" name="Não" sourceRef="ID09_E2_G2" targetRef="ID09_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow12" sourceRef="ID09_E2_T4" targetRef="ID09_M3" />
+    <bpmn:sequenceFlow id="ID09_Flow13" name="Não" sourceRef="ID09_E2_G3" targetRef="ID09_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow14" name="Sim" sourceRef="ID09_E2_G3" targetRef="ID09_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow15" sourceRef="ID09_E2_T5" targetRef="ID09_M4" />
+    <bpmn:sequenceFlow id="ID09_Flow16" sourceRef="ID09_E3_T1" targetRef="ID09_E3_G1" />
+    <bpmn:sequenceFlow id="ID09_Flow17" name="Não" sourceRef="ID09_E3_G1" targetRef="ID09_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow18" name="Sim" sourceRef="ID09_E3_G1" targetRef="ID09_E3_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="ID09_Flow19" sourceRef="ID09_E3_T2" targetRef="ID09_M5" />
+    <bpmn:sequenceFlow id="ID09_Flow20" sourceRef="ID09_E4_T1" targetRef="ID09_E4_T2" />
+    <bpmn:sequenceFlow id="ID09_Flow21" sourceRef="ID09_E4_T2" targetRef="ID09_F1" />
+    <bpmn:sequenceFlow id="ID09_Flow22" sourceRef="ID09_M1" targetRef="ID09_E1_T1" />
+    <bpmn:sequenceFlow id="ID09_Flow23" sourceRef="ID09_M2" targetRef="ID09_E2_G2" />
+    <bpmn:sequenceFlow id="ID09_Flow24" sourceRef="ID09_M3" targetRef="ID09_E2_G3" />
+    <bpmn:sequenceFlow id="ID09_Flow25" sourceRef="ID09_M4" targetRef="ID09_E3_T1" />
+    <bpmn:sequenceFlow id="ID09_Flow26" sourceRef="ID09_M5" targetRef="ID09_E4_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_ID09">
+    <bpmndi:BPMNPlane id="Plane_ID09" bpmnElement="Collab_ID09">
+      <bpmndi:BPMNShape id="Participant_ID09_di" bpmnElement="Participant_ID09" isHorizontal="true"><dc:Bounds x="0" y="0" width="3895" height="800" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID09_GOV_di" bpmnElement="Lane_ID09_GOV" isHorizontal="true"><dc:Bounds x="30" y="0" width="3865" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID09_REL_di" bpmnElement="Lane_ID09_REL" isHorizontal="true"><dc:Bounds x="30" y="160" width="3865" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID09_IDP_di" bpmnElement="Lane_ID09_IDP" isHorizontal="true"><dc:Bounds x="30" y="320" width="3865" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID09_IDA_di" bpmnElement="Lane_ID09_IDA" isHorizontal="true"><dc:Bounds x="30" y="480" width="3865" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_ID09_IDR_di" bpmnElement="Lane_ID09_IDR" isHorizontal="true"><dc:Bounds x="30" y="640" width="3865" height="160" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_S1_di" bpmnElement="ID09_S1"><dc:Bounds x="132" y="542" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="583" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_S2_di" bpmnElement="ID09_S2"><dc:Bounds x="132" y="702" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="743" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_M1_di" bpmnElement="ID09_M1" isMarkerVisible="true"><dc:Bounds x="297" y="535" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E1_T1_di" bpmnElement="ID09_E1_T1"><dc:Bounds x="431" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E1_T2_di" bpmnElement="ID09_E1_T2"><dc:Bounds x="603" y="358" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_T1_di" bpmnElement="ID09_E2_T1"><dc:Bounds x="775" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_T2_di" bpmnElement="ID09_E2_T2"><dc:Bounds x="947" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_G1_di" bpmnElement="ID09_E2_G1" isMarkerVisible="true"><dc:Bounds x="1157" y="535" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1070" y="587" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_T3_di" bpmnElement="ID09_E2_T3"><dc:Bounds x="1291" y="358" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_M2_di" bpmnElement="ID09_M2" isMarkerVisible="true"><dc:Bounds x="1501" y="695" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_G2_di" bpmnElement="ID09_E2_G2" isMarkerVisible="true"><dc:Bounds x="1673" y="695" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1586" y="747" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_T4_di" bpmnElement="ID09_E2_T4"><dc:Bounds x="1807" y="38" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_M3_di" bpmnElement="ID09_M3" isMarkerVisible="true"><dc:Bounds x="2017" y="695" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_G3_di" bpmnElement="ID09_E2_G3" isMarkerVisible="true"><dc:Bounds x="2189" y="695" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2102" y="747" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E2_T5_di" bpmnElement="ID09_E2_T5"><dc:Bounds x="2323" y="358" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_M4_di" bpmnElement="ID09_M4" isMarkerVisible="true"><dc:Bounds x="2533" y="695" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E3_T1_di" bpmnElement="ID09_E3_T1"><dc:Bounds x="2667" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E3_G1_di" bpmnElement="ID09_E3_G1" isMarkerVisible="true"><dc:Bounds x="2877" y="695" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2790" y="747" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E3_T2_di" bpmnElement="ID09_E3_T2"><dc:Bounds x="3011" y="198" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_M5_di" bpmnElement="ID09_M5" isMarkerVisible="true"><dc:Bounds x="3221" y="535" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E4_T1_di" bpmnElement="ID09_E4_T1"><dc:Bounds x="3355" y="518" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_E4_T2_di" bpmnElement="ID09_E4_T2"><dc:Bounds x="3527" y="678" width="126" height="84" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ID09_F1_di" bpmnElement="ID09_F1"><dc:Bounds x="3744" y="702" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="3707" y="743" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="ID09_Flow1_di" bpmnElement="ID09_Flow1"><di:waypoint x="168" y="560" /><di:waypoint x="297" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow2_di" bpmnElement="ID09_Flow2"><di:waypoint x="168" y="720" /><di:waypoint x="322" y="720" /><di:waypoint x="322" y="585" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow3_di" bpmnElement="ID09_Flow3"><di:waypoint x="494" y="518" /><di:waypoint x="494" y="400" /><di:waypoint x="603" y="400" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow4_di" bpmnElement="ID09_Flow4"><di:waypoint x="666" y="442" /><di:waypoint x="666" y="560" /><di:waypoint x="775" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow5_di" bpmnElement="ID09_Flow5"><di:waypoint x="901" y="560" /><di:waypoint x="947" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow6_di" bpmnElement="ID09_Flow6"><di:waypoint x="1073" y="560" /><di:waypoint x="1157" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow7_di" bpmnElement="ID09_Flow7"><di:waypoint x="1182" y="535" /><di:waypoint x="1182" y="400" /><di:waypoint x="1291" y="400" /><bpmndi:BPMNLabel><dc:Bounds x="1188" y="517" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow8_di" bpmnElement="ID09_Flow8"><di:waypoint x="1182" y="585" /><di:waypoint x="1182" y="720" /><di:waypoint x="1501" y="720" /><bpmndi:BPMNLabel><dc:Bounds x="1188" y="590" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow9_di" bpmnElement="ID09_Flow9"><di:waypoint x="1354" y="442" /><di:waypoint x="1354" y="720" /><di:waypoint x="1501" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow10_di" bpmnElement="ID09_Flow10"><di:waypoint x="1698" y="695" /><di:waypoint x="1698" y="80" /><di:waypoint x="1807" y="80" /><bpmndi:BPMNLabel><dc:Bounds x="1704" y="677" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow11_di" bpmnElement="ID09_Flow11"><di:waypoint x="1723" y="720" /><di:waypoint x="2017" y="720" /><bpmndi:BPMNLabel><dc:Bounds x="1728" y="702" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow12_di" bpmnElement="ID09_Flow12"><di:waypoint x="1870" y="122" /><di:waypoint x="1870" y="720" /><di:waypoint x="2017" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow13_di" bpmnElement="ID09_Flow13"><di:waypoint x="2239" y="720" /><di:waypoint x="2533" y="720" /><bpmndi:BPMNLabel><dc:Bounds x="2244" y="702" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow14_di" bpmnElement="ID09_Flow14"><di:waypoint x="2214" y="695" /><di:waypoint x="2214" y="400" /><di:waypoint x="2323" y="400" /><bpmndi:BPMNLabel><dc:Bounds x="2220" y="677" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow15_di" bpmnElement="ID09_Flow15"><di:waypoint x="2386" y="442" /><di:waypoint x="2386" y="720" /><di:waypoint x="2533" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow16_di" bpmnElement="ID09_Flow16"><di:waypoint x="2793" y="720" /><di:waypoint x="2877" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow17_di" bpmnElement="ID09_Flow17"><di:waypoint x="2927" y="720" /><di:waypoint x="3246" y="720" /><di:waypoint x="3246" y="585" /><bpmndi:BPMNLabel><dc:Bounds x="2932" y="702" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow18_di" bpmnElement="ID09_Flow18"><di:waypoint x="2902" y="695" /><di:waypoint x="2902" y="240" /><di:waypoint x="3011" y="240" /><bpmndi:BPMNLabel><dc:Bounds x="2908" y="677" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow19_di" bpmnElement="ID09_Flow19"><di:waypoint x="3074" y="282" /><di:waypoint x="3074" y="560" /><di:waypoint x="3221" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow20_di" bpmnElement="ID09_Flow20"><di:waypoint x="3418" y="602" /><di:waypoint x="3418" y="720" /><di:waypoint x="3527" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow21_di" bpmnElement="ID09_Flow21"><di:waypoint x="3653" y="720" /><di:waypoint x="3744" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow22_di" bpmnElement="ID09_Flow22"><di:waypoint x="347" y="560" /><di:waypoint x="431" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow23_di" bpmnElement="ID09_Flow23"><di:waypoint x="1551" y="720" /><di:waypoint x="1673" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow24_di" bpmnElement="ID09_Flow24"><di:waypoint x="2067" y="720" /><di:waypoint x="2189" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow25_di" bpmnElement="ID09_Flow25"><di:waypoint x="2583" y="720" /><di:waypoint x="2667" y="720" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="ID09_Flow26_di" bpmnElement="ID09_Flow26"><di:waypoint x="3271" y="560" /><di:waypoint x="3355" y="560" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_ID09_E1_di" bpmnElement="Group_ID09_E1"><dc:Bounds x="244" y="-44" width="500" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="250" y="-38" width="488" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID09_E2_di" bpmnElement="Group_ID09_E2"><dc:Bounds x="760" y="-44" width="1704" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="766" y="-38" width="1692" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID09_E3_di" bpmnElement="Group_ID09_E3"><dc:Bounds x="2480" y="-44" width="672" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="2486" y="-38" width="660" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_ID09_E4_di" bpmnElement="Group_ID09_E4"><dc:Bounds x="3168" y="-44" width="500" height="852" /><bpmndi:BPMNLabel><dc:Bounds x="3174" y="-38" width="488" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

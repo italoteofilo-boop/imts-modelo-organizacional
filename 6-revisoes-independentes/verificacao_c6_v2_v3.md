@@ -1,0 +1,5 @@
+# Verificações independentes das correções do círculo 6 (02/10/2026)
+
+Versão 2: 21 dos 30 achados resolvidos, 9 em parte; 8 defeitos novos (2 graves: espera sem gatilho na coordenação da saída e no redesenho). Tratados na versão 3.
+Versão 3: B, C, E, F, G e H resolvidos; A e D em parte; 1 defeito novo grave (a saída de empresa executada antes do mandato, porque a ES-05 pede o plano antes de aprovar o mandato — conferido no c2) e 2 médios (fins da IT-06 e da IT-07 sem aviso à IT-02; lançamento retomado registrado duas vezes).
+Tratamento final: a etapa 1 da IT-04 sempre termina entregando o plano; o mandato de venda ou de encerramento e a data de oferta abrem a etapa 2; IT-06 e IT-07 avisam a IT-02 quando o agente ou o acesso não fica pronto, e a IT-02 leva o impedimento ao executivo; a retomada do lançamento reativa o projeto na carteira e vai à prontidão; a capacidade não criada avisa a IT-08, que suspende o redesenho. Testes: c1 a c6 OK; cruzamento 207 trocas, 543 verificações, 0 falhas. Sem nova revisão independente depois desse último acerto.

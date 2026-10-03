@@ -1,0 +1,35 @@
+Círculo 3 · Inteligência — fluxos em BPMN 2.0
+Situação: Fechado em 02/10/2026 · propostas do círculo 4 aplicadas · auditoria de execução aplicada em 03/10/2026
+
+Conteúdo
+- bpmn/IN-01.bpmn a IN-08.bpmn: um arquivo por jornada, com o diagrama (raias, etapas, tarefas, decisões).
+- circulo3-inteligencia-fonte.json: a mesma informação em dados (jornadas, etapas, tarefas, entradas, saídas, fontes, testes).
+
+Jornadas
+- IN-01 · Ler o mercado, os clientes e os concorrentes e avisar das mudanças relevantes
+- IN-02 · Responder a perguntas de decisão com evidência
+- IN-03 · Tornar cada dado confiável: definir, validar, catalogar, classificar e retirar
+- IN-04 · Definir e medir os indicadores e publicar as análises
+- IN-05 · Curar as bases de conhecimento que pessoas e agentes consultam
+- IN-06 · Criar e publicar um método testado, a partir de uma prática ou de uma necessidade
+- IN-07 · Desenhar e validar uma oferta com o seu modelo de negócio e prepará-la para o lançamento
+- IN-08 · Aprender com as lições e os resultados e recomendar melhorias
+
+Como abrir
+- Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.
+- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+
+Como ler
+- Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.
+- Tarefa de usuário: pessoa. Tarefa manual: conversa ou reunião. Tarefa de serviço: agente. Tarefa de script: automação.
+  Tarefa de regra de negócio: decisão por tabela. Atividade de chamada: chama jornada de outro círculo.
+  Tarefa de recebimento: o fluxo espera ali a resposta de outra jornada ou de uma pessoa.
+- As caixas tracejadas (grupos) são as etapas da jornada.
+
+Testes desta versão
+- 4569 verificações de integridade, 0 falhas.
+- 8 arquivos lidos pelo metamodelo do BPMN 2.0 e conferidos por 26 regras do bpmnlint: 0 apontamentos.
+- 8 fluxos desenhados no bpmn-js: 0 avisos; 287 nomes de tarefa conferidos, 0 encobertos ou cortados.
+- Trocas entre os círculos já desenhados: 406 produtos conferidos dos dois lados, 0 falhas.
+
+Gerado em 02/10/2026 a partir da fonte única do modelo.

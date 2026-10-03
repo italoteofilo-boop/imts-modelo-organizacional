@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_OP06" targetNamespace="urn:imts:modelo:circulo7-operacoes" exporter="Ecossistema IMTS - fonte única do Círculo 7" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_OP06">
+    <bpmn:categoryValue id="CV_OP06_E1" value="1. Prever a demanda e planejar materiais e produção" />
+    <bpmn:categoryValue id="CV_OP06_E2" value="2. Pedir e receber os materiais e serviços" />
+    <bpmn:categoryValue id="CV_OP06_E3" value="3. Produzir ou montar o produto e testá-lo" />
+    <bpmn:categoryValue id="CV_OP06_E4" value="4. Guardar o produto e entregá-lo ao cliente" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_OP06">
+    <bpmn:participant id="Participant_OP06" name="OP-06 · Abastecer e entregar o produto físico: demanda, materiais, produção, estoque e transporte" processRef="Process_OP06" />
+    <bpmn:group id="Group_OP06_E1" categoryValueRef="CV_OP06_E1" />
+    <bpmn:group id="Group_OP06_E2" categoryValueRef="CV_OP06_E2" />
+    <bpmn:group id="Group_OP06_E3" categoryValueRef="CV_OP06_E3" />
+    <bpmn:group id="Group_OP06_E4" categoryValueRef="CV_OP06_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_OP06" name="Abastecer e entregar o produto físico: demanda, materiais, produção, estoque e transporte" isExecutable="false">
+    <bpmn:documentation>Onde a oferta tem produto físico, fazer a previsão de vendas e os contratos virarem plano de produção e de materiais; cada material ser pedido à Gestão, recebido e inspecionado, e o não conforme recusado e reposto; cada produto ser produzido ou montado, testado pelo procedimento padrão e registrado por lote; cada defeito com risco à saúde ou à segurança ir ao pós-venda; e cada pedido ser guardado, expedido, transportado, recebido pelo cliente e passado à Gestão para faturar. Operações planeja, produz e entrega; a Gestão compra.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_OP06">
+      <bpmn:lane id="Lane_OP06_NEG" name="Negócios">
+        <bpmn:flowNodeRef>OP06_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP06_GES" name="Gestão">
+        <bpmn:flowNodeRef>OP06_E2_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP06_CLI" name="Cliente">
+        <bpmn:flowNodeRef>OP06_E4_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP06_OPP" name="Operações · pessoa">
+        <bpmn:flowNodeRef>OP06_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E4_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP06_OPA" name="Operações · agente">
+        <bpmn:flowNodeRef>OP06_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E4_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_OP06_OPR" name="Operações · automação">
+        <bpmn:flowNodeRef>OP06_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_E4_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>OP06_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="OP06_S1" name="Ciclo de planejamento de suprimentos iniciado"><bpmn:outgoing>OP06_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="OP06_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="OP06_S2" name="Contrato com produto assinado"><bpmn:outgoing>OP06_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="OP06_S2_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="OP06_M1"><bpmn:incoming>OP06_Flow1</bpmn:incoming><bpmn:incoming>OP06_Flow2</bpmn:incoming><bpmn:outgoing>OP06_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="OP06_E1_T1" name="Montar a previsão de demanda por produto e conferir com a previsão de vendas e os contratos"><bpmn:documentation>Etapa 1: Prever a demanda e planejar materiais e produção. Executor: Agente de Operações (Operações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow25</bpmn:incoming><bpmn:outgoing>OP06_Flow3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="OP06_E1_T2" name="Calcular a necessidade de materiais e a capacidade de produção e de estoque"><bpmn:documentation>Etapa 1: Prever a demanda e planejar materiais e produção. Executor: Agente de Operações (Operações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow3</bpmn:incoming><bpmn:outgoing>OP06_Flow4</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="OP06_E1_T3" name="Decidir o plano de produção e de materiais do ciclo"><bpmn:documentation>Etapa 1: Prever a demanda e planejar materiais e produção. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow4</bpmn:incoming><bpmn:outgoing>OP06_Flow5</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="OP06_M2"><bpmn:incoming>OP06_Flow5</bpmn:incoming><bpmn:incoming>OP06_Flow11</bpmn:incoming><bpmn:outgoing>OP06_Flow26</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="OP06_E2_T1" name="Pedir à Gestão a compra dos materiais e serviços do plano"><bpmn:documentation>Etapa 2: Pedir e receber os materiais e serviços. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow26</bpmn:incoming><bpmn:outgoing>OP06_Flow6</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:task id="OP06_E2_T2" name="Fazer a compra e informar a data de entrega"><bpmn:documentation>Etapa 2: Pedir e receber os materiais e serviços. Executor: Outro círculo (Gestão). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow6</bpmn:incoming><bpmn:outgoing>OP06_Flow7</bpmn:outgoing></bpmn:task>
+    <bpmn:userTask id="OP06_E2_T3" name="Receber e inspecionar os materiais e guardá-los"><bpmn:documentation>Etapa 2: Pedir e receber os materiais e serviços. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow7</bpmn:incoming><bpmn:outgoing>OP06_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="OP06_E2_G1" name="O material recebido está conforme?"><bpmn:incoming>OP06_Flow8</bpmn:incoming><bpmn:outgoing>OP06_Flow9</bpmn:outgoing><bpmn:outgoing>OP06_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="OP06_E2_T4" name="Recusar o material, registrar a falha do fornecedor e pedir a reposição"><bpmn:documentation>Etapa 2: Pedir e receber os materiais e serviços. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow10</bpmn:incoming><bpmn:outgoing>OP06_Flow11</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="OP06_M3"><bpmn:incoming>OP06_Flow9</bpmn:incoming><bpmn:incoming>OP06_Flow17</bpmn:incoming><bpmn:incoming>OP06_Flow19</bpmn:incoming><bpmn:outgoing>OP06_Flow27</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="OP06_E3_T1" name="Programar a produção e liberar as ordens por lote"><bpmn:documentation>Etapa 3: Produzir ou montar o produto e testá-lo. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow27</bpmn:incoming><bpmn:outgoing>OP06_Flow12</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="OP06_E3_T2" name="Produzir ou montar o produto"><bpmn:documentation>Etapa 3: Produzir ou montar o produto e testá-lo. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow12</bpmn:incoming><bpmn:outgoing>OP06_Flow13</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="OP06_E3_T3" name="Testar o produto pelo procedimento padrão e registrar o resultado"><bpmn:documentation>Etapa 3: Produzir ou montar o produto e testá-lo. Executor: Agente de Operações (Operações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow13</bpmn:incoming><bpmn:outgoing>OP06_Flow14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="OP06_E3_G1" name="O produto passou no teste?"><bpmn:incoming>OP06_Flow14</bpmn:incoming><bpmn:outgoing>OP06_Flow15</bpmn:outgoing><bpmn:outgoing>OP06_Flow16</bpmn:outgoing><bpmn:outgoing>OP06_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="OP06_E3_T4" name="Separar o item, refazer ou descartar e registrar a não conformidade"><bpmn:documentation>Etapa 3: Produzir ou montar o produto e testá-lo. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow16</bpmn:incoming><bpmn:outgoing>OP06_Flow17</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="OP06_E3_T5" name="Bloquear o lote e levar o defeito ao pós-venda"><bpmn:documentation>Etapa 3: Produzir ou montar o produto e testá-lo. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow18</bpmn:incoming><bpmn:outgoing>OP06_Flow19</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="OP06_E4_T1" name="Guardar o produto e controlar o estoque"><bpmn:documentation>Etapa 4: Guardar o produto e entregá-lo ao cliente. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow15</bpmn:incoming><bpmn:outgoing>OP06_Flow20</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:userTask id="OP06_E4_T2" name="Preparar e expedir o pedido"><bpmn:documentation>Etapa 4: Guardar o produto e entregá-lo ao cliente. Executor: Pessoa de Operações (Operações · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow20</bpmn:incoming><bpmn:outgoing>OP06_Flow21</bpmn:outgoing></bpmn:userTask>
+    <bpmn:serviceTask id="OP06_E4_T3" name="Acompanhar o transporte até a entrega"><bpmn:documentation>Etapa 4: Guardar o produto e entregá-lo ao cliente. Executor: Agente de Operações (Operações · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow21</bpmn:incoming><bpmn:outgoing>OP06_Flow22</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="OP06_E4_T4" name="Confirmar o recebimento do produto"><bpmn:documentation>Etapa 4: Guardar o produto e entregá-lo ao cliente. Executor: Pessoa de fora do círculo (Cliente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow22</bpmn:incoming><bpmn:outgoing>OP06_Flow23</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="OP06_E4_T5" name="Registrar a entrega, o lote e o prazo cumprido e passar a faturar"><bpmn:documentation>Etapa 4: Guardar o produto e entregá-lo ao cliente. Executor: Automação de Operações (Operações · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>OP06_Flow23</bpmn:incoming><bpmn:outgoing>OP06_Flow24</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="OP06_F1" name="Produto entregue, passado a faturar e registrado"><bpmn:incoming>OP06_Flow24</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="OP06_Flow1" sourceRef="OP06_S1" targetRef="OP06_M1" />
+    <bpmn:sequenceFlow id="OP06_Flow2" sourceRef="OP06_S2" targetRef="OP06_M1" />
+    <bpmn:sequenceFlow id="OP06_Flow3" sourceRef="OP06_E1_T1" targetRef="OP06_E1_T2" />
+    <bpmn:sequenceFlow id="OP06_Flow4" sourceRef="OP06_E1_T2" targetRef="OP06_E1_T3" />
+    <bpmn:sequenceFlow id="OP06_Flow5" sourceRef="OP06_E1_T3" targetRef="OP06_M2" />
+    <bpmn:sequenceFlow id="OP06_Flow6" sourceRef="OP06_E2_T1" targetRef="OP06_E2_T2" />
+    <bpmn:sequenceFlow id="OP06_Flow7" sourceRef="OP06_E2_T2" targetRef="OP06_E2_T3" />
+    <bpmn:sequenceFlow id="OP06_Flow8" sourceRef="OP06_E2_T3" targetRef="OP06_E2_G1" />
+    <bpmn:sequenceFlow id="OP06_Flow9" name="Sim" sourceRef="OP06_E2_G1" targetRef="OP06_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP06_Flow10" name="Não" sourceRef="OP06_E2_G1" targetRef="OP06_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP06_Flow11" sourceRef="OP06_E2_T4" targetRef="OP06_M2" />
+    <bpmn:sequenceFlow id="OP06_Flow12" sourceRef="OP06_E3_T1" targetRef="OP06_E3_T2" />
+    <bpmn:sequenceFlow id="OP06_Flow13" sourceRef="OP06_E3_T2" targetRef="OP06_E3_T3" />
+    <bpmn:sequenceFlow id="OP06_Flow14" sourceRef="OP06_E3_T3" targetRef="OP06_E3_G1" />
+    <bpmn:sequenceFlow id="OP06_Flow15" name="Sim" sourceRef="OP06_E3_G1" targetRef="OP06_E4_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP06_Flow16" name="Não" sourceRef="OP06_E3_G1" targetRef="OP06_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP06_Flow17" sourceRef="OP06_E3_T4" targetRef="OP06_M3" />
+    <bpmn:sequenceFlow id="OP06_Flow18" name="Não: defeito com risco à saúde ou à segurança" sourceRef="OP06_E3_G1" targetRef="OP06_E3_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: defeito com risco à saúde ou à segurança</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="OP06_Flow19" sourceRef="OP06_E3_T5" targetRef="OP06_M3" />
+    <bpmn:sequenceFlow id="OP06_Flow20" sourceRef="OP06_E4_T1" targetRef="OP06_E4_T2" />
+    <bpmn:sequenceFlow id="OP06_Flow21" sourceRef="OP06_E4_T2" targetRef="OP06_E4_T3" />
+    <bpmn:sequenceFlow id="OP06_Flow22" sourceRef="OP06_E4_T3" targetRef="OP06_E4_T4" />
+    <bpmn:sequenceFlow id="OP06_Flow23" sourceRef="OP06_E4_T4" targetRef="OP06_E4_T5" />
+    <bpmn:sequenceFlow id="OP06_Flow24" sourceRef="OP06_E4_T5" targetRef="OP06_F1" />
+    <bpmn:sequenceFlow id="OP06_Flow25" sourceRef="OP06_M1" targetRef="OP06_E1_T1" />
+    <bpmn:sequenceFlow id="OP06_Flow26" sourceRef="OP06_M2" targetRef="OP06_E2_T1" />
+    <bpmn:sequenceFlow id="OP06_Flow27" sourceRef="OP06_M3" targetRef="OP06_E3_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_OP06">
+    <bpmndi:BPMNPlane id="Plane_OP06" bpmnElement="Collab_OP06">
+      <bpmndi:BPMNShape id="Participant_OP06_di" bpmnElement="Participant_OP06" isHorizontal="true"><dc:Bounds x="0" y="0" width="5038" height="1056" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP06_NEG_di" bpmnElement="Lane_OP06_NEG" isHorizontal="true"><dc:Bounds x="30" y="0" width="5008" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP06_GES_di" bpmnElement="Lane_OP06_GES" isHorizontal="true"><dc:Bounds x="30" y="176" width="5008" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP06_CLI_di" bpmnElement="Lane_OP06_CLI" isHorizontal="true"><dc:Bounds x="30" y="352" width="5008" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP06_OPP_di" bpmnElement="Lane_OP06_OPP" isHorizontal="true"><dc:Bounds x="30" y="528" width="5008" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP06_OPA_di" bpmnElement="Lane_OP06_OPA" isHorizontal="true"><dc:Bounds x="30" y="704" width="5008" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_OP06_OPR_di" bpmnElement="Lane_OP06_OPR" isHorizontal="true"><dc:Bounds x="30" y="880" width="5008" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_S1_di" bpmnElement="OP06_S1"><dc:Bounds x="132" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_S2_di" bpmnElement="OP06_S2"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_M1_di" bpmnElement="OP06_M1" isMarkerVisible="true"><dc:Bounds x="331" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E1_T1_di" bpmnElement="OP06_E1_T1"><dc:Bounds x="482" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E1_T2_di" bpmnElement="OP06_E1_T2"><dc:Bounds x="688" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E1_T3_di" bpmnElement="OP06_E1_T3"><dc:Bounds x="894" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_M2_di" bpmnElement="OP06_M2" isMarkerVisible="true"><dc:Bounds x="1155" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E2_T1_di" bpmnElement="OP06_E2_T1"><dc:Bounds x="1306" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E2_T2_di" bpmnElement="OP06_E2_T2"><dc:Bounds x="1512" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E2_T3_di" bpmnElement="OP06_E2_T3"><dc:Bounds x="1718" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E2_G1_di" bpmnElement="OP06_E2_G1" isMarkerVisible="true"><dc:Bounds x="1979" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1892" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E2_T4_di" bpmnElement="OP06_E2_T4"><dc:Bounds x="2130" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_M3_di" bpmnElement="OP06_M3" isMarkerVisible="true"><dc:Bounds x="2391" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E3_T1_di" bpmnElement="OP06_E3_T1"><dc:Bounds x="2542" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E3_T2_di" bpmnElement="OP06_E3_T2"><dc:Bounds x="2748" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E3_T3_di" bpmnElement="OP06_E3_T3"><dc:Bounds x="2954" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E3_G1_di" bpmnElement="OP06_E3_G1" isMarkerVisible="true"><dc:Bounds x="3215" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3128" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E3_T4_di" bpmnElement="OP06_E3_T4"><dc:Bounds x="3366" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E3_T5_di" bpmnElement="OP06_E3_T5"><dc:Bounds x="3572" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E4_T1_di" bpmnElement="OP06_E4_T1"><dc:Bounds x="3778" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E4_T2_di" bpmnElement="OP06_E4_T2"><dc:Bounds x="3984" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E4_T3_di" bpmnElement="OP06_E4_T3"><dc:Bounds x="4190" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E4_T4_di" bpmnElement="OP06_E4_T4"><dc:Bounds x="4396" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_E4_T5_di" bpmnElement="OP06_E4_T5"><dc:Bounds x="4602" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="OP06_F1_di" bpmnElement="OP06_F1"><dc:Bounds x="4870" y="950" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4833" y="991" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="OP06_Flow1_di" bpmnElement="OP06_Flow1"><di:waypoint x="168" y="968" /><di:waypoint x="356" y="968" /><di:waypoint x="356" y="817" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow2_di" bpmnElement="OP06_Flow2"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="767" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow3_di" bpmnElement="OP06_Flow3"><di:waypoint x="642" y="792" /><di:waypoint x="688" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow4_di" bpmnElement="OP06_Flow4"><di:waypoint x="768" y="742" /><di:waypoint x="768" y="616" /><di:waypoint x="894" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow5_di" bpmnElement="OP06_Flow5"><di:waypoint x="974" y="666" /><di:waypoint x="974" y="968" /><di:waypoint x="1155" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow6_di" bpmnElement="OP06_Flow6"><di:waypoint x="1386" y="918" /><di:waypoint x="1386" y="264" /><di:waypoint x="1512" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow7_di" bpmnElement="OP06_Flow7"><di:waypoint x="1592" y="314" /><di:waypoint x="1592" y="616" /><di:waypoint x="1718" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow8_di" bpmnElement="OP06_Flow8"><di:waypoint x="1878" y="616" /><di:waypoint x="1979" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow9_di" bpmnElement="OP06_Flow9"><di:waypoint x="2029" y="616" /><di:waypoint x="2416" y="616" /><di:waypoint x="2416" y="943" /><bpmndi:BPMNLabel><dc:Bounds x="2034" y="598" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow10_di" bpmnElement="OP06_Flow10"><di:waypoint x="2004" y="641" /><di:waypoint x="2004" y="968" /><di:waypoint x="2130" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="2010" y="646" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow11_di" bpmnElement="OP06_Flow11"><di:waypoint x="2210" y="918" /><di:waypoint x="2210" y="889" /><di:waypoint x="1180" y="889" /><di:waypoint x="1180" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow12_di" bpmnElement="OP06_Flow12"><di:waypoint x="2622" y="918" /><di:waypoint x="2622" y="616" /><di:waypoint x="2748" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow13_di" bpmnElement="OP06_Flow13"><di:waypoint x="2828" y="666" /><di:waypoint x="2828" y="792" /><di:waypoint x="2954" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow14_di" bpmnElement="OP06_Flow14"><di:waypoint x="3114" y="792" /><di:waypoint x="3215" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow15_di" bpmnElement="OP06_Flow15"><di:waypoint x="3265" y="792" /><di:waypoint x="3754" y="792" /><di:waypoint x="3754" y="968" /><di:waypoint x="3778" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="3270" y="774" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow16_di" bpmnElement="OP06_Flow16"><di:waypoint x="3240" y="767" /><di:waypoint x="3240" y="616" /><di:waypoint x="3366" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="3246" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow17_di" bpmnElement="OP06_Flow17"><di:waypoint x="3446" y="566" /><di:waypoint x="3446" y="537" /><di:waypoint x="2416" y="537" /><di:waypoint x="2416" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow18_di" bpmnElement="OP06_Flow18"><di:waypoint x="3240" y="817" /><di:waypoint x="3240" y="968" /><di:waypoint x="3572" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="3246" y="822" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow19_di" bpmnElement="OP06_Flow19"><di:waypoint x="3652" y="918" /><di:waypoint x="3652" y="889" /><di:waypoint x="2416" y="889" /><di:waypoint x="2416" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow20_di" bpmnElement="OP06_Flow20"><di:waypoint x="3858" y="918" /><di:waypoint x="3858" y="616" /><di:waypoint x="3984" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow21_di" bpmnElement="OP06_Flow21"><di:waypoint x="4064" y="666" /><di:waypoint x="4064" y="792" /><di:waypoint x="4190" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow22_di" bpmnElement="OP06_Flow22"><di:waypoint x="4270" y="742" /><di:waypoint x="4270" y="440" /><di:waypoint x="4396" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow23_di" bpmnElement="OP06_Flow23"><di:waypoint x="4476" y="490" /><di:waypoint x="4476" y="968" /><di:waypoint x="4602" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow24_di" bpmnElement="OP06_Flow24"><di:waypoint x="4762" y="968" /><di:waypoint x="4870" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow25_di" bpmnElement="OP06_Flow25"><di:waypoint x="381" y="792" /><di:waypoint x="482" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow26_di" bpmnElement="OP06_Flow26"><di:waypoint x="1205" y="968" /><di:waypoint x="1306" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="OP06_Flow27_di" bpmnElement="OP06_Flow27"><di:waypoint x="2441" y="968" /><di:waypoint x="2542" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_OP06_E1_di" bpmnElement="Group_OP06_E1"><dc:Bounds x="261" y="-44" width="808" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_OP06_E2_di" bpmnElement="Group_OP06_E2"><dc:Bounds x="1085" y="-44" width="1220" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="1091" y="-38" width="1208" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_OP06_E3_di" bpmnElement="Group_OP06_E3"><dc:Bounds x="2321" y="-44" width="1426" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="2327" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_OP06_E4_di" bpmnElement="Group_OP06_E4"><dc:Bounds x="3763" y="-44" width="1014" height="1108" /><bpmndi:BPMNLabel><dc:Bounds x="3769" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

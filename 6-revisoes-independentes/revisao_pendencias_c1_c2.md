@@ -1,0 +1,4 @@
+# Revisão independente das sete mudanças aprovadas às 20:11 (círculos 1 e 2)
+
+Revisor: agente que não participou da aplicação. Cinco mudanças resolvidas, duas em parte (ES-05 e acertos de nome). Sete defeitos novos, nenhum grave: textos de MUDANCAS com "com o executivo"; caso da ES-05 que voltava dos sócios e era arquivado sem eles; sócios decidindo sem receber o caso e a apuração; opções de mandato aparecendo na proposta de arquivar; "aprovar nova estratégia" na proposta de manter (ES-01); ID-03 etapas 2 e 3 ainda "com o executivo"; ES-05 etapa 3 subindo aos sócios casos que eles não autorizaram.
+Tratamento: os seis primeiros corrigidos no fluxo e nos textos; o da ID-03 virou proposta nova no círculo 1, não aplicada (fora do escopo aprovado). O nome do método de estratégia não mudou porque o círculo 3 o recebe com esse nome. Testes: c1 a c5 OK; cruzamento 148 trocas, 410 verificações, 0 falhas.

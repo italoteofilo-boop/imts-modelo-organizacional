@@ -1,0 +1,40 @@
+Círculo 8 · Gestão — fluxos em BPMN 2.0
+Situação: Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026
+
+Conteúdo
+- bpmn/GE-01.bpmn a GE-13.bpmn: um arquivo por jornada, com o diagrama (raias, etapas, tarefas, decisões).
+- circulo8-gestao-fonte.json: a mesma informação em dados (jornadas, etapas, tarefas, entradas, saídas, fontes, testes).
+
+Jornadas
+- GE-01 · Desdobrar o orçamento aprovado e controlar as mudanças de recurso
+- GE-02 · Rodar o ritual de acompanhamento dos alvos e cobrar as ações
+- GE-03 · Faturar os clientes e receber e cobrar o que é devido
+- GE-04 · Comprar e pagar: do pedido de compra ao fornecedor e ao parceiro pagos
+- GE-05 · Gerir o caixa, fechar as contas e os impostos e prestar contas
+- GE-06 · Aplicar o rateio do custo dos círculos entre as empresas
+- GE-07 · Prover pessoas: vaga, seleção, contratação, movimentação e desligamento
+- GE-08 · Integrar pessoas novas à cultura
+- GE-09 · Avaliar e desenvolver as pessoas e medir a cultura
+- GE-13 · Calcular e pagar a folha e os encargos
+- GE-10 · Realizar os rituais de cultura e o reconhecimento de pessoas e equipes
+- GE-11 · Planejar e publicar a comunicação interna
+- GE-12 · Gerir os ativos, os espaços e os serviços administrativos
+
+Como abrir
+- Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.
+- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+
+Como ler
+- Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.
+- Tarefa de usuário: pessoa. Tarefa manual: conversa ou reunião. Tarefa de serviço: agente. Tarefa de script: automação.
+  Tarefa de regra de negócio: decisão por tabela. Atividade de chamada: chama jornada de outro círculo.
+  Tarefa de recebimento: o fluxo espera ali a resposta de outra jornada ou de uma pessoa.
+- As caixas tracejadas (grupos) são as etapas da jornada.
+
+Testes desta versão
+- 2800 verificações de integridade, 0 falhas.
+- 13 arquivos lidos pelo metamodelo do BPMN 2.0 e conferidos por 26 regras do bpmnlint: 0 apontamentos.
+- 13 fluxos desenhados no bpmn-js: 0 avisos; 150 nomes de tarefa conferidos, 0 encobertos ou cortados.
+- Trocas entre os círculos já desenhados: 406 produtos conferidos dos dois lados, 0 falhas.
+
+Gerado em 02/10/2026 a partir da fonte única do modelo.

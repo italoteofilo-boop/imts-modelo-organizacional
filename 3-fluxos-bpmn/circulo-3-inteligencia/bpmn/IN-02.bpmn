@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_IN02" targetNamespace="urn:imts:modelo:circulo3-inteligencia" exporter="Ecossistema IMTS - fonte única do Círculo 3" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_IN02">
+    <bpmn:categoryValue id="CV_IN02_E1" value="1. Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada" />
+    <bpmn:categoryValue id="CV_IN02_E2" value="2. Buscar a evidência e avaliar se é confiável" />
+    <bpmn:categoryValue id="CV_IN02_E3" value="3. Montar a resposta com fonte e grau de confiança" />
+    <bpmn:categoryValue id="CV_IN02_E4" value="4. Entregar a resposta e registrar para reuso" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_IN02">
+    <bpmn:participant id="Participant_IN02" name="IN-02 · Responder a perguntas de decisão com evidência" processRef="Process_IN02" />
+    <bpmn:group id="Group_IN02_E1" categoryValueRef="CV_IN02_E1" />
+    <bpmn:group id="Group_IN02_E2" categoryValueRef="CV_IN02_E2" />
+    <bpmn:group id="Group_IN02_E3" categoryValueRef="CV_IN02_E3" />
+    <bpmn:group id="Group_IN02_E4" categoryValueRef="CV_IN02_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_IN02" name="Responder a perguntas de decisão com evidência" isExecutable="false">
+    <bpmn:documentation>Dar a quem vai decidir uma resposta com fonte e grau de confiança, dentro do prazo combinado, e guardar a pergunta, a resposta e o uso para que a próxima seja mais rápida. É por aqui que a Estratégia pede a evidência de um portão ou de um caso e a contestação das causas de um desvio: essas respostas são revistas por pessoa e ficam restritas a quem pode vê-las.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_IN02">
+      <bpmn:lane id="Lane_IN02_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>IN02_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN02_GOV" name="Governança">
+        <bpmn:flowNodeRef>IN02_E1_T7</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN02_INP" name="Inteligência · pessoa">
+        <bpmn:flowNodeRef>IN02_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN02_INA" name="Inteligência · agente">
+        <bpmn:flowNodeRef>IN02_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E3_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN02_INR" name="Inteligência · automação">
+        <bpmn:flowNodeRef>IN02_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E1_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E4_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_E4_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN02_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="IN02_S1" name="Pergunta de decisão recebida"><bpmn:outgoing>IN02_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="IN02_S1_def" /></bpmn:startEvent>
+    <bpmn:scriptTask id="IN02_E1_T1" name="Registrar a pergunta, quem decide, a decisão apoiada, o risco e o prazo"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow1</bpmn:incoming><bpmn:outgoing>IN02_Flow2</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="IN02_E1_T2" name="Reescrever a pergunta de forma respondível e confirmar com quem perguntou"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow2</bpmn:incoming><bpmn:outgoing>IN02_Flow3</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IN02_E1_G1" name="A pergunta cabe à Inteligência e pode ser respondida no prazo?"><bpmn:incoming>IN02_Flow3</bpmn:incoming><bpmn:outgoing>IN02_Flow4</bpmn:outgoing><bpmn:outgoing>IN02_Flow7</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN02_E1_T3" name="Confirmar a recusa da pergunta e indicar quem pode responder"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow4</bpmn:incoming><bpmn:outgoing>IN02_Flow5</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IN02_E1_T4" name="Devolver a pergunta com o motivo"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow5</bpmn:incoming><bpmn:outgoing>IN02_Flow6</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IN02_F2" name="Pergunta devolvida sem resposta"><bpmn:incoming>IN02_Flow6</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="IN02_E1_G2" name="A pergunta vem de portão ou de caso de empresa, ou pode trazer dado pessoal ou sigiloso?"><bpmn:incoming>IN02_Flow7</bpmn:incoming><bpmn:outgoing>IN02_Flow8</bpmn:outgoing><bpmn:outgoing>IN02_Flow9</bpmn:outgoing><bpmn:outgoing>IN02_Flow11</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN02_E1_T5" name="Classificar a pergunta e a resposta e limitar quem pode vê-las"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow8</bpmn:incoming><bpmn:outgoing>IN02_Flow12</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="IN02_E1_T6" name="Classificar a pergunta sob confidencialidade e limitar quem pode vê-la"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow9</bpmn:incoming><bpmn:outgoing>IN02_Flow10</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="IN02_E1_T7" name="Conferir o que pode ser respondido e quem pode ver a resposta"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Outro círculo (Governança). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow10</bpmn:incoming><bpmn:outgoing>IN02_Flow13</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="IN02_M1"><bpmn:incoming>IN02_Flow11</bpmn:incoming><bpmn:incoming>IN02_Flow12</bpmn:incoming><bpmn:incoming>IN02_Flow13</bpmn:incoming><bpmn:outgoing>IN02_Flow38</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN02_E1_T8" name="Procurar resposta já registrada que quem pergunta pode ver e conferir se continua válida"><bpmn:documentation>Etapa 1: Receber a pergunta, confirmar o que se quer saber e procurar resposta já registrada. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN02_Flow38</bpmn:incoming><bpmn:outgoing>IN02_Flow14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IN02_E1_G3" name="Há resposta registrada e ainda válida?"><bpmn:incoming>IN02_Flow14</bpmn:incoming><bpmn:outgoing>IN02_Flow15</bpmn:outgoing><bpmn:outgoing>IN02_Flow16</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IN02_M2"><bpmn:incoming>IN02_Flow15</bpmn:incoming><bpmn:incoming>IN02_Flow26</bpmn:incoming><bpmn:incoming>IN02_Flow29</bpmn:incoming><bpmn:outgoing>IN02_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN02_E2_T1" name="Buscar a evidência nos dados, nos indicadores, na base de conhecimento e na leitura de mercado"><bpmn:documentation>Etapa 2: Buscar a evidência e avaliar se é confiável. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow39</bpmn:incoming><bpmn:outgoing>IN02_Flow17</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="IN02_E2_T2" name="Avaliar a confiabilidade e a relevância de cada evidência"><bpmn:documentation>Etapa 2: Buscar a evidência e avaliar se é confiável. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow17</bpmn:incoming><bpmn:outgoing>IN02_Flow18</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IN02_E2_G1" name="A evidência basta para responder?"><bpmn:incoming>IN02_Flow18</bpmn:incoming><bpmn:outgoing>IN02_Flow19</bpmn:outgoing><bpmn:outgoing>IN02_Flow20</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IN02_E2_G2" name="O prazo combinado comporta buscar evidência nova?"><bpmn:incoming>IN02_Flow20</bpmn:incoming><bpmn:outgoing>IN02_Flow21</bpmn:outgoing><bpmn:outgoing>IN02_Flow22</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN02_E2_T3" name="Combinar com quem perguntou: novo prazo ou resposta com a lacuna declarada"><bpmn:documentation>Etapa 2: Buscar a evidência e avaliar se é confiável. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow21</bpmn:incoming><bpmn:outgoing>IN02_Flow23</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IN02_M3"><bpmn:incoming>IN02_Flow22</bpmn:incoming><bpmn:incoming>IN02_Flow23</bpmn:incoming><bpmn:outgoing>IN02_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IN02_E2_G3" name="Vale buscar evidência nova antes de responder?"><bpmn:incoming>IN02_Flow40</bpmn:incoming><bpmn:outgoing>IN02_Flow24</bpmn:outgoing><bpmn:outgoing>IN02_Flow25</bpmn:outgoing><bpmn:outgoing>IN02_Flow27</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN02_E2_T4" name="Coletar a evidência que falta na fonte pública"><bpmn:documentation>Etapa 2: Buscar a evidência e avaliar se é confiável. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow25</bpmn:incoming><bpmn:outgoing>IN02_Flow26</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="IN02_E2_T5" name="Pedir o dado que falta na jornada de dados"><bpmn:documentation>Etapa 2: Buscar a evidência e avaliar se é confiável. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow27</bpmn:incoming><bpmn:outgoing>IN02_Flow28</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:receiveTask id="IN02_E2_T6" name="Receber o dado pedido, a recusa ou o vencimento do prazo combinado"><bpmn:documentation>Etapa 2: Buscar a evidência e avaliar se é confiável. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow28</bpmn:incoming><bpmn:outgoing>IN02_Flow29</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:exclusiveGateway id="IN02_M4"><bpmn:incoming>IN02_Flow16</bpmn:incoming><bpmn:incoming>IN02_Flow19</bpmn:incoming><bpmn:incoming>IN02_Flow24</bpmn:incoming><bpmn:outgoing>IN02_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN02_E3_T1" name="Pesar e reunir a evidência numa resposta com fonte, data e grau de confiança"><bpmn:documentation>Etapa 3: Montar a resposta com fonte e grau de confiança. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow41</bpmn:incoming><bpmn:outgoing>IN02_Flow30</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IN02_E3_G1" name="A resposta apoia decisão de portão, de caso de empresa, de alvos ou de risco alto?"><bpmn:incoming>IN02_Flow30</bpmn:incoming><bpmn:outgoing>IN02_Flow31</bpmn:outgoing><bpmn:outgoing>IN02_Flow32</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN02_E3_T2" name="Revisar a resposta e o grau de confiança antes de entregar"><bpmn:documentation>Etapa 3: Montar a resposta com fonte e grau de confiança. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow32</bpmn:incoming><bpmn:outgoing>IN02_Flow33</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IN02_M5"><bpmn:incoming>IN02_Flow31</bpmn:incoming><bpmn:incoming>IN02_Flow33</bpmn:incoming><bpmn:outgoing>IN02_Flow42</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IN02_E4_T1" name="Entregar a resposta a quem perguntou"><bpmn:documentation>Etapa 4: Entregar a resposta e registrar para reuso. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow42</bpmn:incoming><bpmn:outgoing>IN02_Flow34</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IN02_E4_T2" name="Registrar a pergunta, a resposta e as fontes para reuso, com a classificação"><bpmn:documentation>Etapa 4: Entregar a resposta e registrar para reuso. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow34</bpmn:incoming><bpmn:outgoing>IN02_Flow35</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IN02_E4_T3" name="Perguntar a quem decidiu, depois da decisão, se a resposta foi usada"><bpmn:documentation>Etapa 4: Entregar a resposta e registrar para reuso. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow35</bpmn:incoming><bpmn:outgoing>IN02_Flow36</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:receiveTask id="IN02_E4_T4" name="Registrar o uso informado por quem decidiu ou a falta de resposta"><bpmn:documentation>Etapa 4: Entregar a resposta e registrar para reuso. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN02_Flow36</bpmn:incoming><bpmn:outgoing>IN02_Flow37</bpmn:outgoing></bpmn:receiveTask>
+    <bpmn:endEvent id="IN02_F1" name="Pergunta respondida e registrada"><bpmn:incoming>IN02_Flow37</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="IN02_Flow1" sourceRef="IN02_S1" targetRef="IN02_E1_T1" />
+    <bpmn:sequenceFlow id="IN02_Flow2" sourceRef="IN02_E1_T1" targetRef="IN02_E1_T2" />
+    <bpmn:sequenceFlow id="IN02_Flow3" sourceRef="IN02_E1_T2" targetRef="IN02_E1_G1" />
+    <bpmn:sequenceFlow id="IN02_Flow4" name="Não" sourceRef="IN02_E1_G1" targetRef="IN02_E1_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow5" sourceRef="IN02_E1_T3" targetRef="IN02_E1_T4" />
+    <bpmn:sequenceFlow id="IN02_Flow6" sourceRef="IN02_E1_T4" targetRef="IN02_F2" />
+    <bpmn:sequenceFlow id="IN02_Flow7" name="Sim" sourceRef="IN02_E1_G1" targetRef="IN02_E1_G2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow8" name="Sim, ou há dúvida" sourceRef="IN02_E1_G2" targetRef="IN02_E1_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, ou há dúvida</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow9" name="Sim, com dado pessoal ou acordo de confidencialidade" sourceRef="IN02_E1_G2" targetRef="IN02_E1_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, com dado pessoal ou acordo de confidencialidade</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow10" sourceRef="IN02_E1_T6" targetRef="IN02_E1_T7" />
+    <bpmn:sequenceFlow id="IN02_Flow11" name="Não" sourceRef="IN02_E1_G2" targetRef="IN02_M1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow12" sourceRef="IN02_E1_T5" targetRef="IN02_M1" />
+    <bpmn:sequenceFlow id="IN02_Flow13" sourceRef="IN02_E1_T7" targetRef="IN02_M1" />
+    <bpmn:sequenceFlow id="IN02_Flow14" sourceRef="IN02_E1_T8" targetRef="IN02_E1_G3" />
+    <bpmn:sequenceFlow id="IN02_Flow15" name="Não" sourceRef="IN02_E1_G3" targetRef="IN02_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow16" name="Sim" sourceRef="IN02_E1_G3" targetRef="IN02_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow17" sourceRef="IN02_E2_T1" targetRef="IN02_E2_T2" />
+    <bpmn:sequenceFlow id="IN02_Flow18" sourceRef="IN02_E2_T2" targetRef="IN02_E2_G1" />
+    <bpmn:sequenceFlow id="IN02_Flow19" name="Sim" sourceRef="IN02_E2_G1" targetRef="IN02_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow20" name="Não" sourceRef="IN02_E2_G1" targetRef="IN02_E2_G2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow21" name="Não" sourceRef="IN02_E2_G2" targetRef="IN02_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow22" name="Sim" sourceRef="IN02_E2_G2" targetRef="IN02_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow23" sourceRef="IN02_E2_T3" targetRef="IN02_M3" />
+    <bpmn:sequenceFlow id="IN02_Flow24" name="Não, responder com a lacuna declarada" sourceRef="IN02_E2_G3" targetRef="IN02_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, responder com a lacuna declarada</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow25" name="Sim, em fonte pública" sourceRef="IN02_E2_G3" targetRef="IN02_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, em fonte pública</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow26" sourceRef="IN02_E2_T4" targetRef="IN02_M2" />
+    <bpmn:sequenceFlow id="IN02_Flow27" name="Sim, na jornada de dados" sourceRef="IN02_E2_G3" targetRef="IN02_E2_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim, na jornada de dados</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow28" sourceRef="IN02_E2_T5" targetRef="IN02_E2_T6" />
+    <bpmn:sequenceFlow id="IN02_Flow29" sourceRef="IN02_E2_T6" targetRef="IN02_M2" />
+    <bpmn:sequenceFlow id="IN02_Flow30" sourceRef="IN02_E3_T1" targetRef="IN02_E3_G1" />
+    <bpmn:sequenceFlow id="IN02_Flow31" name="Não" sourceRef="IN02_E3_G1" targetRef="IN02_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow32" name="Sim" sourceRef="IN02_E3_G1" targetRef="IN02_E3_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN02_Flow33" sourceRef="IN02_E3_T2" targetRef="IN02_M5" />
+    <bpmn:sequenceFlow id="IN02_Flow34" sourceRef="IN02_E4_T1" targetRef="IN02_E4_T2" />
+    <bpmn:sequenceFlow id="IN02_Flow35" sourceRef="IN02_E4_T2" targetRef="IN02_E4_T3" />
+    <bpmn:sequenceFlow id="IN02_Flow36" sourceRef="IN02_E4_T3" targetRef="IN02_E4_T4" />
+    <bpmn:sequenceFlow id="IN02_Flow37" sourceRef="IN02_E4_T4" targetRef="IN02_F1" />
+    <bpmn:sequenceFlow id="IN02_Flow38" sourceRef="IN02_M1" targetRef="IN02_E1_T8" />
+    <bpmn:sequenceFlow id="IN02_Flow39" sourceRef="IN02_M2" targetRef="IN02_E2_T1" />
+    <bpmn:sequenceFlow id="IN02_Flow40" sourceRef="IN02_M3" targetRef="IN02_E2_G3" />
+    <bpmn:sequenceFlow id="IN02_Flow41" sourceRef="IN02_M4" targetRef="IN02_E3_T1" />
+    <bpmn:sequenceFlow id="IN02_Flow42" sourceRef="IN02_M5" targetRef="IN02_E4_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_IN02">
+    <bpmndi:BPMNPlane id="Plane_IN02" bpmnElement="Collab_IN02">
+      <bpmndi:BPMNShape id="Participant_IN02_di" bpmnElement="Participant_IN02" isHorizontal="true"><dc:Bounds x="0" y="0" width="7304" height="880" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN02_SOL_di" bpmnElement="Lane_IN02_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="7274" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN02_GOV_di" bpmnElement="Lane_IN02_GOV" isHorizontal="true"><dc:Bounds x="30" y="176" width="7274" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN02_INP_di" bpmnElement="Lane_IN02_INP" isHorizontal="true"><dc:Bounds x="30" y="352" width="7274" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN02_INA_di" bpmnElement="Lane_IN02_INA" isHorizontal="true"><dc:Bounds x="30" y="528" width="7274" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN02_INR_di" bpmnElement="Lane_IN02_INR" isHorizontal="true"><dc:Bounds x="30" y="704" width="7274" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_S1_di" bpmnElement="IN02_S1"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T1_di" bpmnElement="IN02_E1_T1"><dc:Bounds x="276" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T2_di" bpmnElement="IN02_E1_T2"><dc:Bounds x="482" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_G1_di" bpmnElement="IN02_E1_G1" isMarkerVisible="true"><dc:Bounds x="743" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="656" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T3_di" bpmnElement="IN02_E1_T3"><dc:Bounds x="894" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T4_di" bpmnElement="IN02_E1_T4"><dc:Bounds x="1100" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_F2_di" bpmnElement="IN02_F2"><dc:Bounds x="1368" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="1331" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_G2_di" bpmnElement="IN02_E1_G2" isMarkerVisible="true"><dc:Bounds x="1567" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1480" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T5_di" bpmnElement="IN02_E1_T5"><dc:Bounds x="1718" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T6_di" bpmnElement="IN02_E1_T6"><dc:Bounds x="1924" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T7_di" bpmnElement="IN02_E1_T7"><dc:Bounds x="2130" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_M1_di" bpmnElement="IN02_M1" isMarkerVisible="true"><dc:Bounds x="2391" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_T8_di" bpmnElement="IN02_E1_T8"><dc:Bounds x="2542" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E1_G3_di" bpmnElement="IN02_E1_G3" isMarkerVisible="true"><dc:Bounds x="2803" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2716" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_M2_di" bpmnElement="IN02_M2" isMarkerVisible="true"><dc:Bounds x="3009" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_T1_di" bpmnElement="IN02_E2_T1"><dc:Bounds x="3160" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_T2_di" bpmnElement="IN02_E2_T2"><dc:Bounds x="3366" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_G1_di" bpmnElement="IN02_E2_G1" isMarkerVisible="true"><dc:Bounds x="3627" y="591" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3540" y="643" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_G2_di" bpmnElement="IN02_E2_G2" isMarkerVisible="true"><dc:Bounds x="3833" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3746" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_T3_di" bpmnElement="IN02_E2_T3"><dc:Bounds x="3984" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_M3_di" bpmnElement="IN02_M3" isMarkerVisible="true"><dc:Bounds x="4245" y="415" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_G3_di" bpmnElement="IN02_E2_G3" isMarkerVisible="true"><dc:Bounds x="4451" y="415" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4364" y="467" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_T4_di" bpmnElement="IN02_E2_T4"><dc:Bounds x="4602" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_T5_di" bpmnElement="IN02_E2_T5"><dc:Bounds x="4808" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E2_T6_di" bpmnElement="IN02_E2_T6"><dc:Bounds x="5014" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_M4_di" bpmnElement="IN02_M4" isMarkerVisible="true"><dc:Bounds x="5275" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E3_T1_di" bpmnElement="IN02_E3_T1"><dc:Bounds x="5426" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E3_G1_di" bpmnElement="IN02_E3_G1" isMarkerVisible="true"><dc:Bounds x="5687" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5600" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E3_T2_di" bpmnElement="IN02_E3_T2"><dc:Bounds x="5838" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_M5_di" bpmnElement="IN02_M5" isMarkerVisible="true"><dc:Bounds x="6099" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E4_T1_di" bpmnElement="IN02_E4_T1"><dc:Bounds x="6250" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E4_T2_di" bpmnElement="IN02_E4_T2"><dc:Bounds x="6456" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E4_T3_di" bpmnElement="IN02_E4_T3"><dc:Bounds x="6662" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_E4_T4_di" bpmnElement="IN02_E4_T4"><dc:Bounds x="6868" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN02_F1_di" bpmnElement="IN02_F1"><dc:Bounds x="7136" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7099" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="IN02_Flow1_di" bpmnElement="IN02_Flow1"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="742" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow2_di" bpmnElement="IN02_Flow2"><di:waypoint x="436" y="792" /><di:waypoint x="562" y="792" /><di:waypoint x="562" y="666" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow3_di" bpmnElement="IN02_Flow3"><di:waypoint x="642" y="616" /><di:waypoint x="743" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow4_di" bpmnElement="IN02_Flow4"><di:waypoint x="768" y="591" /><di:waypoint x="768" y="440" /><di:waypoint x="894" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="774" y="573" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow5_di" bpmnElement="IN02_Flow5"><di:waypoint x="974" y="490" /><di:waypoint x="974" y="792" /><di:waypoint x="1100" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow6_di" bpmnElement="IN02_Flow6"><di:waypoint x="1260" y="792" /><di:waypoint x="1368" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow7_di" bpmnElement="IN02_Flow7"><di:waypoint x="793" y="616" /><di:waypoint x="1567" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="798" y="598" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow8_di" bpmnElement="IN02_Flow8"><di:waypoint x="1592" y="591" /><di:waypoint x="1592" y="440" /><di:waypoint x="1718" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="1598" y="560" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow9_di" bpmnElement="IN02_Flow9"><di:waypoint x="1617" y="616" /><di:waypoint x="2004" y="616" /><di:waypoint x="2004" y="490" /><bpmndi:BPMNLabel><dc:Bounds x="2010" y="583" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow10_di" bpmnElement="IN02_Flow10"><di:waypoint x="2004" y="390" /><di:waypoint x="2004" y="264" /><di:waypoint x="2130" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow11_di" bpmnElement="IN02_Flow11"><di:waypoint x="1592" y="641" /><di:waypoint x="1592" y="696" /><di:waypoint x="2416" y="696" /><di:waypoint x="2416" y="641" /><bpmndi:BPMNLabel><dc:Bounds x="1598" y="646" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow12_di" bpmnElement="IN02_Flow12"><di:waypoint x="1798" y="390" /><di:waypoint x="1798" y="361" /><di:waypoint x="2416" y="361" /><di:waypoint x="2416" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow13_di" bpmnElement="IN02_Flow13"><di:waypoint x="2210" y="314" /><di:waypoint x="2210" y="616" /><di:waypoint x="2391" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow14_di" bpmnElement="IN02_Flow14"><di:waypoint x="2702" y="616" /><di:waypoint x="2803" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow15_di" bpmnElement="IN02_Flow15"><di:waypoint x="2853" y="616" /><di:waypoint x="3009" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="2858" y="598" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow16_di" bpmnElement="IN02_Flow16"><di:waypoint x="2828" y="591" /><di:waypoint x="2828" y="537" /><di:waypoint x="5300" y="537" /><di:waypoint x="5300" y="591" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="573" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow17_di" bpmnElement="IN02_Flow17"><di:waypoint x="3320" y="616" /><di:waypoint x="3366" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow18_di" bpmnElement="IN02_Flow18"><di:waypoint x="3526" y="616" /><di:waypoint x="3627" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow19_di" bpmnElement="IN02_Flow19"><di:waypoint x="3652" y="591" /><di:waypoint x="3652" y="537" /><di:waypoint x="5300" y="537" /><di:waypoint x="5300" y="591" /><bpmndi:BPMNLabel><dc:Bounds x="3658" y="573" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow20_di" bpmnElement="IN02_Flow20"><di:waypoint x="3652" y="641" /><di:waypoint x="3652" y="792" /><di:waypoint x="3833" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="3658" y="646" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow21_di" bpmnElement="IN02_Flow21"><di:waypoint x="3858" y="767" /><di:waypoint x="3858" y="440" /><di:waypoint x="3984" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="3864" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow22_di" bpmnElement="IN02_Flow22"><di:waypoint x="3883" y="792" /><di:waypoint x="4270" y="792" /><di:waypoint x="4270" y="465" /><bpmndi:BPMNLabel><dc:Bounds x="3888" y="774" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow23_di" bpmnElement="IN02_Flow23"><di:waypoint x="4144" y="440" /><di:waypoint x="4245" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow24_di" bpmnElement="IN02_Flow24"><di:waypoint x="4476" y="415" /><di:waypoint x="4476" y="361" /><di:waypoint x="5300" y="361" /><di:waypoint x="5300" y="591" /><bpmndi:BPMNLabel><dc:Bounds x="4482" y="384" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow25_di" bpmnElement="IN02_Flow25"><di:waypoint x="4476" y="465" /><di:waypoint x="4476" y="616" /><di:waypoint x="4602" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="4482" y="470" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow26_di" bpmnElement="IN02_Flow26"><di:waypoint x="4682" y="566" /><di:waypoint x="4682" y="543" /><di:waypoint x="3034" y="543" /><di:waypoint x="3034" y="591" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow27_di" bpmnElement="IN02_Flow27"><di:waypoint x="4501" y="440" /><di:waypoint x="4888" y="440" /><di:waypoint x="4888" y="742" /><bpmndi:BPMNLabel><dc:Bounds x="4894" y="446" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow28_di" bpmnElement="IN02_Flow28"><di:waypoint x="4968" y="792" /><di:waypoint x="5014" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow29_di" bpmnElement="IN02_Flow29"><di:waypoint x="5094" y="742" /><di:waypoint x="5094" y="713" /><di:waypoint x="3034" y="713" /><di:waypoint x="3034" y="641" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow30_di" bpmnElement="IN02_Flow30"><di:waypoint x="5506" y="666" /><di:waypoint x="5506" y="792" /><di:waypoint x="5687" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow31_di" bpmnElement="IN02_Flow31"><di:waypoint x="5737" y="792" /><di:waypoint x="6099" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="5742" y="774" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow32_di" bpmnElement="IN02_Flow32"><di:waypoint x="5712" y="767" /><di:waypoint x="5712" y="440" /><di:waypoint x="5838" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="5718" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow33_di" bpmnElement="IN02_Flow33"><di:waypoint x="5918" y="490" /><di:waypoint x="5918" y="792" /><di:waypoint x="6099" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow34_di" bpmnElement="IN02_Flow34"><di:waypoint x="6410" y="792" /><di:waypoint x="6456" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow35_di" bpmnElement="IN02_Flow35"><di:waypoint x="6616" y="792" /><di:waypoint x="6662" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow36_di" bpmnElement="IN02_Flow36"><di:waypoint x="6822" y="792" /><di:waypoint x="6868" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow37_di" bpmnElement="IN02_Flow37"><di:waypoint x="7028" y="792" /><di:waypoint x="7136" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow38_di" bpmnElement="IN02_Flow38"><di:waypoint x="2441" y="616" /><di:waypoint x="2542" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow39_di" bpmnElement="IN02_Flow39"><di:waypoint x="3059" y="616" /><di:waypoint x="3160" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow40_di" bpmnElement="IN02_Flow40"><di:waypoint x="4295" y="440" /><di:waypoint x="4451" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow41_di" bpmnElement="IN02_Flow41"><di:waypoint x="5325" y="616" /><di:waypoint x="5426" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN02_Flow42_di" bpmnElement="IN02_Flow42"><di:waypoint x="6149" y="792" /><di:waypoint x="6250" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_IN02_E1_di" bpmnElement="Group_IN02_E1"><dc:Bounds x="261" y="-44" width="2662" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="2650" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN02_E2_di" bpmnElement="Group_IN02_E2"><dc:Bounds x="2939" y="-44" width="2250" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="2945" y="-38" width="2238" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN02_E3_di" bpmnElement="Group_IN02_E3"><dc:Bounds x="5205" y="-44" width="808" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="5211" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN02_E4_di" bpmnElement="Group_IN02_E4"><dc:Bounds x="6029" y="-44" width="1014" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="6035" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

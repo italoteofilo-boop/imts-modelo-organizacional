@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_GO10" targetNamespace="urn:imts:modelo:circulo9-governanca" exporter="Ecossistema IMTS - fonte única do Círculo 9" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_GO10">
+    <bpmn:categoryValue id="CV_GO10_E1" value="1. Definir os temas e os indicadores" />
+    <bpmn:categoryValue id="CV_GO10_E2" value="2. Coletar e analisar os dados" />
+    <bpmn:categoryValue id="CV_GO10_E3" value="3. Redigir o relato, validá-lo e publicá-lo" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_GO10">
+    <bpmn:participant id="Participant_GO10" name="GO-10 · Apurar e publicar o relato anual de impacto" processRef="Process_GO10" />
+    <bpmn:group id="Group_GO10_E1" categoryValueRef="CV_GO10_E1" />
+    <bpmn:group id="Group_GO10_E2" categoryValueRef="CV_GO10_E2" />
+    <bpmn:group id="Group_GO10_E3" categoryValueRef="CV_GO10_E3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GO10" name="Apurar e publicar o relato anual de impacto" isExecutable="false">
+    <bpmn:documentation>Fazer que, a cada ano, os temas e os indicadores de impacto sejam escolhidos pela definição da Identidade; os dados sejam coletados no catálogo de dados e analisados com avanços e lacunas; e o relato seja redigido na voz do Ecossistema, validado com os dados e o risco jurídico, aprovado pelos sócios e publicado. A Identidade define o que conta como impacto; a Governança apura e publica.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_GO10">
+      <bpmn:lane id="Lane_GO10_SOC" name="Sócios">
+        <bpmn:flowNodeRef>GO10_E3_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GO10_GOP" name="Governança · pessoa">
+        <bpmn:flowNodeRef>GO10_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E3_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GO10_GOA" name="Governança · agente">
+        <bpmn:flowNodeRef>GO10_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E3_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GO10_GOR" name="Governança · automação">
+        <bpmn:flowNodeRef>GO10_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GO10_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="GO10_S1" name="Ciclo anual do relato de impacto iniciado"><bpmn:outgoing>GO10_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GO10_S1_def" /></bpmn:startEvent>
+    <bpmn:serviceTask id="GO10_E1_T1" name="Propor os temas e os indicadores de impacto do ano pela definição"><bpmn:documentation>Etapa 1: Definir os temas e os indicadores. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO10_Flow1</bpmn:incoming><bpmn:outgoing>GO10_Flow2</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GO10_E1_T2" name="Decidir os temas e os indicadores"><bpmn:documentation>Etapa 1: Definir os temas e os indicadores. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO10_Flow2</bpmn:incoming><bpmn:outgoing>GO10_Flow3</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="GO10_E2_T1" name="Coletar os dados dos indicadores no catálogo de dados"><bpmn:documentation>Etapa 2: Coletar e analisar os dados. Executor: Automação da Governança (Governança · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO10_Flow3</bpmn:incoming><bpmn:outgoing>GO10_Flow4</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GO10_E2_T2" name="Analisar o impacto e apontar avanços e lacunas"><bpmn:documentation>Etapa 2: Coletar e analisar os dados. Executor: Agente da Governança (Governança · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GO10_Flow4</bpmn:incoming><bpmn:outgoing>GO10_Flow5</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="GO10_M1"><bpmn:incoming>GO10_Flow5</bpmn:incoming><bpmn:incoming>GO10_Flow10</bpmn:incoming><bpmn:outgoing>GO10_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="GO10_E3_T1" name="Redigir o relato na voz do Ecossistema"><bpmn:documentation>Etapa 3: Redigir o relato, validá-lo e publicá-lo. Executor: Agente da Governança (Governança · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO10_Flow13</bpmn:incoming><bpmn:outgoing>GO10_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GO10_E3_T2" name="Validar o relato com os dados e o risco jurídico"><bpmn:documentation>Etapa 3: Redigir o relato, validá-lo e publicá-lo. Executor: Pessoa da Governança (Governança · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO10_Flow6</bpmn:incoming><bpmn:outgoing>GO10_Flow7</bpmn:outgoing></bpmn:userTask>
+    <bpmn:userTask id="GO10_E3_T3" name="Aprovar o relato"><bpmn:documentation>Etapa 3: Redigir o relato, validá-lo e publicá-lo. Executor: Pessoa de fora do círculo (Sócios). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO10_Flow7</bpmn:incoming><bpmn:outgoing>GO10_Flow8</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GO10_E3_G1" name="Os sócios aprovaram o relato?"><bpmn:incoming>GO10_Flow8</bpmn:incoming><bpmn:outgoing>GO10_Flow9</bpmn:outgoing><bpmn:outgoing>GO10_Flow11</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GO10_E3_T4" name="Registrar os ajustes pedidos pelos sócios"><bpmn:documentation>Etapa 3: Redigir o relato, validá-lo e publicá-lo. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO10_Flow9</bpmn:incoming><bpmn:outgoing>GO10_Flow10</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="GO10_E3_T5" name="Publicar o relato"><bpmn:documentation>Etapa 3: Redigir o relato, validá-lo e publicá-lo. Executor: Automação da Governança (Governança · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GO10_Flow11</bpmn:incoming><bpmn:outgoing>GO10_Flow12</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GO10_F1" name="Relato de impacto publicado"><bpmn:incoming>GO10_Flow12</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="GO10_Flow1" sourceRef="GO10_S1" targetRef="GO10_E1_T1" />
+    <bpmn:sequenceFlow id="GO10_Flow2" sourceRef="GO10_E1_T1" targetRef="GO10_E1_T2" />
+    <bpmn:sequenceFlow id="GO10_Flow3" sourceRef="GO10_E1_T2" targetRef="GO10_E2_T1" />
+    <bpmn:sequenceFlow id="GO10_Flow4" sourceRef="GO10_E2_T1" targetRef="GO10_E2_T2" />
+    <bpmn:sequenceFlow id="GO10_Flow5" sourceRef="GO10_E2_T2" targetRef="GO10_M1" />
+    <bpmn:sequenceFlow id="GO10_Flow6" sourceRef="GO10_E3_T1" targetRef="GO10_E3_T2" />
+    <bpmn:sequenceFlow id="GO10_Flow7" sourceRef="GO10_E3_T2" targetRef="GO10_E3_T3" />
+    <bpmn:sequenceFlow id="GO10_Flow8" sourceRef="GO10_E3_T3" targetRef="GO10_E3_G1" />
+    <bpmn:sequenceFlow id="GO10_Flow9" name="Não, com ajustes" sourceRef="GO10_E3_G1" targetRef="GO10_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, com ajustes</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO10_Flow10" sourceRef="GO10_E3_T4" targetRef="GO10_M1" />
+    <bpmn:sequenceFlow id="GO10_Flow11" name="Sim" sourceRef="GO10_E3_G1" targetRef="GO10_E3_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GO10_Flow12" sourceRef="GO10_E3_T5" targetRef="GO10_F1" />
+    <bpmn:sequenceFlow id="GO10_Flow13" sourceRef="GO10_M1" targetRef="GO10_E3_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_GO10">
+    <bpmndi:BPMNPlane id="Plane_GO10" bpmnElement="Collab_GO10">
+      <bpmndi:BPMNShape id="Participant_GO10_di" bpmnElement="Participant_GO10" isHorizontal="true"><dc:Bounds x="0" y="0" width="2772" height="704" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO10_SOC_di" bpmnElement="Lane_GO10_SOC" isHorizontal="true"><dc:Bounds x="30" y="0" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO10_GOP_di" bpmnElement="Lane_GO10_GOP" isHorizontal="true"><dc:Bounds x="30" y="176" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO10_GOA_di" bpmnElement="Lane_GO10_GOA" isHorizontal="true"><dc:Bounds x="30" y="352" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GO10_GOR_di" bpmnElement="Lane_GO10_GOR" isHorizontal="true"><dc:Bounds x="30" y="528" width="2742" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_S1_di" bpmnElement="GO10_S1"><dc:Bounds x="132" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E1_T1_di" bpmnElement="GO10_E1_T1"><dc:Bounds x="276" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E1_T2_di" bpmnElement="GO10_E1_T2"><dc:Bounds x="482" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E2_T1_di" bpmnElement="GO10_E2_T1"><dc:Bounds x="688" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E2_T2_di" bpmnElement="GO10_E2_T2"><dc:Bounds x="894" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_M1_di" bpmnElement="GO10_M1" isMarkerVisible="true"><dc:Bounds x="1155" y="415" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E3_T1_di" bpmnElement="GO10_E3_T1"><dc:Bounds x="1306" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E3_T2_di" bpmnElement="GO10_E3_T2"><dc:Bounds x="1512" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E3_T3_di" bpmnElement="GO10_E3_T3"><dc:Bounds x="1718" y="38" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E3_G1_di" bpmnElement="GO10_E3_G1" isMarkerVisible="true"><dc:Bounds x="1979" y="239" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1892" y="291" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E3_T4_di" bpmnElement="GO10_E3_T4"><dc:Bounds x="2130" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_E3_T5_di" bpmnElement="GO10_E3_T5"><dc:Bounds x="2336" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GO10_F1_di" bpmnElement="GO10_F1"><dc:Bounds x="2604" y="598" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2567" y="639" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GO10_Flow1_di" bpmnElement="GO10_Flow1"><di:waypoint x="168" y="616" /><di:waypoint x="356" y="616" /><di:waypoint x="356" y="490" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow2_di" bpmnElement="GO10_Flow2"><di:waypoint x="356" y="390" /><di:waypoint x="356" y="264" /><di:waypoint x="482" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow3_di" bpmnElement="GO10_Flow3"><di:waypoint x="562" y="314" /><di:waypoint x="562" y="616" /><di:waypoint x="688" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow4_di" bpmnElement="GO10_Flow4"><di:waypoint x="768" y="566" /><di:waypoint x="768" y="440" /><di:waypoint x="894" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow5_di" bpmnElement="GO10_Flow5"><di:waypoint x="1054" y="440" /><di:waypoint x="1155" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow6_di" bpmnElement="GO10_Flow6"><di:waypoint x="1386" y="390" /><di:waypoint x="1386" y="264" /><di:waypoint x="1512" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow7_di" bpmnElement="GO10_Flow7"><di:waypoint x="1592" y="214" /><di:waypoint x="1592" y="88" /><di:waypoint x="1718" y="88" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow8_di" bpmnElement="GO10_Flow8"><di:waypoint x="1798" y="138" /><di:waypoint x="1798" y="264" /><di:waypoint x="1979" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow9_di" bpmnElement="GO10_Flow9"><di:waypoint x="2004" y="289" /><di:waypoint x="2004" y="616" /><di:waypoint x="2130" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="2010" y="294" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow10_di" bpmnElement="GO10_Flow10"><di:waypoint x="2210" y="566" /><di:waypoint x="2210" y="537" /><di:waypoint x="1180" y="537" /><di:waypoint x="1180" y="465" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow11_di" bpmnElement="GO10_Flow11"><di:waypoint x="2029" y="264" /><di:waypoint x="2416" y="264" /><di:waypoint x="2416" y="566" /><bpmndi:BPMNLabel><dc:Bounds x="2034" y="246" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow12_di" bpmnElement="GO10_Flow12"><di:waypoint x="2496" y="616" /><di:waypoint x="2604" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GO10_Flow13_di" bpmnElement="GO10_Flow13"><di:waypoint x="1205" y="440" /><di:waypoint x="1306" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GO10_E1_di" bpmnElement="Group_GO10_E1"><dc:Bounds x="261" y="-44" width="396" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GO10_E2_di" bpmnElement="Group_GO10_E2"><dc:Bounds x="673" y="-44" width="396" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="679" y="-38" width="384" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GO10_E3_di" bpmnElement="Group_GO10_E3"><dc:Bounds x="1085" y="-44" width="1426" height="756" /><bpmndi:BPMNLabel><dc:Bounds x="1091" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

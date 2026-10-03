@@ -1,0 +1,15 @@
+Você é um verificador de fatos independente. Tarefa: conferir, uma a uma, as fontes citadas no arquivo
+/tmp/claude-0/-home-claude/7a4d2de5-f42d-5914-a7de-871f2f268191/scratchpad/modelo/saida/revisao/fontes_c3.md
+(leia o arquivo inteiro primeiro). Escreva o relatório em português do Brasil.
+
+Para CADA fonte do arquivo (são 27 chaves; as mais importantes são as 21 novas: cia_ciclo, herring, horizon, cebma, yardstick, dqf, fair, lgpd, fabric, kcs, apqc_km, iso30401, anthropic_evals, nist_airmf, pdca, nng_blueprint, bmc, vpc, leanstartup, doublediamond, jaakkola; confira também stagegate e apqc; as chaves bpmn, camunda, dmn e sipoc já foram conferidas antes e podem ser puladas):
+1. Abra cada link com a ferramenta WebFetch e leia o conteúdo. Se o WebFetch recusar a URL por falta de permissão/proveniência, faça antes um WebSearch com o título da fonte para que a URL apareça nos resultados e tente de novo; se continuar inacessível, diga isso claramente (não suponha o conteúdo).
+2. Confira a "Referência": título exato, autores, organização, data/versão. Aponte qualquer diferença.
+3. Confira, afirmação por afirmação, o campo "O que dizemos que a fonte contém e como a usamos": cada lista (ex.: os cinco passos, as seis dimensões, os nove blocos, os oito critérios), cada definição e cada número precisa estar NA FONTE. Para cada afirmação, classifique: CONFIRMADA (cite o trecho literal em inglês/português que confirma), CONFIRMADA EM PARTE (diga o que diverge), NÃO CONFIRMADA (não está na página aberta) ou ERRADA (a fonte diz outra coisa; cite). Traduções para o português são aceitáveis se fiéis; aponte tradução enganosa.
+4. Confira o campo "Como dizemos que foi conferida": a descrição é honesta? (ex.: se dizemos "página oficial aberta", a página é mesmo oficial e abre; se dizemos que o texto completo não foi lido, ok.)
+5. Para a fonte apqc: abra os dois PDFs do PCF 7.4 e confira o número e o nome EXATO de cada elemento listado na seção "Tabela de cobertura" do arquivo (1.4.1, 1.4.2, 1.4.3, 2.1.1 a 2.1.4, 2.2.1 a 2.2.3, 2.3.1 a 2.3.3, 3.1.1, 3.1.2, 3.2.1, 3.2.2, 8.4.1 a 8.4.4) e também: que 3.1.2.4 é "Validate opportunities", que 3.2.1.4 é "Develop new branding", e os nomes dos subitens de 2.2.1 (tratam de tecnologias?). Peça ao WebFetch a transcrição literal com os números.
+6. Para lgpd: confira o texto literal dos arts. 5º (incisos I, II, III e X), 6º (caput, I, II, III) e 37 (caput) no site do Planalto.
+
+Regras: não use memória para confirmar; só vale o que você abrir. Não invente citações. Se uma página só mostra resumo, diga. Não modifique nenhum arquivo.
+
+Entregue: (a) uma tabela com uma linha por fonte: chave | veredito geral (CONFIRMADA / CONFIRMADA EM PARTE / PROBLEMA) | o que corrigir, com o texto corrigido sugerido; (b) a lista detalhada só das afirmações que NÃO foram confirmadas integralmente, com o trecho literal da fonte; (c) contagem final: quantas confirmadas, quantas em parte, quantas com problema, quantas inacessíveis.

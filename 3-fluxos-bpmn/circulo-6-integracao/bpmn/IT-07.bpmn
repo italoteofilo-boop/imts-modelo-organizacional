@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_IT07" targetNamespace="urn:imts:modelo:circulo6-integracao" exporter="Ecossistema IMTS - fonte única do Círculo 6" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_IT07">
+    <bpmn:categoryValue id="CV_IT07_E1" value="1. Receber e classificar o pedido, o incidente ou o risco" />
+    <bpmn:categoryValue id="CV_IT07_E2" value="2. Resolver o item e implantar a mudança" />
+    <bpmn:categoryValue id="CV_IT07_E3" value="3. Escolher e contratar fornecedor ou licença de tecnologia" />
+    <bpmn:categoryValue id="CV_IT07_E4" value="4. Registrar e medir o serviço de tecnologia" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_IT07">
+    <bpmn:participant id="Participant_IT07" name="IT-07 · Operar a tecnologia: pedidos, incidentes, acessos, mudanças e fornecedores" processRef="Process_IT07" />
+    <bpmn:group id="Group_IT07_E1" categoryValueRef="CV_IT07_E1" />
+    <bpmn:group id="Group_IT07_E2" categoryValueRef="CV_IT07_E2" />
+    <bpmn:group id="Group_IT07_E3" categoryValueRef="CV_IT07_E3" />
+    <bpmn:group id="Group_IT07_E4" categoryValueRef="CV_IT07_E4" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_IT07" name="Operar a tecnologia: pedidos, incidentes, acessos, mudanças e fornecedores" isExecutable="false">
+    <bpmn:documentation>Fazer cada pedido, incidente ou risco de tecnologia ser resolvido no prazo; cada acesso a dados e sistemas ser dado e retirado pela classificação do dado e pelo pedido; cada mudança em sistema ser testada, aprovada e reversível; cada incidente de segurança ou de dados pessoais ser tratado com a Governança; e cada fornecedor e licença de tecnologia ser escolhido, contratado e controlado com a Gestão e a Governança. A Integração opera e protege; a Governança define a política e verifica; a Gestão compra e paga.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_IT07">
+      <bpmn:lane id="Lane_IT07_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>IT07_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT07_NEG" name="Negócios">
+        <bpmn:flowNodeRef>IT07_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT07_GOV" name="Governança">
+        <bpmn:flowNodeRef>IT07_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT07_GES" name="Gestão">
+        <bpmn:flowNodeRef>IT07_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_T6</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT07_ITP" name="Integração · pessoa">
+        <bpmn:flowNodeRef>IT07_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT07_ITA" name="Integração · agente">
+        <bpmn:flowNodeRef>IT07_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_T5</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IT07_ITR" name="Integração · automação">
+        <bpmn:flowNodeRef>IT07_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_S4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E1_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_T6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E2_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E3_T7</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_M6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_E4_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IT07_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="IT07_S1" name="Pedido, incidente ou risco de tecnologia recebido"><bpmn:outgoing>IT07_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="IT07_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT07_S2" name="Contrato de cliente encerrado"><bpmn:outgoing>IT07_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="IT07_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT07_S3" name="Renovação de licença ou de contrato de tecnologia próxima"><bpmn:outgoing>IT07_Flow3</bpmn:outgoing><bpmn:timerEventDefinition id="IT07_S3_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IT07_S4" name="Pedido de acesso ou de mudança vindo de outra jornada"><bpmn:outgoing>IT07_Flow4</bpmn:outgoing><bpmn:messageEventDefinition id="IT07_S4_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="IT07_M1"><bpmn:incoming>IT07_Flow1</bpmn:incoming><bpmn:incoming>IT07_Flow2</bpmn:incoming><bpmn:incoming>IT07_Flow3</bpmn:incoming><bpmn:incoming>IT07_Flow4</bpmn:incoming><bpmn:outgoing>IT07_Flow36</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT07_E1_T1" name="Registrar o item, quem pede, o sistema e o dado afetados"><bpmn:documentation>Etapa 1: Receber e classificar o pedido, o incidente ou o risco. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT07_Flow36</bpmn:incoming><bpmn:outgoing>IT07_Flow5</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="IT07_E1_T2" name="Classificar o tipo, a urgência, o risco e o prazo"><bpmn:documentation>Etapa 1: Receber e classificar o pedido, o incidente ou o risco. Executor: Agente da Integração (Integração · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT07_Flow5</bpmn:incoming><bpmn:outgoing>IT07_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IT07_E1_G1" name="É incidente de segurança ou de dados pessoais?"><bpmn:incoming>IT07_Flow6</bpmn:incoming><bpmn:outgoing>IT07_Flow7</bpmn:outgoing><bpmn:outgoing>IT07_Flow8</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:callActivity id="IT07_E1_T3" name="Tratar o incidente de segurança ou de dados pessoais com a Governança"><bpmn:documentation>Etapa 1: Receber e classificar o pedido, o incidente ou o risco. Executor: Outro círculo (Governança). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IT07_Flow7</bpmn:incoming><bpmn:outgoing>IT07_Flow9</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="IT07_M2"><bpmn:incoming>IT07_Flow8</bpmn:incoming><bpmn:incoming>IT07_Flow9</bpmn:incoming><bpmn:outgoing>IT07_Flow37</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT07_E1_G2" name="O que o item pede?"><bpmn:incoming>IT07_Flow37</bpmn:incoming><bpmn:outgoing>IT07_Flow10</bpmn:outgoing><bpmn:outgoing>IT07_Flow11</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT07_E2_G1" name="O item pede mudança em sistema?"><bpmn:incoming>IT07_Flow10</bpmn:incoming><bpmn:outgoing>IT07_Flow12</bpmn:outgoing><bpmn:outgoing>IT07_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT07_E2_T1" name="Conceder ou retirar o acesso pela classificação do dado, ou aplicar a solução conhecida"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow12</bpmn:incoming><bpmn:outgoing>IT07_Flow15</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="IT07_E2_T2" name="Preparar e testar a mudança, com o caminho de volta"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Agente da Integração (Integração · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow13</bpmn:incoming><bpmn:outgoing>IT07_Flow14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="IT07_E2_T3" name="Aprovar a mudança e a janela de implantação"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow14</bpmn:incoming><bpmn:outgoing>IT07_Flow16</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IT07_M3"><bpmn:incoming>IT07_Flow15</bpmn:incoming><bpmn:incoming>IT07_Flow16</bpmn:incoming><bpmn:outgoing>IT07_Flow38</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IT07_E2_G2" name="A mudança mexe em dado pessoal, acesso privilegiado ou segurança?"><bpmn:incoming>IT07_Flow38</bpmn:incoming><bpmn:outgoing>IT07_Flow17</bpmn:outgoing><bpmn:outgoing>IT07_Flow18</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="IT07_E2_T4" name="Conferir a mudança contra a política de segurança e de dados pessoais"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow17</bpmn:incoming><bpmn:outgoing>IT07_Flow19</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="IT07_M4"><bpmn:incoming>IT07_Flow18</bpmn:incoming><bpmn:incoming>IT07_Flow19</bpmn:incoming><bpmn:outgoing>IT07_Flow39</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IT07_E2_T5" name="Resolver o caso novo que o agente não resolve"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow39</bpmn:incoming><bpmn:outgoing>IT07_Flow20</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="IT07_E2_T6" name="Implantar a mudança ou fechar o item e avisar quem pediu"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow20</bpmn:incoming><bpmn:outgoing>IT07_Flow21</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT07_E2_G3" name="O item foi resolvido?"><bpmn:incoming>IT07_Flow21</bpmn:incoming><bpmn:outgoing>IT07_Flow22</bpmn:outgoing><bpmn:outgoing>IT07_Flow23</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT07_E2_T7" name="Desfazer a mudança, voltar ao estado anterior e registrar o motivo"><bpmn:documentation>Etapa 2: Resolver o item e implantar a mudança. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow23</bpmn:incoming><bpmn:outgoing>IT07_Flow24</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT07_F2" name="Mudança desfeita, com o motivo"><bpmn:incoming>IT07_Flow24</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="IT07_M5"><bpmn:incoming>IT07_Flow11</bpmn:incoming><bpmn:incoming>IT07_Flow30</bpmn:incoming><bpmn:outgoing>IT07_Flow40</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IT07_E3_T1" name="Comparar fornecedores e licenças, ou o uso da que vence: requisito, segurança, custo e saída"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Agente da Integração (Integração · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow40</bpmn:incoming><bpmn:outgoing>IT07_Flow25</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="IT07_E3_T2" name="Escolher o fornecedor ou a licença, ou decidir renovar"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Pessoa da Integração (Integração · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow25</bpmn:incoming><bpmn:outgoing>IT07_Flow26</bpmn:outgoing></bpmn:userTask>
+    <bpmn:task id="IT07_E3_T3" name="Revisar o contrato de tecnologia, licença ou dados e a segurança"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow26</bpmn:incoming><bpmn:outgoing>IT07_Flow27</bpmn:outgoing></bpmn:task>
+    <bpmn:task id="IT07_E3_T4" name="Conferir o custo e o orçamento"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Outro círculo (Gestão). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow27</bpmn:incoming><bpmn:outgoing>IT07_Flow28</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="IT07_E3_G1" name="A contratação foi aprovada?"><bpmn:incoming>IT07_Flow28</bpmn:incoming><bpmn:outgoing>IT07_Flow29</bpmn:outgoing><bpmn:outgoing>IT07_Flow31</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IT07_E3_T5" name="Rever a escolha com o motivo da recusa"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Agente da Integração (Integração · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow29</bpmn:incoming><bpmn:outgoing>IT07_Flow30</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:task id="IT07_E3_T6" name="Fazer a compra ou a renovação"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Outro círculo (Gestão). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow31</bpmn:incoming><bpmn:outgoing>IT07_Flow32</bpmn:outgoing></bpmn:task>
+    <bpmn:scriptTask id="IT07_E3_T7" name="Registrar o fornecedor, a licença, o custo e a data de renovação"><bpmn:documentation>Etapa 3: Escolher e contratar fornecedor ou licença de tecnologia. Executor: Automação da Integração (Integração · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IT07_Flow32</bpmn:incoming><bpmn:outgoing>IT07_Flow33</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IT07_M6"><bpmn:incoming>IT07_Flow22</bpmn:incoming><bpmn:incoming>IT07_Flow33</bpmn:incoming><bpmn:outgoing>IT07_Flow41</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IT07_E4_T1" name="Registrar o item, o tempo, a causa e o custo"><bpmn:documentation>Etapa 4: Registrar e medir o serviço de tecnologia. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT07_Flow41</bpmn:incoming><bpmn:outgoing>IT07_Flow34</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IT07_E4_T2" name="Medir disponibilidade, erros, custo e prazo dos serviços de tecnologia"><bpmn:documentation>Etapa 4: Registrar e medir o serviço de tecnologia. Executor: Automação da Integração (Integração · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IT07_Flow34</bpmn:incoming><bpmn:outgoing>IT07_Flow35</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IT07_F1" name="Item de tecnologia resolvido ou contratado e registrado"><bpmn:incoming>IT07_Flow35</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="IT07_Flow1" sourceRef="IT07_S1" targetRef="IT07_M1" />
+    <bpmn:sequenceFlow id="IT07_Flow2" sourceRef="IT07_S2" targetRef="IT07_M1" />
+    <bpmn:sequenceFlow id="IT07_Flow3" sourceRef="IT07_S3" targetRef="IT07_M1" />
+    <bpmn:sequenceFlow id="IT07_Flow4" sourceRef="IT07_S4" targetRef="IT07_M1" />
+    <bpmn:sequenceFlow id="IT07_Flow5" sourceRef="IT07_E1_T1" targetRef="IT07_E1_T2" />
+    <bpmn:sequenceFlow id="IT07_Flow6" sourceRef="IT07_E1_T2" targetRef="IT07_E1_G1" />
+    <bpmn:sequenceFlow id="IT07_Flow7" name="Sim" sourceRef="IT07_E1_G1" targetRef="IT07_E1_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow8" name="Não" sourceRef="IT07_E1_G1" targetRef="IT07_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow9" sourceRef="IT07_E1_T3" targetRef="IT07_M2" />
+    <bpmn:sequenceFlow id="IT07_Flow10" name="Acesso, retirada de acesso, solução conhecida ou mudança" sourceRef="IT07_E1_G2" targetRef="IT07_E2_G1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Acesso, retirada de acesso, solução conhecida ou mudança</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow11" name="Fornecedor, licença ou serviço de tecnologia novo, ou renovação" sourceRef="IT07_E1_G2" targetRef="IT07_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Fornecedor, licença ou serviço de tecnologia novo, ou renovação</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow12" name="Não: acesso ou solução conhecida" sourceRef="IT07_E2_G1" targetRef="IT07_E2_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: acesso ou solução conhecida</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow13" name="Sim" sourceRef="IT07_E2_G1" targetRef="IT07_E2_T2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow14" sourceRef="IT07_E2_T2" targetRef="IT07_E2_T3" />
+    <bpmn:sequenceFlow id="IT07_Flow15" sourceRef="IT07_E2_T1" targetRef="IT07_M3" />
+    <bpmn:sequenceFlow id="IT07_Flow16" sourceRef="IT07_E2_T3" targetRef="IT07_M3" />
+    <bpmn:sequenceFlow id="IT07_Flow17" name="Sim" sourceRef="IT07_E2_G2" targetRef="IT07_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow18" name="Não, ou não há mudança" sourceRef="IT07_E2_G2" targetRef="IT07_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, ou não há mudança</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow19" sourceRef="IT07_E2_T4" targetRef="IT07_M4" />
+    <bpmn:sequenceFlow id="IT07_Flow20" sourceRef="IT07_E2_T5" targetRef="IT07_E2_T6" />
+    <bpmn:sequenceFlow id="IT07_Flow21" sourceRef="IT07_E2_T6" targetRef="IT07_E2_G3" />
+    <bpmn:sequenceFlow id="IT07_Flow22" name="Sim" sourceRef="IT07_E2_G3" targetRef="IT07_M6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow23" name="Não: a mudança falhou" sourceRef="IT07_E2_G3" targetRef="IT07_E2_T7"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: a mudança falhou</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow24" sourceRef="IT07_E2_T7" targetRef="IT07_F2" />
+    <bpmn:sequenceFlow id="IT07_Flow25" sourceRef="IT07_E3_T1" targetRef="IT07_E3_T2" />
+    <bpmn:sequenceFlow id="IT07_Flow26" sourceRef="IT07_E3_T2" targetRef="IT07_E3_T3" />
+    <bpmn:sequenceFlow id="IT07_Flow27" sourceRef="IT07_E3_T3" targetRef="IT07_E3_T4" />
+    <bpmn:sequenceFlow id="IT07_Flow28" sourceRef="IT07_E3_T4" targetRef="IT07_E3_G1" />
+    <bpmn:sequenceFlow id="IT07_Flow29" name="Não" sourceRef="IT07_E3_G1" targetRef="IT07_E3_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow30" sourceRef="IT07_E3_T5" targetRef="IT07_M5" />
+    <bpmn:sequenceFlow id="IT07_Flow31" name="Sim" sourceRef="IT07_E3_G1" targetRef="IT07_E3_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IT07_Flow32" sourceRef="IT07_E3_T6" targetRef="IT07_E3_T7" />
+    <bpmn:sequenceFlow id="IT07_Flow33" sourceRef="IT07_E3_T7" targetRef="IT07_M6" />
+    <bpmn:sequenceFlow id="IT07_Flow34" sourceRef="IT07_E4_T1" targetRef="IT07_E4_T2" />
+    <bpmn:sequenceFlow id="IT07_Flow35" sourceRef="IT07_E4_T2" targetRef="IT07_F1" />
+    <bpmn:sequenceFlow id="IT07_Flow36" sourceRef="IT07_M1" targetRef="IT07_E1_T1" />
+    <bpmn:sequenceFlow id="IT07_Flow37" sourceRef="IT07_M2" targetRef="IT07_E1_G2" />
+    <bpmn:sequenceFlow id="IT07_Flow38" sourceRef="IT07_M3" targetRef="IT07_E2_G2" />
+    <bpmn:sequenceFlow id="IT07_Flow39" sourceRef="IT07_M4" targetRef="IT07_E2_T5" />
+    <bpmn:sequenceFlow id="IT07_Flow40" sourceRef="IT07_M5" targetRef="IT07_E3_T1" />
+    <bpmn:sequenceFlow id="IT07_Flow41" sourceRef="IT07_M6" targetRef="IT07_E4_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_IT07">
+    <bpmndi:BPMNPlane id="Plane_IT07" bpmnElement="Collab_IT07">
+      <bpmndi:BPMNShape id="Participant_IT07_di" bpmnElement="Participant_IT07" isHorizontal="true"><dc:Bounds x="0" y="0" width="7122" height="1232" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_SOL_di" bpmnElement="Lane_IT07_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_NEG_di" bpmnElement="Lane_IT07_NEG" isHorizontal="true"><dc:Bounds x="30" y="176" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_GOV_di" bpmnElement="Lane_IT07_GOV" isHorizontal="true"><dc:Bounds x="30" y="352" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_GES_di" bpmnElement="Lane_IT07_GES" isHorizontal="true"><dc:Bounds x="30" y="528" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_ITP_di" bpmnElement="Lane_IT07_ITP" isHorizontal="true"><dc:Bounds x="30" y="704" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_ITA_di" bpmnElement="Lane_IT07_ITA" isHorizontal="true"><dc:Bounds x="30" y="880" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IT07_ITR_di" bpmnElement="Lane_IT07_ITR" isHorizontal="true"><dc:Bounds x="30" y="1056" width="7092" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_S1_di" bpmnElement="IT07_S1"><dc:Bounds x="156" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="68" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_S2_di" bpmnElement="IT07_S2"><dc:Bounds x="156" y="246" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="244" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_S3_di" bpmnElement="IT07_S3"><dc:Bounds x="156" y="1086" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1084" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_S4_di" bpmnElement="IT07_S4"><dc:Bounds x="156" y="1166" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="64" y="1164" width="86" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_M1_di" bpmnElement="IT07_M1" isMarkerVisible="true"><dc:Bounds x="355" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E1_T1_di" bpmnElement="IT07_E1_T1"><dc:Bounds x="506" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E1_T2_di" bpmnElement="IT07_E1_T2"><dc:Bounds x="712" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E1_G1_di" bpmnElement="IT07_E1_G1" isMarkerVisible="true"><dc:Bounds x="973" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="886" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E1_T3_di" bpmnElement="IT07_E1_T3"><dc:Bounds x="1124" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_M2_di" bpmnElement="IT07_M2" isMarkerVisible="true"><dc:Bounds x="1385" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E1_G2_di" bpmnElement="IT07_E1_G2" isMarkerVisible="true"><dc:Bounds x="1591" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1504" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_G1_di" bpmnElement="IT07_E2_G1" isMarkerVisible="true"><dc:Bounds x="1797" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1710" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T1_di" bpmnElement="IT07_E2_T1"><dc:Bounds x="1948" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T2_di" bpmnElement="IT07_E2_T2"><dc:Bounds x="2154" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T3_di" bpmnElement="IT07_E2_T3"><dc:Bounds x="2360" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_M3_di" bpmnElement="IT07_M3" isMarkerVisible="true"><dc:Bounds x="2621" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_G2_di" bpmnElement="IT07_E2_G2" isMarkerVisible="true"><dc:Bounds x="2827" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2740" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T4_di" bpmnElement="IT07_E2_T4"><dc:Bounds x="2978" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_M4_di" bpmnElement="IT07_M4" isMarkerVisible="true"><dc:Bounds x="3239" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T5_di" bpmnElement="IT07_E2_T5"><dc:Bounds x="3390" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T6_di" bpmnElement="IT07_E2_T6"><dc:Bounds x="3596" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_G3_di" bpmnElement="IT07_E2_G3" isMarkerVisible="true"><dc:Bounds x="3857" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3770" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E2_T7_di" bpmnElement="IT07_E2_T7"><dc:Bounds x="4008" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_F2_di" bpmnElement="IT07_F2"><dc:Bounds x="4276" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4239" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_M5_di" bpmnElement="IT07_M5" isMarkerVisible="true"><dc:Bounds x="4475" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T1_di" bpmnElement="IT07_E3_T1"><dc:Bounds x="4626" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T2_di" bpmnElement="IT07_E3_T2"><dc:Bounds x="4832" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T3_di" bpmnElement="IT07_E3_T3"><dc:Bounds x="5038" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T4_di" bpmnElement="IT07_E3_T4"><dc:Bounds x="5244" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_G1_di" bpmnElement="IT07_E3_G1" isMarkerVisible="true"><dc:Bounds x="5505" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5418" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T5_di" bpmnElement="IT07_E3_T5"><dc:Bounds x="5656" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T6_di" bpmnElement="IT07_E3_T6"><dc:Bounds x="5862" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E3_T7_di" bpmnElement="IT07_E3_T7"><dc:Bounds x="6068" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_M6_di" bpmnElement="IT07_M6" isMarkerVisible="true"><dc:Bounds x="6329" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E4_T1_di" bpmnElement="IT07_E4_T1"><dc:Bounds x="6480" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_E4_T2_di" bpmnElement="IT07_E4_T2"><dc:Bounds x="6686" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IT07_F1_di" bpmnElement="IT07_F1"><dc:Bounds x="6954" y="1126" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="6917" y="1167" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="IT07_Flow1_di" bpmnElement="IT07_Flow1"><di:waypoint x="192" y="88" /><di:waypoint x="380" y="88" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow2_di" bpmnElement="IT07_Flow2"><di:waypoint x="192" y="264" /><di:waypoint x="380" y="264" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow3_di" bpmnElement="IT07_Flow3"><di:waypoint x="192" y="1104" /><di:waypoint x="380" y="1104" /><di:waypoint x="380" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow4_di" bpmnElement="IT07_Flow4"><di:waypoint x="192" y="1184" /><di:waypoint x="380" y="1184" /><di:waypoint x="380" y="1169" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow5_di" bpmnElement="IT07_Flow5"><di:waypoint x="586" y="1094" /><di:waypoint x="586" y="968" /><di:waypoint x="712" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow6_di" bpmnElement="IT07_Flow6"><di:waypoint x="872" y="968" /><di:waypoint x="973" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow7_di" bpmnElement="IT07_Flow7"><di:waypoint x="998" y="943" /><di:waypoint x="998" y="440" /><di:waypoint x="1124" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="1004" y="925" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow8_di" bpmnElement="IT07_Flow8"><di:waypoint x="998" y="993" /><di:waypoint x="998" y="1144" /><di:waypoint x="1385" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="1004" y="998" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow9_di" bpmnElement="IT07_Flow9"><di:waypoint x="1204" y="490" /><di:waypoint x="1204" y="1144" /><di:waypoint x="1385" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow10_di" bpmnElement="IT07_Flow10"><di:waypoint x="1641" y="1144" /><di:waypoint x="1797" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="1646" y="1113" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow11_di" bpmnElement="IT07_Flow11"><di:waypoint x="1616" y="1119" /><di:waypoint x="1616" y="1065" /><di:waypoint x="4500" y="1065" /><di:waypoint x="4500" y="993" /><bpmndi:BPMNLabel><dc:Bounds x="1622" y="1034" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow12_di" bpmnElement="IT07_Flow12"><di:waypoint x="1847" y="1144" /><di:waypoint x="1948" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="1852" y="1113" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow13_di" bpmnElement="IT07_Flow13"><di:waypoint x="1822" y="1119" /><di:waypoint x="1822" y="968" /><di:waypoint x="2154" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="1828" y="950" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow14_di" bpmnElement="IT07_Flow14"><di:waypoint x="2234" y="918" /><di:waypoint x="2234" y="792" /><di:waypoint x="2360" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow15_di" bpmnElement="IT07_Flow15"><di:waypoint x="2108" y="1144" /><di:waypoint x="2646" y="1144" /><di:waypoint x="2646" y="817" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow16_di" bpmnElement="IT07_Flow16"><di:waypoint x="2520" y="792" /><di:waypoint x="2621" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow17_di" bpmnElement="IT07_Flow17"><di:waypoint x="2852" y="767" /><di:waypoint x="2852" y="440" /><di:waypoint x="2978" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="2858" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow18_di" bpmnElement="IT07_Flow18"><di:waypoint x="2877" y="792" /><di:waypoint x="3239" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="2882" y="796" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow19_di" bpmnElement="IT07_Flow19"><di:waypoint x="3058" y="490" /><di:waypoint x="3058" y="792" /><di:waypoint x="3239" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow20_di" bpmnElement="IT07_Flow20"><di:waypoint x="3470" y="842" /><di:waypoint x="3470" y="1144" /><di:waypoint x="3596" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow21_di" bpmnElement="IT07_Flow21"><di:waypoint x="3676" y="1094" /><di:waypoint x="3676" y="792" /><di:waypoint x="3857" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow22_di" bpmnElement="IT07_Flow22"><di:waypoint x="3882" y="767" /><di:waypoint x="3882" y="713" /><di:waypoint x="6354" y="713" /><di:waypoint x="6354" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="3888" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow23_di" bpmnElement="IT07_Flow23"><di:waypoint x="3882" y="817" /><di:waypoint x="3882" y="1144" /><di:waypoint x="4008" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="3888" y="822" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow24_di" bpmnElement="IT07_Flow24"><di:waypoint x="4168" y="1144" /><di:waypoint x="4276" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow25_di" bpmnElement="IT07_Flow25"><di:waypoint x="4706" y="918" /><di:waypoint x="4706" y="792" /><di:waypoint x="4832" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow26_di" bpmnElement="IT07_Flow26"><di:waypoint x="4912" y="742" /><di:waypoint x="4912" y="440" /><di:waypoint x="5038" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow27_di" bpmnElement="IT07_Flow27"><di:waypoint x="5118" y="490" /><di:waypoint x="5118" y="616" /><di:waypoint x="5244" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow28_di" bpmnElement="IT07_Flow28"><di:waypoint x="5324" y="666" /><di:waypoint x="5324" y="792" /><di:waypoint x="5505" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow29_di" bpmnElement="IT07_Flow29"><di:waypoint x="5530" y="817" /><di:waypoint x="5530" y="968" /><di:waypoint x="5656" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="822" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow30_di" bpmnElement="IT07_Flow30"><di:waypoint x="5736" y="918" /><di:waypoint x="5736" y="889" /><di:waypoint x="4500" y="889" /><di:waypoint x="4500" y="943" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow31_di" bpmnElement="IT07_Flow31"><di:waypoint x="5530" y="767" /><di:waypoint x="5530" y="616" /><di:waypoint x="5862" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="5536" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow32_di" bpmnElement="IT07_Flow32"><di:waypoint x="5942" y="666" /><di:waypoint x="5942" y="1144" /><di:waypoint x="6068" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow33_di" bpmnElement="IT07_Flow33"><di:waypoint x="6228" y="1144" /><di:waypoint x="6329" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow34_di" bpmnElement="IT07_Flow34"><di:waypoint x="6640" y="1144" /><di:waypoint x="6686" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow35_di" bpmnElement="IT07_Flow35"><di:waypoint x="6846" y="1144" /><di:waypoint x="6954" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow36_di" bpmnElement="IT07_Flow36"><di:waypoint x="405" y="1144" /><di:waypoint x="506" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow37_di" bpmnElement="IT07_Flow37"><di:waypoint x="1435" y="1144" /><di:waypoint x="1591" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow38_di" bpmnElement="IT07_Flow38"><di:waypoint x="2671" y="792" /><di:waypoint x="2827" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow39_di" bpmnElement="IT07_Flow39"><di:waypoint x="3289" y="792" /><di:waypoint x="3390" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow40_di" bpmnElement="IT07_Flow40"><di:waypoint x="4525" y="968" /><di:waypoint x="4626" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IT07_Flow41_di" bpmnElement="IT07_Flow41"><di:waypoint x="6379" y="1144" /><di:waypoint x="6480" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_IT07_E1_di" bpmnElement="Group_IT07_E1"><dc:Bounds x="285" y="-44" width="1426" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="291" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT07_E2_di" bpmnElement="Group_IT07_E2"><dc:Bounds x="1727" y="-44" width="2456" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="1733" y="-38" width="2444" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT07_E3_di" bpmnElement="Group_IT07_E3"><dc:Bounds x="4405" y="-44" width="1838" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="4411" y="-38" width="1826" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IT07_E4_di" bpmnElement="Group_IT07_E4"><dc:Bounds x="6259" y="-44" width="602" height="1284" /><bpmndi:BPMNLabel><dc:Bounds x="6265" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

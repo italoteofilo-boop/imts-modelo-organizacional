@@ -1,0 +1,34 @@
+Círculo 7 · Operações — fluxos em BPMN 2.0
+Situação: Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026
+
+Conteúdo
+- bpmn/OP-01.bpmn a OP-08.bpmn: um arquivo por jornada, com o diagrama (raias, etapas, tarefas, decisões).
+- circulo7-operacoes-fonte.json: a mesma informação em dados (jornadas, etapas, tarefas, entradas, saídas, fontes, testes).
+
+Jornadas
+- OP-01 · Planejar a capacidade de entrega de cada oferta e cobrir as faltas
+- OP-02 · Entregar o serviço a cada cliente, ciclo a ciclo
+- OP-08 · Encerrar as entregas no fim do contrato ou na saída da oferta ou da empresa
+- OP-03 · Atender o cliente: pedidos, dúvidas e problemas, do contato à solução
+- OP-04 · Tratar reclamações e incidentes de clientes e corrigir a causa
+- OP-05 · Garantir a qualidade e os níveis de serviço: padrões, medida e ação corretiva
+- OP-06 · Abastecer e entregar o produto físico: demanda, materiais, produção, estoque e transporte
+- OP-07 · Prestar o pós-venda do produto: devolução, garantia, assistência e recall
+
+Como abrir
+- Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.
+- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+
+Como ler
+- Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.
+- Tarefa de usuário: pessoa. Tarefa manual: conversa ou reunião. Tarefa de serviço: agente. Tarefa de script: automação.
+  Tarefa de regra de negócio: decisão por tabela. Atividade de chamada: chama jornada de outro círculo.
+- As caixas tracejadas (grupos) são as etapas da jornada.
+
+Testes desta versão
+- 2189 verificações de integridade, 0 falhas.
+- 8 arquivos lidos pelo metamodelo do BPMN 2.0 e conferidos por 26 regras do bpmnlint: 0 apontamentos.
+- 8 fluxos desenhados no bpmn-js: 0 avisos; 126 nomes de tarefa conferidos, 0 encobertos ou cortados.
+- Trocas entre os círculos já desenhados: 406 produtos conferidos dos dois lados, 0 falhas.
+
+Gerado em 02/10/2026 a partir da fonte única do modelo.

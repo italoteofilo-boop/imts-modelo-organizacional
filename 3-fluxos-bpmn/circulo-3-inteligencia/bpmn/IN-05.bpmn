@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_IN05" targetNamespace="urn:imts:modelo:circulo3-inteligencia" exporter="Ecossistema IMTS - fonte única do Círculo 3" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_IN05">
+    <bpmn:categoryValue id="CV_IN05_E1" value="1. Reunir o conteúdo e classificar por tema, dono e uso" />
+    <bpmn:categoryValue id="CV_IN05_E2" value="2. Curar o conteúdo com o dono do tema e classificar o sigilo" />
+    <bpmn:categoryValue id="CV_IN05_E3" value="3. Estruturar a base e testar com as perguntas de teste" />
+    <bpmn:categoryValue id="CV_IN05_E4" value="4. Publicar a versão e servir a base aos agentes" />
+    <bpmn:categoryValue id="CV_IN05_E5" value="5. Medir o uso e apontar lacunas e conteúdo vencido" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_IN05">
+    <bpmn:participant id="Participant_IN05" name="IN-05 · Curar as bases de conhecimento que pessoas e agentes consultam" processRef="Process_IN05" />
+    <bpmn:group id="Group_IN05_E1" categoryValueRef="CV_IN05_E1" />
+    <bpmn:group id="Group_IN05_E2" categoryValueRef="CV_IN05_E2" />
+    <bpmn:group id="Group_IN05_E3" categoryValueRef="CV_IN05_E3" />
+    <bpmn:group id="Group_IN05_E4" categoryValueRef="CV_IN05_E4" />
+    <bpmn:group id="Group_IN05_E5" categoryValueRef="CV_IN05_E5" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_IN05" name="Curar as bases de conhecimento que pessoas e agentes consultam" isExecutable="false">
+    <bpmn:documentation>Manter, para cada tema, uma base única, curada, classificada e com dono, em que pessoas e agentes encontram a resposta certa e atual, e fazer cada pergunta sem resposta virar pedido de curadoria. O que já chega aprovado, versionado e classificado por quem publica (padrão, estratégia, método, oferta) é indexado, não revalidado.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_IN05">
+      <bpmn:lane id="Lane_IN05_SOL" name="Solicitante">
+        <bpmn:flowNodeRef>IN05_S1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_LCI" name="Líder do círculo">
+        <bpmn:flowNodeRef>IN05_M4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_T7</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_IDE" name="Identidade">
+        <bpmn:flowNodeRef>IN05_E2_T4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_GOV" name="Governança">
+        <bpmn:flowNodeRef>IN05_E2_T6</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_ITG" name="Integração">
+        <bpmn:flowNodeRef>IN05_E4_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_INP" name="Inteligência · pessoa">
+        <bpmn:flowNodeRef>IN05_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_G2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_G3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_G2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_INA" name="Inteligência · agente">
+        <bpmn:flowNodeRef>IN05_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E1_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_M5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_T2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_IN05_INR" name="Inteligência · automação">
+        <bpmn:flowNodeRef>IN05_S2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_S3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_S4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_S5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E2_T8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E3_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E4_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E4_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E5_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E5_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_E5_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IN05_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="IN05_S1" name="Conteúdo novo apontado"><bpmn:outgoing>IN05_Flow1</bpmn:outgoing><bpmn:messageEventDefinition id="IN05_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IN05_S2" name="Conteúdo aprovado por quem publica recebido"><bpmn:outgoing>IN05_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="IN05_S2_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IN05_S3" name="Método ou oferta retirado de uso"><bpmn:outgoing>IN05_Flow3</bpmn:outgoing><bpmn:messageEventDefinition id="IN05_S3_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IN05_S4" name="Lacuna ou conteúdo vencido detectado"><bpmn:outgoing>IN05_Flow4</bpmn:outgoing><bpmn:signalEventDefinition id="IN05_S4_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="IN05_S5" name="Revisão da base iniciada"><bpmn:outgoing>IN05_Flow5</bpmn:outgoing><bpmn:timerEventDefinition id="IN05_S5_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="IN05_M1"><bpmn:incoming>IN05_Flow1</bpmn:incoming><bpmn:incoming>IN05_Flow2</bpmn:incoming><bpmn:incoming>IN05_Flow3</bpmn:incoming><bpmn:incoming>IN05_Flow4</bpmn:incoming><bpmn:incoming>IN05_Flow5</bpmn:incoming><bpmn:outgoing>IN05_Flow43</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN05_E1_T1" name="Reunir documentos, decisões, respostas e casos por tema, com origem e data"><bpmn:documentation>Etapa 1: Reunir o conteúdo e classificar por tema, dono e uso. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow43</bpmn:incoming><bpmn:outgoing>IN05_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="IN05_E1_T2" name="Apontar duplicidade, contradição, conteúdo vencido e conteúdo de método ou oferta que saiu de uso"><bpmn:documentation>Etapa 1: Reunir o conteúdo e classificar por tema, dono e uso. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow6</bpmn:incoming><bpmn:outgoing>IN05_Flow7</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="IN05_E1_T3" name="Classificar o conteúdo por tema, dono e uso em jornadas e agentes"><bpmn:documentation>Etapa 1: Reunir o conteúdo e classificar por tema, dono e uso. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow7</bpmn:incoming><bpmn:outgoing>IN05_Flow8</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IN05_E1_G1" name="O conteúdo já chega aprovado, versionado e classificado por quem o publica?"><bpmn:incoming>IN05_Flow8</bpmn:incoming><bpmn:outgoing>IN05_Flow9</bpmn:outgoing><bpmn:outgoing>IN05_Flow10</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="IN05_M2"><bpmn:incoming>IN05_Flow9</bpmn:incoming><bpmn:incoming>IN05_Flow24</bpmn:incoming><bpmn:incoming>IN05_Flow34</bpmn:incoming><bpmn:outgoing>IN05_Flow44</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN05_E2_T1" name="Conferir fontes, datas e contradições e propor a versão curada, com perguntas de teste"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow44</bpmn:incoming><bpmn:outgoing>IN05_Flow11</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="IN05_E2_T2" name="Conferir o conteúdo com os padrões de identidade"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow11</bpmn:incoming><bpmn:outgoing>IN05_Flow12</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="IN05_E2_G1" name="O conteúdo está conforme os padrões de identidade?"><bpmn:incoming>IN05_Flow12</bpmn:incoming><bpmn:outgoing>IN05_Flow13</bpmn:outgoing><bpmn:outgoing>IN05_Flow14</bpmn:outgoing><bpmn:outgoing>IN05_Flow15</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN05_E2_T3" name="Corrigir o conteúdo no que não está conforme os padrões de identidade"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow13</bpmn:incoming><bpmn:outgoing>IN05_Flow16</bpmn:outgoing></bpmn:userTask>
+    <bpmn:callActivity id="IN05_E2_T4" name="Responder à consulta sobre o conteúdo não coberto"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Outro círculo (Identidade). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow14</bpmn:incoming><bpmn:outgoing>IN05_Flow17</bpmn:outgoing></bpmn:callActivity>
+    <bpmn:exclusiveGateway id="IN05_M3"><bpmn:incoming>IN05_Flow15</bpmn:incoming><bpmn:incoming>IN05_Flow16</bpmn:incoming><bpmn:incoming>IN05_Flow17</bpmn:incoming><bpmn:outgoing>IN05_Flow45</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN05_E2_T5" name="Decidir a classificação de sigilo do conteúdo pela regra da Governança"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow45</bpmn:incoming><bpmn:outgoing>IN05_Flow18</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IN05_E2_G2" name="O conteúdo é pessoal ou sigiloso?"><bpmn:incoming>IN05_Flow18</bpmn:incoming><bpmn:outgoing>IN05_Flow19</bpmn:outgoing><bpmn:outgoing>IN05_Flow20</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:task id="IN05_E2_T6" name="Conferir o que pode entrar na base e quem pode acessar"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Outro círculo (Governança). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow19</bpmn:incoming><bpmn:outgoing>IN05_Flow21</bpmn:outgoing></bpmn:task>
+    <bpmn:exclusiveGateway id="IN05_M4"><bpmn:incoming>IN05_Flow20</bpmn:incoming><bpmn:incoming>IN05_Flow21</bpmn:incoming><bpmn:outgoing>IN05_Flow46</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN05_E2_T7" name="Validar o que vale hoje no tema e as respostas esperadas das perguntas de teste"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Pessoa de fora do círculo (Líder do círculo). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow46</bpmn:incoming><bpmn:outgoing>IN05_Flow22</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IN05_E2_G3" name="O conteúdo entra na base?"><bpmn:incoming>IN05_Flow22</bpmn:incoming><bpmn:outgoing>IN05_Flow23</bpmn:outgoing><bpmn:outgoing>IN05_Flow24</bpmn:outgoing><bpmn:outgoing>IN05_Flow25</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IN05_E2_T8" name="Marcar o conteúdo para ficar fora da base e registrar o motivo"><bpmn:documentation>Etapa 2: Curar o conteúdo com o dono do tema e classificar o sigilo. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow25</bpmn:incoming><bpmn:outgoing>IN05_Flow26</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IN05_M5"><bpmn:incoming>IN05_Flow10</bpmn:incoming><bpmn:incoming>IN05_Flow23</bpmn:incoming><bpmn:incoming>IN05_Flow26</bpmn:incoming><bpmn:incoming>IN05_Flow33</bpmn:incoming><bpmn:incoming>IN05_Flow36</bpmn:incoming><bpmn:outgoing>IN05_Flow47</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="IN05_E3_T1" name="Estruturar o conteúdo por tema, no formato que pessoas e agentes consultam"><bpmn:documentation>Etapa 3: Estruturar a base e testar com as perguntas de teste. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow47</bpmn:incoming><bpmn:outgoing>IN05_Flow27</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="IN05_E3_T2" name="Completar as perguntas de teste do conteúdo indexado, com a resposta do texto aprovado"><bpmn:documentation>Etapa 3: Estruturar a base e testar com as perguntas de teste. Executor: Agente da Inteligência (Inteligência · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow27</bpmn:incoming><bpmn:outgoing>IN05_Flow28</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:scriptTask id="IN05_E3_T3" name="Rodar as perguntas de teste e comparar com a resposta esperada"><bpmn:documentation>Etapa 3: Estruturar a base e testar com as perguntas de teste. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow28</bpmn:incoming><bpmn:outgoing>IN05_Flow29</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:exclusiveGateway id="IN05_E3_G1" name="A base responde certo às perguntas de teste?"><bpmn:incoming>IN05_Flow29</bpmn:incoming><bpmn:outgoing>IN05_Flow30</bpmn:outgoing><bpmn:outgoing>IN05_Flow31</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="IN05_E3_T4" name="Revisar as respostas de teste que falharam e apontar a causa"><bpmn:documentation>Etapa 3: Estruturar a base e testar com as perguntas de teste. Executor: Pessoa da Inteligência (Inteligência · pessoa). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow31</bpmn:incoming><bpmn:outgoing>IN05_Flow32</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="IN05_E3_G2" name="Onde está a causa da falha?"><bpmn:incoming>IN05_Flow32</bpmn:incoming><bpmn:outgoing>IN05_Flow33</bpmn:outgoing><bpmn:outgoing>IN05_Flow34</bpmn:outgoing><bpmn:outgoing>IN05_Flow35</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="IN05_E3_T5" name="Apontar a falha a quem publicou o conteúdo e tirar o trecho desta versão"><bpmn:documentation>Etapa 3: Estruturar a base e testar com as perguntas de teste. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow35</bpmn:incoming><bpmn:outgoing>IN05_Flow36</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IN05_E4_T1" name="Publicar a versão única da base, com dono, classificação e data de revisão"><bpmn:documentation>Etapa 4: Publicar a versão e servir a base aos agentes. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow30</bpmn:incoming><bpmn:outgoing>IN05_Flow37</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:task id="IN05_E4_T2" name="Servir a base aos agentes e liberar o acesso conforme a classificação"><bpmn:documentation>Etapa 4: Publicar a versão e servir a base aos agentes. Executor: Outro círculo (Integração). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow37</bpmn:incoming><bpmn:outgoing>IN05_Flow38</bpmn:outgoing></bpmn:task>
+    <bpmn:scriptTask id="IN05_E4_T3" name="Avisar pessoas e donos de agentes do que mudou"><bpmn:documentation>Etapa 4: Publicar a versão e servir a base aos agentes. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco médio.</bpmn:documentation><bpmn:incoming>IN05_Flow38</bpmn:incoming><bpmn:outgoing>IN05_Flow39</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IN05_E5_T1" name="Medir as consultas, as perguntas sem resposta e as respostas sem fonte"><bpmn:documentation>Etapa 5: Medir o uso e apontar lacunas e conteúdo vencido. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow39</bpmn:incoming><bpmn:outgoing>IN05_Flow40</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IN05_E5_T2" name="Marcar o conteúdo que passou da data de revisão"><bpmn:documentation>Etapa 5: Medir o uso e apontar lacunas e conteúdo vencido. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow40</bpmn:incoming><bpmn:outgoing>IN05_Flow41</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:scriptTask id="IN05_E5_T3" name="Abrir pedido de curadoria para cada lacuna e conteúdo vencido"><bpmn:documentation>Etapa 5: Medir o uso e apontar lacunas e conteúdo vencido. Executor: Automação da Inteligência (Inteligência · automação). Modo da etapa: Autômato; risco baixo.</bpmn:documentation><bpmn:incoming>IN05_Flow41</bpmn:incoming><bpmn:outgoing>IN05_Flow42</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="IN05_F1" name="Base publicada e medida"><bpmn:incoming>IN05_Flow42</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="IN05_Flow1" sourceRef="IN05_S1" targetRef="IN05_M1" />
+    <bpmn:sequenceFlow id="IN05_Flow2" sourceRef="IN05_S2" targetRef="IN05_M1" />
+    <bpmn:sequenceFlow id="IN05_Flow3" sourceRef="IN05_S3" targetRef="IN05_M1" />
+    <bpmn:sequenceFlow id="IN05_Flow4" sourceRef="IN05_S4" targetRef="IN05_M1" />
+    <bpmn:sequenceFlow id="IN05_Flow5" sourceRef="IN05_S5" targetRef="IN05_M1" />
+    <bpmn:sequenceFlow id="IN05_Flow6" sourceRef="IN05_E1_T1" targetRef="IN05_E1_T2" />
+    <bpmn:sequenceFlow id="IN05_Flow7" sourceRef="IN05_E1_T2" targetRef="IN05_E1_T3" />
+    <bpmn:sequenceFlow id="IN05_Flow8" sourceRef="IN05_E1_T3" targetRef="IN05_E1_G1" />
+    <bpmn:sequenceFlow id="IN05_Flow9" name="Não" sourceRef="IN05_E1_G1" targetRef="IN05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow10" name="Sim" sourceRef="IN05_E1_G1" targetRef="IN05_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow11" sourceRef="IN05_E2_T1" targetRef="IN05_E2_T2" />
+    <bpmn:sequenceFlow id="IN05_Flow12" sourceRef="IN05_E2_T2" targetRef="IN05_E2_G1" />
+    <bpmn:sequenceFlow id="IN05_Flow13" name="Não" sourceRef="IN05_E2_G1" targetRef="IN05_E2_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow14" name="Há ponto que os padrões não cobrem" sourceRef="IN05_E2_G1" targetRef="IN05_E2_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Há ponto que os padrões não cobrem</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow15" name="Sim" sourceRef="IN05_E2_G1" targetRef="IN05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow16" sourceRef="IN05_E2_T3" targetRef="IN05_M3" />
+    <bpmn:sequenceFlow id="IN05_Flow17" sourceRef="IN05_E2_T4" targetRef="IN05_M3" />
+    <bpmn:sequenceFlow id="IN05_Flow18" sourceRef="IN05_E2_T5" targetRef="IN05_E2_G2" />
+    <bpmn:sequenceFlow id="IN05_Flow19" name="Sim" sourceRef="IN05_E2_G2" targetRef="IN05_E2_T6"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow20" name="Não" sourceRef="IN05_E2_G2" targetRef="IN05_M4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow21" sourceRef="IN05_E2_T6" targetRef="IN05_M4" />
+    <bpmn:sequenceFlow id="IN05_Flow22" sourceRef="IN05_E2_T7" targetRef="IN05_E2_G3" />
+    <bpmn:sequenceFlow id="IN05_Flow23" name="Sim" sourceRef="IN05_E2_G3" targetRef="IN05_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow24" name="Não, ajustar" sourceRef="IN05_E2_G3" targetRef="IN05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não, ajustar</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow25" name="Não: a Governança ou o dono do tema o deixa fora" sourceRef="IN05_E2_G3" targetRef="IN05_E2_T8"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não: a Governança ou o dono do tema o deixa fora</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow26" sourceRef="IN05_E2_T8" targetRef="IN05_M5" />
+    <bpmn:sequenceFlow id="IN05_Flow27" sourceRef="IN05_E3_T1" targetRef="IN05_E3_T2" />
+    <bpmn:sequenceFlow id="IN05_Flow28" sourceRef="IN05_E3_T2" targetRef="IN05_E3_T3" />
+    <bpmn:sequenceFlow id="IN05_Flow29" sourceRef="IN05_E3_T3" targetRef="IN05_E3_G1" />
+    <bpmn:sequenceFlow id="IN05_Flow30" name="Sim" sourceRef="IN05_E3_G1" targetRef="IN05_E4_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow31" name="Não" sourceRef="IN05_E3_G1" targetRef="IN05_E3_T4"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow32" sourceRef="IN05_E3_T4" targetRef="IN05_E3_G2" />
+    <bpmn:sequenceFlow id="IN05_Flow33" name="Na estrutura da base" sourceRef="IN05_E3_G2" targetRef="IN05_M5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Na estrutura da base</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow34" name="No conteúdo curado" sourceRef="IN05_E3_G2" targetRef="IN05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">No conteúdo curado</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow35" name="No conteúdo aprovado por quem publica" sourceRef="IN05_E3_G2" targetRef="IN05_E3_T5"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">No conteúdo aprovado por quem publica</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="IN05_Flow36" sourceRef="IN05_E3_T5" targetRef="IN05_M5" />
+    <bpmn:sequenceFlow id="IN05_Flow37" sourceRef="IN05_E4_T1" targetRef="IN05_E4_T2" />
+    <bpmn:sequenceFlow id="IN05_Flow38" sourceRef="IN05_E4_T2" targetRef="IN05_E4_T3" />
+    <bpmn:sequenceFlow id="IN05_Flow39" sourceRef="IN05_E4_T3" targetRef="IN05_E5_T1" />
+    <bpmn:sequenceFlow id="IN05_Flow40" sourceRef="IN05_E5_T1" targetRef="IN05_E5_T2" />
+    <bpmn:sequenceFlow id="IN05_Flow41" sourceRef="IN05_E5_T2" targetRef="IN05_E5_T3" />
+    <bpmn:sequenceFlow id="IN05_Flow42" sourceRef="IN05_E5_T3" targetRef="IN05_F1" />
+    <bpmn:sequenceFlow id="IN05_Flow43" sourceRef="IN05_M1" targetRef="IN05_E1_T1" />
+    <bpmn:sequenceFlow id="IN05_Flow44" sourceRef="IN05_M2" targetRef="IN05_E2_T1" />
+    <bpmn:sequenceFlow id="IN05_Flow45" sourceRef="IN05_M3" targetRef="IN05_E2_T5" />
+    <bpmn:sequenceFlow id="IN05_Flow46" sourceRef="IN05_M4" targetRef="IN05_E2_T7" />
+    <bpmn:sequenceFlow id="IN05_Flow47" sourceRef="IN05_M5" targetRef="IN05_E3_T1" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_IN05">
+    <bpmndi:BPMNPlane id="Plane_IN05" bpmnElement="Collab_IN05">
+      <bpmndi:BPMNShape id="Participant_IN05_di" bpmnElement="Participant_IN05" isHorizontal="true"><dc:Bounds x="0" y="0" width="8128" height="1408" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_SOL_di" bpmnElement="Lane_IN05_SOL" isHorizontal="true"><dc:Bounds x="30" y="0" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_LCI_di" bpmnElement="Lane_IN05_LCI" isHorizontal="true"><dc:Bounds x="30" y="176" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_IDE_di" bpmnElement="Lane_IN05_IDE" isHorizontal="true"><dc:Bounds x="30" y="352" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_GOV_di" bpmnElement="Lane_IN05_GOV" isHorizontal="true"><dc:Bounds x="30" y="528" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_ITG_di" bpmnElement="Lane_IN05_ITG" isHorizontal="true"><dc:Bounds x="30" y="704" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_INP_di" bpmnElement="Lane_IN05_INP" isHorizontal="true"><dc:Bounds x="30" y="880" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_INA_di" bpmnElement="Lane_IN05_INA" isHorizontal="true"><dc:Bounds x="30" y="1056" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_IN05_INR_di" bpmnElement="Lane_IN05_INR" isHorizontal="true"><dc:Bounds x="30" y="1232" width="8098" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_S1_di" bpmnElement="IN05_S1"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_S2_di" bpmnElement="IN05_S2"><dc:Bounds x="338" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="301" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_S3_di" bpmnElement="IN05_S3"><dc:Bounds x="544" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="507" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_S4_di" bpmnElement="IN05_S4"><dc:Bounds x="750" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="713" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_S5_di" bpmnElement="IN05_S5"><dc:Bounds x="956" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="919" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_M1_di" bpmnElement="IN05_M1" isMarkerVisible="true"><dc:Bounds x="1155" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E1_T1_di" bpmnElement="IN05_E1_T1"><dc:Bounds x="1306" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E1_T2_di" bpmnElement="IN05_E1_T2"><dc:Bounds x="1512" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E1_T3_di" bpmnElement="IN05_E1_T3"><dc:Bounds x="1718" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E1_G1_di" bpmnElement="IN05_E1_G1" isMarkerVisible="true"><dc:Bounds x="1979" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="1892" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_M2_di" bpmnElement="IN05_M2" isMarkerVisible="true"><dc:Bounds x="2185" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T1_di" bpmnElement="IN05_E2_T1"><dc:Bounds x="2336" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T2_di" bpmnElement="IN05_E2_T2"><dc:Bounds x="2542" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_G1_di" bpmnElement="IN05_E2_G1" isMarkerVisible="true"><dc:Bounds x="2803" y="1119" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2716" y="1171" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T3_di" bpmnElement="IN05_E2_T3"><dc:Bounds x="2954" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T4_di" bpmnElement="IN05_E2_T4"><dc:Bounds x="3160" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_M3_di" bpmnElement="IN05_M3" isMarkerVisible="true"><dc:Bounds x="3421" y="943" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T5_di" bpmnElement="IN05_E2_T5"><dc:Bounds x="3572" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_G2_di" bpmnElement="IN05_E2_G2" isMarkerVisible="true"><dc:Bounds x="3833" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3746" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T6_di" bpmnElement="IN05_E2_T6"><dc:Bounds x="3984" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_M4_di" bpmnElement="IN05_M4" isMarkerVisible="true"><dc:Bounds x="4245" y="239" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T7_di" bpmnElement="IN05_E2_T7"><dc:Bounds x="4396" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_G3_di" bpmnElement="IN05_E2_G3" isMarkerVisible="true"><dc:Bounds x="4657" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="4570" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E2_T8_di" bpmnElement="IN05_E2_T8"><dc:Bounds x="4808" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_M5_di" bpmnElement="IN05_M5" isMarkerVisible="true"><dc:Bounds x="5069" y="1119" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_T1_di" bpmnElement="IN05_E3_T1"><dc:Bounds x="5220" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_T2_di" bpmnElement="IN05_E3_T2"><dc:Bounds x="5426" y="1094" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_T3_di" bpmnElement="IN05_E3_T3"><dc:Bounds x="5632" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_G1_di" bpmnElement="IN05_E3_G1" isMarkerVisible="true"><dc:Bounds x="5893" y="1295" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="5806" y="1347" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_T4_di" bpmnElement="IN05_E3_T4"><dc:Bounds x="6044" y="918" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_G2_di" bpmnElement="IN05_E3_G2" isMarkerVisible="true"><dc:Bounds x="6305" y="943" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="6218" y="995" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E3_T5_di" bpmnElement="IN05_E3_T5"><dc:Bounds x="6456" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E4_T1_di" bpmnElement="IN05_E4_T1"><dc:Bounds x="6662" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E4_T2_di" bpmnElement="IN05_E4_T2"><dc:Bounds x="6868" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E4_T3_di" bpmnElement="IN05_E4_T3"><dc:Bounds x="7074" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E5_T1_di" bpmnElement="IN05_E5_T1"><dc:Bounds x="7280" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E5_T2_di" bpmnElement="IN05_E5_T2"><dc:Bounds x="7486" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_E5_T3_di" bpmnElement="IN05_E5_T3"><dc:Bounds x="7692" y="1270" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="IN05_F1_di" bpmnElement="IN05_F1"><dc:Bounds x="7960" y="1302" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="7923" y="1343" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="IN05_Flow1_di" bpmnElement="IN05_Flow1"><di:waypoint x="168" y="88" /><di:waypoint x="1180" y="88" /><di:waypoint x="1180" y="1119" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow2_di" bpmnElement="IN05_Flow2"><di:waypoint x="374" y="1320" /><di:waypoint x="398" y="1320" /><di:waypoint x="398" y="1144" /><di:waypoint x="1155" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow3_di" bpmnElement="IN05_Flow3"><di:waypoint x="580" y="1320" /><di:waypoint x="604" y="1320" /><di:waypoint x="604" y="1144" /><di:waypoint x="1155" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow4_di" bpmnElement="IN05_Flow4"><di:waypoint x="786" y="1320" /><di:waypoint x="810" y="1320" /><di:waypoint x="810" y="1144" /><di:waypoint x="1155" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow5_di" bpmnElement="IN05_Flow5"><di:waypoint x="992" y="1320" /><di:waypoint x="1180" y="1320" /><di:waypoint x="1180" y="1169" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow6_di" bpmnElement="IN05_Flow6"><di:waypoint x="1466" y="1144" /><di:waypoint x="1512" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow7_di" bpmnElement="IN05_Flow7"><di:waypoint x="1672" y="1144" /><di:waypoint x="1718" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow8_di" bpmnElement="IN05_Flow8"><di:waypoint x="1878" y="1144" /><di:waypoint x="1979" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow9_di" bpmnElement="IN05_Flow9"><di:waypoint x="2029" y="1144" /><di:waypoint x="2185" y="1144" /><bpmndi:BPMNLabel><dc:Bounds x="2034" y="1126" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow10_di" bpmnElement="IN05_Flow10"><di:waypoint x="2004" y="1119" /><di:waypoint x="2004" y="1065" /><di:waypoint x="5094" y="1065" /><di:waypoint x="5094" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="2010" y="1101" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow11_di" bpmnElement="IN05_Flow11"><di:waypoint x="2496" y="1144" /><di:waypoint x="2542" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow12_di" bpmnElement="IN05_Flow12"><di:waypoint x="2702" y="1144" /><di:waypoint x="2803" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow13_di" bpmnElement="IN05_Flow13"><di:waypoint x="2828" y="1119" /><di:waypoint x="2828" y="968" /><di:waypoint x="2954" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="1101" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow14_di" bpmnElement="IN05_Flow14"><di:waypoint x="2853" y="1144" /><di:waypoint x="3136" y="1144" /><di:waypoint x="3136" y="440" /><di:waypoint x="3160" y="440" /><bpmndi:BPMNLabel><dc:Bounds x="3142" y="1111" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow15_di" bpmnElement="IN05_Flow15"><di:waypoint x="2828" y="1169" /><di:waypoint x="2828" y="1224" /><di:waypoint x="3446" y="1224" /><di:waypoint x="3446" y="993" /><bpmndi:BPMNLabel><dc:Bounds x="2834" y="1174" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow16_di" bpmnElement="IN05_Flow16"><di:waypoint x="3114" y="968" /><di:waypoint x="3421" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow17_di" bpmnElement="IN05_Flow17"><di:waypoint x="3240" y="490" /><di:waypoint x="3240" y="968" /><di:waypoint x="3421" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow18_di" bpmnElement="IN05_Flow18"><di:waypoint x="3732" y="968" /><di:waypoint x="3833" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow19_di" bpmnElement="IN05_Flow19"><di:waypoint x="3858" y="943" /><di:waypoint x="3858" y="616" /><di:waypoint x="3984" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="3864" y="925" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow20_di" bpmnElement="IN05_Flow20"><di:waypoint x="3883" y="968" /><di:waypoint x="4270" y="968" /><di:waypoint x="4270" y="289" /><bpmndi:BPMNLabel><dc:Bounds x="3888" y="950" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow21_di" bpmnElement="IN05_Flow21"><di:waypoint x="4064" y="566" /><di:waypoint x="4064" y="264" /><di:waypoint x="4245" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow22_di" bpmnElement="IN05_Flow22"><di:waypoint x="4476" y="314" /><di:waypoint x="4476" y="968" /><di:waypoint x="4657" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow23_di" bpmnElement="IN05_Flow23"><di:waypoint x="4707" y="968" /><di:waypoint x="5094" y="968" /><di:waypoint x="5094" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="4712" y="950" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow24_di" bpmnElement="IN05_Flow24"><di:waypoint x="4682" y="943" /><di:waypoint x="4682" y="889" /><di:waypoint x="2210" y="889" /><di:waypoint x="2210" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="4688" y="925" width="76" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow25_di" bpmnElement="IN05_Flow25"><di:waypoint x="4682" y="993" /><di:waypoint x="4682" y="1320" /><di:waypoint x="4808" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="4688" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow26_di" bpmnElement="IN05_Flow26"><di:waypoint x="4888" y="1270" /><di:waypoint x="4888" y="1144" /><di:waypoint x="5069" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow27_di" bpmnElement="IN05_Flow27"><di:waypoint x="5380" y="1144" /><di:waypoint x="5426" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow28_di" bpmnElement="IN05_Flow28"><di:waypoint x="5506" y="1194" /><di:waypoint x="5506" y="1320" /><di:waypoint x="5632" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow29_di" bpmnElement="IN05_Flow29"><di:waypoint x="5792" y="1320" /><di:waypoint x="5893" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow30_di" bpmnElement="IN05_Flow30"><di:waypoint x="5918" y="1345" /><di:waypoint x="5918" y="1400" /><di:waypoint x="6742" y="1400" /><di:waypoint x="6742" y="1370" /><bpmndi:BPMNLabel><dc:Bounds x="5924" y="1350" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow31_di" bpmnElement="IN05_Flow31"><di:waypoint x="5918" y="1295" /><di:waypoint x="5918" y="968" /><di:waypoint x="6044" y="968" /><bpmndi:BPMNLabel><dc:Bounds x="5924" y="1277" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow32_di" bpmnElement="IN05_Flow32"><di:waypoint x="6204" y="968" /><di:waypoint x="6305" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow33_di" bpmnElement="IN05_Flow33"><di:waypoint x="6330" y="943" /><di:waypoint x="6330" y="889" /><di:waypoint x="5094" y="889" /><di:waypoint x="5094" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="6336" y="912" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow34_di" bpmnElement="IN05_Flow34"><di:waypoint x="6330" y="943" /><di:waypoint x="6330" y="889" /><di:waypoint x="2210" y="889" /><di:waypoint x="2210" y="1119" /><bpmndi:BPMNLabel><dc:Bounds x="6336" y="858" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow35_di" bpmnElement="IN05_Flow35"><di:waypoint x="6330" y="993" /><di:waypoint x="6330" y="1320" /><di:waypoint x="6456" y="1320" /><bpmndi:BPMNLabel><dc:Bounds x="6336" y="998" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow36_di" bpmnElement="IN05_Flow36"><di:waypoint x="6536" y="1270" /><di:waypoint x="6536" y="1241" /><di:waypoint x="5094" y="1241" /><di:waypoint x="5094" y="1169" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow37_di" bpmnElement="IN05_Flow37"><di:waypoint x="6742" y="1270" /><di:waypoint x="6742" y="792" /><di:waypoint x="6868" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow38_di" bpmnElement="IN05_Flow38"><di:waypoint x="6948" y="842" /><di:waypoint x="6948" y="1320" /><di:waypoint x="7074" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow39_di" bpmnElement="IN05_Flow39"><di:waypoint x="7234" y="1320" /><di:waypoint x="7280" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow40_di" bpmnElement="IN05_Flow40"><di:waypoint x="7440" y="1320" /><di:waypoint x="7486" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow41_di" bpmnElement="IN05_Flow41"><di:waypoint x="7646" y="1320" /><di:waypoint x="7692" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow42_di" bpmnElement="IN05_Flow42"><di:waypoint x="7852" y="1320" /><di:waypoint x="7960" y="1320" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow43_di" bpmnElement="IN05_Flow43"><di:waypoint x="1205" y="1144" /><di:waypoint x="1306" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow44_di" bpmnElement="IN05_Flow44"><di:waypoint x="2235" y="1144" /><di:waypoint x="2336" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow45_di" bpmnElement="IN05_Flow45"><di:waypoint x="3471" y="968" /><di:waypoint x="3572" y="968" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow46_di" bpmnElement="IN05_Flow46"><di:waypoint x="4295" y="264" /><di:waypoint x="4396" y="264" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="IN05_Flow47_di" bpmnElement="IN05_Flow47"><di:waypoint x="5119" y="1144" /><di:waypoint x="5220" y="1144" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_IN05_E1_di" bpmnElement="Group_IN05_E1"><dc:Bounds x="1085" y="-44" width="1014" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="1091" y="-38" width="1002" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN05_E2_di" bpmnElement="Group_IN05_E2"><dc:Bounds x="2115" y="-44" width="2868" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="2121" y="-38" width="2856" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN05_E3_di" bpmnElement="Group_IN05_E3"><dc:Bounds x="4999" y="-44" width="1632" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="5005" y="-38" width="1620" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN05_E4_di" bpmnElement="Group_IN05_E4"><dc:Bounds x="6647" y="-44" width="602" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="6653" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_IN05_E5_di" bpmnElement="Group_IN05_E5"><dc:Bounds x="7265" y="-44" width="602" height="1460" /><bpmndi:BPMNLabel><dc:Bounds x="7271" y="-38" width="590" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_GE05" targetNamespace="urn:imts:modelo:circulo8-gestao" exporter="Ecossistema IMTS - fonte única do Círculo 8" exporterVersion="2026-10-01">
+  <bpmn:category id="Category_GE05">
+    <bpmn:categoryValue id="CV_GE05_E1" value="1. Registrar e conciliar o movimento e projetar o caixa" />
+    <bpmn:categoryValue id="CV_GE05_E2" value="2. Fechar as contas, apurar o resultado e os impostos" />
+    <bpmn:categoryValue id="CV_GE05_E3" value="3. Executar aportes, distribuição e mudanças de contas" />
+  </bpmn:category>
+  <bpmn:collaboration id="Collab_GE05">
+    <bpmn:participant id="Participant_GE05" name="GE-05 · Gerir o caixa, fechar as contas e os impostos e prestar contas" processRef="Process_GE05" />
+    <bpmn:group id="Group_GE05_E1" categoryValueRef="CV_GE05_E1" />
+    <bpmn:group id="Group_GE05_E2" categoryValueRef="CV_GE05_E2" />
+    <bpmn:group id="Group_GE05_E3" categoryValueRef="CV_GE05_E3" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_GE05" name="Gerir o caixa, fechar as contas e os impostos e prestar contas" isExecutable="false">
+    <bpmn:documentation>Fazer cada recebimento e pagamento ser registrado e conciliado; o caixa ser projetado com a previsão de receita, os compromissos e o orçamento e informado à Estratégia; cada período ser fechado por empresa e consolidado, com os impostos apurados e as obrigações entregues, o resultado, os custos e margens e a execução do orçamento publicados; e cada aporte, distribuição ou mudança de contas decidido pelos sócios ou pelo mandato ser executado na alçada. A Gestão registra, fecha e executa; os sócios decidem; a Governança recebe as demonstrações para prestar contas.</bpmn:documentation>
+    <bpmn:laneSet id="LaneSet_GE05">
+      <bpmn:lane id="Lane_GE05_EST" name="Estratégia">
+        <bpmn:flowNodeRef>GE05_S2</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE05_EXE" name="Executivo da empresa">
+        <bpmn:flowNodeRef>GE05_E3_T3</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE05_GEP" name="Gestão · pessoa">
+        <bpmn:flowNodeRef>GE05_E2_T3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E3_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E3_G1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE05_GEA" name="Gestão · agente">
+        <bpmn:flowNodeRef>GE05_E1_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E2_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E2_T2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E2_T5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_M2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E3_T1</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_GE05_GER" name="Gestão · automação">
+        <bpmn:flowNodeRef>GE05_S1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_M1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E1_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E1_T1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E2_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E2_G1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_F2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_M3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_E3_T4</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GE05_F1</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="GE05_S1" name="Fechamento do período iniciado"><bpmn:outgoing>GE05_Flow1</bpmn:outgoing><bpmn:timerEventDefinition id="GE05_S1_def" /></bpmn:startEvent>
+    <bpmn:startEvent id="GE05_S2" name="Decisão de alocação, de destino do resultado ou mandato recebido"><bpmn:outgoing>GE05_Flow2</bpmn:outgoing><bpmn:messageEventDefinition id="GE05_S2_def" /></bpmn:startEvent>
+    <bpmn:exclusiveGateway id="GE05_M1"><bpmn:incoming>GE05_Flow1</bpmn:incoming><bpmn:incoming>GE05_Flow2</bpmn:incoming><bpmn:outgoing>GE05_Flow20</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="GE05_E1_G1" name="O que iniciou o trabalho?"><bpmn:incoming>GE05_Flow20</bpmn:incoming><bpmn:outgoing>GE05_Flow3</bpmn:outgoing><bpmn:outgoing>GE05_Flow4</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GE05_E1_T1" name="Registrar e conciliar contas, recebimentos e pagamentos"><bpmn:documentation>Etapa 1: Registrar e conciliar o movimento e projetar o caixa. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE05_Flow4</bpmn:incoming><bpmn:outgoing>GE05_Flow5</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GE05_E1_T2" name="Projetar o caixa com a previsão de receita, os compromissos e o orçamento"><bpmn:documentation>Etapa 1: Registrar e conciliar o movimento e projetar o caixa. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Autopiloto; risco baixo.</bpmn:documentation><bpmn:incoming>GE05_Flow5</bpmn:incoming><bpmn:outgoing>GE05_Flow6</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="GE05_E2_T1" name="Fechar a contabilidade do período por empresa e consolidar"><bpmn:documentation>Etapa 2: Fechar as contas, apurar o resultado e os impostos. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE05_Flow6</bpmn:incoming><bpmn:outgoing>GE05_Flow7</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:serviceTask id="GE05_E2_T2" name="Apurar os impostos do período e preparar as obrigações fiscais"><bpmn:documentation>Etapa 2: Fechar as contas, apurar o resultado e os impostos. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE05_Flow7</bpmn:incoming><bpmn:outgoing>GE05_Flow8</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE05_E2_T3" name="Conferir e aprovar o fechamento e os impostos"><bpmn:documentation>Etapa 2: Fechar as contas, apurar o resultado e os impostos. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE05_Flow8</bpmn:incoming><bpmn:outgoing>GE05_Flow9</bpmn:outgoing></bpmn:userTask>
+    <bpmn:scriptTask id="GE05_E2_T4" name="Recolher os impostos e entregar as obrigações"><bpmn:documentation>Etapa 2: Fechar as contas, apurar o resultado e os impostos. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE05_Flow9</bpmn:incoming><bpmn:outgoing>GE05_Flow10</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:serviceTask id="GE05_E2_T5" name="Apurar o resultado, os custos e margens e a execução do orçamento"><bpmn:documentation>Etapa 2: Fechar as contas, apurar o resultado e os impostos. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Copiloto; risco médio.</bpmn:documentation><bpmn:incoming>GE05_Flow10</bpmn:incoming><bpmn:outgoing>GE05_Flow11</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="GE05_E2_G1" name="Há aporte, distribuição ou mudança de contas a executar?"><bpmn:incoming>GE05_Flow11</bpmn:incoming><bpmn:outgoing>GE05_Flow12</bpmn:outgoing><bpmn:outgoing>GE05_Flow13</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:endEvent id="GE05_F2" name="Período fechado e informado, sem execução pendente"><bpmn:incoming>GE05_Flow12</bpmn:incoming></bpmn:endEvent>
+    <bpmn:exclusiveGateway id="GE05_M2"><bpmn:incoming>GE05_Flow3</bpmn:incoming><bpmn:incoming>GE05_Flow13</bpmn:incoming><bpmn:outgoing>GE05_Flow21</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="GE05_E3_T1" name="Preparar a execução do aporte, da distribuição ou da mudança de contas da empresa"><bpmn:documentation>Etapa 3: Executar aportes, distribuição e mudanças de contas. Executor: Agente da Gestão (Gestão · agente). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>GE05_Flow21</bpmn:incoming><bpmn:outgoing>GE05_Flow14</bpmn:outgoing></bpmn:serviceTask>
+    <bpmn:userTask id="GE05_E3_T2" name="Conferir a execução com a decisão e a alçada"><bpmn:documentation>Etapa 3: Executar aportes, distribuição e mudanças de contas. Executor: Pessoa da Gestão (Gestão · pessoa). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>GE05_Flow14</bpmn:incoming><bpmn:outgoing>GE05_Flow15</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GE05_E3_G1" name="A execução passa da alçada da Gestão?"><bpmn:incoming>GE05_Flow15</bpmn:incoming><bpmn:outgoing>GE05_Flow16</bpmn:outgoing><bpmn:outgoing>GE05_Flow17</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:userTask id="GE05_E3_T3" name="Autorizar a execução acima da alçada da Gestão"><bpmn:documentation>Etapa 3: Executar aportes, distribuição e mudanças de contas. Executor: Pessoa de fora do círculo (Executivo da empresa). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>GE05_Flow16</bpmn:incoming><bpmn:outgoing>GE05_Flow18</bpmn:outgoing></bpmn:userTask>
+    <bpmn:exclusiveGateway id="GE05_M3"><bpmn:incoming>GE05_Flow17</bpmn:incoming><bpmn:incoming>GE05_Flow18</bpmn:incoming><bpmn:outgoing>GE05_Flow22</bpmn:outgoing></bpmn:exclusiveGateway>
+    <bpmn:scriptTask id="GE05_E3_T4" name="Executar e registrar a movimentação"><bpmn:documentation>Etapa 3: Executar aportes, distribuição e mudanças de contas. Executor: Automação da Gestão (Gestão · automação). Modo da etapa: Copiloto; risco alto.</bpmn:documentation><bpmn:incoming>GE05_Flow22</bpmn:incoming><bpmn:outgoing>GE05_Flow19</bpmn:outgoing></bpmn:scriptTask>
+    <bpmn:endEvent id="GE05_F1" name="Aportes, distribuição ou mudanças de contas executados e registrados"><bpmn:incoming>GE05_Flow19</bpmn:incoming></bpmn:endEvent>
+    <bpmn:sequenceFlow id="GE05_Flow1" sourceRef="GE05_S1" targetRef="GE05_M1" />
+    <bpmn:sequenceFlow id="GE05_Flow2" sourceRef="GE05_S2" targetRef="GE05_M1" />
+    <bpmn:sequenceFlow id="GE05_Flow3" name="Decisão de alocação, de destino do resultado ou mandato" sourceRef="GE05_E1_G1" targetRef="GE05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Decisão de alocação, de destino do resultado ou mandato</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE05_Flow4" name="Fechamento do período" sourceRef="GE05_E1_G1" targetRef="GE05_E1_T1"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Fechamento do período</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE05_Flow5" sourceRef="GE05_E1_T1" targetRef="GE05_E1_T2" />
+    <bpmn:sequenceFlow id="GE05_Flow6" sourceRef="GE05_E1_T2" targetRef="GE05_E2_T1" />
+    <bpmn:sequenceFlow id="GE05_Flow7" sourceRef="GE05_E2_T1" targetRef="GE05_E2_T2" />
+    <bpmn:sequenceFlow id="GE05_Flow8" sourceRef="GE05_E2_T2" targetRef="GE05_E2_T3" />
+    <bpmn:sequenceFlow id="GE05_Flow9" sourceRef="GE05_E2_T3" targetRef="GE05_E2_T4" />
+    <bpmn:sequenceFlow id="GE05_Flow10" sourceRef="GE05_E2_T4" targetRef="GE05_E2_T5" />
+    <bpmn:sequenceFlow id="GE05_Flow11" sourceRef="GE05_E2_T5" targetRef="GE05_E2_G1" />
+    <bpmn:sequenceFlow id="GE05_Flow12" name="Não" sourceRef="GE05_E2_G1" targetRef="GE05_F2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE05_Flow13" name="Sim" sourceRef="GE05_E2_G1" targetRef="GE05_M2"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE05_Flow14" sourceRef="GE05_E3_T1" targetRef="GE05_E3_T2" />
+    <bpmn:sequenceFlow id="GE05_Flow15" sourceRef="GE05_E3_T2" targetRef="GE05_E3_G1" />
+    <bpmn:sequenceFlow id="GE05_Flow16" name="Sim" sourceRef="GE05_E3_G1" targetRef="GE05_E3_T3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Sim</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE05_Flow17" name="Não" sourceRef="GE05_E3_G1" targetRef="GE05_M3"><bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">Não</bpmn:conditionExpression></bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="GE05_Flow18" sourceRef="GE05_E3_T3" targetRef="GE05_M3" />
+    <bpmn:sequenceFlow id="GE05_Flow19" sourceRef="GE05_E3_T4" targetRef="GE05_F1" />
+    <bpmn:sequenceFlow id="GE05_Flow20" sourceRef="GE05_M1" targetRef="GE05_E1_G1" />
+    <bpmn:sequenceFlow id="GE05_Flow21" sourceRef="GE05_M2" targetRef="GE05_E3_T1" />
+    <bpmn:sequenceFlow id="GE05_Flow22" sourceRef="GE05_M3" targetRef="GE05_E3_T4" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_GE05">
+    <bpmndi:BPMNPlane id="Plane_GE05" bpmnElement="Collab_GE05">
+      <bpmndi:BPMNShape id="Participant_GE05_di" bpmnElement="Participant_GE05" isHorizontal="true"><dc:Bounds x="0" y="0" width="4214" height="880" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE05_EST_di" bpmnElement="Lane_GE05_EST" isHorizontal="true"><dc:Bounds x="30" y="0" width="4184" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE05_EXE_di" bpmnElement="Lane_GE05_EXE" isHorizontal="true"><dc:Bounds x="30" y="176" width="4184" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE05_GEP_di" bpmnElement="Lane_GE05_GEP" isHorizontal="true"><dc:Bounds x="30" y="352" width="4184" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE05_GEA_di" bpmnElement="Lane_GE05_GEA" isHorizontal="true"><dc:Bounds x="30" y="528" width="4184" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_GE05_GER_di" bpmnElement="Lane_GE05_GER" isHorizontal="true"><dc:Bounds x="30" y="704" width="4184" height="176" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_S1_di" bpmnElement="GE05_S1"><dc:Bounds x="132" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_S2_di" bpmnElement="GE05_S2"><dc:Bounds x="132" y="70" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="95" y="111" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_M1_di" bpmnElement="GE05_M1" isMarkerVisible="true"><dc:Bounds x="331" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E1_G1_di" bpmnElement="GE05_E1_G1" isMarkerVisible="true"><dc:Bounds x="537" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="450" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E1_T1_di" bpmnElement="GE05_E1_T1"><dc:Bounds x="688" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E1_T2_di" bpmnElement="GE05_E1_T2"><dc:Bounds x="894" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E2_T1_di" bpmnElement="GE05_E2_T1"><dc:Bounds x="1100" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E2_T2_di" bpmnElement="GE05_E2_T2"><dc:Bounds x="1306" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E2_T3_di" bpmnElement="GE05_E2_T3"><dc:Bounds x="1512" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E2_T4_di" bpmnElement="GE05_E2_T4"><dc:Bounds x="1718" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E2_T5_di" bpmnElement="GE05_E2_T5"><dc:Bounds x="1924" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E2_G1_di" bpmnElement="GE05_E2_G1" isMarkerVisible="true"><dc:Bounds x="2185" y="767" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="2098" y="819" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_F2_di" bpmnElement="GE05_F2"><dc:Bounds x="2398" y="824" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="2440" y="822" width="84" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_M2_di" bpmnElement="GE05_M2" isMarkerVisible="true"><dc:Bounds x="2597" y="591" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E3_T1_di" bpmnElement="GE05_E3_T1"><dc:Bounds x="2748" y="566" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E3_T2_di" bpmnElement="GE05_E3_T2"><dc:Bounds x="2954" y="390" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E3_G1_di" bpmnElement="GE05_E3_G1" isMarkerVisible="true"><dc:Bounds x="3215" y="415" width="50" height="50" /><bpmndi:BPMNLabel><dc:Bounds x="3128" y="467" width="106" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E3_T3_di" bpmnElement="GE05_E3_T3"><dc:Bounds x="3366" y="214" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_M3_di" bpmnElement="GE05_M3" isMarkerVisible="true"><dc:Bounds x="3627" y="767" width="50" height="50" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_E3_T4_di" bpmnElement="GE05_E3_T4"><dc:Bounds x="3778" y="742" width="160" height="100" /></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GE05_F1_di" bpmnElement="GE05_F1"><dc:Bounds x="4046" y="774" width="36" height="36" /><bpmndi:BPMNLabel><dc:Bounds x="4009" y="815" width="110" height="40" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="GE05_Flow1_di" bpmnElement="GE05_Flow1"><di:waypoint x="168" y="792" /><di:waypoint x="331" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow2_di" bpmnElement="GE05_Flow2"><di:waypoint x="168" y="88" /><di:waypoint x="356" y="88" /><di:waypoint x="356" y="767" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow3_di" bpmnElement="GE05_Flow3"><di:waypoint x="562" y="767" /><di:waypoint x="562" y="713" /><di:waypoint x="2622" y="713" /><di:waypoint x="2622" y="641" /><bpmndi:BPMNLabel><dc:Bounds x="568" y="736" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow4_di" bpmnElement="GE05_Flow4"><di:waypoint x="587" y="792" /><di:waypoint x="688" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="592" y="796" width="76" height="27" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow5_di" bpmnElement="GE05_Flow5"><di:waypoint x="768" y="742" /><di:waypoint x="768" y="616" /><di:waypoint x="894" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow6_di" bpmnElement="GE05_Flow6"><di:waypoint x="1054" y="616" /><di:waypoint x="1100" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow7_di" bpmnElement="GE05_Flow7"><di:waypoint x="1260" y="616" /><di:waypoint x="1306" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow8_di" bpmnElement="GE05_Flow8"><di:waypoint x="1386" y="566" /><di:waypoint x="1386" y="440" /><di:waypoint x="1512" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow9_di" bpmnElement="GE05_Flow9"><di:waypoint x="1592" y="490" /><di:waypoint x="1592" y="792" /><di:waypoint x="1718" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow10_di" bpmnElement="GE05_Flow10"><di:waypoint x="1798" y="742" /><di:waypoint x="1798" y="616" /><di:waypoint x="1924" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow11_di" bpmnElement="GE05_Flow11"><di:waypoint x="2004" y="666" /><di:waypoint x="2004" y="792" /><di:waypoint x="2185" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow12_di" bpmnElement="GE05_Flow12"><di:waypoint x="2210" y="817" /><di:waypoint x="2210" y="842" /><di:waypoint x="2398" y="842" /><bpmndi:BPMNLabel><dc:Bounds x="2216" y="822" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow13_di" bpmnElement="GE05_Flow13"><di:waypoint x="2210" y="767" /><di:waypoint x="2210" y="616" /><di:waypoint x="2597" y="616" /><bpmndi:BPMNLabel><dc:Bounds x="2216" y="749" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow14_di" bpmnElement="GE05_Flow14"><di:waypoint x="2828" y="566" /><di:waypoint x="2828" y="440" /><di:waypoint x="2954" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow15_di" bpmnElement="GE05_Flow15"><di:waypoint x="3114" y="440" /><di:waypoint x="3215" y="440" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow16_di" bpmnElement="GE05_Flow16"><di:waypoint x="3240" y="415" /><di:waypoint x="3240" y="264" /><di:waypoint x="3366" y="264" /><bpmndi:BPMNLabel><dc:Bounds x="3246" y="397" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow17_di" bpmnElement="GE05_Flow17"><di:waypoint x="3240" y="465" /><di:waypoint x="3240" y="792" /><di:waypoint x="3627" y="792" /><bpmndi:BPMNLabel><dc:Bounds x="3246" y="470" width="26" height="14" /></bpmndi:BPMNLabel></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow18_di" bpmnElement="GE05_Flow18"><di:waypoint x="3446" y="314" /><di:waypoint x="3446" y="792" /><di:waypoint x="3627" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow19_di" bpmnElement="GE05_Flow19"><di:waypoint x="3938" y="792" /><di:waypoint x="4046" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow20_di" bpmnElement="GE05_Flow20"><di:waypoint x="381" y="792" /><di:waypoint x="537" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow21_di" bpmnElement="GE05_Flow21"><di:waypoint x="2647" y="616" /><di:waypoint x="2748" y="616" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="GE05_Flow22_di" bpmnElement="GE05_Flow22"><di:waypoint x="3677" y="792" /><di:waypoint x="3778" y="792" /></bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Group_GE05_E1_di" bpmnElement="Group_GE05_E1"><dc:Bounds x="261" y="-44" width="808" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="267" y="-38" width="796" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE05_E2_di" bpmnElement="Group_GE05_E2"><dc:Bounds x="1085" y="-44" width="1220" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="1091" y="-38" width="1208" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Group_GE05_E3_di" bpmnElement="Group_GE05_E3"><dc:Bounds x="2527" y="-44" width="1426" height="932" /><bpmndi:BPMNLabel><dc:Bounds x="2533" y="-38" width="1414" height="30" /></bpmndi:BPMNLabel></bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
