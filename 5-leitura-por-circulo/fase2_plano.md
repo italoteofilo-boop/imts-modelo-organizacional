@@ -1,6 +1,6 @@
 # Fase 2 · Plano para aprovação
 
-Proposta de 03/10/2026, com as suas decisões das 17:42 e das 18:29. Nada aqui foi construído. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
+Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqui foi construído. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
 
 ## 1. Decisões suas incorporadas
 
@@ -14,9 +14,9 @@ Proposta de 03/10/2026, com as suas decisões das 17:42 e das 18:29. Nada aqui f
 
 ## 2. Cuidados que entram no desenho (já decidido)
 
-- **Nove motores:** uma correção comum precisa chegar aos nove. O modelo-base leva a correção, e cada motor a puxa por versão, com os testes do próprio círculo rodando antes.
+- **Nove motores:** o runtime dos runtimes (E0) leva cada correção do modelo-base aos nove motores, por versão, com os testes de cada círculo rodando antes.
 - **Modelo treinado com simulação:** cada versão de modelo registra com que dado foi treinada. As versões treinadas só com dado simulado servem para evoluir a plataforma; o painel mostra simulado e real separados.
-- **Telegram:** um bot não vê a mensagem de outro bot. Os agentes não conversam entre si pelo grupo; quem orquestra são os motores (seção 4).
+- **Telegram:** um bot não vê a mensagem de outro bot. Os agentes não conversam entre si pelo grupo; o runtime dos runtimes é a porta única do Telegram e entrega cada mensagem ao motor certo (seção 4).
 
 ## 3. O que você pode estar esquecendo
 
@@ -52,6 +52,7 @@ Proposta de 03/10/2026, com as suas decisões das 17:42 e das 18:29. Nada aqui f
 
 | # | Entrega | O que é | Depende de |
 | --- | --- | --- | --- |
+| E0 | Runtime dos runtimes | Plano de controle acima dos nove motores: registra cada motor e a versão dele; distribui as atualizações do modelo-base; leva as 410 trocas de um círculo a outro; é a porta única do Telegram; junta os eventos para o painel e o ML; acompanha saúde e custo | — |
 | E1 | Registro de eventos | Cada tarefa executada vira um evento: jornada, etapa, tarefa, raia, executor, modo, início, fim, resultado e marca simulado ou real. Fica no Supabase, ao lado do modelo | — |
 | E2 | Usuários simulados | Uma pessoa simulada por papel de raia (sócios, executivo, Administrador do IMTS.OS, líderes, pessoas dos círculos, assessorias), com contas no ambiente de teste do Telegram | E1 |
 | E3 | Instruções de trabalho | Uma instrução por jornada (73), geradas da fonte do modelo: impressa (PDF) e digital (página). Mesma fonte, nenhuma divergência | — |
@@ -63,7 +64,7 @@ Proposta de 03/10/2026, com as suas decisões das 17:42 e das 18:29. Nada aqui f
 | E9 | Interface conversacional | Uma camada de conversa sobre Telegram e página web: intenção → tarefa, com a pessoa decidindo o que é de alçada | E4, E5 |
 | E10 | Os outros oito motores | Criados do modelo-base e customizados por círculo | E4 a E6 estáveis |
 
-**Ordem proposta:** E1 e E3 começam já: não dependem de escolha e custam pouco. Depois vêm E2 e E8, com o modelo treinado na simulação, e então E4, E5 e E6 no piloto, E7, E9 e E10.
+**Ordem proposta:** E0, E1 e E3 começam já: não dependem de escolha e custam pouco. Depois vêm E2 e E8, com o modelo treinado na simulação, e então E4, E5 e E6 no piloto, E7, E9 e E10.
 
 ## 6. O que preciso de você
 
