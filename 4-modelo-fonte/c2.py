@@ -952,7 +952,7 @@ LIMITES = [
     'Na venda decidida sem comprador, a busca do comprador não está desenhada: o mandato a descreve, e a oportunidade volta à ES-05 quando houver comprador.',
     'A ES-04 registra a incoerência com a identidade na avaliação e não recomenda avançar; a decisão do portão continua sendo de pessoas.',
     'As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.',
     'Os números descrevem este desenho, não a operação atual.',
 ]

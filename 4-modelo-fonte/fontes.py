@@ -168,7 +168,8 @@ FONTES_BASE.update({
                     'edital, prorrogável uma vez); art. 140 (obras e serviços: recebimento provisório pelo fiscal e definitivo por servidor ou comissão, com '
                     'termo detalhado; compras: provisório de forma sumária e definitivo com termo detalhado; prazos no regulamento ou no contrato); art. 141 '
                     '(ordem cronológica de pagamento por fonte e categoria); art. 164 (impugnação até 3 dias úteis antes da abertura, resposta em 3 dias úteis); '
-                    'art. 165 (recurso em 3 dias úteis só contra os atos das alíneas a a e do inciso I, e pedido de reconsideração em 3 dias úteis). '
+                    'art. 165 (recurso em 3 dias úteis só contra os atos das alíneas a a e do inciso I, e pedido de reconsideração em 3 dias úteis; § 1º: '
+                    'intenção de recorrer imediata no julgamento e na habilitação; § 2º: a autoridade reconsidera em 3 dias úteis e a superior decide em até 10 dias úteis). '
                     'Contratação direta não foi lida.',
             'links': [('planalto.gov.br', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm')]},
  'anpd15': {'ref': 'ANPD, Resolução CD/ANPD nº 15, de 24 de abril de 2024 (Regulamento de Comunicação de Incidente de Segurança), DOU de 26/04/2024',

@@ -171,7 +171,7 @@ LIMITES = [
     'Quando a ação corretiva conclui, quem apontou a lacuna (Identidade, Relações ou Estratégia) vê o efeito pelo painel da Inteligência: os círculos fechados não têm entrada para um aviso direto.',
     'A recusa de capacidade no plano chega a Negócios pela confirmação de capacidade feita nas jornadas de Negócios e ao executivo pelo plano publicado; Negócios não recebe o plano como entrada.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 9001 lemos só a página oficial; da ISO 10002, só o resumo.',
-    'Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'A tarefa de quem não é do círculo (cliente, executivo, Negócios, Gestão, Governança) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.',
     'As saídas estão listadas por etapa, não por caminho: o pedido à Integração, à Identidade ou à Inteligência só sai quando a decisão pede.',

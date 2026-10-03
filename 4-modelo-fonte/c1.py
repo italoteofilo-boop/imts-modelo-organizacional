@@ -484,7 +484,7 @@ ALERTAS = [
     ('Carga da Gestão', 'A Gestão recebe quatro jornadas com muito trabalho humano: integração cultural, rituais e reconhecimento, propósito pessoal e comunicação interna. A carga só pode ser medida quando a Gestão for desenhada.'),
     ('Um indicador, um dono', 'Identidade responde por padrão claro e atual. Cultura vivida é da Gestão; percepção e reputação, de Relações; conformidade das entregas, da Governança.'),
     ('Prazo de resposta às consultas', 'Depende do volume de consultas: ficou para o gate G9 (calibração), depois de dois ciclos. Sem medida, não propus número.'),
-    ('Uma auditoria só', 'A Governança amostra as entregas uma vez, com os critérios de cada círculo. A decidir no círculo 9.'),
+    ('Uma auditoria só', 'A Governança amostra as entregas uma vez, com os critérios de cada círculo. Decidido no círculo 9: amostra única na GO-06.'),
 ]
 
 # ------------------------------------------------ jornadas transferidas (rascunhos)
@@ -506,7 +506,7 @@ TRANSFERIDAS = [
     ('ID-09', 'Gestão, para dentro; Relações, para fora',
      'Guia de voz (ID-02), posicionamento e casa de mensagens (ID-04) e os avisos do que mudou (ID-01 e ID-02)',
      'Percepção dos públicos e sinais de reputação (ID-05)'),
-    ('ID-10', 'Relações monitora; Governança, com o executivo, responde à crise',
+    ('ID-10', 'Relações monitora; o dono da crise decide, com o comitê conduzido pela Governança',
      'Protocolo de crise (ID-02), mensagens (ID-04) e assento no comitê de crise',
      'Lições da crise (ID-02 e ID-05); percepção dos públicos e sinais de reputação (ID-05)'),
     ('ID-11', 'Governança',
@@ -557,7 +557,7 @@ MUDANCAS = [
 LIMITES = [
     'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.',
     'Na ID-02, as consultas entram pela etapa 1. Se o volume crescer, vale separar em jornada própria; hoje não há medida de volume.',
     'Na ID-03, a jornada termina no pedido de registro; oposição ou recusa do registro ainda não tem caminho desenhado.',

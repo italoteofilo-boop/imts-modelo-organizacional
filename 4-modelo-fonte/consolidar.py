@@ -89,6 +89,7 @@ def main():
         ok = sum(1 for e in r['elos'] if e['produtos'])
         md.append(f"| {r['codigo']} | {r['nome']} | {' → '.join(r['cadeia'])} | {r['dono']} | {ok} de {len(r['elos'])} | {r['nota']} |")
     open(os.path.join(BASE, 'saida', 'consolidacao.md'), 'w', encoding='utf-8').write('\n'.join(md) + '\n')
+    open(os.path.join(BASE, 'saida', 'revisao', 'consolidacao.md'), 'w', encoding='utf-8').write('\n'.join(md) + '\n')
     print('jornadas', len(J), out['por_circulo'])
     for r in res:
         print(r['codigo'], ' -> '.join(r['cadeia']), [len(e['produtos']) for e in r['elos']])

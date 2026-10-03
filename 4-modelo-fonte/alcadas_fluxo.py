@@ -44,22 +44,53 @@ REGRAS = {
 }
 
 
-def main():
+def carregar():
     tarefas = {}
     for n in range(1, 10):
         d = json.load(open(os.path.join(BASE, 'saida', f'c{n}', 'circulo.json'), encoding='utf-8'))
         for j in d['jornadas']:
             tarefas[j['code']] = [t for e in j['etapas'] for t in e['tarefas']]
+    prop = open(os.path.join(BASE, 'saida', 'revisao', 'propostas_parametros.md'), encoding='utf-8').read()
+    return tarefas, prop[prop.index('## 5. Matéria × órgão'):]
+
+
+def conferir(tarefas, sec, mostrar=True):
     falhas = 0
     for alc, regras in REGRAS.items():
         for jor, raia, nome in regras:
-            ok = any(t['raia'] == raia and t['nome'].startswith(nome) for t in tarefas.get(jor, []))
-            if not ok:
+            if not any(t['raia'] == raia and t['nome'].startswith(nome) for t in tarefas.get(jor, [])):
                 falhas += 1
-                print(f'FALTA  {alc}: {jor}, {raia}, "{nome}"')
+                if mostrar:
+                    print(f'FALTA  {alc}: {jor}, {raia}, "{nome}"')
+    # cada decisão na raia Sócios precisa estar na tabela matéria × órgão (propostas_parametros.md, seção 5)
+    cob = set(re.findall(r'[A-Z]{2}-\d{2}', sec))
+    for pref, ini, fim in re.findall(r'([A-Z]{2})-(\d{2}) a [A-Z]{2}-(\d{2})', sec):
+        cob.update(f'{pref}-{n:02d}' for n in range(int(ini), int(fim) + 1))
+    for j in sorted({j for j, ts in tarefas.items() if any(t['raia'] == 'Sócios' for t in ts)} - cob):
+        falhas += 1
+        if mostrar:
+            print(f'FALTA  matéria × órgão: {j} tem decisão dos sócios e não está na tabela')
+    return falhas
+
+
+def prova(tarefas, sec):
+    """Defeitos plantados: o teste tem de achar cada um."""
+    import copy
+    casos = []
+    t1 = copy.deepcopy(tarefas); t1['GE-04'] = [t for t in t1['GE-04'] if t['raia'] != 'Sócios']; casos.append((t1, sec))
+    t2 = copy.deepcopy(tarefas); t2['OP-04'] = [t for t in t2['OP-04'] if t['raia'] != 'Governança']; casos.append((t2, sec))
+    t3 = copy.deepcopy(tarefas); t3['GO-08'] = [t for t in t3['GO-08'] if t['raia'] != 'Administrador do IMTS.OS']; casos.append((t3, sec))
+    casos.append((tarefas, sec.replace('GO-10', 'XX-99')))
+    return sum(1 for t, s_ in casos if conferir(t, s_, False) > 0), len(casos)
+
+
+def main():
+    tarefas, sec = carregar()
+    falhas = conferir(tarefas, sec)
+    det, tot = prova(tarefas, sec)
     total = sum(len(r) for r in REGRAS.values())
-    print(f'ALÇADAS: {len(REGRAS)} | NÍVEIS CONFERIDOS: {total} | FALTAS: {falhas}')
-    sys.exit(1 if falhas else 0)
+    print(f'ALÇADAS: {len(REGRAS)} | NÍVEIS CONFERIDOS: {total} | FALTAS: {falhas} | DEFEITOS PLANTADOS DETECTADOS: {det} de {tot}')
+    sys.exit(1 if falhas or det < tot else 0)
 
 
 if __name__ == '__main__':

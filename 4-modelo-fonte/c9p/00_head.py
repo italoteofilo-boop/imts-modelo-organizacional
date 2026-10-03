@@ -3,7 +3,7 @@
 Regra do círculo: a Governança decide o que é do seu ofício (a redação e a publicação das regras, a revisão jurídica, a
 guarda dos contratos, a amostra e o julgamento da auditoria, a resposta ao titular de dados e a comunicação à autoridade),
 dentro da alçada. Os sócios decidem as regras gerais, as alçadas dos executivos e o que a lei reserva a eles; o
-executivo, com a Governança, responde à crise; os círculos donos executam e corrigem."""
+dono da crise (executivo, Administrador do IMTS.OS ou sócios) decide a crise, com o comitê conduzido pela Governança; os círculos donos executam e corrigem."""
 from dsl import configurar, T, PAR, S, D, E, I, F, TODOS
 
 NUM, NOME, SIGLA, PREF = 9, 'Governança', 'GO', 'GO'
@@ -19,8 +19,8 @@ LEAD = ('A Governança faz o Ecossistema decidir bem e dentro das regras. Manté
 PRINCIPIO = ('Regra do círculo, aprovada por você às 11:50 de 03/10/2026: a Governança decide o que é do seu ofício '
              '(a redação e a publicação das regras, a revisão jurídica, a guarda dos contratos, a amostra e o julgamento da '
              'auditoria, a resposta ao titular de dados e a comunicação à autoridade), dentro da alçada. Os sócios decidem '
-             'as regras gerais, as alçadas dos executivos e o que a lei reserva a eles; o executivo, com a Governança, '
-             'responde à crise; os círculos donos executam e corrigem.')
+             'as regras gerais, as alçadas dos executivos e o que a lei reserva a eles; o dono da crise (executivo, '
+             'Administrador do IMTS.OS ou sócios) decide a crise, com o comitê conduzido pela Governança; os círculos donos executam e corrigem.')
 MUDOU_INTRO = ('Comparação com o catálogo da rodada 2 (49 jornadas e 216 workflows), que continua no documento do '
                'projeto até cada círculo ser fechado. Azul: acrescentado. Verde: ajustado. Vermelho: retirado.')
 COBERTURA_TXT = ('Processos do APQC PCF 7.4 ligados às funções da Governança (categoria 11.0, grupos 12.3 e 12.4 e o '

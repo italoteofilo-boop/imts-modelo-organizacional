@@ -3,7 +3,7 @@
 Regra do círculo: a Governança decide o que é do seu ofício (a redação e a publicação das regras, a revisão jurídica, a
 guarda dos contratos, a amostra e o julgamento da auditoria, a resposta ao titular de dados e a comunicação à autoridade),
 dentro da alçada. Os sócios decidem as regras gerais, as alçadas dos executivos e o que a lei reserva a eles; o
-executivo, com a Governança, responde à crise; os círculos donos executam e corrigem."""
+dono da crise (executivo, Administrador do IMTS.OS ou sócios) decide a crise, com o comitê conduzido pela Governança; os círculos donos executam e corrigem."""
 from dsl import configurar, T, PAR, S, D, E, I, F, TODOS
 
 NUM, NOME, SIGLA, PREF = 9, 'Governança', 'GO', 'GO'
@@ -19,8 +19,8 @@ LEAD = ('A Governança faz o Ecossistema decidir bem e dentro das regras. Manté
 PRINCIPIO = ('Regra do círculo, aprovada por você às 11:50 de 03/10/2026: a Governança decide o que é do seu ofício '
              '(a redação e a publicação das regras, a revisão jurídica, a guarda dos contratos, a amostra e o julgamento da '
              'auditoria, a resposta ao titular de dados e a comunicação à autoridade), dentro da alçada. Os sócios decidem '
-             'as regras gerais, as alçadas dos executivos e o que a lei reserva a eles; o executivo, com a Governança, '
-             'responde à crise; os círculos donos executam e corrigem.')
+             'as regras gerais, as alçadas dos executivos e o que a lei reserva a eles; o dono da crise (executivo, '
+             'Administrador do IMTS.OS ou sócios) decide a crise, com o comitê conduzido pela Governança; os círculos donos executam e corrigem.')
 MUDOU_INTRO = ('Comparação com o catálogo da rodada 2 (49 jornadas e 216 workflows), que continua no documento do '
                'projeto até cada círculo ser fechado. Azul: acrescentado. Verde: ajustado. Vermelho: retirado.')
 COBERTURA_TXT = ('Processos do APQC PCF 7.4 ligados às funções da Governança (categoria 11.0, grupos 12.3 e 12.4 e o '
@@ -131,7 +131,7 @@ JORNADAS.append(dict(
               S('A Governança, com a Estratégia: critério de rateio', 'seg',
                 via=[T('Definir o critério de rateio com a Governança', 'EST'),
                      T('Decidir o critério de rateio', P)]),
-              S('Os sócios: regra geral, alçada dos executivos, exceção, alçada da Governança ou das pessoas da Governança, limites dos agentes', 'seg',
+              S('Os sócios: regra geral, alçada dos executivos, exceção, alçada da Governança ou das pessoas da Governança', 'seg',
                 via=[T('Levar a regra à decisão dos sócios', P),
                      T('Decidir a regra', 'SOC')])]),
            D('A regra foi aprovada?', P,
@@ -249,13 +249,13 @@ JORNADAS.append(dict(
     dominio='Riscos e conformidade', classe='essencial', onda=1,
     objetivo='Fazer cada licença, certidão, registro de empresa e de marca, procuração e seguro estar no calendário com o prazo; cada obrigação ser cumprida antes de vencer, com as exigências do órgão atendidas e o indeferimento levado ao executivo; e as certidões e os documentos de habilitação estarem em dia para Negócios. A Governança mantém e cumpre; a Identidade decide a marca.',
     frequencia='Por prazo de cada obrigação e por evento: registro de marca, marca retirada, mandato, compra ou venda de empresa',
-    automacao=('alta', 'Manter o calendário, apontar o que vence, preparar o pedido e registrar são de agente e automação; conferir, protocolar e cumprir as exigências são de pessoa da Governança.'),
+    automacao=('média', 'Manter o calendário, apontar o que vence, preparar o pedido e registrar são de agente e automação; conferir, protocolar e cumprir as exigências são de pessoa da Governança.'),
     base=['apqc'],
-    lanes=['SOL', P, A, R],
+    lanes=['SOL', 'EXE', P, A, R],
     inicios=[I('Prazo de obrigação legal próximo', R, 'timer'),
              I('Registro, documento ou certidão pedido', 'SOL', 'message')],
     fins=[F('Obrigação cumprida e registrada', R),
-          F('Obrigação indeferida, levada ao executivo', R)],
+          F('Obrigação indeferida, com a decisão do executivo registrada', R)],
     etapas=[
         E('Manter o calendário de obrigações', 'Governança', 'Autopiloto', 'baixo',
           [('Pedido de documento, registro ou certidão', 'Solicitante'), (REGISTRO_MARCA, 'Identidade'),
@@ -270,7 +270,9 @@ JORNADAS.append(dict(
            D('O órgão deferiu?', P,
              [S('Sim', 'seg'),
               S('Não, com exigência', 'seg', via=[T('Cumprir a exigência do órgão e protocolar de novo', P)]),
-              S('Não, indeferido', 'F2', via=[T('Levar o indeferimento ao executivo, com as opções e o efeito na habilitação', R)])]),
+              S('Não, indeferido', 'F2', via=[T('Levar o indeferimento ao executivo, com as opções e o efeito na habilitação', R),
+                                             T('Decidir o caminho da obrigação indeferida: recorrer, refazer ou aceitar o efeito', 'EXE'),
+                                             T('Registrar a decisão do executivo e o novo prazo, se houver', R)])]),
            T('Registrar o documento e o novo prazo', R)],
           [(CERTIDOES, ['Negócios']),
            (OBRIG_LEGAIS, ['GO-03'])]),
@@ -499,7 +501,8 @@ JORNADAS.append(dict(
     lanes=['SOL', 'EXE', 'SOC', 'ASS', P, A, R],
     inicios=[I('Relato recebido no canal', 'SOL', 'message'),
              I('Incidente ou risco a comunicar à autoridade recebido', R, 'message')],
-    fins=[F('Relato tratado ou autoridade comunicada, e registrado', R)],
+    fins=[F('Relato tratado ou autoridade comunicada, e registrado', R),
+          F('Relato que cita a Governança tratado pela assessoria e registrado à parte', 'ASS')],
     etapas=[
         E('Receber e classificar o relato ou o incidente', 'Governança', 'Copiloto', 'médio',
           [('Relato de conduta, fraude ou descumprimento', 'Solicitante'), ('Incidente de segurança com dados pessoais', 'Solicitante'),
@@ -522,28 +525,34 @@ JORNADAS.append(dict(
            D('Quem está envolvido no relato?', P,
              [S('Ninguém da decisão', 'seg', via=[T('Decidir a medida e a correção da causa', 'EXE')]),
               S('O executivo ou um sócio', 'seg',
-                via=[T('Decidir a medida e a correção da causa pelos sócios não envolvidos', 'SOC')])]),
+                via=[T('Decidir a medida e a correção da causa pelos sócios não envolvidos', 'SOC')]),
+              S('Pessoa da Governança, achada na apuração', 'E3',
+                via=[T('Parar a apuração e encaminhar o relato à assessoria externa, sem acesso da Governança', R)])]),
            D('Há dever de comunicar à autoridade?', P,
              [S('Não', 'E5'),
               S('Sim', 'E4')])],
-          [('Relato apurado, com a medida', ['etapa 4', 'etapa 5'])]),
+          [('Relato apurado, com a medida', ['etapa 4', 'etapa 5']),
+           ('Relato que cita a Governança, encaminhado à assessoria', ['etapa 3'])]),
         E('Apurar por assessoria externa o relato que cita a Governança', 'Assessoria externa; decidem os sócios não envolvidos', 'Assistido', 'alto',
-          [('Relato que cita a Governança, encaminhado à assessoria', 'etapa 1')],
+          [('Relato que cita a Governança, encaminhado à assessoria', 'etapa 1'),
+           ('Relato que cita a Governança, encaminhado à assessoria', 'etapa 2')],
           [T('Classificar e apurar os fatos do relato com independência', 'ASS'),
            T('Decidir a medida e a correção da causa do relato apurado pela assessoria', 'SOC'),
            D('Os sócios apontaram dever de comunicar à autoridade?', 'SOC',
-             [S('Sim', 'E4'),
-              S('Não', 'E5')])],
-          [('Relato apurado pela assessoria, com a medida dos sócios', ['etapa 4', 'etapa 5'])]),
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Comunicar à autoridade e, no incidente com dados pessoais, ao titular, no prazo', 'ASS')])]),
+           D('Há quem relatou e possa receber resposta?', 'ASS',
+             [S('Não', 'F2', via=[T('Registrar o caso à parte, sem acesso da Governança', R)]),
+              S('Sim', 'F2', via=[T('Responder a quem relatou o caso da Governança', 'ASS'),
+                                  T('Registrar o caso e a resposta à parte, sem acesso da Governança', R)])])],
+          [('Relato que cita a Governança, tratado e registrado à parte', ['Sócios'])]),
         E('Comunicar à autoridade', 'Governança', 'Copiloto', 'alto',
-          [('Relato ou incidente classificado', 'etapa 1'), ('Relato apurado, com a medida', 'etapa 2'),
-           ('Relato apurado pela assessoria, com a medida dos sócios', 'etapa 3')],
+          [('Relato ou incidente classificado', 'etapa 1'), ('Relato apurado, com a medida', 'etapa 2')],
           [T('Preparar a comunicação à autoridade competente e, no incidente com dados pessoais, ao titular', A),
            T('Conferir e enviar a comunicação no prazo', P)],
           [('Comunicação à autoridade registrada', ['etapa 5'])]),
         E('Registrar e levar a causa à conformidade', 'Governança', 'Autômato', 'baixo',
-          [('Relato apurado, com a medida', 'etapa 2'), ('Relato apurado pela assessoria, com a medida dos sócios', 'etapa 3'),
-           ('Comunicação à autoridade registrada', 'etapa 4')],
+          [('Relato apurado, com a medida', 'etapa 2'), ('Comunicação à autoridade registrada', 'etapa 4')],
           [T('Registrar o relato, a medida, a comunicação e a causa', R),
            D('Há quem relatou e possa receber resposta?', R,
              [S('Não', 'seg'),

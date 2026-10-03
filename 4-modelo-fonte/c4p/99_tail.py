@@ -125,7 +125,7 @@ ALERTAS = [
     ('Integração (círculo 6)', 'Relações espera o plano de implantação de cada cliente, o plano de lançamento de cada oferta, o plano de saída de clientes e contratos e os sistemas e canais que as ações e os padrões de experiência pedem.'),
     ('Operações (círculo 7)', 'Relações espera as reclamações e os incidentes de clientes com a causa e os registros de entrega e atendimento de cada cliente. Entrega a estratégia de experiência e os planos de sucesso e de recuperação.'),
     ('Gestão (círculo 8)', 'Relações espera o orçamento de demanda do ciclo e a situação de faturas e pagamentos de cada cliente.'),
-    ('Governança (círculo 9)', 'Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise (que declara, decide a posição e encerra a crise) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.'),
+    ('Governança (círculo 9)', 'Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise da Governança (o dono da crise, executivo, Administrador do IMTS.OS ou sócios, declara, decide a posição e encerra a crise; GO-08) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.'),
 ]
 
 # ------------------------------------------------ relação com o catálogo da rodada 2
@@ -160,7 +160,7 @@ LIMITES = [
     'As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.',
     'Os rascunhos de critério de oportunidade qualificada, regra de saúde do cliente e critério de crise foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 44001 e da ISO 22361 lemos só o resumo; o texto dos Barcelona Principles 3.0 foi lido numa transcrição da MEPRA, porque a página da AMEC só os oferece em anexos.',
-    'Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'A tarefa de quem não é do círculo (cliente, parceiro, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.',
     'Programa de fidelidade e lobby não estão desenhados: nenhum círculo pediu.',

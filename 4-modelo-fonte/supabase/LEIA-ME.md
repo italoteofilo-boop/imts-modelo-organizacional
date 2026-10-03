@@ -23,10 +23,10 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 | jornada | As 73 jornadas, com objetivo, cadência e nível de automação | 73 |
 | evento | Eventos de início e de fim de cada jornada | por jornada |
 | etapa | As 292 etapas, com dono, modo, risco e o tipo que as tarefas dão à etapa | 292 |
-| tarefa | As 1.544 tarefas, com executor (P, A, R, H, C, X), raia e condição | 1.544 |
+| tarefa | As 1.555 tarefas, com executor (P, A, R, H, C, X), raia e condição | 1.555 |
 | decisao_caminho | As perguntas que decidem o caminho em cada etapa | por etapa |
 | entrada, saida | O que cada etapa recebe e entrega, e de quem ou para quem | por etapa |
-| troca | As 409 trocas entre círculos | 409 |
+| troca | As 410 trocas entre círculos | 410 |
 | cadeia, cadeia_elo | As 26 cadeias que substituem as jornadas cross, com 47 elos | 26 e 47 |
 | fonte, fonte_uso, jornada_fonte | As fontes, o uso de cada uma em cada círculo e em cada jornada | 65 fontes |
 | decisao_registrada | As decisões registradas por círculo | 120 |
@@ -56,8 +56,8 @@ Testado em 03/10/2026 em Postgres 16 local, antes de cada carga no Supabase. As 
 | Círculos | 9 |
 | Jornadas | 73 |
 | Etapas | 292 (Copiloto 139, Autopiloto 62, Assistido 57, Autômato 34) |
-| Tarefas | 1.544 |
-| Trocas entre círculos | 409 |
+| Tarefas | 1.555 |
+| Trocas entre círculos | 410 |
 | Cadeias e elos | 26 e 47 |
 | Parâmetros | 72 (14 alçadas, 39 cadências, 15 conteúdos, 4 fontes) |
 | Gates | 9 |

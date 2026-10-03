@@ -3,7 +3,7 @@
 Regra do círculo: Relações decide o que é do seu ofício (o plano de demanda, a qualificação das oportunidades,
 a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias dentro da alçada), ouvidos o
 executivo e Negócios. Negócios vende e renova; Operações atende e entrega; a Identidade dá a marca e os padrões;
-a Governança decide a crise, os contratos e as regras de dados pessoais."""
+a Governança conduz o comitê de crise, e o dono da crise decide; a Governança cuida dos contratos e das regras de dados pessoais."""
 from dsl import configurar, T, PAR, S, D, E, I, F, TODOS
 
 NUM, NOME, SIGLA, PREF = 4, 'Relações', 'RE', 'RE'
@@ -19,7 +19,7 @@ PRINCIPIO = ('Regra do círculo, aprovada às 19:05: Relações decide o que é 
              'das oportunidades, a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias '
              'dentro da alçada), ouvidos o executivo da empresa e Negócios. O executivo aprova o que se diz em nome da '
              'empresa e quem fala por ela. Negócios vende e renova; Operações atende e entrega; a Identidade dá a marca e '
-             'os padrões; a Governança decide a crise, os contratos e as regras de dados pessoais.')
+             'os padrões; a Governança conduz o comitê de crise, e o dono da crise decide; a Governança cuida dos contratos e das regras de dados pessoais.')
 MUDOU_INTRO = ('Comparação com o catálogo da rodada 2 (49 jornadas e 216 workflows), que continua no documento do '
                'projeto até cada círculo ser fechado, e com as jornadas que o círculo 1 transferiu para Relações. '
                'Azul: acrescentado. Verde: ajustado. Vermelho: retirado.')
@@ -685,8 +685,8 @@ JORNADAS.append(dict(
            ('Declaração, posição e encerramento da crise decididos pelo comitê', 'Governança')],
           [T('Apurar os fatos do sinal com quem está perto do caso', P, 'manual'),
            T('Levar ao comitê de crise da Governança os fatos apurados', R),
-           T('Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito', 'GOV', 'call'),
-           D('O comitê declarou crise?', 'GOV',
+           T('Levar ao dono da crise a declaração, a posição e o porta-voz, pelo comitê', 'GOV', 'call'),
+           D('O dono da crise declarou crise?', 'GOV',
              [S('Não', 'F2', via=[T('Encaminhar o sinal ao dono do tema: Operações, Negócios ou o executivo', R)]),
               S('Sim', 'prox')])],
           [('Alerta de crise, com os fatos apurados', ['Governança', 'Executivos']),
@@ -842,7 +842,7 @@ ALERTAS = [
     ('Integração (círculo 6)', 'Relações espera o plano de implantação de cada cliente, o plano de lançamento de cada oferta, o plano de saída de clientes e contratos e os sistemas e canais que as ações e os padrões de experiência pedem.'),
     ('Operações (círculo 7)', 'Relações espera as reclamações e os incidentes de clientes com a causa e os registros de entrega e atendimento de cada cliente. Entrega a estratégia de experiência e os planos de sucesso e de recuperação.'),
     ('Gestão (círculo 8)', 'Relações espera o orçamento de demanda do ciclo e a situação de faturas e pagamentos de cada cliente.'),
-    ('Governança (círculo 9)', 'Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise (que declara, decide a posição e encerra a crise) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.'),
+    ('Governança (círculo 9)', 'Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise da Governança (o dono da crise, executivo, Administrador do IMTS.OS ou sócios, declara, decide a posição e encerra a crise; GO-08) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.'),
 ]
 
 # ------------------------------------------------ relação com o catálogo da rodada 2
@@ -877,7 +877,7 @@ LIMITES = [
     'As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.',
     'Os rascunhos de critério de oportunidade qualificada, regra de saúde do cliente e critério de crise foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 44001 e da ISO 22361 lemos só o resumo; o texto dos Barcelona Principles 3.0 foi lido numa transcrição da MEPRA, porque a página da AMEC só os oferece em anexos.',
-    'Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'A tarefa de quem não é do círculo (cliente, parceiro, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.',
     'Programa de fidelidade e lobby não estão desenhados: nenhum círculo pediu.',

@@ -379,6 +379,7 @@
 - Gestão → Integração: Pedido, incidente ou risco de tecnologia [sai em GE-07 etapa 4; entra em IT-07 etapa 1; chega: como pedido]
 - Gestão → Operações: Pessoas, compras e ativos do plano confirmados [sai em GE-01 etapa 1; entra em OP-01 etapa 1; chega: direto]
 - Gestão → Operações: Suspensão de novas entregas por atraso, decidida pelo executivo [sai em GE-03 etapa 3; entra em OP-02 etapa 2; chega: direto]
+- Gestão → Operações: Retomada das entregas do cliente que quitou o atraso [sai em GE-03 etapa 3; entra em OP-02 etapa 2; chega: direto]
 - Gestão → Operações: Materiais e serviços comprados, com a data de entrega [sai em GE-04 etapa 2; entra em OP-06 etapa 2; chega: direto]
 - Gestão → Governança: Contestação do critério de rateio [sai em GE-06 etapa 2; entra em GO-01 etapa 1; chega: direto]
 - Gestão → Governança: Aportes, distribuição ou mudanças de contas executados [sai em GE-05 etapa 3; entra em GO-02 etapa 3; chega: direto]
@@ -524,7 +525,7 @@
 - Governança, em RE-06 etapa 5: Liberar os termos e o risco do uso fora da regra
 - Identidade, em RE-07 etapa 2: Responder à consulta sobre o conteúdo não coberto pelos padrões
 - Governança, em RE-07 etapa 3: Conferir o risco jurídico e o que pode ser dito
-- Governança, em RE-08 etapa 2: Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito
+- Governança, em RE-08 etapa 2: Levar ao dono da crise a declaração, a posição e o porta-voz, pelo comitê
 - Gestão, em NE-01 etapa 2: Conferir a margem e o efeito no caixa das condições de pagamento
 - Governança, em NE-01 etapa 2: Aprovar a faixa de desconto e as condições na tabela de alçadas e nos modelos
 - Identidade, em NE-01 etapa 3: Responder à consulta sobre o material de venda não coberto pelos padrões

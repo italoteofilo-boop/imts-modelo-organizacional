@@ -4840,6 +4840,18 @@
    ]
   },
   {
+   "o": "Retomada das entregas do cliente que quitou o atraso",
+   "de": "Gestão",
+   "para": "Operações",
+   "via": "direto",
+   "sai": [
+    "GE-03 etapa 3"
+   ],
+   "entra": [
+    "OP-02 etapa 2"
+   ]
+  },
+  {
    "o": "Materiais e serviços comprados, com a data de entrega",
    "de": "Gestão",
    "para": "Operações",
@@ -5237,7 +5249,7 @@
   }
  ],
  "problemas": [],
- "verificacoes": 1046,
+ "verificacoes": 1048,
  "tarefas": [
   {
    "quem": "Governança",
@@ -6035,7 +6047,7 @@
    "em": "Relações",
    "code": "RE-08",
    "etapa": 2,
-   "nome": "Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito"
+   "nome": "Levar ao dono da crise a declaração, a posição e o porta-voz, pelo comitê"
   },
   {
    "quem": "Gestão",
@@ -6556,6 +6568,12 @@
      "o": "Estratégia vigente do Ecossistema e das empresas",
      "de": [
       "ES-01"
+     ]
+    },
+    {
+     "o": "Relato que cita a Governança, tratado e registrado à parte",
+     "de": [
+      "GO-09"
      ]
     },
     {
@@ -7342,6 +7360,12 @@
      "nome": "Decidir a suspensão das novas entregas do cliente",
      "em": [
       "GE-03"
+     ]
+    },
+    {
+     "nome": "Decidir o caminho da obrigação indeferida: recorrer, refazer ou aceitar o efeito",
+     "em": [
+      "GO-04"
      ]
     },
     {
@@ -8343,6 +8367,18 @@
      "em": [
       "GO-09"
      ]
+    },
+    {
+     "nome": "Comunicar à autoridade e, no incidente com dados pessoais, ao titular, no prazo",
+     "em": [
+      "GO-09"
+     ]
+    },
+    {
+     "nome": "Responder a quem relatou o caso da Governança",
+     "em": [
+      "GO-09"
+     ]
     }
    ]
   },
@@ -8746,6 +8782,12 @@
      "nome": "Decidir a declaração, a posição e o porta-voz da crise do Ecossistema",
      "em": [
       "GO-08"
+     ]
+    },
+    {
+     "nome": "Decidir o desligamento de pessoa dos círculos com o líder",
+     "em": [
+      "GE-07"
      ]
     },
     {

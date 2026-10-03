@@ -70,5 +70,5 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
 - Auditoria de execução (03/10/2026): 290 etapas conferidas; as 14 propostas foram aprovadas às 12:33 e aplicadas (5-leitura-por-circulo/auditoria_execucao.md, seção 7). Os testes passaram a cobrar o modo de cada etapa e o nível de automação de cada jornada.
 - Em 03/10/2026, às 14:07, o dono do projeto validou as 33 cadências e os 14 conteúdos em rascunho e os 9 gates de implantação (gates_implantacao.md); tudo foi aplicado nos círculos e em parametros_em_aberto.md. A base de dados do modelo está pronta em 4-modelo-fonte/supabase, testada em Postgres 16 local.
 - Em 03/10/2026, às 16:05, o dono do projeto aprovou as correções da auditoria geral (5-leitura-por-circulo/auditoria_geral.md) e assumiu o papel de Administrador do IMTS.OS, acima dos círculos compartilhados. Aplicadas nos fluxos e nos textos, com dois testes novos: segregação na saída de dinheiro e alçadas no fluxo.
-- Testes: todos os círculos sem falha; 409 trocas entre os círculos conferidas dos dois lados, sem problema; 17 alçadas com 40 níveis conferidos no fluxo, sem falta.
+- Testes: todos os círculos sem falha; 410 trocas entre os círculos conferidas dos dois lados, sem problema; 17 alçadas com 40 níveis conferidos no fluxo, sem falta.
 - As correções das 16:05 passaram por todos os testes automáticos.

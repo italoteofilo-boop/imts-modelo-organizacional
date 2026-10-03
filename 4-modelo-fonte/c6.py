@@ -827,7 +827,7 @@ LIMITES = [
     'Os rascunhos de método de projetos, regra de prioridade, critério de liberação de agente e política de segurança foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.',
     'Continuidade de TI (APQC 8.3.4) e recuperação de desastre não estão desenhadas como etapa própria.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 21502 e da ISO/IEC 27001 lemos só o resumo.',
-    'Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'A tarefa de quem não é do círculo (cliente, executivo, líder do círculo dono, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.',
     'O rateio do custo dos círculos entre as empresas (E3) e o acordo de serviço como jornada entre empresas (E1) ficam para a consolidação das jornadas entre empresas.',

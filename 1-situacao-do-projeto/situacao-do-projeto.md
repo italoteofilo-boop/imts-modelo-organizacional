@@ -32,11 +32,11 @@ Documento vivo do projeto (Documento-base, Catálogo da rodada 2 e Mapa de jorna
 | 4 · Relações | 8 | 33 | 190 | 46 | 3140 | 0 | 26 | 0 | 190 | 21 de 21 |
 | 5 · Negócios | 7 | 25 | 174 | 40 | 2761 | 0 | 26 | 0 | 174 | 21 de 21 |
 | 6 · Integração | 8 | 29 | 166 | 37 | 2741 | 0 | 26 | 0 | 166 | 21 de 21 |
-| 7 · Operações | 8 | 30 | 128 | 32 | 2217 | 0 | 26 | 0 | 128 | 21 de 21 |
-| 8 · Gestão | 13 | 44 | 172 | 42 | 3029 | 0 | 26 | 0 | 172 | 21 de 21 |
-| 9 · Governança | 10 | 33 | 123 | 32 | 2192 | 0 | 26 | 0 | 123 | 21 de 21 |
+| 7 · Operações | 8 | 30 | 128 | 32 | 2218 | 0 | 26 | 0 | 128 | 21 de 21 |
+| 8 · Gestão | 13 | 44 | 176 | 42 | 3069 | 0 | 26 | 0 | 176 | 21 de 21 |
+| 9 · Governança | 10 | 33 | 130 | 33 | 2268 | 0 | 26 | 0 | 130 | 21 de 21 |
 
-Trocas entre os nove círculos: 409 produtos conferidos dos dois lados, em 1046 verificações, com 0 falhas; 12 de 12 defeitos plantados foram detectados. Os números descrevem o desenho, não a operação atual.
+Trocas entre os nove círculos: 410 produtos conferidos dos dois lados, em 1048 verificações, com 0 falhas; 12 de 12 defeitos plantados foram detectados. Os números descrevem o desenho, não a operação atual.
 
 ## Decisões do dono do projeto, por círculo
 
@@ -91,7 +91,7 @@ Trocas entre os nove círculos: 409 produtos conferidos dos dois lados, em 1046 
 | Entre os dois portões, a decisão é da Inteligência; o executivo pode sugerir | Decisão sua (20:02), contra a minha proposta | Na IN-07, a Inteligência decide o enquadramento, o desenho, o modelo de negócio com o preço-base, as condições do piloto, o caminho depois dele e o pacote. O executivo, Negócios e a Gestão opinam. Negócios mantém a tabela de preços e a política comercial, redige os termos e fecha o piloto; a Governança revê os termos. |
 | A Integração acompanha o desenvolvimento e coordena o lançamento da oferta | Ponto 3, aprovado por você (20:02) | A Inteligência lidera o conteúdo até o portão de lançamento, e a Integração, como PMO corporativo, acompanha o desenvolvimento na carteira de projetos. Depois do portão, a Integração coordena o lançamento com o executivo; Relações gera a demanda e Negócios vende. |
 | Uma amostra só, sorteada pela Governança | Ponto 4, aprovado por você (20:02) | A Inteligência avalia o resultado em cada amostra recebida, pelo critério de sucesso do método (IN-06, etapa 5). Não sorteia amostra própria. |
-| O ajuste de oferta em uso não passa pelo portão; a revisão passa | Ponto 5: você aprovou a alternativa que recomendei (20:02) | Na IN-07, etapa 2, a Inteligência decide, ouvido o executivo, se o pedido é ajuste ou revisão. O ajuste, que não muda problema, público, modelo nem preço-base, é feito ali mesmo, só no que muda, e vai direto ao catálogo de ofertas. A revisão volta ao portão de entrada. Tratar a mudança de preço-base como revisão foi confirmado por você às 20:11 de 02/10/2026. |
+| O ajuste de oferta em uso não passa pelo portão; a revisão passa | Ponto 5: você aprovou a alternativa que recomendei (20:02) | Na IN-07, etapa 2, a Inteligência decide, ouvido o executivo, se o pedido é ajuste ou revisão. O ajuste, que cumpre o limite do ajuste (não muda público, promessa nem escopo principal, não reduz o preço-base, não pede capacidade nova nem muda o risco do contrato-modelo), é feito ali mesmo, só no que muda, e vai direto ao catálogo de ofertas. A revisão volta ao portão de entrada. Tratar a mudança de preço-base como revisão foi confirmado por você às 20:11 de 02/10/2026. |
 | O círculo fica com oito jornadas | Ponto 6, aprovado por você (20:02) | IN-01 a IN-08, sem fusão. |
 | As mudanças que este círculo pediu aos círculos 1 e 2 foram aprovadas | Sua resposta das 20:02 | Uma no círculo 1 e 18 no círculo 2, aplicadas nas páginas deles. Aqui mudaram os nomes dos produtos trocados com a Estratégia, e a IN-04 e a IN-07 ganharam inícios novos: alvos propostos, decisão sobre contestação, decisão sobre aposta devolvida, mandato de saída de empresa e pedido sobre oferta em uso. |
 | Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | De Assistido para Copiloto, pelas tarefas: IN-03 etapa 5, IN-06 etapa 3, IN-07 etapa 8. De Autopiloto para Autômato, pelas tarefas: IN-07 etapa 9. De Copiloto para Assistido, pelas tarefas: IN-07 etapa 2, IN-07 etapa 3, IN-07 etapa 5. Nível de automação pela faixa: IN-01 média → alta; IN-03 alta → média; IN-08 média → alta. |
@@ -251,7 +251,7 @@ Nenhuma pergunta de desenho. Tudo foi aprovado em 03/10/2026; as correções da 
 - **Carga da Gestão.** A Gestão recebe quatro jornadas com muito trabalho humano: integração cultural, rituais e reconhecimento, propósito pessoal e comunicação interna. A carga só pode ser medida quando a Gestão for desenhada.
 - **Um indicador, um dono.** Identidade responde por padrão claro e atual. Cultura vivida é da Gestão; percepção e reputação, de Relações; conformidade das entregas, da Governança.
 - **Prazo de resposta às consultas.** Depende do volume de consultas: ficou para o gate G9 (calibração), depois de dois ciclos. Sem medida, não propus número.
-- **Uma auditoria só.** A Governança amostra as entregas uma vez, com os critérios de cada círculo. A decidir no círculo 9.
+- **Uma auditoria só.** A Governança amostra as entregas uma vez, com os critérios de cada círculo. Decidido no círculo 9: amostra única na GO-06.
 
 ### Do círculo 2 · Estratégia
 
@@ -264,7 +264,7 @@ Nenhuma pergunta de desenho. Tudo foi aprovado em 03/10/2026; as correções da 
 ### Do círculo 3 · Inteligência
 
 - **Conferência de identidade em cinco jornadas.** A IN-01, a IN-02, a IN-03, a IN-04 e a IN-08 produzem análise e medida para uso interno e não têm ponto de conferência com a identidade. Você aprovou às 20:11 de 02/10/2026 a leitura proposta: a conferência vale para as jornadas que produzem conteúdo, método ou oferta; as cinco de análise e medida para uso interno ficam sem o ponto.
-- **Amostra da Governança.** A avaliação do resultado dos métodos depende do desenho da amostra, que só será feito no círculo 9. A entrega feita sem método publicado não é avaliada.
+- **Amostra da Governança.** A avaliação do resultado dos métodos usa a amostra única da GO-06, com desenho validado em 03/10/2026 (aba Gates de implantação, item 2.13). A entrega feita sem método publicado não é avaliada.
 - **Integração.** O círculo 6 recebe: conectar as fontes e guardar os dados, servir as bases aos agentes, rodar os casos de teste dos métodos, manter a carteira de projetos das ofertas e coordenar o lançamento.
 - **Preço-base.** A mudança de preço-base de oferta em uso é revisão, que volta ao portão de entrada, e não ajuste: confirmado por você às 20:11 de 02/10/2026. A regra da tabela ficou no círculo 5: o preço de tabela fica no preço-base ou acima dele; abaixo, Negócios pede a revisão (NE-01).
 - **Empresa que entra ou sai do portfólio.** Na saída, a IN-07 retira as ofertas do catálogo e a IN-04 revê os indicadores; o destino dos dados (IN-03) e das bases (IN-05) ainda não está desenhado. Na aquisição, as ofertas que a empresa já tem não têm caminho desenhado até o catálogo de ofertas.
@@ -276,7 +276,7 @@ Nenhuma pergunta de desenho. Tudo foi aprovado em 03/10/2026; as correções da 
 - **Integração (círculo 6).** Relações espera o plano de implantação de cada cliente, o plano de lançamento de cada oferta, o plano de saída de clientes e contratos e os sistemas e canais que as ações e os padrões de experiência pedem.
 - **Operações (círculo 7).** Relações espera as reclamações e os incidentes de clientes com a causa e os registros de entrega e atendimento de cada cliente. Entrega a estratégia de experiência e os planos de sucesso e de recuperação.
 - **Gestão (círculo 8).** Relações espera o orçamento de demanda do ciclo e a situação de faturas e pagamentos de cada cliente.
-- **Governança (círculo 9).** Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise (que declara, decide a posição e encerra a crise) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.
+- **Governança (círculo 9).** Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise da Governança (o dono da crise, executivo, Administrador do IMTS.OS ou sócios, declara, decide a posição e encerra a crise; GO-08) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise.
 
 ### Do círculo 5 · Negócios
 
@@ -342,7 +342,7 @@ A Inteligência sabe antes e melhor e transforma o que sabe em oferta. Lê o mer
 | IN-04 | Definir e medir os indicadores e publicar as análises | 5 | Fazer com que cada alvo e cada decisão recorrente tenham um indicador com definição, dono, fonte, linha de base e cadência, calculado pela mesma ficha para todos e publicado com a análise num painel único. A Inteligência decide a ficha: como se mede e quem pode ver. O dono do resultado confirma a ficha e responde pelo resultado; se não confirma, vale a ficha da Inteligência, com a divergência registrada, e no indicador de alvo decide a Estratégia. É por aqui que a Estratégia confere, antes de aprovar os alvos, se cada um tem indicador, fonte e linha de base. |
 | IN-05 | Curar as bases de conhecimento que pessoas e agentes consultam | 5 | Manter, para cada tema, uma base única, curada, classificada e com dono, em que pessoas e agentes encontram a resposta certa e atual, e fazer cada pergunta sem resposta virar pedido de curadoria. O que já chega aprovado, versionado e classificado por quem publica (padrão, estratégia, método, oferta) é indexado, não revalidado. |
 | IN-06 | Criar e publicar um método testado, a partir de uma prática ou de uma necessidade | 5 | Fazer com que o que funciona na prática, ou o que uma oferta ou capacidade nova exige, vire método escrito, testado em caso real por quem não o descreveu, testado nos agentes, publicado com versão e entregue com critério de sucesso e casos de teste. Quando o método nasce para uma oferta, o caso real é o piloto da IN-07. A Inteligência é a dona do método e avalia, a cada amostra da Governança, se o resultado que ele produz é bom. |
-| IN-07 | Desenhar e validar uma oferta com o seu modelo de negócio e prepará-la para o lançamento | 9 | Levar uma aposta aprovada no portão de entrada até uma oferta pronta para vender e entregar: enquadramento, solução e método de entrega, modelo de negócio e preço-base, validação com clientes reais e pacote completo. Entre os dois portões, quem decide é a Inteligência; o executivo da empresa, Negócios e a Gestão opinam e sugerem. A Estratégia decide os dois portões. O ajuste de uma oferta em uso, quando não muda problema, público, modelo nem preço-base, é decidido e feito aqui, sem portão; a revisão que muda um deles volta ao portão de entrada. |
+| IN-07 | Desenhar e validar uma oferta com o seu modelo de negócio e prepará-la para o lançamento | 9 | Levar uma aposta aprovada no portão de entrada até uma oferta pronta para vender e entregar: enquadramento, solução e método de entrega, modelo de negócio e preço-base, validação com clientes reais e pacote completo. Entre os dois portões, quem decide é a Inteligência; o executivo da empresa, Negócios e a Gestão opinam e sugerem. A Estratégia decide os dois portões. O ajuste de uma oferta em uso, quando cumpre o limite do ajuste (não muda público, promessa nem escopo principal, não reduz o preço-base, não pede capacidade nova nem muda o risco do contrato-modelo), é decidido e feito aqui, sem portão; a revisão que falha em alguma condição volta ao portão de entrada. |
 | IN-08 | Aprender com as lições e os resultados e recomendar melhorias | 4 | Fazer com que cada lição de aposta, caso, piloto, projeto, cliente ou revisão seja registrada só com o que pode ser dito, cruzada com os indicadores e transformada em recomendação com evidência, entregue a quem pode agir; e conferir se a melhoria aceita foi feita e deu resultado. |
 
 ### Círculo 4 · Relações
@@ -508,7 +508,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 - Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.
 - Na ID-02, as consultas entram pela etapa 1. Se o volume crescer, vale separar em jornada própria; hoje não há medida de volume.
 - Na ID-03, a jornada termina no pedido de registro; oposição ou recusa do registro ainda não tem caminho desenhado.
@@ -532,7 +532,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - Na venda decidida sem comprador, a busca do comprador não está desenhada: o mandato a descreve, e a oportunidade volta à ES-05 quando houver comprador.
 - A ES-04 registra a incoerência com a identidade na avaliação e não recomenda avançar; a decisão do portão continua sendo de pessoas.
 - As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.
 - Os números descrevem este desenho, não a operação atual.
 
@@ -542,7 +542,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder ajusta na implantação. O prazo de resposta da IN-02 depende de volume e ficou para o gate G9 (calibração).
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. A versão 8.0, de 27/02/2026, foi conferida só nas 13 categorias.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - Quando uma empresa sai do portfólio, a IN-07 retira as ofertas dela do catálogo e a IN-04 revê os indicadores. O destino dos dados (IN-03) e das bases (IN-05) dessa empresa ainda não está desenhado.
 - O ajuste de oferta em uso não gera aviso à Estratégia: fica registrado no catálogo de ofertas. Tratar a mudança de preço-base como revisão é leitura do desenho, a confirmar.
 - As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.
@@ -552,7 +552,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - O mandato de criação ou de aquisição de empresa chega à Inteligência, mas a IN-07 só age no de venda fechada ou de encerramento.
 - Exceção ao cálculo único: os indicadores de clareza e atualidade dos padrões são calculados pela Identidade (ID-05) e conferidos com a ficha na IN-04.
 - O líder do círculo aparece como dono de dado, de indicador, de tema e de melhoria. A delegação e a carga desse papel ficam para quando as pessoas forem tratadas.
-- Os indicadores do próprio círculo são calculados por ele; a conferência independente fica para a Governança, no círculo 9.
+- Os indicadores do próprio círculo são calculados por ele; a conferência independente é da Governança, por amostra (GO-03, etapa 2).
 - A comparação de desempenho com referências (benchmarking) não está desenhada.
 - O prazo de guarda vale para dados (IN-03). O registro de perguntas e respostas e o registro de lições entram no catálogo de dados como qualquer fonte, com ficha, classificação e prazo de guarda; as bases saem pela revisão da base (IN-05).
 - Cinco jornadas (IN-01, IN-02, IN-03, IN-04 e IN-08) não têm ponto de conferência com a identidade, porque produzem análise e medida para uso interno. Se a regra do círculo 1 vale para toda jornada, falta incluir o ponto nas cinco.
@@ -570,7 +570,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - Os rascunhos de critério de oportunidade qualificada, regra de saúde do cliente e critério de crise foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 44001 e da ISO 22361 lemos só o resumo; o texto dos Barcelona Principles 3.0 foi lido numa transcrição da MEPRA, porque a página da AMEC só os oferece em anexos.
-- Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - A tarefa de quem não é do círculo (cliente, parceiro, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - Programa de fidelidade e lobby não estão desenhados: nenhum círculo pediu.
@@ -585,7 +585,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos no texto oficial os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17, 18, 82 a 84, 86, 90, 140, 141, 164 e 165; a contratação direta não foi conferida. No fluxo, os prazos seguem “nos prazos da lei e do edital”.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.
@@ -601,7 +601,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - Os rascunhos de método de projetos, regra de prioridade, critério de liberação de agente e política de segurança foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
 - Continuidade de TI (APQC 8.3.4) e recuperação de desastre não estão desenhadas como etapa própria.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 21502 e da ISO/IEC 27001 lemos só o resumo.
-- Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - A tarefa de quem não é do círculo (cliente, executivo, líder do círculo dono, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - O rateio do custo dos círculos entre as empresas (E3) e o acordo de serviço como jornada entre empresas (E1) ficam para a consolidação das jornadas entre empresas.
@@ -626,7 +626,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - Quando a ação corretiva conclui, quem apontou a lacuna (Identidade, Relações ou Estratégia) vê o efeito pelo painel da Inteligência: os círculos fechados não têm entrada para um aviso direto.
 - A recusa de capacidade no plano chega a Negócios pela confirmação de capacidade feita nas jornadas de Negócios e ao executivo pelo plano publicado; Negócios não recebe o plano como entrada.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 9001 lemos só a página oficial; da ISO 10002, só o resumo.
-- Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - A tarefa de quem não é do círculo (cliente, executivo, Negócios, Gestão, Governança) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - As saídas estão listadas por etapa, não por caminho: o pedido à Integração, à Identidade ou à Inteligência só sai quando a decisão pede.
@@ -644,7 +644,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.
 - O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
 - A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As saídas estão listadas por etapa, não por caminho.
 - Os números descrevem este desenho, não a operação atual.

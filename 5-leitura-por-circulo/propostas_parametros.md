@@ -19,11 +19,11 @@ Princípio: quem executa decide dentro da referência; o que passa dela sobe um 
 | 5 | Critérios de decisão e limites dos agentes | ID-02, IT-05, IT-06, GO-06 | 1. O agente não tem tarefa de julgamento (regra já testada). 2. Etapa sem pessoa no caminho principal só em risco baixo ou médio. No médio, vale o tema P6: a pessoa aprova o modelo ou a regra, e a GO-06 audita por amostra. 3. A Integração só libera o agente com teste aprovado e a alçada conferida pela Governança. 4. O agente é suspenso quando passa de limite de alçada (IT-06, etapa 4), e uma pessoa da Integração confirma o desvio e a suspensão. Dono único: os sócios aprovam os limites (ID-02, etapa 3); a Identidade redige, a Governança confere, e a GO-01 só aplica (ajustado em 03/10/2026, 16:05). |
 | 6 | Cobertura de falta de capacidade | OP-01 | **Operações** cobre a falta com pessoas e parceiros já contratados, dentro do orçamento do ciclo. Contratação nova ou gasto fora do orçamento vai ao executivo, pela GE-01. |
 | 7 | Solução e compensação de reclamação | OP-04 | **Operações** decide refazer a entrega e dar crédito até o valor faturado da entrega reclamada no período. Acima disso, ou se houver reconhecimento de responsabilidade ou indenização, decide o executivo, com a Governança. |
-| 8 | Recurso e remanejamento no orçamento | GE-01 | **A Gestão** remaneja dentro do mesmo círculo da mesma empresa, sem mudar o total. Entre círculos da mesma empresa, decide o executivo. Recurso de círculo compartilhado do IMTS.OS, ou entre círculos compartilhados: o Administrador do IMTS.OS. Entre empresas, a Estratégia. Aumento do total aprovado vai aos sócios (ES-03) (ajustado em 03/10/2026, 16:05). |
+| 8 | Recurso e remanejamento no orçamento | GE-01 | **A Gestão** remaneja dentro do mesmo círculo da mesma empresa, sem mudar o total. Recurso da empresa acima da alçada da Gestão: o executivo. Recurso dos círculos, que são compartilhados, ou entre círculos: o Administrador do IMTS.OS. Entre empresas, a Estratégia. Aumento do total aprovado vai aos sócios (ES-03) (ajustado em 03/10/2026, 16:05). |
 | 9 | Ação no ritual de acompanhamento | GE-02 | **O líder** decide a ação dentro do orçamento e da alçada do círculo. Ação que muda alvo vai à Estratégia (ES-06). Ação que pede recurso novo vai à GE-01. Desvio grave (seção 2) vai à ES-06 (ajustado em 03/10/2026, 16:05). |
 | 10 | Atraso na cobrança | GE-03 | **Cliente privado:** a Gestão cobra no vencimento e de novo no ciclo seguinte. Com a segunda fatura vencida, propõe ao executivo suspender novas entregas. **Contrato público:** segue a lei e o contrato; a suspensão não é decidida pela regra privada. |
 | 11 | Compra fora do orçamento e pagamento | GE-04 | **A Gestão** paga só com pedido, recebimento e nota conferidos entre si; quem lança o pagamento não o aprova: aprova o líder do círculo, que não escolhe o fornecedor. O reembolso passa pela mesma aprovação. Compra fora do orçamento vai ao executivo. Se passar da reserva de contingência do ciclo, vai aos sócios (ajustado em 03/10/2026, 16:05). |
-| 12 | Aportes, distribuição e contas | GE-05 | **A Gestão** executa só o que os sócios decidiram (ES-02). Abrir ou encerrar conta e mudar poderes bancários é com o executivo e a Governança; nas contas do IMTS.OS, com o Administrador do IMTS.OS e a Governança. Todo pagamento exige duas pessoas: uma lança e outra aprova; o fechamento e os impostos são aprovados pelo líder do círculo, e o que passa da alçada, pelo executivo (ajustado em 03/10/2026, 16:05). |
+| 12 | Aportes, distribuição e contas | GE-05 | **A Gestão** executa só o que os sócios decidiram (ES-02). Abrir ou encerrar conta e mudar poderes bancários é com o executivo e a Governança; nas contas do IMTS.OS, com o Administrador do IMTS.OS e a Governança. Todo pagamento exige duas pessoas: uma lança e outra aprova; o fechamento e os impostos são aprovados pelo líder do círculo; a execução que passa da alçada, pelo executivo (ajustado em 03/10/2026, 16:05). |
 | 13 | Vaga, movimentação e desligamento | GE-07 | **Vaga prevista no orçamento:** a Gestão abre, com o líder. **Vaga fora do orçamento:** o executivo. **Desligamento:** o executivo com o líder. **Desligamento de executivo ou de líder de círculo:** os sócios. **Pessoas dos círculos do IMTS.OS:** o Administrador do IMTS.OS. **Folha e remuneração:** a Gestão prepara; aprova o executivo, na empresa, ou o Administrador do IMTS.OS, nos círculos (ajustado em 03/10/2026, 16:05). |
 | 14 | O que a Governança decide sozinha | GO-01 | Ver a seção 3. |
 
@@ -89,8 +89,9 @@ O método é aprovado pelos sócios junto com a estratégia (ES-01, etapa 4).
 - as alçadas dos executivos;
 - as regras gerais que valem para todas as empresas: remuneração, apetite a risco, distribuição de resultado e as regras gerais de contrato;
 - toda exceção a uma regra geral;
-- toda regra que mude a alçada da própria Governança ou das pessoas da Governança;
-- os limites dos agentes (ID-02).
+- toda regra que mude a alçada da própria Governança ou das pessoas da Governança.
+
+Os limites dos agentes vão aos sócios pela ID-02, não pela GO-01.
 
 Quem decide cada pedido sai desta lista, por regra, sem julgamento da Governança (GO-01, etapa 2). Uma vez por ano, assessoria externa audita a própria Governança, e os sócios decidem as correções (GO-06) (ajustado em 03/10/2026, 16:05).
 
@@ -118,12 +119,17 @@ Resolve os defeitos D1 e D2 da auditoria geral. A raia "Sócios" dos fluxos é l
 
 | Matéria | Quem decide | Onde |
 |---|---|---|
+| Declaração de identidade e a sua revisão | Sócios do Ecossistema | ID-01 |
 | Estratégia do Ecossistema, portfólio, reserva de apostas e alocação entre empresas | Sócios do Ecossistema | ES-01, ES-02, ES-04 |
+| Alvos e orçamento do Ecossistema e dos círculos | Sócios do Ecossistema | ES-03 |
 | Regras gerais: remuneração, apetite a risco, distribuição, contratos; alçadas dos executivos e da Governança; limites dos agentes | Sócios do Ecossistema | GO-01, ID-02 |
-| Compra e venda de empresa | Sócios do Ecossistema, com os sócios da empresa envolvida | ES-05 |
-| Aumento do total do orçamento, destino do resultado, contrato na regra 10, compra acima da reserva, risco de nota 15 ou mais, desligamento do executivo e crise que envolve o executivo, de uma empresa | Sócios da empresa | GE-01, GE-04, GE-05, GE-07, GO-03, GO-05, NE-04, GO-08 |
+| Criar, adquirir, vender ou encerrar empresa | Sócios do Ecossistema, com os sócios da empresa envolvida | ES-05 |
+| Desligamento de líder de círculo; correções da auditoria externa da Governança; relato anual de impacto | Sócios do Ecossistema | GE-07, GO-06, GO-10 |
+| Alvos e orçamento da empresa, aumento do total do orçamento, destino do resultado, concessão abaixo do preço-base, parceria fora da alçada, contrato na regra 10, compra acima da reserva, risco de nota 15 ou mais, desligamento do executivo e crise que envolve o executivo | Sócios da empresa | ES-03, GE-01, GE-04, GE-05, GE-07, GO-03, GO-05, NE-03 a NE-06, RE-06, GO-08 |
+| Relato que envolve o executivo ou um sócio | Sócios não envolvidos do órgão da matéria | GO-09 |
+| Relato que cita a Governança | Assessoria externa apura e comunica; sócios decidem a medida | GO-09 |
+| Pauta dos sócios | O órgão de cada matéria, por esta tabela; a Governança secretaria | GO-02 |
 | Recursos, pessoas, folha, remuneração e contas dos círculos compartilhados do IMTS.OS; crise do Ecossistema | Administrador do IMTS.OS | GE-01, GE-05, GE-07, GE-09, GE-13, GO-08 |
 | Execução, recursos e pessoas de cada empresa, dentro da alçada | Executivo da empresa | todas as jornadas, pelas alçadas da seção 1 |
-| Relato que cita a Governança | Assessoria externa apura; sócios decidem a medida | GO-09 |
 
 Enquanto o G2 não cadastra os sócios de cada empresa, os sócios do Ecossistema decidem também as matérias da empresa.

@@ -54,6 +54,8 @@ rca, o = run([sys.executable, 'alcadas_fluxo.py'], BASE)
 cz['alcadas'] = num(r'ALÇADAS: (\d+)', o)
 cz['alcadas_niveis'] = num(r'NÍVEIS CONFERIDOS: (\d+)', o)
 cz['alcadas_faltas'] = num(r'FALTAS: (\d+)', o)
+cz['alcadas_mut'] = num(r'DETECTADOS: (\d+) de (\d+)', o)
+cz['alcadas_mut_total'] = num(r'DETECTADOS: (\d+) de (\d+)', o, 2)
 falhou = falhou or bool(rca)
 print('alçadas no fluxo', 'OK' if not rca else 'FALHOU', o.strip().splitlines()[-1] if o.strip() else '')
 for m in mods:

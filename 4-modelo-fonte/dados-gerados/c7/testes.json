@@ -1,6 +1,6 @@
 {
  "integridade": {
-  "verificacoes": 2217,
+  "verificacoes": 2218,
   "problemas": 0
  },
  "lint": {
@@ -21,13 +21,15 @@
   "total": 21
  },
  "cruzamento": {
-  "trocas": 409,
-  "verificacoes": 1046,
+  "trocas": 410,
+  "verificacoes": 1048,
   "problemas": 0,
   "mut_detectados": 12,
   "mut_total": 12,
   "alcadas": 17,
   "alcadas_niveis": 40,
-  "alcadas_faltas": 0
+  "alcadas_faltas": 0,
+  "alcadas_mut": 4,
+  "alcadas_mut_total": 4
  }
 }

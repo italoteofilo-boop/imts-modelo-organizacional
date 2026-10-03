@@ -2237,8 +2237,8 @@
    "modo": "Autopiloto",
    "risco": "médio",
    "real": "Autopiloto",
-   "n": 5,
-   "maq": 2
+   "n": 6,
+   "maq": 3
   },
   {
    "circulo": "Gestão",
@@ -2357,7 +2357,7 @@
    "modo": "Copiloto",
    "risco": "alto",
    "real": "Copiloto",
-   "n": 10,
+   "n": 12,
    "maq": 2
   },
   {
@@ -2447,8 +2447,8 @@
    "modo": "Copiloto",
    "risco": "baixo",
    "real": "Copiloto",
-   "n": 8,
-   "maq": 4
+   "n": 9,
+   "maq": 5
   },
   {
    "circulo": "Gestão",
@@ -2697,8 +2697,8 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 5,
-   "maq": 3
+   "n": 7,
+   "maq": 4
   },
   {
    "circulo": "Governança",
@@ -2856,9 +2856,9 @@
    "nome": "Apurar o relato e decidir a medida",
    "modo": "Assistido",
    "risco": "alto",
-   "real": "Exclusivamente humana",
-   "n": 3,
-   "maq": 0
+   "real": "Assistida",
+   "n": 4,
+   "maq": 1
   },
   {
    "circulo": "Governança",
@@ -2866,9 +2866,9 @@
    "nome": "Apurar por assessoria externa o relato que cita a Governança",
    "modo": "Assistido",
    "risco": "alto",
-   "real": "Exclusivamente humana",
-   "n": 2,
-   "maq": 0
+   "real": "Assistida",
+   "n": 6,
+   "maq": 2
   },
   {
    "circulo": "Governança",
@@ -3386,9 +3386,9 @@
   "Gestão": {
    "tarefas": {
     "A": 39,
-    "P": 37,
-    "R": 54,
-    "H": 38,
+    "P": 38,
+    "R": 56,
+    "H": 39,
     "C": 4
    },
    "modos": {
@@ -3407,12 +3407,12 @@
   },
   "Governança": {
    "tarefas": {
-    "R": 44,
+    "R": 48,
     "A": 27,
     "P": 31,
     "C": 3,
-    "H": 16,
-    "X": 2
+    "H": 17,
+    "X": 4
    },
    "modos": {
     "Autopiloto": 7,
@@ -3424,8 +3424,7 @@
     "Autopiloto": 7,
     "Copiloto": 16,
     "Autômata": 5,
-    "Assistida": 3,
-    "Exclusivamente humana": 2
+    "Assistida": 5
    }
   }
  },
@@ -4009,9 +4008,9 @@
   {
    "code": "GE-03",
    "circulo": "Gestão",
-   "declarado": "média",
-   "maq": 0.6666666666666666,
-   "n": 15
+   "declarado": "alta",
+   "maq": 0.6875,
+   "n": 16
   },
   {
    "code": "GE-04",
@@ -4038,8 +4037,8 @@
    "code": "GE-07",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.38095238095238093,
-   "n": 21
+   "maq": 0.34782608695652173,
+   "n": 23
   },
   {
    "code": "GE-08",
@@ -4052,8 +4051,8 @@
    "code": "GE-09",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.4444444444444444,
-   "n": 18
+   "maq": 0.47368421052631576,
+   "n": 19
   },
   {
    "code": "GE-13",
@@ -4107,9 +4106,9 @@
   {
    "code": "GO-04",
    "circulo": "Governança",
-   "declarado": "alta",
-   "maq": 0.7142857142857143,
-   "n": 7
+   "declarado": "média",
+   "maq": 0.6666666666666666,
+   "n": 9
   },
   {
    "code": "GO-05",
@@ -4143,8 +4142,8 @@
    "code": "GO-09",
    "circulo": "Governança",
    "declarado": "média",
-   "maq": 0.46153846153846156,
-   "n": 13
+   "maq": 0.5,
+   "n": 18
   },
   {
    "code": "GO-10",

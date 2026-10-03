@@ -22,7 +22,7 @@ Jornadas nos nove círculos: 73. Cada jornada cross da rodada 2 virou uma cadeia
 | C8 | Do registro à prestação de contas | GE-05 → GO-03 | Gestão; a Governança relata riscos e conformidade | 1 de 1 |  |
 | C9 | Do risco ao controle | GO-03 → GO-01 | Governança | 1 de 1 |  |
 | C10 | Do pedido de tecnologia ao serviço estável | OP-03 → IT-07 | Integração | 1 de 1 | Qualquer círculo pede à IT-07. |
-| C11 | Da marca à reputação | ID-04 → RE-08 → GO-08 | Identidade cria a marca e o posicionamento; Relações monitora; a Governança decide a crise | 2 de 2 | A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04. |
+| C11 | Da marca à reputação | ID-04 → RE-08 → GO-08 | Identidade cria a marca e o posicionamento; Relações monitora; a Governança conduz o comitê de crise e o dono da crise decide (executivo, Administrador do IMTS.OS ou sócios) | 2 de 2 | A marca nasce na ID-03; a percepção é medida contra o posicionamento da ID-04. |
 | C12 | Do valor declarado à cultura vivida | ID-02 → GE-10 → GE-09 → ID-05 | Identidade; a Gestão executa | 3 de 3 |  |
 | C13 | Da minuta ao contrato encerrado | GO-01 → NE-04 → GO-05 | Governança | 2 de 2 | O contrato é originado pela frente dona. |
 | E1 | Do pedido ao serviço | IT-05 | Integração | 0 de 0 | O pedido de serviço de uma empresa a um círculo fica na IT-05, com acordo de serviço. |

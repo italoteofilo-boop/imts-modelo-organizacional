@@ -180,7 +180,7 @@ LIMITES = [
     'A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.',
     'O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 409 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
     'A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As saídas estão listadas por etapa, não por caminho.',
     'Os números descrevem este desenho, não a operação atual.',

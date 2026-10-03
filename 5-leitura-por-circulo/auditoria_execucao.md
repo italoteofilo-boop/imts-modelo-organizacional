@@ -1,6 +1,6 @@
 # Auditoria de execução
 
-Conferência das 73 jornadas, 290 etapas e 1.482 tarefas dos nove círculos (números do modelo das 11:50; os atuais estão na seção 8) pelo modo de execução: quem faz cada tarefa (pessoa, agente, automação) e se o modo declarado de cada etapa bate com o que as tarefas fazem. Feita em 03/10/2026 sobre o modelo aprovado às 11:50. Script: modelo/auditar.py; dados: saida/auditoria.json. As correções propostas (seção 6) foram aprovadas e aplicadas (seção 7).
+Conferência das 73 jornadas, 290 etapas e 1.482 tarefas dos nove círculos (números do modelo das 11:50; os atuais estão na seção 8) pelo modo de execução: quem faz cada tarefa (pessoa, agente, automação) e se o modo declarado de cada etapa bate com o que as tarefas fazem. Feita em 03/10/2026 sobre o modelo aprovado às 11:50. Script: 4-modelo-fonte/auditar.py; dados: saida/auditoria.json. As correções propostas (seção 6) foram aprovadas e aplicadas (seção 7).
 
 ## 1. Critério
 
@@ -205,7 +205,7 @@ Depois da aplicação:
 
 ## 8. Situação depois das correções da auditoria geral (03/10/2026, 16:05)
 
-As seções 2 a 7 registram a auditoria como foi feita, sobre o modelo das 11:50, com 290 etapas e 1.482 tarefas (1.490 depois da aplicação). As correções da auditoria geral, aprovadas às 16:05, mudaram fluxos. Esta seção dá os números atuais, gerados por modelo/auditar.py.
+As seções 2 a 7 registram a auditoria como foi feita, sobre o modelo das 11:50, com 290 etapas e 1.482 tarefas (1.490 depois da aplicação). As correções da auditoria geral, aprovadas às 16:05, e as da verificação independente que a seguiu mudaram fluxos. Esta seção dá os números atuais, gerados por 4-modelo-fonte/auditar.py.
 
 | Círculo | Tarefas | Pessoa do círculo | Pessoa de fora ou assessoria | Agente | Automação | Outro círculo |
 |---|---|---|---|---|---|---|
@@ -216,11 +216,11 @@ As seções 2 a 7 registram a auditoria como foi feita, sobre o modelo das 11:50
 | Negócios | 174 | 29 | 21 | 22 | 67 | 35 |
 | Integração | 166 | 30 | 11 | 25 | 77 | 23 |
 | Operações | 128 | 29 | 8 | 35 | 50 | 6 |
-| Gestão | 172 | 37 | 38 | 39 | 54 | 4 |
-| Governança | 123 | 31 | 18 | 27 | 44 | 3 |
-| **Total** | **1.544** | **340** | **151** | **296** | **572** | **185** |
+| Gestão | 176 | 38 | 39 | 39 | 56 | 4 |
+| Governança | 130 | 31 | 21 | 27 | 48 | 3 |
+| **Total** | **1.555** | **341** | **155** | **296** | **578** | **185** |
 
-Das 1.359 tarefas que cada círculo faz com os próprios meios, 868 são de máquina (64%): 572 de automação e 296 de agente.
+Das 1.370 tarefas que cada círculo faz com os próprios meios, 874 são de máquina (64%): 578 de automação e 296 de agente. A coluna "pessoa de fora" inclui o líder do círculo quando ele aprova em raia própria.
 
 | Modo declarado | Etapas |
 |---|---|

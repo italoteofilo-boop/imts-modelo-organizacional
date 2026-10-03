@@ -3,7 +3,7 @@
 Regra do círculo: Relações decide o que é do seu ofício (o plano de demanda, a qualificação das oportunidades,
 a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias dentro da alçada), ouvidos o
 executivo e Negócios. Negócios vende e renova; Operações atende e entrega; a Identidade dá a marca e os padrões;
-a Governança decide a crise, os contratos e as regras de dados pessoais."""
+a Governança conduz o comitê de crise, e o dono da crise decide; a Governança cuida dos contratos e das regras de dados pessoais."""
 from dsl import configurar, T, PAR, S, D, E, I, F, TODOS
 
 NUM, NOME, SIGLA, PREF = 4, 'Relações', 'RE', 'RE'
@@ -19,7 +19,7 @@ PRINCIPIO = ('Regra do círculo, aprovada às 19:05: Relações decide o que é 
              'das oportunidades, a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias '
              'dentro da alçada), ouvidos o executivo da empresa e Negócios. O executivo aprova o que se diz em nome da '
              'empresa e quem fala por ela. Negócios vende e renova; Operações atende e entrega; a Identidade dá a marca e '
-             'os padrões; a Governança decide a crise, os contratos e as regras de dados pessoais.')
+             'os padrões; a Governança conduz o comitê de crise, e o dono da crise decide; a Governança cuida dos contratos e das regras de dados pessoais.')
 MUDOU_INTRO = ('Comparação com o catálogo da rodada 2 (49 jornadas e 216 workflows), que continua no documento do '
                'projeto até cada círculo ser fechado, e com as jornadas que o círculo 1 transferiu para Relações. '
                'Azul: acrescentado. Verde: ajustado. Vermelho: retirado.')
