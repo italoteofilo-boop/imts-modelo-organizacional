@@ -29,7 +29,8 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
   dsl.py, fontes.py, circulos.py, gerar.py, testar.py, cruzar.py, consolidar.py, mutacao.py, auditar.py, rotular.py, alcadas_fluxo.py, pagina.py, revisao.py, empacotar.py
                                 o gerador, os testes, o cruzamento e a consolidação entre círculos, a prova dos testes e as páginas.
   ferramentas-node/ ........... scripts de validação e desenho (bpmn-moddle, bpmnlint, bpmn-js). Rode npm install antes.
-  supabase/ ................... esquema e carga do modelo para o Supabase (esquema org), com o gerador e o LEIA-ME.
+  supabase/ ................... esquema e carga do modelo (esquema org) e, na fase 2, o runtime dos runtimes, o motor e os testes (esquema rt).
+  ml/ ......................... treino dos primeiros modelos de ML com eventos simulados e os modelos treinados.
   fontes_oficiais/ ............ texto literal dos dispositivos legais citados (retrato de 03/10/2026) e o conferidor de contingência.
   dados-gerados/ .............. circulo.json e testes.json de cada círculo, cruzamento.json, consolidacao.json e auditoria.json.
 

@@ -73,6 +73,18 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 3. Uso real do Telegram com o consentimento específico e em destaque do art. 33, VIII, da LGPD, colhido na entrada de cada pessoa (GE-07). A Governança responde. Pela política de privacidade do Telegram, quem desenvolve o bot responde pelos dados que ele recebe: aqui, o IMTS.
 4. E0 construído: esquema `rt` no Supabase, com 10 testes verdes (4-modelo-fonte/supabase/003_runtime.sql).
 
+## 7. Andamento (03/10/2026, 19h)
+
+| Entrega | Situação |
+| --- | --- |
+| E0 Runtime dos runtimes | Pronto no Supabase, 10 testes verdes |
+| G7 Tarefas ligadas a sistemas | As 1.555 tarefas ligadas a cinco sistemas, com adaptador simulado |
+| E1 Registro de eventos | Pronto: o motor grava cada passo, marcado como simulado |
+| E2 Usuários simulados | 60 na base, pseudonimizados. Falta o bot no ambiente de teste do Telegram |
+| E4 Motor piloto | Pronto: roda as 73 jornadas a partir do BPMN. Na Identidade, 2.000 instâncias concluídas e 99 de 99 tarefas executadas |
+| E8 ML | Dois modelos treinados com a simulação, registrados e fora de uso. O de atraso fica no acaso, como deve, porque o simulador sorteia os tempos sem padrão |
+| E3, E5, E6, E7, E9, E10 | A fazer |
+
 ## Fontes
 
 - Telegram FAQ, criptografia de cloud chats e chats secretos: https://telegram.org/faq

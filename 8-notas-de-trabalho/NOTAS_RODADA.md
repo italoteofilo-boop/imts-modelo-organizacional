@@ -159,3 +159,13 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 - E0 construído: 003_runtime.sql (esquema rt e rt_chave), aplicado no Supabase. 10 testes verdes no Postgres 16 local e no Supabase (rodados numa transação desfeita); 6 defeitos plantados detectados.
 - Telegram: plataforma de bots gratuita (core.telegram.org/bots); quem desenvolve o bot responde pelos dados (telegram.org/privacy).
 - G7: motor escolhido; falta ligar cada tarefa a um sistema.
+
+## 03/10/2026, 18:49 — motor, usuários simulados e ML
+
+Ítalo (literal): "1. resolva.; 2; ok; 3.ok, perfeito. VAMOS EM FRENTE". O item 1 foi lido como o que faltava no G7: ligar cada tarefa a um sistema.
+
+- G7: as 1.555 tarefas ligadas a cinco sistemas (rt.vinculo), com adaptador simulado.
+- E2: 60 usuários simulados, pseudonimizados.
+- E4: motor (rt.executar_simulada) que percorre o grafo BPMN (004_grafos.sql: 2.766 nós, 3.184 fluxos; as 1.555 tarefas batem com o modelo). As 73 jornadas rodam; no Supabase, 2.000 instâncias da Identidade concluídas, 99 de 99 tarefas executadas, 19.071 trocas entregues.
+- Testes: 10 do runtime e 9 do motor, verdes no local e no Supabase; seis defeitos plantados detectados (o sexto pediu um teste novo: pessoa com papel errado).
+- E8: risco-atraso-etapa (AUC 0,447, sem sinal, como esperado no simulador) e anomalia-instancia; registrados, fora de uso.
