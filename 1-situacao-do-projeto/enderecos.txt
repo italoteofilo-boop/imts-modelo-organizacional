@@ -1,4 +1,4 @@
-Documento vivo do projeto (Documento-base, Catálogo de jornadas e Mapa de jornadas):
+Documento vivo do projeto (Documento-base, Mapa de jornadas, Parâmetros, Auditorias, Propostas e Gates):
 https://claude.ai/code/artifact/97e51770-d3ab-4475-a7e6-57f2361d2b0e
 
 Página do círculo 1 · Identidade (fechado):

@@ -389,7 +389,8 @@ def main():
     gt = open(os.path.join(BASE, 'saida', 'revisao', 'gates_implantacao.md'), encoding='utf-8').read()
     for r in tabela_md(gt, '| Gate | O que entra'):
         cod, nome = r[0].split('. ', 1)
-        S.append(f"insert into org.gate (codigo,nome,entra,quem_fornece,criterio_saida,desbloqueia) values ({q(cod)},{q(nome)},{q(r[1])},{q(r[2])},{q(r[3])},{q(r[4])});")
+        sit = 'cumprido' if r[1].startswith('Cumprido') else 'aberto'  # a situação vem do texto do gate
+        S.append(f"insert into org.gate (codigo,nome,entra,quem_fornece,criterio_saida,desbloqueia,situacao) values ({q(cod)},{q(nome)},{q(r[1])},{q(r[2])},{q(r[3])},{q(r[4])},{q(sit)});")
     S.append('commit;')
     open(os.path.join(OUT, '002_carga.sql'), 'w', encoding='utf-8').write('\n'.join(S) + '\n')
     print('linhas de carga', len(S))

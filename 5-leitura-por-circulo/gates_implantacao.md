@@ -9,7 +9,7 @@ O desenho está fechado. O que falta depende de dado real (empresas, pessoas, va
 | G6. Ratificação dos sócios | Os sócios ratificam o que você aprovou: método de estratégia, regras gerais de contrato, alçadas, tabela matéria × órgão, critério dos agentes (ID-02) e apetite a risco | Sócios | Ata assinada (GO-02) | Valor formal das regras; libera o G3 |
 | G3. Valores do primeiro ciclo | Orçamento de cada empresa e círculo, reserva de apostas, limite de cada unidade, reserva de contingência e preço-base de cada oferta | Estratégia e Gestão, com aprovação dos sócios (ES-02 e ES-03 do primeiro ciclo) | Alocação e alvos aprovados pelos sócios | As alçadas que usam essas referências |
 | G4. Regra fiscal e folha | Tributos, obrigações acessórias e calendário de cada empresa pelo regime; convenção coletiva aplicável | Assessoria contábil e trabalhista | Calendário fiscal e de folha de cada empresa conferido pela assessoria | GE-05, GE-13 |
-| G5. Fontes no texto oficial | Cumprido em 03/10/2026 na Lei 14.133, no Código Civil, na CLT e na Lei 8.036: todos os artigos citados conferidos no Planalto, com o link oficial na aba Fontes. Falta só a Resolução CD/ANPD nº 15/2024: o Diário Oficial não abriu nas ferramentas de leitura | Assessoria jurídica, ou eu, com o link do Diário Oficial | Arts. 6º e 9º da Resolução CD/ANPD nº 15/2024 e a regra do prazo em dobro conferidos no oficial | Uso do prazo de incidente em peça, contrato e política |
+| G5. Fontes no texto oficial | Cumprido em 03/10/2026. Lei 14.133, Código Civil, CLT e Lei 8.036 conferidos no Planalto; Resolução CD/ANPD nº 15/2024 conferida na página oficial da ANPD e na reprodução do DOU (edição 81, seção 1, p. 114). Contingência: registro de fontes com espelhos e reconferência mensal (4-modelo-fonte/fontes_oficiais) | Eu, com a reconferência mensal agendada | Cada artigo citado conferido em fonte oficial, com o link na aba Fontes | Uso dos prazos em peça, contrato e política |
 | G7. Motor e sistemas | Escolher o motor que executa os fluxos e ligar cada tarefa a um sistema. Construir os agentes e as automações e liberá-los pela IT-06 | Integração, com você | Cada tarefa de agente ou automação tem sistema e teste aprovado; cada agente foi liberado pela IT-06 | Execução real das 73 jornadas |
 | G8. Modelos e políticas redigidos | Textos finais dos modelos de contrato e das políticas, a partir dos rascunhos aprovados | Governança e Gestão, com a assessoria jurídica | Cada texto aprovado por quem decide, pela aba Parâmetros em aberto | Uso em cliente, fornecedor e pessoa |
 | G9. Calibração | Depois de dois ciclos: medir tempo, volume e carga; rever frações, cadências e níveis de automação | Inteligência (IN-04) e Integração (IT-08) | Parâmetros revistos com dados e aprovados por quem decide | Versão 2 do modelo |
@@ -83,7 +83,7 @@ Três sinais, cada um verde, amarelo ou vermelho:
 ### 2.3 Critério de crise (ID-02, RE-08, GO-08)
 O sinal vira crise quando atende ao menos um destes:
 - risco à saúde, à segurança ou à vida;
-- incidente com dados pessoais que possa trazer risco ou dano relevante. Segue o critério do art. 5º da Resolução CD/ANPD nº 15/2024, lido em transcrição;
+- incidente com dados pessoais que possa trazer risco ou dano relevante. Segue o critério do art. 5º da Resolução CD/ANPD nº 15/2024, conferida na ANPD e na reprodução do DOU;
 - acusação pública de ilegalidade ou de quebra dos valores;
 - alcance que a resposta comum não contém.
 
@@ -133,7 +133,7 @@ Em risco médio, a GO-06 audita por amostra; desvio suspende o agente. A taxa de
 - **Acesso:** pela classificação e pela necessidade, revisto a cada trimestre.
 - **Mudanças:** testadas e reversíveis.
 - **Cópias:** cópia de segurança com teste de restauração.
-- **Incidentes:** tratados com a Governança. O de dados pessoais é comunicado em três dias úteis (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º, transcrição).
+- **Incidentes:** tratados com a Governança. O de dados pessoais é comunicado em três dias úteis (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º, conferida na ANPD e na reprodução do DOU).
 - **Fornecedores de tecnologia:** contrato com cláusula de dados.
 
 ### 2.9 Procedimentos, níveis de serviço e garantia (OP-02, OP-05, OP-07)
@@ -194,7 +194,7 @@ O tamanho em número fica para o gate G9, com o volume real.
 - eliminados ao fim do tratamento (arts. 15 e 16).
 
 **Guarda:**
-- o registro de incidente é guardado por no mínimo cinco anos (Resolução CD/ANPD nº 15/2024, art. 10, transcrição);
+- o registro de incidente é guardado por no mínimo cinco anos (Resolução CD/ANPD nº 15/2024, art. 10, conferida na ANPD e na reprodução do DOU);
 - a escrituração é guardada enquanto não houver prescrição ou decadência (Código Civil, art. 1.194, conferido no texto oficial);
 - os demais prazos de guarda fiscal e trabalhista entram no gate G4.
 

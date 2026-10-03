@@ -2,11 +2,14 @@
 
 
 ## anpd15
-- Referência (como será publicada): ANPD, Resolução CD/ANPD nº 15, de 24 de abril de 2024 (Regulamento de Comunicação de Incidente de Segurança), DOU de 26/04/2024
+- Referência (como será publicada): ANPD, Resolução CD/ANPD nº 15, de 24 de abril de 2024 (Regulamento de Comunicação de Incidente de Segurança), DOU de 26/04/2024, edição 81, seção 1, p. 114
 - O que dizemos que a fonte contém e como a usamos: Na GO-09: o incidente que pode acarretar risco ou dano relevante é o que pode afetar significativamente interesses e direitos fundamentais dos titulares e, ao mesmo tempo, envolve ao menos um destes critérios: dados sensíveis; de crianças, adolescentes ou idosos; financeiros; de autenticação; protegidos por sigilo; ou em larga escala (art. 5º). A comunicação à autoridade e ao titular é feita em três dias úteis contados do conhecimento de que o incidente afetou dados pessoais (arts. 6º e 9º); o agente de pequeno porte conta os prazos em dobro (art. 6º, § 8º, e art. 9º, § 6º); as informações podem ser complementadas em vinte dias úteis (art. 6º, § 3º); o registro do incidente, comunicado ou não, é guardado por no mínimo cinco anos (art. 10).
-- Como dizemos que foi conferida: Lidos os arts. 4º, 5º (caput, incisos I a VI e §§ 1º e 2º), 6º (caput e §§ 1º, 3º, 4º e 8º), 9º (caput e §§ 3º, 4º e 6º) e 10 (caput e §§ 1º e 2º). Texto lido em transcrição secundária, em 03/10/2026; o texto oficial não abriu na ferramenta de leitura. Conferir no oficial antes de usar em peça ou contrato.
+- Como dizemos que foi conferida: Conferida em 03/10/2026 em três fontes concordantes: (1) a página oficial da ANPD sobre comunicação de incidente (gov.br), que dá o prazo de três dias úteis e remete ao DOU; (2) a reprodução da publicação no DOU feita pelo Governo de Mato Grosso do Sul (cabeçalho: 26/04/2024, edição 81, seção 1, p. 114), onde foram lidos os arts. 5º, 6º (caput e §§ 1º, 3º e 8º), 9º e 10; (3) a transcrição da LegisWeb. Art. 6º: comunicação à ANPD em três dias úteis, contados do conhecimento de que o incidente afetou dados pessoais; complemento em vinte dias úteis (§ 3º); prazos em dobro para o agente de pequeno porte (§ 8º, pela Resolução CD/ANPD nº 2/2022). Art. 9º: comunicação ao titular em três dias úteis. Art. 10: registro do incidente por no mínimo cinco anos. A página do DOU (in.gov.br) recusa leitura automatizada; o endereço dela está registrado.
 - Links:
-  - LegisWeb (secundária): https://www.legisweb.com.br/legislacao/?id=458235
+  - gov.br/anpd, comunicação de incidente: https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/comunicado-de-incidente-de-seguranca-cis
+  - DOU (in.gov.br): https://www.in.gov.br/en/web/dou/-/resolucao-cd/anpd-n-15-de-24-de-abril-de-2024-556243024
+  - Reprodução do DOU, Governo de MS (PDF): https://www.lgpd.ms.gov.br/wp-content/uploads/2024/05/REGULAMENTO-DE-COMUNICACAO-DE-INCIDENTE-DE-SEGURANCA-ABRIL-2024-ANPD-.pdf
+  - LegisWeb (transcrição): https://www.legisweb.com.br/legislacao/?id=458235
 
 ## apqc
 - Referência (como será publicada): APQC, Process Classification Framework (PCF), cross-industry

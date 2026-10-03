@@ -30,6 +30,7 @@
   "alcadas_niveis": 40,
   "alcadas_faltas": 0,
   "alcadas_mut": 4,
-  "alcadas_mut_total": 4
+  "alcadas_mut_total": 4,
+  "fontes_falhas": 0
  }
 }

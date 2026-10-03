@@ -106,7 +106,7 @@ Decididas pelos sócios. A Governança mantém os modelos (GO-01) e revisa o que
 5. Garantia escrita, com prazo e forma de denunciar o defeito. Na venda entre empresas, os prazos legais não correm durante a garantia contratual, mas o defeito deve ser denunciado em trinta dias da descoberta (Código Civil, art. 446, conferido no texto oficial).
 6. Dados pessoais:
    - O contrato diz quem é controlador e quem é operador (LGPD, art. 5º, VI e VII).
-   - O operador avisa o controlador de incidente a tempo de este comunicar a autoridade e o titular em três dias úteis (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º, transcrição secundária).
+   - O operador avisa o controlador de incidente a tempo de este comunicar a autoridade e o titular em três dias úteis (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º, conferida na ANPD e na reprodução do DOU).
 7. Sigilo e propriedade intelectual: o que a empresa traz continua dela. A marca só é usada pelo pacote de marca da Identidade.
 8. Reajuste anual por índice escrito no contrato. Recomendo o IPCA. O índice é escolha nossa; a lei só usa o IPCA quando o contrato não fixa índice para atualizar dívida em atraso (Código Civil, art. 389, parágrafo único, lido no texto oficial).
 9. Hipóteses de rescisão e aviso prévio escritos. Na saída, vale a transição combinada (OP-08).

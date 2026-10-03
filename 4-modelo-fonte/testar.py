@@ -58,6 +58,10 @@ cz['alcadas_mut'] = num(r'DETECTADOS: (\d+) de (\d+)', o)
 cz['alcadas_mut_total'] = num(r'DETECTADOS: (\d+) de (\d+)', o, 2)
 falhou = falhou or bool(rca)
 print('alçadas no fluxo', 'OK' if not rca else 'FALHOU', o.strip().splitlines()[-1] if o.strip() else '')
+rcf, o = run([sys.executable, os.path.join('fontes_oficiais', 'conferir_fontes.py')], BASE)
+cz['fontes_falhas'] = num(r'FALHAS: (\d+)', o)
+falhou = falhou or bool(rcf)
+print('fontes oficiais', 'OK' if not rcf else 'FALHOU', o.strip().splitlines()[-1] if o.strip() else '')
 for m in mods:
     res[m]['cruzamento'] = cz
     with open(os.path.join(BASE, 'saida', m, 'testes.json'), 'w', encoding='utf-8') as fh:

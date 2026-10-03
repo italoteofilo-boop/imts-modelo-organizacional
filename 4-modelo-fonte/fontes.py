@@ -172,9 +172,18 @@ FONTES_BASE.update({
                     'intenção de recorrer imediata no julgamento e na habilitação; § 2º: a autoridade reconsidera em 3 dias úteis e a superior decide em até 10 dias úteis). '
                     'Contratação direta não foi lida.',
             'links': [('planalto.gov.br', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm')]},
- 'anpd15': {'ref': 'ANPD, Resolução CD/ANPD nº 15, de 24 de abril de 2024 (Regulamento de Comunicação de Incidente de Segurança), DOU de 26/04/2024',
-            'conf': 'Lidos os arts. 4º, 5º (caput, incisos I a VI e §§ 1º e 2º), 6º (caput e §§ 1º, 3º, 4º e 8º), 9º (caput e §§ 3º, 4º e 6º) e 10 (caput e §§ 1º e 2º). Texto lido em transcrição secundária, em 03/10/2026; o texto oficial não abriu na ferramenta de leitura. Conferir no oficial antes de usar em peça ou contrato.',
-            'links': [('LegisWeb (secundária)', 'https://www.legisweb.com.br/legislacao/?id=458235')]},
+ 'anpd15': {'ref': 'ANPD, Resolução CD/ANPD nº 15, de 24 de abril de 2024 (Regulamento de Comunicação de Incidente de Segurança), DOU de 26/04/2024, edição 81, seção 1, p. 114',
+            'conf': 'Conferida em 03/10/2026 em três fontes concordantes: (1) a página oficial da ANPD sobre comunicação de incidente (gov.br), que dá o prazo '
+                    'de três dias úteis e remete ao DOU; (2) a reprodução da publicação no DOU feita pelo Governo de Mato Grosso do Sul (cabeçalho: 26/04/2024, '
+                    'edição 81, seção 1, p. 114), onde foram lidos os arts. 5º, 6º (caput e §§ 1º, 3º e 8º), 9º e 10; (3) a transcrição da LegisWeb. '
+                    'Art. 6º: comunicação à ANPD em três dias úteis, contados do conhecimento de que o incidente afetou dados pessoais; complemento em vinte '
+                    'dias úteis (§ 3º); prazos em dobro para o agente de pequeno porte (§ 8º, pela Resolução CD/ANPD nº 2/2022). Art. 9º: comunicação ao titular '
+                    'em três dias úteis. Art. 10: registro do incidente por no mínimo cinco anos. A página do DOU (in.gov.br) recusa leitura automatizada; o '
+                    'endereço dela está registrado.',
+            'links': [('gov.br/anpd, comunicação de incidente', 'https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/comunicado-de-incidente-de-seguranca-cis'),
+                      ('DOU (in.gov.br)', 'https://www.in.gov.br/en/web/dou/-/resolucao-cd/anpd-n-15-de-24-de-abril-de-2024-556243024'),
+                      ('Reprodução do DOU, Governo de MS (PDF)', 'https://www.lgpd.ms.gov.br/wp-content/uploads/2024/05/REGULAMENTO-DE-COMUNICACAO-DE-INCIDENTE-DE-SEGURANCA-ABRIL-2024-ANPD-.pdf'),
+                      ('LegisWeb (transcrição)', 'https://www.legisweb.com.br/legislacao/?id=458235')]},
  'cc2002': {'ref': 'Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)',
             'conf': 'Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: arts. 389 (parágrafo único: IPCA quando o índice '
                     'não foi convencionado), 395, 421, 421-A (inciso II), 422, 441 a 446 (art. 445: 30 dias para móvel e 1 ano para imóvel; art. 446: os '

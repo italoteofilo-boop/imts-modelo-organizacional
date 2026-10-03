@@ -70,7 +70,8 @@ def main():
     gt = open(os.path.join(BASE, 'saida', 'revisao', 'gates_implantacao.md'), encoding='utf-8').read()
     for r in tabela_md(gt, '| Gate | O que entra'):
         cod, nome = r[0].split('. ', 1)
-        T['gate'].append(dict(codigo=cod, nome=nome, entra=r[1], quem_fornece=r[2], criterio_saida=r[3], desbloqueia=r[4]))
+        T['gate'].append(dict(codigo=cod, nome=nome, entra=r[1], quem_fornece=r[2], criterio_saida=r[3], desbloqueia=r[4],
+                                situacao='cumprido' if r[1].startswith('Cumprido') else 'aberto'))
 
     COLS = {
         'executor_tipo': 'codigo org.executor, nome text, e_pessoa boolean, e_maquina boolean',
@@ -89,7 +90,7 @@ def main():
         'cadeia_elo': 'cadeia text, ordem smallint, de_jornada text, para_jornada text, produtos text[]',
         'achado_auditoria': 'gravidade text, tipo text, onde text, detalhe text',
         'parametro': 'tipo org.tipo_parametro, nome text, onde text, quem_propoe text, quem_decide text, valor text',
-        'gate': 'codigo text, nome text, entra text, quem_fornece text, criterio_saida text, desbloqueia text',
+        'gate': 'codigo text, nome text, entra text, quem_fornece text, criterio_saida text, desbloqueia text, situacao org.situacao_gate',
     }
     FILHAS = {
         'tarefa': ('ordem smallint, nome text, executor org.executor, raia text, tipo_bpmn text, condicao text', 'ordem, nome, executor, raia, tipo_bpmn, condicao'),

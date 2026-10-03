@@ -1,0 +1,82 @@
+# Fase 2 · Plano para aprovação
+
+Proposta de 03/10/2026, com as suas decisões das 17:42. Nada aqui foi construído. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
+
+## 1. Decisões suas incorporadas
+
+| Tema | Sua decisão | Como entra no plano |
+| --- | --- | --- |
+| Runtime | Um por círculo, customizável e reaproveitável | Nove instâncias de runtime, cada uma com configuração, DKP, pasta do Drive e repositório próprios. Todas rodam o mesmo motor versionado |
+| Machine learning | Desde já | A base de dados de ML nasce com o motor: registro de eventos, variáveis e registro de modelos. Os modelos treinam quando houver dado real |
+| Telegram | Canal padrão para 99% das interações | Autodestruição por padrão, armazenamento obrigatório na nossa base, pseudonimização e anonimização |
+| Usuários simulados | Sim, inclusive no Telegram | Um usuário simulado por papel de cada raia, no ambiente de teste do Telegram e no motor |
+| Acessos externos | Mantidos | Contingência já feita: retrato literal das fontes, conferidor nos testes e reconferência mensal agendada |
+
+## 2. Onde eu divirjo e por quê
+
+- **Runtime:** nove instâncias, sim. Nove códigos separados, não. A customização que você quer fica na configuração de cada círculo: alçadas, cadências, agentes e parâmetros. Com nove códigos, cada correção seria feita nove vezes, e as versões se afastariam. O reaproveitamento futuro (outro ecossistema, outra empresa) é o mesmo motor com outra configuração.
+- **ML:** um modelo treinado com usuários simulados não decide nada real. O dado simulado testa o encanamento. Todo evento leva a marca simulado ou real, e o painel separa os dois.
+- **Telegram:** aceito como padrão. Mas cinco fatos da plataforma mudam o desenho (seção 4). O principal: no Telegram, um bot não vê a mensagem de outro bot. Os agentes não conversam entre si pelo grupo; quem orquestra é o nosso motor.
+
+## 3. O que você pode estar esquecendo
+
+- **Identidade e acesso:** a mesma pessoa no Telegram, no Drive, no GitHub e no motor, com entrada e saída pela GE-07 (desligamento revoga tudo no mesmo dia).
+- **Segredos:** chaves de bots, do Supabase e do Drive num cofre, nunca em mensagem nem em repositório.
+- **Transferência internacional:** não conferi onde o Telegram guarda os dados. Se os dados saírem do Brasil, a LGPD só permite a transferência nos casos do art. 33. Cabe à Governança conferir e escolher a base: por exemplo, o consentimento específico e em destaque do inciso VIII.
+- **Versão do modelo e do runtime:** mudar uma jornada (ID-04) muda o runtime em produção. Isso exige migração versionada e volta atrás testada.
+- **Cópia e restauração testadas:** a redundância só vale se a restauração tiver sido testada.
+- **Custo:** um limite por runtime e por modelo de IA, acompanhado no painel.
+
+## 4. Telegram: fatos que mudam o desenho
+
+| Fato verificado | Consequência no desenho |
+| --- | --- |
+| Grupos e conversas comuns são "cloud chats", com criptografia servidor-cliente. Só os chats secretos têm criptografia ponta a ponta | Sigilo vem do que não vai ao Telegram e da autodestruição, não da criptografia |
+| Bots não veem mensagens de outros bots, em nenhum modo | Agentes não se coordenam pelo grupo. O motor orquestra, e cada grupo tem um bot de entrada |
+| Em grupo, o bot em modo privacidade só recebe comandos, menções e respostas a ele | O bot de entrada é administrador do grupo, ou as tarefas são abertas por comando |
+| As atualizações ficam no servidor no máximo 24 horas | O motor consome sem parar (webhook) e grava tudo na nossa base antes de qualquer outra coisa |
+| Um bot só apaga mensagens enviadas há menos de 48 horas | Autodestruição feita pelo bot tem de rodar antes de 48 horas. O temporizador nativo do chat (24 horas ou 7 dias, desde 2021) é configurado pelo administrador |
+| Limites de envio: 1 mensagem por segundo por chat, 20 por minuto por grupo, cerca de 30 por segundo no total | Fila de envio no motor; avisos em massa vão por resumo, não um a um |
+| O Telegram tem ambiente de teste próprio para bots e usuários | Os usuários simulados rodam lá, sem misturar com o ambiente real |
+
+**Exceções propostas, para sua decisão (não impostas):**
+- Senhas, chaves e códigos de acesso nunca vão pelo Telegram.
+- Os relatos da GO-09 (canal de denúncia) vão por formulário próprio, para proteger quem relata.
+- Aprovações de pagamento (GE-04, GE-05) têm confirmação fora do Telegram, para manter a segregação.
+
+**Armazenamento e anonimização (LGPD):**
+- Na nossa base, a identidade é pseudonimizada. A chave que liga o pseudônimo à pessoa fica separada, em ambiente controlado (art. 13, § 4º). Dado pseudonimizado continua sendo dado pessoal.
+- Para ML e para o painel agregado, o dado é anonimizado. Ele só deixa de ser dado pessoal se a anonimização não puder ser revertida com meios razoáveis (art. 12).
+
+## 5. Entregas
+
+| # | Entrega | O que é | Depende de |
+| --- | --- | --- | --- |
+| E1 | Registro de eventos | Cada tarefa executada vira um evento: jornada, etapa, tarefa, raia, executor, modo, início, fim, resultado e marca simulado ou real. Fica no Supabase, ao lado do modelo | — |
+| E2 | Usuários simulados | Uma pessoa simulada por papel de raia (sócios, executivo, Administrador do IMTS.OS, líderes, pessoas dos círculos, assessorias), com contas no ambiente de teste do Telegram | E1 |
+| E3 | Instruções de trabalho | Uma instrução por jornada (73), geradas da fonte do modelo: impressa (PDF) e digital (página). Mesma fonte, nenhuma divergência | — |
+| E4 | Motor e runtime piloto | O motor executa as jornadas de um círculo. Piloto: Identidade (5 jornadas, você é o líder). É o G7 | E1, sua escolha do motor |
+| E5 | Canal Telegram | Bot de entrada por runtime, webhook, fila de envio, autodestruição e gravação na base | E1, E4 |
+| E6 | Painel | Visão de toda a operação: por círculo, jornada, etapa e alçada; trocas entre círculos; modo de execução; saúde das DKPs; desempenho dos modelos | E1 |
+| E7 | Simulador de cenários | Separado do motor: lê uma cópia do modelo e dos parâmetros, roda carga sintética e devolve propostas de mudança, que seguem a ID-04. Nunca escreve no motor | E1, E3 |
+| E8 | ML | Primeiros modelos: risco de atraso por etapa, promoção de modo (Copiloto → Autopiloto) e anomalia de cadência. Treino com dado real, avaliação no painel | E1, dado real |
+| E9 | Interface conversacional | Uma camada de conversa sobre Telegram e página web: intenção → tarefa, com a pessoa decidindo o que é de alçada | E4, E5 |
+| E10 | Replicação | Os outros oito runtimes, por configuração | E4 a E6 estáveis |
+
+**Ordem proposta:** E1 e E3 começam já: não dependem de escolha e custam pouco. Depois vêm E2, E4, E5 e E6 no piloto, E7, E9, E10 e, por fim, E8, quando houver dado real.
+
+## 6. O que preciso de você
+
+1. Aprovar ou ajustar este plano: as divergências da seção 2 e as exceções da seção 4.
+2. Escolher o motor do G7. Posso trazer a comparação das opções, com fonte, antes de você decidir.
+3. Confirmar o piloto: Identidade.
+
+## Fontes
+
+- Telegram FAQ, criptografia de cloud chats e chats secretos: https://telegram.org/faq
+- Telegram Bot FAQ, bots não veem mensagens de outros bots e limites de envio: https://core.telegram.org/bots/faq
+- Telegram Bot Features, modo privacidade e ambiente de teste: https://core.telegram.org/bots/features
+- Telegram Bot API, atualizações guardadas no máximo 24 horas: https://core.telegram.org/bots/api
+- deleteMessage, limite de 48 horas: documentação do método na Bot API, conferida na reprodução da aiogram, https://docs.aiogram.dev/en/latest/api/methods/delete_message.html. A página oficial veio truncada na leitura.
+- Telegram, temporizador de autodestruição em todos os chats (24 horas ou 7 dias), 23/02/2021: https://telegram.org/blog/autodelete-inv2
+- Lei 13.709/2018 (LGPD), arts. 5º, III e XI; 12; 13, § 4º; e 33, I e VIII: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm

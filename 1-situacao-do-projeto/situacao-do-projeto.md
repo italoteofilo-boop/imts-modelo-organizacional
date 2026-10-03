@@ -20,7 +20,7 @@ Um modelo conceitual da estrutura organizacional e operacional do Ecossistema IM
 | 8 · Gestão | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 13 (GE-01 a GE-13) | https://claude.ai/artifact/NiG1cQx83MFwcL4GDrWj6y |
 | 9 · Governança | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 10 (GO-01 a GO-10) | https://claude.ai/artifact/7CZVqjYCBJB5zw4KqfbD2J |
 
-Documento vivo do projeto (Documento-base, Catálogo da rodada 2 e Mapa de jornadas): https://claude.ai/code/artifact/97e51770-d3ab-4475-a7e6-57f2361d2b0e
+Documento vivo do projeto (Documento-base, Mapa de jornadas, Parâmetros, Auditorias, Propostas e Gates): https://claude.ai/code/artifact/97e51770-d3ab-4475-a7e6-57f2361d2b0e
 
 ## Números do desenho e dos testes
 

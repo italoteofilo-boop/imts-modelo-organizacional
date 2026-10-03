@@ -169,6 +169,4 @@ Um revisor que não participou do trabalho conferiu os 33 itens nos arquivos. De
 - **Fontes:** o art. 165 foi registrado com os §§ 1º e 2º.
 - **Remissões:** as remissões ao círculo 9 e os caminhos foram corrigidos.
 
-**Fica como está:**
-- As exportações antigas do documento foram retiradas, e não exportadas de novo. O documento vivo baixa cada aba.
-- A Resolução CD/ANPD nº 15/2024 segue em transcrição secundária (gate G5).
+**Depois (03/10/2026, fim da tarde):** o G5 foi cumprido. A Resolução CD/ANPD nº 15/2024 foi conferida na página oficial da ANPD e na reprodução do DOU. As fontes ganharam retrato literal e reconferência mensal. As abas do documento voltaram ao pacote em exportação compacta, com manifesto e hash.
