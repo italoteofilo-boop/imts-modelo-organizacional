@@ -71,6 +71,16 @@ language sql stable security definer set search_path = '' as $$
                     and (a.circulo is null or a.circulo = p_circulo or p_circulo is null)
                     and rt._nivel(a.nivel) >= rt._nivel(p_nivel)) $$;
 
+-- Versão estrita (auditoria de 04/10/2026): empresa ou círculo nulos aqui exigem acesso sem restrição, nunca "qualquer um".
+-- Use para objetos globais (administração da plataforma) e para decisões com escopo definido (documento de uma tarefa).
+create or replace function rt.pode_estrito(p_pessoa uuid, p_empresa uuid, p_circulo smallint, p_nivel text) returns boolean
+language sql stable security definer set search_path = '' as $$
+  select exists (select 1 from rt.acesso a
+                  where a.pessoa = p_pessoa and current_date >= a.inicio and (a.fim is null or current_date <= a.fim)
+                    and (a.empresa is null or a.empresa = p_empresa)
+                    and (a.circulo is null or a.circulo = p_circulo)
+                    and rt._nivel(a.nivel) >= rt._nivel(p_nivel)) $$;
+
 -- Barra o acúmulo de papéis que se fiscalizam
 create or replace function rt._acesso_confere() returns trigger language plpgsql set search_path = '' as $$
 begin

@@ -1,4 +1,4 @@
-# Fontes do Círculo 7 · Operações — para conferência independente
+# Fontes do Círculo 7 · Operações: para conferência independente
 
 
 ## apqc

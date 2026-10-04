@@ -1,7 +1,7 @@
 # Documento do projeto, exportado em PDF
 
 O documento vivo está no endereço de `1-situacao-do-projeto/enderecos.txt` e continua sendo a versão de referência.
-Aqui vai a exportação das sete abas em PDF, feita em 03/10/2026, depois do G5 cumprido.
+Aqui vai a exportação das sete abas em PDF, feita em 03/10/2026, depois do G5 cumprido para os prazos e artigos com retrato literal.
 
 - `documento-do-projeto-2026-10-03.zip`: as sete abas. Os PDFs foram compactados sem perda (qpdf: fluxos recompactados
   e objetos agrupados; texto e imagens iguais), de 2,8 MB para 1,0 MB.

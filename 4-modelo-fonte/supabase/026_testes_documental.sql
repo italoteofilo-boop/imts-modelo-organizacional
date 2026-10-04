@@ -13,18 +13,20 @@ begin
   if (select count(*) from rt.vinculo where sistema = 'motor-documental') = 0 then raise exception 'FALHA D1: nenhuma automação ligada ao motor documental'; end if;
 
   -- D2. Pedido inválido é recusado na entrada
-  ok := false; begin perform doc.pedir('nao-existe', 'imts', c); exception when others then ok := true; end; if not ok then raise exception 'FALHA D2: tipo fora do catálogo'; end if;
-  ok := false; begin perform doc.pedir('contrato-cliente', 'tron', c); exception when others then ok := true; end; if not ok then raise exception 'FALHA D2: marca provisória em externo'; end if;
-  ok := false; begin perform doc.pedir('contrato-cliente', 'imts', c - 'titulo'); exception when others then ok := true; end; if not ok then raise exception 'FALHA D2: sem título'; end if;
-  if doc.pedir('politica', 'tron', c) is null then raise exception 'FALHA D2: provisória em interno deveria passar'; end if;
+  ok := false; begin perform doc.pedir('nao-existe', 'imts', c, '80d8f119-a3fc-40ce-afaa-34d974f25d31'::uuid); exception when others then ok := true; end; if not ok then raise exception 'FALHA D2: tipo fora do catálogo'; end if;
+  ok := false; begin perform doc.pedir('contrato-cliente', 'tron', c, '80d8f119-a3fc-40ce-afaa-34d974f25d31'::uuid); exception when others then ok := true; end; if not ok then raise exception 'FALHA D2: marca provisória em externo'; end if;
+  ok := false; begin perform doc.pedir('contrato-cliente', 'imts', c - 'titulo', '80d8f119-a3fc-40ce-afaa-34d974f25d31'::uuid); exception when others then ok := true; end; if not ok then raise exception 'FALHA D2: sem título'; end if;
+  if doc.pedir('politica', 'tron', c, '80d8f119-a3fc-40ce-afaa-34d974f25d31'::uuid) is null then raise exception 'FALHA D2: provisória em interno deveria passar'; end if;
 
   -- D3. Pessoa com acesso de operar pede; quem só lê, não
   select pseudonimo into p1 from rt.pessoa p where exists (select 1 from rt.acesso a where a.pessoa = p.pseudonimo and a.nivel = 'operar') order by pseudonimo limit 1;
-  select pseudonimo into l1 from rt.pessoa p where exists (select 1 from rt.acesso a where a.pessoa = p.pseudonimo and a.nivel = 'aprovar' and a.circulo is not null) order by pseudonimo limit 1;
-  select pseudonimo into l2 from rt.pessoa p where exists (select 1 from rt.acesso a where a.pessoa = p.pseudonimo and a.nivel = 'aprovar') and pseudonimo <> l1 order by pseudonimo limit 1;
+  select pseudonimo into l1 from rt.pessoa p where exists (select 1 from rt.acesso a where a.pessoa = p.pseudonimo and a.nivel in ('aprovar', 'administrar') and a.circulo is null and a.empresa is null) order by pseudonimo limit 1;   -- documento sem tarefa: decide quem aprova sem restrição de círculo (041)
+  select pseudonimo into l2 from rt.pessoa p where exists (select 1 from rt.acesso a where a.pessoa = p.pseudonimo and a.nivel in ('aprovar', 'administrar') and a.circulo is null and a.empresa is null) and pseudonimo <> l1 order by pseudonimo limit 1;
   insert into rt_chave.login (auth_uid, pseudonimo) values (u1, p1), (u2, l1), (u3, l2);
   perform set_config('request.jwt.claim.sub', u1::text, true);
-  ped := doc.pedir('contrato-cliente', 'imts', c);
+  ok := false; begin perform doc.pedir('contrato-cliente', 'imts', c); exception when others then ok := true; end;
+  if not ok then raise exception 'FALHA D2: pedido sem empresa'; end if;
+  ped := doc.pedir('contrato-cliente', 'imts', c, '80d8f119-a3fc-40ce-afaa-34d974f25d31'::uuid);
   if (select pedido_por from doc.pedido where id = ped) <> p1 or (select situacao from doc.pedido where id = ped) <> 'na_fila' then raise exception 'FALHA D3: pedido sem dono ou fora da fila'; end if;
   if not exists (select 1 from doc.evento where pedido = ped and tipo = 'pedido') then raise exception 'FALHA D3: sem evento'; end if;
   perform set_config('request.jwt.claim.sub', '', true);
@@ -40,15 +42,16 @@ begin
   j := public.doc_worker_proximo(ch, 'worker-teste');
   if (j->>'pedido')::bigint <> ped or j->>'tipo' <> 'contrato-cliente' or j->>'titulo' <> 'Contrato de teste' then raise exception 'FALHA D4: worker pegou o pedido errado: %', j; end if;
   if (select situacao from doc.pedido where id = ped) <> 'em_emissao' then raise exception 'FALHA D4: pedido não entrou em emissão'; end if;
-  reg := jsonb_build_object('situacao', 'emitido_com_alertas', 'paginas', 1, 'hash_pdf', 'errado', 'gates', '[]'::jsonb, 'alertas', '[{"alerta":"regra do terço"}]'::jsonb);
-  ok := false; begin perform public.doc_worker_registrar(ch, ped, reg, encode(pdf, 'base64'), encode(convert_to('<p>x</p>', 'UTF8'), 'base64')); exception when others then ok := true; end;
+  reg := jsonb_build_object('situacao', 'emitido', 'paginas', 1, 'hash_pdf', 'errado', 'hash_html', encode(extensions.digest(convert_to('<p>x</p>', 'UTF8'), 'sha256'), 'hex'), 'gates', '[]'::jsonb, 'alertas', '[{"alerta":"regra do terço"}]'::jsonb);
+  ok := false; begin perform public.doc_worker_registrar(ch, 'worker-teste', ped, reg, encode(pdf, 'base64'), encode(convert_to('<p>x</p>', 'UTF8'), 'base64')); exception when others then ok := true; end;
   if not ok then raise exception 'FALHA D4: hash errado aceito'; end if;
   reg := reg || jsonb_build_object('hash_pdf', encode(extensions.digest(pdf, 'sha256'), 'hex'));
-  em := public.doc_worker_registrar(ch, ped, reg, encode(pdf, 'base64'), encode(convert_to('<p>x</p>', 'UTF8'), 'base64'));
-  if (select count(*) from doc.arquivo where emissao = em) <> 2 or (select situacao from doc.pedido where id = ped) <> 'emitido_com_alertas' then raise exception 'FALHA D4: emissão não registrada'; end if;
+  em := public.doc_worker_registrar(ch, 'worker-teste', ped, reg, encode(pdf, 'base64'), encode(convert_to('<p>x</p>', 'UTF8'), 'base64'));
+  -- o worker declarou "emitido", mas há alerta: o banco recalcula para emitido_com_alertas
+  if (select count(*) from doc.arquivo where emissao = em) <> 2 or (select situacao from doc.pedido where id = ped) <> 'emitido_com_alertas' then raise exception 'FALHA D4: emissão não registrada ou situação não recalculada'; end if;
 
   -- D5. Falha do worker: volta à fila duas vezes e para em erro na terceira
-  ped2 := doc.pedir('ata', 'imts', c);
+  ped2 := doc.pedir('ata', 'imts', c, '80d8f119-a3fc-40ce-afaa-34d974f25d31'::uuid);
   update doc.pedido set criado_em = now() - interval '2 hours' where id = ped2;
   for n in 1..3 loop j := public.doc_worker_proximo(ch, 'w'); s := public.doc_worker_falhar(ch, (j->>'pedido')::bigint, 'Chromium caiu'); end loop;
   if s <> 'erro' or (select tentativas from doc.pedido where id = ped2) <> 3 then raise exception 'FALHA D5: falha sem limite (%)', s; end if;

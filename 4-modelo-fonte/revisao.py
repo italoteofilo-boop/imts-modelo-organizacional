@@ -123,7 +123,7 @@ open(os.path.join(OUT, 'cruzamento.md'), 'w', encoding='utf-8').write('\n'.join(
 
 # ----- fontes do último círculo
 M = Ms[-1]
-out = [f'# Fontes do Círculo {M.NUM} · {M.NOME} — para conferência independente\n']
+out = [f'# Fontes do Círculo {M.NUM} · {M.NOME}: para conferência independente\n']
 for k in sorted(M.USO):
     f = FONTES_BASE[k]
     out.append(f'\n## {k}')

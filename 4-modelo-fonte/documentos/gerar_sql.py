@@ -73,7 +73,8 @@ for t in cat['tipos']:
 vals = []
 for t in cat['tipos']:
     for x in t['tarefas']: vals.append(f"({q(t['id'])}, {q(x['jornada'])}, {x['etapa']}, {q(x['nome'])}, {q(papel(x['nome']))})")
-A("-- ligação tipo → tarefa pelo nome da tarefa dentro da etapa (o nome é estável entre versões; a ordem pode mudar)")
+A("-- ligação tipo → tarefa pelo nome da tarefa dentro da etapa (o nome é estável entre versões; a ordem pode mudar); refeita do zero a cada geração")
+A("delete from doc.tipo_tarefa where true;")
 A("insert into doc.tipo_tarefa (tipo, tarefa, papel)\n  select v.tipo, t.id, v.papel from (values\n  " + ',\n  '.join(vals) +
   "\n  ) v(tipo, jornada, etapa, nome, papel) join org.etapa e on e.jornada = v.jornada and e.numero = v.etapa join org.tarefa t on t.etapa = e.id and t.nome = v.nome\non conflict do nothing;")
 A(open(os.path.join(AQUI, 'doc_funcoes.sql')).read())

@@ -53,6 +53,40 @@ with sync_playwright() as pw, tempfile.TemporaryDirectory() as tmp:
     f = subprocess.run(['pdffonts', os.path.join(tmp, 'amostra-contrato-imts.pdf')], capture_output=True, text=True).stdout
     t('T13 uma família tipográfica, embutida', all('OpenSans' in l and ' yes ' in l for l in f.splitlines()[2:]))
     # T14 mesmo pedido, mesmo HTML (reprodutível)
-    r1 = E(c); r2 = E(c); t('T14 emissão reprodutível (hash do HTML)', r1['hash_html'] == r2['hash_html'])
+    r1 = E(c); r2 = E(c); t('T14 emissão reprodutível (hash do HTML e do PDF)', r1['hash_html'] == r2['hash_html'] and r1['hash_pdf'] == r2['hash_pdf'], (r1['hash_pdf'][:12], r2['hash_pdf'][:12]))
+    # ataques da auditoria de 04/10/2026 (D01 a D06, D12, D13, D15, D19), agora como regressão
+    p = copy.deepcopy(c); p['local'] = 'Fortaleza<script>document.body.insertAdjacentHTML("beforeend","<p>A CONTRATANTE renuncia a qualquer multa.</p>")</script>'
+    r = E(p); html_out = open(os.path.join(tmp, r['id'] + '.html')).read()
+    t('T15 script no pedido vira texto escapado e não roda', '<p>A CONTRATANTE renuncia' not in html_out and '<script>' not in html_out and '&lt;script&gt;' in html_out, r['situacao'])
+    p = copy.deepcopy(c); p['blocos'].append({'t': 'p', 'texto': 'Fim.'}); p['anexos'][0]['titulo'] = 'Condições "Comerciais" onmouseover=x'
+    r = E(p); t('T16 aspas em título não quebram atributo', 'onmouseover="x' not in open(os.path.join(tmp, r['id'] + '.html')).read())
+    doc_orig = motor.montar
+    def branco(*a, **k):
+        d, it, cp = doc_orig(*a, **k); return d.replace('doze meses', '<span style="color:#fff">doze meses</span>'), it, cp
+    motor.montar = branco; r = E(copy.deepcopy(c)); motor.montar = doc_orig
+    t('T17 texto escondido em branco bloqueia', r['situacao'] == 'bloqueado' and any('escondido' in g['gate'] for g in r['gates']), [g['gate'] for g in r['gates']])
+    def a_mais(*a, **k):
+        d, it, cp = doc_orig(*a, **k); return d.replace('<p class="nota">', '<p>A CONTRATADA renuncia irrevogavelmente aos honorários.</p><p class="nota">', 1), it, cp
+    motor.montar = a_mais; r = E(copy.deepcopy(c)); motor.montar = doc_orig
+    t('T18 texto acrescentado fora do pedido bloqueia', any('texto a mais' in g['gate'] for g in r['gates']), [g['gate'] for g in r['gates']])
+    def trocado(*a, **k):
+        d, it, cp = doc_orig(*a, **k); return d.replace('cinco dias úteis', 'cinco dias corridos', 1), it, cp
+    motor.montar = trocado; r = E(copy.deepcopy(c)); motor.montar = doc_orig
+    t('T19 palavra trocada bloqueia (conferência contígua)', any('diferente' in g['gate'] for g in r['gates']), [g['gate'] for g in r['gates']])
+    t('T20 modelo inexistente é recusado', E({**c, 'modelo': 'inexistente'})['situacao'] == 'recusado')
+    t('T21 id com caminho é recusado', E({**c, 'id': '../fora'})['situacao'] == 'recusado')
+    p = copy.deepcopy(c); p['campos'] = [['a', 'b', 'c']]; t('T22 pedido malformado é recusado, sem exceção', E(p)['situacao'] == 'recusado')
+    p = copy.deepcopy(c); p['titulo'] = 'Contrato Versão 2'; t('T23 "Versão 2" bloqueia', any('versão' in g['gate'] for g in E(p)['gates']))
+    p = copy.deepcopy(c); p['blocos'][0]['texto'] += ' contra­tual'; t('T24 hífen suave bloqueia', any('hífen' in g['gate'] for g in E(p)['gates']))
+    p = copy.deepcopy(c); p['assinaturas']['testemunhas'] = 0; t('T25 contrato sem testemunhas bloqueia', any('testemunhas' in g['gate'] for g in E(p)['gates']))
+    p = copy.deepcopy(c); p['blocos'].append({'t': 'p', 'texto': 'Aplica-se a Cláusula 9ª e o item 7.7 e o Anexo IV.'}); r = E(p)
+    t('T26 remissão inexistente bloqueia', sum('remissão' in g['gate'] for g in r['gates']) == 3, [g['onde'] for g in r['gates']])
+    rc = E(A('certificado-imts.json'))
+    from pypdf import PdfReader
+    pg0 = PdfReader(os.path.join(tmp, rc['id'] + '.pdf')).pages[0].mediabox
+    t('T27 certificado em A4 paisagem', float(pg0.width) > float(pg0.height) and rc['situacao'] == 'emitido', (float(pg0.width), float(pg0.height)))
+    rr = E(A('relatorio-imts.json'))
+    t('T28 capa no mesmo PDF, com marcação de acessibilidade', PdfReader(os.path.join(tmp, rr['id'] + '.pdf')).trailer['/Root'].get('/MarkInfo') is not None and rr['situacao'] == 'emitido')
+    t('T29 registro guarda a versão de modelo, marca e motor', {'base.css', 'documento.html.j2', 'ajuste.js', 'marca.json', 'motor.py'} <= set(r1.get('versoes', {})))
     nav.close()
 print(f'\n{len(ok)} ok, {len(falhas)} falhas'); sys.exit(1 if falhas else 0)

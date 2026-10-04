@@ -29,6 +29,26 @@ Um motor para todos os documentos formais, internos e externos, das empresas do 
    - sinais proibidos.
 8. **Registro.** Guarda a situação (`emitido`, `emitido_com_alertas`, `bloqueado` ou `recusado`), os hashes do pedido, do PDF e do HTML, os gates e os alertas.
 
+## Gates e saída (04/10/2026)
+
+**Gates novos.**
+
+- Conteúdo: travessão; marcador `[●`; hífen invisível; `{{`; número de versão.
+- Contratual: duas testemunhas e nota de assinatura; remissões internas; definições em ordem alfabética (alerta); numeração de quadros (alerta); referências verificadas há mais de 30 dias (alerta).
+- PDF: texto visível; página e orientação pelo modelo; âncoras de assinatura; sumário que confere com o índice do PDF; título sozinho no fim da página; página em branco; metadados.
+
+**Capa.** Nos modelos premium (institucional, proposta, relatório e demonstrativo), a capa sai no mesmo PDF, marcada para acessibilidade.
+
+**Cabeçalho e rodapé.** Os modelos formais usam o cabeçalho e o rodapé de controle do Chromium.
+
+**Certificado.** Sai em A4 paisagem.
+
+**PDF determinístico.** As datas do PDF vêm do pedido. O /ID sai do md5 do HTML.
+
+**Worker.** Quando a emissão falha, o worker tenta de novo, com espera crescente até 5 minutos.
+
+**Registro.** Também guarda as versões (hash) de `base.css`, do template, de `ajuste.js`, de `marca.json` e de `motor.py`.
+
 ## Peças
 
 | Peça | O que é |
@@ -40,7 +60,7 @@ Um motor para todos os documentos formais, internos e externos, das empresas do 
 | `motor.py` | Emissão. `python3 motor.py pedido.json --saida DIR`; `--instalar-fontes` |
 | `worker.py` | Lê a fila do Supabase, emite e registra. Configuração por ambiente: `SUPABASE_URL`, `SUPABASE_CHAVE_PUB` e `DOC_WORKER_CHAVE` (o mesmo valor do segredo `doc_worker_chave` no Vault) |
 | `amostras/*.json`, `emitir_amostras.py` | Uma amostra por modelo |
-| `testar_motor.py` | 15 testes que emitem de verdade |
+| `testar_motor.py` | 30 testes que emitem de verdade |
 | `gerar_sql.py`, `doc_funcoes.sql` | Geram `supabase/025_motor_documental.sql` |
 
 ## Modelos

@@ -1,4 +1,4 @@
-# Fontes do Círculo 3 · Inteligência — para conferência independente
+# Fontes do Círculo 3 · Inteligência: para conferência independente
 
 
 ## anthropic_evals

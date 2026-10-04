@@ -1,4 +1,4 @@
-# Fontes do Círculo 6 · Integração — para conferência independente
+# Fontes do Círculo 6 · Integração: para conferência independente
 
 
 ## anthropic_evals

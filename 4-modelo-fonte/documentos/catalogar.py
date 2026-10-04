@@ -13,10 +13,10 @@ TIPOS = [
  ('aditivo', 'Termo aditivo, renovação ou distrato', 'contratual', 'contratual', 'externo', r'aditivo|renovacao, aditivo|encerramento assinado|distrato'),
  ('acordo-parceria', 'Acordo de parceria ou de oferta conjunta', 'contratual', 'contratual', 'externo', r'acordo de oferta conjunta|termos da parceria|encerramento de parceria'),
  ('contrato-societario', 'Contrato de compra e venda de participação', 'contratual', 'contratual', 'externo', r'contrato de compra ou venda'),
- ('licenca-marca', 'Autorização de uso de marca', 'contratual', 'contratual', 'externo', r'autorizac\w* de uso da marca|uso da marca por terceiros'),
+ ('licenca-marca', 'Autorização de uso de marca', 'contratual', 'contratual', 'externo', r'autorizac\w* de uso da marca'),
  ('acordo-servico', 'Acordo de serviço entre círculos ou empresas', 'contratual', 'contratual', 'interno', r'acordo de servico'),
  ('termo-negociacao', 'Termo de pagamento, parcelamento ou transação', 'contratual', 'contratual', 'externo', r'parcelamento|transacao formalizad|termos negociados'),
- ('proposta-comercial', 'Proposta comercial', 'proposta', 'proposta', 'externo', r'proposta (aprovada para envio|aceita|de renovacao)|modelos de proposta|proposta comercial'),
+ ('proposta-comercial', 'Proposta comercial', 'proposta', 'proposta', 'externo', r'proposta (aprovada para envio|aceita|de renovacao)|proposta comercial'),
  ('proposta-interna', 'Proposta para decisão (memorando)', 'relatorio', 'institucional', 'interno', r'^proposta'),
  ('racional-financeiro', 'Racional financeiro de contrato', 'demonstrativo', 'demonstrativo', 'interno', r'racional financeiro|condicoes acordadas'),
  ('proposta-b2g', 'Proposta de preço e habilitação em licitação', 'licitacao', 'licitacao', 'externo', r'habilitac|edital|licitac|pregao|proposta de preco'),
@@ -45,10 +45,13 @@ TIPOS = [
  ('comunicado', 'Comunicado interno', 'oficio', 'oficio', 'interno', r'^comunicado|a comunicar$|^aviso de mudanca'),
  ('notificacao', 'Notificação formal', 'oficio', 'oficio', 'externo', r'notificac|retirada de marca|suspensao de novas entregas'),
  ('certificado', 'Certificado de reconhecimento', 'certificado', 'certificado', 'interno', r'reconhecimento'),
- ('declaracao', 'Declaração', 'certificado', 'certificado', 'externo', r'^declaracao(?! de identidade)'),
+ ('declaracao', 'Declaração', 'certificado', 'oficio', 'externo', r'^declaracao(?! de identidade)'),
 ]
 # saídas que são passo de fluxo (pedido, lista, decisão de rever...), não documento: ficam como registro do motor
-NAO_DOC = r'^(lista|pedido|escopo|base|casos|indicadores|mudanca|decisoes? de|contestacao|vaga|cadastro|entregas confirmadas|situacao de faturas|receitas|pratica|metodo (recusado|retirado|da oferta nao)|padrao ambiguo|plano de saida (que mostra|fechado)|proposta de arquivar|avaliacao da experiencia sem)'
+# exceções ancoradas: saídas que começam como passo de fluxo mas são documento emitido
+SEMPRE_DOC = r'^(pedido emitido ao fornecedor|pedido do titular cumprido)'
+# documento recebido de terceiro (guardar, revisar) ou evento não é documento emitido pelo motor
+NAO_DOC = r'^(certid|desvio|revisao aberta|modelos de proposta)|para (revisar e )?guardar$|^(lista|pedido|escopo|base|casos|indicadores|mudanca|decisoes? de|contestacao|vaga|cadastro|entregas confirmadas|situacao de faturas|receitas|pratica|metodo (recusado|retirado|da oferta nao)|padrao ambiguo|plano de saida (que mostra|fechado)|proposta de arquivar|avaliacao da experiencia sem)'
 VERBOS_DOC = r'^(redigir|elaborar|emitir|publicar|preparar|montar|gerar|escrever|consolidar|formalizar|assinar|enviar|apresentar|documentar|lavrar|expedir|divulgar|comunicar|responder|registrar a ata|fechar o texto|revisar o texto)'
 
 def main():
@@ -61,7 +64,7 @@ def main():
             for e in j['etapas']:
                 for s in e.get('saidas', []):
                     total += 1; n = sa(s['o'].strip())
-                    hit = None if re.search(NAO_DOC, n) else next((t for t in TIPOS if re.search(t[5], n)), None)
+                    hit = None if (re.search(NAO_DOC, n) and not re.search(SEMPRE_DOC, n)) else next((t for t in TIPOS if re.search(t[5], n)), None)
                     if not hit: registros[s['o'].strip()] += 1; continue
                     ligadas += 1; t = cat[hit[0]]
                     t['origens'].append({'circulo': c, 'jornada': j['code'], 'etapa': e['n'], 'saida': s['o'], 'para': s.get('para', [])})

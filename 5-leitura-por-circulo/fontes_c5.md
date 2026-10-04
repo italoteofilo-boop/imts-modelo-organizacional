@@ -1,4 +1,4 @@
-# Fontes do Círculo 5 · Negócios — para conferência independente
+# Fontes do Círculo 5 · Negócios: para conferência independente
 
 
 ## apqc

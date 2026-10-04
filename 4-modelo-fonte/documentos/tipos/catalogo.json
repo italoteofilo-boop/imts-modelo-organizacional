@@ -5,9 +5,9 @@
   "tipos": 38,
   "tipos_com_origem": 36,
   "saidas_total": 690,
-  "saidas_ligadas": 169,
-  "saidas_registro_do_motor": 521,
-  "saidas_distintas_sem_tipo": 398,
+  "saidas_ligadas": 162,
+  "saidas_registro_do_motor": 528,
+  "saidas_distintas_sem_tipo": 405,
   "por_familia": {
    "contratual": 8,
    "proposta": 1,
@@ -24,7 +24,7 @@
    "externo": 18,
    "interno": 20
   },
-  "tarefas_documentais": 128
+  "tarefas_documentais": 127
  },
  "tipos": [
   {
@@ -210,35 +210,8 @@
    "modelo": "contratual",
    "alcance": "externo",
    "regra": "contrato de fornecedor|contrato de tecnologia",
-   "origens": [
-    {
-     "circulo": "c6",
-     "jornada": "IT-07",
-     "etapa": 3,
-     "saida": "Contrato de tecnologia para guardar",
-     "para": [
-      "Governança"
-     ]
-    },
-    {
-     "circulo": "c8",
-     "jornada": "GE-04",
-     "etapa": 2,
-     "saida": "Contrato de fornecedor para revisar e guardar",
-     "para": [
-      "Governança"
-     ]
-    }
-   ],
-   "tarefas": [
-    {
-     "jornada": "GE-04",
-     "etapa": 2,
-     "tarefa": 4,
-     "nome": "Emitir o pedido ao fornecedor e informar a data de entrega a quem pediu",
-     "exec": "R"
-    }
-   ],
+   "origens": [],
+   "tarefas": [],
    "ligacao": "heuristica"
   },
   {
@@ -379,18 +352,8 @@
    "familia": "contratual",
    "modelo": "contratual",
    "alcance": "externo",
-   "regra": "autorizac\\w* de uso da marca|uso da marca por terceiros",
+   "regra": "autorizac\\w* de uso da marca",
    "origens": [
-    {
-     "circulo": "c1",
-     "jornada": "ID-02",
-     "etapa": 4,
-     "saida": "Regra de uso da marca por terceiros",
-     "para": [
-      "Relações",
-      "Governança"
-     ]
-    },
     {
      "circulo": "c4",
      "jornada": "RE-06",
@@ -402,13 +365,6 @@
     }
    ],
    "tarefas": [
-    {
-     "jornada": "ID-02",
-     "etapa": 4,
-     "tarefa": 2,
-     "nome": "Montar o conjunto de padrões de cada círculo que executa",
-     "exec": "A"
-    },
     {
      "jornada": "RE-06",
      "etapa": 5,
@@ -500,7 +456,7 @@
    "familia": "proposta",
    "modelo": "proposta",
    "alcance": "externo",
-   "regra": "proposta (aprovada para envio|aceita|de renovacao)|modelos de proposta|proposta comercial",
+   "regra": "proposta (aprovada para envio|aceita|de renovacao)|proposta comercial",
    "origens": [
     {
      "circulo": "c5",
@@ -527,15 +483,6 @@
      "saida": "Proposta de renovação, expansão ou retenção",
      "para": [
       "etapa 2"
-     ]
-    },
-    {
-     "circulo": "c9",
-     "jornada": "GO-01",
-     "etapa": 3,
-     "saida": "Modelos de proposta e de contrato",
-     "para": [
-      "Negócios"
      ]
     }
    ],
@@ -817,15 +764,6 @@
      "para": [
       "etapa 2"
      ]
-    },
-    {
-     "circulo": "c9",
-     "jornada": "GO-04",
-     "etapa": 2,
-     "saida": "Certidões e documentos de habilitação em dia",
-     "para": [
-      "Negócios"
-     ]
     }
    ],
    "tarefas": [
@@ -834,13 +772,6 @@
      "etapa": 1,
      "tarefa": 2,
      "nome": "Preparar a resposta à cotação com o preço pela tabela e pela política, sem disputa",
-     "exec": "A"
-    },
-    {
-     "jornada": "GO-04",
-     "etapa": 2,
-     "tarefa": 1,
-     "nome": "Preparar o pedido, a renovação, a transferência ou a baixa",
      "exec": "A"
     }
    ],
@@ -963,15 +894,6 @@
       "etapa 3",
       "etapa 1",
       "Governança"
-     ]
-    },
-    {
-     "circulo": "c2",
-     "jornada": "ES-06",
-     "etapa": 3,
-     "saida": "Revisão aberta para decisão dos sócios: alvos, portfólio ou estratégia",
-     "para": [
-      "etapa 4"
      ]
     },
     {
@@ -1183,6 +1105,16 @@
    "regra": "alcadas|regra de uso|^regras? (vigente|aprovad)",
    "origens": [
     {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 4,
+     "saida": "Regra de uso da marca por terceiros",
+     "para": [
+      "Relações",
+      "Governança"
+     ]
+    },
+    {
      "circulo": "c9",
      "jornada": "GO-01",
      "etapa": 3,
@@ -1192,7 +1124,15 @@
      ]
     }
    ],
-   "tarefas": [],
+   "tarefas": [
+    {
+     "jornada": "ID-02",
+     "etapa": 4,
+     "tarefa": 2,
+     "nome": "Montar o conjunto de padrões de cada círculo que executa",
+     "exec": "A"
+    }
+   ],
    "ligacao": "heuristica"
   },
   {
@@ -2580,33 +2520,6 @@
      ]
     },
     {
-     "circulo": "c2",
-     "jornada": "ES-06",
-     "etapa": 3,
-     "saida": "Revisão aberta dos alvos",
-     "para": [
-      "ES-03"
-     ]
-    },
-    {
-     "circulo": "c2",
-     "jornada": "ES-06",
-     "etapa": 3,
-     "saida": "Revisão aberta do portfólio",
-     "para": [
-      "ES-02"
-     ]
-    },
-    {
-     "circulo": "c2",
-     "jornada": "ES-06",
-     "etapa": 3,
-     "saida": "Revisão aberta da estratégia",
-     "para": [
-      "ES-01"
-     ]
-    },
-    {
      "circulo": "c7",
      "jornada": "OP-05",
      "etapa": 2,
@@ -2649,15 +2562,6 @@
      "saida": "Critérios de auditoria e casos de teste",
      "para": [
       "Governança",
-      "Integração"
-     ]
-    },
-    {
-     "circulo": "c9",
-     "jornada": "GO-06",
-     "etapa": 3,
-     "saida": "Desvio de agente apontado pela auditoria",
-     "para": [
       "Integração"
      ]
     }
@@ -2892,8 +2796,27 @@
    "modelo": "oficio",
    "alcance": "externo",
    "regra": "pedido emitido ao fornecedor|ordem de compra",
-   "origens": [],
-   "tarefas": [],
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-04",
+     "etapa": 2,
+     "saida": "Pedido emitido ao fornecedor",
+     "para": [
+      "etapa 3",
+      "etapa 5"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GE-04",
+     "etapa": 2,
+     "tarefa": 4,
+     "nome": "Emitir o pedido ao fornecedor e informar a data de entrega a quem pediu",
+     "exec": "R"
+    }
+   ],
    "ligacao": "heuristica"
   },
   {
@@ -2904,6 +2827,15 @@
    "alcance": "externo",
    "regra": "resposta ao titular|pedido do titular cumprido",
    "origens": [
+    {
+     "circulo": "c4",
+     "jornada": "RE-03",
+     "etapa": 5,
+     "saida": "Pedido do titular cumprido, com a data",
+     "para": [
+      "Governança"
+     ]
+    },
     {
      "circulo": "c9",
      "jornada": "GO-07",
@@ -3128,7 +3060,7 @@
    "id": "declaracao",
    "nome": "Declaração",
    "familia": "certificado",
-   "modelo": "certificado",
+   "modelo": "oficio",
    "alcance": "externo",
    "regra": "^declaracao(?! de identidade)",
    "origens": [],
@@ -3200,6 +3132,7 @@
   "Catálogo de capacidades atualizado",
   "Catálogo de dados, com dono e classificação de cada dado",
   "Catálogo de jornadas atualizado",
+  "Certidões e documentos de habilitação em dia",
   "Cliente implantado e aceito, passado à entrega",
   "Clientes avisados da saída, com a transição combinada",
   "Compra recebida",
@@ -3225,6 +3158,8 @@
   "Conteúdo pronto para aprovação",
   "Conteúdo reunido por tema, com origem e data",
   "Contratação formalizada",
+  "Contrato de fornecedor para revisar e guardar",
+  "Contrato de tecnologia para guardar",
   "Contrato para conferir e guardar",
   "Contrato revisado",
   "Contratos afetados pela saída",
@@ -3262,6 +3197,7 @@
   "Desempenho dos fornecedores na entrega e na qualidade",
   "Desvio a corrigir no agente",
   "Desvio da previsão contra os alvos, com as ações",
+  "Desvio de agente apontado pela auditoria",
   "Desvio grave ou mudança de alvo apontados pelo ritual",
   "Desvios com causa concluída",
   "Desvios e decisões do ritual de acompanhamento",
@@ -3344,6 +3280,7 @@
   "Melhoria não feita, apontada ao executivo",
   "Melhorias escolhidas, com evidência e dono sugerido",
   "Modelo de negócio, preço-base e critério de validação",
+  "Modelos de proposta e de contrato",
   "Motivos de ganho e de perda de propostas",
   "Movimentação ou desligamento feito",
   "Movimento do período conciliado",
@@ -3422,8 +3359,6 @@
   "Pedido de titular analisado",
   "Pedido de titular, com a resposta decidida pela Governança",
   "Pedido de vaga, de movimentação ou de desligamento",
-  "Pedido do titular cumprido, com a data",
-  "Pedido emitido ao fornecedor",
   "Pedido, incidente ou risco de tecnologia",
   "Pedidos, reclamações e incidentes de clientes",
   "Pendência da saída da oferta encerrada",
@@ -3517,6 +3452,10 @@
   "Resposta à proposta de parceria",
   "Retomada das entregas do cliente que quitou o atraso",
   "Retorno sobre as indicações",
+  "Revisão aberta da estratégia",
+  "Revisão aberta do portfólio",
+  "Revisão aberta dos alvos",
+  "Revisão aberta para decisão dos sócios: alvos, portfólio ou estratégia",
   "Riscos avaliados, com o tratamento",
   "Roteiro do ritual e lista de indicações",
   "Saída executada",

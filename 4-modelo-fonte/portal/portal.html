@@ -1,0 +1,322 @@
+<title>Portal do Ecossistema IMTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="fonte-base" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+<style>
+/* Layout: faixa da marca da empresa no topo (cor vem da marca da contraparte), abas do que a organização acompanha, painel lateral para novo pedido. */
+:root {
+  --chao:#EEF0F2; --folha:#FFFFFF; --tinta:#16202A; --apoio:#56616C; --fio:#D5DAE0; --marca:#2E4A66; --marca-tinta:#FFFFFF;
+  --realce:#2E4A66; --realce-suave:#E3EAF2; --bom:#1D6B47; --bom-suave:#DCEFE4; --espera:#8A5A00; --espera-suave:#F6EBD3; --mal:#A8321E; --mal-suave:#F7E1DC;
+  --sombra:0 1px 2px rgba(10,20,30,.06), 0 4px 14px rgba(10,20,30,.06);
+  --texto:'Atkinson Hyperlegible', system-ui, sans-serif; --titulo:'Fraunces', Georgia, serif; --dados:ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --chao:#11161B; --folha:#1A2129; --tinta:#E8ECF0; --apoio:#9EA9B4; --fio:#2C3640; --realce:#9DB9D6; --realce-suave:#22303E;
+  --bom:#7CD3A0; --bom-suave:#1C3326; --espera:#E8C276; --espera-suave:#3A3020; --mal:#F2948A; --mal-suave:#3A2420; --sombra:0 1px 2px rgba(0,0,0,.4); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --chao:#11161B; --folha:#1A2129; --tinta:#E8ECF0; --apoio:#9EA9B4; --fio:#2C3640; --realce:#9DB9D6; --realce-suave:#22303E;
+  --bom:#7CD3A0; --bom-suave:#1C3326; --espera:#E8C276; --espera-suave:#3A3020; --mal:#F2948A; --mal-suave:#3A2420; --sombra:0 1px 2px rgba(0,0,0,.4); color-scheme: dark; }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html, body { background:var(--chao); }
+body { margin:0; color:var(--tinta); font-family:var(--texto); font-size:15px; line-height:1.45; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--realce); outline-offset:2px; }
+.faixa-marca { background:var(--marca); color:var(--marca-tinta); padding-block:18px 20px; padding-inline:max(16px, 4vw); display:flex; flex-wrap:wrap; gap:12px 20px; align-items:end; }
+.faixa-marca .quem-somos { margin-right:auto; min-width:0; }
+.faixa-marca .empresa { font-size:13px; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
+.faixa-marca h1 { font-family:var(--titulo); font-weight:600; font-size:clamp(22px, 3.2vw, 30px); line-height:1.15; margin:4px 0 0; text-wrap:balance; }
+.faixa-marca .org { font-size:14px; opacity:.9; margin-top:4px; }
+.entrar { display:flex; flex-direction:column; gap:4px; font-size:12px; letter-spacing:.04em; }
+.entrar select { padding:7px 10px; border-radius:8px; border:1px solid rgba(255,255,255,.45); background:rgba(255,255,255,.12); color:var(--marca-tinta); max-width:min(320px, 86vw); }
+.entrar select option { color:#16202A; background:#FFFFFF; }
+.aviso { padding-block:8px; padding-inline:max(16px, 4vw); font-size:13px; color:var(--apoio); border-bottom:1px solid var(--fio); background:var(--folha); display:flex; flex-wrap:wrap; gap:6px 14px; align-items:center; }
+.selo { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--espera-suave); color:var(--espera); white-space:nowrap; }
+.selo.vivo { background:var(--bom-suave); color:var(--bom); }
+.casca { padding-block:16px 40px; padding-inline:max(16px, 4vw); display:flex; flex-direction:column; gap:16px; max-width:1100px; }
+.barra { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.aba { border:1px solid var(--fio); background:var(--folha); border-radius:99px; padding:7px 15px; font-size:14px; }
+.aba[aria-selected="true"] { background:var(--tinta); color:var(--chao); border-color:var(--tinta); }
+.aba .n { font-size:12px; opacity:.75; margin-left:4px; font-variant-numeric:tabular-nums; }
+.btn { border:1px solid var(--fio); background:var(--folha); border-radius:10px; padding:8px 14px; font-size:14px; }
+.btn.prim { background:var(--marca); border-color:var(--marca); color:var(--marca-tinta); }
+.btn.perigo { border-color:var(--mal); color:var(--mal); }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.barra .btn.prim { margin-left:auto; }
+.lista { display:flex; flex-direction:column; gap:10px; }
+.item { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:14px 16px; display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 16px; align-items:start; }
+.item .t { font-weight:700; }
+.item .sub { font-size:13px; color:var(--apoio); overflow-wrap:anywhere; }
+.item .lado { display:flex; flex-direction:column; gap:6px; align-items:end; }
+.chip { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--chao); color:var(--apoio); white-space:nowrap; }
+.chip.bom { background:var(--bom-suave); color:var(--bom); } .chip.espera { background:var(--espera-suave); color:var(--espera); } .chip.mal { background:var(--mal-suave); color:var(--mal); }
+.chip.realce { background:var(--realce-suave); color:var(--realce); }
+.linha-tempo { grid-column:1 / -1; margin:6px 0 0; padding:0 0 0 14px; border-left:2px solid var(--fio); list-style:none; display:flex; flex-direction:column; gap:8px; }
+.linha-tempo li { position:relative; font-size:14px; }
+.linha-tempo li::before { content:''; position:absolute; left:-20px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--folha); border:2px solid var(--realce); }
+.linha-tempo li:last-child::before { background:var(--realce); }
+.linha-tempo .q { font-size:12px; color:var(--apoio); font-variant-numeric:tabular-nums; }
+details > summary { cursor:pointer; font-size:13px; color:var(--realce); }
+.acoes { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; }
+.cod { font-family:var(--dados); font-size:12px; }
+.vazio { background:var(--folha); border:1px dashed var(--fio); border-radius:12px; padding:16px; color:var(--apoio); font-size:14px; }
+.resposta { grid-column:1 / -1; background:var(--chao); border-radius:8px; padding:8px 10px; font-size:14px; }
+.painel { position:fixed; inset:0 0 0 auto; width:min(460px, 100%); background:var(--folha); border-left:1px solid var(--fio); box-shadow:-8px 0 24px rgba(0,0,0,.16);
+  padding:18px 20px calc(18px + env(safe-area-inset-bottom, 0px)); overflow-y:auto; display:flex; flex-direction:column; gap:14px; z-index:5; }
+.painel h2 { font-family:var(--titulo); font-weight:600; font-size:22px; line-height:1.2; margin:0; text-wrap:balance; }
+.painel .topo { display:flex; justify-content:space-between; gap:12px; align-items:start; }
+.painel p { margin:0; font-size:14px; color:var(--apoio); }
+.campo { display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--apoio); }
+.campo input, .campo select, .campo textarea { padding:9px 10px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); font-size:15px; }
+.campo textarea { min-height:110px; resize:vertical; }
+.recibos { position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); display:flex; flex-direction:column; gap:6px; z-index:6; max-width:min(440px, calc(100% - 32px)); }
+.recibo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--realce); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--sombra); }
+.recibo.feito { border-left-color:var(--bom); } .recibo.recusado { border-left-color:var(--mal); }
+.rodape { font-size:12px; color:var(--apoio); max-width:75ch; }
+@media (max-width: 640px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .barra .btn.prim { margin-left:0; } }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+
+<header class="faixa-marca" id="faixa">
+  <div class="quem-somos">
+    <div class="empresa" id="empresa">Ecossistema IMTS</div>
+    <h1 id="titulo">Portal de clientes e parceiros</h1>
+    <div class="org" id="org">Escolha quem entra para ver o que a organização acompanha.</div>
+  </div>
+  <label class="entrar" for="usuario">Entrar como (simulado)<select id="usuario"><option value="">carregando…</option></select></label>
+</header>
+<div class="aviso">
+  <span class="selo" id="fonte">Sem conexão</span>
+  <span>Protótipo com organizações, pessoas e datas simuladas. Em produção, cada pessoa entra pelo link enviado ao próprio e-mail e vê só o que é do seu perfil.</span>
+  <button class="btn" id="b-tema" type="button" style="padding:4px 10px;font-size:13px">Tema</button>
+</div>
+
+<main class="casca">
+  <div class="barra">
+    <div role="tablist" aria-label="O que você acompanha" style="display:contents">
+      <button class="aba" role="tab" id="t-andamentos" data-aba="andamentos" aria-controls="conteudo" aria-selected="true" tabindex="0">Andamentos<span class="n" id="n-andamentos"></span></button>
+      <button class="aba" role="tab" id="t-documentos" data-aba="documentos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Documentos<span class="n" id="n-documentos"></span></button>
+      <button class="aba" role="tab" id="t-pedidos" data-aba="pedidos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Pedidos<span class="n" id="n-pedidos"></span></button>
+      <button class="aba" role="tab" id="t-oportunidades" data-aba="oportunidades" aria-controls="conteudo" aria-selected="false" tabindex="-1" hidden>Oportunidades<span class="n" id="n-oportunidades"></span></button>
+    </div>
+    <button class="btn prim" id="b-novo" type="button" disabled>Novo pedido</button>
+  </div>
+  <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-andamentos"><p class="vazio">Conectando ao portal…</p></section>
+  <p class="rodape" id="rodape"></p>
+</main>
+<aside class="painel" id="painel" hidden role="dialog" aria-modal="true" aria-labelledby="p-titulo"></aside>
+<div class="recibos" id="recibos" aria-live="polite"></div>
+
+<script>
+const PROJETO = 'rzkfolkqdgtounqjjzss';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const lit = s => "'" + String(s).replace(/'/g, "''") + "'";
+const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+const dia = t => t ? new Date(t + (String(t).length === 10 ? 'T12:00:00' : '')).toLocaleDateString('pt-BR') : '';
+const TIPO = { chamado: 'Chamado', duvida: 'Dúvida', titular: 'Pedido de titular de dados (LGPD)', adesao: 'Adesão à ata de registro de preços',
+  oportunidade: 'Registro de oportunidade', aceite: 'Aceite de entrega', devolucao: 'Devolução de entrega' };
+const AJUDA = { chamado: 'Algo não funciona como deveria ou precisa de atendimento. O prazo de resposta aparece no acompanhamento.', duvida: 'Pergunta sobre o contrato, o serviço ou o portal. O prazo de resposta aparece no acompanhamento.',
+  titular: 'Direitos sobre os seus dados pessoais. Confirmação e acesso: até 15 dias (Lei 13.709/2018, art. 19, II). Os demais direitos seguem o prazo informado no acompanhamento.', adesao: 'Pedido para aderir à ata de registro de preços vigente.',
+  oportunidade: 'Registre o cliente final e o assunto. O registro aceito dá exclusividade pelo prazo definido pela empresa, mostrado na aba Oportunidades.' };
+const SIT = s => ({ recebido: 'espera', em_atendimento: 'realce', respondido: 'bom', encerrado: '', recusado: 'mal', registrada: 'realce', em_negociacao: 'espera', ganha: 'bom', perdida: 'mal', expirada: '' }[s] ?? '');
+const AVISOS = { server_not_connected: 'o conector do Supabase não está adicionado', needs_reauth: 'o conector do Supabase precisa ser reconectado',
+  not_in_manifest: 'a leitura ao vivo não foi permitida para esta página', blocked_by_policy: 'bloqueado pela política da organização', server_unavailable: 'o Supabase não respondeu a tempo' };
+let mcp = null, downloads = null, usuarios = [], eu = null, dados = null, aba = 'andamentos', voltarFoco = null;
+
+function lerPayload(p) {
+  const s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
+  const m = s.match(/<untrusted-data-[^>]*>\s*([\s\S]*?)\s*<\/untrusted-data/);
+  let linhas; try { linhas = JSON.parse(m ? m[1] : s); } catch (e) { throw { code: 'formato', message: s.slice(0, 300) }; }
+  const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
+  if (v === undefined) throw { code: 'formato' };
+  return typeof v === 'string' && /^[\[{]/.test(v) ? JSON.parse(v) : v;
+}
+async function sql(q) {
+  const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false });
+  const s = r?.payload ?? r?.content?.[0]?.text;
+  if (r?.isError || /ERROR:/.test(String(s ?? ''))) throw { message: String(s ?? r?.error ?? 'erro') };
+  return lerPayload(s);
+}
+function motivo(e) {
+  const m = String(e?.message || '');
+  const x = m.match(/ERROR:\s*P0001:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*[0-9A-Z]{5}:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*([^\n"\\]+)/);
+  return x ? x[1].trim() : (AVISOS[e?.code] || m || e?.code || 'erro');
+}
+function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 8000); }
+
+// ---------- marca da empresa ----------
+function contraste(hex) { const h = (hex || '').replace('#', ''); if (h.length !== 6) return '#FFFFFF';
+  const [r, g, b] = [0, 2, 4].map(i => parseInt(h.slice(i, i + 2), 16) / 255).map(c => c <= .03928 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4);
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) > 0.4 ? '#16202A' : '#FFFFFF'; }
+const FONTES_OK = /^[A-Za-z0-9 ]{2,40}$/;
+function aplicarMarca(m) {
+  const raiz = document.documentElement.style;
+  const cor = m?.cores?.primaria;
+  if (cor && /^#[0-9A-Fa-f]{6}$/.test(cor)) { raiz.setProperty('--marca', cor); raiz.setProperty('--marca-tinta', contraste(cor)); }
+  else { raiz.removeProperty('--marca'); raiz.removeProperty('--marca-tinta'); }
+  const f = m?.tipografia?.texto, d = m?.tipografia?.display;
+  const familias = [...new Set([f, d].filter(x => x && FONTES_OK.test(x)))];
+  if (familias.length) {
+    let l = document.getElementById('fonte-marca');
+    if (!l) { l = document.createElement('link'); l.id = 'fonte-marca'; l.rel = 'stylesheet'; document.head.appendChild(l); }
+    l.href = 'https://fonts.googleapis.com/css2?' + familias.map(x => 'family=' + x.replace(/ /g, '+') + ':wght@400;600;700').join('&') + '&display=swap';
+    raiz.setProperty('--texto', `'${f || d}', 'Atkinson Hyperlegible', system-ui, sans-serif`);
+    raiz.setProperty('--titulo', `'${d || f}', 'Fraunces', Georgia, serif`);
+  } else { raiz.removeProperty('--texto'); raiz.removeProperty('--titulo'); }
+}
+
+// ---------- visões ----------
+function vAndamentos() {
+  const as = dados.andamentos || [];
+  if (!as.length) return '<p class="vazio">Nada em andamento para o seu perfil. Quando um processo seu avançar, a etapa aparece aqui com data e próxima ação.</p>';
+  return `<div class="lista">${as.map(a => {
+    const aguarda = a.acao === 'aceite' && !a.concluido && !a.aceite;
+    const estadoChip = a.concluido ? '<span class="chip bom">concluído</span>' : aguarda ? '<span class="chip espera">aguardando você</span>' : '<span class="chip realce">em andamento</span>';
+    return `<article class="item">
+      <div><div class="t">${esc(a.assunto || a.jornada)}</div><div class="sub">${esc(a.estado)} · referência ${esc(a.ref)}</div></div>
+      <div class="lado">${estadoChip}<span class="sub">${quando(a.atualizado)}</span></div>
+      ${a.aceite ? `<div class="resposta">${a.aceite.tipo === 'aceite' ? 'Aceite registrado' : 'Devolução registrada'} em ${quando(a.aceite.em)} · ${esc((a.aceite.situacao || '').replace(/_/g, ' '))}</div>` : ''}
+      ${aguarda && dados.pode?.aceite ? `<div class="acoes"><button class="btn prim" type="button" data-aceite="${a.ref}" data-t="aceite">Aceitar a entrega</button><button class="btn perigo" type="button" data-aceite="${a.ref}" data-t="devolucao">Devolver com motivo</button></div>` : ''}
+      <details style="grid-column:1 / -1"><summary>Linha do tempo (${(a.linha || []).length} ${(a.linha || []).length === 1 ? 'etapa' : 'etapas'})</summary>
+        <ol class="linha-tempo">${(a.linha || []).map(l => `<li><div>${esc(l.estado)}</div><div class="sub">${esc(l.mensagem)}</div><div class="q">${quando(l.em)}</div></li>`).join('')}</ol></details>
+    </article>`; }).join('')}</div>`;
+}
+function vDocumentos() {
+  const ds = dados.documentos || [];
+  if (!ds.length) return '<p class="vazio">Nenhum documento publicado para o seu perfil. Só chegam aqui documentos aprovados em duas etapas (análise crítica e aprovação) pela empresa.</p>';
+  return `<div class="lista">${ds.map(d => `<article class="item">
+      <div><div class="t">${esc(d.titulo)}</div><div class="sub">${esc(d.tipo)} · ${d.paginas} ${d.paginas === 1 ? 'página' : 'páginas'} · publicado em ${quando(d.publicado_em)}</div>
+        <div class="sub">Impressão digital SHA-256: <span class="cod">${esc(String(d.hash).slice(0, 16))}…</span></div></div>
+      <div class="lado"><button class="btn" type="button" data-baixar="${d.emissao}" data-nome="${esc(d.titulo)}" ${downloads ? '' : 'disabled title="Download indisponível nesta visualização"'}>Baixar PDF</button></div>
+    </article>`).join('')}</div>`;
+}
+function vPedidos() {
+  const ps = dados.pedidos || [];
+  if (!ps.length) return '<p class="vazio">Nenhum pedido ainda. Use “Novo pedido” para abrir um chamado, tirar uma dúvida ou exercer um direito sobre seus dados pessoais.</p>';
+  return `<div class="lista">${ps.map(p => `<article class="item">
+      <div><div class="t">${esc(p.assunto)}</div><div class="sub">${esc(TIPO[p.tipo] || p.tipo)} · nº ${p.id} · aberto em ${quando(p.criado_em)}</div></div>
+      <div class="lado"><span class="chip ${SIT(p.situacao)}">${esc(String(p.situacao).replace(/_/g, ' '))}</span><span class="sub">prazo ${quando(p.prazo)}</span></div>
+      ${p.resposta ? `<div class="resposta"><strong>Resposta:</strong> ${esc(p.resposta)}</div>` : ''}
+    </article>`).join('')}</div>`;
+}
+function vOportunidades() {
+  const os = dados.oportunidades || [];
+  if (!os.length) return '<p class="vazio">Nenhuma oportunidade registrada. Registre o cliente final pelo “Novo pedido”: o registro aceito garante exclusividade pelo prazo combinado.</p>';
+  return `<div class="lista">${os.map(o => `<article class="item">
+      <div><div class="t">${esc(o.cliente_final)}</div><div class="sub">Registro nº ${o.id}</div></div>
+      <div class="lado"><span class="chip ${SIT(o.situacao)}">${esc(String(o.situacao).replace(/_/g, ' '))}</span><span class="sub">exclusiva até ${dia(o.exclusiva_ate)}</span></div>
+    </article>`).join('')}</div>`;
+}
+function desenhar() {
+  for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
+  $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
+  if (!dados) return;
+  const c = dados.contraparte || {};
+  aplicarMarca(c.marca);
+  $('empresa').textContent = c.marca?.nome || c.empresa || 'Ecossistema IMTS';
+  $('titulo').textContent = c.tipo === 'parceiro' ? 'Portal do parceiro' : 'Portal do cliente';
+  $('org').textContent = `${c.nome || ''} · ${dados.eu?.nome || ''} (perfil ${dados.eu?.perfil || ''})`;
+  $('t-oportunidades').hidden = !dados.pode?.oportunidade;
+  if (aba === 'oportunidades' && !dados.pode?.oportunidade) aba = 'andamentos';
+  $('n-andamentos').textContent = (dados.andamentos || []).length || '';
+  $('n-documentos').textContent = (dados.documentos || []).length || '';
+  $('n-pedidos').textContent = (dados.pedidos || []).length || '';
+  $('n-oportunidades').textContent = (dados.oportunidades || []).length || '';
+  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, pedidos: vPedidos, oportunidades: vOportunidades }[aba]();
+  $('b-novo').disabled = false;
+  $('rodape').textContent = 'Você vê só o que foi publicado para a sua organização e o seu perfil. Mudanças internas da empresa não aparecem aqui; cada etapa visível tem título e texto aprovados para o público externo.';
+}
+
+// ---------- ações ----------
+function fechar() { $('painel').hidden = true; $('painel').innerHTML = ''; if (voltarFoco && document.contains(voltarFoco)) voltarFoco.focus(); voltarFoco = null; }
+function abrirPainel(html) { $('painel').innerHTML = html; $('painel').hidden = false; const f = $('painel').querySelector('select,input,textarea'); (f || $('painel')).focus(); $('p-fechar').onclick = fechar; const c = $('p-cancelar'); if (c) c.onclick = fechar; }
+function tiposPermitidos() { const p = dados.pode || {}; return ['chamado', 'duvida', 'titular'].concat(p.adesao ? ['adesao'] : [], p.oportunidade ? ['oportunidade'] : []); }
+function abrirNovo() {
+  const ts = tiposPermitidos();
+  abrirPainel(`<div class="topo"><h2 id="p-titulo">Novo pedido</h2><button class="btn" type="button" id="p-fechar">Fechar</button></div>
+    <p>Quem recebe o pedido é a área responsável na empresa; o prazo aparece no acompanhamento.</p>
+    <form id="f-novo" style="display:flex;flex-direction:column;gap:12px">
+      <label class="campo" for="f-tipo">Tipo<select id="f-tipo">${ts.map(t => `<option value="${t}">${esc(TIPO[t])}</option>`).join('')}</select></label>
+      <p id="f-ajuda"></p>
+      <label class="campo" for="f-cliente" id="l-cliente" hidden>Cliente final<input id="f-cliente" maxlength="200" placeholder="nome do órgão ou da empresa"></label>
+      <label class="campo" for="f-assunto">Assunto<input id="f-assunto" maxlength="200" required></label>
+      <label class="campo" for="f-ref">Referência (opcional)<select id="f-ref"><option value="">nenhuma</option>${(dados.andamentos || []).map(a => `<option value="${a.ref}">${esc(a.assunto || a.jornada)} · ${a.ref}</option>`).join('')}</select></label>
+      <label class="campo" for="f-texto">Descrição<textarea id="f-texto" maxlength="4000" required></textarea></label>
+      <div class="acoes"><button class="btn prim" type="submit">Enviar pedido</button><button class="btn" type="button" id="p-cancelar">Cancelar</button></div></form>`);
+  const ajusta = () => { const t = $('f-tipo').value; $('f-ajuda').textContent = AJUDA[t] || ''; $('l-cliente').hidden = t !== 'oportunidade'; };
+  $('f-tipo').onchange = ajusta; ajusta();
+  $('f-novo').onsubmit = ev => { ev.preventDefault(); enviar($('f-tipo').value, $('f-assunto').value, $('f-texto').value, $('f-ref').value || null, $('f-cliente').value || null); };
+}
+function abrirAceite(ref, tipo) {
+  const a = (dados.andamentos || []).find(x => String(x.ref) === String(ref)); if (!a) return;
+  const devolve = tipo === 'devolucao';
+  abrirPainel(`<div class="topo"><h2 id="p-titulo">${devolve ? 'Devolver a entrega' : 'Aceitar a entrega'}</h2><button class="btn" type="button" id="p-fechar">Fechar</button></div>
+    <p>${esc(a.assunto)} · referência ${esc(a.ref)}. ${devolve ? 'Diga o que precisa ser corrigido; a equipe responde no prazo.' : 'O aceite fica registrado com data e o seu perfil.'}</p>
+    <form id="f-ac" style="display:flex;flex-direction:column;gap:12px">
+      <label class="campo" for="f-obs">${devolve ? 'Motivo da devolução' : 'Observação (opcional)'}<textarea id="f-obs" maxlength="4000" ${devolve ? 'required' : ''}></textarea></label>
+      <div class="acoes"><button class="btn ${devolve ? 'perigo' : 'prim'}" type="submit">${devolve ? 'Devolver' : 'Registrar aceite'}</button><button class="btn" type="button" id="p-cancelar">Cancelar</button></div></form>`);
+  $('f-ac').onsubmit = ev => { ev.preventDefault();
+    enviar(tipo, (devolve ? 'Devolução: ' : 'Aceite: ') + (a.assunto || a.jornada), $('f-obs').value.trim() || 'Aceite sem observações.', a.ref, null); };
+}
+async function enviar(tipo, assunto, texto, ref, cliente) {
+  const b = $('painel').querySelector('button[type="submit"]'); if (b) b.disabled = true;
+  try {
+    const id = await sql(`select ext.pedir_como(${lit(eu)}::uuid, ${lit(tipo)}, ${lit(assunto)}, ${lit(texto)}, ${ref ? Number(ref) : 'null'}, ${cliente ? lit(cliente) : 'null'}) as p`);
+    recibo('feito', `Pedido nº ${id} registrado (${TIPO[tipo].toLowerCase()}). Acompanhe na aba Pedidos.`);
+    fechar(); await carregar(); if (!['aceite', 'devolucao'].includes(tipo)) { aba = tipo === 'oportunidade' ? 'oportunidades' : 'pedidos'; desenhar(); }
+  } catch (e) { recibo('recusado', 'Não foi registrado: ' + motivo(e)); if (b) b.disabled = false; }
+}
+async function baixar(emissao, nome, botao) {
+  botao.disabled = true;
+  try {
+    const b64 = String(await sql(`select ext.documento_pdf_como(${lit(eu)}::uuid, ${Number(emissao)}) as p`)).replace(/\s+/g, '');
+    const bin = atob(b64), bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    await downloads.save({ filename: (nome || 'documento').replace(/[\\/:*?"<>|]+/g, ' ').slice(0, 120) + '.pdf', data: new Blob([bytes]) });
+    recibo('feito', 'Documento salvo.');
+  } catch (e) { if (e?.code !== 'declined') recibo('recusado', 'Não baixou: ' + motivo(e)); }
+  finally { botao.disabled = false; }
+}
+
+async function carregar() { dados = await sql(`select ext.portal_como(${lit(eu)}::uuid) as p`); desenhar(); }
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.aba) { aba = t.dataset.aba; desenhar(); return; }
+  if (!t.closest('#painel')) voltarFoco = t;
+  if (t.id === 'b-novo') abrirNovo();
+  else if (t.dataset.aceite) abrirAceite(t.dataset.aceite, t.dataset.t);
+  else if (t.dataset.baixar) baixar(t.dataset.baixar, t.dataset.nome, t);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !$('painel').hidden) { fechar(); return; }
+  if (e.key === 'Tab' && !$('painel').hidden) {
+    const fs = [...$('painel').querySelectorAll('button,input,select,textarea,summary')].filter(x => !x.disabled && !x.closest('[hidden]'));
+    if (fs.length && e.shiftKey && document.activeElement === fs[0]) { e.preventDefault(); fs.at(-1).focus(); }
+    else if (fs.length && !e.shiftKey && document.activeElement === fs.at(-1)) { e.preventDefault(); fs[0].focus(); }
+  }
+  const t = e.target.closest?.('.aba');
+  if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
+    const abas = [...document.querySelectorAll('.aba')].filter(x => !x.hidden), i = abas.indexOf(t);
+    const j = e.key === 'Home' ? 0 : e.key === 'End' ? abas.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
+    e.preventDefault(); aba = abas[j].dataset.aba; desenhar(); abas[j].focus();
+  }
+});
+$('usuario').onchange = async e => { eu = e.target.value; aba = 'andamentos'; $('conteudo').innerHTML = '<p class="vazio">Carregando…</p>';
+  try { await carregar(); } catch (er) { recibo('recusado', 'Não carregou: ' + motivo(er)); } };
+$('b-tema').onclick = () => { const r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme = escuro ? 'light' : 'dark'; };
+
+(async () => {
+  [mcp, downloads] = await Promise.all([window.claude?.use?.('mcp').catch(() => null), window.claude?.use?.('downloads').catch(() => null)]);
+  if (!mcp) { $('conteudo').innerHTML = '<p class="vazio">Este portal lê o Supabase pelo conector da sua conta. Adicione ou reconecte o conector do Supabase e abra a página de novo.</p>'; $('usuario').innerHTML = '<option value="">sem conexão</option>'; return; }
+  try {
+    usuarios = await sql('select ext.usuarios_simulados() as p');
+    $('usuario').innerHTML = usuarios.map(u => `<option value="${esc(u.id)}">${esc(u.nome)} · ${esc(u.contraparte)}</option>`).join('');
+    eu = usuarios.find(u => u.tipo === 'cliente' && u.perfil === 'fiscal')?.id || usuarios[0]?.id;
+    $('usuario').value = eu;
+    $('fonte').textContent = 'Ao vivo · Supabase'; $('fonte').classList.add('vivo');
+    await carregar();
+  } catch (e) { $('conteudo').innerHTML = `<p class="vazio">O portal não carregou: ${esc(motivo(e))}.</p>`; }
+})();
+</script>

@@ -99,7 +99,7 @@ begin
   upd := jsonb_build_object('update_id', 12, 'message', jsonb_build_object('message_id', 20, 'from', jsonb_build_object('id', tg1), 'chat', jsonb_build_object('id', -55, 'type', 'group'), 'text', '/quadro'));
   r := rt.receber_update(upd, true);
   if (select texto from rt.fila_envio where id = (r->>'fila')::bigint) not like 'Este grupo ainda não está ligado%' then raise exception 'FALHA T12: grupo sem motor'; end if;
-  ok := false; begin perform rt.receber_update(jsonb_set(upd, '{message,chat}', jsonb_build_object('id', tg1, 'type', 'private')), false); exception when others then ok := true; end;
+  ok := false; begin perform rt.receber_update(jsonb_set(jsonb_set(upd, '{message,chat}', jsonb_build_object('id', tg1, 'type', 'private')), '{update_id}', '13'), false); exception when others then ok := true; end;
   if not ok then raise exception 'FALHA T12: misturou simulado e real'; end if;
 
   return 'TELEGRAM: 12 testes, 0 falhas';

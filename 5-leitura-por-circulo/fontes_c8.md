@@ -1,4 +1,4 @@
-# Fontes do Círculo 8 · Gestão — para conferência independente
+# Fontes do Círculo 8 · Gestão: para conferência independente
 
 
 ## apqc

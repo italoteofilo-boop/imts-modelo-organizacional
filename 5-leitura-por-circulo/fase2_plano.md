@@ -1,6 +1,6 @@
 # Fase 2 · Plano para aprovação
 
-Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqui foi construído. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
+Plano de 03/10/2026; o andamento está na seção 7. Traz as suas decisões das 17:42, 18:29 e 18:34. Cada item tem o que entra, o que sai e quem decide. Os fatos externos têm fonte no fim; o que não tem fonte é proposta minha.
 
 ## 1. Decisões suas incorporadas
 
@@ -35,7 +35,7 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 | Bots não veem mensagens de outros bots, em nenhum modo | Agentes não se coordenam pelo grupo. O motor orquestra, e cada grupo tem um bot de entrada |
 | Em grupo, o bot em modo privacidade só recebe comandos, menções e respostas a ele | O bot de entrada é administrador do grupo, ou as tarefas são abertas por comando |
 | As atualizações ficam no servidor no máximo 24 horas | O motor consome sem parar (webhook) e grava tudo na nossa base antes de qualquer outra coisa |
-| Um bot só apaga mensagens enviadas há menos de 48 horas | Autodestruição feita pelo bot tem de rodar antes de 48 horas. O temporizador nativo do chat (24 horas ou 7 dias, desde 2021) é configurado pelo administrador |
+| Um bot só apaga mensagens enviadas há menos de 48 horas | Autodestruição feita pelo bot tem de rodar antes de 48 horas. O temporizador nativo do chat (24 horas ou 7 dias; opções vistas em 2021, blog do Telegram, 23/02/2021) é configurado pelo administrador |
 | Limites de envio: 1 mensagem por segundo por chat, 20 por minuto por grupo, cerca de 30 por segundo no total | Fila de envio no motor; avisos em massa vão por resumo, não um a um |
 | O Telegram tem ambiente de teste próprio para bots e usuários | Os usuários simulados rodam lá, sem misturar com o ambiente real |
 
@@ -45,17 +45,17 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 - Aprovações de pagamento (GE-04, GE-05) têm confirmação fora do Telegram, para manter a segregação.
 
 **Armazenamento e anonimização (LGPD):**
-- Na nossa base, a identidade é pseudonimizada. A chave que liga o pseudônimo à pessoa fica separada, em ambiente controlado (art. 13, § 4º). Dado pseudonimizado continua sendo dado pessoal.
+- Na nossa base, a identidade é pseudonimizada. A chave que liga o pseudônimo à pessoa fica separada, em ambiente controlado (art. 13, § 4º). Na nossa interpretação do art. 12 e do art. 13, § 4º, dado pseudonimizado continua sendo dado pessoal; a lei não diz isso com essas palavras.
 - Para ML e para o painel agregado, o dado é anonimizado. Ele só deixa de ser dado pessoal se a anonimização não puder ser revertida com meios razoáveis (art. 12).
 
 ## 5. Entregas
 
 | # | Entrega | O que é | Depende de |
 | --- | --- | --- | --- |
-| E0 | Runtime dos runtimes | Plano de controle acima dos nove motores: registra cada motor e a versão dele; distribui as atualizações do modelo-base; leva as 410 trocas de um círculo a outro; é a porta única do Telegram; junta os eventos para o painel e o ML; acompanha saúde e custo | — |
-| E1 | Registro de eventos | Cada tarefa executada vira um evento: jornada, etapa, tarefa, raia, executor, modo, início, fim, resultado e marca simulado ou real. Fica no Supabase, ao lado do modelo | — |
+| E0 | Runtime dos runtimes | Plano de controle acima dos nove motores: registra cada motor e a versão dele; distribui as atualizações do modelo-base; leva as 411 trocas de um círculo a outro; é a porta única do Telegram; junta os eventos para o painel e o ML; acompanha saúde e custo | não há |
+| E1 | Registro de eventos | Cada tarefa executada vira um evento: jornada, etapa, tarefa, raia, executor, modo, início, fim, resultado e marca simulado ou real. Fica no Supabase, ao lado do modelo | não há |
 | E2 | Usuários simulados | Uma pessoa simulada por papel de raia (sócios, executivo, Administrador do IMTS.OS, líderes, pessoas dos círculos, assessorias), com contas no ambiente de teste do Telegram | E1 |
-| E3 | Instruções de trabalho | Uma instrução por jornada (73), geradas da fonte do modelo: impressa (PDF) e digital (página). Mesma fonte, nenhuma divergência | — |
+| E3 | Instruções de trabalho | Uma instrução por jornada (75), geradas da fonte do modelo: impressa (PDF) e digital (página). Mesma fonte, nenhuma divergência | não há |
 | E4 | Modelo-base e motor piloto | O modelo-base dos motores e o primeiro motor, que executa as jornadas de um círculo. Piloto: Identidade (5 jornadas, você é o líder). É o G7 | E1, sua escolha da tecnologia do motor |
 | E5 | Canal Telegram | Bot de entrada por motor, webhook, fila de envio, autodestruição e gravação na base | E1, E4 |
 | E6 | Painel | Visão de toda a operação: por círculo, jornada, etapa e alçada; trocas entre círculos; modo de execução; saúde das DKPs; desempenho dos modelos | E1 |
@@ -105,7 +105,7 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 | Entrega | Situação |
 | --- | --- |
 | E0 Runtime dos runtimes | Pronto. Publicou a versão 2026-10-03.2 do modelo-base e a aplicou nos nove motores, com os testes de cada círculo verdes |
-| G7 Tarefas ligadas a sistemas | As 1.586 tarefas ligadas a oito sistemas: canal das pessoas, agentes, automações, trocas, assessorias, ERP contábil, emissor fiscal e bancos, todos com adaptador simulado e contrato de interface |
+| G7 Tarefas ligadas a sistemas | As 1.586 tarefas ligadas a 9 sistemas: canal das pessoas, agentes, automações, trocas, assessorias, ERP contábil, emissor fiscal e bancos, com adaptador simulado e contrato de interface, e o motor-documental (21 tarefas) |
 | E1 Registro de eventos | Pronto, com os eventos de cartão, conversa e titular |
 | E2 Usuários simulados | 61 na base, com id fictício de Telegram para a simulação. Falta o bot no ambiente de teste (token) |
 | E3 Instruções de trabalho | Refeitas para 75 jornadas: 75 PDFs (as 1.586 tarefas conferidas nos PDFs) e página digital com 672 ligações |
@@ -116,12 +116,12 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 | E8 ML | Modelos retreinados com os nove motores (versão 2026-10-03.2), fora de uso: dado simulado |
 | E9 Conversa | Pronta sobre o Telegram: comandos, botões e texto livre que procura a jornada existente |
 | E10 Os outros oito motores | Os nove em piloto, cada um com a sua configuração; 10.215 execuções, 211.066 eventos, 0 erros; 1.586 de 1.586 tarefas executadas; simulação contínua a cada 5 minutos |
-| E11 Mesa de trabalho | Pronta; acessibilidade WCAG 2.2 AA sem violação no axe-core |
+| E11 Mesa de trabalho | Pronta; sem violação nas regras automáticas do axe-core (níveis A e AA), a 1.280 px; a conferência manual de acessibilidade é parcial (requisitos_acessibilidade.md) |
 | Acesso e multiempresa | Login, permissões, papéis incompatíveis barrados, direitos do titular (LGPD, art. 18): 10 testes verdes |
-| E12 Motor documental | Pronto no protótipo. Catálogo de 38 tipos em 10 famílias, ligado a 169 saídas e a 106 tarefas do modelo (por regra de texto, para revisão da ID-04). Quatro pacotes de marca, dez modelos, regra do terço automática e gates no PDF. Fila, worker, emissão registrada com hash e decisão em duas mãos no esquema doc. Ponta a ponta conferida: pedido no Supabase, emissão pelo worker, PDF e HTML gravados com o hash conferido. 21 automações passaram ao sistema motor-documental. 15 testes do motor e 8 no Supabase |
-| E13 Administração geral | Pronta. 16 conexões e 15 parâmetros com destino, validação, histórico e duas mãos nos sensíveis. Verificação de saúde a cada 30 minutos (SQL, Vault e HTTP pelo pg_net): 7 saudáveis, 1 falha real (token do bot ausente), 8 pendentes ou simuladas. Página ao vivo pelo conector do Supabase. 9 testes no Supabase |
+| E12 Motor documental | Pronto no protótipo. Catálogo de 38 tipos em 10 famílias, ligado a 162 saídas e a 127 tarefas do modelo (por regra de texto, para revisão da ID-04). Quatro pacotes de marca, dez modelos, regra do terço automática e gates no PDF. Fila, worker, emissão registrada com hash e decisão em duas mãos no esquema doc. Ponta a ponta conferida: pedido no Supabase, emissão pelo worker, PDF e HTML gravados com o hash conferido. 21 automações passaram ao sistema motor-documental. 30 testes do motor e 8 no Supabase |
+| E13 Administração geral | Pronta. 16 conexões e 19 parâmetros (eram 15 às 10h) com destino, validação, histórico e duas mãos nos sensíveis. Verificação de saúde a cada 30 minutos (SQL, Vault e HTTP pelo pg_net): 7 saudáveis, 1 falha real (token do bot ausente), 8 pendentes ou simuladas. Página ao vivo pelo conector do Supabase. 9 testes no Supabase |
 
-**Testes no Supabase:** 70 verdes (runtime 10, motor 9, Mesa 12, Telegram 12, acesso 10, documental 8, administração 9; o documental e a administração rodam em chamadas separadas), mais os 15 do motor documental, os testes do modelo (testar.py: nove círculos, 411 trocas, 20 alçadas) e do simulador (6).
+**Testes no Supabase:** 102 verdes em 04/10/2026, rodados por `select adm.testar_tudo()`, que não grava nada (runtime 10, motor 9, Mesa 12, Telegram 12, acesso 10, documental 8, administração 10, externo 10, agentes 10, segurança 11), mais os 30 do motor documental, os testes do modelo (testar.py: nove círculos, 411 trocas, 20 alçadas) e do simulador (6).
 
 **O que fica de fora do meu alcance:** o token do bot de teste (você, no BotFather); o termo do art. 33 (Governança); os gates de implantação com dado real (G1 a G9); a escolha do sistema contábil e fiscal e dos sistemas reais de cada adaptador; o código do contract_engine e do motor de propostas, para absorver no motor único; os arquivos da fonte Nexa; o manual da marca TRON; a razão social e o CNPJ da IMTS; a conexão do Drive da IMTS e da DocuSign; o serviço do worker em produção; a hospedagem do Mini App: precisa de um endereço público, e conferi em 03/10/2026 que o Supabase entrega HTML de Edge Function como texto simples no domínio padrão, então ele não serve para isso sem domínio próprio.
 

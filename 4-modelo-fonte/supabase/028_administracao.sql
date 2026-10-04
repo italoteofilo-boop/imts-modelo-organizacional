@@ -52,10 +52,10 @@ create or replace function adm._quem(p_como uuid) returns uuid language plpgsql 
 declare v uuid := rt.eu();
 begin
   if v is null then
-    if coalesce(nullif(current_setting('request.jwt.claim.role', true), ''), 'service_role') <> 'service_role' then raise exception 'sem identidade'; end if;
+    if not rt.chamada_servico() then raise exception 'sem identidade'; end if;
     v := p_como;
   end if;
-  if v is null or not rt.pode(v, null, null, 'administrar') then raise exception 'sem acesso de administrar'; end if;
+  if v is null or not rt.pode_estrito(v, null, null, 'administrar') then raise exception 'sem acesso de administrar'; end if;
   return v;
 end $$;
 
@@ -208,8 +208,8 @@ end $$;
 
 create or replace function adm.painel() returns jsonb language plpgsql stable security definer set search_path = '' as $$
 begin
-  if rt.eu() is not null and not rt.pode(rt.eu(), null, null, 'administrar') then raise exception 'sem acesso de administrar'; end if;
-  if rt.eu() is null and coalesce(nullif(current_setting('request.jwt.claim.role', true), ''), 'service_role') <> 'service_role' then raise exception 'sem identidade'; end if;
+  if rt.eu() is not null and not rt.pode_estrito(rt.eu(), null, null, 'administrar') then raise exception 'sem acesso de administrar'; end if;
+  if rt.eu() is null and not rt.chamada_servico() then raise exception 'sem identidade'; end if;
   return jsonb_build_object(
     'gerado_em', now(),
     'resumo', jsonb_build_object(
@@ -250,8 +250,6 @@ on conflict (codigo) do nothing;
 -- Parâmetros: cada um com o destino onde vale; o valor inicial é o que roda hoje ----------------------------------------------------
 insert into adm.parametro (chave, escopo, descricao, tipo, valor, padrao, validacao, sensivel, destinos, fonte) values
  ('telegram.autodestruicao_horas', 'telegram', 'Horas até o bot apagar a mensagem enviada (o Telegram só deixa apagar até 48 h)', 'inteiro', '47', '47', '{"min":1,"max":47}', true, '{rt.config:autodestruicao_horas}', 'rt.config; limite do deleteMessage'),
- ('telegram.canal_padrao', 'telegram', 'Canal padrão das interações com pessoas', 'texto', '"telegram"', '"telegram"', '{"opcoes":["telegram","web"]}', false, '{rt.config:canal_padrao}', 'decisão de 03/10/2026, 17:42'),
- ('telegram.fora_do_telegram', 'telegram', 'O que nunca passa pelo Telegram', 'lista', '["senhas, chaves e códigos", "relatos da GO-09", "confirmação de pagamento"]', '["senhas, chaves e códigos", "relatos da GO-09", "confirmação de pagamento"]', '{}', true, '{rt.config:fora_do_telegram}', 'plano da fase 2, seção 4'),
  ('telegram.manutencao_minutos', 'telegram', 'Intervalo da manutenção do canal (fila de envio e autodestruição)', 'inteiro', '10', '10', '{"min":1,"max":59}', false, '{cron:imts-telegram-manutencao}', '021'),
  ('simulacao.intervalo_minutos', 'simulação', 'Intervalo da simulação contínua (uma execução por vez)', 'inteiro', '5', '5', '{"min":1,"max":59}', false, '{cron:imts-simulacao-continua,rt.config:simulacao_continua_minutos}', 'escolha de 03/10/2026, 21:05, por custo'),
  ('simulacao.retencao_dias', 'simulação', 'Dias que os dados simulados ficam antes da limpeza', 'inteiro', '30', '30', '{"min":1,"max":365}', true, '{cron_comando:imts-limpeza-simulado}', '016'),
@@ -266,22 +264,7 @@ insert into adm.parametro (chave, escopo, descricao, tipo, valor, padrao, valida
  ('administracao.verificacao_minutos', 'administração', 'Intervalo da verificação de saúde das conexões', 'inteiro', '30', '30', '{"min":5,"max":59}', false, '{cron:imts-adm-verificacao}', 'E13, 04/10/2026')
 on conflict (chave) do nothing;
 
--- o motor documental passa a ler os seus parâmetros daqui
-create or replace function doc.destravar() returns int language sql security definer set search_path = '' as $$
-  with x as (update doc.pedido set situacao = 'na_fila', worker = null, atualizado_em = now()
-              where situacao = 'em_emissao' and atualizado_em < now() - make_interval(mins => (adm.valor('documental.destravar_minutos', '15') #>> '{}')::int) returning id)
-  select count(*)::int from x $$;
-create or replace function doc.worker_falhar(p_chave text, p_pedido bigint, p_erro text) returns text
-language plpgsql security definer set search_path = '' as $$
-declare v_sit text; v_max int := (adm.valor('documental.tentativas_maximas', '3') #>> '{}')::int;
-begin
-  if not doc._chave_ok(p_chave) then raise exception 'não autorizado'; end if;
-  update doc.pedido set tentativas = tentativas + 1, erro = left(p_erro, 2000), atualizado_em = now(),
-         situacao = case when tentativas + 1 >= v_max then 'erro' else 'na_fila' end
-   where id = p_pedido and situacao = 'em_emissao' returning situacao into v_sit;
-  perform doc._evento(p_pedido, 'falha', jsonb_build_object('erro', left(p_erro, 500), 'situacao', v_sit));
-  return v_sit;
-end $$;
+-- o motor documental lê documental.tentativas_maximas e documental.destravar_minutos daqui por doc._param (025)
 
 -- verificação periódica das conexões e destravamento da fila de documentos
 do $$ begin
@@ -294,10 +277,10 @@ end $$;
 alter table adm.conexao enable row level security; alter table adm.parametro enable row level security;
 alter table adm.mudanca enable row level security; alter table adm.historico enable row level security; alter table adm.verificacao_http enable row level security;
 drop policy if exists leitura on adm.conexao; drop policy if exists leitura on adm.parametro; drop policy if exists leitura on adm.mudanca; drop policy if exists leitura on adm.historico;
-create policy leitura on adm.conexao for select to authenticated using (rt.pode(rt.eu(), null, null, 'administrar'));
+create policy leitura on adm.conexao for select to authenticated using (rt.pode_estrito(rt.eu(), null, null, 'administrar'));
 create policy leitura on adm.parametro for select to authenticated using (rt.pode(rt.eu(), null, null, 'ler'));
-create policy leitura on adm.mudanca for select to authenticated using (rt.pode(rt.eu(), null, null, 'administrar'));
-create policy leitura on adm.historico for select to authenticated using (rt.pode(rt.eu(), null, null, 'administrar'));
+create policy leitura on adm.mudanca for select to authenticated using (rt.pode_estrito(rt.eu(), null, null, 'administrar'));
+create policy leitura on adm.historico for select to authenticated using (rt.pode_estrito(rt.eu(), null, null, 'administrar'));
 grant select on adm.conexao, adm.parametro, adm.mudanca, adm.historico to authenticated;
 grant all on all tables in schema adm to service_role;
 revoke all on all functions in schema adm from public;

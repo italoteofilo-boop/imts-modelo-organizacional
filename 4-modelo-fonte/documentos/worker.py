@@ -32,14 +32,16 @@ def uma_rodada(navegador):
         with tempfile.TemporaryDirectory() as tmp:
             reg = motor.emitir(p, tmp, navegador)
             if reg['situacao'] == 'recusado':
-                rpc('doc_worker_registrar', {'p_chave': CHAVE, 'p_pedido': pid, 'p_registro': reg, 'p_pdf': '', 'p_html': ''}); return (pid, reg)
+                rpc('doc_worker_registrar', {'p_chave': CHAVE, 'p_worker': NOME, 'p_pedido': pid, 'p_registro': reg, 'p_pdf': '', 'p_html': ''}); return (pid, reg)
             pdf = open(os.path.join(tmp, reg['arquivos'][0]), 'rb').read(); html = open(os.path.join(tmp, reg['arquivos'][1]), 'rb').read()
-            em = rpc('doc_worker_registrar', {'p_chave': CHAVE, 'p_pedido': pid, 'p_registro': reg,
+            em = rpc('doc_worker_registrar', {'p_chave': CHAVE, 'p_worker': NOME, 'p_pedido': pid, 'p_registro': reg,
                                               'p_pdf': base64.b64encode(pdf).decode(), 'p_html': base64.b64encode(html).decode()})
             reg['emissao'] = em; return (pid, reg)
     except Exception as e:
-        rpc('doc_worker_falhar', {'p_chave': CHAVE, 'p_pedido': pid, 'p_erro': f'{type(e).__name__}: {e}'[:1900]})
-        traceback.print_exc(); return (pid, {'situacao': 'falha', 'erro': str(e)})
+        traceback.print_exc()
+        try: rpc('doc_worker_falhar', {'p_chave': CHAVE, 'p_pedido': pid, 'p_erro': f'{type(e).__name__}: {e}'[:1900]})
+        except Exception: traceback.print_exc()   # o pedido volta à fila pelo doc.destravar
+        return (pid, {'situacao': 'falha', 'erro': str(e)})
 
 
 def main():
@@ -49,13 +51,22 @@ def main():
     motor.instalar_fontes()
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
-        nav = pw.chromium.launch()
+        nav = pw.chromium.launch(); espera = intervalo
         while True:
-            r = uma_rodada(nav)
+            try:
+                r = uma_rodada(nav); espera = intervalo
+            except Exception:
+                # rede fora ou navegador caído: espera crescente (até 5 minutos) e navegador novo
+                traceback.print_exc(); r = None; espera = min(espera * 2, 300)
+                try: nav.close()
+                except Exception: pass
+                nav = pw.chromium.launch()
+                if uma: break
+                time.sleep(espera); continue
             if r: print(json.dumps({'pedido': r[0], 'situacao': r[1]['situacao'], 'emissao': r[1].get('emissao'), 'paginas': r[1].get('paginas'),
                                     'gates': len(r[1].get('gates', [])), 'alertas': len(r[1].get('alertas', []))}, ensure_ascii=False), flush=True)
             elif uma: break
-            else: time.sleep(intervalo)
+            else: time.sleep(espera)
         nav.close()
 
 

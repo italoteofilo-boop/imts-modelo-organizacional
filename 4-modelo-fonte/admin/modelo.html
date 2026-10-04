@@ -95,7 +95,7 @@ table.hist th { font-size:12px; text-transform:uppercase; letter-spacing:.05em; 
 </style>
 
 <header class="chao">
-  <h1 class="marca">Administração<small>IMTS.OS · conexões e parâmetros</small></h1>
+  <h1 class="marca">Administração<small>IMTS.OS · conexões, parâmetros, agentes e saúde</small></h1>
   <label class="quem" for="como">Atuando como <select id="como"></select></label>
   <span class="fonte" id="fonte">Retrato gravado</span>
   <button class="icone" id="b-verificar" type="button" hidden>Verificar saúde</button>
@@ -103,17 +103,20 @@ table.hist th { font-size:12px; text-transform:uppercase; letter-spacing:.05em; 
   <button class="icone" id="b-tema" type="button" aria-label="Alternar tema">Tema</button>
 </header>
 <div class="resumo" id="resumo" aria-live="polite"></div>
-<nav class="abas" role="tablist" aria-label="Objetos da administração">
-  <button class="aba" role="tab" id="t-conexoes" data-aba="conexoes" aria-selected="true">Conexões<span class="n" id="n-conexoes"></span></button>
-  <button class="aba" role="tab" id="t-parametros" data-aba="parametros" aria-selected="false">Parâmetros<span class="n" id="n-parametros"></span></button>
-  <button class="aba" role="tab" id="t-mudancas" data-aba="mudancas" aria-selected="false">Aprovações<span class="n" id="n-mudancas"></span></button>
-  <button class="aba" role="tab" id="t-historico" data-aba="historico" aria-selected="false">Histórico<span class="n" id="n-historico"></span></button>
-  <button class="aba" role="tab" id="t-agenda" data-aba="agenda" aria-selected="false">Agenda</button>
+<nav class="abas" aria-label="Objetos da administração"><div role="tablist" aria-label="Objetos da administração" style="display:contents">
+  <button class="aba" role="tab" id="t-conexoes" data-aba="conexoes" aria-controls="conteudo" aria-selected="true" tabindex="0">Conexões<span class="n" id="n-conexoes"></span></button>
+  <button class="aba" role="tab" id="t-parametros" data-aba="parametros" aria-controls="conteudo" aria-selected="false" tabindex="-1">Parâmetros<span class="n" id="n-parametros"></span></button>
+  <button class="aba" role="tab" id="t-mudancas" data-aba="mudancas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Aprovações<span class="n" id="n-mudancas"></span></button>
+  <button class="aba" role="tab" id="t-agentes" data-aba="agentes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Agentes<span class="n" id="n-agentes"></span></button>
+  <button class="aba" role="tab" id="t-saude" data-aba="saude" aria-controls="conteudo" aria-selected="false" tabindex="-1">Saúde<span class="n" id="n-saude"></span></button>
+  <button class="aba" role="tab" id="t-historico" data-aba="historico" aria-controls="conteudo" aria-selected="false" tabindex="-1">Histórico<span class="n" id="n-historico"></span></button>
+  <button class="aba" role="tab" id="t-agenda" data-aba="agenda" aria-controls="conteudo" aria-selected="false" tabindex="-1">Agenda</button>
+  </div>
   <label class="busca" for="q"><span class="chip">Buscar</span><input id="q" type="search" placeholder="nome, chave, dono, segredo, pendência"></label>
 </nav>
-<main id="conteudo" role="tabpanel" aria-live="polite"></main>
+<main id="conteudo" role="tabpanel" tabindex="0"></main>
 <p class="rodape" id="rodape"></p>
-<aside class="foco" id="foco" hidden aria-label="Edição"></aside>
+<aside class="foco" id="foco" hidden role="dialog" aria-modal="true" aria-labelledby="f-titulo"></aside>
 <div class="recibos" id="recibos" aria-live="polite"></div>
 
 <script>
@@ -125,7 +128,8 @@ const lit = s => "'" + String(s).replace(/'/g, "''") + "'";
 const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : 'nunca';
 const ESTADO = { ativa: 'ativa', simulada: 'simulada', pendente: 'pendente', desligada: 'desligada' };
 const SAUDE = { ok: 'saudável', falha: 'falha', desconhecida: 'sem verificação' };
-let dados = RETRATO, fonte = 'retrato', aba = 'conexoes', mcp = null, como = null;
+const VAZIO = { resumo: {}, conexoes: [], parametros: [], mudancas: [], historico: [], agenda: [], administradores: [] };
+let dados = RETRATO || VAZIO, fonte = RETRATO ? 'retrato' : 'nada', aba = 'conexoes', mcp = null, como = null, voltarFoco = null;
 
 function lerPayload(p) {
   const s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
@@ -137,7 +141,9 @@ function lerPayload(p) {
 }
 async function sql(q) {
   const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false });
-  return lerPayload(r.payload ?? r.content?.[0]?.text);
+  const s = r?.payload ?? r?.content?.[0]?.text;
+  if (r?.isError || /ERROR:/.test(String(s ?? ''))) throw { message: String(s ?? r?.error ?? 'erro') };
+  return lerPayload(s);
 }
 const AVISOS = { server_not_connected: 'o conector do Supabase não está adicionado', needs_reauth: 'o conector do Supabase precisa ser reconectado',
   not_in_manifest: 'a leitura ao vivo não foi permitida para esta página', blocked_by_policy: 'bloqueado pela política da organização',
@@ -154,7 +160,7 @@ function recibo(tipo, texto) {
 const papel = id => (dados.administradores || []).find(a => a.pessoa === id)?.papel || (id ? id.slice(0, 8) : 'serviço');
 
 function desenharResumo() {
-  const r = dados.resumo, f = r.fila_documentos || {};
+  const r = dados.resumo || {}, f = r.fila_documentos || {};
   const filaTxt = Object.entries(f).map(([k, v]) => `${v} ${k.replace(/_/g, ' ')}`).join(', ') || 'vazia';
   $('resumo').innerHTML = `
     <span class="bem">Saudáveis <b>${r.saude_ok}</b></span><span class="${r.saude_falha ? 'mal' : ''}">Com falha <b>${r.saude_falha}</b></span>
@@ -163,6 +169,11 @@ function desenharResumo() {
     <span>Fila de documentos <b>${esc(filaTxt)}</b></span>`;
   $('n-conexoes').textContent = r.conexoes; $('n-parametros').textContent = r.parametros;
   $('n-mudancas').textContent = r.mudancas_pendentes || ''; $('n-historico').textContent = (dados.historico || []).length || '';
+  $('n-agentes').textContent = (dados.agentes || []).length || '';
+  const errs = (dados.saude?.erros || []).length + (dados.saude?.rotinas || []).filter(j => !j.ativo || j.falhas_24h).length;
+  $('n-saude').textContent = errs ? '!' + errs : '';
+  if (dados.agentes) { const rs = dados.agentes.reduce((n, a) => n + (a.rascunhos || []).length, 0); if (rs) $('resumo').insertAdjacentHTML('beforeend', `<span class="esp">Rascunhos de agente para aprovar <b>${rs}</b></span>`); }
+  if (errs) $('resumo').insertAdjacentHTML('beforeend', `<span class="mal">Alertas de saúde <b>${errs}</b></span>`);
 }
 const casa = (obj, q) => !q || JSON.stringify(obj).toLowerCase().includes(q);
 
@@ -212,17 +223,47 @@ function vAgenda() {
     ${(dados.agenda || []).map(j => { const p = dados.parametros.find(p => p.destinos.some(d => d.endsWith(':' + j.job)));
       return `<tr><td><code>${esc(j.job)}</code></td><td><code>${esc(j.quando)}</code></td><td><span class="chip ${j.ativo ? 'ativa' : 'falha'}">${j.ativo ? 'ativa' : 'parada'}</span></td><td>${p ? `<code>${esc(p.chave)}</code>` : '—'}</td></tr>`; }).join('')}</tbody></table></div>`;
 }
+const MODO = { Assistido: 'só sugere', Copiloto: 'prepara e espera aprovação', Autopiloto: 'age sozinho dentro do orçamento' };
+function vAgentes(q) {
+  if (!dados.agentes) return '<p class="vazio">Os agentes aparecem só ao vivo, com o conector do Supabase.</p>';
+  const as = dados.agentes.filter(a => casa(a, q));
+  if (!as.length) return '<p class="vazio">Nenhum agente com esse termo.</p>';
+  return `<div class="linhas">${as.map(a => {
+    const uso = a.orcamento_acoes_mes ? Math.round(100 * a.acoes_no_mes / a.orcamento_acoes_mes) : 0;
+    const est = !a.liberado ? 'falha' : !a.ligado ? '' : 'ok';
+    return `<article class="linha" style="grid-template-columns:6px minmax(0,1fr)"><span class="faixa ${est}" aria-hidden="true"></span>
+    <div class="linhas" style="gap:10px">
+      <div><div class="t">${esc(a.nome)}</div><div class="sub"><code>${esc(a.codigo)}</code> · ${esc(a.circulo)} · dono: ${esc(a.dono)} · roda a cada ${a.intervalo_minutos} min</div>
+        <div class="sub">${esc(a.responsabilidade)}</div></div>
+      <div class="chips"><span class="chip ${a.ligado ? 'ativa' : ''}">${a.ligado ? 'ligado' : 'desligado'}</span><span class="chip ${a.liberado ? 'ok' : 'falha'}">${a.liberado ? 'liberado' : 'suspenso'}</span>
+        <span class="chip">${esc(a.modo)}: ${esc(MODO[a.modo] || '')}</span><span class="chip ${uso >= 90 ? 'pendente' : ''}">${a.acoes_no_mes} de ${a.orcamento_acoes_mes} ações no mês</span><span class="chip">${esc(a.provedor)}</span></div>
+      ${(a.rascunhos || []).length ? `<div><h3 class="sub" style="margin:0 0 6px;font-weight:700">Rascunhos esperando aprovação</h3>${a.rascunhos.map(r => `<div class="linha" style="grid-template-columns:minmax(0,1fr) auto;padding:8px 10px"><div class="sub">Pedido ${r.pedido} · cartão ${r.cartao}<br>${esc(r.texto)}</div><div><button class="btn prim" type="button" data-rascunho="${r.cartao}">Aprovar e enviar</button></div></div>`).join('')}</div>` : ''}
+      <details><summary class="sub">Memória (${(a.memoria || []).length}) · o que o agente sabe e segue</summary><div class="linhas" style="margin-top:8px">${(a.memoria || []).map(m => `<div class="linha" style="grid-template-columns:minmax(0,1fr) auto;padding:8px 10px"><div class="sub">${m.ativa ? '' : '<s>'}${esc(m.nota)}${m.ativa ? '' : '</s>'}<br><small>${esc(m.autor)} · ${esc(m.fonte || '')} · ${quando(m.atualizado_em)}</small></div><div><button class="btn" type="button" data-memoria="${m.id}" data-agente="${esc(a.codigo)}">Editar</button></div></div>`).join('') || '<p class="vazio">Sem memória.</p>'}</div></details>
+      <details><summary class="sub">Últimas execuções (${(a.execucoes || []).length})</summary><div class="rolagem" style="margin-top:8px"><table class="hist"><thead><tr><th>Quando</th><th>Gatilho</th><th>Situação</th><th>Ações</th><th>Detalhe</th></tr></thead><tbody>
+        ${(a.execucoes || []).map(e => `<tr><td>${quando(e.inicio)}</td><td>${esc(e.gatilho)}</td><td><span class="chip ${e.situacao === 'erro' ? 'falha' : e.situacao === 'ok' ? 'ok' : ''}">${esc(e.situacao.replace(/_/g, ' '))}</span></td><td>${e.n_acoes}</td><td class="cod">${esc(e.detalhe || (e.acoes || []).map(x => x.tipo || JSON.stringify(x)).join('; '))}</td></tr>`).join('')}</tbody></table></div></details>
+      <div class="acoes"><button class="btn" type="button" data-ligar="${esc(a.codigo)}" data-v="${!a.ligado}">${a.ligado ? 'Desligar' : 'Ligar'}</button>
+        <button class="btn ${a.liberado ? 'perigo' : 'prim'}" type="button" data-liberar="${esc(a.codigo)}" data-v="${!a.liberado}">${a.liberado ? 'Suspender' : 'Liberar'}</button></div>
+    </div></article>`; }).join('')}</div>
+    <p class="rodape" style="padding:12px 0 0">Ligar e desligar é do dia a dia; suspender tira o agente de serviço até alguém com acesso de administrar liberar de novo. Toda mudança fica no histórico, com motivo.</p>`;
+}
+function vSaude() {
+  if (!dados.saude) return '<p class="vazio">A saúde das rotinas aparece só ao vivo, com o conector do Supabase.</p>';
+  const rs = dados.saude.rotinas || [], es = dados.saude.erros || [];
+  return `<section class="grupo"><h2>Rotinas agendadas</h2><div class="rolagem"><table class="hist"><thead><tr><th>Rotina</th><th>Quando roda</th><th>Última vez</th><th>Falhas em 24 h</th><th>Situação</th></tr></thead><tbody>
+    ${rs.map(j => `<tr><td><code>${esc(j.job)}</code></td><td><code>${esc(j.quando)}</code></td><td>${quando(j.ultima)}</td><td>${j.falhas_24h}</td><td><span class="chip ${!j.ativo ? 'falha' : j.falhas_24h ? 'pendente' : 'ok'}">${!j.ativo ? 'parada' : j.falhas_24h ? 'com falha' : 'ok'}</span></td></tr>`).join('')}</tbody></table></div></section>
+    <section class="grupo"><h2>Erros registrados</h2>${es.length ? `<div class="rolagem"><table class="hist"><thead><tr><th>Quando</th><th>Onde</th><th>Erro</th></tr></thead><tbody>${es.map(e => `<tr><td>${quando(e.em)}</td><td><code>${esc(e.origem)}</code></td><td class="cod">${esc(e.detalhe || JSON.stringify(e.contexto || e))}</td></tr>`).join('')}</tbody></table></div>` : '<p class="vazio">Nenhum erro nas últimas 24 horas. Falha num gatilho (projeção externa, agente) fica aqui sem derrubar a operação.</p>'}</section>`;
+}
 function desenhar() {
   desenharResumo();
   const q = $('q').value.trim().toLowerCase();
-  $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, historico: vHistorico, agenda: vAgenda }[aba](q);
+  $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, historico: vHistorico, agenda: vAgenda }[aba](q);
   $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
-  for (const b of document.querySelectorAll('.aba')) b.setAttribute('aria-selected', String(b.dataset.aba === aba));
+  for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
   const viva = fonte === 'vivo';
   $('rodape').textContent = viva
     ? `Ao vivo no Supabase, gerado ${quando(dados.gerado_em)}. Cada alteração roda nas funções adm.* e vale a regra do banco: validação, duas mãos nos sensíveis e histórico. No protótipo a página atua como um administrador simulado escolhido acima; em produção vale o login de cada pessoa. Valores de segredo nunca aparecem: só o nome no Vault.`
-    : `Retrato gravado em ${quando(dados.gerado_em)}. Sem o conector do Supabase as alterações ficam desligadas; a página mostra o estado daquele momento. Valores de segredo nunca aparecem: só o nome no Vault.`;
-  for (const b of document.querySelectorAll('[data-editar-conexao],[data-editar-param],[data-decidir]')) b.disabled = !viva;
+    : fonte === 'nada' ? 'Sem o conector do Supabase e sem retrato gravado: nada a mostrar. Adicione o conector para ver ao vivo.' : `Retrato gravado em ${quando(dados.gerado_em)}. Sem o conector do Supabase as alterações ficam desligadas; a página mostra o estado daquele momento. Valores de segredo nunca aparecem: só o nome no Vault.`;
+  for (const b of document.querySelectorAll('[data-editar-conexao],[data-editar-param],[data-decidir],[data-ligar],[data-liberar],[data-memoria],[data-rascunho]')) b.disabled = !viva;
 }
 function desenharComo() {
   const adms = dados.administradores || [];
@@ -232,11 +273,40 @@ function desenharComo() {
 $('como').onchange = e => { como = e.target.value; };
 
 // ---------- edição ----------
-function fechar() { $('foco').hidden = true; $('foco').innerHTML = ''; }
+function fechar() { $('foco').hidden = true; $('foco').innerHTML = ''; if (voltarFoco && document.contains(voltarFoco)) voltarFoco.focus(); voltarFoco = null; }
+function abrirFoco() { $('foco').hidden = false; const f = $('foco').querySelector('input,select,textarea,button[type=submit]'); (f || $('foco')).focus(); }
+function abrirAgente(tipo, codigo, v) {
+  const a = dados.agentes.find(x => x.codigo === codigo); if (!a) return;
+  const liga = tipo === 'ligar', on = v === 'true';
+  const titulo = liga ? (on ? 'Ligar' : 'Desligar') : (on ? 'Liberar' : 'Suspender');
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">${titulo}: ${esc(a.nome)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p>${liga ? 'Desligado, o agente não roda até ser ligado de novo.' : (on ? 'Liberar coloca o agente em serviço no modo ' + esc(a.modo) + '.' : 'Suspenso, o agente sai de serviço até alguém com acesso de administrar liberar.')} Você atua como <strong>${esc(papel(como))}</strong>.</p>
+    <form id="f-ag" class="linhas"><label class="campo" for="f-mot">Motivo<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
+      <div class="acoes"><button class="btn ${!on && !liga ? 'perigo' : 'prim'}" type="submit">${titulo}</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-ag').onsubmit = async ev => { ev.preventDefault();
+    await agir(`select rt.agente_${liga ? 'ligar' : 'liberar'}(${lit(codigo)}, ${on}, ${lit($('f-mot').value)}, ${lit(como)}::uuid)`, `${titulo}: feito.`, true); };
+}
+function abrirMemoria(id, codigo) {
+  const a = dados.agentes.find(x => x.codigo === codigo), m = a?.memoria.find(x => x.id === id); if (!m) return;
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">Memória do agente</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p>${esc(a.nome)}. Nota escrita por ${esc(m.autor)}. O agente segue as notas ativas; desativar não apaga, fica no histórico.</p>
+    <form id="f-mem" class="linhas"><label class="campo" for="f-nota">Nota<textarea id="f-nota">${esc(m.nota)}</textarea></label>
+      <label class="campo" for="f-ativa">Situação<select id="f-ativa"><option value="true" ${m.ativa ? 'selected' : ''}>ativa</option><option value="false" ${!m.ativa ? 'selected' : ''}>desativada</option></select></label>
+      <label class="campo" for="f-mot">Motivo<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
+      <div class="acoes"><button class="btn prim" type="submit">Salvar</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-mem').onsubmit = async ev => { ev.preventDefault();
+    await agir(`select rt.agente_memoria_editar(${Number(id)}, ${lit($('f-nota').value)}, ${$('f-ativa').value}, ${lit($('f-mot').value)}, ${lit(como)}::uuid)`, 'Memória salva.', true); };
+}
+async function aprovarRascunho(cartao, botao) {
+  botao.disabled = true;
+  await agir(`select rt.agente_aprovar_rascunho(${Number(cartao)}, ${lit(como)}::uuid)`, 'Resposta aprovada e enviada ao portal.', false);
+}
 function abrirConexao(cod) {
   const c = dados.conexoes.find(x => x.codigo === cod); if (!c) return;
   const op = (v, l) => `<option value="${v}" ${c.estado === v ? 'selected' : ''}>${l}</option>`;
-  $('foco').innerHTML = `<div class="topo"><h2>${esc(c.nome)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">${esc(c.nome)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
     <p><code>${esc(c.codigo)}</code> · ${esc(c.categoria)}. A verificação de saúde (${esc(c.verificacao)}) só muda por migração.</p>
     <form id="f-con" class="linhas">
       <label class="campo" for="f-nome">Nome<input id="f-nome" value="${esc(c.nome)}" required></label>
@@ -248,7 +318,7 @@ function abrirConexao(cod) {
       <label class="campo" for="f-pend">Pendência<textarea id="f-pend">${esc(c.pendencia || '')}</textarea></label>
       <label class="campo" for="f-mot">Motivo da alteração<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
       <div class="acoes"><button class="btn prim" type="submit">Salvar</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
-  $('foco').hidden = false; $('f-nome').focus();
+  abrirFoco();
   $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
   $('f-con').onsubmit = async ev => {
     ev.preventDefault();
@@ -267,13 +337,13 @@ function abrirParam(chave) {
   else if (val.opcoes) editor = `<label class="campo" for="f-v">Valor<select id="f-v">${val.opcoes.map(o => `<option ${o === v ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select></label>`;
   else if (p.tipo === 'texto') editor = `<label class="campo" for="f-v">Valor<input id="f-v" value="${esc(v)}"></label>`;
   else editor = `<label class="campo" for="f-v">Valor${val.min != null ? ` (de ${val.min} a ${val.max})` : ''}<input id="f-v" type="number" ${p.tipo === 'inteiro' ? 'step="1"' : 'step="any"'} ${val.min != null ? `min="${val.min}" max="${val.max}"` : ''} value="${v}"></label>`;
-  $('foco').innerHTML = `<div class="topo"><h2>${esc(p.descricao)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">${esc(p.descricao)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
     <p><code>${esc(p.chave)}</code> · vale em ${p.destinos.length ? p.destinos.map(d => `<code>${esc(d)}</code>`).join(', ') : 'quem lê o parâmetro'}.
     ${p.sensivel ? '<br><strong>Duas mãos:</strong> a mudança fica pendente até outra pessoa com acesso de administrar aprovar.' : ''}</p>
     <form id="f-par" class="linhas">${editor}
       <label class="campo" for="f-mot">Motivo da alteração<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
       <div class="acoes"><button class="btn prim" type="submit">${p.sensivel ? 'Pedir aprovação' : 'Aplicar'}</button><button class="btn" type="button" id="f-padrao">Usar o padrão</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
-  $('foco').hidden = false; $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
   const ler = () => p.tipo === 'faixa' ? { min: Number($('f-min').value), max: Number($('f-max').value) }
     : p.tipo === 'lista' ? $('f-v').value.split('\n').map(s => s.trim()).filter(Boolean)
     : p.tipo === 'booleano' ? $('f-v').value === 'true' : (p.tipo === 'texto' ? $('f-v').value : Number($('f-v').value));
@@ -287,12 +357,12 @@ function abrirParam(chave) {
 }
 function abrirDecisao(id, decisao) {
   const m = dados.mudancas.find(x => x.id === id); if (!m) return;
-  $('foco').innerHTML = `<div class="topo"><h2>${decisao === 'aprovada' ? 'Aprovar' : 'Recusar'} a mudança</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">${decisao === 'aprovada' ? 'Aprovar' : 'Recusar'} a mudança</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
     <p><code>${esc(m.chave)}</code> → <span class="valor">${esc(JSON.stringify(m.valor))}</span><br>Pedida por ${esc(papel(m.pedido_por))}: ${esc(m.motivo)}</p>
     <p>Você atua como <strong>${esc(papel(como))}</strong>. Quem pediu não decide a própria mudança.</p>
     <form id="f-dec" class="linhas"><label class="campo" for="f-mot">Motivo da decisão${decisao === 'recusada' ? ' (obrigatório)' : ''}<input id="f-mot" ${decisao === 'recusada' ? 'required' : ''}></label>
       <div class="acoes"><button class="btn ${decisao === 'aprovada' ? 'prim' : 'perigo'}" type="submit">${decisao === 'aprovada' ? 'Aprovar e aplicar' : 'Recusar'}</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
-  $('foco').hidden = false; $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
   $('f-dec').onsubmit = async ev => { ev.preventDefault();
     await agir(`select adm.decidir_mudanca(${Number(id)}, ${lit(decisao)}, ${lit($('f-mot').value)}, ${lit(como)}::uuid)`, decisao === 'aprovada' ? 'Mudança aprovada e aplicada.' : 'Mudança recusada.', true); };
 }
@@ -301,21 +371,39 @@ async function agir(q, ok, fecharDepois) {
   try {
     // a função devolve void ou json; embrulha para o formato { p }
     await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: `select 1 as p from (${q}) x` }, { cache: false })
-      .then(r => { const s = String(r.payload ?? r.content?.[0]?.text ?? ''); if (/ERROR:/.test(s)) throw { message: s }; });
+      .then(r => { const s = String(r?.payload ?? r?.content?.[0]?.text ?? ''); if (r?.isError || /ERROR:/.test(s)) throw { message: s || r?.error }; });
     recibo('feito', ok); if (fecharDepois) fechar(); await recarregar();
   } catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); }
   finally { bs.forEach(b => b.disabled = false); }
 }
-async function recarregar() { dados = await sql('select adm.painel() as p'); desenharComo(); desenhar(); }
+async function recarregar() { dados = await sql('select adm.painel_completo() as p'); desenharComo(); desenhar(); }
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
-  if (t.dataset.aba) { aba = t.dataset.aba; desenhar(); }
+  if (t.dataset.aba) { aba = t.dataset.aba; desenhar(); return; }
+  if (!t.closest('#foco')) voltarFoco = t;
+  if (t.dataset.ligar) abrirAgente('ligar', t.dataset.ligar, t.dataset.v);
+  else if (t.dataset.liberar) abrirAgente('liberar', t.dataset.liberar, t.dataset.v);
+  else if (t.dataset.memoria) abrirMemoria(Number(t.dataset.memoria), t.dataset.agente);
+  else if (t.dataset.rascunho) aprovarRascunho(t.dataset.rascunho, t);
   else if (t.dataset.editarConexao) abrirConexao(t.dataset.editarConexao);
   else if (t.dataset.editarParam) abrirParam(t.dataset.editarParam);
   else if (t.dataset.decidir) abrirDecisao(Number(t.dataset.decidir), t.dataset.d);
 });
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('foco').hidden) fechar(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !$('foco').hidden) { fechar(); return; }
+  if (e.key === 'Tab' && !$('foco').hidden) {   // foco preso no painel de edição enquanto ele está aberto
+    const fs = [...$('foco').querySelectorAll('button,input,select,textarea,summary')].filter(x => !x.disabled);
+    if (fs.length && e.shiftKey && document.activeElement === fs[0]) { e.preventDefault(); fs.at(-1).focus(); }
+    else if (fs.length && !e.shiftKey && document.activeElement === fs.at(-1)) { e.preventDefault(); fs[0].focus(); }
+  }
+  const t = e.target.closest?.('.aba');   // setas e Home/End entre as abas
+  if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
+    const abas = [...document.querySelectorAll('.aba')], i = abas.indexOf(t);
+    const j = e.key === 'Home' ? 0 : e.key === 'End' ? abas.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
+    e.preventDefault(); aba = abas[j].dataset.aba; desenhar(); abas[j].focus();
+  }
+});
 $('q').oninput = () => desenhar();
 $('b-tema').onclick = () => { const r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme = escuro ? 'light' : 'dark'; };
 $('b-atual').onclick = async () => { const b = $('b-atual'); b.disabled = true; try { await recarregar(); recibo('feito', 'Atualizado.'); } catch (e) { recibo('recusado', 'Não atualizou: ' + motivo(e)); } finally { b.disabled = false; } };

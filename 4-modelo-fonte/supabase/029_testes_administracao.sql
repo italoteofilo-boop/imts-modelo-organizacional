@@ -75,13 +75,20 @@ begin
 
   -- A9. O motor documental lê os seus parâmetros daqui
   perform adm.alterar_parametro('documental.tentativas_maximas', '1', 'teste', a1);
-  ped := doc.pedir('ata', 'imts', '{"titulo":"t","data":"2026-10-04","local":"x"}');
+  ped := doc.pedir('ata', 'imts', '{"titulo":"t","data":"2026-10-04","local":"x"}', '8995fbb2-538c-43cf-94ff-f6b0c75f7c14');
   update doc.pedido set situacao = 'em_emissao' where id = ped;
   if ch is null then ch := encode(extensions.gen_random_bytes(24), 'hex');
     if to_regclass('vault.secrets') is not null then perform vault.create_secret(ch, 'doc_worker_chave'); else insert into vault.decrypted_secrets values ('doc_worker_chave', ch); end if; end if;
   s := doc.worker_falhar(ch, ped, 'teste');
   if s <> 'erro' then raise exception 'FALHA A9: limite de tentativas não veio da administração (%)', s; end if;
-  return 'administração: 9 de 9 ok';
+  -- A10. Regra que muda o comportamento do runtime deixa rastro (040): o que o cliente vê, catálogo de documentos e agentes
+  n := (select count(*) from adm.historico);
+  update ext.regra set mensagem = mensagem || ' (teste)' where id = (select min(id) from ext.regra);
+  update doc.tipo set nome = nome || ' (teste)' where id = (select min(id) from doc.tipo);
+  update rt.agente_residente set ultima_execucao = now() where codigo = 'vigia-vencimentos';
+  update rt.agente_residente set intervalo_minutos = intervalo_minutos + 1 where codigo = 'vigia-vencimentos';
+  if (select count(*) from adm.historico) - n <> 3 then raise exception 'FALHA A10: mudança de regra sem histórico (ou execução registrada como mudança)'; end if;
+  return 'administração: 10 de 10 ok';
 end $$;
 revoke all on function adm._testar_administracao() from public;
 commit;

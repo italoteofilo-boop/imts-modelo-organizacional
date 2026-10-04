@@ -205,7 +205,7 @@ Depois da aplicação:
 
 ## 8. Situação depois das correções da auditoria geral (03/10/2026, 16:05)
 
-As seções 2 a 7 registram a auditoria como foi feita, sobre o modelo das 11:50, com 290 etapas e 1.482 tarefas (1.490 depois da aplicação). As correções da auditoria geral, aprovadas às 16:05, e as da verificação independente que a seguiu mudaram fluxos. Esta seção dá os números atuais, gerados por 4-modelo-fonte/auditar.py.
+As seções 2 a 7 registram a auditoria como foi feita, sobre o modelo das 11:50, com 290 etapas e 1.482 tarefas (1.490 depois da aplicação). As correções da auditoria geral, aprovadas às 16:05, e as da verificação independente que a seguiu mudaram fluxos. Esta seção dá os números de 03/10/2026, 17h, gerados por 4-modelo-fonte/auditar.py. Os atuais são 1.586 tarefas e 299 etapas, em 75 jornadas.
 
 | Círculo | Tarefas | Pessoa do círculo | Pessoa de fora ou assessoria | Agente | Automação | Outro círculo |
 |---|---|---|---|---|---|---|

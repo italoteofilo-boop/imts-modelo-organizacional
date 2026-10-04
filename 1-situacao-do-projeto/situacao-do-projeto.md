@@ -1,4 +1,4 @@
-# Ecossistema IMTS · Estrutura organizacional e operacional — situação em 03/10/2026
+# Ecossistema IMTS · Estrutura organizacional e operacional: situação em 03/10/2026
 
 Este arquivo é gerado a partir da fonte única do modelo (pasta 4-modelo-fonte). Ele resume o que está decidido, o que está desenhado, o que aguarda resposta e como cada parte foi conferida.
 

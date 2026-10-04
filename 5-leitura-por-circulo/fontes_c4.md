@@ -1,4 +1,4 @@
-# Fontes do Círculo 4 · Relações — para conferência independente
+# Fontes do Círculo 4 · Relações: para conferência independente
 
 
 ## apqc

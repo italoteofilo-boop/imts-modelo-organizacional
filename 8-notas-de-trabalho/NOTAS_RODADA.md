@@ -219,11 +219,11 @@ Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML
   - fila, worker e decisão em duas mãos no esquema doc;
   - ponta a ponta conferido no Supabase.
 - **E13 administração geral (028 e 029):**
-  - 16 conexões e 15 parâmetros;
+  - 16 conexões e 19 parâmetros (eram 15 na entrega; entraram 6 com as migrações 030 a 034 e saíram 2 do Telegram na limpeza da carga inicial da 028);
   - verificação de saúde;
   - página ao vivo publicada.
 - **Testes:** 70 no Supabase e 15 do motor, todos verdes.
-- **Achado:** chave antiga `telegram` em `rt.config` (autodestruição 24, não lida). Proposta: apagar.
+- **Achado:** chave antiga `telegram` em `rt.config` (autodestruição 24, não lida). Apagada: aprovado por Ítalo em 04/10/2026, às 10:13 (migração `031_config_legado.sql`).
 - **Externo:**
   - código do contract_engine e do motor de propostas;
   - fonte Nexa;
@@ -232,3 +232,16 @@ Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML
   - Drive da IMTS;
   - DocuSign;
   - serviço do worker em produção.
+
+## 04/10/2026, 10:13 a 12:10: portal externo, agentes, auditoria completa e plano mestre
+Ítalo aprovou E14 (portal externo, cliente e parceiro), E15 (agentes residentes) e E16 (projeção externa) e pediu, às 10:20, auditoria completa, plano mestre e execução em ondas até restar só pendência externa.
+
+- **E16 e E14 (030 a 032):** esquema ext, projeção por regra, portal com a marca da empresa, pedidos, aceite, oportunidades, documentos aprovados; página do portal publicada (ao vivo).
+- **E15 (033 e 034):** três agentes residentes, modos, orçamento, memória, rascunho só com aprovação de pessoa.
+- **Segurança e multiempresa (035 a 038):** serviço fail-closed, trilhas append-only, leitura por empresa.
+- **Onda 3 (039 a 041):** regressões M10 e A9 corrigidas; `adm.testar_tudo()`; histórico de regras; `rt.pode_estrito`; leitura do ext por empresa; publicação só de documento externo; portal sem notas internas da marca.
+- **Incidente:** às 11:05 sete suítes foram chamadas sem o envelope que desfaz. Efeitos achados pelo identificador de transação (3877 a 3917) e limpos com aprovação de Ítalo; valores anteriores restaurados do histórico e das sementes.
+- **Documentação:** F02 a F19 aplicados; migrações 025 a 041 no LEIA-ME; plano mestre em saida/revisao/plano_mestre.md e na aba Plano mestre do documento.
+- **Testes:** 102 no Supabase (`adm.testar_tudo()`) e 30 do motor, todos verdes.
+- **Para aprovação:** F01 (publicar com data de vigência e de revisão), conflitos internos do Legal.OS, exclusão da página de administração duplicada.
+- **Externo:** a tabela da seção 7 do plano mestre.

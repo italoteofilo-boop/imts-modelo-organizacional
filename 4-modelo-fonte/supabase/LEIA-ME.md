@@ -1,6 +1,6 @@
 # Base de dados do modelo organizacional (Supabase)
 
-Esquema `org`, em Postgres. Guarda o modelo como foi aprovado em 03/10/2026, com as correções da auditoria geral (16:05): os 9 círculos, as 73 jornadas com etapas, tarefas, decisões, entradas e saídas, as trocas entre círculos, as cadeias, as fontes, as decisões registradas, os parâmetros e os gates de implantação.
+Esquema `org`, em Postgres. Guarda o modelo como foi aprovado em 03/10/2026, com as correções da auditoria geral (16:05) e as mudanças aprovadas às 21:05 (GE-14, GE-15, NE-04 e GE-02): os 9 círculos, as 75 jornadas com etapas, tarefas, decisões, entradas e saídas, as trocas entre círculos, as cadeias, as fontes, as decisões registradas, os parâmetros e os gates de implantação.
 
 ## Onde está
 
@@ -14,8 +14,8 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 - `gerar_tipos.py` e `tipos.ts`: os tipos TypeScript do esquema `org`.
 - `003_runtime.sql`: fase 2, o runtime dos runtimes (esquema `rt`) e o registro de eventos. Aplicado no Supabase em 03/10/2026, às 18h40.
 - `testar_runtime.sql`: 10 testes do runtime dos runtimes, numa transação desfeita no fim. Também rodaram no Supabase: 10 testes, 0 falhas. Seis defeitos plantados foram detectados, um a um.
-- `gerar_grafos.py` e `004_grafos.sql`: o grafo executável das 73 jornadas, lido dos fluxos BPMN (2.766 nós, 3.184 fluxos). Cada uma das 1.555 tarefas do BPMN aponta para a tarefa do modelo; a carga para se faltar alguma ou se o nome divergir.
-- `005_motor.sql`: os sistemas e o vínculo das 1.555 tarefas (G7), os 60 usuários simulados e o motor (`rt.executar_simulada`).
+- `gerar_grafos.py` e `004_grafos.sql`: o grafo executável das 75 jornadas, lido dos fluxos BPMN (2.816 nós, 3.238 fluxos). Cada uma das 1.586 tarefas do BPMN aponta para a tarefa do modelo; a carga para se faltar alguma ou se o nome divergir.
+- `005_motor.sql`: os sistemas e o vínculo das 1.586 tarefas (G7), as 61 pessoas simuladas e o motor (`rt.executar_simulada`).
 - `006_modelos.sql`: o registro dos modelos de ML (`rt.modelo`), gerado por `ml/treinar.py`.
 - `testar_motor.sql` e `007_testes.sql`: 9 testes do motor; o 007 traz os testes do runtime e do motor como funções, para rodar no Supabase sem gravar nada.
 - `008_painel.sql`: a função `rt.painel()`, que devolve em JSON tudo o que o painel da operação mostra. Só lê.
@@ -40,20 +40,20 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 |---|---|---|
 | circulo | Os 9 círculos | 9 |
 | dominio | Domínios de cada círculo | por círculo |
-| jornada | As 73 jornadas, com objetivo, cadência e nível de automação | 73 |
+| jornada | As 75 jornadas, com objetivo, cadência e nível de automação | 75 |
 | evento | Eventos de início e de fim de cada jornada | por jornada |
-| etapa | As 292 etapas, com dono, modo, risco e o tipo que as tarefas dão à etapa | 292 |
-| tarefa | As 1.555 tarefas, com executor (P, A, R, H, C, X), raia e condição | 1.555 |
+| etapa | As 299 etapas, com dono, modo (Copiloto 143, Autopiloto 64, Assistido 58, Autômato 34), risco e o tipo que as tarefas dão à etapa | 299 |
+| tarefa | As 1.586 tarefas, com executor (P, A, R, H, C, X), raia e condição | 1.586 |
 | decisao_caminho | As perguntas que decidem o caminho em cada etapa | por etapa |
 | entrada, saida | O que cada etapa recebe e entrega, e de quem ou para quem | por etapa |
-| troca | As 410 trocas entre círculos | 410 |
+| troca | As 411 trocas entre círculos | 411 |
 | cadeia, cadeia_elo | As 26 cadeias que substituem as jornadas cross, com 47 elos | 26 e 47 |
-| fonte, fonte_uso, jornada_fonte | As fontes, o uso de cada uma em cada círculo e em cada jornada | 65 fontes |
-| decisao_registrada | As decisões registradas por círculo | 120 |
+| fonte, fonte_uso, jornada_fonte | As fontes, o uso de cada uma em cada círculo e em cada jornada | 66 fontes |
+| decisao_registrada | As decisões registradas por círculo | 121 |
 | limite | Os limites declarados por círculo | por círculo |
 | parametro | Alçadas, cadências, conteúdos e fontes, com o valor aprovado | 72 |
 | gate | Os 9 gates de implantação, com a situação | 9 |
-| achado_auditoria | Os apontamentos que ficaram da auditoria de execução | 51 |
+| achado_auditoria | Os apontamentos que ficaram da auditoria de execução | 52 |
 | empresa, pessoa, atribuicao | Implantação: nascem vazias e são preenchidas nos gates G1 e G2 | 0 |
 
 Visões: `v_etapa` (tarefas de pessoa e de máquina em cada etapa) e `v_jornada` (etapas, tarefas e percentual de máquina em cada jornada).
@@ -69,15 +69,15 @@ Uma aplicação que precise escrever, como o cadastro de empresas e pessoas, gan
 
 ## Conferência
 
-Testado em 03/10/2026 em Postgres 16 local, antes de cada carga no Supabase. As contagens da carga batem com o modelo:
+Testado em 03/10/2026 em Postgres 16 local, antes de cada carga no Supabase. As contagens da carga batem com o modelo. Números atuais (04/10/2026):
 
 | Item | Contagem |
 |---|---|
 | Círculos | 9 |
-| Jornadas | 73 |
-| Etapas | 292 (Copiloto 139, Autopiloto 62, Assistido 57, Autômato 34) |
-| Tarefas | 1.555 |
-| Trocas entre círculos | 410 |
+| Jornadas | 75 |
+| Etapas | 299 |
+| Tarefas | 1.586 |
+| Trocas entre círculos | 411 |
 | Cadeias e elos | 26 e 47 |
 | Parâmetros | 72 (14 alçadas, 39 cadências, 15 conteúdos, 4 fontes) |
 | Gates | 9 |
@@ -94,10 +94,10 @@ Plano de controle acima dos nove motores. Decisões de 03/10/2026, 18:34: motore
 
 | Peça | O que faz |
 |---|---|
-| `rt.motor` | Os nove motores, um por círculo. A Identidade está em piloto; os outros oito, em desenho |
+| `rt.motor` | Os nove motores, um por círculo. Os nove estão em piloto desde a 014 |
 | `rt.config` | O que customiza cada motor: jornadas, raias, limites e regras do Telegram, lidos do esquema `org` |
 | `rt.versao_base`, `rt.atualizacao`, `rt.publicar_versao`, `rt.concluir_atualizacao` | Uma correção comum vira versão. Cada motor só a aplica com os testes do seu círculo verdes; com teste vermelho, a atualização é recusada e o motor fica na versão anterior |
-| `rt.troca_envio`, `rt.enviar_troca`, `rt.v_rota_troca` | Leva cada uma das 410 trocas ao motor que a recebe |
+| `rt.troca_envio`, `rt.enviar_troca`, `rt.v_rota_troca` | Leva cada uma das 411 trocas ao motor que a recebe |
 | `rt.rota_chat`, `rt.mensagem`, `rt.receber_mensagem`, `rt.v_a_apagar` | Porta única do Telegram: grava toda mensagem e a entrega ao motor do chat. A autodestruição tem prazo máximo de 47 horas, porque o bot só apaga mensagens com menos de 48 horas |
 | `rt.evento` | Registro de eventos (E1), com a marca simulado ou real obrigatória |
 | `rt.pessoa` e `rt_chave.identidade` | O motor vê só o pseudônimo; o nome e o Telegram ficam em `rt_chave`, que só o service_role lê. Pessoa real no Telegram sem consentimento registrado é recusada |
@@ -109,14 +109,16 @@ O verificador do Supabase aponta, como informação, que `rt_chave.identidade` t
 | Peça | O que faz |
 |---|---|
 | `rt.no`, `rt.fluxo` | O grafo de cada jornada, lido do BPMN |
-| `rt.sistema`, `rt.vinculo` | Cinco sistemas: canal das pessoas (P, H), agentes de IA (A), automações (R), trocas entre círculos (C) e canal das assessorias (X). As 1.555 tarefas estão ligadas, por enquanto com adaptador simulado |
-| `rt.pessoa` | 60 usuários simulados: um por papel, e os papéis genéricos (líder do círculo, pessoa, líder da equipe, solicitante) um por círculo |
+| `rt.sistema`, `rt.vinculo` | Nove sistemas: canal das pessoas (P, H), agentes de IA (A), automações (R), trocas entre círculos (C), canal das assessorias (X), contábil, fiscal, bancário (014) e o `motor-documental`. As 1.586 tarefas estão ligadas, por enquanto com adaptador simulado |
+| `rt.pessoa` | 61 pessoas simuladas: uma por papel, e os papéis genéricos (líder do círculo, pessoa, líder da equipe, solicitante) um por círculo |
 | `rt.executar_simulada` | Roda uma instância de ponta a ponta. Sorteia as decisões; uma volta fica menos provável a cada visita e é cortada na terceira; ramos paralelos rodam em sequência no relógio simulado; entrega as trocas ao motor do outro círculo |
 | `rt.parametro_simulacao` | Tempo de cada executor, de A (2 a 20 minutos) a X (1 a 5 dias). São hipóteses do protótipo, a calibrar no G9 |
 | `rt.instancia`, `rt.evento` | Cada execução e cada passo, marcados como simulados |
 | `rt.v_cobertura` | Quantas tarefas de cada motor já rodaram |
 
 No Supabase, em 03/10/2026, rodaram 2.000 instâncias simuladas da Identidade (400 por jornada). Resultado: 2.000 concluídas, 52.042 eventos, 19.071 trocas entregues e 99 de 99 tarefas da Identidade executadas. Testes: 10 do runtime e 9 do motor sem falha, no Postgres 16 local e no Supabase. Seis defeitos plantados no motor foram detectados.
+
+Relógio simulado: as instâncias simuladas correm num relógio próprio, à frente do relógio real. Por isso `inicio` e `fim` de `rt.instancia` podem estar no futuro (até 2027). A limpeza do dado simulado e os painéis por data contam por esse relógio simulado. Para instância simulada, `ext.projetar` usa `criado_em`, a hora em que o evento foi gravado.
 
 ## Mesa de trabalho (fase 2, E11)
 
@@ -199,7 +201,7 @@ As automações que publicam, emitem, respondem ou enviam proposta (21 tarefas) 
 
 Sem login, o serviço informa como quem atua (`p_como`): é o protótipo da página via MCP, com os administradores simulados. Em produção vale o login de cada pessoa.
 
-Achado: `rt.config` tem duas chaves para a autodestruição. A que o código lê é `autodestruicao_horas` (47); a chave antiga `telegram` (com 24) não é lida por nada. Proposta: apagar a chave antiga, que fica até a sua decisão.
+Achado resolvido: `rt.config` tinha duas chaves para a autodestruição. A que o código lê é `autodestruicao_horas` (47). A chave antiga `telegram` (com 24) não era lida por nada. Ítalo aprovou apagá-la em 04/10/2026, às 10:13, e a migração `031_config_legado.sql` a apagou.
 
 ## Testes
 
@@ -209,3 +211,80 @@ do $$ begin raise exception '%', doc._testar_documental(); end $$;
 do $$ begin raise exception '%', adm._testar_administracao(); end $$;
 ```
 Cada chamada desfaz tudo. O documental e a administração rodam separados, porque também criam login para as mesmas pessoas simuladas.
+
+Desde a 039, `select adm.testar_tudo();` roda as 10 suítes de uma vez. Veja a seção seguinte.
+
+## Migrações 025 a 041 (motor documental, administração, portal externo, agentes, segurança)
+
+| Arquivo | O que faz |
+|---|---|
+| `025_motor_documental.sql` | Gerado por `documentos/gerar_sql.py` a partir de `documentos/doc_funcoes.sql`. Cria o esquema `doc`: tipo, modelo, marca, tipo_tarefa, pedido, emissao, arquivo, aprovacao e evento. Fila com worker. `doc.pedir` exige empresa. O registro confere o hash do PDF e do HTML. Duas mãos: análise crítica e aprovação; quem pediu não decide e quem analisou não aprova. Os limites do worker vêm da administração por `doc._param` (`documental.tentativas_maximas` e `documental.destravar_minutos`) |
+| `026_testes_documental.sql` | 8 testes do motor documental |
+| `027_teste_motor_documental.sql` | Teste ponta a ponta do motor documental |
+| `028_administracao.sql` | Esquema `adm`: conexão, parâmetro, mudança (duas mãos nos parâmetros sensíveis), histórico e verificação de saúde |
+| `029_testes_administracao.sql` | 10 testes da administração |
+| `030_externo.sql` | Esquema `ext`, a projeção externa e o portal: empresa_marca, contraparte, usuario, regra (a lista do que sai para fora), jornada_externa (os títulos externos), vinculo, publicacao, documento, pedido e oportunidade |
+| `031_config_legado.sql` | Apaga a chave legada `telegram` de `rt.config` (aprovado por Ítalo em 04/10/2026, às 10:13) |
+| `032_testes_externo.sql` | 10 testes do portal externo |
+| `033_agentes_residentes.sql` | `rt.agente_residente`, `rt.agente_memoria` e `rt.agente_execucao`. Modos Assistido, Copiloto e Autopiloto. Orçamento de ações por mês. Chave geral `agentes.ligados`. O rascunho do copiloto só sai com aprovação de uma pessoa (`rt.agente_aprovar_rascunho`). Três agentes: o guardião de prazos de Operações, o vigia de vencimentos e o atendente do portal externo |
+| `034_testes_agentes.sql` | 10 testes dos agentes |
+| `035_seguranca.sql` | `rt.chamada_servico` (fecha em caso de falha) e `rt.interno`. Políticas de leitura só para quem é de dentro. Trilhas só de acréscimo: `adm.historico`, `doc.evento`, `rt.agente_execucao` e `doc.aprovacao`. Update do Telegram repetido é descartado. Direitos do titular externo (`ext.exportar_usuario` e `ext.eliminar_usuario`). `adm.saude_rotinas`. Execução das funções só para o service_role |
+| `036_testes_seguranca.sql` | 11 testes de segurança |
+| `037_ajustes_dados.sql` | Ajuste de datas simuladas que estavam no futuro |
+| `038_multiempresa.sql` | Empresa na instância, no cartão e no evento. O cabeçalho `x-empresa` é conferido. Leitura por empresa. Vínculo externo só na mesma empresa |
+| `039_correcao_regressoes.sql` | O cartão volta à regra da 017, dentro da empresa. `adm.testar_tudo()` roda as 10 suítes sem gravar nada |
+| `040_versao_regras.sql` | Mudanças em `ext.regra`, `ext.jornada_externa`, `doc.tipo` e na configuração dos agentes ficam no histórico |
+| `041_escopo_acesso.sql` | `rt.pode_estrito`: empresa ou círculo nulos exigem acesso sem restrição. Vale na administração global e na decisão de documento (pelo círculo da tarefa). O `ext` é lido pela empresa da contraparte (`ext._le`). Funções novas nascem sem execução para public. `doc.pedido.empresa` passa a ser obrigatório |
+
+Prazos do portal externo, em `adm.parametro`: resposta em 48 horas, aceite em 24 horas, pedido do titular em 15 dias (LGPD, art. 19, II) e exclusividade de 90 dias. Só vai para fora documento de alcance externo e aprovado. Da marca, o portal mostra só nome, cores, logos e tipografia.
+
+### Ordem de implantação
+
+001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041.
+
+Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a execução das funções e troca as políticas.
+
+### Testes
+
+```sql
+select adm.testar_tudo();
+```
+
+Roda as 10 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10 e segurança 11. Total: 102 testes.
+
+> **Aviso.** Nunca chame as funções `_testar_*` com `select` direto. Assim elas gravam os efeitos no banco. Isso aconteceu em 04/10/2026 e foi limpo no mesmo dia. Para rodar uma suíte sozinha, use sempre o bloco que desfaz tudo:
+>
+> ```sql
+> do $$ begin raise exception '%', rt._testar_mesa(); end $$;
+> ```
+
+Motor local: `python3 documentos/testar_motor.py` (30 testes).
+
+### Rotinas (pg_cron)
+
+| Rotina | Agenda |
+|---|---|
+| `imts-simulacao-continua` | `*/5 * * * *` |
+| `imts-limpeza-simulado` | `17 3 * * *` |
+| `imts-telegram-manutencao` | `*/10 * * * *` |
+| `imts-adm-verificacao` | `*/30 * * * *` (também destrava a fila de documentos) |
+| `imts-externo-simulado` | `*/10 * * * *` |
+| `imts-agentes` | `*/5 * * * *` |
+| `imts-limpeza-updates` | `41 3 * * *` |
+
+### Números vivos (04/10/2026)
+
+| Item | Quantidade |
+|---|---|
+| Parâmetros da administração | 19 |
+| Conexões | 16 |
+| Tipos de documento | 38 |
+| Modelos de design | 10 |
+| Marcas | 4 |
+| Ligações tipo × tarefa | 127 |
+| Contrapartes simuladas | 4 |
+| Usuários externos simulados | 7 |
+| Regras de projeção | 51 |
+| Títulos externos | 8 |
+| Agentes | 3 |
+| Empresas simuladas | 4 |
