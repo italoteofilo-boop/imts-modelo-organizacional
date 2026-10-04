@@ -271,3 +271,10 @@ Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML
 - **Skill editorial-legal-os:** a atualização já está salva (conferida idêntica).
 - **Achado de coerência:** o parceiro simulado "escritório de advocacia" recebe comissão, mas a decisão de set/2026 descarta comissão com escritórios; proposta de troca para representante comercial aguardando aprovação.
 - **Testes:** 153 no Supabase (15 suítes) e 31 do motor.
+
+## 04/10/2026, 14:14 a 14:45: simulação completa e base de produção (E22)
+- **Reuniões:** plataforma formal Google Workspace (Meet); Zoom, Teams e Webex por participação no convite com a conta Google; no protótipo, agenda da conta Gmail de Ítalo.
+- **055 e 056:** ciclo completo de simulação pelas funções reais; zerar simulações em lotes com frase de confirmação, desligando a simulação contínua; religar só sem empresa real; 7 testes.
+- **Administração:** aba Simulação (estado, contagens, gerar, zerar, religar). **Central:** textos do vídeo por convite.
+- **Ciclo gerado na base** para o teste do sistema inteiro. Simulação do parceiro só com a distribuidora: o escritório de advocacia fica fora de comissão (decisão de set/2026).
+- **Testes:** 160 no Supabase (16 suítes) e 31 do motor.

@@ -235,10 +235,10 @@ function vReunioes() {
     <label>Plataforma<select id="fr-plat">${Object.entries(PLAT).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label>
     <label>Demanda (opcional)<select id="fr-ped"><option value="">nenhuma</option>${abertos.map(p => `<option value="${p.id}"${prefill === p.id ? ' selected' : ''}>nº ${p.id} · ${esc(p.assunto)}</option>`).join('')}</select></label>
     <label>Com quem (sem demanda)<select id="fr-cp"><option value="">só equipe interna</option>${(R.contrapartes || []).map(c => `<option value="${esc(c.id)}">${esc(c.nome)}</option>`).join('')}</select></label>
-    <label>Link (Zoom, Teams, Webex ou outra)<input id="fr-link" placeholder="https://… (o Meet é criado aqui)"></label>
+    <label>Link do convite (Zoom, Teams, Webex)<input id="fr-link" placeholder="https://… (o Meet é criado aqui)"></label>
     <div class="linha"><label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="fr-gravar" style="width:24px;height:24px;min-width:24px;padding:0;margin:0;flex:0 0 24px"> Gravar e transcrever (precisa de consentimento registrado)</label>
       <button class="btn prim" type="submit">Marcar</button></div></form>`;
-  const cx = `<p class="rodape">Conexões de vídeo: ${(R.conexoes || []).map(c => `${esc(c.nome)} <span class="chip ${c.estado === 'ativa' ? 'bom' : 'esp'}">${esc(c.estado)}</span>`).join(' · ')}. O Google Meet sai pela Agenda Google desta página; Zoom, Teams e Webex entram pelo mesmo contrato quando os apps forem registrados (por enquanto, cole o link).</p>`;
+  const cx = `<p class="rodape">Conexões de vídeo: ${(R.conexoes || []).map(c => `${esc(c.nome)} <span class="chip ${c.estado === 'ativa' ? 'bom' : 'esp'}">${esc(c.estado)}</span>`).join(' · ')}. Plataforma formal: Google Meet, criado aqui na Agenda Google. Zoom, Teams e Webex: a IMTS participa das reuniões de terceiros pelo link do convite, entrando com a conta Google quando a plataforma oferece; a ata vem das anotações ou da transcrição que o anfitrião enviar.</p>`;
   const rs = R.reunioes || [];
   const lista = rs.length ? `<div class="lista">${rs.map(r => {
     const ata = r.ata && r.ata_situacao !== 'sem' && !r.ata.cancelada ? r.ata : null;

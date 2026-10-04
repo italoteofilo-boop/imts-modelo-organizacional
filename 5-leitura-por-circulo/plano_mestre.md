@@ -100,6 +100,8 @@ Incidente registrado: às 11:05 sete suítes de teste foram chamadas sem o envel
 | E20 Cliente | Reclamação, ordem de serviço e ouvidoria (Governança, anônima opcional); encaminhamentos datados visíveis ao cliente; encerramento confirmado pelo cliente ou por aceite tácito | 10 |
 | E21 Reuniões | Marcar pela Central (Meet pela Agenda Google, verificado com evento real criado e apagado; Zoom, Teams e Webex pelo link até o registro dos apps), consentimento de gravação, transcrição no acervo, ata rascunhada por IA e aprovada por pessoa, encaminhamentos, eliminação da gravação no fim da retenção | 9 |
 
+| E22 Simulação completa e base de produção | Aba Simulação na administração: gerar um ciclo completo pelas funções reais; zerar o movimento simulado (frase de confirmação, em lotes, corte no histórico) e desligar a simulação; religar só sem empresa real. Reuniões: Meet é a plataforma formal (Google Workspace); Zoom, Teams e Webex por convite, com a conta Google | 7 |
+
 Padrões adotados (declarados ao aprovar): uma pasta por empresa no Drive da IMTS com a árvore padrão; ouvidoria com a Governança; regra de comissão simulada por contrato de parceria até a regra real.
 
 Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conectores de quem abre (Supabase, Google Drive, Agenda Google). Acessibilidade: axe-core 4.10.2 sem violação nas abas novas, em tema claro, escuro e tela de 390 px.
@@ -118,7 +120,7 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | LGPD art. 33 | Base para transferência internacional (provedores fora do Brasil) | Governança e jurídico |
 | Telegram | Criar o bot e gravar o token no Vault; rodar `rt.telegram_configurar()` | Ítalo |
 | Domínio | Domínio próprio para o portal e o Mini App | Ítalo |
-| Login de produção | Supabase Auth com link no e-mail; retirar as funções `_como` e a atuação simulada das páginas | Integração |
+| Login de produção | Supabase Auth com link no e-mail; retirar as funções `_como` e a atuação simulada das páginas. Depois do cadastro real, zerar as simulações pela aba Simulação | Integração |
 | Projeto de produção | Projeto Supabase separado, com PITR e backup confirmados; pg_net fora do esquema public | Integração |
 | Worker | Serviço com Chromium e as fontes, com a chave do worker no ambiente | Integração |
 | Arquivos | Storage para doc.arquivo (hoje no banco) | Integração |
@@ -127,7 +129,7 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | Google Drive | Terceira saída do motor (Google Docs) | Integração |
 | Marcas | Fonte Nexa (Onni); manual da TRON; razão social e CNPJ de IMTS e Onni confirmados no contrato social | Ítalo |
 | Comissões | Regra real de cada contrato de parceria comercial (percentual, base, parcelas) no lugar da simulada; não há regra no Drive (busca de 04/10/2026). Escritório de advocacia não recebe comissão (decisão de set/2026): é remunerado pela OS-Cliente | Negócios e Gestão |
-| Vídeo | Registrar os apps de Zoom, Teams e Webex (OAuth) e gravar os segredos no Vault. Meet verificado; para usar a agenda do Workspace IMTS, conectar o Google Calendar com a conta @imts.com.br | Integração e Ítalo |
+| Vídeo | Nada a registrar: Zoom, Teams e Webex por participação no convite. Na produção, a agenda do Meet passa da conta Gmail para o Workspace IMTS (conectar o Google Calendar com a conta @imts.com.br) | Integração e Ítalo |
 | Prazos de atendimento | Valores em vigor, mais rigorosos que as referências conferidas (Decreto 11.034/2022, art. 13; Lei 13.460/2017, art. 16); mudar só se a operação pedir | Relações, Operações e Governança |
 | Arquivos de fora | Em produção, o arquivo enviado pelo portal vai para o Drive por função do servidor (hoje é a página, pelo conector) | Integração |
 

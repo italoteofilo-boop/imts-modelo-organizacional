@@ -112,6 +112,7 @@ table.hist th { font-size:12px; text-transform:uppercase; letter-spacing:.05em; 
   <button class="aba" role="tab" id="t-saude" data-aba="saude" aria-controls="conteudo" aria-selected="false" tabindex="-1">Saúde<span class="n" id="n-saude"></span></button>
   <button class="aba" role="tab" id="t-historico" data-aba="historico" aria-controls="conteudo" aria-selected="false" tabindex="-1">Histórico<span class="n" id="n-historico"></span></button>
   <button class="aba" role="tab" id="t-agenda" data-aba="agenda" aria-controls="conteudo" aria-selected="false" tabindex="-1">Agenda</button>
+  <button class="aba" role="tab" id="t-simulacao" data-aba="simulacao" aria-controls="conteudo" aria-selected="false" tabindex="-1">Simulação</button>
   </div>
   <label class="busca" for="q"><span class="chip">Buscar</span><input id="q" type="search" placeholder="nome, chave, dono, segredo, pendência"></label>
 </nav>
@@ -130,6 +131,7 @@ const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', mo
 const ESTADO = { ativa: 'ativa', simulada: 'simulada', pendente: 'pendente', desligada: 'desligada' };
 const SAUDE = { ok: 'saudável', falha: 'falha', desconhecida: 'sem verificação' };
 const VAZIO = { resumo: {}, conexoes: [], parametros: [], mudancas: [], historico: [], agenda: [], administradores: [] };
+let sim = null, simCarregando = false;
 let dados = RETRATO || VAZIO, fonte = RETRATO ? 'retrato' : 'nada', aba = 'conexoes', mcp = null, como = null, voltarFoco = null;
 
 function lerPayload(p) {
@@ -254,24 +256,76 @@ function vSaude() {
     ${rs.map(j => `<tr><td><code>${esc(j.job)}</code></td><td><code>${esc(j.quando)}</code></td><td>${quando(j.ultima)}</td><td>${j.falhas_24h}</td><td><span class="chip ${!j.ativo ? 'falha' : j.falhas_24h ? 'pendente' : 'ok'}">${!j.ativo ? 'parada' : j.falhas_24h ? 'com falha' : 'ok'}</span></td></tr>`).join('')}</tbody></table></div></section>
     <section class="grupo"><h2>Erros registrados</h2>${es.length ? `<div class="rolagem"><table class="hist"><thead><tr><th>Quando</th><th>Onde</th><th>Erro</th></tr></thead><tbody>${es.map(e => `<tr><td>${quando(e.em)}</td><td><code>${esc(e.origem)}</code></td><td class="cod">${esc(e.detalhe || JSON.stringify(e.contexto || e))}</td></tr>`).join('')}</tbody></table></div>` : '<p class="vazio">Nenhum erro nas últimas 24 horas. Falha num gatilho (projeção externa, agente) fica aqui sem derrubar a operação.</p>'}</section>`;
 }
+const ROT_SIM = { instancias: 'Instâncias de processo', eventos: 'Eventos', cartoes: 'Tarefas (cartões)', mensagens: 'Mensagens e fila do Telegram', pedidos_de_fora: 'Pedidos de clientes e parceiros',
+  oportunidades: 'Oportunidades', comissoes: 'Comissões', prestacoes: 'Notas e relatórios', reunioes: 'Reuniões', acervo: 'Arquivos do acervo', publicacoes: 'Publicações no portal' };
+async function carregarSim() {
+  if (simCarregando || fonte !== 'vivo') return; simCarregando = true;
+  try { sim = await sql(`select adm.simulacao_painel(${lit(como)}::uuid) as p`); } catch (e) { sim = { erro: motivo(e) }; } finally { simCarregando = false; if (aba === 'simulacao') desenhar(); }
+}
+function vSimulacao() {
+  if (fonte !== 'vivo') return '<p class="vazio">A simulação se controla só ao vivo, com o conector do Supabase.</p>';
+  if (!sim) { carregarSim(); return '<p class="vazio">Carregando…</p>'; }
+  if (sim.erro) return `<p class="vazio">Não carregou: ${esc(sim.erro)}. Só a administração sem restrição vê esta aba.</p>`;
+  const m = sim.movimento || {}, c = sim.cadastro || {};
+  return `<section class="grupo"><h2>Estado</h2><p>${sim.ativa ? '<span class="chip ok">simulação ligada</span> Instâncias simuladas rodam a cada 5 minutos e o portal recebe vínculos simulados.' : '<span class="chip pendente">simulação desligada</span> Base de produção: nada simulado é gerado.'}</p>
+      ${sim.ultimo_corte ? `<p class="rodape">Último registro: ${quando(sim.ultimo_corte.em)}.</p>` : ''}
+      <div class="acoes"><button class="btn prim" type="button" data-sim="gerar" ${sim.ativa ? '' : 'disabled'}>Gerar um ciclo completo</button>
+        <button class="btn perigo" type="button" data-sim="zerar">Zerar simulações e começar a base de produção</button>
+        ${sim.ativa ? '' : '<button class="btn" type="button" data-sim="religar">Religar a simulação</button>'}</div>
+      <p class="rodape" style="padding:8px 0 0">O ciclo completo passa pelas mesmas funções das páginas: oportunidade do parceiro com conversa, negócio ganho, parcelas recebidas, nota conferida e aprovada; reclamação com encaminhamentos e reunião com ata; ordem de serviço aguardando o cliente; chamado encerrado com nota; ouvidoria anônima; reunião de terceiros no Zoom; cartões CNPJ de exemplo e uma minuta no acervo; avisos no Telegram simulado.</p></section>
+    <section class="grupo"><h2>Movimento simulado hoje</h2><div class="rolagem"><table class="hist"><thead><tr><th>O quê</th><th>Quantidade</th></tr></thead><tbody>
+      ${Object.keys(ROT_SIM).map(k => `<tr><td>${ROT_SIM[k]}</td><td>${Number(m[k] || 0).toLocaleString('pt-BR')}</td></tr>`).join('')}</tbody></table></div></section>
+    <section class="grupo"><h2>Cadastro</h2><p>Empresas: ${c.empresas_simuladas} simuladas, ${c.empresas_reais} reais · Pessoas: ${c.pessoas_simuladas} simuladas, ${c.pessoas_reais} reais · Clientes e parceiros: ${c.contrapartes_simuladas} simulados, ${c.contrapartes_reais} reais.</p>
+      <p class="rodape">Zerar apaga o movimento simulado e desliga a simulação. Ficam o modelo, os catálogos, os parâmetros, as conexões, as marcas, as trilhas de auditoria (que por regra não se apagam) e os documentos já emitidos. Os cadastros simulados ficam até haver cadastro real e login de produção para operar no lugar deles.</p></section>`;
+}
+function abrirZerar() {
+  const m = sim?.movimento || {}, total = Object.values(m).reduce((a, b) => a + Number(b || 0), 0);
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">Zerar simulações</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p>Apaga ${total.toLocaleString('pt-BR')} registros de movimento simulado, em lotes, e desliga a simulação contínua. Não se desfaz. O corte fica no histórico com as contagens de antes e depois.</p>
+    <form id="f-zer" class="linhas"><label class="campo" for="f-frase">Para confirmar, digite ZERAR SIMULAÇÕES<input id="f-frase" autocomplete="off" required></label>
+      <p id="f-prog" class="rodape" aria-live="polite"></p>
+      <div class="acoes"><button class="btn perigo" type="submit">Zerar agora</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-zer').onsubmit = async ev => {
+    ev.preventDefault(); const b = ev.target.querySelector('button[type="submit"]'); b.disabled = true;
+    try {
+      for (let volta = 1; volta <= 60; volta++) {
+        const r = await sql(`select adm.zerar_simulacoes(${lit($('f-frase').value.trim())}, ${lit(como)}::uuid, 20000) as p`);
+        const resta = Object.values(r.restante || {}).reduce((a, x) => a + Number(x || 0), 0);
+        $('f-prog').textContent = `Lote ${volta}: restam ${resta.toLocaleString('pt-BR')} registros.`;
+        if (r.feito) { recibo('feito', 'Simulações zeradas; a base de produção começa agora.'); fechar(); sim = null; await recarregar(); return; }
+      }
+      recibo('recusado', 'Ainda há registros; rode de novo para continuar.');
+    } catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); b.disabled = false; }
+  };
+}
+async function acaoSim(tipo, botao) {
+  if (tipo === 'zerar') return abrirZerar();
+  botao.disabled = true;
+  try {
+    if (tipo === 'gerar') { const r = await sql(`select adm.simular_ecossistema(${lit(como)}::uuid) as p`); recibo('feito', `Ciclo ${r.ciclo} gerado: ${r.demandas} demandas, com parceiro, cliente, reunião e acervo.`); }
+    else { await sql(`select 1 as p from (select adm.religar_simulacao(${lit(como)}::uuid)) x`); recibo('feito', 'Simulação religada.'); }
+    sim = null; await recarregar();
+  } catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); botao.disabled = false; }
+}
 function desenhar() {
   desenharResumo();
   const q = $('q').value.trim().toLowerCase();
-  $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, historico: vHistorico, agenda: vAgenda }[aba](q);
+  $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, historico: vHistorico, agenda: vAgenda, simulacao: vSimulacao }[aba](q);
   $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
   for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
   const viva = fonte === 'vivo';
   $('rodape').textContent = viva
     ? `Ao vivo no Supabase, gerado ${quando(dados.gerado_em)}. Cada alteração roda nas funções adm.* e vale a regra do banco: validação, duas mãos nos sensíveis e histórico. No protótipo a página atua como um administrador simulado escolhido acima; em produção vale o login de cada pessoa. Valores de segredo nunca aparecem: só o nome no Vault.`
     : fonte === 'nada' ? 'Sem o conector do Supabase e sem retrato gravado: nada a mostrar. Adicione o conector para ver ao vivo.' : `Retrato gravado em ${quando(dados.gerado_em)}. Sem o conector do Supabase as alterações ficam desligadas; a página mostra o estado daquele momento. Valores de segredo nunca aparecem: só o nome no Vault.`;
-  for (const b of document.querySelectorAll('[data-editar-conexao],[data-editar-param],[data-decidir],[data-ligar],[data-liberar],[data-memoria],[data-rascunho]')) b.disabled = !viva;
+  for (const b of document.querySelectorAll('[data-editar-conexao],[data-editar-param],[data-decidir],[data-ligar],[data-liberar],[data-memoria],[data-rascunho],[data-sim]')) b.disabled = b.disabled || !viva;
 }
 function desenharComo() {
   const adms = dados.administradores || [];
   if (!como || !adms.some(a => a.pessoa === como)) como = (adms.find(a => /Administrador/.test(a.papel)) || adms[0])?.pessoa || null;
   $('como').innerHTML = adms.map(a => `<option value="${esc(a.pessoa)}" ${a.pessoa === como ? 'selected' : ''}>${esc(a.papel)} (simulado)</option>`).join('');
 }
-$('como').onchange = e => { como = e.target.value; };
+$('como').onchange = e => { como = e.target.value; sim = null; if (aba === 'simulacao') desenhar(); };
 
 // ---------- edição ----------
 function fechar() { $('foco').hidden = true; $('foco').innerHTML = ''; if (voltarFoco && document.contains(voltarFoco)) voltarFoco.focus(); voltarFoco = null; }
@@ -390,6 +444,7 @@ document.addEventListener('click', e => {
   else if (t.dataset.editarConexao) abrirConexao(t.dataset.editarConexao);
   else if (t.dataset.editarParam) abrirParam(t.dataset.editarParam);
   else if (t.dataset.decidir) abrirDecisao(Number(t.dataset.decidir), t.dataset.d);
+  else if (t.dataset.sim) acaoSim(t.dataset.sim, t);
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !$('foco').hidden) { fechar(); return; }
