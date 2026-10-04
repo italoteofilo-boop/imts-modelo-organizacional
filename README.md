@@ -33,6 +33,8 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
   painel/ ..................... o painel da operação (com o cérebro vivo): modelo da página, gerador, teste e o retrato de 03/10/2026.
   mesa/ ....................... a Mesa de trabalho da Identidade: modelo da página, gerador, exportador do retrato, teste e o retrato de 03/10/2026.
   simulador/ .................. o simulador de cenários (E7): carga sintética com fila por papel, testes e as propostas para a ID-04.
+  documentos/ ................. o motor documental (E12): catálogo de tipos, marcas, modelos de design, motor, worker, testes e as amostras emitidas.
+  admin/ ...................... a página de administração geral (E13): modelo da página, gerador e o retrato de 04/10/2026.
   instrucoes.py, instrucoes_pdf.mjs  geram as instruções de trabalho (HTML e PDF).
   ml/ ......................... treino dos primeiros modelos de ML com eventos simulados e os modelos treinados.
   fontes_oficiais/ ............ texto literal dos dispositivos legais citados (retrato de 03/10/2026) e o conferidor de contingência.
@@ -47,7 +49,7 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
   auditoria_geral.md .......... a auditoria geral da versão inicial (três revisores independentes) e as correções aprovadas às 16:05.
   gates_implantacao.md ........ os nove gates de setup da implantação e os rascunhos validados das 34 cadências e dos 14 conteúdos.
   propostas_parametros.md ..... as alçadas, o método de estratégia, a alçada da Governança e as regras gerais de contrato, aprovados em 03/10/2026, com a tabela matéria × órgão (seção 5).
-  fase2_plano.md .............. o plano da fase 2 (runtime por círculo, ML, Telegram, painel, simulador, Mesa), aprovado, com o andamento.
+  fase2_plano.md .............. o plano da fase 2 (runtime por círculo, ML, Telegram, painel, simulador, Mesa, motor documental, administração), aprovado, com o andamento.
   requisitos_acessibilidade.md  acessibilidade (alvo WCAG 2.2 AA), usabilidade e portabilidade (LGPD, art. 18).
   fontes_c3.md a fontes_c9.md . as fontes dos círculos 3 a 9, com o que usamos de cada uma e como foi conferida.
 

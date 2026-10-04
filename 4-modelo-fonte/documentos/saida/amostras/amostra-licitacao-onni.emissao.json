@@ -1,0 +1,30 @@
+{
+ "id": "amostra-licitacao-onni",
+ "tipo": "proposta-b2g",
+ "tipo_nome": "Proposta de preço e habilitação em licitação",
+ "marca": "onni",
+ "modelo": "licitacao",
+ "emitido_em": "2026-10-04T12:33:33+00:00",
+ "situacao": "emitido_com_alertas",
+ "paginas": 1,
+ "sumario": {
+  "1. Identificação da proponente": 1,
+  "2. Preços": 1,
+  "3. Condições": 1
+ },
+ "hash_pedido": "ea93616355dd6733512608053500a551724d34d0c739d776aee27034bfab7b52",
+ "hash_pdf": "3ce660db02687529c331311accce0a9f415211f70075e4d61ca17dae576706b0",
+ "hash_html": "dd4a6430528602a9c1474eab5a00f3c4c0e7998bc9417be708c513168b4ea26b",
+ "ajustes_terco": 0,
+ "gates": [],
+ "alertas": [
+  {
+   "alerta": "fonte substituta",
+   "onde": "Nexa indisponível aqui: Poppins no lugar, declarado em cada emissão"
+  }
+ ],
+ "arquivos": [
+  "amostra-licitacao-onni.pdf",
+  "amostra-licitacao-onni.html"
+ ]
+}

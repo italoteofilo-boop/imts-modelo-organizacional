@@ -1,0 +1,43 @@
+{
+ "id": "neutra",
+ "nome": "Ecossistema",
+ "razao_social": null,
+ "cnpj": null,
+ "situacao": "neutra",
+ "fonte": "skill editorial-legal-os, references/tipografia.md (padrão Legal.OS)",
+ "cores": {
+  "primaria": "#000000",
+  "texto": "#000000",
+  "fundo": "#FFFFFF",
+  "destaque": "#000000",
+  "apoio": "#404040",
+  "apoio2": "#404040",
+  "barra": "#D9D9D9",
+  "linha": "#7F7F7F"
+ },
+ "tipografia": {
+  "texto": "Open Sans",
+  "display": "Open Sans",
+  "fallback": "system-ui, sans-serif"
+ },
+ "logos": null,
+ "logo_regras": null,
+ "autor_institucional": "Ecossistema IMTS",
+ "rodape_aprovacao": {
+  "etapas": [
+   "Preenchimento",
+   "Análise Crítica e Validação",
+   "Aprovação"
+  ],
+  "areas": [
+   "Área de Compliance",
+   "Assessoria Jurídica",
+   "Liderança Corporativa"
+  ]
+ },
+ "marca_dagua": null,
+ "regras": [
+  "marca do motor (white label) quando o documento não tem empresa"
+ ],
+ "inferencias": []
+}

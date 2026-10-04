@@ -1,0 +1,335 @@
+<title>Administração do IMTS.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+/* Layout: barra de controle, resumo de saúde, abas por objeto (conexões, parâmetros, mudanças, histórico, agenda), painel lateral de edição. */
+:root {
+  --ground:#EBEBE6; --surface:#FFFFFF; --ink:#1F201E; --sec:#5C5E5A; --hair:#D6D5CF; --accent:#2F52C7; --accent-soft:#E3E8F8;
+  --pill:#1F201E; --pill-ink:#FFFFFF; --late:#B3261E; --late-soft:#F8E1DF; --ok:#1E7A46; --ok-soft:#DDF0E4; --wait:#8A5A00; --wait-soft:#F6EBD3;
+  --shadow:0 1px 2px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.05); --prim-ink:#FFFFFF;
+  --sans:'Atkinson Hyperlegible', system-ui, sans-serif; --serif:'Newsreader', Georgia, serif; --mono:ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --ground:#151614; --surface:#1F201E; --ink:#ECECE7; --sec:#A5A7A1; --hair:#34352F; --accent:#8AA4F5; --accent-soft:#232C47;
+  --pill:#ECECE7; --pill-ink:#151614; --late:#F2867D; --late-soft:#3A2220; --ok:#7CD3A0; --ok-soft:#1C3326; --wait:#E8C276; --wait-soft:#3A3020;
+  --shadow:0 1px 2px rgba(0,0,0,.4); --prim-ink:#10131C; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --ground:#151614; --surface:#1F201E; --ink:#ECECE7; --sec:#A5A7A1; --hair:#34352F; --accent:#8AA4F5; --accent-soft:#232C47;
+  --pill:#ECECE7; --pill-ink:#151614; --late:#F2867D; --late-soft:#3A2220; --ok:#7CD3A0; --ok-soft:#1C3326; --wait:#E8C276; --wait-soft:#3A3020;
+  --shadow:0 1px 2px rgba(0,0,0,.4); --prim-ink:#10131C; color-scheme: dark; }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.4; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.chao { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; padding:12px 20px; border-bottom:1px solid var(--hair); background:var(--surface); }
+.marca { font-family:var(--serif); font-weight:600; font-size:20px; margin:0 auto 0 0; text-wrap:balance; }
+.marca small { font-family:var(--sans); font-weight:400; font-size:13px; color:var(--sec); margin-left:6px; }
+.quem { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--sec); }
+.quem select { padding:6px 8px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); max-width:240px; }
+.fonte { font-size:12px; padding:3px 9px; border-radius:99px; background:var(--wait-soft); color:var(--wait); white-space:nowrap; }
+.fonte.vivo { background:var(--ok-soft); color:var(--ok); }
+.icone { border:1px solid var(--hair); background:var(--surface); border-radius:8px; padding:5px 9px; font-size:13px; }
+.icone:disabled { opacity:.5; cursor:wait; }
+.resumo { display:flex; flex-wrap:wrap; gap:8px; padding:12px 20px 0; }
+.resumo span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--surface); border:1px solid var(--hair); color:var(--sec); font-variant-numeric:tabular-nums; }
+.resumo b { color:var(--ink); }
+.resumo .mal b { color:var(--late); } .resumo .bem b { color:var(--ok); } .resumo .esp b { color:var(--wait); }
+.abas { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:12px 20px; }
+.aba { border:1px solid var(--hair); background:transparent; border-radius:99px; padding:6px 14px; font-size:14px; }
+.aba[aria-selected="true"] { background:var(--pill); color:var(--pill-ink); border-color:var(--pill); }
+.aba .n { font-size:12px; opacity:.75; margin-left:4px; font-variant-numeric:tabular-nums; }
+.busca { margin-left:auto; display:flex; align-items:center; gap:6px; }
+.busca input { width:min(260px, 60vw); padding:6px 10px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
+main { padding:0 20px 24px; }
+.grupo { margin:0 0 18px; }
+.grupo h2 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--sec); margin:0 0 8px; font-weight:700; }
+.linhas { display:flex; flex-direction:column; gap:8px; }
+.linha { display:grid; grid-template-columns:6px minmax(0, 2.2fr) minmax(0, 1.2fr) minmax(0, 1.6fr) auto; gap:12px; align-items:start; background:var(--surface);
+  border:1px solid var(--hair); border-radius:12px; padding:10px 12px 10px 0; overflow:hidden; }
+.faixa { align-self:stretch; border-radius:0 4px 4px 0; background:var(--hair); }
+.faixa.ok { background:var(--ok); } .faixa.falha { background:var(--late); } .faixa.desconhecida { background:var(--hair); }
+.linha .t { font-weight:700; } .linha .sub { font-size:13px; color:var(--sec); overflow-wrap:anywhere; }
+.linha code, .cod { font-family:var(--mono); font-size:12px; overflow-wrap:anywhere; }
+.chips { display:flex; flex-wrap:wrap; gap:4px; }
+.chip { font-size:12px; padding:1px 8px; border-radius:99px; background:var(--ground); color:var(--sec); white-space:nowrap; }
+.chip.ativa, .chip.ok, .chip.aprovada { background:var(--ok-soft); color:var(--ok); }
+.chip.pendente, .chip.esp { background:var(--wait-soft); color:var(--wait); }
+.chip.falha, .chip.recusada { background:var(--late-soft); color:var(--late); }
+.chip.simulada { background:var(--accent-soft); color:var(--accent); }
+.chip.sensivel { background:var(--late-soft); color:var(--late); }
+.valor { font-family:var(--mono); font-size:13px; background:var(--ground); padding:2px 6px; border-radius:6px; overflow-wrap:anywhere; }
+.btn { border:1px solid var(--hair); background:var(--surface); border-radius:10px; padding:7px 13px; font-size:14px; }
+.btn.prim { background:var(--accent); border-color:var(--accent); color:var(--prim-ink); }
+.btn.perigo { border-color:var(--late); color:var(--late); }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.vazio { font-size:14px; color:var(--sec); padding:14px; background:var(--surface); border:1px dashed var(--hair); border-radius:12px; }
+table.hist { width:100%; border-collapse:collapse; font-size:13px; background:var(--surface); border:1px solid var(--hair); border-radius:12px; overflow:hidden; }
+table.hist th, table.hist td { padding:7px 9px; border-bottom:1px solid var(--hair); text-align:left; vertical-align:top; }
+table.hist th { font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--sec); font-weight:700; background:var(--ground); }
+.rolagem { overflow-x:auto; }
+.foco { position:fixed; inset:0 0 0 auto; width:min(480px, 100%); background:var(--surface); border-left:1px solid var(--hair); box-shadow:-8px 0 24px rgba(0,0,0,.14);
+  padding:18px 20px calc(18px + env(safe-area-inset-bottom, 0px)); overflow-y:auto; display:flex; flex-direction:column; gap:14px; z-index:5; }
+.foco h2 { font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.2; margin:0; text-wrap:balance; }
+.foco .topo { display:flex; justify-content:space-between; gap:12px; align-items:start; }
+.foco p { margin:0; font-size:14px; color:var(--sec); }
+.campo { display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--sec); }
+.campo input, .campo select, .campo textarea { padding:8px 10px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); color:var(--ink); font-size:14px; }
+.campo textarea { min-height:84px; resize:vertical; }
+.par { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.acoes { display:flex; flex-wrap:wrap; gap:8px; }
+.recibos { position:fixed; left:20px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); display:flex; flex-direction:column; gap:6px; z-index:6; max-width:min(420px, calc(100% - 40px)); }
+.recibo { background:var(--surface); border:1px solid var(--hair); border-left:4px solid var(--accent); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--shadow); }
+.recibo.feito { border-left-color:var(--ok); } .recibo.recusado { border-left-color:var(--late); }
+.rodape { padding:0 20px 28px; font-size:12px; color:var(--sec); max-width:80ch; }
+@media (max-width: 760px) {
+  .linha { grid-template-columns:6px minmax(0, 1fr); }
+  .linha > :not(.faixa) { grid-column:2; }
+  .busca { margin-left:0; width:100%; } .busca input { width:100%; }
+  .par { grid-template-columns:1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+
+<header class="chao">
+  <h1 class="marca">Administração<small>IMTS.OS · conexões e parâmetros</small></h1>
+  <label class="quem" for="como">Atuando como <select id="como"></select></label>
+  <span class="fonte" id="fonte">Retrato gravado</span>
+  <button class="icone" id="b-verificar" type="button" hidden>Verificar saúde</button>
+  <button class="icone" id="b-atual" type="button" hidden>Atualizar</button>
+  <button class="icone" id="b-tema" type="button" aria-label="Alternar tema">Tema</button>
+</header>
+<div class="resumo" id="resumo" aria-live="polite"></div>
+<nav class="abas" role="tablist" aria-label="Objetos da administração">
+  <button class="aba" role="tab" id="t-conexoes" data-aba="conexoes" aria-selected="true">Conexões<span class="n" id="n-conexoes"></span></button>
+  <button class="aba" role="tab" id="t-parametros" data-aba="parametros" aria-selected="false">Parâmetros<span class="n" id="n-parametros"></span></button>
+  <button class="aba" role="tab" id="t-mudancas" data-aba="mudancas" aria-selected="false">Aprovações<span class="n" id="n-mudancas"></span></button>
+  <button class="aba" role="tab" id="t-historico" data-aba="historico" aria-selected="false">Histórico<span class="n" id="n-historico"></span></button>
+  <button class="aba" role="tab" id="t-agenda" data-aba="agenda" aria-selected="false">Agenda</button>
+  <label class="busca" for="q"><span class="chip">Buscar</span><input id="q" type="search" placeholder="nome, chave, dono, segredo, pendência"></label>
+</nav>
+<main id="conteudo" role="tabpanel" aria-live="polite"></main>
+<p class="rodape" id="rodape"></p>
+<aside class="foco" id="foco" hidden aria-label="Edição"></aside>
+<div class="recibos" id="recibos" aria-live="polite"></div>
+
+<script>
+const PROJETO = 'rzkfolkqdgtounqjjzss';
+const RETRATO = /*RETRATO*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const lit = s => "'" + String(s).replace(/'/g, "''") + "'";
+const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) : 'nunca';
+const ESTADO = { ativa: 'ativa', simulada: 'simulada', pendente: 'pendente', desligada: 'desligada' };
+const SAUDE = { ok: 'saudável', falha: 'falha', desconhecida: 'sem verificação' };
+let dados = RETRATO, fonte = 'retrato', aba = 'conexoes', mcp = null, como = null;
+
+function lerPayload(p) {
+  const s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
+  const m = s.match(/<untrusted-data-[^>]*>\s*([\s\S]*?)\s*<\/untrusted-data/);
+  let linhas; try { linhas = JSON.parse(m ? m[1] : s); } catch (e) { throw { code: 'formato', message: s.slice(0, 300) }; }
+  const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
+  if (v === undefined) throw { code: 'formato' };
+  return typeof v === 'string' ? JSON.parse(v) : v;
+}
+async function sql(q) {
+  const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false });
+  return lerPayload(r.payload ?? r.content?.[0]?.text);
+}
+const AVISOS = { server_not_connected: 'o conector do Supabase não está adicionado', needs_reauth: 'o conector do Supabase precisa ser reconectado',
+  not_in_manifest: 'a leitura ao vivo não foi permitida para esta página', blocked_by_policy: 'bloqueado pela política da organização',
+  approval_required: 'precisa de aprovação da organização', server_unavailable: 'o Supabase não respondeu a tempo' };
+function motivo(e) {
+  const m = String(e?.message || '');
+  const x = m.match(/ERROR:\s*P0001:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*[0-9A-Z]{5}:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*([^\n"\\]+)/);
+  return x ? x[1].trim() : (AVISOS[e?.code] || m || e?.code || 'erro');
+}
+function recibo(tipo, texto) {
+  const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d);
+  setTimeout(() => d.remove(), 7000);
+}
+const papel = id => (dados.administradores || []).find(a => a.pessoa === id)?.papel || (id ? id.slice(0, 8) : 'serviço');
+
+function desenharResumo() {
+  const r = dados.resumo, f = r.fila_documentos || {};
+  const filaTxt = Object.entries(f).map(([k, v]) => `${v} ${k.replace(/_/g, ' ')}`).join(', ') || 'vazia';
+  $('resumo').innerHTML = `
+    <span class="bem">Saudáveis <b>${r.saude_ok}</b></span><span class="${r.saude_falha ? 'mal' : ''}">Com falha <b>${r.saude_falha}</b></span>
+    <span>Conexões <b>${r.conexoes}</b> (${r.ativas} ativas, ${r.simuladas} simuladas, ${r.pendentes} pendentes)</span>
+    <span>Parâmetros <b>${r.parametros}</b></span><span class="${r.mudancas_pendentes ? 'esp' : ''}">Aprovações pendentes <b>${r.mudancas_pendentes}</b></span>
+    <span>Fila de documentos <b>${esc(filaTxt)}</b></span>`;
+  $('n-conexoes').textContent = r.conexoes; $('n-parametros').textContent = r.parametros;
+  $('n-mudancas').textContent = r.mudancas_pendentes || ''; $('n-historico').textContent = (dados.historico || []).length || '';
+}
+const casa = (obj, q) => !q || JSON.stringify(obj).toLowerCase().includes(q);
+
+function vConexoes(q) {
+  const grupos = {};
+  for (const c of dados.conexoes.filter(c => casa(c, q))) (grupos[c.categoria] ??= []).push(c);
+  if (!Object.keys(grupos).length) return '<p class="vazio">Nenhuma conexão com esse termo.</p>';
+  return Object.entries(grupos).map(([cat, cs]) => `<section class="grupo"><h2>${esc(cat)}</h2><div class="linhas">${cs.map(c => `
+    <article class="linha"><span class="faixa ${c.saude}" aria-hidden="true"></span>
+      <div><div class="t">${esc(c.nome)}</div><div class="sub"><code>${esc(c.codigo)}</code>${c.endpoint ? ' · ' + esc(c.endpoint) : ''}</div>
+        ${c.pendencia ? `<div class="sub">Pendência: ${esc(c.pendencia)}</div>` : ''}</div>
+      <div class="chips"><span class="chip ${c.estado}">${ESTADO[c.estado]}</span><span class="chip ${c.saude}">${SAUDE[c.saude]}</span><span class="chip">${esc(c.ambiente)}</span></div>
+      <div class="sub">${c.saude_detalhe ? esc(c.saude_detalhe) + '<br>' : ''}Verificada: ${quando(c.verificada_em)}<br>Dono: ${esc(c.dono)}
+        ${c.segredos?.length ? `<br>Segredos no Vault: ${c.segredos.map(s => `<code>${esc(s)}</code>`).join(', ')}` : ''}</div>
+      <div><button class="btn" data-editar-conexao="${esc(c.codigo)}" type="button">Editar</button></div></article>`).join('')}</div></section>`).join('');
+}
+const mostra = (p, v) => p.tipo === 'faixa' ? `${v.min} a ${v.max} min` : p.tipo === 'lista' ? v.join(' · ') : String(v);
+function vParametros(q) {
+  const grupos = {};
+  for (const p of dados.parametros.filter(p => casa(p, q))) (grupos[p.escopo] ??= []).push(p);
+  if (!Object.keys(grupos).length) return '<p class="vazio">Nenhum parâmetro com esse termo.</p>';
+  return Object.entries(grupos).map(([esc_, ps]) => `<section class="grupo"><h2>${esc(esc_)}</h2><div class="linhas">${ps.map(p => `
+    <article class="linha"><span class="faixa ${JSON.stringify(p.valor) === JSON.stringify(p.padrao) ? '' : 'ok'}" aria-hidden="true"></span>
+      <div><div class="t">${esc(p.descricao)}</div><div class="sub"><code>${esc(p.chave)}</code></div></div>
+      <div><span class="valor">${esc(mostra(p, p.valor))}</span>${JSON.stringify(p.valor) !== JSON.stringify(p.padrao) ? `<div class="sub">padrão: ${esc(mostra(p, p.padrao))}</div>` : ''}</div>
+      <div class="sub">${p.sensivel ? '<span class="chip sensivel">duas mãos</span> ' : ''}Vale em: ${p.destinos.length ? p.destinos.map(d => `<code>${esc(d)}</code>`).join(', ') : 'lido pela função que o usa'}<br>Fonte: ${esc(p.fonte)}<br>Mudou: ${quando(p.atualizado_em)}${p.atualizado_por ? ' por ' + esc(papel(p.atualizado_por)) : ''}</div>
+      <div><button class="btn" data-editar-param="${esc(p.chave)}" type="button">Alterar</button></div></article>`).join('')}</div></section>`).join('');
+}
+function vMudancas(q) {
+  const ms = (dados.mudancas || []).filter(m => casa(m, q));
+  if (!ms.length) return '<p class="vazio">Nenhuma mudança pedida. Parâmetros marcados “duas mãos” entram aqui e só valem depois que outra pessoa aprova.</p>';
+  return `<div class="linhas">${ms.map(m => `<article class="linha"><span class="faixa ${m.situacao === 'aprovada' ? 'ok' : m.situacao === 'recusada' ? 'falha' : ''}" aria-hidden="true"></span>
+    <div><div class="t"><code>${esc(m.chave)}</code> → <span class="valor">${esc(JSON.stringify(m.valor))}</span></div><div class="sub">Motivo: ${esc(m.motivo)}</div></div>
+    <div class="chips"><span class="chip ${m.situacao === 'pendente' ? 'pendente' : m.situacao}">${esc(m.situacao)}</span></div>
+    <div class="sub">Pedida por ${esc(papel(m.pedido_por))} em ${quando(m.pedido_em)}${m.decidido_por ? `<br>Decidida por ${esc(papel(m.decidido_por))} em ${quando(m.decidido_em)}${m.motivo_decisao ? ': ' + esc(m.motivo_decisao) : ''}` : ''}</div>
+    <div class="acoes">${m.situacao === 'pendente' ? `<button class="btn prim" data-decidir="${m.id}" data-d="aprovada" type="button">Aprovar</button><button class="btn perigo" data-decidir="${m.id}" data-d="recusada" type="button">Recusar</button>` : ''}</div></article>`).join('')}</div>`;
+}
+function vHistorico(q) {
+  const hs = (dados.historico || []).filter(h => casa(h, q));
+  if (!hs.length) return '<p class="vazio">Nenhuma alteração registrada ainda. Toda mudança de parâmetro ou de conexão fica aqui, com antes, depois, quem e por quê.</p>';
+  const d = (h, k) => h.objeto === 'parametro' ? esc(JSON.stringify(h[k])) : esc(Object.entries(h.depois || {}).filter(([kk, v]) => JSON.stringify(v) !== JSON.stringify((h.antes || {})[kk])).map(([kk]) => kk + ': ' + JSON.stringify((h[k] || {})[kk])).join('; '));
+  return `<div class="rolagem"><table class="hist"><thead><tr><th>Quando</th><th>O quê</th><th>Antes</th><th>Depois</th><th>Quem</th><th>Por quê</th></tr></thead><tbody>
+    ${hs.map(h => `<tr><td>${quando(h.em)}</td><td><code>${esc(h.chave)}</code></td><td class="cod">${d(h, 'antes')}</td><td class="cod">${d(h, 'depois')}</td><td>${esc(papel(h.por))}<br><small>${esc(h.como)}</small></td><td>${esc(h.motivo || '')}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function vAgenda() {
+  return `<div class="rolagem"><table class="hist"><thead><tr><th>Rotina</th><th>Quando roda</th><th>Situação</th><th>Parâmetro que a controla</th></tr></thead><tbody>
+    ${(dados.agenda || []).map(j => { const p = dados.parametros.find(p => p.destinos.some(d => d.endsWith(':' + j.job)));
+      return `<tr><td><code>${esc(j.job)}</code></td><td><code>${esc(j.quando)}</code></td><td><span class="chip ${j.ativo ? 'ativa' : 'falha'}">${j.ativo ? 'ativa' : 'parada'}</span></td><td>${p ? `<code>${esc(p.chave)}</code>` : '—'}</td></tr>`; }).join('')}</tbody></table></div>`;
+}
+function desenhar() {
+  desenharResumo();
+  const q = $('q').value.trim().toLowerCase();
+  $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, historico: vHistorico, agenda: vAgenda }[aba](q);
+  $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
+  for (const b of document.querySelectorAll('.aba')) b.setAttribute('aria-selected', String(b.dataset.aba === aba));
+  const viva = fonte === 'vivo';
+  $('rodape').textContent = viva
+    ? `Ao vivo no Supabase, gerado ${quando(dados.gerado_em)}. Cada alteração roda nas funções adm.* e vale a regra do banco: validação, duas mãos nos sensíveis e histórico. No protótipo a página atua como um administrador simulado escolhido acima; em produção vale o login de cada pessoa. Valores de segredo nunca aparecem: só o nome no Vault.`
+    : `Retrato gravado em ${quando(dados.gerado_em)}. Sem o conector do Supabase as alterações ficam desligadas; a página mostra o estado daquele momento. Valores de segredo nunca aparecem: só o nome no Vault.`;
+  for (const b of document.querySelectorAll('[data-editar-conexao],[data-editar-param],[data-decidir]')) b.disabled = !viva;
+}
+function desenharComo() {
+  const adms = dados.administradores || [];
+  if (!como || !adms.some(a => a.pessoa === como)) como = (adms.find(a => /Administrador/.test(a.papel)) || adms[0])?.pessoa || null;
+  $('como').innerHTML = adms.map(a => `<option value="${esc(a.pessoa)}" ${a.pessoa === como ? 'selected' : ''}>${esc(a.papel)} (simulado)</option>`).join('');
+}
+$('como').onchange = e => { como = e.target.value; };
+
+// ---------- edição ----------
+function fechar() { $('foco').hidden = true; $('foco').innerHTML = ''; }
+function abrirConexao(cod) {
+  const c = dados.conexoes.find(x => x.codigo === cod); if (!c) return;
+  const op = (v, l) => `<option value="${v}" ${c.estado === v ? 'selected' : ''}>${l}</option>`;
+  $('foco').innerHTML = `<div class="topo"><h2>${esc(c.nome)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p><code>${esc(c.codigo)}</code> · ${esc(c.categoria)}. A verificação de saúde (${esc(c.verificacao)}) só muda por migração.</p>
+    <form id="f-con" class="linhas">
+      <label class="campo" for="f-nome">Nome<input id="f-nome" value="${esc(c.nome)}" required></label>
+      <div class="par"><label class="campo" for="f-estado">Estado<select id="f-estado">${op('ativa', 'ativa')}${op('simulada', 'simulada')}${op('pendente', 'pendente')}${op('desligada', 'desligada')}</select></label>
+      <label class="campo" for="f-amb">Ambiente<select id="f-amb">${['protótipo', 'teste', 'produção'].map(a => `<option ${a === c.ambiente ? 'selected' : ''}>${a}</option>`).join('')}</select></label></div>
+      <label class="campo" for="f-end">Endpoint<input id="f-end" value="${esc(c.endpoint || '')}" placeholder="https://..."></label>
+      <label class="campo" for="f-dono">Dono<input id="f-dono" value="${esc(c.dono)}" required></label>
+      <label class="campo" for="f-seg">Nomes dos segredos no Vault (um por linha; nunca o valor)<textarea id="f-seg" spellcheck="false">${esc((c.segredos || []).join('\n'))}</textarea></label>
+      <label class="campo" for="f-pend">Pendência<textarea id="f-pend">${esc(c.pendencia || '')}</textarea></label>
+      <label class="campo" for="f-mot">Motivo da alteração<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
+      <div class="acoes"><button class="btn prim" type="submit">Salvar</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  $('foco').hidden = false; $('f-nome').focus();
+  $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-con').onsubmit = async ev => {
+    ev.preventDefault();
+    const campos = { nome: $('f-nome').value.trim(), estado: $('f-estado').value, ambiente: $('f-amb').value, endpoint: $('f-end').value.trim(), dono: $('f-dono').value.trim(),
+      segredos: $('f-seg').value.split('\n').map(s => s.trim()).filter(Boolean), pendencia: $('f-pend').value.trim() };
+    await agir(`select adm.alterar_conexao(${lit(c.codigo)}, ${lit(JSON.stringify(campos))}::jsonb, ${lit($('f-mot').value)}, ${lit(como)}::uuid)`, `Conexão ${c.codigo} salva.`, true);
+  };
+}
+function abrirParam(chave) {
+  const p = dados.parametros.find(x => x.chave === chave); if (!p) return;
+  const v = p.valor, val = p.validacao || {};
+  let editor;
+  if (p.tipo === 'faixa') editor = `<div class="par"><label class="campo" for="f-min">Mínimo (min)<input id="f-min" type="number" step="any" min="0" value="${v.min}"></label><label class="campo" for="f-max">Máximo (min)<input id="f-max" type="number" step="any" min="0" value="${v.max}"></label></div>`;
+  else if (p.tipo === 'lista') editor = `<label class="campo" for="f-v">Itens (um por linha)<textarea id="f-v">${esc(v.join('\n'))}</textarea></label>`;
+  else if (p.tipo === 'booleano') editor = `<label class="campo" for="f-v">Valor<select id="f-v"><option value="true" ${v ? 'selected' : ''}>sim</option><option value="false" ${!v ? 'selected' : ''}>não</option></select></label>`;
+  else if (val.opcoes) editor = `<label class="campo" for="f-v">Valor<select id="f-v">${val.opcoes.map(o => `<option ${o === v ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select></label>`;
+  else if (p.tipo === 'texto') editor = `<label class="campo" for="f-v">Valor<input id="f-v" value="${esc(v)}"></label>`;
+  else editor = `<label class="campo" for="f-v">Valor${val.min != null ? ` (de ${val.min} a ${val.max})` : ''}<input id="f-v" type="number" ${p.tipo === 'inteiro' ? 'step="1"' : 'step="any"'} ${val.min != null ? `min="${val.min}" max="${val.max}"` : ''} value="${v}"></label>`;
+  $('foco').innerHTML = `<div class="topo"><h2>${esc(p.descricao)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p><code>${esc(p.chave)}</code> · vale em ${p.destinos.length ? p.destinos.map(d => `<code>${esc(d)}</code>`).join(', ') : 'quem lê o parâmetro'}.
+    ${p.sensivel ? '<br><strong>Duas mãos:</strong> a mudança fica pendente até outra pessoa com acesso de administrar aprovar.' : ''}</p>
+    <form id="f-par" class="linhas">${editor}
+      <label class="campo" for="f-mot">Motivo da alteração<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
+      <div class="acoes"><button class="btn prim" type="submit">${p.sensivel ? 'Pedir aprovação' : 'Aplicar'}</button><button class="btn" type="button" id="f-padrao">Usar o padrão</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  $('foco').hidden = false; $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  const ler = () => p.tipo === 'faixa' ? { min: Number($('f-min').value), max: Number($('f-max').value) }
+    : p.tipo === 'lista' ? $('f-v').value.split('\n').map(s => s.trim()).filter(Boolean)
+    : p.tipo === 'booleano' ? $('f-v').value === 'true' : (p.tipo === 'texto' ? $('f-v').value : Number($('f-v').value));
+  const enviar = async valor => {
+    if (!$('f-mot').value.trim()) { $('f-mot').focus(); recibo('recusado', 'Informe o motivo: ele fica no histórico.'); return; }
+    await agir(`select adm.alterar_parametro(${lit(p.chave)}, ${lit(JSON.stringify(valor))}::jsonb, ${lit($('f-mot').value)}, ${lit(como)}::uuid)`,
+      p.sensivel ? 'Pedido de mudança registrado; aguarda aprovação de outra pessoa.' : `Parâmetro ${p.chave} aplicado e propagado.`, true);
+  };
+  $('f-par').onsubmit = ev => { ev.preventDefault(); enviar(ler()); };
+  $('f-padrao').onclick = () => enviar(p.padrao);
+}
+function abrirDecisao(id, decisao) {
+  const m = dados.mudancas.find(x => x.id === id); if (!m) return;
+  $('foco').innerHTML = `<div class="topo"><h2>${decisao === 'aprovada' ? 'Aprovar' : 'Recusar'} a mudança</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p><code>${esc(m.chave)}</code> → <span class="valor">${esc(JSON.stringify(m.valor))}</span><br>Pedida por ${esc(papel(m.pedido_por))}: ${esc(m.motivo)}</p>
+    <p>Você atua como <strong>${esc(papel(como))}</strong>. Quem pediu não decide a própria mudança.</p>
+    <form id="f-dec" class="linhas"><label class="campo" for="f-mot">Motivo da decisão${decisao === 'recusada' ? ' (obrigatório)' : ''}<input id="f-mot" ${decisao === 'recusada' ? 'required' : ''}></label>
+      <div class="acoes"><button class="btn ${decisao === 'aprovada' ? 'prim' : 'perigo'}" type="submit">${decisao === 'aprovada' ? 'Aprovar e aplicar' : 'Recusar'}</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  $('foco').hidden = false; $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-dec').onsubmit = async ev => { ev.preventDefault();
+    await agir(`select adm.decidir_mudanca(${Number(id)}, ${lit(decisao)}, ${lit($('f-mot').value)}, ${lit(como)}::uuid)`, decisao === 'aprovada' ? 'Mudança aprovada e aplicada.' : 'Mudança recusada.', true); };
+}
+async function agir(q, ok, fecharDepois) {
+  const bs = $('foco').querySelectorAll('button[type="submit"]'); bs.forEach(b => b.disabled = true);
+  try {
+    // a função devolve void ou json; embrulha para o formato { p }
+    await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: `select 1 as p from (${q}) x` }, { cache: false })
+      .then(r => { const s = String(r.payload ?? r.content?.[0]?.text ?? ''); if (/ERROR:/.test(s)) throw { message: s }; });
+    recibo('feito', ok); if (fecharDepois) fechar(); await recarregar();
+  } catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); }
+  finally { bs.forEach(b => b.disabled = false); }
+}
+async function recarregar() { dados = await sql('select adm.painel() as p'); desenharComo(); desenhar(); }
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.aba) { aba = t.dataset.aba; desenhar(); }
+  else if (t.dataset.editarConexao) abrirConexao(t.dataset.editarConexao);
+  else if (t.dataset.editarParam) abrirParam(t.dataset.editarParam);
+  else if (t.dataset.decidir) abrirDecisao(Number(t.dataset.decidir), t.dataset.d);
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('foco').hidden) fechar(); });
+$('q').oninput = () => desenhar();
+$('b-tema').onclick = () => { const r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme = escuro ? 'light' : 'dark'; };
+$('b-atual').onclick = async () => { const b = $('b-atual'); b.disabled = true; try { await recarregar(); recibo('feito', 'Atualizado.'); } catch (e) { recibo('recusado', 'Não atualizou: ' + motivo(e)); } finally { b.disabled = false; } };
+$('b-verificar').onclick = async () => {
+  const b = $('b-verificar'); b.disabled = true;
+  try { const r = await sql('select adm.verificar_conexoes() as p'); recibo('feito', `Verificação: ${r.ok} saudáveis, ${r.falha} com falha; ${r.http_disparadas} chamadas HTTP disparadas (o resultado chega na próxima verificação).`); await recarregar(); }
+  catch (e) { recibo('recusado', 'Verificação recusada: ' + motivo(e)); } finally { b.disabled = false; }
+};
+
+desenharComo(); desenhar();
+(async () => {
+  mcp = await window.claude?.use?.('mcp').catch(() => null);
+  if (!mcp) return;
+  try { await recarregar(); fonte = 'vivo'; $('fonte').textContent = 'Ao vivo · Supabase'; $('fonte').classList.add('vivo'); $('b-atual').hidden = false; $('b-verificar').hidden = false; desenhar(); }
+  catch (e) { recibo('recusado', 'Segue o retrato gravado: ' + motivo(e)); }
+})();
+</script>

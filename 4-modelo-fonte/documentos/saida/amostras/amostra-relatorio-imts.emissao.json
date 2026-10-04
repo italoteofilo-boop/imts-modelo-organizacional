@@ -1,0 +1,26 @@
+{
+ "id": "amostra-relatorio-imts",
+ "tipo": "relatorio",
+ "tipo_nome": "Relatório de resultado ou de situação",
+ "marca": "imts",
+ "modelo": "relatorio",
+ "emitido_em": "2026-10-04T12:33:36+00:00",
+ "situacao": "emitido",
+ "paginas": 2,
+ "sumario": {
+  "Resumo": 1,
+  "Análise": 1,
+  "Recomendações": 1,
+  "Próximo ciclo": 1
+ },
+ "hash_pedido": "118feaea139e741498c58b1b7845b839467b0e6a2751bf5e87533e8092ae137d",
+ "hash_pdf": "efa7ee058ad9bada77d8825848d9f7d8045c04f1da0db78ed5d1cdd610ae3720",
+ "hash_html": "6fec682747d32f2603e72898d4f5948e4ba80f790b39f85e74edfd5b25814273",
+ "ajustes_terco": 3,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-relatorio-imts.pdf",
+  "amostra-relatorio-imts.html"
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-certificado-imts",
+ "tipo": "certificado",
+ "marca": "imts",
+ "titulo": "Certificado de Reconhecimento",
+ "certificado": {
+  "preambulo": "O Ecossistema IMTS reconhece",
+  "concedido_a": "Nome da Pessoa Exemplo",
+  "texto": "pela contribuição na implantação do modelo organizacional, com entregas no prazo e cuidado com quem usa o resultado. Documento de exemplo."
+ },
+ "assinaturas": {
+  "partes": [
+   {
+    "nome": "Nome do Líder Exemplo",
+    "cargo": "Liderança Corporativa"
+   },
+   {
+    "nome": "Nome do Líder Exemplo",
+    "cargo": "Gestão de Pessoas"
+   }
+  ]
+ }
+}

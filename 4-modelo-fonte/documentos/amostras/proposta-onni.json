@@ -1,0 +1,104 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-proposta-onni",
+ "tipo": "proposta-comercial",
+ "marca": "onni",
+ "titulo": "Proposta Comercial de Inteligência Aplicada",
+ "subtitulo": "Exemplo para conferência do modelo de proposta",
+ "emitente": "Negócios",
+ "blocos": [
+  {
+   "t": "secao",
+   "titulo": "Proposta em uma página"
+  },
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "kpis",
+   "itens": [
+    {
+     "valor": "12 meses",
+     "rotulo": "vigência proposta"
+    },
+    {
+     "valor": "3 frentes",
+     "rotulo": "diagnóstico, implantação e operação"
+    },
+    {
+     "valor": "30 dias",
+     "rotulo": "para a primeira entrega"
+    }
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "O que muda"
+  },
+  {
+   "t": "p",
+   "texto": "A organização passa a decidir com dados conferidos, em ciclos curtos, com cada resultado ligado a um responsável e a um prazo. O trabalho repetitivo sai das pessoas e vai para agentes supervisionados."
+  },
+  {
+   "t": "destaque",
+   "titulo": "Princípio",
+   "texto": "Cada entrega é medida pelo resultado que produz, não pelas horas gastas para produzi-la."
+  },
+  {
+   "t": "secao",
+   "titulo": "Investimento"
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – Composição do investimento (valores de exemplo)",
+   "cab": [
+    "Frente",
+    "Unidade",
+    "Valor"
+   ],
+   "linhas": [
+    [
+     "Diagnóstico",
+     "projeto",
+     "R$ 10.000,00"
+    ],
+    [
+     "Implantação",
+     "mês",
+     "R$ 5.000,00"
+    ],
+    [
+     "Total estimado",
+     "12 meses",
+     "R$ 70.000,00"
+    ]
+   ],
+   "total": true
+  },
+  {
+   "t": "secao",
+   "titulo": "Próximos passos"
+  },
+  {
+   "t": "lista",
+   "ordenada": true,
+   "itens": [
+    "Aceite desta proposta pelo responsável.",
+    "Reunião de abertura com as áreas envolvidas.",
+    "Primeira entrega em até trinta dias."
+   ]
+  }
+ ],
+ "assinaturas": {
+  "partes": [
+   {
+    "papel": "PROPONENTE",
+    "razao": "ONNI.AI INTELIGÊNCIA, GOVERNANÇA E TECNOLOGIA S.A.",
+    "nome": "Nome do Representante Exemplo",
+    "cargo": "Diretor"
+   }
+  ]
+ }
+}

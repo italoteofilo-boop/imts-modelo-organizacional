@@ -1,0 +1,49 @@
+{
+ "id": "onni",
+ "nome": "Onni.ai",
+ "razao_social": "ONNI.AI INTELIGÊNCIA, GOVERNANÇA E TECNOLOGIA S.A.",
+ "cnpj": null,
+ "situacao": "oficial",
+ "fonte": "Manual de Identidade Visual Onni.ai V2.0 (maio/2026), cores e tipografia conforme informado por Ítalo; rodapé \"Liderança Corporativa\" conforme regra editorial de 25/09/2026",
+ "cores": {
+  "primaria": "#23405B",
+  "texto": "#00141C",
+  "fundo": "#FFFFFF",
+  "destaque": "#13574B",
+  "apoio": "#6D7B86",
+  "apoio2": "#8E6141",
+  "claro": "#E8F0F7",
+  "barra": "#E8F0F7",
+  "linha": "#6D7B86"
+ },
+ "tipografia": {
+  "texto": "Poppins",
+  "display": "Poppins",
+  "fallback": "system-ui, sans-serif",
+  "oficial": "Nexa (Black em títulos, Regular em texto)",
+  "substituicao": "Nexa indisponível aqui: Poppins no lugar, declarado em cada emissão"
+ },
+ "logos": null,
+ "logo_regras": null,
+ "autor_institucional": "Onni.ai",
+ "rodape_aprovacao": {
+  "etapas": [
+   "Preenchimento",
+   "Análise Crítica e Validação",
+   "Aprovação"
+  ],
+  "areas": [
+   "Área de Compliance",
+   "Assessoria Jurídica",
+   "Liderança Corporativa"
+  ]
+ },
+ "marca_dagua": null,
+ "regras": [
+  "sem logotipo até receber os arquivos oficiais: o nome entra em texto, nunca redesenhado"
+ ],
+ "inferencias": [
+  "papéis das cores no documento (títulos em Slate Blue, texto em Onni Dark, barra em Off-White) são escolha do motor, não do manual",
+  "CNPJ ausente: a informar"
+ ]
+}

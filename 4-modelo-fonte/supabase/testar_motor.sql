@@ -10,7 +10,7 @@ begin
   select count(*) into n from rt.vinculo v join org.tarefa t on t.id = v.tarefa
    where not (v.sistema = case t.executor when 'P' then 'canal-pessoa' when 'H' then 'canal-pessoa' when 'A' then 'agente-ia'
                                       when 'R' then 'automacao' when 'C' then 'troca-circulo' when 'X' then 'canal-externo' end
-              or (t.executor = 'R' and v.sistema in ('erp-contabil', 'banco', 'emissor-fiscal')));
+              or (t.executor = 'R' and v.sistema in ('erp-contabil', 'banco', 'emissor-fiscal', 'motor-documental')));
   if n <> 0 then raise exception 'FALHA T1: % tarefas no sistema errado', n; end if;
 
   -- T2. Toda raia de pessoa tem usuário simulado em todos os motores que a usam

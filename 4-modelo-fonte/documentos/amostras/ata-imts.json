@@ -1,0 +1,78 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-ata-imts",
+ "tipo": "ata",
+ "marca": "imts",
+ "titulo": "Ata da Reunião de Deliberação dos Sócios",
+ "titulo_linhas": [
+  "Ata da Reunião de Deliberação",
+  "dos Sócios (exemplo)"
+ ],
+ "campos": [
+  [
+   "Data",
+   "4 de outubro de 2026, às 10h"
+  ],
+  [
+   "Local",
+   "sala virtual"
+  ],
+  [
+   "Participantes",
+   "Sócio Exemplo A, Sócio Exemplo B, Secretário Exemplo"
+  ],
+  [
+   "Pauta",
+   "estratégia do ciclo e orçamento"
+  ]
+ ],
+ "blocos": [
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "secao",
+   "titulo": "1. Abertura"
+  },
+  {
+   "t": "p",
+   "texto": "Verificado o quórum, o presidente abriu a reunião e apresentou a pauta, aprovada por todos."
+  },
+  {
+   "t": "secao",
+   "titulo": "2. Deliberações"
+  },
+  {
+   "t": "item",
+   "n": "2.1",
+   "texto": "Aprovada a estratégia do ciclo, com os alvos e as iniciativas propostos pela Estratégia."
+  },
+  {
+   "t": "item",
+   "n": "2.2",
+   "texto": "Aprovado o orçamento do ciclo, com a reserva de contingência indicada pela Gestão."
+  },
+  {
+   "t": "secao",
+   "titulo": "3. Encerramento"
+  },
+  {
+   "t": "p",
+   "texto": "Nada mais havendo a tratar, lavrou-se esta ata, lida e assinada pelos presentes."
+  }
+ ],
+ "assinaturas": {
+  "partes": [
+   {
+    "papel": "PRESIDENTE",
+    "nome": "Sócio Exemplo A"
+   },
+   {
+    "papel": "SECRETÁRIO",
+    "nome": "Secretário Exemplo"
+   }
+  ]
+ }
+}

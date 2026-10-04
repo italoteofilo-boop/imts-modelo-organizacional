@@ -1,0 +1,57 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-institucional-neutra",
+ "tipo": "estrategia",
+ "marca": "neutra",
+ "titulo": "Estratégia Vigente do Ecossistema",
+ "subtitulo": "Exemplo para conferência do modelo institucional",
+ "emitente": "Estratégia",
+ "blocos": [
+  {
+   "t": "secao",
+   "titulo": "Propósito"
+  },
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "secao",
+   "titulo": "Escolhas"
+  },
+  {
+   "t": "lista",
+   "itens": [
+    "Onde jogar: mercados e ofertas priorizados.",
+    "Como vencer: diferenciais que o cliente percebe.",
+    "O que não fazer: apostas encerradas."
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "Alvos do ciclo"
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – Alvos (exemplo)",
+   "cab": [
+    "Alvo",
+    "Indicador",
+    "Prazo"
+   ],
+   "linhas": [
+    [
+     "Receita recorrente",
+     "R$ por mês",
+     "dezembro"
+    ],
+    [
+     "Satisfação",
+     "nota média",
+     "dezembro"
+    ]
+   ]
+  }
+ ]
+}

@@ -205,3 +205,30 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 - 53 testes verdes no Supabase. Canal de carga apagado por ele mesmo; token apagado.
 - Conferido: o Supabase entrega HTML de Edge Function como texto simples no domínio padrão; o Mini App precisa de outro endereço.
 - Externo: token do bot de teste; termo do art. 33; G1 a G9; escolha do sistema contábil e fiscal; hospedagem do Mini App.
+
+## 04/10/2026, 08:53: motor documental e administração geral
+
+Ítalo (literal): "temos que ter um motor gerador de PDF premium alto estilo multiempresas e multi tipo de documentos com multiplus modelos de desinger, diagramacao e formatacao e editoracao para gerar todos os documentos formais internos e externos das empresas das operacoes do ecossitema. Temos ainda que ter o modulo de adminsitracao geral, completo, detalhado e minuncioso, com todas as conexoes externas como parametros para ficar mais facil de administrar o sistema como um todo."
+Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML agora, Google Docs depois.
+
+- **E12 motor documental (`documentos/`, 025 a 027):**
+  - catálogo fechado de 38 tipos;
+  - quatro pacotes de marca e dez modelos;
+  - regra do terço automática no navegador;
+  - gates no PDF;
+  - fila, worker e decisão em duas mãos no esquema doc;
+  - ponta a ponta conferido no Supabase.
+- **E13 administração geral (028 e 029):**
+  - 16 conexões e 15 parâmetros;
+  - verificação de saúde;
+  - página ao vivo publicada.
+- **Testes:** 70 no Supabase e 15 do motor, todos verdes.
+- **Achado:** chave antiga `telegram` em `rt.config` (autodestruição 24, não lida). Proposta: apagar.
+- **Externo:**
+  - código do contract_engine e do motor de propostas;
+  - fonte Nexa;
+  - manual TRON;
+  - razão social e CNPJ da IMTS;
+  - Drive da IMTS;
+  - DocuSign;
+  - serviço do worker em produção.

@@ -1,0 +1,101 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-licitacao-onni",
+ "tipo": "proposta-b2g",
+ "marca": "onni",
+ "titulo": "Proposta de Preço para Pregão Eletrônico",
+ "titulo_linhas": [
+  "Proposta de Preço para",
+  "Pregão Eletrônico (exemplo)"
+ ],
+ "campos": [
+  [
+   "Órgão",
+   "Órgão Público Exemplo"
+  ],
+  [
+   "Modalidade",
+   "Pregão eletrônico"
+  ],
+  [
+   "Número",
+   "000/2026 (exemplo)"
+  ],
+  [
+   "Objeto",
+   "serviços de tecnologia (exemplo)"
+  ]
+ ],
+ "blocos": [
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "secao",
+   "titulo": "1. Identificação da proponente"
+  },
+  {
+   "t": "p",
+   "texto": "ONNI.AI INTELIGÊNCIA, GOVERNANÇA E TECNOLOGIA S.A., representada na forma de seu estatuto."
+  },
+  {
+   "t": "secao",
+   "titulo": "2. Preços"
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – Itens e preços (valores de exemplo)",
+   "cab": [
+    "Item",
+    "Descrição",
+    "Unidade",
+    "Quantidade",
+    "Preço unitário"
+   ],
+   "linhas": [
+    [
+     "1",
+     "Assinatura da plataforma",
+     "habitante/ano",
+     "1.000",
+     "R$ 1,00"
+    ],
+    [
+     "2",
+     "Serviço técnico",
+     "UST",
+     "100",
+     "R$ 100,00"
+    ]
+   ],
+   "esq": [
+    1
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "3. Condições"
+  },
+  {
+   "t": "item",
+   "n": "3.1",
+   "texto": "Validade da proposta: sessenta dias, contados da data da sessão."
+  },
+  {
+   "t": "item",
+   "n": "3.2",
+   "texto": "Nos preços estão incluídos todos os tributos, encargos e custos diretos e indiretos."
+  }
+ ],
+ "assinaturas": {
+  "partes": [
+   {
+    "nome": "Nome do Representante Exemplo",
+    "cargo": "Diretor",
+    "razao": "ONNI.AI INTELIGÊNCIA, GOVERNANÇA E TECNOLOGIA S.A."
+   }
+  ]
+ }
+}

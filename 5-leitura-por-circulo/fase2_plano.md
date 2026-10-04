@@ -92,7 +92,15 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 5. **Contábil e fiscal:** integrar um sistema de contabilidade e emissão fiscal, com o motor orquestrando; a escolha do fornecedor fica para a stack de produção.
 6. **Ritmo da simulação contínua:** uma execução a cada 5 minutos (escolha minha, por custo; com "tudo aprovado", não houve escolha explícita entre 1 e 5 minutos).
 
-## 7. Andamento (03/10/2026, 22h)
+## 6.3 Decidido em 04/10/2026, às 08:53: motor documental (E12) e administração geral (E13)
+
+1. **E12 Motor documental:** um motor só, para todos os documentos formais internos e externos das empresas. Ele absorve o motor de contratos e o de propostas, cujo código falta receber. Tem catálogo de tipos tirado das saídas do modelo, marca como arquivo de dados por empresa, dez modelos de design, gates editoriais do Legal.OS, registro com hash e aprovação em duas mãos.
+2. **Worker próprio:** fila no Supabase e worker com Chromium. No protótipo, o worker roda no ambiente de trabalho; em produção, num serviço a escolher.
+3. **Marcas primeiro:** IMTS, Onni e TRON, a partir das identidades que já existem. A TRON fica provisória, sem manual.
+4. **Saídas:** PDF e HTML agora. Google Docs quando o Drive da IMTS for conectado. Nenhum formato Microsoft.
+5. **E13 Administração geral:** um registro único das conexões externas, que guarda só o nome do segredo no Vault. Todos os parâmetros num lugar só, com validação, histórico, propagação ao destino e duas mãos nos sensíveis. Uma página de administração ao vivo.
+
+## 7. Andamento (04/10/2026, 10h)
 
 | Entrega | Situação |
 | --- | --- |
@@ -110,10 +118,12 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 | E10 Os outros oito motores | Os nove em piloto, cada um com a sua configuração; 10.215 execuções, 211.066 eventos, 0 erros; 1.586 de 1.586 tarefas executadas; simulação contínua a cada 5 minutos |
 | E11 Mesa de trabalho | Pronta; acessibilidade WCAG 2.2 AA sem violação no axe-core |
 | Acesso e multiempresa | Login, permissões, papéis incompatíveis barrados, direitos do titular (LGPD, art. 18): 10 testes verdes |
+| E12 Motor documental | Pronto no protótipo. Catálogo de 38 tipos em 10 famílias, ligado a 169 saídas e a 106 tarefas do modelo (por regra de texto, para revisão da ID-04). Quatro pacotes de marca, dez modelos, regra do terço automática e gates no PDF. Fila, worker, emissão registrada com hash e decisão em duas mãos no esquema doc. Ponta a ponta conferida: pedido no Supabase, emissão pelo worker, PDF e HTML gravados com o hash conferido. 21 automações passaram ao sistema motor-documental. 15 testes do motor e 8 no Supabase |
+| E13 Administração geral | Pronta. 16 conexões e 15 parâmetros com destino, validação, histórico e duas mãos nos sensíveis. Verificação de saúde a cada 30 minutos (SQL, Vault e HTTP pelo pg_net): 7 saudáveis, 1 falha real (token do bot ausente), 8 pendentes ou simuladas. Página ao vivo pelo conector do Supabase. 9 testes no Supabase |
 
-**Testes no Supabase:** 53 verdes (runtime 10, motor 9, Mesa 12, Telegram 12, acesso 10), mais os testes do modelo (testar.py: nove círculos, 411 trocas, 20 alçadas) e do simulador (6).
+**Testes no Supabase:** 70 verdes (runtime 10, motor 9, Mesa 12, Telegram 12, acesso 10, documental 8, administração 9; o documental e a administração rodam em chamadas separadas), mais os 15 do motor documental, os testes do modelo (testar.py: nove círculos, 411 trocas, 20 alçadas) e do simulador (6).
 
-**O que fica de fora do meu alcance:** o token do bot de teste (você, no BotFather); o termo do art. 33 (Governança); os gates de implantação com dado real (G1 a G9); a escolha do sistema contábil e fiscal e dos sistemas reais de cada adaptador; a hospedagem do Mini App: precisa de um endereço público, e conferi em 03/10/2026 que o Supabase entrega HTML de Edge Function como texto simples no domínio padrão, então ele não serve para isso sem domínio próprio.
+**O que fica de fora do meu alcance:** o token do bot de teste (você, no BotFather); o termo do art. 33 (Governança); os gates de implantação com dado real (G1 a G9); a escolha do sistema contábil e fiscal e dos sistemas reais de cada adaptador; o código do contract_engine e do motor de propostas, para absorver no motor único; os arquivos da fonte Nexa; o manual da marca TRON; a razão social e o CNPJ da IMTS; a conexão do Drive da IMTS e da DocuSign; o serviço do worker em produção; a hospedagem do Mini App: precisa de um endereço público, e conferi em 03/10/2026 que o Supabase entrega HTML de Edge Function como texto simples no domínio padrão, então ele não serve para isso sem domínio próprio.
 
 ## Fontes
 

@@ -1,0 +1,94 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-relatorio-imts",
+ "tipo": "relatorio",
+ "marca": "imts",
+ "titulo": "Relatório de Resultado do Ciclo",
+ "subtitulo": "Exemplo para conferência do modelo de relatório",
+ "emitente": "Inteligência",
+ "blocos": [
+  {
+   "t": "secao",
+   "titulo": "Resumo"
+  },
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "kpis",
+   "itens": [
+    {
+     "valor": "1.586",
+     "rotulo": "tarefas do modelo executadas no simulado"
+    },
+    {
+     "valor": "0",
+     "rotulo": "erros do motor no período"
+    },
+    {
+     "valor": "9 de 9",
+     "rotulo": "motores em piloto"
+    }
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "Análise"
+  },
+  {
+   "t": "p",
+   "texto": "O ciclo fechou com todas as jornadas exercitadas pela simulação contínua. Os desvios de prazo concentram-se nas esperas de quem é de fora, que dependem de resposta de cliente, de parceiro ou de órgão externo."
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – Situação por círculo (valores de exemplo)",
+   "cab": [
+    "Círculo",
+    "Jornadas",
+    "No prazo",
+    "Atenção"
+   ],
+   "linhas": [
+    [
+     "Identidade",
+     "5",
+     "5",
+     "0"
+    ],
+    [
+     "Estratégia",
+     "6",
+     "4",
+     "2"
+    ],
+    [
+     "Inteligência",
+     "8",
+     "7",
+     "1"
+    ]
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "Recomendações"
+  },
+  {
+   "t": "lista",
+   "itens": [
+    "Rever o alvo de prazo das jornadas com espera externa.",
+    "Prever reforço de pessoa no papel com ocupação acima de 100% no volume dobrado."
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "Próximo ciclo"
+  },
+  {
+   "t": "p",
+   "texto": "A próxima leitura sai no fechamento do mês, com os mesmos indicadores e a comparação entre o planejado e o realizado."
+  }
+ ]
+}

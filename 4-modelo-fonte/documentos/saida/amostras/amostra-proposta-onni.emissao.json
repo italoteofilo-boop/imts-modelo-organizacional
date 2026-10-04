@@ -1,0 +1,26 @@
+{
+ "id": "amostra-proposta-onni",
+ "tipo": "proposta-comercial",
+ "tipo_nome": "Proposta comercial",
+ "marca": "onni",
+ "modelo": "proposta",
+ "emitido_em": "2026-10-04T12:33:35+00:00",
+ "situacao": "emitido_com_alertas",
+ "paginas": 2,
+ "sumario": {},
+ "hash_pedido": "de695c5b90d2f98ec4b5846e4633de91e564aa86b660440e0ce45e152d08c8aa",
+ "hash_pdf": "7ca08a80cad8cfbdba4043baffe8a89c7eb18302a8353190e2d7224a1c26b9ad",
+ "hash_html": "01654eb496c1ea6ae0b338316cee447c76b885f3d5296e8ac4cbfacaecebe589",
+ "ajustes_terco": 2,
+ "gates": [],
+ "alertas": [
+  {
+   "alerta": "fonte substituta",
+   "onde": "Nexa indisponível aqui: Poppins no lugar, declarado em cada emissão"
+  }
+ ],
+ "arquivos": [
+  "amostra-proposta-onni.pdf",
+  "amostra-proposta-onni.html"
+ ]
+}

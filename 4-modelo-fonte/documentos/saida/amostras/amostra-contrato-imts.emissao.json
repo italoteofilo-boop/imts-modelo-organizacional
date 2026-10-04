@@ -1,0 +1,30 @@
+{
+ "id": "amostra-contrato-imts",
+ "tipo": "contrato-cliente",
+ "tipo_nome": "Contrato de prestação de serviços a cliente",
+ "marca": "imts",
+ "modelo": "contratual",
+ "emitido_em": "2026-10-04T12:33:30+00:00",
+ "situacao": "emitido",
+ "paginas": 4,
+ "sumario": {
+  "Cláusula 1ª – Definições": 1,
+  "Cláusula 2ª – Objeto": 1,
+  "Cláusula 3ª – Obrigações das partes": 1,
+  "Cláusula 4ª – Aceite das entregas": 2,
+  "Cláusula 5ª – Vigência e foro": 2,
+  "Anexo I – Condições Comerciais": 3,
+  "Glossário": 4,
+  "Referências normativas": 4
+ },
+ "hash_pedido": "900660ae913d2be449bf7cd1099e65b05f4af0d66035b3c8ac384bbec8300374",
+ "hash_pdf": "1d479abef03e9607afe32a3dd86783746626eecda3db80fb5d3656924e88ec9c",
+ "hash_html": "3f2f36185efab6df7026b7f9af6387bea0cca9f8ce1291d2d007382fdc154f0d",
+ "ajustes_terco": 5,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-contrato-imts.pdf",
+  "amostra-contrato-imts.html"
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "id": "amostra-politica-tron",
+ "tipo": "politica",
+ "tipo_nome": "Política",
+ "marca": "tron",
+ "modelo": "politica",
+ "emitido_em": "2026-10-04T12:33:34+00:00",
+ "situacao": "emitido",
+ "paginas": 1,
+ "sumario": {
+  "1. Objetivo": 1,
+  "2. Abrangência": 1,
+  "3. Regras": 1,
+  "4. Responsabilidades": 1
+ },
+ "hash_pedido": "9bbb8e0ccd2273c68fa1b066c67ec462cabe9fac3cac85ca985f79291f82728f",
+ "hash_pdf": "162a6b5cd6eebc136bd226d1b5175db0c89bfafbdbc087876a4ab95a7157e23a",
+ "hash_html": "3733dd8c683197a134f18120a262a88b36febf648d3ce299d803edcca060b4c5",
+ "ajustes_terco": 1,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-politica-tron.pdf",
+  "amostra-politica-tron.html"
+ ]
+}

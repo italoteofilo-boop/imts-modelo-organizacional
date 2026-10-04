@@ -1,0 +1,52 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-oficio-onni",
+ "tipo": "resposta-externa",
+ "marca": "onni",
+ "modelo": "oficio",
+ "titulo": "Resposta ao parceiro sobre a oportunidade",
+ "titulo_linhas": [
+  "Resposta ao parceiro",
+  "sobre a oportunidade (exemplo)"
+ ],
+ "referencia": "Ofício nº 001/2026 (exemplo)",
+ "assunto": "retorno sobre a oportunidade apresentada",
+ "destinatario": {
+  "tratamento": "Ao Senhor",
+  "nome": "Nome do Destinatário Exemplo",
+  "cargo": "Diretor",
+  "orgao": "Parceiro Exemplo S.A."
+ },
+ "blocos": [
+  {
+   "t": "p",
+   "texto": "Prezado Senhor,"
+  },
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "p",
+   "texto": "Agradecemos o envio da oportunidade. Após a análise de aderência, confirmamos o interesse em participar e propomos uma reunião técnica na próxima semana para alinhar escopo, prazos e responsabilidades."
+  },
+  {
+   "t": "p",
+   "texto": "Permanecemos à disposição."
+  },
+  {
+   "t": "p",
+   "texto": "Atenciosamente,"
+  }
+ ],
+ "assinaturas": {
+  "partes": [
+   {
+    "nome": "Nome do Representante Exemplo",
+    "cargo": "Diretor de Relações",
+    "razao": "ONNI.AI INTELIGÊNCIA, GOVERNANÇA E TECNOLOGIA S.A."
+   }
+  ]
+ }
+}

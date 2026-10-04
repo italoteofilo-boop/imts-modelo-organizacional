@@ -1,0 +1,45 @@
+{
+ "id": "tron",
+ "nome": "TRON",
+ "razao_social": null,
+ "cnpj": null,
+ "situacao": "provisoria",
+ "fonte": "sem manual de marca disponível; pacote provisório com tokens neutros",
+ "cores": {
+  "primaria": "#3A3A3A",
+  "texto": "#1F1F1F",
+  "fundo": "#FFFFFF",
+  "destaque": "#3A3A3A",
+  "apoio": "#6B6B6B",
+  "apoio2": "#6B6B6B",
+  "barra": "#E6E6E6",
+  "linha": "#7F7F7F"
+ },
+ "tipografia": {
+  "texto": "Open Sans",
+  "display": "Open Sans",
+  "fallback": "system-ui, sans-serif"
+ },
+ "logos": null,
+ "logo_regras": null,
+ "autor_institucional": "TRON",
+ "rodape_aprovacao": {
+  "etapas": [
+   "Preenchimento",
+   "Análise Crítica e Validação",
+   "Aprovação"
+  ],
+  "areas": [
+   "Área de Compliance",
+   "Assessoria Jurídica",
+   "Liderança Corporativa"
+  ]
+ },
+ "marca_dagua": "MARCA PROVISÓRIA",
+ "regras": [
+  "não emitir documento externo com esta marca até o manual oficial"
+ ],
+ "inferencias": [
+  "todas as cores e a fonte são neutras e provisórias, nenhuma é da marca TRON"
+ ]
+}

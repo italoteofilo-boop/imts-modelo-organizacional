@@ -1,0 +1,88 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-demonstrativo-imts",
+ "tipo": "demonstracoes",
+ "marca": "imts",
+ "titulo": "Demonstração do Resultado do Exercício",
+ "subtitulo": "Exemplo para conferência do modelo de demonstrativo",
+ "emitente": "Gestão",
+ "sumario": false,
+ "blocos": [
+  {
+   "t": "secao",
+   "titulo": "Demonstração do resultado"
+  },
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – DRE do período (valores de exemplo, em R$)",
+   "cab": [
+    "Conta",
+    "Período atual",
+    "Período anterior"
+   ],
+   "esq": [
+    0
+   ],
+   "linhas": [
+    [
+     "Receita bruta",
+     "1.000.000,00",
+     "900.000,00"
+    ],
+    [
+     "(-) Deduções",
+     "(100.000,00)",
+     "(90.000,00)"
+    ],
+    [
+     "Receita líquida",
+     "900.000,00",
+     "810.000,00"
+    ],
+    [
+     "(-) Custos",
+     "(400.000,00)",
+     "(380.000,00)"
+    ],
+    [
+     "Lucro bruto",
+     "500.000,00",
+     "430.000,00"
+    ],
+    [
+     "(-) Despesas operacionais",
+     "(300.000,00)",
+     "(280.000,00)"
+    ],
+    [
+     "Resultado do período",
+     "200.000,00",
+     "150.000,00"
+    ]
+   ],
+   "total": true
+  },
+  {
+   "t": "nota",
+   "texto": "Valores de exemplo. A demonstração real sai do ERP contábil escolhido, com o plano de contas por empresa e centro de custo."
+  }
+ ],
+ "assinaturas": {
+  "partes": [
+   {
+    "papel": "CONTADOR",
+    "nome": "Nome do Contador Exemplo",
+    "cargo": "CRC exemplo"
+   },
+   {
+    "papel": "ADMINISTRADOR",
+    "nome": "Nome do Administrador Exemplo"
+   }
+  ]
+ }
+}

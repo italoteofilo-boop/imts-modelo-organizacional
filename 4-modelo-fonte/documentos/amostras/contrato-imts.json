@@ -1,0 +1,214 @@
+{
+ "id": "amostra-contrato-imts",
+ "tipo": "contrato-cliente",
+ "marca": "imts",
+ "titulo": "Contrato de Prestação de Serviços de Tecnologia",
+ "titulo_linhas": [
+  "Contrato de Prestação de Serviços",
+  "de Tecnologia (exemplo)"
+ ],
+ "emitente": "Negócios",
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "blocos": [
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental. Partes, valores e prazos são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "p",
+   "texto": "Pelo presente instrumento particular, de um lado **EMPRESA CLIENTE EXEMPLO LTDA.**, doravante denominada **CONTRATANTE**, e, de outro, **IMTS**, doravante denominada **CONTRATADA**, têm entre si justo e contratado o que segue."
+  },
+  {
+   "t": "secao",
+   "titulo": "Cláusula 1ª – Definições"
+  },
+  {
+   "t": "item",
+   "n": "1.1",
+   "texto": "**Entrega:** cada resultado descrito no Anexo I, aceito pela CONTRATANTE na forma da Cláusula 4ª."
+  },
+  {
+   "t": "item",
+   "n": "1.2",
+   "texto": "**Nível de serviço:** o prazo e a qualidade medidos para cada Entrega, com as faixas do Quadro 1."
+  },
+  {
+   "t": "secao",
+   "titulo": "Cláusula 2ª – Objeto"
+  },
+  {
+   "t": "item",
+   "n": "2.1",
+   "texto": "O objeto deste Contrato é a prestação de serviços de tecnologia pela CONTRATADA, nas condições do Anexo I, que concentra valores, fatores, prazos e faixas, de modo que uma renegociação altere só aquele anexo, por aditivo curto."
+  },
+  {
+   "t": "item",
+   "n": "2.2",
+   "texto": "Integram este Contrato, como se nele estivessem transcritos, o Anexo I e a proposta comercial aceita pela CONTRATANTE."
+  },
+  {
+   "t": "secao",
+   "titulo": "Cláusula 3ª – Obrigações das partes"
+  },
+  {
+   "t": "item",
+   "n": "3.1",
+   "texto": "Cabe à CONTRATADA:"
+  },
+  {
+   "t": "alinea",
+   "m": "a)",
+   "texto": "executar as Entregas no prazo e no Nível de serviço contratados;"
+  },
+  {
+   "t": "alinea",
+   "m": "b)",
+   "texto": "manter sigilo sobre as informações da CONTRATANTE a que tiver acesso;"
+  },
+  {
+   "t": "alinea",
+   "m": "c)",
+   "texto": "tratar dados pessoais só para as finalidades deste Contrato, como determina a Lei nº 13.709/2018, e eliminá-los ao fim da vigência."
+  },
+  {
+   "t": "item",
+   "n": "3.2",
+   "texto": "Cabe à CONTRATANTE fornecer as informações e os acessos necessários e pagar os valores do Anexo I nos prazos ali previstos."
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – Faixas de nível de serviço",
+   "cab": [
+    "Faixa",
+    "Prazo de atendimento",
+    "Efeito no pagamento"
+   ],
+   "linhas": [
+    [
+     "A",
+     "até 4 horas úteis",
+     "100%"
+    ],
+    [
+     "B",
+     "de 4 a 8 horas úteis",
+     "95%"
+    ],
+    [
+     "C",
+     "acima de 8 horas úteis",
+     "90%"
+    ]
+   ]
+  },
+  {
+   "t": "secao",
+   "titulo": "Cláusula 4ª – Aceite das entregas"
+  },
+  {
+   "t": "item",
+   "n": "4.1",
+   "texto": "A CONTRATANTE terá cinco dias úteis, contados do recebimento, para aceitar a Entrega ou devolvê-la com os motivos por escrito; o silêncio no prazo vale como aceite."
+  },
+  {
+   "t": "secao",
+   "titulo": "Cláusula 5ª – Vigência e foro"
+  },
+  {
+   "t": "item",
+   "n": "5.1",
+   "texto": "Este Contrato vigora por doze meses a partir da assinatura e pode ser renovado por aditivo."
+  },
+  {
+   "t": "item",
+   "n": "5.2",
+   "texto": "As partes elegem o foro da comarca de Fortaleza/CE para resolver as controvérsias sobre este Contrato, com renúncia a qualquer outro."
+  }
+ ],
+ "assinaturas": {
+  "partes": [
+   {
+    "papel": "CONTRATANTE",
+    "razao": "EMPRESA CLIENTE EXEMPLO LTDA.",
+    "nome": "Nome do Representante Exemplo",
+    "cargo": "Diretor",
+    "cpf": "000.000.000-00",
+    "ancora": "/ass_A/"
+   },
+   {
+    "papel": "CONTRATADA",
+    "razao": "IMTS",
+    "nome": "Nome do Representante Exemplo",
+    "cargo": "Administrador",
+    "cpf": "000.000.000-00",
+    "ancora": "/ass_B/"
+   }
+  ],
+  "testemunhas": 2,
+  "nota": "Assinado em duas vias de igual teor, rubricadas em todas as páginas, ou eletronicamente com certificado ICP-Brasil ou assinatura avançada, valendo a data da última assinatura."
+ },
+ "anexos": [
+  {
+   "titulo": "Condições Comerciais",
+   "blocos": [
+    {
+     "t": "secao",
+     "titulo": "1. Valores"
+    },
+    {
+     "t": "tabela",
+     "nome": "Quadro 2 – Valores do contrato",
+     "cab": [
+      "Item",
+      "Unidade",
+      "Valor unitário",
+      "Quantidade estimada"
+     ],
+     "linhas": [
+      [
+       "Serviço técnico",
+       "hora",
+       "R$ 100,00",
+       "100"
+      ],
+      [
+       "Entrega padrão",
+       "entrega",
+       "R$ 1.000,00",
+       "10"
+      ]
+     ]
+    },
+    {
+     "t": "secao",
+     "titulo": "2. Pagamento"
+    },
+    {
+     "t": "item",
+     "n": "2.1",
+     "texto": "O pagamento será feito em até trinta dias após o aceite de cada Entrega, mediante nota fiscal."
+    }
+   ]
+  }
+ ],
+ "parte_final": {
+  "glossario": [
+   [
+    "Aditivo",
+    "instrumento que altera cláusula ou anexo do Contrato."
+   ],
+   [
+    "Aceite",
+    "manifestação da CONTRATANTE de que a Entrega atende ao contratado."
+   ]
+  ],
+  "referencias": [
+   {
+    "norma": "Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais)",
+    "fonte": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+    "verificado_em": "2026-10-03"
+   }
+  ]
+ }
+}

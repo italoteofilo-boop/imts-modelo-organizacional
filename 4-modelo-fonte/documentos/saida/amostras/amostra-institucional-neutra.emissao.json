@@ -1,0 +1,25 @@
+{
+ "id": "amostra-institucional-neutra",
+ "tipo": "estrategia",
+ "tipo_nome": "Documento de estratégia",
+ "marca": "neutra",
+ "modelo": "institucional",
+ "emitido_em": "2026-10-04T12:33:32+00:00",
+ "situacao": "emitido",
+ "paginas": 2,
+ "sumario": {
+  "Propósito": 1,
+  "Escolhas": 1,
+  "Alvos do ciclo": 1
+ },
+ "hash_pedido": "c6a2282b987a4422bde17355b6679d105adc24fe9dd6d916ad6425559505234d",
+ "hash_pdf": "cac1d400812e9d3ad85a76ba464bb330846480a7615f8bf03a3b2bff4a20c58f",
+ "hash_html": "f05a6de75c4af5c0c80dba3f8fd90dea3baaa9e1e62697a501988982da83e0c3",
+ "ajustes_terco": 1,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-institucional-neutra.pdf",
+  "amostra-institucional-neutra.html"
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-politica-tron",
+ "tipo": "politica",
+ "marca": "tron",
+ "titulo": "Política de Uso de Agentes de Inteligência Artificial",
+ "titulo_linhas": [
+  "Política de Uso de Agentes",
+  "de Inteligência Artificial (exemplo)"
+ ],
+ "campos": [
+  [
+   "Aprovação",
+   "Governança"
+  ],
+  [
+   "Vigência",
+   "a partir da publicação"
+  ],
+  [
+   "Revisão",
+   "anual"
+  ]
+ ],
+ "blocos": [
+  {
+   "t": "p",
+   "texto": "Documento de exemplo do motor documental: nomes, números e datas são fictícios e servem só para conferir a diagramação."
+  },
+  {
+   "t": "secao",
+   "titulo": "1. Objetivo"
+  },
+  {
+   "t": "p",
+   "texto": "Esta política define como os agentes de inteligência artificial são aprovados, usados, supervisionados e retirados de uso."
+  },
+  {
+   "t": "secao",
+   "titulo": "2. Abrangência"
+  },
+  {
+   "t": "p",
+   "texto": "Aplica-se a todas as pessoas, círculos e empresas que usam agentes no trabalho."
+  },
+  {
+   "t": "secao",
+   "titulo": "3. Regras"
+  },
+  {
+   "t": "item",
+   "n": "3.1",
+   "texto": "Nenhum agente decide sozinho o que a matriz de alçadas reserva a uma pessoa."
+  },
+  {
+   "t": "item",
+   "n": "3.2",
+   "texto": "Toda resposta de agente usada em decisão traz a fonte e o grau de confiança."
+  },
+  {
+   "t": "secao",
+   "titulo": "4. Responsabilidades"
+  },
+  {
+   "t": "tabela",
+   "nome": "Quadro 1 – Papéis",
+   "cab": [
+    "Papel",
+    "Responsabilidade"
+   ],
+   "linhas": [
+    [
+     "Dono do agente",
+     "manter o método e os casos de teste"
+    ],
+    [
+     "Governança",
+     "aprovar e auditar"
+    ]
+   ],
+   "esq": [
+    1
+   ]
+  }
+ ]
+}

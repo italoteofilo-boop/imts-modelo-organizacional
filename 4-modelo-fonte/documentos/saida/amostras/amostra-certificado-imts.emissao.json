@@ -1,0 +1,21 @@
+{
+ "id": "amostra-certificado-imts",
+ "tipo": "certificado",
+ "tipo_nome": "Certificado de reconhecimento",
+ "marca": "imts",
+ "modelo": "certificado",
+ "emitido_em": "2026-10-04T12:33:28+00:00",
+ "situacao": "emitido",
+ "paginas": 1,
+ "sumario": {},
+ "hash_pedido": "47af9f6c3fb7937841b77af2a4bb159f6bfa4f5f486fb4ff783e8b63712118fa",
+ "hash_pdf": "28ffbdd33fb7502a101b09e423efa108583d29e0cd07b55f540a6e9879b0fb16",
+ "hash_html": "ac10d48170be2e1857c988e12e20dc18acac814325b36820cbd60c91c6f9dc24",
+ "ajustes_terco": 0,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-certificado-imts.pdf",
+  "amostra-certificado-imts.html"
+ ]
+}

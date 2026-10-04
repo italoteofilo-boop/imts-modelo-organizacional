@@ -1,0 +1,21 @@
+{
+ "id": "amostra-ata-imts",
+ "tipo": "ata",
+ "tipo_nome": "Ata de reunião ou de deliberação",
+ "marca": "imts",
+ "modelo": "ata",
+ "emitido_em": "2026-10-04T12:33:28+00:00",
+ "situacao": "emitido",
+ "paginas": 1,
+ "sumario": {},
+ "hash_pedido": "f4e871cb7b9404d717b6b877733c68451c2b1c77d57523df387cef3d46238ba5",
+ "hash_pdf": "9a29bfab519cd6dfdd9094f2f83d3ed8b1ef26d1f8a12066f9169eb381a2e728",
+ "hash_html": "d40741964a36ae740d0d748f2aa712421ba80ca0c3031ae1eb7c1495b7c23892",
+ "ajustes_terco": 1,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-ata-imts.pdf",
+  "amostra-ata-imts.html"
+ ]
+}

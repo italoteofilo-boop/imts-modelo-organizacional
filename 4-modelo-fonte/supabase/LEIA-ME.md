@@ -167,3 +167,45 @@ select rt.telegram_configurar();
 O verificador de segurança aponta o pg_net no esquema public (aviso): a troca para o esquema extensions pede apagar e recriar a extensão, e ficou para quando houver janela. As fontes novas já criam no esquema certo.
 
 A Edge Function `teste-html` foi o teste de hospedagem do Mini App (03/10/2026): o Supabase devolveu `text/plain` para HTML no domínio padrão. Ela responde 410 e pode ser apagada no painel do Supabase.
+
+## Motor documental (E12, esquema doc)
+
+| Peça | O que faz |
+|---|---|
+| `doc.tipo`, `doc.tipo_tarefa` | Os 38 tipos de documento e a ligação com 106 tarefas do modelo (redige, revisa, emite, assina) |
+| `doc.marca`, `doc.modelo` | Os pacotes de marca (IMTS, Onni, TRON provisória, neutra) e os dez modelos de design |
+| `doc.pedir` | Põe o pedido na fila. Recusa tipo fora do catálogo, marca provisória em documento externo e conteúdo sem título, data ou local. Pelo app exige acesso de operar na empresa |
+| `public.doc_worker_proximo`, `doc_worker_registrar`, `doc_worker_falhar` | Entrada do worker, protegida pela chave `doc_worker_chave` do Vault. Registra a emissão só com o hash do PDF conferido. Depois do limite de tentativas, o pedido para em erro |
+| `doc.decidir` | Análise crítica e aprovação em duas mãos: quem pediu não decide, quem analisou não aprova, alerta mantido exige justificativa e emissão bloqueada não se submete |
+| `doc.destravar` | Devolve à fila o pedido preso em emissão (cron de 30 em 30 minutos) |
+| `doc.arquivo` | PDF e HTML em bytea no protótipo; em produção vão para o Storage |
+
+O verificador de segurança do Supabase aponta as três funções `public.doc_worker_*` como chamáveis sem login. Isso é de propósito: sem a chave `doc_worker_chave` do Vault elas recusam. Em produção, com o worker usando credencial de serviço, essa entrada pública pode sair.
+
+As automações que publicam, emitem, respondem ou enviam proposta (21 tarefas) usam o sistema `motor-documental`. O teste T1 do motor aceita esse sistema (027).
+
+## Administração geral (E13, esquema adm)
+
+| Peça | O que faz |
+|---|---|
+| `adm.conexao` | Registro único das conexões externas: ambiente, endpoint, dono, estado, saúde e só o nome do segredo no Vault (a base recusa o que parece valor) |
+| `adm.parametro` | Os parâmetros com escopo, tipo, validação, padrão, fonte e destino (`rt.config`, `rt.parametro_simulacao`, agenda do pg_cron) |
+| `adm.alterar_parametro` | Valida, exige motivo, aplica e propaga. Se o parâmetro é sensível, abre uma mudança pendente |
+| `adm.decidir_mudanca` | Aprova (aplica e propaga) ou recusa (com motivo), sempre por outra pessoa |
+| `adm.alterar_conexao` | Muda só os campos de cadastro; o alvo da verificação muda por migração |
+| `adm.verificar_conexoes` | SQL e Vault na hora; HTTP pelo pg_net, colhido na rodada seguinte. Roda no cron `imts-adm-verificacao` |
+| `adm.painel` | O que a página de administração lê, sem alvo SQL e sem valor de segredo |
+| `adm.historico` | Antes, depois, quem, como e por quê de cada alteração |
+
+Sem login, o serviço informa como quem atua (`p_como`): é o protótipo da página via MCP, com os administradores simulados. Em produção vale o login de cada pessoa.
+
+Achado: `rt.config` tem duas chaves para a autodestruição. A que o código lê é `autodestruicao_horas` (47); a chave antiga `telegram` (com 24) não é lida por nada. Proposta: apagar a chave antiga, que fica até a sua decisão.
+
+## Testes
+
+```sql
+do $$ begin raise exception '%', rt._testar_runtime() || ' | ' || rt._testar_motor() || ' | ' || rt._testar_mesa() || ' | ' || rt._testar_telegram() || ' | ' || rt._testar_acesso(); end $$;
+do $$ begin raise exception '%', doc._testar_documental(); end $$;
+do $$ begin raise exception '%', adm._testar_administracao(); end $$;
+```
+Cada chamada desfaz tudo. O documental e a administração rodam separados, porque também criam login para as mesmas pessoas simuladas.

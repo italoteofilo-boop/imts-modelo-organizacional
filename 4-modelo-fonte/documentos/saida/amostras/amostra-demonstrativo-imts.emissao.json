@@ -1,0 +1,21 @@
+{
+ "id": "amostra-demonstrativo-imts",
+ "tipo": "demonstracoes",
+ "tipo_nome": "Demonstrações contábeis (DRE, balancete, balanço)",
+ "marca": "imts",
+ "modelo": "demonstrativo",
+ "emitido_em": "2026-10-04T12:33:31+00:00",
+ "situacao": "emitido",
+ "paginas": 2,
+ "sumario": {},
+ "hash_pedido": "c0370e9cbeb36fcee9f17cc66b92d72b8b63b7a59f1ab28d0b7304f798bb6c23",
+ "hash_pdf": "f9dd78f45a9fe206c690d410299c8aa68657cb4919ef2d11108780c74eb68e69",
+ "hash_html": "c89b3fb1f51e1d0b82578e4c5249965bc5d2a42e76f727611570dd87b3c0106c",
+ "ajustes_terco": 2,
+ "gates": [],
+ "alertas": [],
+ "arquivos": [
+  "amostra-demonstrativo-imts.pdf",
+  "amostra-demonstrativo-imts.html"
+ ]
+}

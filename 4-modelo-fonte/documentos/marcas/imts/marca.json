@@ -1,0 +1,57 @@
+{
+ "id": "imts",
+ "nome": "IMTS",
+ "razao_social": null,
+ "cnpj": null,
+ "situacao": "oficial",
+ "fonte": "Manual da Marca IMTS 2025, transcrito na skill imts-editorial (references/marca.md); logos de assets/logos",
+ "cores": {
+  "primaria": "#023ED8",
+  "texto": "#272829",
+  "fundo": "#FFFFFF",
+  "destaque": "#ED8A15",
+  "apoio": "#3F64FA",
+  "apoio2": "#2D4FFA",
+  "barra": "#D9D9D9",
+  "linha": "#7F7F7F"
+ },
+ "tipografia": {
+  "texto": "Open Sans",
+  "display": "Michroma",
+  "fallback": "system-ui, sans-serif"
+ },
+ "logos": {
+  "horizontal": "logos/Logo_Horizontal_IMTS_Blue.png",
+  "horizontal_negativo": "logos/Logo_Horizontal_IMTS_White.png",
+  "horizontal_positivo": "logos/Logo_Horizontal_IMTS_Black.png",
+  "simbolo": "logos/Simbolo_IMTS_Black.png",
+  "simbolo_negativo": "logos/Simbolo_IMTS_White.png"
+ },
+ "logo_regras": {
+  "arejamento": 0.15,
+  "largura_minima_cm": 3.0
+ },
+ "autor_institucional": "IMTS",
+ "rodape_aprovacao": {
+  "etapas": [
+   "Preenchimento",
+   "Análise Crítica e Validação",
+   "Aprovação"
+  ],
+  "areas": [
+   "Área de Compliance",
+   "Assessoria Jurídica",
+   "Liderança Corporativa"
+  ]
+ },
+ "marca_dagua": null,
+ "regras": [
+  "Laranja Disruptivo: no máximo um elemento por página",
+  "Michroma só em títulos de modelos não formais; modelos formais usam uma família (Open Sans)",
+  "corpo em Grafite Digital, nunca azul em corpo pequeno"
+ ],
+ "inferencias": [
+  "rodapé de aprovação: padrão Legal.OS aplicado à IMTS, a confirmar",
+  "razão social e CNPJ ausentes: a informar"
+ ]
+}

@@ -1,0 +1,3539 @@
+{
+ "fonte": "saida/c1..c9/circulo.json, modelo 2026-10-03.2",
+ "metodo": "catálogo fechado; ligação às saídas por regra de texto, para revisão da ID-04",
+ "resumo": {
+  "tipos": 38,
+  "tipos_com_origem": 36,
+  "saidas_total": 690,
+  "saidas_ligadas": 169,
+  "saidas_registro_do_motor": 521,
+  "saidas_distintas_sem_tipo": 398,
+  "por_familia": {
+   "contratual": 8,
+   "proposta": 1,
+   "relatorio": 5,
+   "demonstrativo": 6,
+   "licitacao": 2,
+   "ata": 2,
+   "politica": 5,
+   "parecer": 2,
+   "oficio": 5,
+   "certificado": 2
+  },
+  "por_alcance": {
+   "externo": 18,
+   "interno": 20
+  },
+  "tarefas_documentais": 128
+ },
+ "tipos": [
+  {
+   "id": "contrato-cliente",
+   "nome": "Contrato de prestação de serviços a cliente",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "contrato de cliente|contrato assinado|contratos? (encerrad|vencimento|com vencimento)|vencimento do contrato",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-04",
+     "etapa": 3,
+     "saida": "Contrato assinado e guardado",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-04",
+     "etapa": 4,
+     "saida": "Contrato de cliente assinado, com o escopo vendido",
+     "para": [
+      "Relações",
+      "Integração",
+      "Operações",
+      "Gestão",
+      "NE-06"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-05",
+     "etapa": 4,
+     "saida": "Contrato de cliente assinado, com o escopo vendido",
+     "para": [
+      "Relações",
+      "Integração",
+      "Operações",
+      "Gestão",
+      "NE-06"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 1,
+     "saida": "Vencimento do contrato e resultado da renovação",
+     "para": [
+      "Relações",
+      "Gestão",
+      "NE-02"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 3,
+     "saida": "Contratos encerrados ou transferidos na saída",
+     "para": [
+      "Integração",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 5,
+     "saida": "Contrato de cliente assinado, com o escopo vendido",
+     "para": [
+      "Relações",
+      "Integração",
+      "Operações",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 5,
+     "saida": "Contrato encerrado, com a data de fim",
+     "para": [
+      "Operações",
+      "Integração",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 5,
+     "saida": "Vencimento do contrato e resultado da renovação",
+     "para": [
+      "Relações",
+      "Gestão",
+      "NE-02"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-05",
+     "etapa": 2,
+     "saida": "Contratos com vencimento e obrigações",
+     "para": [
+      "GO-03",
+      "etapa 3"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-04",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Redigir o contrato no modelo, com o escopo vendido e as condições acordadas",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-04",
+     "etapa": 3,
+     "tarefa": 7,
+     "nome": "Assinar o contrato em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-04",
+     "etapa": 3,
+     "tarefa": 8,
+     "nome": "Assinar o contrato",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 3,
+     "nome": "Assinar o contrato com o órgão em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 5,
+     "nome": "Assinar a ata de registro de preços em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 7,
+     "nome": "Assinar o contrato da adesão em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 8,
+     "nome": "Responder ao órgão não participante que a empresa não adere, com o motivo",
+     "exec": "R"
+    },
+    {
+     "jornada": "NE-06",
+     "etapa": 1,
+     "tarefa": 4,
+     "nome": "Preparar a proposta de renovação, aditivo ou retenção com o histórico, o plano de conta e a tabela",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-06",
+     "etapa": 1,
+     "tarefa": 6,
+     "nome": "Responder à consulta sobre a proposta de renovação não coberta pelos padrões",
+     "exec": "C"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "contrato-fornecedor",
+   "nome": "Contrato com fornecedor",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "contrato de fornecedor|contrato de tecnologia",
+   "origens": [
+    {
+     "circulo": "c6",
+     "jornada": "IT-07",
+     "etapa": 3,
+     "saida": "Contrato de tecnologia para guardar",
+     "para": [
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-04",
+     "etapa": 2,
+     "saida": "Contrato de fornecedor para revisar e guardar",
+     "para": [
+      "Governança"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GE-04",
+     "etapa": 2,
+     "tarefa": 4,
+     "nome": "Emitir o pedido ao fornecedor e informar a data de entrega a quem pediu",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "aditivo",
+   "nome": "Termo aditivo, renovação ou distrato",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "aditivo|renovacao, aditivo|encerramento assinado|distrato",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 4,
+     "saida": "Renovação, aditivo, contratação ou encerramento assinado",
+     "para": [
+      "etapa 5"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-06",
+     "etapa": 4,
+     "tarefa": 1,
+     "nome": "Redigir a renovação, o aditivo, o contrato pela ata ou o termo de encerramento, no modelo",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-06",
+     "etapa": 4,
+     "tarefa": 5,
+     "nome": "Assinar o documento em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-06",
+     "etapa": 4,
+     "tarefa": 6,
+     "nome": "Assinar o documento pelo cliente, quando a forma pede",
+     "exec": "H"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "acordo-parceria",
+   "nome": "Acordo de parceria ou de oferta conjunta",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "acordo de oferta conjunta|termos da parceria|encerramento de parceria",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-07",
+     "etapa": 2,
+     "saida": "Acordo de oferta conjunta entre as empresas",
+     "para": [
+      "Governança",
+      "Gestão",
+      "Executivos"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-07",
+     "etapa": 2,
+     "tarefa": 5,
+     "nome": "Formalizar o acordo entre as empresas: divisão de receita, responsabilidade e rateio",
+     "exec": "C"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "contrato-societario",
+   "nome": "Contrato de compra e venda de participação",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "contrato de compra ou venda",
+   "origens": [
+    {
+     "circulo": "c2",
+     "jornada": "ES-05",
+     "etapa": 5,
+     "saida": "Contrato de compra ou venda assinado",
+     "para": [
+      "etapa 6",
+      "Governança"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 3,
+     "nome": "Redigir a lição do caso que os sócios decidiram arquivar, sem dado sigiloso",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 5,
+     "nome": "Redigir a lição do caso que os sócios decidiram não seguir, sem dado sigiloso",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 7,
+     "nome": "Preparar o contrato de compra ou venda dentro do que os sócios decidiram",
+     "exec": "C"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 8,
+     "nome": "Assinar o contrato de compra ou venda",
+     "exec": "H"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 9,
+     "nome": "Redigir a lição do caso em que o contrato não foi assinado, sem o que é confidencial",
+     "exec": "P"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "licenca-marca",
+   "nome": "Autorização de uso de marca",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "autorizac\\w* de uso da marca|uso da marca por terceiros",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 4,
+     "saida": "Regra de uso da marca por terceiros",
+     "para": [
+      "Relações",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-06",
+     "etapa": 5,
+     "saida": "Autorizações de uso da marca por terceiros, com prazo",
+     "para": [
+      "Governança"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ID-02",
+     "etapa": 4,
+     "tarefa": 2,
+     "nome": "Montar o conjunto de padrões de cada círculo que executa",
+     "exec": "A"
+    },
+    {
+     "jornada": "RE-06",
+     "etapa": 5,
+     "tarefa": 2,
+     "nome": "Responder à consulta sobre o uso fora da regra",
+     "exec": "C"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "acordo-servico",
+   "nome": "Acordo de serviço entre círculos ou empresas",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "interno",
+   "regra": "acordo de servico",
+   "origens": [
+    {
+     "circulo": "c6",
+     "jornada": "IT-05",
+     "etapa": 2,
+     "saida": "Ficha da capacidade: método, conhecimento, executor, ferramentas, acordo de serviço e indicador",
+     "para": [
+      "etapa 3",
+      "IT-06"
+     ]
+    }
+   ],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "termo-negociacao",
+   "nome": "Termo de pagamento, parcelamento ou transação",
+   "familia": "contratual",
+   "modelo": "contratual",
+   "alcance": "externo",
+   "regra": "parcelamento|transacao formalizad|termos negociados",
+   "origens": [
+    {
+     "circulo": "c2",
+     "jornada": "ES-05",
+     "etapa": 3,
+     "saida": "Resultado da apuração e termos negociados",
+     "para": [
+      "etapa 4",
+      "etapa 5"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-14",
+     "etapa": 2,
+     "saida": "Pagamento, parcelamento ou transação formalizado, com as condições",
+     "para": [
+      "etapa 3"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-05",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Consolidar o resultado da apuração para decidir se o caso segue",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 3,
+     "tarefa": 7,
+     "nome": "Redigir a lição do caso arquivado depois da apuração, sem o que é confidencial",
+     "exec": "P"
+    },
+    {
+     "jornada": "GE-14",
+     "etapa": 2,
+     "tarefa": 6,
+     "nome": "Formalizar o pagamento, o parcelamento ou a transação e registrar as condições",
+     "exec": "P"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "proposta-comercial",
+   "nome": "Proposta comercial",
+   "familia": "proposta",
+   "modelo": "proposta",
+   "alcance": "externo",
+   "regra": "proposta (aprovada para envio|aceita|de renovacao)|modelos de proposta|proposta comercial",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-03",
+     "etapa": 3,
+     "saida": "Proposta aprovada para envio",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-03",
+     "etapa": 4,
+     "saida": "Proposta aceita ou em negociação",
+     "para": [
+      "NE-04"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-06",
+     "etapa": 1,
+     "saida": "Proposta de renovação, expansão ou retenção",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-01",
+     "etapa": 3,
+     "saida": "Modelos de proposta e de contrato",
+     "para": [
+      "Negócios"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-03",
+     "etapa": 3,
+     "tarefa": 5,
+     "nome": "Redigir a proposta no modelo, com o escopo, o preço, as condições e a validade",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-03",
+     "etapa": 3,
+     "tarefa": 8,
+     "nome": "Responder à consulta sobre a proposta não coberta pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "NE-03",
+     "etapa": 4,
+     "tarefa": 1,
+     "nome": "Enviar a proposta ao cliente e registrar o envio",
+     "exec": "R"
+    },
+    {
+     "jornada": "NE-06",
+     "etapa": 1,
+     "tarefa": 4,
+     "nome": "Preparar a proposta de renovação, aditivo ou retenção com o histórico, o plano de conta e a tabela",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-06",
+     "etapa": 1,
+     "tarefa": 6,
+     "nome": "Responder à consulta sobre a proposta de renovação não coberta pelos padrões",
+     "exec": "C"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "proposta-interna",
+   "nome": "Proposta para decisão (memorando)",
+   "familia": "relatorio",
+   "modelo": "institucional",
+   "alcance": "interno",
+   "regra": "^proposta",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-01",
+     "etapa": 2,
+     "saida": "Proposta de declaração",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-01",
+     "etapa": 3,
+     "saida": "Proposta validada",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-04",
+     "etapa": 2,
+     "saida": "Proposta de posicionamento",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 3,
+     "saida": "Proposta de estratégia, com as hipóteses, o método e as divergências",
+     "para": [
+      "etapa 4",
+      "etapa 5"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-02",
+     "etapa": 2,
+     "saida": "Proposta de alocação e de destino do resultado",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-03",
+     "etapa": 3,
+     "saida": "Proposta de alvos e iniciativas, com o orçamento da Gestão e as alternativas",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-05",
+     "etapa": 4,
+     "saida": "Proposta de estrutura",
+     "para": [
+      "etapa 5"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-01",
+     "etapa": 2,
+     "saida": "Proposta de plano de demanda",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-04",
+     "etapa": 2,
+     "saida": "Proposta de estratégia de experiência",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-05",
+     "etapa": 2,
+     "saida": "Proposta e habilitação prontas para a disputa",
+     "para": [
+      "etapa 3"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ID-01",
+     "etapa": 3,
+     "tarefa": 3,
+     "nome": "Consolidar objeções e ajustes",
+     "exec": "A"
+    },
+    {
+     "jornada": "ES-01",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Montar o rascunho da estratégia de cada empresa a partir das escolhas do Ecossistema",
+     "exec": "A"
+    },
+    {
+     "jornada": "ES-02",
+     "etapa": 2,
+     "tarefa": 4,
+     "nome": "Montar a proposta de alocação e de destino do resultado, mesmo quando é manter a atual",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-03",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Montar o orçamento do ciclo a partir dos alvos e da alocação",
+     "exec": "C"
+    },
+    {
+     "jornada": "ES-03",
+     "etapa": 3,
+     "tarefa": 5,
+     "nome": "Montar as alternativas de alvos e de recursos para decisão dos sócios",
+     "exec": "P"
+    },
+    {
+     "jornada": "RE-04",
+     "etapa": 2,
+     "tarefa": 9,
+     "nome": "Responder à consulta sobre a experiência não coberta pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 2,
+     "tarefa": 6,
+     "nome": "Montar a proposta e a parte técnica, quando houver, nas regras do edital",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 2,
+     "tarefa": 8,
+     "nome": "Responder à consulta sobre a proposta de licitação não coberta pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 2,
+     "tarefa": 10,
+     "nome": "Assinar a proposta e os documentos pedidos no edital em nome da empresa",
+     "exec": "H"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "racional-financeiro",
+   "nome": "Racional financeiro de contrato",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "interno",
+   "regra": "racional financeiro|condicoes acordadas",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-04",
+     "etapa": 1,
+     "saida": "Condições acordadas com o cliente",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-04",
+     "etapa": 2,
+     "saida": "Condições acordadas e racional financeiro do contrato",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-04",
+     "etapa": 4,
+     "saida": "Racional financeiro do contrato aprovado",
+     "para": [
+      "Gestão"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-04",
+     "etapa": 2,
+     "tarefa": 1,
+     "nome": "Montar o racional financeiro do contrato: receita, custos, margem, impostos e caixa por período",
+     "exec": "A"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "proposta-b2g",
+   "nome": "Proposta de preço e habilitação em licitação",
+   "familia": "licitacao",
+   "modelo": "licitacao",
+   "alcance": "externo",
+   "regra": "habilitac|edital|licitac|pregao|proposta de preco",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-03",
+     "etapa": 1,
+     "saida": "Edital ou pedido de cotação de órgão público",
+     "para": [
+      "NE-05"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-05",
+     "etapa": 1,
+     "saida": "Edital analisado, com a decisão de participar",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-04",
+     "etapa": 2,
+     "saida": "Certidões e documentos de habilitação em dia",
+     "para": [
+      "Negócios"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-05",
+     "etapa": 1,
+     "tarefa": 2,
+     "nome": "Preparar a resposta à cotação com o preço pela tabela e pela política, sem disputa",
+     "exec": "A"
+    },
+    {
+     "jornada": "GO-04",
+     "etapa": 2,
+     "tarefa": 1,
+     "nome": "Preparar o pedido, a renovação, a transferência ou a baixa",
+     "exec": "A"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "arp",
+   "nome": "Ata de registro de preços",
+   "familia": "licitacao",
+   "modelo": "licitacao",
+   "alcance": "externo",
+   "regra": "ata de registro de precos",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-05",
+     "etapa": 4,
+     "saida": "Ata de registro de preços vigente, com saldo e órgãos participantes",
+     "para": [
+      "NE-06",
+      "NE-02",
+      "Gestão",
+      "Operações"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 3,
+     "nome": "Assinar o contrato com o órgão em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 5,
+     "nome": "Assinar a ata de registro de preços em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 7,
+     "nome": "Assinar o contrato da adesão em nome da empresa",
+     "exec": "H"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 4,
+     "tarefa": 8,
+     "nome": "Responder ao órgão não participante que a empresa não adere, com o motivo",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "ata",
+   "nome": "Ata de reunião ou de deliberação",
+   "familia": "ata",
+   "modelo": "ata",
+   "alcance": "interno",
+   "regra": "^ata\\b|deliberac|decisao dos socios|decididos? pelo comite|acoes do ritual",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-01",
+     "etapa": 4,
+     "saida": "Decisão dos sócios registrada",
+     "para": [
+      "etapa 5",
+      "etapa 2",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 3,
+     "saida": "Decisão dos sócios sobre critérios e limites",
+     "para": [
+      "etapa 2",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 4,
+     "saida": "Decisão dos sócios sobre a estratégia",
+     "para": [
+      "etapa 5",
+      "etapa 2",
+      "etapa 3",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-03",
+     "etapa": 4,
+     "saida": "Decisão dos sócios sobre alvos e orçamento",
+     "para": [
+      "etapa 5",
+      "etapa 2",
+      "Governança",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-05",
+     "etapa": 5,
+     "saida": "Decisão dos sócios sobre a empresa",
+     "para": [
+      "etapa 6",
+      "etapa 4",
+      "etapa 3",
+      "etapa 1",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-06",
+     "etapa": 3,
+     "saida": "Revisão aberta para decisão dos sócios: alvos, portfólio ou estratégia",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-02",
+     "etapa": 3,
+     "saida": "Ações do ritual, com dono e prazo",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-02",
+     "etapa": 4,
+     "saida": "Situação das ações do ritual",
+     "para": [
+      "Executivos",
+      "Líderes dos círculos"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-08",
+     "etapa": 2,
+     "saida": "Declaração, posição e encerramento da crise decididos pelo comitê",
+     "para": [
+      "Relações"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-08",
+     "etapa": 3,
+     "saida": "Declaração, posição e encerramento da crise decididos pelo comitê",
+     "para": [
+      "Relações"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 3,
+     "nome": "Redigir a lição do caso que os sócios decidiram arquivar, sem dado sigiloso",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 5,
+     "nome": "Redigir a lição do caso que os sócios decidiram não seguir, sem dado sigiloso",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 7,
+     "nome": "Preparar o contrato de compra ou venda dentro do que os sócios decidiram",
+     "exec": "C"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 8,
+     "nome": "Assinar o contrato de compra ou venda",
+     "exec": "H"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 5,
+     "tarefa": 9,
+     "nome": "Redigir a lição do caso em que o contrato não foi assinado, sem o que é confidencial",
+     "exec": "P"
+    },
+    {
+     "jornada": "GE-02",
+     "etapa": 3,
+     "tarefa": 3,
+     "nome": "Apresentar os desvios e propor as ações",
+     "exec": "H"
+    },
+    {
+     "jornada": "GO-08",
+     "etapa": 3,
+     "tarefa": 6,
+     "nome": "Consolidar as lições e as causas",
+     "exec": "A"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "pauta",
+   "nome": "Pauta e convocação",
+   "familia": "ata",
+   "modelo": "ata",
+   "alcance": "interno",
+   "regra": "pauta|convocac",
+   "origens": [
+    {
+     "circulo": "c4",
+     "jornada": "RE-07",
+     "etapa": 1,
+     "saida": "Pauta decidida, com o alvo de cada tema",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-02",
+     "etapa": 1,
+     "saida": "Pauta do ritual com os desvios e os donos",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-11",
+     "etapa": 1,
+     "saida": "Pauta e calendário aprovados",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-02",
+     "etapa": 1,
+     "saida": "Pauta e matérias preparadas",
+     "para": [
+      "etapa 2"
+     ]
+    }
+   ],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "politica",
+   "nome": "Política",
+   "familia": "politica",
+   "modelo": "politica",
+   "alcance": "interno",
+   "regra": "politica",
+   "origens": [
+    {
+     "circulo": "c5",
+     "jornada": "NE-01",
+     "etapa": 2,
+     "saida": "Tabela e política decididas",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-01",
+     "etapa": 3,
+     "saida": "Tabela de preços e política comercial vigentes",
+     "para": [
+      "Relações",
+      "Inteligência",
+      "Gestão",
+      "Operações",
+      "NE-02",
+      "NE-03",
+      "NE-04",
+      "NE-05",
+      "NE-06",
+      "NE-07"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "NE-01",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Preparar o material de venda das ofertas novas ou mudadas com o pacote de marca",
+     "exec": "A"
+    },
+    {
+     "jornada": "NE-01",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Responder à consulta sobre o material de venda não coberto pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "NE-01",
+     "etapa": 3,
+     "tarefa": 5,
+     "nome": "Publicar a tabela, a política comercial e o material de venda com versão e vigência",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "regra-alcadas",
+   "nome": "Regras e alçadas",
+   "familia": "politica",
+   "modelo": "politica",
+   "alcance": "interno",
+   "regra": "alcadas|regra de uso|^regras? (vigente|aprovad)",
+   "origens": [
+    {
+     "circulo": "c9",
+     "jornada": "GO-01",
+     "etapa": 3,
+     "saida": "Regras e alçadas vigentes",
+     "para": [
+      "Todos (pessoas e agentes)"
+     ]
+    }
+   ],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "manual-metodo",
+   "nome": "Manual, método ou padrão",
+   "familia": "politica",
+   "modelo": "politica",
+   "alcance": "interno",
+   "regra": "manual|metodo|padroes|^padrao|kit\\b|guia\\b|protocolo de crise",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 2,
+     "saida": "Padrões redigidos",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 3,
+     "saida": "Padrões testados e casos de teste",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 4,
+     "saida": "Padrões de identidade vigentes",
+     "para": [
+      "Todos (pessoas e agentes)",
+      "ID-03",
+      "ID-04",
+      "ID-05"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 4,
+     "saida": "Kit de cultura e pessoas",
+     "para": [
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 4,
+     "saida": "Protocolo de crise",
+     "para": [
+      "Governança",
+      "Relações",
+      "Executivos"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-05",
+     "etapa": 4,
+     "saida": "Resumo da avaliação dos padrões",
+     "para": [
+      "Sócios",
+      "Executivos",
+      "Líderes dos círculos",
+      "Governança",
+      "Gestão",
+      "Relações",
+      "Inteligência"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 2,
+     "saida": "Escolhas estratégicas, portfólio-alvo, hipóteses e método do Ecossistema",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 5,
+     "saida": "Método de estratégia vigente: critérios dos portões, regras de realocação e calendário",
+     "para": [
+      "ES-02",
+      "ES-03",
+      "ES-04",
+      "ES-06",
+      "Executivos",
+      "Líderes dos círculos",
+      "Inteligência",
+      "Gestão",
+      "Integração",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 2,
+     "saida": "Método descrito, com critério de sucesso e casos de teste",
+     "para": [
+      "etapa 3",
+      "IN-07"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 3,
+     "saida": "Método testado, com o resultado medido",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 4,
+     "saida": "Método publicado, com versão e data de revisão",
+     "para": [
+      "Todos (pessoas e agentes)",
+      "Integração",
+      "IN-05",
+      "IN-07",
+      "etapa 5"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 4,
+     "saida": "Kit do método para agentes: passos, conhecimento, casos de teste e critério de sucesso",
+     "para": [
+      "Integração"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 5,
+     "saida": "Decisão de rever o método",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 5,
+     "saida": "Resultado da avaliação do método",
+     "para": [
+      "Integração",
+      "Líderes dos círculos",
+      "Solicitante"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-07",
+     "etapa": 4,
+     "saida": "Solução, método de entrega e entregáveis",
+     "para": [
+      "etapa 5",
+      "etapa 6",
+      "etapa 7"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-07",
+     "etapa": 9,
+     "saida": "Oferta no catálogo de ofertas: escopo, método, conteúdo-base, preço-base e indicadores",
+     "para": [
+      "etapa 2",
+      "Negócios",
+      "Relações",
+      "Operações",
+      "Integração",
+      "Executivos",
+      "IN-04",
+      "IN-05"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-04",
+     "etapa": 4,
+     "saida": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
+     "para": [
+      "RE-01",
+      "RE-05",
+      "Operações",
+      "Negócios",
+      "Integração",
+      "Executivos",
+      "Inteligência"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ID-02",
+     "etapa": 4,
+     "tarefa": 2,
+     "nome": "Montar o conjunto de padrões de cada círculo que executa",
+     "exec": "A"
+    },
+    {
+     "jornada": "ID-05",
+     "etapa": 4,
+     "tarefa": 2,
+     "nome": "Publicar o resumo e avisar quem forneceu dados",
+     "exec": "R"
+    },
+    {
+     "jornada": "ES-01",
+     "etapa": 2,
+     "tarefa": 1,
+     "nome": "Montar opções estratégicas e simular as consequências de cada uma",
+     "exec": "A"
+    },
+    {
+     "jornada": "ES-01",
+     "etapa": 2,
+     "tarefa": 5,
+     "nome": "Escrever as hipóteses de cada escolha e os sinais que as confirmam ou refutam",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-01",
+     "etapa": 5,
+     "tarefa": 5,
+     "nome": "Publicar a estratégia, o portfólio-alvo, as hipóteses e o método",
+     "exec": "R"
+    },
+    {
+     "jornada": "IN-06",
+     "etapa": 2,
+     "tarefa": 3,
+     "nome": "Escrever o critério de sucesso e os casos de teste do método",
+     "exec": "A"
+    },
+    {
+     "jornada": "IN-06",
+     "etapa": 2,
+     "tarefa": 6,
+     "nome": "Responder à consulta sobre o método não coberto",
+     "exec": "C"
+    },
+    {
+     "jornada": "IN-06",
+     "etapa": 4,
+     "tarefa": 1,
+     "nome": "Montar o kit para agentes: passos, conhecimento, casos de teste e critério de sucesso",
+     "exec": "A"
+    },
+    {
+     "jornada": "IN-06",
+     "etapa": 4,
+     "tarefa": 5,
+     "nome": "Publicar o método com versão, classificação e data de revisão",
+     "exec": "R"
+    },
+    {
+     "jornada": "IN-07",
+     "etapa": 4,
+     "tarefa": 1,
+     "nome": "Montar alternativas de solução e comparar com as ofertas existentes",
+     "exec": "A"
+    },
+    {
+     "jornada": "RE-04",
+     "etapa": 4,
+     "tarefa": 1,
+     "nome": "Publicar a estratégia de experiência com versão e data de revisão",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "mandato",
+   "nome": "Mandato da empresa",
+   "familia": "politica",
+   "modelo": "politica",
+   "alcance": "interno",
+   "regra": "^mandato",
+   "origens": [
+    {
+     "circulo": "c2",
+     "jornada": "ES-05",
+     "etapa": 6,
+     "saida": "Mandato da empresa",
+     "para": [
+      "etapa 7",
+      "etapa 8",
+      "Integração",
+      "Governança",
+      "Gestão",
+      "Relações",
+      "Negócios",
+      "Operações",
+      "Inteligência",
+      "Executivos"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-05",
+     "etapa": 6,
+     "tarefa": 1,
+     "nome": "Redigir o mandato: objetivo, estrutura, recursos, prazos e donos",
+     "exec": "A"
+    },
+    {
+     "jornada": "ES-05",
+     "etapa": 6,
+     "tarefa": 9,
+     "nome": "Enviar o mandato a cada círculo que executa",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "declaracao-identidade",
+   "nome": "Declaração de identidade",
+   "familia": "politica",
+   "modelo": "institucional",
+   "alcance": "externo",
+   "regra": "declaracao de identidade|essencia da marca",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-01",
+     "etapa": 5,
+     "saida": "Declaração de identidade vigente",
+     "para": [
+      "Todos (pessoas e agentes)",
+      "ID-02",
+      "ID-03",
+      "ID-04",
+      "ID-05",
+      "Estratégia"
+     ]
+    },
+    {
+     "circulo": "c1",
+     "jornada": "ID-03",
+     "etapa": 3,
+     "saida": "Essência da marca e nome aprovado",
+     "para": [
+      "etapa 4"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ID-03",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Gerar a essência da marca e nomes candidatos",
+     "exec": "A"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "estrategia",
+   "nome": "Documento de estratégia",
+   "familia": "relatorio",
+   "modelo": "institucional",
+   "alcance": "interno",
+   "regra": "^estrategia vigente|hipoteses da estrategia",
+   "origens": [
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 5,
+     "saida": "Estratégia vigente do Ecossistema e das empresas",
+     "para": [
+      "etapa 3",
+      "ES-02",
+      "ES-03",
+      "ES-04",
+      "ES-05",
+      "ES-06",
+      "Sócios",
+      "Executivos",
+      "Líderes dos círculos"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 5,
+     "saida": "Hipóteses da estratégia e sinais a vigiar",
+     "para": [
+      "ES-06",
+      "Inteligência"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-01",
+     "etapa": 5,
+     "tarefa": 5,
+     "nome": "Publicar a estratégia, o portfólio-alvo, as hipóteses e o método",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "plano-contas",
+   "nome": "Plano de contas e plano tributário",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "interno",
+   "regra": "plano de contas|plano tributario",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-15",
+     "etapa": 1,
+     "saida": "Plano de contas e centros de custo vigentes",
+     "para": [
+      "etapa 2",
+      "GE-05",
+      "GE-06"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-15",
+     "etapa": 2,
+     "saida": "Plano tributário do grupo e regras das operações entre empresas",
+     "para": [
+      "GE-05",
+      "GE-06",
+      "Executivos"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GE-15",
+     "etapa": 2,
+     "tarefa": 4,
+     "nome": "Preparar a proposta de plano tributário para quem decide",
+     "exec": "P"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "plano",
+   "nome": "Plano (estratégico, de ação, de saída, de correção)",
+   "familia": "relatorio",
+   "modelo": "relatorio",
+   "alcance": "interno",
+   "regra": "^plano (de|da|do)|^planejamento",
+   "origens": [
+    {
+     "circulo": "c3",
+     "jornada": "IN-01",
+     "etapa": 1,
+     "saida": "Plano de leitura: perguntas, sinais, fontes e critério de aviso",
+     "para": [
+      "etapa 2",
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-01",
+     "etapa": 3,
+     "saida": "Plano de demanda aprovado",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-01",
+     "etapa": 4,
+     "saida": "Plano de demanda do ciclo: públicos, ofertas, canais, ações, alvos e orçamento",
+     "para": [
+      "RE-02",
+      "RE-07",
+      "Negócios",
+      "Integração",
+      "Executivos",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-05",
+     "etapa": 1,
+     "saida": "Plano de sucesso do cliente: resultados esperados, marcos e contatos",
+     "para": [
+      "etapa 2",
+      "etapa 3",
+      "Operações",
+      "Negócios"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-05",
+     "etapa": 3,
+     "saida": "Plano de recuperação do cliente",
+     "para": [
+      "Operações",
+      "Executivos"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-02",
+     "etapa": 3,
+     "saida": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
+     "para": [
+      "NE-03",
+      "NE-05",
+      "NE-07",
+      "Executivos",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-02",
+     "etapa": 3,
+     "saida": "Plano de conta dos clientes-chave",
+     "para": [
+      "NE-06"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-02",
+     "etapa": 1,
+     "saida": "Plano de implantação do cliente",
+     "para": [
+      "Relações",
+      "Operações",
+      "Gestão",
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-03",
+     "etapa": 1,
+     "saida": "Plano de lançamento da oferta",
+     "para": [
+      "Relações",
+      "Negócios",
+      "Operações",
+      "Gestão",
+      "Governança",
+      "Executivos",
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-04",
+     "etapa": 1,
+     "saida": "Plano de saída da oferta: clientes e contratos",
+     "para": [
+      "Estratégia"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-04",
+     "etapa": 1,
+     "saida": "Plano de saída: clientes, contratos e pessoas",
+     "para": [
+      "Estratégia"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-04",
+     "etapa": 1,
+     "saida": "Plano de saída de clientes e contratos",
+     "para": [
+      "Relações",
+      "Negócios",
+      "Operações",
+      "Gestão",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-01",
+     "etapa": 2,
+     "saida": "Plano de capacidade decidido",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-01",
+     "etapa": 3,
+     "saida": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
+     "para": [
+      "Gestão",
+      "Executivos",
+      "OP-06"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-02",
+     "etapa": 1,
+     "saida": "Plano de entrega do cliente",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-08",
+     "etapa": 1,
+     "saida": "Plano de fim das entregas",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-06",
+     "etapa": 1,
+     "saida": "Plano de produção e de materiais",
+     "para": [
+      "etapa 2",
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-09",
+     "etapa": 2,
+     "saida": "Plano de desenvolvimento ligado ao propósito",
+     "para": [
+      "Líderes"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-03",
+     "etapa": 2,
+     "saida": "Plano de remediação, com dono e prazo",
+     "para": [
+      "Executivos",
+      "Líderes dos círculos"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "RE-05",
+     "etapa": 1,
+     "tarefa": 2,
+     "nome": "Preparar com Operações e Integração a transição, sem avisar os clientes ainda",
+     "exec": "P"
+    },
+    {
+     "jornada": "RE-05",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Montar o relatório de resultado do cliente contra o plano de sucesso",
+     "exec": "A"
+    },
+    {
+     "jornada": "RE-05",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Responder à consulta sobre o relatório não coberto pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "RE-05",
+     "etapa": 3,
+     "tarefa": 5,
+     "nome": "Apresentar ao cliente o resultado e ouvir a avaliação dele",
+     "exec": "P"
+    },
+    {
+     "jornada": "NE-02",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Publicar o plano de vendas do ciclo, os planos de conta e a previsão com versão e data",
+     "exec": "R"
+    },
+    {
+     "jornada": "IT-02",
+     "etapa": 1,
+     "tarefa": 1,
+     "nome": "Montar o cronograma, os riscos e a lista de requisitos a partir do escopo vendido",
+     "exec": "A"
+    },
+    {
+     "jornada": "OP-01",
+     "etapa": 3,
+     "tarefa": 3,
+     "nome": "Publicar o plano e o mapa de capacidade usados para confirmar propostas e implantações",
+     "exec": "R"
+    },
+    {
+     "jornada": "OP-02",
+     "etapa": 1,
+     "tarefa": 2,
+     "nome": "Montar ou ajustar o plano de entrega: entregas, nível de serviço, equipe, agentes e contatos",
+     "exec": "A"
+    },
+    {
+     "jornada": "OP-08",
+     "etapa": 1,
+     "tarefa": 1,
+     "nome": "Preparar o fim das entregas pelo plano e aguardar a data de saída",
+     "exec": "A"
+    },
+    {
+     "jornada": "OP-06",
+     "etapa": 1,
+     "tarefa": 1,
+     "nome": "Montar a previsão de demanda por produto e conferir com a previsão de vendas e os contratos",
+     "exec": "A"
+    },
+    {
+     "jornada": "GE-09",
+     "etapa": 2,
+     "tarefa": 3,
+     "nome": "Escrever a declaração de propósito e escolher o que compartilha",
+     "exec": "H"
+    },
+    {
+     "jornada": "GO-03",
+     "etapa": 2,
+     "tarefa": 4,
+     "nome": "Montar o plano de remediação com o dono, o prazo e a causa",
+     "exec": "P"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "diagnostico",
+   "nome": "Diagnóstico, estudo ou análise",
+   "familia": "relatorio",
+   "modelo": "relatorio",
+   "alcance": "interno",
+   "regra": "^diagnostico|^estudo|^analise|^sintese",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-04",
+     "etapa": 1,
+     "saida": "Síntese de insumos",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 1,
+     "saida": "Diagnóstico estratégico",
+     "para": [
+      "etapa 2",
+      "etapa 3",
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-01",
+     "etapa": 4,
+     "saida": "Diagnóstico e decisão de manter a estratégia",
+     "para": [
+      "Sócios",
+      "Governança",
+      "Inteligência",
+      "ES-06"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-02",
+     "etapa": 4,
+     "saida": "Estudo de saída pedido para empresa, oferta ou aposta",
+     "para": [
+      "ES-04",
+      "ES-05"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-01",
+     "etapa": 3,
+     "saida": "Análise de mercado por pergunta e hipótese",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-01",
+     "etapa": 1,
+     "saida": "Diagnóstico de demanda do ciclo",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-01",
+     "etapa": 1,
+     "saida": "Diagnóstico de preço das ofertas",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-10",
+     "etapa": 2,
+     "saida": "Análise do impacto",
+     "para": [
+      "etapa 3"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-01",
+     "etapa": 1,
+     "tarefa": 3,
+     "nome": "Enviar as perguntas do diagnóstico à Inteligência",
+     "exec": "R"
+    },
+    {
+     "jornada": "ES-02",
+     "etapa": 4,
+     "tarefa": 4,
+     "nome": "Enviar a alocação decidida ao desdobramento dos alvos",
+     "exec": "R"
+    },
+    {
+     "jornada": "ES-02",
+     "etapa": 4,
+     "tarefa": 5,
+     "nome": "Comunicar o estudo de saída ao executivo afetado",
+     "exec": "P"
+    },
+    {
+     "jornada": "IN-01",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Emitir o aviso de mudança relevante a quem decide",
+     "exec": "P"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "relatorio",
+   "nome": "Relatório de resultado ou de situação",
+   "familia": "relatorio",
+   "modelo": "relatorio",
+   "alcance": "interno",
+   "regra": "^relatorio|^resultado|^situacao da|^avaliacao",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-05",
+     "etapa": 2,
+     "saida": "Relatório de alinhamento",
+     "para": [
+      "etapa 3",
+      "ID-01",
+      "ID-04",
+      "Estratégia",
+      "Sócios",
+      "Executivos",
+      "Líderes dos círculos"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-04",
+     "etapa": 2,
+     "saida": "Avaliação da aposta com recomendação",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-04",
+     "etapa": 3,
+     "saida": "Situação da carteira de apostas",
+     "para": [
+      "ES-01",
+      "ES-02",
+      "ES-06"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-04",
+     "etapa": 4,
+     "saida": "Situação da carteira de apostas",
+     "para": [
+      "ES-01",
+      "ES-02",
+      "ES-06"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-04",
+     "etapa": 5,
+     "saida": "Situação da carteira de apostas",
+     "para": [
+      "ES-01",
+      "ES-02",
+      "ES-06"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-05",
+     "etapa": 7,
+     "saida": "Situação da execução do mandato",
+     "para": [
+      "etapa 8"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-06",
+     "etapa": 4,
+     "saida": "Resultado da revisão da estratégia",
+     "para": [
+      "Sócios",
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-01",
+     "etapa": 5,
+     "saida": "Avaliação de uso da leitura",
+     "para": [
+      "etapa 1"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-04",
+     "etapa": 4,
+     "saida": "Resultado da revisão dos indicadores, com as contestações de indicador de alvo vigente",
+     "para": [
+      "Líderes dos círculos",
+      "Executivos",
+      "Gestão"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-06",
+     "etapa": 3,
+     "saida": "Resultado do teste em caso real",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-07",
+     "etapa": 6,
+     "saida": "Resultado do piloto com clientes",
+     "para": [
+      "etapa 3",
+      "etapa 4",
+      "IN-06"
+     ]
+    },
+    {
+     "circulo": "c3",
+     "jornada": "IN-08",
+     "etapa": 4,
+     "saida": "Resultado das melhorias conferidas",
+     "para": [
+      "IN-05",
+      "Líderes dos círculos",
+      "Executivos",
+      "Sócios"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-02",
+     "etapa": 3,
+     "saida": "Resultado das ações de demanda por canal e oferta",
+     "para": [
+      "RE-01",
+      "Executivos",
+      "Inteligência"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-04",
+     "etapa": 1,
+     "saida": "Avaliação da experiência, com lacunas e causas",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-05",
+     "etapa": 3,
+     "saida": "Resultado apresentado e avaliação do cliente",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-06",
+     "etapa": 4,
+     "saida": "Resultado da parceria",
+     "para": [
+      "Executivos",
+      "Negócios"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-07",
+     "etapa": 4,
+     "saida": "Resultado da comunicação externa",
+     "para": [
+      "etapa 1",
+      "RE-08",
+      "Executivos"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-05",
+     "etapa": 3,
+     "saida": "Resultado favorável da disputa",
+     "para": [
+      "etapa 4"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-07",
+     "etapa": 3,
+     "saida": "Resultado da venda com parceiros e conjunta",
+     "para": [
+      "Executivos",
+      "NE-02"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-01",
+     "etapa": 3,
+     "saida": "Situação das iniciativas na carteira de projetos",
+     "para": [
+      "Estratégia",
+      "Gestão",
+      "Executivos"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-06",
+     "etapa": 2,
+     "saida": "Resultado dos testes e do monitoramento dos agentes",
+     "para": [
+      "Inteligência"
+     ]
+    },
+    {
+     "circulo": "c6",
+     "jornada": "IT-06",
+     "etapa": 4,
+     "saida": "Resultado dos testes e do monitoramento dos agentes",
+     "para": [
+      "Inteligência"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-07",
+     "etapa": 4,
+     "saida": "Relatórios do recall para a autoridade",
+     "para": [
+      "Governança"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-05",
+     "etapa": 2,
+     "saida": "Resultado por empresa e consolidado",
+     "para": [
+      "Estratégia",
+      "Inteligência",
+      "GE-15"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-09",
+     "etapa": 3,
+     "saida": "Resultado da pesquisa de cultura e dados de pessoas",
+     "para": [
+      "Identidade",
+      "Inteligência"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-03",
+     "etapa": 2,
+     "saida": "Resultado dos testes de controle",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-03",
+     "etapa": 3,
+     "saida": "Relatório de riscos e conformidade",
+     "para": [
+      "Estratégia",
+      "Sócios"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-06",
+     "etapa": 4,
+     "saida": "Resultado da auditoria externa da Governança, com as correções decididas",
+     "para": [
+      "etapa 5",
+      "Sócios"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-06",
+     "etapa": 5,
+     "saida": "Resultado da auditoria das entregas",
+     "para": [
+      "Identidade",
+      "Inteligência",
+      "GO-03"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ES-04",
+     "etapa": 2,
+     "tarefa": 1,
+     "nome": "Enviar à Inteligência a pergunta de decisão do portão, com o risco e o prazo",
+     "exec": "R"
+    },
+    {
+     "jornada": "ES-04",
+     "etapa": 3,
+     "tarefa": 3,
+     "nome": "Apresentar a avaliação e a recomendação a quem decide",
+     "exec": "P"
+    },
+    {
+     "jornada": "ES-04",
+     "etapa": 3,
+     "tarefa": 8,
+     "nome": "Enviar a decisão de encerrar a quem desenha, vende e entrega, para parar novas vendas",
+     "exec": "R"
+    },
+    {
+     "jornada": "ES-04",
+     "etapa": 4,
+     "tarefa": 6,
+     "nome": "Enviar a data de saída a quem desenha, vende, entrega e coordena o plano de saída",
+     "exec": "R"
+    },
+    {
+     "jornada": "IN-01",
+     "etapa": 5,
+     "tarefa": 1,
+     "nome": "Publicar a leitura conforme a classificação e avisar quem depende dela",
+     "exec": "R"
+    },
+    {
+     "jornada": "IN-07",
+     "etapa": 6,
+     "tarefa": 1,
+     "nome": "Montar a versão mínima da oferta para o piloto, com a solução e o método descrito",
+     "exec": "A"
+    },
+    {
+     "jornada": "IN-07",
+     "etapa": 6,
+     "tarefa": 4,
+     "nome": "Responder à consulta sobre a versão mínima não coberta pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "IN-07",
+     "etapa": 6,
+     "tarefa": 8,
+     "nome": "Enviar à Estratégia a evidência de que o piloto não é viável e a recomendação",
+     "exec": "P"
+    },
+    {
+     "jornada": "IN-07",
+     "etapa": 6,
+     "tarefa": 10,
+     "nome": "Preparar a proposta e o termo de piloto no modelo de contrato",
+     "exec": "C"
+    },
+    {
+     "jornada": "IN-07",
+     "etapa": 6,
+     "tarefa": 21,
+     "nome": "Enviar à Estratégia a evidência do piloto e a recomendação de encerrar",
+     "exec": "P"
+    },
+    {
+     "jornada": "IN-08",
+     "etapa": 4,
+     "tarefa": 7,
+     "nome": "Publicar o resultado das melhorias conferidas",
+     "exec": "R"
+    },
+    {
+     "jornada": "RE-05",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Montar o relatório de resultado do cliente contra o plano de sucesso",
+     "exec": "A"
+    },
+    {
+     "jornada": "RE-05",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Responder à consulta sobre o relatório não coberto pelos padrões",
+     "exec": "C"
+    },
+    {
+     "jornada": "RE-05",
+     "etapa": 3,
+     "tarefa": 5,
+     "nome": "Apresentar ao cliente o resultado e ouvir a avaliação dele",
+     "exec": "P"
+    },
+    {
+     "jornada": "RE-07",
+     "etapa": 4,
+     "tarefa": 1,
+     "nome": "Publicar o conteúdo aprovado nos canais da empresa e enviar à imprensa, no calendário",
+     "exec": "R"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Enviar a proposta e os documentos pelo meio e no prazo do edital",
+     "exec": "R"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Apresentar contrarrazões ao recurso do concorrente",
+     "exec": "C"
+    },
+    {
+     "jornada": "NE-05",
+     "etapa": 3,
+     "tarefa": 5,
+     "nome": "Apresentar o recurso da empresa",
+     "exec": "C"
+    },
+    {
+     "jornada": "OP-07",
+     "etapa": 4,
+     "tarefa": 2,
+     "nome": "Enviar à autoridade os relatórios do recall",
+     "exec": "C"
+    },
+    {
+     "jornada": "GE-05",
+     "etapa": 2,
+     "tarefa": 2,
+     "nome": "Emitir o balancete, a DRE e o balanço de cada empresa e o consolidado",
+     "exec": "A"
+    },
+    {
+     "jornada": "GO-03",
+     "etapa": 2,
+     "tarefa": 4,
+     "nome": "Montar o plano de remediação com o dono, o prazo e a causa",
+     "exec": "P"
+    },
+    {
+     "jornada": "GO-03",
+     "etapa": 3,
+     "tarefa": 2,
+     "nome": "Consolidar o relatório de riscos, conformidade e remediações",
+     "exec": "A"
+    },
+    {
+     "jornada": "GO-03",
+     "etapa": 3,
+     "tarefa": 3,
+     "nome": "Publicar o relatório aos sócios e à Estratégia",
+     "exec": "R"
+    },
+    {
+     "jornada": "GO-06",
+     "etapa": 5,
+     "tarefa": 2,
+     "nome": "Publicar o resultado da auditoria",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "parecer",
+   "nome": "Parecer",
+   "familia": "parecer",
+   "modelo": "relatorio",
+   "alcance": "interno",
+   "regra": "parecer|conformidade|^revisao",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-01",
+     "etapa": 1,
+     "saida": "Parecer de revisão",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-06",
+     "etapa": 2,
+     "saida": "Revisão sem correção registrada",
+     "para": [
+      "Gestão",
+      "Sócios"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-06",
+     "etapa": 3,
+     "saida": "Revisão aberta dos alvos",
+     "para": [
+      "ES-03"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-06",
+     "etapa": 3,
+     "saida": "Revisão aberta do portfólio",
+     "para": [
+      "ES-02"
+     ]
+    },
+    {
+     "circulo": "c2",
+     "jornada": "ES-06",
+     "etapa": 3,
+     "saida": "Revisão aberta da estratégia",
+     "para": [
+      "ES-01"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-05",
+     "etapa": 2,
+     "saida": "Não conformidades e tendências, com a evidência",
+     "para": [
+      "etapa 3"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ID-01",
+     "etapa": 1,
+     "tarefa": 1,
+     "nome": "Consolidar evidências e apontar lacunas",
+     "exec": "A"
+    },
+    {
+     "jornada": "ES-06",
+     "etapa": 2,
+     "tarefa": 2,
+     "nome": "Enviar à Inteligência a pergunta sobre as causas propostas, com o risco e o prazo",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "auditoria",
+   "nome": "Relatório de auditoria ou de apuração",
+   "familia": "parecer",
+   "modelo": "relatorio",
+   "alcance": "interno",
+   "regra": "auditoria|apuracao",
+   "origens": [
+    {
+     "circulo": "c1",
+     "jornada": "ID-02",
+     "etapa": 4,
+     "saida": "Critérios de auditoria e casos de teste",
+     "para": [
+      "Governança",
+      "Integração"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-06",
+     "etapa": 3,
+     "saida": "Desvio de agente apontado pela auditoria",
+     "para": [
+      "Integração"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "ID-02",
+     "etapa": 4,
+     "tarefa": 2,
+     "nome": "Montar o conjunto de padrões de cada círculo que executa",
+     "exec": "A"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "demonstracoes",
+   "nome": "Demonstrações contábeis (DRE, balancete, balanço)",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "externo",
+   "regra": "demonstrac|balancete|balanco|\\bdre\\b",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-05",
+     "etapa": 2,
+     "saida": "Demonstrações e obrigações fiscais do período",
+     "para": [
+      "Governança",
+      "GE-14"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GE-05",
+     "etapa": 2,
+     "tarefa": 2,
+     "nome": "Emitir o balancete, a DRE e o balanço de cada empresa e o consolidado",
+     "exec": "A"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "orcamento",
+   "nome": "Orçamento e previsão financeira",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "interno",
+   "regra": "orcamento|previsao (financeira|de caixa)|planejado|rateio",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-01",
+     "etapa": 1,
+     "saida": "Orçamento desdobrado, com dono por linha",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-01",
+     "etapa": 1,
+     "saida": "Orçamento de demanda do ciclo",
+     "para": [
+      "Relações"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-01",
+     "etapa": 2,
+     "saida": "Orçamento ajustado",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-01",
+     "etapa": 3,
+     "saida": "Orçamento vigente por empresa, círculo, oferta e aposta",
+     "para": [
+      "Executivos",
+      "Líderes dos círculos",
+      "GE-02",
+      "GE-04",
+      "GE-05",
+      "GE-07",
+      "GE-12"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-05",
+     "etapa": 2,
+     "saida": "Execução do orçamento e da alocação por empresa, oferta e aposta",
+     "para": [
+      "Estratégia",
+      "GE-02"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-06",
+     "etapa": 1,
+     "saida": "Rateio calculado",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-06",
+     "etapa": 2,
+     "saida": "Rateio do custo dos círculos por empresa",
+     "para": [
+      "GE-01",
+      "GE-05",
+      "Executivos"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-01",
+     "etapa": 3,
+     "saida": "Critério de rateio do custo dos círculos",
+     "para": [
+      "Gestão"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GE-01",
+     "etapa": 2,
+     "tarefa": 10,
+     "nome": "Responder a quem pediu, com o motivo",
+     "exec": "R"
+    },
+    {
+     "jornada": "GE-01",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Publicar o orçamento vigente a cada dono e aos registros de compra e de pagamento",
+     "exec": "R"
+    },
+    {
+     "jornada": "GE-05",
+     "etapa": 2,
+     "tarefa": 2,
+     "nome": "Emitir o balancete, a DRE e o balanço de cada empresa e o consolidado",
+     "exec": "A"
+    },
+    {
+     "jornada": "GE-06",
+     "etapa": 2,
+     "tarefa": 5,
+     "nome": "Publicar e lançar o rateio nas contas de cada empresa",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "fatura",
+   "nome": "Fatura e cobrança",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "externo",
+   "regra": "fatura emitida|pedido de cobranca do fornecedor",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-03",
+     "etapa": 2,
+     "saida": "Fatura emitida",
+     "para": [
+      "etapa 3",
+      "Clientes"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GE-03",
+     "etapa": 2,
+     "tarefa": 6,
+     "nome": "Emitir a fatura e os documentos fiscais e enviá-los ao cliente",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "folha",
+   "nome": "Folha e demonstrativo de pagamento",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "interno",
+   "regra": "folha",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-13",
+     "etapa": 1,
+     "saida": "Folha apurada",
+     "para": [
+      "etapa 2"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-13",
+     "etapa": 2,
+     "saida": "Folha e encargos pagos",
+     "para": [
+      "GE-05"
+     ]
+    }
+   ],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "ordem-compra",
+   "nome": "Ordem de compra a fornecedor",
+   "familia": "oficio",
+   "modelo": "oficio",
+   "alcance": "externo",
+   "regra": "pedido emitido ao fornecedor|ordem de compra",
+   "origens": [],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "resposta-titular",
+   "nome": "Resposta a titular de dados (LGPD)",
+   "familia": "oficio",
+   "modelo": "oficio",
+   "alcance": "externo",
+   "regra": "resposta ao titular|pedido do titular cumprido",
+   "origens": [
+    {
+     "circulo": "c9",
+     "jornada": "GO-07",
+     "etapa": 3,
+     "saida": "Resposta ao titular",
+     "para": [
+      "Solicitante"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "GO-07",
+     "etapa": 3,
+     "tarefa": 2,
+     "nome": "Responder ao titular, com os motivos do que não procede",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "resposta-externa",
+   "nome": "Resposta a cliente, parceiro ou público",
+   "familia": "oficio",
+   "modelo": "oficio",
+   "alcance": "externo",
+   "regra": "resposta ao (parceiro|relato|pedido de uso)|comunicacao da posicao|solucao aplicada ao cliente",
+   "origens": [
+    {
+     "circulo": "c4",
+     "jornada": "RE-06",
+     "etapa": 5,
+     "saida": "Resposta ao pedido de uso da marca",
+     "para": [
+      "Solicitante"
+     ]
+    },
+    {
+     "circulo": "c4",
+     "jornada": "RE-08",
+     "etapa": 3,
+     "saida": "Comunicação da posição sobre a crise",
+     "para": [
+      "Públicos externos"
+     ]
+    },
+    {
+     "circulo": "c5",
+     "jornada": "NE-07",
+     "etapa": 1,
+     "saida": "Resposta ao parceiro sobre a oportunidade",
+     "para": [
+      "Parceiros"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-07",
+     "etapa": 2,
+     "saida": "Solução aplicada ao cliente",
+     "para": [
+      "etapa 5"
+     ]
+    },
+    {
+     "circulo": "c9",
+     "jornada": "GO-09",
+     "etapa": 5,
+     "saida": "Resposta ao relato",
+     "para": [
+      "Solicitante"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "RE-06",
+     "etapa": 5,
+     "tarefa": 2,
+     "nome": "Responder à consulta sobre o uso fora da regra",
+     "exec": "C"
+    },
+    {
+     "jornada": "RE-08",
+     "etapa": 3,
+     "tarefa": 1,
+     "nome": "Redigir a comunicação da posição decidida, no protocolo de crise e nos padrões",
+     "exec": "A"
+    },
+    {
+     "jornada": "RE-08",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Publicar a comunicação e acompanhar a reação dos públicos",
+     "exec": "R"
+    },
+    {
+     "jornada": "NE-07",
+     "etapa": 1,
+     "tarefa": 5,
+     "nome": "Responder ao parceiro com o motivo",
+     "exec": "R"
+    },
+    {
+     "jornada": "GO-09",
+     "etapa": 5,
+     "tarefa": 2,
+     "nome": "Responder a quem relatou",
+     "exec": "R"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "comunicado",
+   "nome": "Comunicado interno",
+   "familia": "oficio",
+   "modelo": "oficio",
+   "alcance": "interno",
+   "regra": "^comunicado|a comunicar$|^aviso de mudanca",
+   "origens": [
+    {
+     "circulo": "c3",
+     "jornada": "IN-01",
+     "etapa": 3,
+     "saida": "Aviso de mudança relevante de cenário",
+     "para": [
+      "Estratégia",
+      "Executivos"
+     ]
+    },
+    {
+     "circulo": "c7",
+     "jornada": "OP-07",
+     "etapa": 3,
+     "saida": "Fato a comunicar",
+     "para": [
+      "Relações"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-10",
+     "etapa": 4,
+     "saida": "Histórias e reconhecimentos a comunicar",
+     "para": [
+      "GE-11"
+     ]
+    }
+   ],
+   "tarefas": [
+    {
+     "jornada": "IN-01",
+     "etapa": 3,
+     "tarefa": 4,
+     "nome": "Emitir o aviso de mudança relevante a quem decide",
+     "exec": "P"
+    },
+    {
+     "jornada": "OP-07",
+     "etapa": 3,
+     "tarefa": 2,
+     "nome": "Comunicar o risco à autoridade competente",
+     "exec": "C"
+    }
+   ],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "notificacao",
+   "nome": "Notificação formal",
+   "familia": "oficio",
+   "modelo": "oficio",
+   "alcance": "externo",
+   "regra": "notificac|retirada de marca|suspensao de novas entregas",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-03",
+     "etapa": 3,
+     "saida": "Suspensão de novas entregas por atraso, decidida pelo executivo",
+     "para": [
+      "Operações"
+     ]
+    }
+   ],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "certificado",
+   "nome": "Certificado de reconhecimento",
+   "familia": "certificado",
+   "modelo": "certificado",
+   "alcance": "interno",
+   "regra": "reconhecimento",
+   "origens": [
+    {
+     "circulo": "c8",
+     "jornada": "GE-10",
+     "etapa": 2,
+     "saida": "Reconhecimentos aprovados",
+     "para": [
+      "etapa 3"
+     ]
+    },
+    {
+     "circulo": "c8",
+     "jornada": "GE-10",
+     "etapa": 4,
+     "saida": "Reconhecimentos concedidos",
+     "para": [
+      "GE-13"
+     ]
+    }
+   ],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "declaracao",
+   "nome": "Declaração",
+   "familia": "certificado",
+   "modelo": "certificado",
+   "alcance": "externo",
+   "regra": "^declaracao(?! de identidade)",
+   "origens": [],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  }
+ ],
+ "registros_do_motor": [
+  "Aceite ou devolução da oportunidade, com o motivo",
+  "Agente aprovado nos testes",
+  "Agente em uso",
+  "Agente liberado para quem pediu",
+  "Agente montado",
+  "Agente ou acesso não entregue, com o motivo",
+  "Agente suspenso, com o motivo",
+  "Ajuste da solução ou do modelo a fazer",
+  "Ajuste de oferta em uso aprovado, com o que muda",
+  "Ajuste de oferta feito sem portão, com o motivo da dispensa",
+  "Ajustes pedidos ao conteúdo",
+  "Ajustes pedidos ao plano de demanda",
+  "Ajustes pedidos pelo portão de lançamento",
+  "Ajustes pedidos à estratégia de experiência",
+  "Alerta de crise, com os fatos apurados",
+  "Alocação de recursos por empresa, oferta e aposta",
+  "Alvos atuais mantidos pelos sócios",
+  "Alvos de venda e previsão decididos",
+  "Alvos e iniciativas combinados",
+  "Alvos e iniciativas do ciclo",
+  "Alvos propostos do Ecossistema",
+  "Alvos propostos, para definição das fichas dos indicadores",
+  "Ambiente, acessos, pessoas e materiais prontos",
+  "Amostra de entregas de pessoas e agentes",
+  "Aportes, distribuição ou mudanças de contas executados",
+  "Aposta aprovada para desenho e validação da oferta, com recursos",
+  "Aposta aprovada para empresa própria, com recursos",
+  "Aposta devolvida com evidência e recomendação",
+  "Aposta devolvida com o que falta",
+  "Aposta em espera ou devolvida",
+  "Aposta mantida depois da revisão",
+  "Aposta ou oferta encerrada e fora do catálogo de ofertas",
+  "Ativo ou serviço a registrar",
+  "Ativos apontados para baixa",
+  "Autorização dos sócios para negociar, com os limites",
+  "Avaliação da experiência sem mudança",
+  "Avaliações e planos de desenvolvimento",
+  "Aviso de aposta devolvida, com recursos e projeto suspensos até a decisão da Estratégia",
+  "Aviso de leitura sem novidade",
+  "Aviso de materiais vencidos",
+  "Ação corretiva aberta",
+  "Ação corretiva decidida",
+  "Ação pronta para execução",
+  "Ação que não eliminou a causa",
+  "Ações em atraso do ritual",
+  "Base da avaliação dos padrões",
+  "Base de conhecimento publicada",
+  "Base de relacionamento atualizada, com a base legal e o histórico",
+  "Base estruturada e testada",
+  "Briefing e pesquisa de marca",
+  "Cadastro de cobrança do cliente",
+  "Capacidade não criada, com o motivo",
+  "Capacidades necessárias para a oferta",
+  "Casa de mensagens e narrativa",
+  "Caso arquivado, com o motivo",
+  "Caso de cliente autorizado para comunicação",
+  "Caso de criação, aquisição, venda ou encerramento",
+  "Caso levado à avaliação de recall",
+  "Casos de teste em que o método falhou nos agentes",
+  "Casos julgados, com a causa",
+  "Catálogo de capacidades atualizado",
+  "Catálogo de dados, com dono e classificação de cada dado",
+  "Catálogo de jornadas atualizado",
+  "Cliente implantado e aceito, passado à entrega",
+  "Clientes avisados da saída, com a transição combinada",
+  "Compra recebida",
+  "Comunicação interna publicada",
+  "Comunicação à autoridade registrada",
+  "Conclusão do plano de saída da oferta",
+  "Condições da renovação acordadas",
+  "Consulta sobre caso não coberto",
+  "Consultas dos agentes sem resposta ou com resposta sem fonte",
+  "Contato classificado",
+  "Contato com interesse pontuado",
+  "Contato de interessado",
+  "Contato registrado, com a base legal",
+  "Contato resolvido",
+  "Contatos captados pela ação, com o consentimento",
+  "Contatos de parceiros e de relações institucionais",
+  "Contestação de indicador de alvo vigente",
+  "Contestação do critério de rateio",
+  "Conteúdo aprovado",
+  "Conteúdo curado e classificado, com perguntas de teste",
+  "Conteúdo externo publicado",
+  "Conteúdo novo apontado",
+  "Conteúdo pronto para aprovação",
+  "Conteúdo reunido por tema, com origem e data",
+  "Contratação formalizada",
+  "Contrato para conferir e guardar",
+  "Contrato revisado",
+  "Contratos afetados pela saída",
+  "Contratos fora do racional, com a causa provável e o dono",
+  "Correção pedida ao dono da entrega",
+  "Correções de execução decididas, com dono e prazo",
+  "Correções de execução publicadas, com dono e prazo",
+  "Crise declarada",
+  "Crise declarada, com a posição e o porta-voz decididos",
+  "Critério de oportunidade qualificada combinado com Negócios",
+  "Crédito ou reembolso aprovado para o cliente",
+  "Custo de tecnologia por empresa e por círculo",
+  "Custos e margens por empresa e oferta",
+  "Dado bruto conferido com a ficha",
+  "Dado confiável publicado no catálogo de dados",
+  "Dado marcado como não confiável no catálogo de dados",
+  "Dado que não corresponde à ficha",
+  "Dado retirado do catálogo de dados",
+  "Dado validado, com a medida de qualidade",
+  "Data de saída confirmada da aposta ou da oferta encerrada",
+  "Decisão de alocação e de destino do resultado",
+  "Decisão de encerrar aposta em desenvolvimento ou oferta em uso",
+  "Decisão de encerrar tomada no portão de lançamento",
+  "Decisão do executivo sobre o impasse da implantação",
+  "Decisão do portão",
+  "Decisão sobre a contestação do indicador de alvo",
+  "Decisão sobre a marca do negócio",
+  "Decisão sobre o recurso pedido, com o motivo",
+  "Decisões de revisão dos padrões",
+  "Decisões dos sócios registradas, com responsável e prazo",
+  "Defeito com risco à saúde ou à segurança, com o lote",
+  "Definição do que conta como impacto",
+  "Demanda e capacidade comparadas, com as faltas e as sobras",
+  "Desempenho de preço: descontos dados e perdas por preço",
+  "Desempenho dos fornecedores na entrega e na qualidade",
+  "Desvio a corrigir no agente",
+  "Desvio da previsão contra os alvos, com as ações",
+  "Desvio grave ou mudança de alvo apontados pelo ritual",
+  "Desvios com causa concluída",
+  "Desvios e decisões do ritual de acompanhamento",
+  "Desvios e sinais apontados no painel único",
+  "Dever de comunicar à autoridade apontado na crise",
+  "Direção estratégica e públicos prioritários",
+  "Dossiê da aposta",
+  "Débito tributário com as opções e o efeito no caixa",
+  "Débito tributário e caminho decidido",
+  "Entrega do ciclo confirmada",
+  "Entrega do projeto",
+  "Entrega do projeto a quem o pediu",
+  "Entrega não aceita, com a reclamação aberta",
+  "Entregas classificadas",
+  "Entregas confirmadas para faturar, com a medição dos níveis de serviço",
+  "Entregas do ciclo conferidas",
+  "Entregas encerradas",
+  "Entregas encerradas na saída",
+  "Escopo da solução confirmado",
+  "Escopo de padrões a escrever",
+  "Escuta dos públicos",
+  "Estratégia de experiência decidida",
+  "Evidência avaliada, com as lacunas",
+  "Evidência de validação com clientes",
+  "Execução do mandato a completar",
+  "Falha apontada em conteúdo aprovado por quem publica",
+  "Falha ou desempenho de fornecedor registrado",
+  "Falhas de teste do conteúdo curado",
+  "Fatos e riscos conferidos",
+  "Ficha do dado: definição, dono, fonte, regras de qualidade, classificação e prazo de guarda",
+  "Fichas dos indicadores decididas e confirmadas pelos donos",
+  "Fornecedor ou licença contratado",
+  "Fornecedores avaliados",
+  "Gargalo da jornada, com evidência",
+  "Histórias registradas",
+  "Ideia ou aposta nova",
+  "Identidade visual e verbal aprovada",
+  "Impasse da implantação, com as opções",
+  "Impedimento do lançamento, com as opções",
+  "Implantação aceita pelo cliente",
+  "Incidente ou risco a comunicar à autoridade",
+  "Indicador com dado não corrigido, a rever",
+  "Indicadores a mudar ou a completar",
+  "Indicadores a rever",
+  "Indicadores calculados, com a marca de qualidade",
+  "Indicadores de clareza e atualidade dos padrões",
+  "Indicadores de marca, cultura e reputação",
+  "Indicadores e análises por empresa, oferta e aposta",
+  "Indicação de cliente, com o consentimento do indicado",
+  "Integração cultural concluída, com o resultado da verificação",
+  "Item classificado e priorizado",
+  "Item de tecnologia resolvido para quem pediu",
+  "Item resolvido",
+  "Jornada implantada",
+  "Lacuna de experiência apontada",
+  "Lacunas de execução apontadas",
+  "Lacunas de percepção encaminhadas ao dono",
+  "Lacunas e conteúdo vencido",
+  "Lançamento autorizado",
+  "Leitura aprovada e classificada",
+  "Leitura de mercado, clientes e concorrentes",
+  "Leitura do portfólio: resultado, recursos e papel de cada unidade",
+  "Lista de padrões e materiais afetados",
+  "Lista de pessoas da empresa adquirida",
+  "Lição apontada",
+  "Lição da aposta encerrada",
+  "Lição do caso arquivado, sem dado sigiloso",
+  "Lição do piloto",
+  "Lições da crise",
+  "Lições da revisão da estratégia",
+  "Lições de clientes perdidos, renovados e ampliados",
+  "Lições de projetos e implantações encerrados",
+  "Lições registradas e classificadas",
+  "Marca retirada de uso",
+  "Materiais disponíveis",
+  "Materiais e serviços comprados, com a data de entrega",
+  "Material de venda das ofertas",
+  "Medição da comunicação interna",
+  "Medição de uso das bases",
+  "Melhoria não feita, apontada ao executivo",
+  "Melhorias escolhidas, com evidência e dono sugerido",
+  "Modelo de negócio, preço-base e critério de validação",
+  "Motivos de ganho e de perda de propostas",
+  "Movimentação ou desligamento feito",
+  "Movimento do período conciliado",
+  "Mudança de escopo pedida na negociação",
+  "Mudança de escopo pedida pelo cliente",
+  "Mudança de pessoas registrada",
+  "Mudança na declaração a comunicar",
+  "Mudança na estratégia a comunicar",
+  "Mudança nos padrões a comunicar",
+  "Mudança pedida nos termos da parceria",
+  "Mudanças de remuneração aprovadas",
+  "Método da oferta não publicado, a redesenhar",
+  "Método recusado ou não publicado, com o motivo",
+  "Método retirado de uso",
+  "Necessidade de capacidade nova ou mudada",
+  "Necessidade de capacidade priorizada",
+  "Número a recalcular depois da contestação",
+  "O que não cabe nos recursos, a renegociar",
+  "Obrigações a cumprir",
+  "Obrigações legais em dia ou vencendo",
+  "Oferta aprovada para lançamento",
+  "Oferta lançada",
+  "Ofertas, apostas e pilotos em curso da empresa que sai",
+  "Oportunidade aceita, com quem conduz a venda",
+  "Oportunidade de parceiro ou de oferta conjunta passada à proposta",
+  "Oportunidade de renovação ou de expansão, com o histórico",
+  "Oportunidade devolvida no aceite, com o motivo",
+  "Oportunidade qualificada pela conversa",
+  "Oportunidade qualificada, com o contato, a necessidade e a origem",
+  "Oportunidade sem resposta no prazo",
+  "Pacote da oferta levado ao portão",
+  "Pacote da oferta pronta para lançamento",
+  "Pacote da oferta: escopo, modelo de negócio, preço-base, evidência, conteúdo-base e termos",
+  "Pacote de marca",
+  "Pacote de marca publicado",
+  "Padrão ambíguo apontado pela auditoria",
+  "Pagamentos a fornecedores e parceiros realizados",
+  "Painel de indicadores de cada círculo, com dono e análise",
+  "Parceria aprovada no portão, para formalizar",
+  "Parceria ativa, com plano de ativação",
+  "Parceria avaliada para negociação",
+  "Parceria formalizada, com plano conjunto e indicadores",
+  "Passivo tributário e parcelas em dia",
+  "Pedido conferido",
+  "Pedido de acesso, de retirada de acesso ou de mudança em sistema",
+  "Pedido de ajuste ou de revisão de oferta em uso",
+  "Pedido de cliente com contrato vigente",
+  "Pedido de cobrança do fornecedor pela falha",
+  "Pedido de compra",
+  "Pedido de compra aprovado",
+  "Pedido de compra de materiais e serviços",
+  "Pedido de dado não atendido, com o motivo",
+  "Pedido de dado para a leitura",
+  "Pedido de dado para indicador",
+  "Pedido de dado para resposta",
+  "Pedido de encerramento de parceria",
+  "Pedido de execução a quem guarda os dados",
+  "Pedido de identidade para empresa nova",
+  "Pedido de marca",
+  "Pedido de montagem ou de mudança de agente ou automação",
+  "Pedido de mudança do mandato",
+  "Pedido de método para a oferta",
+  "Pedido de método para capacidade ou agente",
+  "Pedido de padrão para agente ou canal novo",
+  "Pedido de plano de correção",
+  "Pedido de plano de saída da oferta: clientes e contratos",
+  "Pedido de plano de saída: clientes, contratos e pessoas",
+  "Pedido de recurso adicional para demanda",
+  "Pedido de registro depositado e prazos",
+  "Pedido de regra analisado",
+  "Pedido de retirada de marca",
+  "Pedido de revisão da aposta ou da oferta",
+  "Pedido de revisão do plano de demanda",
+  "Pedido de serviço da empresa a ligar",
+  "Pedido de serviço encaminhado, com acordo de serviço",
+  "Pedido de titular analisado",
+  "Pedido de titular, com a resposta decidida pela Governança",
+  "Pedido de vaga, de movimentação ou de desligamento",
+  "Pedido do titular cumprido, com a data",
+  "Pedido emitido ao fornecedor",
+  "Pedido, incidente ou risco de tecnologia",
+  "Pedidos, reclamações e incidentes de clientes",
+  "Pendência da saída da oferta encerrada",
+  "Pendência da saída, com o efeito",
+  "Pendência de contrato na saída",
+  "Percepção dos públicos e sinais de reputação",
+  "Pergunta de decisão, com a decisão apoiada, o risco e o prazo",
+  "Pergunta devolvida com o motivo",
+  "Pergunta respondível, registrada e classificada",
+  "Perguntas de teste da base, com a resposta esperada",
+  "Perguntas do diagnóstico",
+  "Perguntas sem resposta e lacunas de fonte",
+  "Período fechado",
+  "Pessoa contratada, com papel e líder",
+  "Pessoa escolhida",
+  "Pessoas, compras e ativos do plano confirmados",
+  "Plano de saída fechado",
+  "Plano de saída que mostra que encerrar não é viável",
+  "Portfólio de empresas atualizado",
+  "Portfólio-alvo: papel de cada empresa, oferta e aposta",
+  "Posicionamento aprovado",
+  "Posicionamento da oferta e público-alvo",
+  "Posicionamento e casa de mensagens vigentes",
+  "Posição e projeção de caixa",
+  "Previsão de receita e de vendas",
+  "Previsão proposta, com os desvios",
+  "Problema, público-alvo, proposta de valor e posicionamento decididos",
+  "Procedimentos e níveis de serviço vigentes",
+  "Produto pronto, com o lote registrado",
+  "Projeto encerrado, com o resultado",
+  "Projeto para a carteira: objetivo, dono, prazo, custo e empresa",
+  "Projeto priorizado, com início e marcos",
+  "Projeto reativado",
+  "Projeto registrado, com estimativa",
+  "Projeto suspenso ou encerrado por outra jornada",
+  "Proposta de arquivar o caso, com o motivo",
+  "Prática ou necessidade escolhida para virar método",
+  "Queda de qualidade apontada pelo monitoramento",
+  "Recall em curso",
+  "Recall encerrado, com a eficácia medida",
+  "Recall recusado, com o motivo",
+  "Recebimentos conciliados e atrasos tratados",
+  "Receitas faturadas e recebidas",
+  "Reclamação classificada",
+  "Reclamação improcedente respondida",
+  "Reclamação registrada",
+  "Reclamação resolvida ou encerrada",
+  "Reclamações e incidentes de clientes, com a causa",
+  "Recomendação de melhoria, com evidência, ganho esperado e dono sugerido",
+  "Recomendações aceitas, com dono e prazo",
+  "Recomendações adiadas, com a data de retomada",
+  "Recursos aprovados para a aposta",
+  "Recursos da aposta encerrada a devolver",
+  "Recursos da operação liberados, com a data",
+  "Recursos liberados de projeto suspenso ou encerrado",
+  "Redesenho aprovado",
+  "Redesenho que pede capacidade nova ou mudada",
+  "Reembolso pago ao cliente",
+  "Registro de ativos atualizado, com depreciação e baixas",
+  "Registro de consultas e interpretações",
+  "Registro de participação em rituais",
+  "Registro de pedidos de titulares",
+  "Registro de perguntas, respostas e uso",
+  "Registros da ação executada",
+  "Registros de entrega, atendimento e qualidade",
+  "Registros de entrega, atendimento e reclamações do cliente",
+  "Registros de entregas de pessoas e agentes",
+  "Registros de mercado com fonte, data e confiabilidade",
+  "Registros de projetos, agentes e sistemas",
+  "Registros de propostas, vendas e contratos",
+  "Regra a criar ou rever, com a causa",
+  "Regra decidida",
+  "Regras de guarda e de eliminação de dados",
+  "Regras de sigilo e de dados pessoais",
+  "Relato apurado, com a medida",
+  "Relato de impacto publicado",
+  "Relato ou incidente classificado",
+  "Relato que cita a Governança, encaminhado à assessoria",
+  "Relato que cita a Governança, tratado e registrado à parte",
+  "Relatos tratados, com a causa",
+  "Resposta ao pedido de ação fora do plano",
+  "Resposta ao pedido de recurso adicional",
+  "Resposta ao pedido sobre oferta em uso",
+  "Resposta com evidência, fonte e grau de confiança",
+  "Resposta decidida, com os motivos",
+  "Resposta já registrada e ainda válida",
+  "Resposta montada, com fonte e grau de confiança",
+  "Resposta à consulta",
+  "Resposta à contestação do número",
+  "Resposta à cotação para pesquisa de preços",
+  "Resposta à proposta de parceria",
+  "Retomada das entregas do cliente que quitou o atraso",
+  "Retorno sobre as indicações",
+  "Riscos avaliados, com o tratamento",
+  "Roteiro do ritual e lista de indicações",
+  "Saída executada",
+  "Saúde do cliente, com o risco e a causa provável",
+  "Saúde dos clientes e motivos de perda",
+  "Sinais classificados por tema de reputação, público e gravidade",
+  "Sinais de clientes, parceiros e concorrentes vistos no relacionamento",
+  "Situação de faturas e pagamentos do cliente",
+  "Situação do cumprimento das decisões dos sócios",
+  "Situação do funil: contatos, oportunidades entregues, aceitas e devolvidas",
+  "Solução decidida",
+  "Temas e indicadores do relato",
+  "Trabalho registrado, com o que o abriu e o caminho decidido",
+  "Trilha concluída",
+  "Trilha de integração",
+  "Vaga aberta, com perfil e orçamento",
+  "Vencimentos e obrigações de contratos avisados",
+  "Vínculos iniciais registrados"
+ ]
+}

@@ -1,0 +1,127 @@
+/* Motor documental · CSS base. Tokens vêm do marca.json (injetados em :root pelo motor).
+   Regras do Editorial Legal.OS (skill editorial-legal-os, references/tipografia.md). */
+@page { size: A4; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: var(--fonte-texto); color: var(--cor-texto); font-size: 10.5pt; line-height: 1.32;
+  hyphens: manual; -webkit-hyphens: manual; orphans: 2; widows: 2; font-kerning: normal; }
+p, li, .nota, .just { text-align: justify; text-align-last: left; margin: 0 0 6pt; }
+strong, b { font-weight: 700; }
+
+/* títulos: modelos formais usam uma família só; premium usa a display da marca */
+h1, h2, h3 { font-family: var(--fonte-texto); color: var(--cor-texto); margin: 0; break-after: avoid; page-break-after: avoid; }
+.premium h1, .premium h2 { font-family: var(--fonte-display); color: var(--cor-primaria); }
+.preso { break-inside: avoid; page-break-inside: avoid; }
+
+/* barra de título (cláusulas, itens de anexo, partes informativas) */
+.formal h2.barra { font-size: 14pt; font-weight: 700; text-transform: uppercase; background: var(--cor-barra);
+  padding: 3pt 6pt; margin: 9pt 0 6pt; text-align: left; line-height: 1.2; }
+.formal h3 { font-size: 10.5pt; font-weight: 700; margin: 8pt 0 4pt; }
+.premium h2.barra { font-size: 15pt; font-weight: 400; letter-spacing: .02em; margin: 16pt 0 8pt; padding-bottom: 4pt;
+  border-bottom: 1.2pt solid var(--cor-primaria); text-transform: uppercase; }
+.premium h3 { font-size: 11.5pt; font-weight: 700; color: var(--cor-primaria); margin: 10pt 0 4pt; }
+
+/* itens numerados e alíneas */
+.item { display: grid; grid-template-columns: 1.25cm 1fr; margin: 0 0 6pt; }
+.item > .n { font-weight: 700; }
+.item > p { margin: 0; }
+.alinea { display: grid; grid-template-columns: .75cm 1fr; margin: 0 0 4pt 1.75cm; }
+.alinea > .n { font-weight: 700; }
+.alinea > p { margin: 0; }
+ul.lista, ol.lista { margin: 0 0 6pt 0; padding-left: 1.25cm; }
+ul.lista li, ol.lista li { margin: 0 0 3pt; }
+blockquote { margin: 6pt 1.25cm; font-style: italic; }
+
+/* quadros: menores, centralizados, em itálico, inteiros na página */
+.quadro { margin: 6pt 0 8pt; break-inside: avoid; page-break-inside: avoid; }
+.quadro.longo { break-inside: auto; }
+.quadro .legenda { font-size: 7.5pt; font-style: italic; margin: 0 0 5pt; text-align: left; }
+table.t { border-collapse: collapse; margin: 0 auto; font-size: 8.5pt; font-style: italic; max-width: 100%; }
+table.t.densa { font-size: 7.5pt; }
+table.t th, table.t td { border: .5pt solid var(--cor-linha); padding: .15cm; text-align: center; vertical-align: middle; }
+table.t th { background: var(--cor-barra); font-weight: 700; }
+table.t tr { break-inside: avoid; page-break-inside: avoid; }
+table.t thead { display: table-header-group; }
+table.t tr.total td { font-weight: 700; }
+table.t td.esq { text-align: left; }
+
+/* campos (quadro de dados no topo de ata, ofício, licitação, política) */
+table.campos { width: 100%; border-collapse: collapse; margin: 0 0 10pt; font-size: 10.5pt; }
+table.campos th { text-align: left; font-style: italic; font-weight: 400; width: 28%; padding: 2pt 6pt 2pt 0; vertical-align: top; }
+table.campos td { font-weight: 700; padding: 2pt 0; vertical-align: top; }
+
+.nota { font-size: 8.5pt; }
+.destaque { border-left: 3pt solid var(--cor-primaria); background: var(--cor-claro); padding: 8pt 10pt; margin: 8pt 0; break-inside: avoid; }
+.destaque .dt { font-weight: 700; color: var(--cor-primaria); margin-bottom: 3pt; }
+.destaque p:last-child { margin-bottom: 0; }
+
+/* indicadores (relatório, proposta) */
+.kpis { display: grid; grid-template-columns: repeat(var(--kpis, 3), 1fr); gap: 8pt; margin: 8pt 0 10pt; break-inside: avoid; }
+.kpi { border: .6pt solid var(--cor-linha); border-top: 3pt solid var(--cor-primaria); padding: 7pt 8pt; }
+.kpi .v { font-family: var(--fonte-display); font-size: 16pt; color: var(--cor-primaria); line-height: 1.1; }
+.kpi .r { font-size: 8.5pt; margin-top: 3pt; }
+
+/* sumário */
+.sumario { margin: 0 0 10pt; }
+.sumario h2 { margin-top: 0; }
+.sumario ol { list-style: none; margin: 0; padding: 0; }
+.sumario li { display: flex; align-items: baseline; text-align: left; margin: 0 0 3pt; }
+.sumario li .tx { flex: 0 1 auto; }
+.sumario li .pt { flex: 1 1 auto; border-bottom: .8pt dotted var(--cor-linha); margin: 0 4pt; transform: translateY(-3pt); }
+.sumario li .pg { flex: 0 0 auto; min-width: 1.2em; text-align: right; }
+
+/* anexo abre página; cabeçalho centralizado de duas linhas, sem barra */
+.anexo { break-before: page; page-break-before: always; }
+.anexo > .cab-anexo { text-align: center; font-size: 12pt; font-weight: 700; margin: 0 0 12pt; }
+.parte-final { break-before: page; page-break-before: always; }
+
+/* fecho e assinaturas: bloco inteiro na página */
+.fecho { margin-top: 10pt; break-inside: avoid; page-break-inside: avoid; }
+.fecho .local { text-align: center; margin: 0 0 6pt; }
+.ass { display: grid; grid-template-columns: 1fr 1fr; column-gap: 1.2cm; row-gap: 10pt; margin: 0 auto; }
+.ass.uma { grid-template-columns: minmax(0, 9cm); justify-content: center; }
+.ass .col { text-align: center; font-size: 10.5pt; }
+.ass .papel { font-weight: 700; margin-bottom: 24pt; }
+.ass .linha { border-top: .6pt solid var(--cor-texto); padding-top: 3pt; }
+.ass .razao { font-weight: 700; }
+.ass .ancora { color: #fff; font-size: 1pt; line-height: 1; }
+.fecho .nota { margin-top: 8pt; }
+
+/* ofício */
+.oficio .ref { display: flex; justify-content: space-between; margin: 0 0 14pt; }
+.oficio .dest { margin: 0 0 12pt; }
+.oficio .assunto { margin: 0 0 12pt; }
+
+/* marca d'água (marca provisória) */
+.dagua { position: fixed; top: 45%; left: 0; right: 0; text-align: center; transform: rotate(-30deg); font-size: 46pt;
+  color: rgba(0,0,0,.07); font-weight: 700; letter-spacing: .1em; z-index: 0; pointer-events: none; }
+
+/* capa (premium): página própria, sem cabeçalho nem rodapé */
+.capa { width: 210mm; height: 297mm; position: relative; background: var(--cor-capa); color: #fff; overflow: hidden;
+  font-family: var(--fonte-texto); }
+.capa .logo { position: absolute; top: 2.2cm; left: 2cm; height: 1.4cm; }
+.capa .marca-txt { position: absolute; top: 2.2cm; left: 2cm; font-family: var(--fonte-display); font-size: 18pt; letter-spacing: .08em; }
+.capa .faixa { position: absolute; left: 2cm; top: 11.4cm; width: 2.2cm; height: 4pt; background: var(--cor-acento-capa); }
+.capa .tipo { position: absolute; left: 2cm; top: 9.6cm; font-size: 11pt; letter-spacing: .14em; text-transform: uppercase; opacity: .85; }
+.capa h1 { position: absolute; left: 2cm; right: 2cm; top: 12.2cm; font-family: var(--fonte-display); color: #fff; font-size: 26pt;
+  line-height: 1.2; font-weight: 400; text-transform: uppercase; }
+.capa .sub { position: absolute; left: 2cm; right: 2cm; top: 19.2cm; font-size: 12pt; line-height: 1.4; opacity: .92; }
+.capa .rodape { position: absolute; left: 2cm; right: 2cm; bottom: 2cm; font-size: 9.5pt; display: flex; justify-content: space-between; opacity: .9; }
+
+/* certificado (A4 paisagem, uma página) */
+.cert { width: 297mm; height: 210mm; position: relative; padding: 1.4cm; }
+.cert .moldura { position: absolute; inset: 1cm; border: 2pt solid var(--cor-primaria); }
+.cert .moldura::after { content: ""; position: absolute; inset: 4pt; border: .6pt solid var(--cor-primaria); }
+.cert .corpo { position: absolute; inset: 2.4cm 3cm; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.cert .logo { height: 1.3cm; margin-bottom: 1cm; }
+.cert h1 { font-family: var(--fonte-display); color: var(--cor-primaria); font-size: 30pt; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .8cm; }
+.cert .a { font-size: 11pt; margin: 0 0 .3cm; }
+.cert .nome { font-size: 22pt; font-weight: 700; margin: 0 0 .6cm; }
+.cert .texto { font-size: 11.5pt; max-width: 19cm; text-align: center; text-align-last: center; }
+.cert .rodape-cert { margin-top: auto; display: flex; gap: 2cm; justify-content: center; width: 100%; }
+.cert .rodape-cert .col { min-width: 7cm; text-align: center; font-size: 10pt; }
+.cert .rodape-cert .linha { border-top: .6pt solid var(--cor-texto); padding-top: 3pt; margin-top: 24pt; }
+
+/* título do documento no corpo */
+h1.titulo-doc { font-size: 14pt; font-weight: 700; text-align: center; text-transform: uppercase; margin: 0 0 12pt; line-height: 1.25; }
+.premium h1.titulo-doc { font-size: 18pt; font-weight: 400; text-align: left; letter-spacing: .02em; }
