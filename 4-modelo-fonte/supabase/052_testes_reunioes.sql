@@ -75,7 +75,14 @@ begin
   r := ext.painel_reunioes(emp, op7);
   if exists (select 1 from jsonb_array_elements(r->'reunioes') x where (x->>'id')::bigint = re3) then raise exception 'FALHA R8: Operações viu reunião da ouvidoria'; end if;
   if (select count(*) from jsonb_array_elements(r->'conexoes')) < 4 then raise exception 'FALHA R8: conexões de vídeo'; end if;
-  return 'reuniões: 8 de 8 ok';
+  -- R9. Retenção: antes do prazo não se apaga; vencido, a transcrição sai do Drive e a ata fica
+  ok := false; begin perform ext.reuniao_gravacao_apagada(re, op7); exception when others then ok := true; end;
+  if not ok then raise exception 'FALHA R9: apagou antes do prazo'; end if;
+  update ext.reuniao set apagar_gravacao_em = current_date where id = re;
+  perform ext.reuniao_gravacao_apagada(re, op7);
+  if (select drive_id from acervo.arquivo where id = (select transcricao from ext.reuniao where id = re)) is not null
+     or (select gravacao_apagada_em from ext.reuniao where id = re) is null or (select ata_situacao from ext.reuniao where id = re) <> 'aprovada' then raise exception 'FALHA R9: retenção'; end if;
+  return 'reuniões: 9 de 9 ok';
 end $$;
 revoke all on function ext._testar_reunioes() from public, anon, authenticated;
 

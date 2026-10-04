@@ -252,13 +252,15 @@ Prazos do portal externo, em `adm.parametro`: resposta em 48 horas, aceite em 24
 | `049_atendimento.sql` | E20. Reclamação, ordem de serviço e ouvidoria (Governança, pode ser anônima; dentro só a Governança lê, fora só quem escreveu). Encaminhamentos com responsável e prazo, que o cliente vê com as datas. Encerrar: a equipe propõe com tudo fechado; o cliente confirma (com nota) ou reabre; sem resposta, aceite tácito pela rotina `imts-atendimento-tacito` |
 | `050_testes_atendimento.sql` | 10 testes do atendimento |
 | `051_reunioes.sql` | E21. Reunião com contrato comum de adaptador (`ext.reuniao_registrar_externa`, `ext.reuniao_transcricao`); Meet pela Agenda Google; Zoom, Teams e Webex como conexões pendentes. Gravação só com consentimento registrado; transcrição no acervo (pasta 09); ata rascunhada por IA ou pessoa, válida só aprovada por pessoa; a aprovação cria os encaminhamentos. Retenção da gravação por parâmetro |
-| `052_testes_reunioes.sql` | 8 testes das reuniões |
+| `052_testes_reunioes.sql` | 9 testes das reuniões (o nono confere a eliminação da gravação no fim da retenção) |
+| `053_remover_rascunho_arq.sql` | Remove o esquema `arq`, sobra de um rascunho da E17 sem dados nem dependências (aprovado em 04/10/2026, 14:01) |
+| `054_fechamento_travas.sql` | Google Meet verificado (conexão ativa no protótipo); fontes dos prazos de atendimento com as referências conferidas; eliminação da gravação no fim da retenção (`ext.reuniao_gravacao_apagada`); CNPJ de exemplo nos parceiros simulados; e a definição final de `adm.testar_tudo()` com as 15 suítes. Precisa ser a última: os arquivos de teste anteriores redefinem a rodada com menos suítes |
 
 Parâmetros novos: `parceiro.prazo_aprovacao_horas` (48), `parceiro.prazo_pagamento_dias` (10), `parceiro.codigo_telegram_minutos` (15), `atendimento.aceite_tacito_dias` (5), `atendimento.prazo_os_horas` (72), `atendimento.prazo_ouvidoria_dias` (10), `reuniao.retencao_gravacao_dias` (90), `reuniao.prazo_encaminhamento_dias` (7). Os valores são de partida, a confirmar pelos círculos indicados na coluna fonte.
 
 ### Ordem de implantação
 
-001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042 → 043 → 044 → 045 → 046 → 047 → 048 → 049 → 050 → 051 → 052.
+001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042 → 043 → 044 → 045 → 046 → 047 → 048 → 049 → 050 → 051 → 052 → 053 → 054.
 
 Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a execução das funções e troca as políticas.
 
@@ -268,7 +270,7 @@ Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a exec
 select adm.testar_tudo();
 ```
 
-Roda as 15 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10, segurança 11, acervo 10, marca e minutas 10, parceiro 12, atendimento 10 e reuniões 8. Total: 152 testes.
+Roda as 15 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10, segurança 11, acervo 10, marca e minutas 10, parceiro 12, atendimento 10 e reuniões 9. Total: 153 testes.
 
 > **Aviso.** Nunca chame as funções `_testar_*` com `select` direto. Assim elas gravam os efeitos no banco. Isso aconteceu em 04/10/2026 e foi limpo no mesmo dia. Para rodar uma suíte sozinha, use sempre o bloco que desfaz tudo:
 >

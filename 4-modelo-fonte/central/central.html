@@ -245,7 +245,7 @@ function vReunioes() {
     return `<article class="item"><div><div class="t">${esc(r.titulo)}</div>
       <div class="sub">${quando(r.inicio)} · ${r.duracao_min} min · ${PLAT[r.plataforma]}${r.contraparte ? ' · ' + esc(r.contraparte) : ''}${r.pedido ? ' · demanda nº ' + r.pedido : ''}${r.gravar ? ' · com gravação' : ''}</div>
       ${r.consentimentos?.length ? `<div class="sub">Consentimentos: ${r.consentimentos.map(c => esc(c.quem) + ' (' + esc(c.canal) + ')').join('; ')}</div>` : r.gravar ? '<div class="sub">Sem consentimento registrado ainda: a transcrição não entra.</div>' : ''}
-      ${r.transcricao ? `<div class="sub">Transcrição: ${esc(r.transcricao)}${r.apagar_gravacao_em ? ' · guardar até ' + dia(r.apagar_gravacao_em) : ''}</div>` : ''}</div>
+      ${r.transcricao ? `<div class="sub">Transcrição: ${esc(r.transcricao)}${r.gravacao_apagada_em ? ' · eliminada em ' + quando(r.gravacao_apagada_em) : r.apagar_gravacao_em ? ' · guardar até ' + dia(r.apagar_gravacao_em) : ''}</div>` : ''}</div>
       <div class="lado">${chip(r.situacao)}${r.ata_situacao !== 'sem' ? `<span class="chip ${r.ata_situacao === 'aprovada' ? 'bom' : 'esp'}">ata ${r.ata_situacao}</span>` : ''}${r.link && r.situacao === 'agendada' ? `<a href="${esc(r.link)}" target="_blank" rel="noopener">Entrar</a>` : ''}</div>
       ${r.situacao === 'agendada' ? `<div class="acoes">${r.gravar ? `<input type="text" id="cs-${r.id}" aria-label="Quem consentiu" placeholder="quem consentiu com a gravação"><button class="btn" type="button" data-consent="${r.id}">Registrar consentimento</button>` : ''}
           ${r.link ? '' : `<input type="text" id="lk-${r.id}" aria-label="Link da reunião" placeholder="https://…"><button class="btn" type="button" data-link="${r.id}">Salvar link</button>`}
@@ -254,6 +254,7 @@ function vReunioes() {
           <label class="sub" for="tf-${r.id}">ou arquivo .txt/.vtt</label><input type="file" id="tf-${r.id}" accept=".txt,.vtt,.srt,text/plain,text/vtt">` : ''}
           ${r.transcricao && sample ? `<button class="btn" type="button" data-ia="${r.id}">Rascunhar ata com IA</button>` : ''}
           ${ata ? '' : `<button class="btn" type="button" data-escrever="${r.id}">Escrever ata</button>`}</div>` : ''}
+      ${r.transcricao && !r.gravacao_apagada_em && r.apagar_gravacao_em && r.apagar_gravacao_em <= new Date().toISOString().slice(0, 10) ? `<div class="acoes"><span class="sub">Prazo de retenção vencido.</span><button class="btn perigo" type="button" data-reter="${r.id}">Eliminar gravação e transcrição</button></div>` : ''}
       <div class="ata" id="ata-${r.id}" ${ata || r.ata_situacao === 'aprovada' ? '' : 'hidden'}>${ata ? ataHtml(r, ata) : ''}</div>
       ${(r.encaminhamentos || []).length ? `<ul class="encs">${r.encaminhamentos.map(e => `<li><div><strong>${esc(e.descricao)}</strong> ${chip(e.situacao === 'aberto' ? 'em_atendimento' : 'encerrado').replace(/>[^<]*</, '>' + e.situacao + '<')}</div><div class="sub">${esc(e.responsavel || '')} · prazo ${quando(e.prazo)}</div>
           ${e.situacao === 'aberto' ? `<div class="acoes"><input type="text" id="ec-${e.id}" aria-label="O que foi feito" placeholder="o que foi feito"><button class="btn prim" type="button" data-enc="${e.id}" data-d="concluido">Concluir</button></div>` : ''}</li>`).join('')}</ul>` : ''}
@@ -322,7 +323,7 @@ async function marcar(ev) {
         const e = await ferramenta('Google Calendar', 'create_event', { summary: $('fr-titulo').value, startTime: ini.toISOString(), endTime: new Date(ini.getTime() + dur * 60000).toISOString(),
           addGoogleMeetUrl: true, description: 'Reunião marcada pela Central de atendimento (IMTS.OS), registro nº ' + id + '.' });
         evento = e.id || e.eventId || null;
-        link = e.hangoutLink || e.meetUrl || e.googleMeetUrl || e.conferenceData?.entryPoints?.find(x => x.entryPointType === 'video')?.uri || link;
+        link = e.conferenceUrl || e.conferenceData?.videoEntryPoint?.uri || e.hangoutLink || e.conferenceData?.entryPoints?.find(x => x.entryPointType === 'video')?.uri || link;
       } catch (er) { recibo('recusado', 'Reunião registrada, mas o evento com Meet não foi criado: ' + motivo(er) + '. Cole o link depois.'); }
     }
     if (link || evento) await sql(`select 1 as p from (select ext.reuniao_registrar_externa(${Number(id)}, ${lit(evento)}, ${lit(link)}, ${C()})) x`);
@@ -396,6 +397,13 @@ document.addEventListener('click', async e => {
   if (d.link) return agir(`select ext.reuniao_registrar_externa(${Number(d.link)}, null, ${lit($('lk-' + d.link).value.trim())}, ${C()})`, 'Link salvo.', t);
   if (d.cancelar) return agir(`select ext.reuniao_cancelar(${Number(d.cancelar)}, ${lit($('cm-' + d.cancelar).value)}, ${C()})`, 'Reunião cancelada.', t);
   if (d.transc) return ligarTranscricao(Number(d.transc), t);
+  if (d.reter) {
+    const r = R.reunioes.find(x => x.id === Number(d.reter)); t.disabled = true;
+    try { if (r.transcricao_drive) await ferramenta('Google Drive', 'trash_file', { fileId: r.transcricao_drive });
+      await sql(`select 1 as p from (select ext.reuniao_gravacao_apagada(${r.id}, ${C()})) x`); recibo('feito', 'Transcrição na lixeira do Drive; a ata fica.'); await carregar(); }
+    catch (er) { recibo('recusado', 'Não eliminou: ' + motivo(er)); t.disabled = false; }
+    return;
+  }
   if (d.ia) return ataIA(Number(d.ia), t);
   if (d.escrever) return abrirAta(Number(d.escrever), { resumo: '', decisoes: [], encaminhamentos: [], origem: 'pessoa' });
   if (d.maisenc) { const id = Number(d.maisenc), a = lerAta(id); a.encaminhamentos.push({ descricao: '', responsavel: (A.responsaveis || [])[0]?.papel, prazo_dias: 7 }); a.origem = $('ata-' + id).dataset.origem; abrirAta(id, a); return; }

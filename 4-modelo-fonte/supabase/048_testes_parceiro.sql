@@ -66,6 +66,7 @@ begin
   if not ok or (select count(*) from ext.comissao where oportunidade = op and situacao = 'adquirida') <> 2 then raise exception 'FALHA P6: aquisição'; end if;
 
   -- P7. Nota sem CNPJ do parceiro cadastrado: divergente, nada reservado, vai para a pasta 07 do acervo
+  update ext.contraparte set documento = null where id = parc;   -- o teste parte de parceiro sem CNPJ (desfeito no fim)
   r := ext.prestacao_enviar_como(ges, 'nf', 'nf 777.pdf', encode(extensions.digest('nf-parceiro-1', 'sha256'), 'hex'), 'application/pdf', 100,
         E'NOTA FISCAL DE SERVIÇO ELETRÔNICA\nPrestador CNPJ ' || v_cnpj || E'\nNúmero: 000777\nValor total da nota: R$ 800,00', array[c1, c2]);
   perform set_config('request.jwt.claim.sub', '', true);

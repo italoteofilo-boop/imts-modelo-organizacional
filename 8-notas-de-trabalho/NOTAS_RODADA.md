@@ -262,3 +262,12 @@ Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML
 - **Páginas:** acervo (abas Marca e Modelos), portal (Oportunidades com sala, Comissões, Prestação de contas, Reuniões, Telegram, novos tipos de pedido), Central de atendimento nova.
 - **Testes:** 152 no Supabase (15 suítes) e 31 do motor; axe-core sem violação nas abas novas.
 - **Achado:** esquema `arq` no banco, sobra de rascunho da E17, sem dados nem dependências; apagar depende de Ítalo. Rascunhos 043/044 antigos fora do pacote.
+
+## 04/10/2026, 14:01 a 14:20: "resolva todas as travas"
+- **Esquema arq removido (053).** **Meet verificado:** evento real criado e apagado; o link vem em `conferenceUrl`, e a Central foi corrigida (procurava em outro campo). A agenda do conector é a conta pessoal do Gmail.
+- **Retenção da gravação executável:** botão na Central manda a transcrição para a lixeira do Drive e registra; a ata fica (054, teste R9).
+- **Prazos:** referências conferidas (Decreto 11.034/2022, art. 13; Lei 13.460/2017, art. 16); valores em vigor mais rigorosos.
+- **Parceiros simulados com CNPJ de exemplo** para a conferência da nota rodar de ponta a ponta. Regra real de comissão não existe no Drive.
+- **Skill editorial-legal-os:** a atualização já está salva (conferida idêntica).
+- **Achado de coerência:** o parceiro simulado "escritório de advocacia" recebe comissão, mas a decisão de set/2026 descarta comissão com escritórios; proposta de troca para representante comercial aguardando aprovação.
+- **Testes:** 153 no Supabase (15 suítes) e 31 do motor.

@@ -98,7 +98,7 @@ Incidente registrado: às 11:05 sete suítes de teste foram chamadas sem o envel
 | E18 Marca e modelos | Manual de marca vira proposta de cores e fontes com duas mãos; modelo de documento vira minuta em blocos, comparada com a anterior (azul incluído, vermelho removido, verde ajustado), aprovada por quem não subiu, emitida pelo motor | 10 |
 | E19 Parceiro | Portal: sala de negócio, comissões por situação, prestação de contas (nota e relatório pelo portal, conferência automática), Telegram por código. Central: decidir oportunidade, parcela recebida, aprovar e pagar (pessoas diferentes) | 12 |
 | E20 Cliente | Reclamação, ordem de serviço e ouvidoria (Governança, anônima opcional); encaminhamentos datados visíveis ao cliente; encerramento confirmado pelo cliente ou por aceite tácito | 10 |
-| E21 Reuniões | Marcar pela Central (Meet pela Agenda Google; Zoom, Teams e Webex pelo link até o registro dos apps), consentimento de gravação, transcrição no acervo, ata rascunhada por IA e aprovada por pessoa, encaminhamentos | 8 |
+| E21 Reuniões | Marcar pela Central (Meet pela Agenda Google, verificado com evento real criado e apagado; Zoom, Teams e Webex pelo link até o registro dos apps), consentimento de gravação, transcrição no acervo, ata rascunhada por IA e aprovada por pessoa, encaminhamentos, eliminação da gravação no fim da retenção | 9 |
 
 Padrões adotados (declarados ao aprovar): uma pasta por empresa no Drive da IMTS com a árvore padrão; ouvidoria com a Governança; regra de comissão simulada por contrato de parceria até a regra real.
 
@@ -126,9 +126,9 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | Assinatura | DocuSign ligado às âncoras /ass_A/, /ass_B/, /ass_T1/, /ass_T2/ | Governança |
 | Google Drive | Terceira saída do motor (Google Docs) | Integração |
 | Marcas | Fonte Nexa (Onni); manual da TRON; razão social e CNPJ de IMTS e Onni confirmados no contrato social | Ítalo |
-| Comissões | Regra real de cada contrato de parceria (percentual, base, parcelas) no lugar da regra simulada; CNPJ de cada parceiro | Negócios e Gestão |
-| Vídeo | Registrar os apps de Zoom, Teams e Webex (OAuth) e gravar os segredos no Vault; confirmar o Meet com a primeira reunião real | Integração |
-| Prazos de atendimento | Confirmar aceite tácito, prazo de OS, prazo da ouvidoria e retenção da gravação (valores de partida nos parâmetros) | Relações, Operações e Governança |
+| Comissões | Regra real de cada contrato de parceria comercial (percentual, base, parcelas) no lugar da simulada; não há regra no Drive (busca de 04/10/2026). Escritório de advocacia não recebe comissão (decisão de set/2026): é remunerado pela OS-Cliente | Negócios e Gestão |
+| Vídeo | Registrar os apps de Zoom, Teams e Webex (OAuth) e gravar os segredos no Vault. Meet verificado; para usar a agenda do Workspace IMTS, conectar o Google Calendar com a conta @imts.com.br | Integração e Ítalo |
+| Prazos de atendimento | Valores em vigor, mais rigorosos que as referências conferidas (Decreto 11.034/2022, art. 13; Lei 13.460/2017, art. 16); mudar só se a operação pedir | Relações, Operações e Governança |
 | Arquivos de fora | Em produção, o arquivo enviado pelo portal vai para o Drive por função do servidor (hoje é a página, pelo conector) | Integração |
 
 Nada fora desta tabela depende de construção no protótipo.
