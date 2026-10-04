@@ -4,7 +4,7 @@
 begin;
 alter table adm.historico drop constraint if exists historico_objeto_check;
 alter table adm.historico add constraint historico_objeto_check
-  check (objeto in ('parametro', 'conexao', 'agente', 'regra_externa', 'titulo_externo', 'tipo_documento'));
+  check (objeto in ('parametro', 'conexao', 'agente', 'regra_externa', 'titulo_externo', 'tipo_documento', 'incidente'));
 
 create or replace function adm._historico_regra() returns trigger language plpgsql security definer set search_path = '' as $$
 declare v_obj text := tg_argv[0]; v_antes jsonb; v_depois jsonb; v_chave text; v_ign text[] := coalesce(tg_argv[1], '{}')::text[];

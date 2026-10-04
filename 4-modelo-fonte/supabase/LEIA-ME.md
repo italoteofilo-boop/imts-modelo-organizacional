@@ -214,7 +214,7 @@ Cada chamada desfaz tudo. O documental e a administração rodam separados, porq
 
 Desde a 039, `select adm.testar_tudo();` roda as 10 suítes de uma vez. Veja a seção seguinte.
 
-## Migrações 025 a 041 (motor documental, administração, portal externo, agentes, segurança)
+## Migrações 025 a 042 (motor documental, administração, portal externo, agentes, segurança)
 
 | Arquivo | O que faz |
 |---|---|
@@ -235,12 +235,13 @@ Desde a 039, `select adm.testar_tudo();` roda as 10 suítes de uma vez. Veja a s
 | `039_correcao_regressoes.sql` | O cartão volta à regra da 017, dentro da empresa. `adm.testar_tudo()` roda as 10 suítes sem gravar nada |
 | `040_versao_regras.sql` | Mudanças em `ext.regra`, `ext.jornada_externa`, `doc.tipo` e na configuração dos agentes ficam no histórico |
 | `041_escopo_acesso.sql` | `rt.pode_estrito`: empresa ou círculo nulos exigem acesso sem restrição. Vale na administração global e na decisão de documento (pelo círculo da tarefa). O `ext` é lido pela empresa da contraparte (`ext._le`). Funções novas nascem sem execução para public. `doc.pedido.empresa` passa a ser obrigatório |
+| `042_registro_incidente.sql` | Registro do incidente de 04/10/2026, 11:05, no `adm.historico` (objeto `incidente`): causa, efeitos, limpeza, o que não teve recuperação e a prevenção. Datas e origem dos parâmetros restaurados coerentes com o valor de antes. |
 
 Prazos do portal externo, em `adm.parametro`: resposta em 48 horas, aceite em 24 horas, pedido do titular em 15 dias (LGPD, art. 19, II) e exclusividade de 90 dias. Só vai para fora documento de alcance externo e aprovado. Da marca, o portal mostra só nome, cores, logos e tipografia.
 
 ### Ordem de implantação
 
-001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041.
+001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042.
 
 Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a execução das funções e troca as políticas.
 

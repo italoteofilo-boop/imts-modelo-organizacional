@@ -102,3 +102,22 @@ O fluxo é `doc.pedir`, depois `public.doc_worker_proximo`, `doc_worker_registra
 - Escolher o serviço do worker em produção.
 - Mover os arquivos para o Storage (hoje ficam em `doc.arquivo`, bytea).
 - Conectar a DocuSign.
+
+## Versão de documento
+
+A versão de um documento é a sua data de vigência e de revisão. Número de versão ("v2", "versão 1.3", "rev. 4") não entra no documento: o gate bloqueia. Cada emissão é identificada no registro pelo hash do PDF. Decidido em 04/10/2026 (F01, em saida/revisao/parametros_em_aberto.md).
+
+## Onde a skill Editorial Legal.OS diverge de si mesma: o padrão adotado
+
+Decidido em 04/10/2026, às 12:16 ("resolva tudo"), pelo que o motor já faz e pela regra que aparece em mais lugares da skill. As amostras da biblioteca seguem este padrão.
+
+| Ponto | O que a skill diz | Padrão adotado | Onde está no motor |
+|---|---|---|---|
+| Anexo | SKILL.md: todo anexo abre página. references/tipografia.md: anexos em fluxo contínuo, só o primeiro abre página | Todo anexo abre página; a parte final (glossário, legenda, referências) também | base.css: `.anexo`, `.parte-final` |
+| Legenda do quadro | 5 pt até a tabela (SKILL.md, tipografia.md em dois trechos, ooxml.md). tipografia.md, espaçamentos: 10 pt | 5 pt | base.css: `.quadro .legenda` |
+| Ajuste de órfã | SKILL.md: espaço entre letras até 0,2 pt, entre palavras de -0,5 a +1,0 pt, até quatro palavras puxadas, nunca escala dos glifos. tipografia.md: ±0,2 a ±0,6 pt ou escala de 97% a 102%; editorial_check.py (legado do DOCX): escala até 103% | A regra do SKILL.md, que o motor segue; tipografia.md e o script valem só para o legado DOCX | ajuste.js |
+| Cor do texto | tipografia.md: preto | Cor de texto da marca; sem marca, preto. IMTS: Grafite Digital (#272829), pelo manual da marca | marcas/*/marca.json |
+| Margem superior | tipografia.md: 2,0 cm, ou a do pacote de marca | Formais: 3,0 cm, porque o quadro de controle ocupa o topo; premium: 2,3 cm; laterais e inferior por modelo | motor.py: `CORPO`, `pagina_css` |
+| Checklist de fechamento | tipografia.md numera 1 a 8, 10, 11 e depois 9 | Ordem 1 a 11; a leitura em voz alta é o item 9, antes da fonte única | este arquivo |
+
+Para a skill ficar coerente, foi proposta uma atualização do SKILL.md com a precedência: onde references/tipografia.md divergir, vale o SKILL.md e este padrão. O references/tipografia.md pode ser corrigido pelo dono da skill (anexo abre página; 5 pt da legenda à tabela; checklist em ordem).

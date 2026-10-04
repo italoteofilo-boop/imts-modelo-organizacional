@@ -245,3 +245,10 @@ Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML
 - **Testes:** 102 no Supabase (`adm.testar_tudo()`) e 30 do motor, todos verdes.
 - **Para aprovação:** F01 (publicar com data de vigência e de revisão), conflitos internos do Legal.OS, exclusão da página de administração duplicada.
 - **Externo:** a tabela da seção 7 do plano mestre.
+
+## 04/10/2026, 12:16 a 12:50: "resolva tudo"
+- **Incidente fechado (042):** registro no histórico da administração com causa, efeitos, limpeza, o que não se recupera (mensagens da fila) e prevenção. Conferido: o histórico não tinha registro real antes do incidente; a numeração começa adiante porque testes desfeitos também consomem números.
+- **F01:** versão de documento = data de vigência e de revisão; modelo aprovado sem mudança.
+- **Legal.OS:** vale o SKILL.md onde as referências divergem; atualização do SKILL.md proposta para Ítalo salvar.
+- **Alçadas:** as 20 na tabela. **Acessibilidade:** relatório do axe-core 4.10.2, zero violação em cinco páginas.
+- **Página de administração duplicada:** apagada.

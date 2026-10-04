@@ -79,11 +79,16 @@ Incidente registrado: às 11:05 sete suítes de teste foram chamadas sem o envel
 | Biblioteca com PDFs do motor anterior e contagens antigas | Reemitida; 162 saídas e 127 tarefas ligadas |
 | Números e afirmações desatualizados (F02 a F19) | Corrigidos nos documentos (seção 4 do LEIA-ME e revisão) |
 
-## 6. Para a sua aprovação
+## 6. Decisões fechadas em 04/10/2026, às 12:16 ("resolva tudo")
 
-1. F01: quatro tarefas mandam "publicar com versão" (IN-06 E4, RE-04 E4, NE-01 E3, NE-02 E3), e a regra editorial proíbe número de versão. Proposta: "publicar com data de vigência e de revisão".
-2. Conflitos internos do Editorial Legal.OS, para você escolher um lado em cada: anexo em página própria × fluxo contínuo; legenda de quadro em 5 pt × 10 pt; espaçamento de letras ±0,6 e escala de 97% a 102%; preto × Grafite no texto; margem superior; ordem do checklist. O motor hoje segue anexo em página própria e as escolhas registradas no documentos/LEIA-ME.
-3. Excluir a cópia duplicada da página de administração criada por engano nesta rodada (a original foi atualizada).
+| Tema | Decisão | Onde ficou |
+|---|---|---|
+| F01, versão de documento | A versão de um documento é a sua data de vigência e de revisão; número de versão não entra; cada emissão é identificada pelo hash do PDF. O modelo aprovado não muda | parametros_em_aberto.md (F01), documentos/LEIA-ME.md, gate do motor |
+| Conflitos internos do Editorial Legal.OS | Vale o SKILL.md: anexo abre página; legenda a 5 pt; ajuste de linha curta sem escala dos glifos; cor de texto da marca; margem do modelo; checklist de 1 a 11 | documentos/LEIA-ME.md; atualização do SKILL.md proposta para você salvar |
+| Incidente das 11:05 | Registro no histórico da administração (objeto "incidente"); datas e origem dos parâmetros restaurados coerentes | 042_registro_incidente.sql |
+| Página de administração duplicada | Apagada | artefatos |
+| Alçadas da tabela | As 20 alçadas na tabela, com GE-14, GE-15, margem fora da política, risco 15 ou mais, regra 10 e crise | parametros_em_aberto.md, seção 1 |
+| Acessibilidade | Relatório do axe-core 4.10.2 guardado: zero violação em portal, administração, biblioteca, Mesa e painel | acessibilidade_axe.json |
 
 ## 7. Backlog só com pendências externas (produção)
 
@@ -108,4 +113,4 @@ Incidente registrado: às 11:05 sete suítes de teste foram chamadas sem o envel
 | Google Drive | Terceira saída do motor (Google Docs) | Integração |
 | Marcas | Fonte Nexa (Onni); manual da TRON; razão social e CNPJ de IMTS e Onni confirmados no contrato social | Ítalo |
 
-Nada fora desta tabela e da seção 6 depende de construção nossa no protótipo.
+Nada fora desta tabela depende de construção no protótipo.

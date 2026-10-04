@@ -1,0 +1,133 @@
+{
+ "data": "2026-10-04T15:24:01.568Z",
+ "axe": "4.10.2",
+ "regras": [
+  "wcag2a",
+  "wcag2aa",
+  "wcag21a",
+  "wcag21aa",
+  "wcag22aa"
+ ],
+ "resultados": [
+  {
+   "pagina": "portal",
+   "largura": 1280,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 23,
+   "incompletas": 0
+  },
+  {
+   "pagina": "portal",
+   "largura": 1280,
+   "tema": "dark",
+   "violacoes": [],
+   "aprovadas": 23,
+   "incompletas": 0
+  },
+  {
+   "pagina": "portal",
+   "largura": 390,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 23,
+   "incompletas": 0
+  },
+  {
+   "pagina": "administração",
+   "largura": 1280,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 24,
+   "incompletas": 0
+  },
+  {
+   "pagina": "administração",
+   "largura": 1280,
+   "tema": "dark",
+   "violacoes": [],
+   "aprovadas": 24,
+   "incompletas": 0
+  },
+  {
+   "pagina": "administração",
+   "largura": 390,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 24,
+   "incompletas": 0
+  },
+  {
+   "pagina": "biblioteca",
+   "largura": 1280,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 20,
+   "incompletas": 0
+  },
+  {
+   "pagina": "biblioteca",
+   "largura": 1280,
+   "tema": "dark",
+   "violacoes": [],
+   "aprovadas": 20,
+   "incompletas": 0
+  },
+  {
+   "pagina": "biblioteca",
+   "largura": 390,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 21,
+   "incompletas": 0
+  },
+  {
+   "pagina": "mesa",
+   "largura": 1280,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 26,
+   "incompletas": 1
+  },
+  {
+   "pagina": "mesa",
+   "largura": 1280,
+   "tema": "dark",
+   "violacoes": [],
+   "aprovadas": 26,
+   "incompletas": 1
+  },
+  {
+   "pagina": "mesa",
+   "largura": 390,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 26,
+   "incompletas": 1
+  },
+  {
+   "pagina": "painel",
+   "largura": 1280,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 21,
+   "incompletas": 1
+  },
+  {
+   "pagina": "painel",
+   "largura": 1280,
+   "tema": "dark",
+   "violacoes": [],
+   "aprovadas": 21,
+   "incompletas": 1
+  },
+  {
+   "pagina": "painel",
+   "largura": 390,
+   "tema": "light",
+   "violacoes": [],
+   "aprovadas": 22,
+   "incompletas": 1
+  }
+ ]
+}

@@ -6,7 +6,7 @@ Em 03/10/2026 você confirmou a delegação: cada parâmetro é preenchido por q
 
 ## 1. Alçadas
 
-Quem redige é a Governança (GO-01); as alçadas dos executivos, as regras gerais e a alçada da própria Governança são decididas pelos sócios; dentro de cada círculo, a alçada da pessoa é decidida pela Governança, ouvido o dono, exceto no próprio círculo da Governança. Acima dos círculos compartilhados decide o Administrador do IMTS.OS. Cada linha tem tarefa no fluxo, conferida pelo teste de alçadas (20 alçadas, 45 níveis). A tabela abaixo mostra as principais; a lista completa sai do `alcadas_fluxo.py`.
+Quem redige é a Governança (GO-01); as alçadas dos executivos, as regras gerais e a alçada da própria Governança são decididas pelos sócios; dentro de cada círculo, a alçada da pessoa é decidida pela Governança, ouvido o dono, exceto no próprio círculo da Governança. Acima dos círculos compartilhados decide o Administrador do IMTS.OS. Cada linha tem tarefa no fluxo, conferida pelo teste de alçadas (20 alçadas, 45 níveis). A tabela abaixo traz as 20.
 
 | Alçada | Onde é usada | Quem propõe | Quem decide, pelo modelo | Valor |
 |---|---|---|---|---|
@@ -24,6 +24,12 @@ Quem redige é a Governança (GO-01); as alçadas dos executivos, as regras gera
 | Execução de aportes, distribuição e mudanças de contas | GE-05 | Gestão | Gestão; aprova o líder do círculo; acima, o executivo | Gestão executa só o que os sócios decidiram. Contas e poderes bancários: executivo com a Governança; contas do IMTS.OS: Administrador do IMTS.OS com a Governança. Todo pagamento com duas pessoas (aprovado em 03/10/2026, 13:51; ajustado às 16:05) |
 | Vaga, movimentação e desligamento | GE-07 | Gestão | Gestão; acima, o executivo ou o Administrador do IMTS.OS; desligamento, o executivo com o líder | Vaga no orçamento: Gestão com o líder. Fora do orçamento: executivo. Desligamento: executivo com o líder. Executivo ou líder de círculo: sócios. Pessoas dos círculos do IMTS.OS: Administrador do IMTS.OS. Folha e remuneração: aprova o executivo, na empresa, ou o Administrador, nos círculos (aprovado em 03/10/2026, 13:51; ajustado às 16:05) |
 | Regra que a Governança decide sozinha | GO-01 | Governança | Sócios definem o que fica na alçada da Governança | Regras que aplicam regra geral aprovada; modelos de proposta e contrato; sigilo, dados e guarda; alçada de pessoas no círculo e de agentes no critério; matriz de riscos no apetite; rateio com a Estratégia; amostra. Aos sócios: alçadas dos executivos, regras gerais, exceções, a alçada da Governança e das pessoas da Governança (os limites dos agentes vão aos sócios pela ID-02). Quem decide sai da lista, por regra (aprovado em 03/10/2026, 13:51; ajustado às 16:05) |
+| Dívida tributária: parcelamento ou transação | GE-14 | Gestão | Pagar à vista ou parcelar dentro da alçada: executivo; acima da alçada do executivo: sócios | O valor da alçada do executivo entra com os valores do primeiro ciclo (G3) |
+| Plano tributário do grupo | GE-15 | Gestão | Executivo; mudança de regime de uma empresa ou da estrutura do grupo: sócios | Critério, não valor: muda regime ou estrutura vai aos sócios |
+| Margem do contrato fora da política comercial | NE-04 | Negócios | Executivo | A política comercial (NE-01) define a margem; seguir fora dela é decisão do executivo, na própria NE-04 |
+| Risco de nota 15 ou mais na matriz | GO-03 | Governança | Sócios | Matéria dos sócios pela tabela matéria × órgão (propostas de parâmetros, seção 5) |
+| Contrato na regra 10 | GO-05, NE-04 | Governança e Negócios | Sócios | Matéria dos sócios pela tabela matéria × órgão (propostas de parâmetros, seção 5) |
+| Dono único da crise | GO-08 | Governança | Crise da empresa: executivo; do Ecossistema: Administrador do IMTS.OS; que envolve o executivo: sócios | Critério, não valor: de quem é a crise (GO-08, etapas 2 e 3) |
 
 ## 2. Cadências
 
@@ -102,10 +108,10 @@ O desenho diz onde cada um é usado e quem decide. Os rascunhos estão validados
 | Código Civil, contratos | Contrato entre empresas (OP-07, GO-05) e escrituração (GE-05) | Conferidos no texto oficial (Planalto) em 03/10/2026: arts. 389, 395, 421, 421-A, 422, 441 a 446, 475, 1.179, 1.180 e 1.194 |
 | Leis trabalhista, fiscal e contábil | GE-05, GE-07, GE-13 | Trabalhista e contábil: conferidos no texto oficial (Planalto) em 03/10/2026 os prazos de salário, férias, rescisão e ponto (CLT, arts. 74, § 2º, 145, 459, § 1º, e 477, § 6º), o FGTS (Lei 8.036, art. 15) e a escrituração. Fiscal: depende do regime tributário de cada empresa, que não está no modelo (gate G4) |
 
-## Proposta pendente de aprovação (F01)
+## F01: versão de documento (resolvido em 04/10/2026)
 
-A regra editorial proíbe número de versão nos documentos, e o gate do motor documental bloqueia a emissão quando encontra um. Quatro tarefas do modelo mandam publicar "com versão": IN-06 E4, RE-04 E4, NE-01 E3 e NE-02 E3.
+A regra editorial proíbe número de versão nos documentos, e o gate do motor documental bloqueia a emissão quando encontra um. O modelo manda publicar "com versão" em IN-06 E4, RE-04 E4, NE-01 E3 e NE-02 E3, registra "a versão e a data de vigência" na Identidade e na Estratégia, e a saída "Método publicado, com versão e data de revisão" circula entre os círculos 3, 6 e 7.
 
-Proposta: trocar "publicar com versão" por "publicar com data de vigência e de revisão" nessas quatro tarefas.
+Decisão, sem mudar o modelo aprovado: a versão de um documento é identificada pela data de vigência e pela data de revisão. Onde o modelo diz "com versão", o que se registra é essa data; número de versão não entra no documento. Cada emissão fica identificada no registro do motor pelo hash do PDF.
 
-Situação: aguardando Ítalo. Nada foi mudado no modelo.
+Por que assim: resolve o conflito sem alterar 1.586 tarefas, as trocas entre círculos nem as páginas e instruções já aprovadas. Quem decidiu: Ítalo, em 04/10/2026, às 12:16 ("resolva tudo"), sobre a proposta desta seção.

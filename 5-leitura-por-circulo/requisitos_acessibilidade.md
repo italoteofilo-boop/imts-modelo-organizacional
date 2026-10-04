@@ -49,3 +49,7 @@ A conferência automática pega só uma parte dos critérios. Fica para cada ver
 - W3C, Web Content Accessibility Guidelines (WCAG) 2.2: https://www.w3.org/TR/WCAG22/
 - Deque, axe-core: https://github.com/dequelabs/axe-core
 - Lei 13.709/2018 (LGPD), art. 18, conferido no Planalto em 03/10/2026: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
+
+## Conferência automática de 04/10/2026
+
+Relatório em `acessibilidade_axe.json`, gerado por `acessibilidade_axe.mjs` com o axe-core 4.10.2 (regras WCAG 2.0, 2.1 e 2.2, níveis A e AA): portal externo, administração, biblioteca, Mesa e painel, a 1.280 px nos temas claro e escuro e a 390 px no claro. Resultado: nenhuma violação nas 15 combinações, depois de corrigidos o idioma da página, o contraste do verde de "saudável" e de "emitido", o tamanho do alvo do "Linha do tempo" no portal e o foco na tabela rolável da biblioteca. A conferência manual (leitor de tela, teclado em todo fluxo, zoom de 400%) segue parcial.

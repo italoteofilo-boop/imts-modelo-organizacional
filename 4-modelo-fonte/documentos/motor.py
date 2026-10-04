@@ -191,7 +191,7 @@ def gates_conteudo(p, tipo, modelo):
         if '\u2014' in t: g('travessão longo (—) em texto', t)
         if '\u00ad' in t: g('hífen suave (quebra de palavra) no texto', t)
         if any(x in t for x in ('{{', '{%', '%}', '}}')): g('sinal de modelo ({{ }} ou {% %})', t)
-        if re.search(r'\b(v|vers[aã]o|rev\.?)\s?\d+(\.\d+)*\b', t, re.I): g('número de versão no documento', t)
+        if re.search(r'\b(v|vers[aã]o|rev\.?)\s?\d+(\.\d+)*\b', t, re.I): g('número de versão no documento (a versão é a data de vigência e de revisão)', t)
     if modelo == 'contratual':
         ass = p.get('assinaturas') or {}
         if (ass.get('testemunhas') or 0) < 2: g('contrato sem duas testemunhas', 'assinaturas')
