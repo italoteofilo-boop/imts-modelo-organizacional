@@ -79,6 +79,20 @@ details > summary { padding:4px 0; min-height:24px; cursor:pointer; }
 .rodape { padding:0 20px 28px; font-size:12px; color:var(--sec); max-width:80ch; }
 .aviso { padding:10px 12px; border-radius:10px; background:var(--wait-soft); color:var(--wait); margin:0 20px 12px; }
 .aviso.erro { background:var(--late-soft); color:var(--late); }
+/* Integrações */
+.aba[aria-pressed="true"] { background:var(--pill); color:var(--pill-ink); border-color:var(--pill); }
+.passos { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.passo { display:grid; grid-template-columns:32px minmax(0,1fr); gap:12px; background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:12px 14px; }
+.passo .num { width:28px; height:28px; border-radius:50%; background:var(--accent-soft); color:var(--accent); display:grid; place-items:center; font-weight:700; }
+.passo h4 { margin:2px 0 4px; font-size:15px; }
+.passo p { margin:0 0 6px; overflow-wrap:anywhere; }
+.passo a, .rodape a, .grupo a { color:var(--accent); }
+.mini { display:flex; flex-direction:column; gap:8px; margin:8px 0 0; }
+.oculto { -webkit-text-security:disc; font-family:var(--mono); min-height:84px; }
+.conx { display:flex; flex-direction:column; gap:4px; }
+.pares { border:1px solid var(--hair); border-radius:8px; padding:8px 10px; margin:0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+.pares legend { font-size:13px; color:var(--sec); padding:0 4px; }
+.bom { color:var(--ok); } .ruim { color:var(--late); } .gravado { color:var(--ok); }
 /* Cadastro */
 .cartao { background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:14px 16px; }
 .planilhas { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:10px; }
@@ -109,6 +123,7 @@ details > summary { padding:4px 0; min-height:24px; cursor:pointer; }
 <div class="resumo" id="resumo" aria-live="polite"></div>
 <nav class="abas" aria-label="Objetos da administração"><div role="tablist" aria-label="Objetos da administração" style="display:contents">
   <button class="aba" role="tab" id="t-conexoes" data-aba="conexoes" aria-controls="conteudo" aria-selected="true" tabindex="0">Conexões<span class="n" id="n-conexoes"></span></button>
+  <button class="aba" role="tab" id="t-integracoes" data-aba="integracoes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Integrações<span class="n" id="n-integracoes"></span></button>
   <button class="aba" role="tab" id="t-parametros" data-aba="parametros" aria-controls="conteudo" aria-selected="false" tabindex="-1">Parâmetros<span class="n" id="n-parametros"></span></button>
   <button class="aba" role="tab" id="t-mudancas" data-aba="mudancas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Aprovações<span class="n" id="n-mudancas"></span></button>
   <button class="aba" role="tab" id="t-agentes" data-aba="agentes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Agentes<span class="n" id="n-agentes"></span></button>
@@ -190,7 +205,8 @@ function desenharResumo() {
   $('n-conexoes').textContent = r.conexoes ?? ''; $('n-parametros').textContent = r.parametros ?? '';
   $('n-mudancas').textContent = r.mudancas_pendentes || ''; $('n-historico').textContent = (dados.historico || []).length || '';
   $('n-agentes').textContent = (agentes || []).length || '';
-  $('n-alertas').textContent = abertos || ''; $('n-implantacao').textContent = faltam ? '!' + faltam : '';
+  $('n-alertas').textContent = abertos || '';
+  const ifal = (integ?.conexoes || []).filter(c => c.saude === 'falha').length; $('n-integracoes').textContent = ifal ? '!' + ifal : ''; $('n-implantacao').textContent = faltam ? '!' + faltam : '';
   const errs = (dados.saude?.erros || []).length + (dados.saude?.rotinas || []).filter(j => !j.ativo || j.falhas_24h).length;
   $('n-saude').textContent = errs ? '!' + errs : '';
   const rs = (agentes || []).reduce((n, a) => n + (a.rascunhos || []).length, 0);
@@ -283,15 +299,19 @@ function vSaude() {
     ${rs.map(j => `<tr><td><code>${esc(j.job)}</code></td><td><code>${esc(j.quando)}</code></td><td>${quando(j.ultima)}</td><td>${Number(j.falhas_24h || 0)}</td><td><span class="chip ${!j.ativo ? 'falha' : j.falhas_24h ? 'pendente' : 'ok'}">${!j.ativo ? 'parada' : j.falhas_24h ? 'com falha' : 'ok'}</span></td></tr>`).join('')}</tbody></table></div></section>
     <section class="grupo"><h2>Erros registrados</h2>${es.length ? `<div class="rolagem" tabindex="0"><table class="hist"><thead><tr><th scope="col">Quando</th><th scope="col">Onde</th><th scope="col">Erro</th></tr></thead><tbody>${es.map(e => `<tr><td>${quando(e.em)}</td><td><code>${esc(e.origem)}</code></td><td class="cod">${esc(e.detalhe || JSON.stringify(e.contexto || e))}</td></tr>`).join('')}</tbody></table></div>` : '<p class="vazio">Nenhum erro nas últimas 24 horas. Falha num gatilho (projeção externa, agente) fica aqui sem derrubar a operação.</p>'}</section>`;
 }
+function linhaAlerta(a) {
+  return `<article class="linha" style="grid-template-columns:6px minmax(0,2fr) minmax(0,1.4fr) auto"><span class="faixa ${a.resolvido_em ? 'ok' : 'falha'}" aria-hidden="true"></span>
+    <div><div class="t">${esc(a.tipo)}</div><div class="sub">${esc(a.detalhe)}</div></div>
+    <div class="sub">Desde ${quando(a.primeiro_em)} · última ${quando(a.ultimo_em)} · ${Number(a.vezes || 1)} ${Number(a.vezes) === 1 ? 'vez' : 'vezes'}${a.resolvido_em ? `<br><span class="chip ok">resolvido em ${quando(a.resolvido_em)}</span>` : ''}</div>
+    <div>${a.resolvido_em ? '' : `<button class="btn prim" type="button" data-resolver="${Number(a.id)}" aria-label="Resolver alerta ${esc(a.tipo)}">Resolver</button>`}</div></article>`;
+}
 function vAlertas(q) {
   if (falhas.alertas) return naoCarregou('alertas');
   if (!alertas) return '<p class="vazio">Carregando…</p>';
-  const as = alertas.filter(a => casa(a, q));
-  if (!as.length) return '<p class="vazio" id="alertas-vazio">Nenhum alerta. A vigia da operação registra aqui o que precisa de atenção (rotina parada, conexão com falha, prazo vencido); um alerta repetido só soma vezes.</p>';
-  return `<div class="linhas" id="lista-alertas">${as.map(a => `<article class="linha" style="grid-template-columns:6px minmax(0,2fr) minmax(0,1.4fr) auto"><span class="faixa ${a.resolvido_em ? 'ok' : 'falha'}" aria-hidden="true"></span>
-    <div><div class="t">${esc(a.tipo)}</div><div class="sub">${esc(a.detalhe)}</div></div>
-    <div class="sub">Desde ${quando(a.primeiro_em)} · última ${quando(a.ultimo_em)} · ${Number(a.vezes || 1)} ${Number(a.vezes) === 1 ? 'vez' : 'vezes'}${a.resolvido_em ? `<br><span class="chip ok">resolvido em ${quando(a.resolvido_em)}</span>` : ''}</div>
-    <div>${a.resolvido_em ? '' : `<button class="btn prim" type="button" data-resolver="${Number(a.id)}" aria-label="Resolver alerta ${esc(a.tipo)}">Resolver</button>`}</div></article>`).join('')}</div>`;
+  const as = alertas.filter(a => casa(a, q)), ab = as.filter(a => !a.resolvido_em), re = as.filter(a => a.resolvido_em).slice(0, 30);
+  return `<section class="grupo"><h2>Abertos</h2>${ab.length ? `<div class="linhas" id="lista-alertas">${ab.map(linhaAlerta).join('')}</div>`
+      : '<p class="vazio" id="alertas-vazio">Nenhum alerta aberto. A vigia da operação registra aqui o que precisa de atenção (rotina parada, conexão com falha, prazo vencido); um alerta repetido só soma vezes.</p>'}</section>
+    ${re.length ? `<details class="grupo" id="alertas-resolvidos"><summary class="sub">Resolvidos recentes (${re.length})</summary><div class="linhas" style="margin-top:8px">${re.map(linhaAlerta).join('')}</div></details>` : ''}`;
 }
 const detalhe = d => d == null ? '' : Array.isArray(d) ? d.map(x => esc(typeof x === 'object' ? JSON.stringify(x) : x)).join(', ') : esc(typeof d === 'object' ? JSON.stringify(d) : d);
 function vImplantacao(q) {
@@ -486,14 +506,261 @@ async function convidar(ev) {
   finally { bt.disabled = !$('cv-cp').options.length; }
 }
 
+// ---------- Integrações (assistentes guiados) ----------
+const CATEGORIAS_EXT = ['contábil', 'fiscal', 'bancário', 'assinatura', 'documentos', 'ia', 'mensageria', 'agenda', 'api'];
+const ASSIST = [['telegram', 'Telegram'], ['anthropic', 'Anthropic (Claude)'], ['kimi', 'Kimi'], ['google', 'Google Workspace'], ['externo', 'Serviço externo'], ['sistemas', 'Sistemas do motor'], ['todas', 'Todas as conexões']];
+let integ = null, assist = 'telegram';
+const impressoes = {}, retornos = {}, testes = {};
+const PROIBIDO = /senha|segredo|token|secret|password|api[_-]?key|chave|private/i;
+const conexao = cod => (integ?.conexoes || []).find(c => c.codigo === cod);
+const segInfo = nome => { for (const c of integ?.conexoes || []) { const s = (c.segredos || []).find(x => x.nome === nome); if (s) return s; } return null; };
+function impressaoDe(nome) {
+  if (impressoes[nome]) return impressoes[nome];
+  const h = (dados.historico || []).find(x => x.chave === 'segredo:' + nome);
+  return h?.depois?.impressao || null;
+}
+const link = (href, txt) => `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${esc(txt)}</a>`;
+function passo(n, titulo, fora, campo) {
+  return `<li class="passo"><span class="num" aria-hidden="true">${n}</span><div><h4>${titulo}</h4>${fora ? `<p class="sub">${fora}</p>` : ''}${campo || ''}</div></li>`;
+}
+function campoSegredo(nome, rotulo, opc = {}) {
+  const s = segInfo(nome), imp = impressaoDe(nome), id = 'sg-' + nome;
+  const st = s?.gravado ? `gravado em ${quando(s.gravado_em)}${imp ? ' · impressão ' + esc(imp) : ''}` : 'ainda não gravado';
+  return `<form class="mini" data-segredo-form="${esc(nome)}" data-json="${opc.json ? '1' : ''}" autocomplete="off">
+    <label class="campo" for="${id}">${rotulo} <code>${esc(nome)}</code>
+      ${opc.json ? `<textarea id="${id}" class="oculto" spellcheck="false" autocomplete="off" required></textarea>` : `<input id="${id}" type="password" autocomplete="new-password" spellcheck="false" required>`}</label>
+    <label class="campo" for="${id}-mot">Motivo<input id="${id}-mot" required placeholder="obrigatório; fica no histórico"></label>
+    <div class="acoes"><button class="btn prim" type="submit">Gravar no cofre</button><span class="sub ${s?.gravado ? 'gravado' : ''}" id="${id}-st" role="status" data-segredo-st="${esc(nome)}">${st}</span></div></form>`;
+}
+function campoParam(chave, rotulo, opc = {}) {
+  const v = integ?.parametros?.[chave], id = 'pr-' + chave.replace(/\W/g, '-'), r = retornos[chave];
+  const input = opc.opcoes ? `<select id="${id}">${opc.opcoes.map(o => `<option ${o === v ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>`
+    : `<input id="${id}" ${opc.numero ? 'type="number" step="1" min="0"' : ''} value="${esc(Array.isArray(v) ? v.join(', ') : v ?? '')}" placeholder="${esc(opc.exemplo || '')}">`;
+  return `<form class="mini" data-param-form="${esc(chave)}" data-numero="${opc.numero ? '1' : ''}">
+    <div class="par"><label class="campo" for="${id}">${rotulo} <code>${esc(chave)}</code>${input}</label>
+      <label class="campo" for="${id}-mot">Motivo<input id="${id}-mot" required placeholder="obrigatório; fica no histórico"></label></div>
+    <div class="acoes"><button class="btn" type="submit">Salvar</button><span class="sub" role="status" data-param-st="${esc(chave)}">${r ? esc(r) : ''}</span></div></form>`;
+}
+function situacaoConexao(c) {
+  if (!c) return '<span class="chip">conexão não cadastrada</span>';
+  return `<span class="chip ${esc(c.estado)}">${esc(ESTADO[c.estado] || c.estado)}</span> <span class="chip ${esc(c.saude)}">${esc(SAUDE[c.saude] || c.saude)}</span>${c.saude_detalhe ? ` <span class="sub">${esc(c.saude_detalhe)}</span>` : ''} <span class="sub">· verificada: ${quando(c.verificada_em)}</span>`;
+}
+function botaoTestar(cod) {
+  const t = testes[cod];
+  return `<div class="acoes"><button class="btn" type="button" data-testar="${esc(cod)}">Testar ${esc(cod)}</button>
+    <span class="sub ${t ? (t.ok ? 'bom' : 'ruim') : ''}" role="status" data-teste-st="${esc(cod)}">${t ? (t.ok ? 'Funcionou: ' : 'Falhou: ') + esc(t.detalhe || '') : ''}</span></div>
+    <p class="sub" style="margin:4px 0 0">${situacaoConexao(conexao(cod))}</p>`;
+}
+function aTelegram() {
+  return `<ol class="passos">
+    ${passo(1, 'Criar o bot no Telegram', `No Telegram, abra o ${link('https://t.me/BotFather', '@BotFather')}, mande <code>/newbot</code>, escolha o nome e o usuário (termina em <code>bot</code>). Ele responde com o token. Guia oficial: ${link('https://core.telegram.org/bots/tutorial', 'tutorial de bots')}.`)}
+    ${passo(2, 'Guardar o token', 'Cole o token que o BotFather mandou. Ele vai direto para o cofre e não volta para a tela.', campoSegredo('telegram_bot_token', 'Token do bot'))}
+    ${passo(3, 'Dizer o ambiente', 'Bot criado no @BotFather é do ambiente de produção do Telegram. Grave o texto <code>producao</code>.', campoSegredo('telegram_ambiente', 'Ambiente'))}
+    ${passo(4, 'Testar', 'O teste pergunta ao Telegram quem é o bot e mostra o @usuario.', botaoTestar('telegram-bot-api'))}
+    ${passo(5, 'Ligar o bot', 'Liga o recebimento de mensagens (webhook) e a lista de comandos do bot.', `<div class="acoes"><button class="btn prim" type="button" data-telegram-ligar>Ligar o bot</button><span class="sub" role="status" id="tg-ligar-st">${esc(retornos['telegram-ligar'] || '')}</span></div>`)}
+    ${passo(6, 'Conversa de alertas', 'Crie um grupo no Telegram, adicione o bot e informe a referência da conversa (o número do grupo, começa com -100). Os alertas da operação chegam ali.', campoParam('alerta.chat_ref', 'Conversa', { exemplo: '-1001234567890' }))}
+  </ol>`;
+}
+function aAnthropic() {
+  return `<ol class="passos">
+    ${passo(1, 'Criar a chave', `No console da Anthropic, crie uma chave de API para o IMTS.OS: ${link('https://platform.claude.com/docs/en/get-api-key', 'como obter a chave')}. Defina um limite de gasto no próprio console.`)}
+    ${passo(2, 'Guardar a chave', 'A chave vai para o cofre e só a função do servidor a usa.', campoSegredo('anthropic_chave', 'Chave da API'))}
+    ${passo(3, 'Modelo', 'Nome do modelo usado nas atas e rascunhos.', campoParam('ia.modelo', 'Modelo', { exemplo: 'claude-sonnet-5-5' }))}
+    ${passo(4, 'Testar', 'Confere se a Anthropic aceita a chave.', botaoTestar('ia-anthropic'))}
+  </ol>`;
+}
+function aKimi() {
+  return `<ol class="passos">
+    ${passo(1, 'Criar a chave', `Na plataforma da Kimi, crie a chave: ${link('https://platform.kimi.ai/docs/api/overview', 'visão geral da API')} e ${link('https://platform.kimi.ai/docs/guide/migrating-from-openai-to-kimi', 'compatibilidade com a interface OpenAI')}.`)}
+    ${passo(2, 'Guardar a chave', '', campoSegredo('kimi_chave', 'Chave da API'))}
+    ${passo(3, 'Endereço e modelo', 'O endereço termina em <code>/v1</code>.', campoParam('ia.kimi_url', 'Endereço', { exemplo: 'https://api.moonshot.ai/v1' }) + campoParam('ia.kimi_modelo', 'Modelo'))}
+    ${passo(4, 'Testar', 'Lista os modelos que a chave enxerga.', botaoTestar('ia-kimi'))}
+    ${passo(5, 'Qual IA usar e quanto gastar', 'Provedor principal e orçamento de tokens por mês (a função do servidor para de chamar ao atingir).', campoParam('ia.provedor', 'Provedor', { opcoes: ['anthropic', 'kimi'] }) + campoParam('ia.orcamento_mensal_tokens', 'Orçamento mensal (tokens)', { numero: true }))}
+  </ol>`;
+}
+function aGoogle() {
+  return `<ol class="passos">
+    ${passo(1, 'Conta do sistema', 'No Google Workspace do IMTS, crie uma conta para o sistema (ex.: sistema@imts.com.br). É em nome dela que o IMTS.OS grava no Drive, marca reuniões e envia e-mails.', campoParam('google.usuario_sistema', 'Conta do sistema', { exemplo: 'sistema@imts.com.br' }))}
+    ${passo(2, 'Projeto e APIs', 'No Google Cloud Console, crie um projeto e ative as APIs Google Drive, Google Calendar e Gmail.')}
+    ${passo(3, 'Conta de serviço', 'Em IAM, crie uma conta de serviço e gere uma chave JSON. Baixe o arquivo: ele só aparece uma vez.')}
+    ${passo(4, 'Delegação no Workspace', 'No Admin do Workspace (Segurança, Controles de API, Delegação em todo o domínio), autorize o ID do cliente da conta de serviço com os três escopos:<br><code>https://www.googleapis.com/auth/drive</code><br><code>https://www.googleapis.com/auth/calendar.events</code><br><code>https://www.googleapis.com/auth/gmail.send</code>')}
+    ${passo(5, 'Guardar o JSON', 'Cole o conteúdo do arquivo JSON. A tela confere se é JSON com <code>client_email</code> e <code>private_key</code> antes de enviar; o conteúdo não é mostrado.', campoSegredo('google_conta_servico', 'JSON da conta de serviço', { json: true }))}
+    ${passo(6, 'Pasta raiz', 'ID do drive compartilhado onde ficam as pastas das empresas (o trecho final do endereço do drive).', campoParam('google.drive_raiz', 'Drive compartilhado'))}
+    ${passo(7, 'Testar', 'A função do servidor entra como a conta do sistema e lista o drive.', botaoTestar('edge-google'))}
+  </ol>`;
+}
+function aExterno() {
+  const ext = (integ?.conexoes || []).filter(c => CATEGORIAS_EXT.includes(c.categoria) && !['ia-anthropic', 'ia-kimi', 'telegram-bot-api'].includes(c.codigo));
+  return `<ol class="passos">
+    ${passo(1, 'Cadastrar o serviço', 'ERP, emissor fiscal, banco, assinatura eletrônica ou outro. Liste só os nomes dos segredos (ex.: <code>erp_chave</code>); os valores se gravam no passo seguinte.', `
+      <form class="mini" id="f-ext" autocomplete="off">
+        <div class="par"><label class="campo" for="ex-cod">Código (minúsculas, números e hífen)<input id="ex-cod" required pattern="[a-z][a-z0-9\\-]{2,40}"></label>
+          <label class="campo" for="ex-nome">Nome<input id="ex-nome" required></label></div>
+        <div class="par"><label class="campo" for="ex-cat">Categoria<select id="ex-cat">${CATEGORIAS_EXT.map(c => `<option>${c}</option>`).join('')}</select></label>
+          <label class="campo" for="ex-forn">Fornecedor<input id="ex-forn"></label></div>
+        <label class="campo" for="ex-end">Endereço da API<input id="ex-end" type="url" placeholder="https://..."></label>
+        <label class="campo" for="ex-seg">Nomes dos segredos (um por linha)<textarea id="ex-seg" spellcheck="false" placeholder="erp_chave"></textarea></label>
+        <fieldset class="pares"><legend>Configuração extra (sem segredo)</legend><div id="ex-pares">${linhaPar(0)}</div>
+          <button class="btn" type="button" data-par-mais="ex-pares">Mais um par</button></fieldset>
+        <label class="campo" for="ex-mot">Motivo<input id="ex-mot" required placeholder="obrigatório; fica no histórico"></label>
+        <div class="acoes"><button class="btn prim" type="submit">Cadastrar serviço</button><span class="sub" role="status" id="ex-st">${esc(retornos.externo || '')}</span></div></form>`)}
+    ${passo(2, 'Gravar os segredos e testar', 'Cada serviço abaixo mostra os segredos previstos. Grave cada um e teste.', ext.length ? `<div class="linhas">${ext.map(cartaoConexao).join('')}</div>` : '<p class="vazio">Nenhum serviço externo cadastrado.</p>')}
+  </ol>`;
+}
+function linhaPar(i, k = '', v = '') {
+  return `<div class="par par-cv"><label class="campo" for="pc-k-${i}">Chave<input id="pc-k-${i}" data-par-k value="${esc(k)}"></label><label class="campo" for="pc-v-${i}">Valor<input id="pc-v-${i}" data-par-v value="${esc(v)}"></label></div>`;
+}
+let nPar = 100;
+function lerPares(raiz) {
+  const cfg = {};
+  for (const l of raiz.querySelectorAll('.par-cv')) {
+    const k = l.querySelector('[data-par-k]').value.trim(), v = l.querySelector('[data-par-v]').value.trim();
+    if (!k) continue;
+    if (PROIBIDO.test(k)) throw new Error(`“${k}” parece segredo: liste o nome em segredos e grave o valor no cofre`);
+    cfg[k] = v;
+  }
+  return cfg;
+}
+function cartaoConexao(c) {
+  return `<article class="cartao conx" data-conexao="${esc(c.codigo)}"><div class="t">${esc(c.nome)} <code>${esc(c.codigo)}</code></div>
+    <p class="sub" style="margin:2px 0 6px">${esc(c.categoria)}${c.fornecedor ? ' · ' + esc(c.fornecedor) : ''}${c.endpoint ? ' · ' + esc(c.endpoint) : ''}${Object.keys(c.config || {}).length ? ' · ' + Object.entries(c.config).map(([k, v]) => esc(k) + '=' + esc(typeof v === 'object' ? JSON.stringify(v) : v)).join(', ') : ''}${c.pendencia ? '<br>Pendência: ' + esc(c.pendencia) : ''}</p>
+    ${(c.segredos || []).map(s => campoSegredo(s.nome, 'Segredo')).join('')}
+    ${botaoTestar(c.codigo)}
+    <div class="acoes" style="margin-top:6px"><button class="btn" type="button" data-configurar="${esc(c.codigo)}" aria-label="Configurar ${esc(c.nome)}">Configurar</button></div></article>`;
+}
+function aSistemas() {
+  const ok = (integ?.conexoes || []).filter(c => c.estado === 'ativa' && c.saude === 'ok');
+  return `<p class="sub" style="margin:0 0 10px"><b>Assistido</b> = uma pessoa faz a tarefa do sistema e registra; <b>real</b> = a conexão faz. Só vira real com uma conexão ativa e testada.</p>
+    <div class="rolagem" tabindex="0"><table class="hist" id="tab-sistemas"><thead><tr><th scope="col">Sistema</th><th scope="col">Atende</th><th scope="col">Modo atual</th><th scope="col">Mudar para</th></tr></thead><tbody>
+    ${(integ?.sistemas || []).map(s => { const id = 'si-' + s.codigo; return `<tr><td>${esc(s.nome)}<br><code>${esc(s.codigo)}</code></td><td>${esc(s.atende)}</td>
+      <td><span class="chip ${s.adaptador === 'real' ? 'ok' : ''}">${esc(s.adaptador)}</span>${s.conexao ? '<br><code>' + esc(s.conexao) + '</code>' : ''}</td>
+      <td><form class="mini" data-sistema-form="${esc(s.codigo)}"><div class="par">
+        <label class="campo" for="${id}-m">Modo<select id="${id}-m"><option value="assistido" ${s.adaptador !== 'real' ? 'selected' : ''}>assistido</option><option value="real" ${s.adaptador === 'real' ? 'selected' : ''}>real</option></select></label>
+        <label class="campo" for="${id}-c">Conexão<select id="${id}-c"><option value="">nenhuma</option>${ok.map(c => `<option value="${esc(c.codigo)}" ${c.codigo === s.conexao ? 'selected' : ''}>${esc(c.codigo)}</option>`).join('')}</select></label></div>
+        <label class="campo" for="${id}-mot">Motivo<input id="${id}-mot" required></label>
+        <div class="acoes"><button class="btn" type="submit">Salvar</button><span class="sub" role="status">${esc(retornos['sis:' + s.codigo] || '')}</span></div></form></td></tr>`; }).join('')}</tbody></table></div>`;
+}
+function aTodas(q) {
+  const cs = (integ?.conexoes || []).filter(c => casa(c, q));
+  return cs.length ? `<div class="linhas">${cs.map(cartaoConexao).join('')}</div>` : '<p class="vazio">Nenhuma conexão com esse termo.</p>';
+}
+function vIntegracoes(q) {
+  if (falhas.integ) return naoCarregou('integ');
+  if (!integ) return '<p class="vazio">Carregando…</p>';
+  const cs = integ.conexoes || [];
+  const ok = cs.filter(c => c.estado === 'ativa' && c.saude === 'ok').length, pend = cs.filter(c => c.estado === 'pendente').length, fal = cs.filter(c => c.saude === 'falha').length;
+  const corpo = { telegram: aTelegram, anthropic: aAnthropic, kimi: aKimi, google: aGoogle, externo: aExterno, sistemas: aSistemas, todas: aTodas }[assist](q);
+  return `<section class="grupo"><h2>Situação</h2><div class="resumo" style="padding:0" id="integ-situacao">
+      <span class="bem">Ativas e testadas <b>${ok}</b></span><span class="${pend ? 'esp' : ''}">Pendentes <b>${pend}</b></span><span class="${fal ? 'mal' : ''}">Com falha <b>${fal}</b></span><span>Total <b>${cs.length}</b></span></div></section>
+    <section class="grupo"><h2>Assistentes</h2><div class="acoes" role="group" aria-label="Assistentes de integração">${ASSIST.map(([k, n]) => `<button class="aba" type="button" data-assist="${k}" aria-pressed="${k === assist}">${esc(n)}</button>`).join('')}</div></section>
+    <section class="grupo" id="assistente" data-assist-atual="${assist}"><h2>${esc(ASSIST.find(a => a[0] === assist)[1])}</h2>${corpo}</section>
+    <p class="sub">${IMTS.servidor ? '' : 'Teste indisponível: o núcleo ainda não expõe a chamada à função do servidor <code>conexoes</code>.'}</p>`;
+}
+async function testar(cod, b) {
+  b.disabled = true;
+  try {
+    if (!IMTS.servidor) throw new Error('o núcleo não expõe a função do servidor conexoes');
+    const r = await IMTS.servidor('conexoes', 'testar', { codigo: cod });
+    testes[cod] = { ok: !!r?.ok, detalhe: r?.detalhe || '' };
+  } catch (e) { testes[cod] = { ok: false, detalhe: motivo(e) }; }
+  recibo(testes[cod].ok ? 'feito' : 'recusado', `Teste de ${cod}: ${testes[cod].ok ? 'funcionou' : 'falhou'}.`);
+  try { await recarregar(); } catch (e) { desenhar(); }
+}
+async function enviarSegredo(f) {
+  const nome = f.dataset.segredoForm, campo = f.querySelector('input[type=password],textarea'), mot = f.querySelector('input:not([type=password])');
+  const st = f.querySelector('[data-segredo-st]'), b = f.querySelector('button[type=submit]');
+  let valor = campo.value;
+  if (f.dataset.json) {
+    let j = null; try { j = JSON.parse(valor); } catch (e) { /* trata abaixo */ }
+    if (!j || typeof j !== 'object') { st.textContent = 'Não é um JSON válido. Cole o conteúdo inteiro do arquivo.'; return; }
+    if (!j.client_email || !j.private_key) { st.textContent = 'O JSON precisa ter client_email e private_key (é o arquivo da conta de serviço?).'; return; }
+    valor = JSON.stringify(j);
+  } else valor = valor.trim();
+  b.disabled = true;
+  try {
+    const r = await IMTS.chamar('adm.segredo_gravar', { p_nome: nome, p_valor: valor, p_motivo: mot.value });
+    impressoes[nome] = r.impressao; campo.value = ''; valor = null;
+    recibo('feito', `Segredo ${nome} gravado no cofre.`);
+    await recarregar();
+  } catch (e) { campo.value = ''; st.textContent = 'Recusado: ' + motivo(e); recibo('recusado', 'Segredo recusado: ' + motivo(e)); }
+  finally { b.disabled = false; }
+}
+async function enviarParam(f) {
+  const chave = f.dataset.paramForm, el = f.querySelector('input:not([id$="-mot"]),select'), mot = f.querySelector('[id$="-mot"]');
+  let valor = el.value.trim();
+  if (f.dataset.numero) valor = Number(valor);
+  const b = f.querySelector('button[type=submit]'); b.disabled = true;
+  try {
+    const r = await IMTS.chamar('adm.alterar_parametro', { p_chave: chave, p_valor: valor, p_motivo: mot.value });
+    retornos[chave] = r?.situacao === 'pendente' ? `Pedido registrado (mudança ${Number(r.mudanca)}): vale depois que outra pessoa da administração aprovar.`
+      : r?.situacao === 'aplicada' ? 'Aplicado.' : r?.situacao === 'sem mudança' ? 'Sem mudança: já era esse valor.' : JSON.stringify(r);
+    recibo('feito', `${chave}: ${retornos[chave]}`);
+    await recarregar();
+  } catch (e) { retornos[chave] = 'Recusado: ' + motivo(e); desenhar(); }
+  finally { b.disabled = false; }
+}
+async function criarExterno(f) {
+  const b = f.querySelector('button[type=submit]');
+  try {
+    const cfg = lerPares(f), seg = $('ex-seg').value.split('\n').map(s => s.trim()).filter(Boolean);
+    b.disabled = true;
+    await IMTS.chamar('adm.conexao_criar', { p_codigo: $('ex-cod').value.trim(), p_nome: $('ex-nome').value.trim(), p_categoria: $('ex-cat').value, p_fornecedor: $('ex-forn').value.trim(),
+      p_endpoint: $('ex-end').value.trim(), p_segredos: seg, p_config: cfg, p_motivo: $('ex-mot').value });
+    retornos.externo = `Serviço ${$('ex-cod').value.trim()} cadastrado: grave os segredos e teste abaixo.`;
+    recibo('feito', retornos.externo); await recarregar();
+  } catch (e) { $('ex-st').textContent = 'Recusado: ' + motivo(e); }
+  finally { b.disabled = false; }
+}
+async function salvarSistema(f) {
+  const cod = f.dataset.sistemaForm, id = 'si-' + cod, b = f.querySelector('button[type=submit]'); b.disabled = true;
+  try {
+    await IMTS.chamar('adm.sistema_adaptador', { p_codigo: cod, p_adaptador: $(id + '-m').value, p_conexao: $(id + '-c').value || null, p_motivo: $(id + '-mot').value });
+    retornos['sis:' + cod] = 'Salvo.'; await recarregar();
+  } catch (e) { retornos['sis:' + cod] = 'Recusado: ' + motivo(e); desenhar(); }
+  finally { b.disabled = false; }
+}
+async function ligarTelegram(b) {
+  b.disabled = true;
+  try { const r = await IMTS.chamar('adm.telegram_ligar', {}); retornos['telegram-ligar'] = `Pedido de ligação enviado ao Telegram (registro ${Number(r)}). Teste de novo em alguns segundos.`; }
+  catch (e) { retornos['telegram-ligar'] = 'Recusado: ' + motivo(e); }
+  desenhar();
+}
+function abrirConfigurar(cod) {
+  const c = conexao(cod); if (!c) return;
+  const pares = Object.entries(c.config || {});
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">Configurar ${esc(c.nome)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p><code>${esc(c.codigo)}</code>. Campos vazios ficam como estão; os pares se somam à configuração atual.</p>
+    <form id="f-cfg" class="linhas" autocomplete="off">
+      <label class="campo" for="cf-forn">Fornecedor<input id="cf-forn" value="${esc(c.fornecedor || '')}"></label>
+      <label class="campo" for="cf-end">Endereço da API<input id="cf-end" type="url" value="${esc(c.endpoint || '')}" placeholder="https://..."></label>
+      <fieldset class="pares"><legend>Configuração extra (sem segredo)</legend><div id="cf-pares">${(pares.length ? pares : [['', '']]).map(([k, v]) => linhaPar(nPar++, k, typeof v === 'object' ? JSON.stringify(v) : v)).join('')}</div>
+        <button class="btn" type="button" data-par-mais="cf-pares">Mais um par</button></fieldset>
+      <label class="campo" for="f-mot">Motivo<input id="f-mot" required placeholder="obrigatório; fica no histórico"></label>
+      <p class="sub" role="status" id="cf-st"></p>
+      <div class="acoes"><button class="btn prim" type="submit">Salvar</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-cfg').onsubmit = async ev => {
+    ev.preventDefault();
+    let cfg; try { cfg = lerPares($('f-cfg')); } catch (e) { $('cf-st').textContent = motivo(e); return; }
+    await agir('adm.conexao_configurar', { p_codigo: cod, p_fornecedor: $('cf-forn').value.trim(), p_endpoint: $('cf-end').value.trim(), p_config: cfg, p_motivo: $('f-mot').value }, `Conexão ${cod} configurada.`, true);
+  };
+}
+document.addEventListener('submit', e => {
+  const f = e.target;
+  if (f.dataset.segredoForm) { e.preventDefault(); enviarSegredo(f); }
+  else if (f.dataset.paramForm) { e.preventDefault(); enviarParam(f); }
+  else if (f.dataset.sistemaForm) { e.preventDefault(); salvarSistema(f); }
+  else if (f.id === 'f-ext') { e.preventDefault(); criarExterno(f); }
+});
+
 function desenhar() {
   desenharResumo();
   const q = $('q').value.trim().toLowerCase();
   if (aba === 'cadastro') { if (!cadNo) { montarCadastro(); desenharConvite(); } $('conteudo').replaceChildren(cadNo); }
   else if (!carregou && !['cadastro'].includes(aba)) $('conteudo').innerHTML = '<p class="vazio">Carregando…</p>';
-  else $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, historico: vHistorico, agenda: vAgenda, alertas: vAlertas, implantacao: vImplantacao }[aba](q);
+  else $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, historico: vHistorico, agenda: vAgenda, alertas: vAlertas, implantacao: vImplantacao, integracoes: vIntegracoes }[aba](q);
   $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
-  for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
+  for (const b of document.querySelectorAll('.aba[role=tab]')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
   $('rodape').textContent = dados.gerado_em ? `Gerado ${quando(dados.gerado_em)}. Cada alteração passa pelas funções da administração e vale a regra do banco: validação, duas mãos nos sensíveis e histórico. Valores de segredo nunca aparecem: só o nome no cofre.` : '';
 }
 
@@ -604,14 +871,15 @@ async function agir(fn, args, ok, fecharDepois) {
   finally { bs.forEach(b => b.disabled = false); }
 }
 async function recarregar() {
-  const [p, a, al, im, co] = await Promise.allSettled([IMTS.chamar('adm.painel_completo', {}), IMTS.chamar('rt.agentes_painel', {}), IMTS.chamar('adm.alertas', {}),
-    IMTS.chamar('adm.conferir_implantacao', {}), IMTS.chamar('adm.cobertura_papeis', {})]);
+  const [p, a, al, im, co, ig] = await Promise.allSettled([IMTS.chamar('adm.painel_completo', {}), IMTS.chamar('rt.agentes_painel', {}), IMTS.chamar('adm.alertas', {}),
+    IMTS.chamar('adm.conferir_implantacao', {}), IMTS.chamar('adm.cobertura_papeis', {}), IMTS.chamar('adm.integracoes', {})]);
   falhas = {};
   if (p.status === 'fulfilled') dados = p.value || VAZIO; else falhas.painel = motivo(p.reason);
   if (a.status === 'fulfilled') agentes = a.value || []; else falhas.agentes = motivo(a.reason);
   if (al.status === 'fulfilled') alertas = al.value || []; else falhas.alertas = motivo(al.reason);
   if (im.status === 'fulfilled') implantacao = im.value; else falhas.implantacao = motivo(im.reason);
   if (co.status === 'fulfilled') cobertura = co.value; else falhas.cobertura = motivo(co.reason);
+  if (ig.status === 'fulfilled') integ = ig.value; else falhas.integ = motivo(ig.reason);
   carregou = true;
   const msgs = Object.values(falhas);
   $('erro').hidden = !msgs.length; $('erro').textContent = msgs.length ? 'Parte da administração não carregou: ' + [...new Set(msgs)].join('; ') : '';
@@ -631,6 +899,11 @@ document.addEventListener('click', e => {
   else if (t.dataset.editarParam) abrirParam(t.dataset.editarParam);
   else if (t.dataset.decidir) abrirDecisao(Number(t.dataset.decidir), t.dataset.d);
   else if (t.dataset.modelo) baixarModelo(t.dataset.modelo);
+  else if (t.dataset.assist) { assist = t.dataset.assist; desenhar(); document.querySelector(`[data-assist="${assist}"]`)?.focus(); }
+  else if (t.dataset.testar) testar(t.dataset.testar, t);
+  else if (t.dataset.configurar) abrirConfigurar(t.dataset.configurar);
+  else if (t.hasAttribute('data-telegram-ligar')) ligarTelegram(t);
+  else if (t.dataset.parMais) $(t.dataset.parMais).insertAdjacentHTML('beforeend', linhaPar(nPar++));
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !$('foco').hidden) { fechar(); return; }
@@ -639,9 +912,9 @@ document.addEventListener('keydown', e => {
     if (fs.length && e.shiftKey && document.activeElement === fs[0]) { e.preventDefault(); fs.at(-1).focus(); }
     else if (fs.length && !e.shiftKey && document.activeElement === fs.at(-1)) { e.preventDefault(); fs[0].focus(); }
   }
-  const t = e.target.closest?.('.aba');   // setas e Home/End entre as abas
+  const t = e.target.closest?.('.aba[role=tab]');   // setas e Home/End entre as abas
   if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
-    const abas = [...document.querySelectorAll('.aba')], i = abas.indexOf(t);
+    const abas = [...document.querySelectorAll('.aba[role=tab]')], i = abas.indexOf(t);
     const j = e.key === 'Home' ? 0 : e.key === 'End' ? abas.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
     e.preventDefault(); aba = abas[j].dataset.aba; desenhar(); abas[j].focus();
   }

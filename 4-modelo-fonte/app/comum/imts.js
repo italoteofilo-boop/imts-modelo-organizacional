@@ -62,6 +62,7 @@
   }
   const google = (acao, dados) => funcao('google', acao, dados);
   const ia = (acao, dados) => funcao('ia', acao, dados);
+  const servidor = (nome, acao, dados) => funcao(nome, acao, dados);   // outras funções do servidor (ex.: conexoes)
 
   // ---------- empresa em uso (vai no cabeçalho x-empresa; o banco confere a permissão) ----------
   function empresa() { return guardar.ler('empresa'); }
@@ -145,6 +146,6 @@
     return q;
   }
 
-  window.IMTS = { chamar, google, ia, iniciar, quemSou, empresa, escolherEmpresa, sair, entrarGoogle, entrarEmail, modulos: () => MODULOS.filter(m => quem && m.para(quem)),
+  window.IMTS = { chamar, google, ia, servidor, iniciar, quemSou, empresa, escolherEmpresa, sair, entrarGoogle, entrarEmail, modulos: () => MODULOS.filter(m => quem && m.para(quem)),
     supa, esc, ensaio: ENSAIO, guardar };
 })();

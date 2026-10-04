@@ -2,7 +2,7 @@
  "fonte": "saida/c1..c9/circulo.json, modelo 2026-10-03.2",
  "metodo": "catálogo fechado; ligação às saídas por regra de texto, para revisão da ID-04",
  "resumo": {
-  "tipos": 38,
+  "tipos": 39,
   "tipos_com_origem": 36,
   "saidas_total": 690,
   "saidas_ligadas": 162,
@@ -12,7 +12,7 @@
    "contratual": 8,
    "proposta": 1,
    "relatorio": 5,
-   "demonstrativo": 6,
+   "demonstrativo": 7,
    "licitacao": 2,
    "ata": 2,
    "politica": 5,
@@ -21,7 +21,7 @@
    "certificado": 2
   },
   "por_alcance": {
-   "externo": 18,
+   "externo": 19,
    "interno": 20
   },
   "tarefas_documentais": 127
@@ -3063,6 +3063,17 @@
    "modelo": "oficio",
    "alcance": "externo",
    "regra": "^declaracao(?! de identidade)",
+   "origens": [],
+   "tarefas": [],
+   "ligacao": "heuristica"
+  },
+  {
+   "id": "nota-debito",
+   "nome": "Nota de débito para ressarcimento de despesas",
+   "familia": "demonstrativo",
+   "modelo": "demonstrativo",
+   "alcance": "externo",
+   "regra": "nota de debito|ressarcimento de despesas?|reembolso de despesas?",
    "origens": [],
    "tarefas": [],
    "ligacao": "heuristica"

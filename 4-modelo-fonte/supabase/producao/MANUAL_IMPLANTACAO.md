@@ -73,7 +73,7 @@ export ADMIN_NOME='Nome do primeiro administrador' ADMIN_EMAIL='nome@imts.com.br
 
 **O que o script faz, nesta ordem:**
 1. Habilita as extensões (`000_extensoes.sql`: pg_cron, pgcrypto, pg_net e Vault).
-2. Aplica as migrações `001` a `068`, pulando `012a`, que só serve para trocar a versão do modelo.
+2. Aplica as migrações `001` a `073`, pulando `012a`, que só serve para trocar a versão do modelo.
 3. Cadastra o primeiro administrador.
 4. Aplica o perfil de produção (`090`). O perfil:
    - desliga a simulação;

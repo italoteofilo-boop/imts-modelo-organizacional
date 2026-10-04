@@ -1,0 +1,32 @@
+{
+ "data": "2026-10-04",
+ "local": "Fortaleza/CE",
+ "id": "amostra-nota-debito-imts",
+ "tipo": "nota-debito",
+ "marca": "imts",
+ "titulo": "Nota de débito ND 2026/0001",
+ "emitente": "Empresa Exemplo",
+ "capa": false,
+ "sumario": false,
+ "campos": [
+  ["Número", "ND 2026/0001"],
+  ["Credora", "Empresa Exemplo"],
+  ["Devedora", "Prefeitura Exemplo"],
+  ["Data", "04/10/2026"],
+  ["Vencimento", "19/10/2026"],
+  ["Referência", "Implantação do contrato de serviços"],
+  ["Total a ressarcir", "R$ 1.388,40"]
+ ],
+ "blocos": [
+  {"t": "secao", "titulo": "Despesas a ressarcir"},
+  {"t": "p", "texto": "Despesas pagas pela credora por conta da devedora, com os comprovantes guardados no acervo da credora. Documento de exemplo do motor documental: nomes, números e datas são fictícios."},
+  {"t": "tabela", "nome": "Quadro 1 – Despesas (em R$)", "cab": ["Data", "Descrição", "Comprovante", "Valor"], "esq": [1, 2],
+   "linhas": [
+    ["15/09/2026", "Passagem aérea Fortaleza a Brasília para a reunião de implantação", "nº 41 no acervo", "1.120,00"],
+    ["16/09/2026", "Táxi do aeroporto ao órgão", "nº 42 no acervo", "86,40"],
+    ["17/09/2026", "Cópias autenticadas dos documentos de habilitação", "sem comprovante", "182,00"],
+    ["", "Total", "", "1.388,40"]
+   ], "total": true},
+  {"t": "nota", "texto": "Nota de débito para ressarcimento de despesas. Não é documento fiscal: não há prestação de serviço nem venda de mercadoria, só o reembolso do que foi pago por conta da devedora."}
+ ]
+}

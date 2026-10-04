@@ -46,6 +46,8 @@ TIPOS = [
  ('notificacao', 'Notificação formal', 'oficio', 'oficio', 'externo', r'notificac|retirada de marca|suspensao de novas entregas'),
  ('certificado', 'Certificado de reconhecimento', 'certificado', 'certificado', 'interno', r'reconhecimento'),
  ('declaracao', 'Declaração', 'certificado', 'oficio', 'externo', r'^declaracao(?! de identidade)'),
+ # 071: cobrança do reembolso de despesas pagas por conta do cliente ou parceiro; não é documento fiscal (por último: não tira saída de outro tipo)
+ ('nota-debito', 'Nota de débito para ressarcimento de despesas', 'demonstrativo', 'demonstrativo', 'externo', r'nota de debito|ressarcimento de despesas?|reembolso de despesas?'),
 ]
 # saídas que são passo de fluxo (pedido, lista, decisão de rever...), não documento: ficam como registro do motor
 # exceções ancoradas: saídas que começam como passo de fluxo mas são documento emitido

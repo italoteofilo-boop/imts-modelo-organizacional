@@ -11,14 +11,28 @@ adm.alertas(p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] alertas de opera
 adm.alterar_conexao(p_codigo text, p_campos jsonb, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] alterar conexão
 adm.alterar_parametro(p_chave text, p_valor jsonb, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] alterar parâmetro
 adm.cobertura_papeis() -> jsonb  [interno] Papéis do modelo sem pessoa de verdade
+adm.conexao_configurar(p_codigo text, p_fornecedor text, p_endpoint text, p_config jsonb, p_motivo text) -> void  [interno] Configurar serviço externo (só administração)
+adm.conexao_criar(p_codigo text, p_nome text, p_categoria text, p_fornecedor text, p_endpoint text, p_segredos text[], p_config jsonb, p_motivo text) -> void  [interno] Cadastrar serviço externo (só administração)
 adm.conferir_implantacao() -> jsonb  [interno] Conferência da implantação (só administração)
 adm.decidir_mudanca(p_mudanca bigint, p_decisao text, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> text  [interno] aprovar ou recusar mudança
 adm.importar_cadastro(p_dados jsonb, p_confirmar boolean DEFAULT false, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] importar o cadastro
+adm.integracoes() -> jsonb  [interno] Situação das integrações (só administração)
 adm.painel_completo() -> jsonb  [interno] administração
+adm.segredo_gravar(p_nome text, p_valor text, p_motivo text) -> jsonb  [interno] Gravar segredo no cofre (só administração; o valor não volta)
+adm.sistema_adaptador(p_codigo text, p_adaptador text, p_conexao text, p_motivo text) -> void  [interno] Modo de cada sistema do motor (só administração)
+adm.telegram_ligar() -> bigint  [interno] Ligar o webhook e os comandos do bot (só administração)
 adm.verificar_saude() -> jsonb  [interno] verificar saúde
 doc.decidir_marca(p_proposta bigint, p_decisao text, p_papeis jsonb, p_tipografia jsonb, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir marca
 doc.decidir_minuta(p_minuta bigint, p_decisao text, p_tipo text, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir minuta
+doc.nota_debito_aprovar(p_nota bigint) -> jsonb  [interno] aprovar nota de débito
+doc.nota_debito_cancelar(p_nota bigint, p_motivo text) -> jsonb  [interno] cancelar nota de débito
+doc.nota_debito_emitir(p_nota bigint) -> jsonb  [interno] emitir o PDF da nota de débito
+doc.nota_debito_pagar(p_nota bigint, p_data date, p_comprovante text, p_arquivo bigint DEFAULT NULL::bigint) -> jsonb  [interno] registrar pagamento da nota de débito
+doc.nota_debito_pdf(p_nota bigint) -> text  [interno] baixar o PDF da nota de débito
+doc.nota_debito_publicar(p_nota bigint, p_perfis text[] DEFAULT NULL::text[]) -> jsonb  [interno] publicar nota de débito no portal
+doc.nota_debito_salvar(p_empresa uuid, p_contraparte uuid, p_vencimento date, p_itens jsonb, p_nota bigint DEFAULT NULL::bigint, p_data date DEFAULT NULL::date, p_referencia text DEFAULT NULL::text, p_local text DEFAULT NULL::text) -> jsonb  [interno] criar ou editar rascunho de nota de débito
 doc.painel_marca_modelos(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] marca e minutas
+doc.painel_notas_debito(p_empresa uuid) -> jsonb  [interno] Central: notas de débito
 doc.pedir_minuta(p_minuta bigint, p_titulo text, p_data date, p_local text, p_como uuid DEFAULT NULL::uuid) -> bigint  [interno] emitir pela minuta
 ext.atendimento_confirmar(p_pedido bigint, p_avaliacao smallint DEFAULT NULL::smallint, p_comentario text DEFAULT NULL::text) -> void  [externo] confirmar encerramento
 ext.atendimento_reabrir(p_pedido bigint, p_motivo text) -> void  [externo] reabrir
@@ -37,6 +51,7 @@ ext.painel_reunioes(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [i
 ext.pasta_externa() -> jsonb  [externo] Pasta do acervo que recebe os arquivos de quem é de fora
 ext.pedir(p_tipo text, p_assunto text, p_texto text, p_instancia bigint DEFAULT NULL::bigint, p_cliente_final text DEFAULT NULL::text) -> bigint  [externo] novo pedido
 ext.portal() -> jsonb  [externo] portal
+ext.portal_notas_debito() -> jsonb  [externo] notas de débito
 ext.portal_parceiro() -> jsonb  [externo] portal do parceiro
 ext.portal_reunioes() -> jsonb  [externo] reuniões
 ext.prestacao_decidir(p_prestacao bigint, p_decisao text, p_motivo text DEFAULT NULL::text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir nota

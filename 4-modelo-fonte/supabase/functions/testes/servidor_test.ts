@@ -4,10 +4,11 @@ import postgres from "npm:postgres@3.4.4";
 import { tratar as google } from "../google/tratar.ts";
 import { lerAta, tratar as ia } from "../ia/tratar.ts";
 import { tratar as alertas } from "../alertas/tratar.ts";
+import { tratar as conexoes } from "../conexoes/tratar.ts";
 import { b64, b64url, b64urlDecode, limparCacheGoogle } from "../_comum/servidor.ts";
 
 const sql = postgres(Deno.env.get("IMTS_DB_URL") || "postgres://postgres:ensaio-local@127.0.0.1:5499/app_ensaio", { max: 2, prepare: false });
-const U = { olga: "00000000-0000-4000-8000-000000000002", clara: "00000000-0000-4000-8000-000000000005" };
+const U = { admin: "00000000-0000-4000-8000-000000000001", olga: "00000000-0000-4000-8000-000000000002", clara: "00000000-0000-4000-8000-000000000005" };
 const tok = (sub: string) => b64url(JSON.stringify({ alg: "HS256" })) + "." + b64url(JSON.stringify({ sub, role: "authenticated", exp: Math.floor(Date.now() / 1000) + 600 })) + ".x";
 const pedir = (corpo: unknown, quem: string | null, extra: Record<string, string> = {}) =>
   new Request("http://local/f", { method: "POST", headers: { "content-type": "application/json", ...(quem ? { authorization: "Bearer " + tok(quem) } : {}), ...extra }, body: JSON.stringify(corpo) });
@@ -32,6 +33,9 @@ async function simulado(input: string | URL | Request, init?: RequestInit): Prom
   if (url.includes("/calendar/v3/calendars/primary/events") && metodo === "POST") return J({ id: "eventoSimulado1", hangoutLink: "https://meet.google.com/abc-defg-hij" });
   if (url.startsWith("https://api.anthropic.com/")) return J({ content: [{ type: "text", text: 'Segue: {"resumo":"Reunião de teste.","decisoes":["Aprovar o cronograma"],"encaminhamentos":[{"descricao":"Enviar a ata","responsavel":"Operações · pessoa","prazo":"2026-10-10"}]}' }], usage: { input_tokens: 120, output_tokens: 80 } });
   if (url.startsWith("https://gmail.googleapis.com/")) return J({ id: "msg1" });
+  if (/^https:\/\/api\.telegram\.org\/bot[^/]+\/getMe$/.test(url)) return J({ ok: true, result: { username: "imts_teste_bot" } });
+  if (url === "https://api.anthropic.com/v1/models") return J({ data: [{ id: "modelo-a" }] });
+  if (url === "https://kimi.teste/v1/models") return J({ data: [{ id: "modelo-kimi-teste" }] });
   if (url === "https://kimi.teste/v1/chat/completions") return J({ choices: [{ message: { content: '{"resumo":"Ata pela Kimi.","decisoes":["Seguir"],"encaminhamentos":[]}' } }], usage: { prompt_tokens: 50, completion_tokens: 30 } });
   return J({ error: { message: "rota não simulada: " + url } }, 500);
 }
@@ -161,6 +165,20 @@ Deno.test({ name: "funções do servidor", sanitizeResources: false, sanitizeOps
     const [a] = await sql`select email_em from adm.alerta where chave = 'erro:teste.servidor' and resolvido_em is null`; ok(a.email_em, "não marcou");
     const r3 = await alertas(new Request("http://local/alertas", { method: "POST", headers: { "x-imts-chave": chave } }), deps); ok((await r3.json()).enviados === 0, "repetiu o e-mail");
     await sql`update adm.alerta set resolvido_em = now() where chave = 'erro:teste.servidor' and resolvido_em is null`;
+  });
+  await t.step("conexões: teste real de cada integração, só pela administração", async () => {
+    const r0 = await conexoes(pedir({ acao: "testar", codigo: "ia-anthropic" }, U.olga), deps); ok(r0.status === 403, "olga testou: " + r0.status);
+    await sql`delete from vault.secrets where name = 'telegram_ambiente'`;
+    await sql`select vault.create_secret('producao', 'telegram_ambiente')`;
+    await sql`delete from vault.secrets where name = 'telegram_bot_token'`;
+    await sql`select vault.create_secret('123:token-de-teste', 'telegram_bot_token')`;
+    const r1 = await (await conexoes(pedir({ acao: "testar", codigo: "telegram-bot-api" }, U.admin), deps)).json();
+    ok(r1.ok && r1.detalhe.includes("@imts_teste_bot") && ultimo("getMe")!.url === "https://api.telegram.org/bot123:token-de-teste/getMe", JSON.stringify(r1));
+    const r2 = await (await conexoes(pedir({ acao: "testar", codigo: "ia-anthropic" }, U.admin), deps)).json(); ok(r2.ok, JSON.stringify(r2));
+    const [c] = await sql`select estado, saude from adm.conexao where codigo = 'ia-anthropic'`; ok(c.estado === "ativa" && c.saude === "ok", JSON.stringify(c));
+    const r3 = await (await conexoes(pedir({ acao: "testar", codigo: "ia-kimi" }, U.admin), deps)).json(); ok(!r3.ok && r3.detalhe.includes("kimi"), JSON.stringify(r3));
+    await sql`delete from vault.secrets where name in ('telegram_bot_token', 'telegram_ambiente')`;
+    await sql`update adm.conexao set estado = 'pendente', saude = 'desconhecida' where codigo = 'ia-anthropic'`;
   });
   await sql.end();
 } });

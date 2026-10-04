@@ -1,5 +1,5 @@
 -- Perfil de produção (B08). SÓ NO PROJETO DE PRODUÇÃO, nunca no protótipo.
--- Ordem: migrações 001 a 068 num projeto novo -> select adm.primeiro_administrador('Nome', 'email@imts.com.br') -> este arquivo
+-- Ordem: migrações 001 a 072 num projeto novo -> select adm.primeiro_administrador('Nome', 'email@imts.com.br') -> este arquivo
 --        -> select adm.conferir_implantacao().
 -- O que faz: desliga a simulação, tira as rotinas de simulação da agenda, apaga o cadastro simulado que as migrações criam
 -- (empresas, pessoas, identidades, acessos, clientes, parceiros, usuários e contratos), passa os agentes residentes para o
@@ -54,6 +54,11 @@ begin
   update adm.conexao set nome = replace(nome, ' (projeto rzkfolkqdgtounqjjzss)', ''), ambiente = 'produção', estado = 'pendente', endpoint = null, alvo = null, saude = 'desconhecida', saude_detalhe = null,
          pendencia = 'preencher com o endereço do projeto de produção', atualizado_em = now()
    where coalesce(endpoint, '') || coalesce(alvo, '') || nome like '%rzkfolkqdgtounqjjzss%';
+
+  -- catálogo de sistemas: nada simulado em produção; sem integração, a pessoa faz (motor assistido)
+  update rt.sistema set adaptador = 'assistido' where adaptador = 'simulado';
+  update adm.conexao set estado = 'pendente', pendencia = coalesce(pendencia, 'escolher o fornecedor e cadastrar em Administração > Integrações')
+   where estado = 'simulada';
 
   -- 3. chave do worker de documentos (o time a lê no cofre e a põe no ambiente do worker)
   if rt._segredo('doc_worker_chave') is null then

@@ -34,7 +34,7 @@ O protótipo (`imts-modelo-organizacional`) continua como está, para simular e 
 ## 2. Banco e funções (Claude)
 
 Em cada projeto, eu faço:
-- `aplicar.sh`: extensões, migrações 001 a 070, você como primeiro administrador (`italo.teofilo@imts.com.br`) e perfil de produção;
+- `aplicar.sh`: extensões, migrações 001 a 073, você como primeiro administrador (`italo.teofilo@imts.com.br`) e perfil de produção;
 - publicação das funções `google`, `ia`, `alertas` e `telegram`;
 - conferência, que lista o que falta.
 

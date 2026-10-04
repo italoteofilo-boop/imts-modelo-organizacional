@@ -89,6 +89,11 @@ details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-hei
 .escolha { display:flex; flex-direction:column; gap:6px; max-height:220px; overflow:auto; }
 .escolha label { display:flex; gap:8px; align-items:center; font-size:14px; background:var(--chao); border-radius:8px; padding:8px 10px; color:var(--tinta); }
 .codigo { font-family:var(--dados); font-size:26px; letter-spacing:.12em; background:var(--chao); border-radius:10px; padding:12px; text-align:center; overflow-wrap:anywhere; }
+.tabela { width:100%; border-collapse:collapse; font-size:14px; }
+.tabela th, .tabela td { text-align:left; padding:6px 8px; border-bottom:1px solid var(--fio); vertical-align:top; }
+.tabela th { font-size:12px; color:var(--apoio); } .tabela td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.rolar { grid-column:1 / -1; overflow-x:auto; }
+.valor { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
 .erro-carga { background:var(--mal-suave); color:var(--mal); border-radius:12px; padding:14px 16px; margin:0; }
 @media (max-width: 640px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } #b-telegram { margin-left:0; } }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
@@ -109,6 +114,7 @@ details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-hei
     <div role="tablist" aria-label="O que você acompanha" style="display:contents">
       <button class="aba" role="tab" id="t-andamentos" data-aba="andamentos" aria-controls="conteudo" aria-selected="true" tabindex="0">Andamentos<span class="n" id="n-andamentos"></span></button>
       <button class="aba" role="tab" id="t-documentos" data-aba="documentos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Documentos<span class="n" id="n-documentos"></span></button>
+      <button class="aba" role="tab" id="t-notas" data-aba="notas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Notas de débito<span class="n" id="n-notas"></span></button>
       <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Reuniões<span class="n" id="n-reunioes"></span></button>
       <button class="aba" role="tab" id="t-pedidos" data-aba="pedidos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Pedidos<span class="n" id="n-pedidos"></span></button>
       <button class="aba" role="tab" id="t-oportunidades" data-aba="oportunidades" aria-controls="conteudo" aria-selected="false" tabindex="-1" hidden>Oportunidades<span class="n" id="n-oportunidades"></span></button>
@@ -147,7 +153,7 @@ const brl = v => v == null ? '' : Number(v).toLocaleString('pt-BR', { style: 'cu
 const SITC = { prevista: 'Prevista', adquirida: 'Adquirida', a_pagar: 'A pagar', paga: 'Paga' };
 const REGRA = { comissoes: 'Comissões escolhidas', cnpj: 'CNPJ do emitente', numero: 'Número da nota', valor: 'Valor da nota' };
 const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
-let dados = null, parc = null, reus = [], aba = 'andamentos', voltarFoco = null;
+let dados = null, parc = null, reus = [], notas = null, notasErro = null, aba = 'andamentos', voltarFoco = null;
 
 const motivo = e => e?.message || String(e || 'erro');
 function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 8000); }
@@ -201,6 +207,21 @@ function vDocumentos() {
         <div class="sub">Impressão digital SHA-256: <span class="cod">${esc(String(d.hash ?? '').slice(0, 16))}…</span></div></div>
       <div class="lado"><button class="btn" type="button" data-baixar="${esc(d.emissao)}" data-nome="${esc(d.titulo)}">Baixar PDF</button></div>
     </article>`).join('')}</div>`;
+}
+function vNotas() {
+  if (!notas) return `<p class="erro-carga" role="alert">As notas de débito não carregaram${notasErro ? ': ' + esc(notasErro) : ''}. O resto do portal segue funcionando.</p>`;
+  if (!notas.length) return '<p class="vazio">Nenhuma nota de débito publicada para a sua organização. A nota de débito cobra o reembolso de despesas que a empresa pagou por conta de vocês (viagem, taxas, cópias); não é documento fiscal.</p>';
+  const rot = n => n.situacao === 'paga' ? ['bom', 'paga em ' + dia(n.pago_em)] : n.situacao === 'cancelada' ? ['', 'cancelada'] : n.vencida ? ['mal', 'vencida'] : ['espera', 'em aberto'];
+  return `<div class="lista">${notas.map(n => { const [c, r] = rot(n), itens = n.itens || [];
+    return `<article class="item" data-nd="${esc(n.id)}">
+      <div><div class="t">Nota de débito ${esc(n.numero)}</div><div class="sub">${esc(n.empresa)} · emitida em ${dia(n.data)} · vencimento ${dia(n.vencimento)}${n.referencia ? ' · ' + esc(n.referencia) : ''}</div></div>
+      <div class="lado"><span class="chip ${c}">${esc(r)}</span><span class="valor">${brl(n.total)}</span></div>
+      ${n.situacao === 'cancelada' ? `<div class="resposta aviso"><strong>Cancelada:</strong> ${esc(n.cancelado_motivo)}. Não há o que pagar.</div>` : ''}
+      <details style="grid-column:1 / -1"><summary>Despesas (${itens.length})</summary><div class="rolar" role="region" tabindex="0" aria-label="Despesas da nota ${esc(n.numero)}"><table class="tabela"><thead><tr><th scope="col">Data</th><th scope="col">Descrição</th><th scope="col">Comprovante</th><th scope="col">Valor</th></tr></thead>
+        <tbody>${itens.map(i => `<tr><td>${dia(i.data)}</td><td>${esc(i.descricao)}</td><td>${i.comprovante ? 'guardado pela empresa' : 'sem comprovante'}</td><td class="num">${brl(i.valor)}</td></tr>`).join('')}
+        <tr><th scope="row" colspan="3">Total</th><td class="num"><strong>${brl(n.total)}</strong></td></tr></tbody></table></div></details>
+      ${n.emissao ? `<div class="acoes"><button class="btn" type="button" data-baixar="${esc(n.emissao)}" data-nome="Nota de débito ${esc(String(n.numero).replace('/', '-'))}">Baixar PDF</button>${num(n.paginas) ? `<span class="sub">${num(n.paginas)} ${num(n.paginas) === 1 ? 'página' : 'páginas'}</span>` : ''}</div>` : ''}
+    </article>`; }).join('')}</div>`;
 }
 function vPedidos() {
   const ps = dados.pedidos || [];
@@ -281,9 +302,10 @@ function desenhar() {
   $('n-prestacao').textContent = (parc?.prestacoes || []).filter(p => ['divergente', 'recusada'].includes(p.situacao)).length || '';
   $('n-andamentos').textContent = (dados.andamentos || []).length || '';
   $('n-documentos').textContent = (dados.documentos || []).length || '';
+  $('n-notas').textContent = (notas || []).filter(n => n.situacao === 'emitida').length || '';
   $('n-pedidos').textContent = (dados.pedidos || []).length || ''; $('n-reunioes').textContent = reus.filter(r => r.situacao === 'agendada').length || '';
   $('n-oportunidades').textContent = (dados.oportunidades || []).length || '';
-  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, pedidos: vPedidos, oportunidades: vOportunidades, reunioes: vReunioes, carteira: vCarteira, prestacao: vPrestacao }[aba]();
+  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, notas: vNotas, pedidos: vPedidos, oportunidades: vOportunidades, reunioes: vReunioes, carteira: vCarteira, prestacao: vPrestacao }[aba]();
   $('b-novo').disabled = false; $('b-telegram').disabled = false;
   $('rodape').textContent = 'Você vê só o que foi publicado para a sua organização e o seu perfil. Mudanças internas da empresa não aparecem aqui; cada etapa visível tem título e texto aprovados para o público externo.';
 }
@@ -347,12 +369,14 @@ async function baixar(emissao, nome, botao) {
 
 async function carregar() {
   const parceiro = quem.contraparte?.tipo === 'parceiro';
-  const [d, p, r] = await Promise.all([
+  const [d, p, r, n] = await Promise.all([
     IMTS.chamar('ext.portal', {}),
     parceiro ? IMTS.chamar('ext.portal_parceiro', {}) : Promise.resolve(null),
-    IMTS.chamar('ext.portal_reunioes', {})
+    IMTS.chamar('ext.portal_reunioes', {}),
+    // notas de débito: se falhar, só a aba delas mostra o motivo
+    IMTS.chamar('ext.portal_notas_debito', {}).then(x => ({ ok: Array.isArray(x) ? x : [] }), e => ({ erro: motivo(e) }))
   ]);
-  dados = d || {}; parc = p; reus = Array.isArray(r) ? r : [];
+  dados = d || {}; parc = p; reus = Array.isArray(r) ? r : []; notas = n.ok || null; notasErro = n.erro || null;
   desenhar();
 }
 async function falarSala(op, botao) {

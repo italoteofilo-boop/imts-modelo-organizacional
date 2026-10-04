@@ -96,5 +96,11 @@ with sync_playwright() as pw, tempfile.TemporaryDirectory() as tmp:
     r30b = E({**c, 'id': 'teste-marca-outra', '_marca_dados': {**mj, 'id': 'onni'}})
     t('T30 marca do banco usada e registrada', '#123456' in html30 and r30['versoes']['marca.json'] == hashlib.sha256(json.dumps(mj, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
       and r30b['versoes']['marca.json'] != r30['versoes']['marca.json'] and r30['situacao'] != 'bloqueado', r30.get('gates'))
+    # T31 nota de débito (071): demonstrativo sem capa, uma página, quadro com total; texto no PDF; travessão no item bloqueia
+    nd = A('nota-debito-imts.json'); r31 = E(nd)
+    txt31 = ''.join(pg.extract_text() for pg in PdfReader(os.path.join(tmp, r31['id'] + '.pdf')).pages)
+    p = copy.deepcopy(nd); p['blocos'][2]['linhas'][0][1] = 'Passagem — ida'; r31b = E(p)
+    t('T31 nota de débito: demonstrativo, 1 página, total no quadro, não fiscal', r31['situacao'] == 'emitido' and r31['modelo'] == 'demonstrativo' and r31['paginas'] == 1
+      and 'ND 2026/0001' in txt31 and '1.388,40' in txt31 and 'Não é documento fiscal' in txt31 and r31b['situacao'] == 'bloqueado', (r31['situacao'], r31.get('gates'), r31b['situacao']))
     nav.close()
 print(f'\n{len(ok)} ok, {len(falhas)} falhas'); sys.exit(1 if falhas else 0)

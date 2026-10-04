@@ -87,6 +87,7 @@ a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:2
 .legenda { grid-column:1 / -1; font-size:12px; color:var(--apoio); display:flex; flex-wrap:wrap; gap:10px; }
 .legenda .add { color:var(--azul); } .legenda .rem { color:var(--mal); text-decoration:line-through; } .legenda .aju { color:var(--bom); }
 .rodape { font-size:12px; color:var(--apoio); max-width:80ch; margin:0; }
+.rodape a { display:inline-block; min-height:24px; line-height:24px; }
 .aviso { padding:10px 12px; border-radius:10px; background:var(--espera-suave); color:var(--espera); margin:0; font-size:14px; }
 .aviso.erro { background:var(--mal-suave); color:var(--mal); }
 @media (max-width: 760px) { .envio { grid-template-columns:minmax(0, 1fr); } .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } }

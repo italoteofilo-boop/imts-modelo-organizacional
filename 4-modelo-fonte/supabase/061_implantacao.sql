@@ -60,6 +60,10 @@ begin
   select count(*) into n from pg_proc p join pg_namespace s on s.oid = p.pronamespace
    where s.nspname in ('rt', 'doc', 'adm', 'ext', 'acervo') and (p.proname like '%\_como' or p.proname like '\_testar%' or p.proname in ('simular_continuo', 'executar_simulada', 'simular_ecossistema', 'vincular_simulados', 'usuarios_simulados'));
   itens := itens || jsonb_build_object('item', 'sem funções de simulação e de teste', 'ok', n = 0, 'detalhe', n);
+  select count(*) into n from rt.sistema where adaptador = 'simulado';
+  itens := itens || jsonb_build_object('item', 'nenhum sistema do motor simulado', 'ok', n = 0, 'detalhe', n);
+  select count(*) into n from adm.conexao where estado = 'simulada';
+  itens := itens || jsonb_build_object('item', 'nenhuma conexão simulada', 'ok', n = 0, 'detalhe', n);
   -- 2. segurança
   select count(*) into n from pg_proc p join pg_namespace s on s.oid = p.pronamespace
    where s.nspname in ('rt', 'rt_chave', 'doc', 'adm', 'ext', 'org', 'sim', 'acervo') and has_function_privilege('anon', p.oid, 'execute');

@@ -83,7 +83,16 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
 .recibo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--azul); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--sombra); }
 .recibo.feito { border-left-color:var(--bom); } .recibo.recusado { border-left-color:var(--mal); }
 .rodape { font-size:12px; color:var(--apoio); max-width:80ch; margin:0; }
-@media (max-width: 760px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .ata .enc { grid-template-columns:minmax(0, 1fr); } }
+.nd-despesas { border:1px solid var(--fio); border-radius:10px; padding:8px 10px 10px; margin:0; display:flex; flex-direction:column; gap:8px; min-width:0; }
+.nd-despesas legend { font-size:13px; color:var(--apoio); padding:0 4px; }
+.nd-itens { display:flex; flex-direction:column; gap:8px; }
+.nd-item { display:grid; grid-template-columns:minmax(0, 3fr) minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.8fr) auto; gap:6px 8px; align-items:end; background:var(--chao); border-radius:8px; padding:8px; }
+.nd-item label { display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--apoio); min-width:0; }
+.nd-item input, .nd-item select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); min-width:0; max-width:100%; }
+.nd-total { margin-left:auto; font-size:15px; font-variant-numeric:tabular-nums; }
+.valor { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+@media (max-width: 760px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .ata .enc { grid-template-columns:minmax(0, 1fr); }
+  .nd-item { grid-template-columns:minmax(0, 1fr); } .nd-total { margin-left:0; } }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
 </head>
@@ -99,9 +108,10 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
       <button class="aba" role="tab" id="t-atendimento" data-aba="atendimento" aria-controls="conteudo" aria-selected="true" tabindex="0" type="button">Atendimento<span class="n" id="n-atendimento"></span></button>
       <button class="aba" role="tab" id="t-parceiros" data-aba="parceiros" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Parceiros<span class="n" id="n-parceiros"></span></button>
       <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Reuniões<span class="n" id="n-reunioes"></span></button>
+      <button class="aba" role="tab" id="t-notas" data-aba="notas" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Notas de débito<span class="n" id="n-notas"></span></button>
     </div></nav>
     <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-atendimento"><p class="vazio">Carregando…</p></section>
-    <p class="rodape">Cada demanda vira encaminhamentos com responsável e prazo, que o cliente acompanha no portal. Encerrar é do cliente: a equipe propõe, o cliente confirma ou reabre; sem resposta, o aceite tácito encerra no prazo do parâmetro. A ouvidoria só aparece para a Governança, e a anônima não mostra quem escreveu. Nota de parceiro: a máquina confere, uma pessoa aprova, outra paga. Ata de reunião pode ser rascunhada por IA e só vale aprovada por uma pessoa.</p>
+    <p class="rodape">Cada demanda vira encaminhamentos com responsável e prazo, que o cliente acompanha no portal. Encerrar é do cliente: a equipe propõe, o cliente confirma ou reabre; sem resposta, o aceite tácito encerra no prazo do parâmetro. A ouvidoria só aparece para a Governança, e a anônima não mostra quem escreveu. Nota de parceiro: a máquina confere, uma pessoa aprova, outra paga. Ata de reunião pode ser rascunhada por IA e só vale aprovada por uma pessoa. Nota de débito cobra o reembolso de despesas pagas por conta do cliente ou parceiro (não é documento fiscal): quem cria não aprova, quem aprova não registra o pagamento.</p>
   </div>
 </main>
 <div class="recibos" id="recibos" aria-live="polite"></div>
@@ -125,6 +135,7 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
   const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
   const PERFIS = { gestor: 'Gestor', fiscal: 'Fiscal', financeiro: 'Financeiro', operacional: 'Operacional' };
   let quem = null, A = null, P = null, R = null, CP = [], aba = 'atendimento', filtro = 'abertos', prefill = null;
+  let D = null, Derro = null, ndFiltro = 'rascunho', ndForm = null;   // notas de débito: painel, motivo da falha, filtro e formulário aberto
   const transcricoes = {};   // texto da transcrição ligada nesta sessão, por reunião (para a IA ler sem ir ao Drive de novo)
 
   const motivo = e => String(e?.message || e || 'erro').slice(0, 300);
@@ -292,6 +303,136 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     b.innerHTML = ataHtml({ ...r, ata_situacao: r.ata_situacao === 'rascunho' ? 'rascunho' : 'sem' }, ata); b.hidden = false; b.querySelector('textarea')?.focus();
   }
 
+  // ---------- Notas de débito ----------
+  const ND_SIT = [['rascunho', 'Rascunho'], ['aprovada', 'Aprovada'], ['emitida', 'Emitida'], ['paga', 'Paga'], ['cancelada', 'Cancelada']];
+  const ND_COR = { rascunho: 'esp', aprovada: 'azul', emitida: 'azul', paga: 'bom', cancelada: '' };
+  const DOC_SIT = { na_fila: 'na fila do motor documental', em_emissao: 'em emissão', emitido: 'pronto', emitido_com_alertas: 'pronto, com alertas tipográficos',
+    bloqueado: 'bloqueado pelos gates do motor', recusado: 'recusado pelo motor', erro: 'com erro no motor', aprovado: 'pronto', reprovado: 'reprovado' };
+  const diaISO = d => localISO(d).slice(0, 10);
+  // valor digitado no padrão brasileiro (1.234,56) ou com ponto decimal (1234.56)
+  const numBR = s => { let t = String(s ?? '').trim().replace(/^R\$\s*/, '').replace(/\s/g, ''); if (!t) return NaN; if (t.includes(',')) t = t.replace(/\./g, '').replace(',', '.'); return /^\d+(\.\d{1,2})?$/.test(t) ? Number(t) : NaN; };
+  const totalForm = () => (ndForm?.itens || []).reduce((s, i) => s + (Number.isFinite(numBR(i.valor)) ? Math.round(numBR(i.valor) * 100) : 0), 0) / 100;
+  const itemVazio = () => ({ descricao: '', data: diaISO(new Date()), valor: '', arquivo: '' });
+  function vNotas() {
+    if (!D) return `<h2 class="secao">Notas de débito</h2><p class="vazio">As notas de débito não carregaram${Derro ? ': ' + esc(Derro) : ''}. O resto da Central segue funcionando.</p>`;
+    const ns = D.notas || [], pode = D.pode || {};
+    const fl = `<div class="filtros" role="group" aria-label="Situação das notas de débito">${ND_SIT.map(([k, r]) => `<button class="filtro" type="button" data-ndfiltro="${k}" aria-pressed="${ndFiltro === k}">${r} ${ns.filter(n => n.situacao === k).length}</button>`).join('')}</div>
+      <div class="acoes"><button class="btn" type="button" data-ndatualizar="1">Atualizar</button>${pode.operar && !ndForm ? '<button class="btn prim" type="button" data-ndnova="1">Nova nota de débito</button>' : ''}</div>`;
+    const ls = ns.filter(n => n.situacao === ndFiltro);
+    const lista = ls.length ? `<div class="lista">${ls.map(artNd).join('')}</div>`
+      : `<p class="vazio">Nenhuma nota de débito na situação ${esc((ND_SIT.find(x => x[0] === ndFiltro) || [])[1]?.toLowerCase() || '')} nesta empresa.${pode.operar && ndFiltro === 'rascunho' ? ' Use “Nova nota de débito” para cobrar de um cliente ou parceiro o reembolso de despesas pagas por conta dele.' : ''}</p>`;
+    return `<h2 class="secao">Notas de débito</h2>${fl}${ndForm ? formNd() : ''}${lista}
+      <p class="rodape">Nota de débito para ressarcimento: não é documento fiscal. Número por empresa e ano, dado na criação; cancelada, o número não volta. Rascunho, aprovação por outra pessoa com nível aprovar, PDF pelo motor documental com a marca da empresa, publicação no portal do cliente ou parceiro e registro do pagamento por quem não aprovou.</p>`;
+  }
+  function artNd(n) {
+    const id = Number(n.id), pode = D.pode || {}, eu = D.eu, num = esc(n.numero);
+    const itens = n.itens || [];
+    const tab = `<details class="cheio"><summary>Despesas (${itens.length})</summary><div class="rolar" role="region" tabindex="0" aria-label="Despesas da ${num}"><table class="tabela"><thead><tr><th scope="col">Data</th><th scope="col">Descrição</th><th scope="col">Comprovante</th><th scope="col">Valor</th></tr></thead>
+      <tbody>${itens.map(i => `<tr><td>${dia(i.data)}</td><td>${esc(i.descricao)}</td><td>${i.arquivo ? 'nº ' + Number(i.arquivo) + (i.arquivo_nome ? ' · ' + esc(i.arquivo_nome) : '') : 'sem comprovante'}</td><td class="num">${brl(i.valor)}</td></tr>`).join('')}
+      <tr><th scope="row" colspan="3">Total</th><td class="num"><strong>${brl(n.total)}</strong></td></tr></tbody></table></div></details>`;
+    const cancelar = (n.situacao === 'rascunho' && pode.operar) || (['aprovada', 'emitida'].includes(n.situacao) && pode.aprovar)
+      ? `<div class="acoes"><input type="text" id="ndcm-${id}" aria-label="Motivo para cancelar a ${num}" placeholder="motivo para cancelar"><button class="btn perigo" type="button" data-ndcancelar="${id}">Cancelar nota</button></div>` : '';
+    let acoes = '', estado = '';
+    if (n.situacao === 'rascunho') {
+      const euFiz = n.criado_por === eu || n.atualizado_por === eu;
+      acoes = `<div class="acoes">${pode.operar ? `<button class="btn" type="button" data-ndeditar="${id}">Editar</button>` : ''}
+        ${pode.aprovar && !euFiz ? `<button class="btn prim" type="button" data-ndaprovar="${id}">Aprovar</button>` : `<span class="sub">${euFiz ? 'Você criou ou editou esta nota: a aprovação é de outra pessoa com nível aprovar.' : 'A aprovação é de quem tem nível aprovar nesta empresa.'}</span>`}</div>`;
+    } else if (n.situacao === 'aprovada') {
+      acoes = pode.operar ? `<div class="acoes"><button class="btn prim" type="button" data-ndemitir="${id}">Emitir PDF</button><span class="sub">O PDF sai pelo motor documental, com a marca da empresa.</span></div>` : '';
+    } else if (n.situacao === 'emitida' || n.situacao === 'paga') {
+      const falhou = ['bloqueado', 'recusado', 'erro', 'reprovado'].includes(n.pedido_situacao);
+      estado = `<div class="cheio sub">Documento ${esc(DOC_SIT[n.pedido_situacao] || n.pedido_situacao || '')}${n.pedido ? ' (pedido nº ' + Number(n.pedido) + ')' : ''}${n.publicado_em ? ' · publicado no portal em ' + quando(n.publicado_em) : ''}${n.pago_em ? ' · paga em ' + dia(n.pago_em) + ' · comprovante ' + esc(n.pagamento_comprovante) + (n.pagamento_arquivo ? ' (nº ' + Number(n.pagamento_arquivo) + ' no acervo)' : '') : ''}</div>`;
+      acoes = `<div class="acoes">${n.emissao_pronta ? `<button class="btn" type="button" data-ndpdf="${id}">Baixar PDF</button>` : ''}
+        ${n.emissao_pronta && !n.publicado_em && pode.operar ? `<button class="btn prim" type="button" data-ndpublicar="${id}">Publicar no portal</button>` : ''}
+        ${falhou && n.situacao === 'emitida' && pode.operar ? `<button class="btn" type="button" data-ndemitir="${id}">Emitir de novo</button>` : ''}
+        ${!n.emissao_pronta && !falhou ? '<span class="sub">O PDF aparece aqui quando o motor terminar: use Atualizar.</span>' : ''}</div>`;
+      if (n.situacao === 'emitida' && pode.operar) {
+        acoes += n.aprovado_por === eu ? '<div class="acoes"><span class="sub">Você aprovou esta nota: o pagamento é registrado por outra pessoa.</span></div>'
+          : `<div class="acoes"><label class="sub" for="ndpd-${id}">Pago em</label><input type="date" id="ndpd-${id}" value="${diaISO(new Date())}" max="${diaISO(new Date())}">
+            <input type="text" id="ndpc-${id}" aria-label="Comprovante do pagamento da ${num}" placeholder="referência do comprovante (PIX, TED, boleto)">
+            <label class="sub" for="ndpa-${id}">Arquivo</label><select id="ndpa-${id}"><option value="">sem arquivo</option>${(D.arquivos || []).map(a => `<option value="${Number(a.id)}">nº ${Number(a.id)} · ${esc(a.nome)}</option>`).join('')}</select>
+            <button class="btn prim" type="button" data-ndpagar="${id}">Registrar pagamento</button></div>`;
+      }
+    } else if (n.situacao === 'cancelada') {
+      estado = `<div class="cheio sub">Cancelada em ${quando(n.cancelado_em)}: ${esc(n.cancelado_motivo)}</div>`;
+    }
+    return `<article class="item" data-nd="${id}"><div><h3 class="t" style="margin:0;font-size:inherit">${num} · ${esc(n.contraparte?.nome)}</h3>
+        <div class="sub">${esc(n.contraparte?.tipo === 'parceiro' ? 'Parceiro' : 'Cliente')} · data ${dia(n.data)} · vence ${dia(n.vencimento)}${n.referencia ? ' · ' + esc(n.referencia) : ''}${n.local ? ' · ' + esc(n.local) : ''}</div>
+        <div class="sub">Criada por ${esc(n.criado_por_nome || 'outra pessoa')}${n.aprovado_por_nome ? ' · aprovada por ' + esc(n.aprovado_por_nome) + ' em ' + quando(n.aprovado_em) : ''}${n.pagamento_por_nome ? ' · pagamento registrado por ' + esc(n.pagamento_por_nome) : ''}</div></div>
+      <div class="lado"><span class="chip ${ND_COR[n.situacao] || ''}">${esc(n.situacao)}</span>${n.vencida ? '<span class="chip mal">vencida</span>' : ''}<span class="valor">${brl(n.total)}</span></div>
+      ${estado}${tab}${acoes}${cancelar}</article>`;
+  }
+  function formNd() {
+    const f = ndForm, cps = D.contrapartes || [];
+    return `<form class="form" id="f-nd" aria-label="${f.id ? 'Editar rascunho da nota de débito' : 'Nova nota de débito'}" novalidate>
+      <label>Cliente ou parceiro<select id="nd-cp">${cps.map(c => `<option value="${esc(c.id)}"${c.id === f.cp ? ' selected' : ''}>${esc(c.nome)} (${esc(c.tipo)})</option>`).join('')}</select></label>
+      <label>Data da nota<input id="nd-data" type="date" value="${esc(f.data)}" max="${diaISO(new Date())}" required></label>
+      <label>Vencimento<input id="nd-venc" type="date" value="${esc(f.venc)}" required></label>
+      <label>Referência (opcional)<input id="nd-ref" maxlength="200" value="${esc(f.ref)}" autocomplete="off" placeholder="contrato, viagem, evento"></label>
+      <label>Local de emissão<input id="nd-local" maxlength="80" value="${esc(f.local)}" autocomplete="off" placeholder="cidade/UF"></label>
+      <fieldset class="linha nd-despesas" style="display:flex"><legend>Despesas pagas por conta do cliente ou parceiro</legend>
+        <div class="nd-itens" id="nd-itens">${f.itens.map(linhaItem).join('')}</div>
+        <div class="acoes"><button class="btn" type="button" data-ndmais="1">Mais uma despesa</button><span class="nd-total" id="nd-total" role="status">Total: <b>${brl(totalForm())}</b></span></div></fieldset>
+      <div class="linha"><button class="btn prim" type="submit">Salvar rascunho</button><button class="btn" type="button" data-ndfechar="1">Fechar sem salvar</button>
+        <span class="sub">${f.id ? 'Editando ' + esc(f.numero) + '.' : 'O número sai ao salvar.'} Quem cria ou edita não aprova.</span></div></form>`;
+  }
+  function linhaItem(it, i) {
+    const n = i + 1, arqs = D.arquivos || [];
+    return `<div class="nd-item" data-i="${i}">
+      <label>Despesa ${n}<input data-k="descricao" maxlength="300" value="${esc(it.descricao)}" autocomplete="off" placeholder="o que foi pago"></label>
+      <label>Data ${n}<input data-k="data" type="date" value="${esc(it.data)}"></label>
+      <label>Valor ${n} (R$)<input data-k="valor" inputmode="decimal" value="${esc(it.valor)}" autocomplete="off" placeholder="0,00"></label>
+      <label>Comprovante ${n}<select data-k="arquivo"><option value="">sem comprovante</option>${arqs.map(a => `<option value="${Number(a.id)}"${String(it.arquivo) === String(a.id) ? ' selected' : ''}>nº ${Number(a.id)} · ${esc(a.nome)}</option>`).join('')}</select></label>
+      <button class="btn" type="button" data-ndtirar="${i}"${ndForm.itens.length === 1 ? ' disabled' : ''}>Tirar ${n}</button></div>`;
+  }
+  function redesenharItens() {
+    $('nd-itens').innerHTML = ndForm.itens.map(linhaItem).join(''); $('nd-total').innerHTML = `Total: <b>${brl(totalForm())}</b>`;
+  }
+  function campoNd(e) {
+    const f = e.target.closest('#f-nd'); if (!f || !ndForm) return;
+    const t = e.target, linha = t.closest('.nd-item');
+    if (linha) { ndForm.itens[Number(linha.dataset.i)][t.dataset.k] = t.value; if (t.dataset.k === 'valor') $('nd-total').innerHTML = `Total: <b>${brl(totalForm())}</b>`; return; }
+    const mapa = { 'nd-cp': 'cp', 'nd-data': 'data', 'nd-venc': 'venc', 'nd-ref': 'ref', 'nd-local': 'local' };
+    if (mapa[t.id]) ndForm[mapa[t.id]] = t.value;
+  }
+  async function salvarNd(ev) {
+    ev.preventDefault();
+    const f = ndForm, b = ev.target.querySelector('button[type="submit"]');
+    const itens = f.itens.map((i, k) => ({ descricao: i.descricao.trim(), data: i.data, valor: numBR(i.valor), arquivo: i.arquivo ? Number(i.arquivo) : null, k: k + 1 }));
+    const ruim = itens.find(i => !i.descricao || !i.data || !Number.isFinite(i.valor) || i.valor <= 0);
+    if (ruim) { recibo('recusado', `Despesa ${ruim.k}: preencha descrição, data e valor maior que zero (ex.: 1.234,56).`); return; }
+    if (!f.data || !f.venc) { recibo('recusado', 'Informe a data e o vencimento.'); return; }
+    b.disabled = true;
+    let r;
+    try {
+      r = await IMTS.chamar('doc.nota_debito_salvar', { p_empresa: IMTS.empresa(), p_contraparte: f.cp, p_vencimento: f.venc, p_itens: itens.map(({ k, ...i }) => i),
+        p_nota: f.id || null, p_data: f.data, p_referencia: f.ref.trim() || null, p_local: f.local.trim() || null });
+    } catch (e) { recibo('recusado', 'Não salvou: ' + motivo(e)); b.disabled = false; return; }
+    ndForm = null; ndFiltro = 'rascunho';
+    await recarregar('feito', `Rascunho ${r?.numero || ''} salvo: total ${brl(r?.total)}. A aprovação é de outra pessoa.`);
+  }
+  // ação da nota: deu certo, a lista passa à situação nova da nota
+  async function agirNd(fn, args, ok, botao, depois) {
+    botao.disabled = true;
+    try { await IMTS.chamar(fn, args); }
+    catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); botao.disabled = false; return; }
+    if (depois) ndFiltro = depois;
+    await recarregar('feito', ok);
+  }
+  async function baixarNd(id, botao) {
+    const n = (D?.notas || []).find(x => Number(x.id) === id); botao.disabled = true;
+    try {
+      const b64 = String(await IMTS.chamar('doc.nota_debito_pdf', { p_nota: id }) || '').replace(/\s+/g, '');
+      if (!b64) throw new Error('o PDF ainda não foi gerado');
+      const bin = atob(b64), bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+      const a = document.createElement('a'); a.href = url; a.download = 'Nota de débito ' + String(n?.numero || id).replace(/[\\/:*?"<>|]+/g, '-') + '.pdf';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 10000);
+      recibo('feito', 'PDF baixado.');
+    } catch (e) { recibo('recusado', 'Não baixou: ' + motivo(e)); }
+    finally { botao.disabled = false; }
+  }
+
   // ---------- desenho e carga ----------
   function desenhar() {
     for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
@@ -300,20 +441,25 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     const ab = (A.pedidos || []).filter(p => ['recebido', 'em_atendimento'].includes(p.situacao)), atr = ab.filter(p => p.atrasado).length;
     const np = (P.prestacoes || []).filter(x => ['conferida', 'enviada', 'aprovada'].includes(x.situacao)).length;
     const nr = (R.reunioes || []).filter(r => r.situacao === 'agendada' || (r.situacao === 'realizada' && r.ata_situacao !== 'aprovada')).length;
+    const nn = (D?.notas || []).filter(n => ['rascunho', 'aprovada', 'emitida'].includes(n.situacao)).length;
     $('resumo').innerHTML = `<span>Demandas abertas <b>${ab.length}</b></span><span class="${atr ? 'mal' : ''}">Com prazo vencido <b>${atr}</b></span>
       <span>Aguardando o cliente <b>${(A.pedidos || []).filter(p => p.situacao === 'respondido').length}</b></span><span class="${np ? 'esp' : ''}">Notas de parceiro para decidir <b>${np}</b></span>
-      <span>Reuniões em aberto <b>${nr}</b></span>${A.ve_ouvidoria ? '<span>Você vê a ouvidoria</span>' : ''}`;
-    $('n-atendimento').textContent = ab.length || ''; $('n-parceiros').textContent = np || ''; $('n-reunioes').textContent = nr || '';
-    $('conteudo').innerHTML = { atendimento: vAtendimento, parceiros: vParceiros, reunioes: vReunioes }[aba]();
+      <span>Reuniões em aberto <b>${nr}</b></span><span>Notas de débito em aberto <b>${nn}</b></span>${A.ve_ouvidoria ? '<span>Você vê a ouvidoria</span>' : ''}`;
+    $('n-atendimento').textContent = ab.length || ''; $('n-parceiros').textContent = np || ''; $('n-reunioes').textContent = nr || ''; $('n-notas').textContent = nn || '';
+    $('conteudo').innerHTML = { atendimento: vAtendimento, parceiros: vParceiros, reunioes: vReunioes, notas: vNotas }[aba]();
     if (aba === 'reunioes') { $('f-reuniao').onsubmit = marcar; $('fr-cp').onchange = $('fr-ped').onchange = preencherConvidados; preencherConvidados(); }
+    if (aba === 'notas' && $('f-nd')) $('f-nd').onsubmit = salvarNd;
     if (aba === 'atendimento') { if ($('f-convite')) $('f-convite').onsubmit = convidar; if ($('f-publicar')) $('f-publicar').onsubmit = publicar; }
   }
   async function carregar() {
     const emp = IMTS.empresa();
-    if (!emp) { A = P = R = null; $('resumo').innerHTML = ''; $('conteudo').innerHTML = '<p class="vazio">Você ainda não tem acesso a nenhuma empresa. Peça à administração do IMTS.</p>'; return; }
-    const [a, p, r] = await Promise.all([IMTS.chamar('ext.painel_atendimento', { p_empresa: emp }), IMTS.chamar('ext.painel_parceiros', { p_empresa: emp }),
-      IMTS.chamar('ext.painel_reunioes', { p_empresa: emp })]);
-    A = a || {}; P = p || {}; R = r || {};
+    if (!emp) { A = P = R = D = null; $('resumo').innerHTML = ''; $('conteudo').innerHTML = '<p class="vazio">Você ainda não tem acesso a nenhuma empresa. Peça à administração do IMTS.</p>'; return; }
+    const [a, p, r, d] = await Promise.all([IMTS.chamar('ext.painel_atendimento', { p_empresa: emp }), IMTS.chamar('ext.painel_parceiros', { p_empresa: emp }),
+      IMTS.chamar('ext.painel_reunioes', { p_empresa: emp }),
+      // notas de débito: se a função faltar ou recusar, só a aba delas mostra o motivo
+      IMTS.chamar('doc.painel_notas_debito', { p_empresa: emp }).then(x => ({ ok: x }), e => ({ erro: motivo(e) }))]);
+    A = a || {}; P = p || {}; R = r || {}; D = d.ok || null; Derro = d.erro || null;
+    if (ndForm && D && !(D.contrapartes || []).some(c => c.id === ndForm.cp)) ndForm = null;   // trocou de empresa: o formulário aberto era da outra
     // usuários de cada cliente ou parceiro: e-mails para convidar ao Meet (se falhar, os convidados ficam à mão)
     try { CP = (await IMTS.chamar('ext.contrapartes', { p_empresa: emp })) || []; } catch (e) { CP = []; }
     desenhar();
@@ -450,6 +596,27 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     const t = e.target.closest('button'); if (!t || t.closest('#imts-barra')) return;
     const d = t.dataset;
     if (d.aba) { aba = d.aba; desenhar(); return; }
+    // notas de débito
+    if (d.ndfiltro) { ndFiltro = d.ndfiltro; desenhar(); return; }
+    if (d.ndatualizar) { t.disabled = true; return recarregar('feito', 'Notas de débito atualizadas.'); }
+    if (d.ndnova) { const c = (D.contrapartes || [])[0]; if (!c) { recibo('recusado', 'Esta empresa não tem cliente nem parceiro cadastrado.'); return; }
+      ndForm = { id: null, numero: '', cp: c.id, data: diaISO(new Date()), venc: diaISO(new Date(Date.now() + 15 * 864e5)), ref: '', local: D.ultimo_local || '', itens: [itemVazio()] };
+      desenhar(); $('nd-cp').focus(); return; }
+    if (d.ndeditar) { const n = D.notas.find(x => Number(x.id) === Number(d.ndeditar));
+      ndForm = { id: Number(n.id), numero: n.numero, cp: n.contraparte.id, data: n.data, venc: n.vencimento, ref: n.referencia || '', local: n.local || '',
+        itens: (n.itens || []).map(i => ({ descricao: i.descricao, data: i.data, valor: Number(i.valor).toFixed(2).replace('.', ','), arquivo: i.arquivo || '' })) };
+      if (!ndForm.itens.length) ndForm.itens.push(itemVazio());
+      desenhar(); $('nd-cp').focus(); return; }
+    if (d.ndfechar) { ndForm = null; desenhar(); return; }
+    if (d.ndmais) { ndForm.itens.push(itemVazio()); redesenharItens(); $('nd-itens').querySelector('.nd-item:last-child input')?.focus(); return; }
+    if (d.ndtirar) { ndForm.itens.splice(Number(d.ndtirar), 1); redesenharItens(); $('nd-itens').querySelector('input')?.focus(); return; }
+    if (d.ndaprovar) return agirNd('doc.nota_debito_aprovar', { p_nota: Number(d.ndaprovar) }, 'Nota aprovada; o PDF sai em Emitir.', t, 'aprovada');
+    if (d.ndemitir) return agirNd('doc.nota_debito_emitir', { p_nota: Number(d.ndemitir) }, 'Pedido de emissão enviado ao motor documental; o PDF aparece aqui quando ficar pronto.', t, 'emitida');
+    if (d.ndpublicar) return agirNd('doc.nota_debito_publicar', { p_nota: Number(d.ndpublicar) }, 'Nota publicada no portal do cliente ou parceiro.', t);
+    if (d.ndpdf) return baixarNd(Number(d.ndpdf), t);
+    if (d.ndpagar) { const id = d.ndpagar, a = $('ndpa-' + id).value;
+      return agirNd('doc.nota_debito_pagar', { p_nota: Number(id), p_data: $('ndpd-' + id).value || null, p_comprovante: $('ndpc-' + id).value, p_arquivo: a ? Number(a) : null }, 'Pagamento registrado; a nota está paga.', t, 'paga'); }
+    if (d.ndcancelar) return agirNd('doc.nota_debito_cancelar', { p_nota: Number(d.ndcancelar), p_motivo: $('ndcm-' + d.ndcancelar).value }, 'Nota cancelada; o número fica registrado.', t, 'cancelada');
     if (d.filtro) { filtro = d.filtro; desenhar(); return; }
     if (d.enc) return agir('ext.encaminhamento_concluir', { p_encaminhamento: Number(d.enc), p_situacao: d.d, p_conclusao: $('ec-' + d.enc).value }, d.d === 'concluido' ? 'Encaminhamento concluído.' : 'Encaminhamento cancelado.', t);
     if (d.encaminhar) {
@@ -482,6 +649,8 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     if (d.salvarata) return agir('ext.reuniao_ata_rascunho', { p_reuniao: Number(d.salvarata), p_ata: lerAta(Number(d.salvarata)) }, 'Rascunho salvo.', t);
     if (d.aprovarata) return agir('ext.reuniao_ata_aprovar', { p_reuniao: Number(d.aprovarata), p_ata: lerAta(Number(d.aprovarata)) }, 'Ata aprovada; encaminhamentos criados com cartão para cada responsável.', t);
   });
+  document.addEventListener('input', campoNd);
+  document.addEventListener('change', campoNd);
   document.addEventListener('keydown', e => {
     const t = e.target.closest?.('.aba');
     if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {

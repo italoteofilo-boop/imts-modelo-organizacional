@@ -1,6 +1,7 @@
 // Central de atendimento: carga com a pessoa certa, dados reais da porta única, ações de ponta a ponta,
 // Google (Agenda, Drive) e IA interceptados para provar o caminho completo, degradação sem eles, recusa e acessibilidade.
 import { abrir, axe, caso, confere, fim, token, U } from './apoio.mjs';
+import { execFileSync } from 'node:child_process'; import crypto from 'node:crypto'; import fs from 'node:fs';
 
 const MARCA = Date.now().toString(36);
 const ALFA = 'Empresa Alfa';
@@ -175,6 +176,104 @@ await caso('IA indisponível ao rascunhar a ata: mostra o motivo e oferece escre
   await semErros(p, ignoraRede); await p.close();
 });
 
+// ---------- notas de débito ----------
+// o worker do motor documental (documentos/worker.py) roda uma vez contra o PostgREST do ensaio: tira o pedido da fila, emite o PDF e registra
+const DOCS = new URL('../../documentos/', import.meta.url).pathname;
+function rodarWorker() {
+  const b64 = o => Buffer.from(JSON.stringify(o)).toString('base64url');
+  const h = b64({ alg: 'HS256', typ: 'JWT' }), c = b64({ role: 'anon', exp: Math.floor(Date.now() / 1000) + 600 });
+  const anon = h + '.' + c + '.' + crypto.createHmac('sha256', process.env.IMTS_JWT_SEGREDO || 'segredo-de-ensaio-local-com-32-caracteres-ou-mais').update(h + '.' + c).digest('base64url');
+  const chave = execFileSync('psql', ['postgresql:///app_ensaio?port=5499', '-Atc', "select decrypted_secret from vault.decrypted_secrets where name = 'doc_worker_chave'"]).toString().trim();
+  return execFileSync('python3', ['worker.py', '--uma-vez'], { cwd: DOCS, timeout: 240000, stdio: ['ignore', 'pipe', 'ignore'],
+    env: { ...process.env, SUPABASE_URL: 'http://127.0.0.1:3399', SUPABASE_REST: 'http://127.0.0.1:3399', SUPABASE_CHAVE_PUB: anon, DOC_WORKER_CHAVE: chave, DOC_WORKER_NOME: 'ensaio-app' } }).toString();
+}
+const texto = async (p, sel) => (await p.textContent(sel)).replace(/\s+/g, ' ');
+async function abaNotas(p, filtro) {
+  await aba(p, 'notas');
+  if (filtro) { await p.click(`[data-ndfiltro="${filtro}"]`); await p.waitForSelector(`[data-ndfiltro="${filtro}"][aria-pressed="true"]`); }
+}
+async function baixa(p, sel) {
+  const [d] = await Promise.all([p.waitForEvent('download'), p.click(sel)]);
+  return fs.readFileSync(await d.path()).subarray(0, 5).toString();
+}
+const ND = { id: null, numero: null, ref: 'Viagem de implantação ' + MARCA };
+
+await caso('nota de débito: rui cria pelo formulário com o total, não aprova a própria; lia aprova', async () => {
+  const p = await abrir('central.html', 'rui'); await carregada(p); await abaNotas(p);
+  await p.click('[data-ndnova]'); await p.waitForSelector('#f-nd');
+  await p.selectOption('#nd-cp', { label: 'Prefeitura Exemplo (cliente)' });
+  await p.fill('#nd-ref', ND.ref); await p.fill('#nd-local', 'Fortaleza/CE');
+  const it = i => `#nd-itens .nd-item[data-i="${i}"]`;
+  await p.fill(it(0) + ' [data-k="descricao"]', 'Passagem aérea Fortaleza a Brasília ' + MARCA); await p.fill(it(0) + ' [data-k="valor"]', '1.120,00');
+  await p.click('[data-ndmais]'); await p.fill(it(1) + ' [data-k="descricao"]', 'Táxi do aeroporto ' + MARCA); await p.fill(it(1) + ' [data-k="valor"]', '86,40');
+  confere((await texto(p, '#nd-total')).includes('R$ 1.206,40'), 'total na tela: ' + await texto(p, '#nd-total'));
+  await p.click('#f-nd button[type="submit"]'); await recibo(p, 'Rascunho ND');
+  const art = p.locator('article[data-nd]').filter({ hasText: ND.ref });
+  ND.id = Number(await art.getAttribute('data-nd'));
+  ND.numero = (await art.locator('h3').textContent()).split(' · ')[0];
+  confere(/^ND \d{4}\/\d{4}$/.test(ND.numero), 'número ' + ND.numero);
+  const n = (await porta('rui', 'doc.painel_notas_debito', { p_empresa: await empAlfa() })).notas.find(x => x.id === ND.id);
+  confere(n.situacao === 'rascunho' && Number(n.total) === 1206.4 && n.itens.length === 2 && n.local === 'Fortaleza/CE', 'banco: ' + JSON.stringify(n));
+  confere(await art.locator('[data-ndaprovar]').count() === 0 && (await art.textContent()).includes('Você criou'), 'quem criou vê o botão de aprovar');
+  const r = await porta('rui', 'doc.nota_debito_aprovar', { p_nota: ND.id });
+  confere(String(r.message || '').includes('quem criou'), 'quem criou aprovou pela porta: ' + JSON.stringify(r));
+  const v = await axe(p); confere(v.length === 0, 'axe ' + v); await semErros(p, m => /status of 400/.test(m)); await p.close();
+  const q = await abrir('central.html', 'lia'); await carregada(q); await abaNotas(q);
+  await q.click(`[data-ndaprovar="${ND.id}"]`); await recibo(q, 'Nota aprovada');
+  await q.waitForSelector(`[data-ndfiltro="aprovada"][aria-pressed="true"]`);
+  await q.waitForSelector(`article[data-nd="${ND.id}"] .chip:has-text("aprovada")`);
+  confere((await q.textContent(`article[data-nd="${ND.id}"]`)).includes('aprovada por Lia'), 'aprovador não aparece');
+  await semErros(q); await q.close();
+});
+
+await caso('nota de débito: emite pelo motor, publica no portal da Prefeitura, baixa o PDF e registra o pagamento', async () => {
+  confere(ND.id, 'sem nota do caso anterior');
+  const p = await abrir('central.html', 'rui'); await carregada(p); await abaNotas(p, 'aprovada');
+  await p.click(`[data-ndemitir="${ND.id}"]`); await recibo(p, 'Pedido de emissão');
+  await p.waitForSelector(`article[data-nd="${ND.id}"]:has-text("na fila do motor documental")`);
+  const n1 = (await porta('rui', 'doc.painel_notas_debito', { p_empresa: await empAlfa() })).notas.find(x => x.id === ND.id);
+  confere(n1.situacao === 'emitida' && n1.pedido && n1.pedido_situacao === 'na_fila', 'pedido ao motor: ' + JSON.stringify(n1));
+  const saida = rodarWorker();
+  confere(saida.includes(`"pedido": ${n1.pedido}`) && /"situacao": "emitido/.test(saida), 'worker: ' + saida);
+  await p.click('[data-ndatualizar]'); await p.waitForSelector(`[data-ndpublicar="${ND.id}"]`);
+  confere(await baixa(p, `[data-ndpdf="${ND.id}"]`) === '%PDF-', 'PDF interno não baixou');
+  await p.click(`[data-ndpublicar="${ND.id}"]`); await recibo(p, 'Nota publicada');
+  await p.waitForSelector(`article[data-nd="${ND.id}"]:has-text("publicado no portal")`);
+  // clara vê no portal e baixa o PDF; paulo (outra contraparte) não vê
+  const c = await abrir('portal.html', 'clara'); await c.waitForSelector('#b-novo:not([disabled])');
+  await c.click('#t-notas'); await c.waitForSelector(`#conteudo article[data-nd="${ND.id}"]`);
+  const t = await texto(c, `article[data-nd="${ND.id}"]`);
+  confere(t.includes(ND.numero) && t.includes('R$ 1.206,40') && t.includes('em aberto'), 'portal da clara: ' + t);
+  confere(await baixa(c, `article[data-nd="${ND.id}"] [data-baixar]`) === '%PDF-', 'clara não baixou o PDF');
+  confere(c.erros.length === 0, 'erros no portal ' + c.erros); await c.close();
+  const pp = await porta('paulo', 'ext.portal_notas_debito', {});
+  confere(Array.isArray(pp) && !pp.some(x => x.id === ND.id), 'paulo vê a nota da Prefeitura');
+  // pagamento: rui (não aprovou) registra; a nota passa a paga
+  await p.fill(`#ndpc-${ND.id}`, 'PIX E' + MARCA); await p.click(`[data-ndpagar="${ND.id}"]`); await recibo(p, 'Pagamento registrado');
+  await p.waitForSelector(`[data-ndfiltro="paga"][aria-pressed="true"]`);
+  await p.waitForSelector(`article[data-nd="${ND.id}"]:has-text("PIX E${MARCA}")`);
+  const n2 = (await porta('clara', 'ext.portal_notas_debito', {})).find(x => x.id === ND.id);
+  confere(n2.situacao === 'paga' && n2.pago_em, 'portal não vê o pagamento: ' + JSON.stringify(n2));
+  await semErros(p); await p.close();
+});
+
+await caso('nota de débito: editar o rascunho recalcula o total; cancelar exige motivo', async () => {
+  const emp = await empAlfa(), cp = (await porta('rui', 'doc.painel_notas_debito', { p_empresa: emp })).contrapartes.find(x => x.nome === 'Representante Regional Exemplo').id;
+  const hoje = new Date().toISOString().slice(0, 10), venc = new Date(Date.now() + 10 * 864e5).toISOString().slice(0, 10);
+  const r = await porta('rui', 'doc.nota_debito_salvar', { p_empresa: emp, p_contraparte: cp, p_vencimento: venc, p_itens: [{ descricao: 'Cópias ' + MARCA, data: hoje, valor: 12.5 }], p_local: 'Fortaleza/CE' });
+  confere(r.id && r.numero, 'rascunho pela porta: ' + JSON.stringify(r));
+  const p = await abrir('central.html', 'rui'); await carregada(p); await abaNotas(p);
+  await p.click(`[data-ndeditar="${r.id}"]`); await p.waitForSelector('#f-nd');
+  await p.fill('#nd-itens .nd-item[data-i="0"] [data-k="valor"]', '20,00');
+  confere((await texto(p, '#nd-total')).includes('R$ 20,00'), 'total não recalculou');
+  await p.click('#f-nd button[type="submit"]'); await recibo(p, 'salvo: total');
+  confere((await porta('rui', 'doc.painel_notas_debito', { p_empresa: emp })).notas.find(x => x.id === r.id).total == 20, 'total editado não gravou');
+  await p.click(`[data-ndcancelar="${r.id}"]`); await recibo(p, 'Recusado: cancelar exige motivo');
+  await p.fill(`#ndcm-${r.id}`, 'Despesa entrou no contrato ' + MARCA); await p.click(`[data-ndcancelar="${r.id}"]`); await recibo(p, 'Nota cancelada');
+  await p.waitForSelector(`article[data-nd="${r.id}"]:has-text("Despesa entrou no contrato ${MARCA}")`);
+  await semErros(p, m => /status of 400/.test(m)); await p.close();
+});
+
 await caso('admin abre a Central na Empresa Alfa', async () => {
   const p = await abrir('central.html', 'admin'); await p.waitForSelector('#resumo span, #conteudo .vazio');
   const sel = await p.$('#imts-empresa');
@@ -189,14 +288,22 @@ await caso('paulo (parceiro) é recusado e volta à entrada', async () => {
   confere(!(await p.$('h1.marca:has-text("Central de atendimento")')), 'Central visível para externo'); await p.close();
 });
 
-await caso('acessibilidade nas três abas: 1280 claro, 1280 escuro e 390 claro, sem rolagem horizontal', async () => {
+await caso('acessibilidade nas quatro abas e no formulário da nota de débito: 1280 claro, 1280 escuro e 390 claro, sem rolagem horizontal', async () => {
   for (const [l, e] of [[1280, 'light'], [1280, 'dark'], [390, 'light']]) {
     const p = await abrir('central.html', 'rui', { largura: l, esquema: e }); await carregada(p);
-    for (const a of ['atendimento', 'parceiros', 'reunioes']) {
+    for (const a of ['atendimento', 'parceiros', 'reunioes', 'notas']) {
       await aba(p, a);
       const v = await axe(p); confere(v.length === 0, `${l} ${e} ${a} axe ${v}`);
       const larg = await p.evaluate(() => document.documentElement.scrollWidth); confere(larg <= l, `${l} ${e} ${a} rolagem horizontal ${larg}`);
     }
+    // formulário de nota de débito aberto, com duas despesas, e a lista das pagas com o quadro aberto
+    await p.click('[data-ndnova]'); await p.click('[data-ndmais]');
+    let v = await axe(p); confere(v.length === 0, `${l} ${e} formulário da nota axe ${v}`);
+    let larg = await p.evaluate(() => document.documentElement.scrollWidth); confere(larg <= l, `${l} ${e} formulário rolagem horizontal ${larg}`);
+    await p.click('[data-ndfechar]'); await p.click('[data-ndfiltro="paga"]');
+    for (const d of await p.$$('article[data-nd] details')) await d.evaluate(x => { x.open = true; });
+    v = await axe(p); confere(v.length === 0, `${l} ${e} notas pagas axe ${v}`);
+    larg = await p.evaluate(() => document.documentElement.scrollWidth); confere(larg <= l, `${l} ${e} notas pagas rolagem horizontal ${larg}`);
     await semErros(p); await p.close();
   }
 });

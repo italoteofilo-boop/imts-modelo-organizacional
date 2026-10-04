@@ -345,3 +345,13 @@ Ensaio em 04/10/2026, Postgres 16 local com a imitação do Supabase:
 
 `google`, `ia`, `alertas` e `telegram`. Testes com Google e Anthropic simulados contra o banco de ensaio:
 `IMTS_DB_URL=postgres://... deno test -A functions/testes/servidor_test.ts`. Resultado: 13 de 13.
+
+### Migrações 069 a 073 (04/10/2026, segunda rodada)
+
+| Arquivo | O que faz |
+|---|---|
+| `069_parceiro_representante.sql` | Parceiro simulado passa a ser representante comercial regional |
+| `070_ia_provedores.sql` | IA com Anthropic e Kimi, principal e reserva (`ia.provedor`, `ia.kimi_url`, `ia.kimi_modelo`, segredo `kimi_chave`) |
+| `071_nota_debito.sql` | Nota de débito para ressarcimento: numeração por empresa e ano, aprovação por outra pessoa, PDF pelo motor, portal e pagamento; 10 testes |
+| `072_integracoes.sql` | Integrações guiadas: serviços externos cadastrados pela Administração, segredos gravados no cofre pela tela (o valor não volta), teste real pela função `conexoes`, sistemas do motor em modo assistido ou real |
+| `073_testes_integracoes.sql` | 8 testes das integrações e a definição final de `adm.testar_tudo()` (21 suítes, 199 testes) |

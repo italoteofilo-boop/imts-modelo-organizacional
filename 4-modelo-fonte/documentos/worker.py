@@ -5,6 +5,7 @@ Configuração por ambiente (nada de segredo no código nem no repositório):
   SUPABASE_CHAVE_PUB    chave publicável do projeto (as funções do worker só respondem com a chave abaixo)
   DOC_WORKER_CHAVE      mesma chave gravada no Vault com o nome doc_worker_chave
   DOC_WORKER_NOME       nome deste worker no registro (padrão: nome da máquina)
+  SUPABASE_REST         opcional: endereço da API REST, quando não é <SUPABASE_URL>/rest/v1 (ex.: PostgREST local do ensaio)
 Uso: python3 worker.py [--uma-vez] [--intervalo 10]
 No protótipo roda aqui; em produção, no serviço escolhido (contêiner com Chromium e as fontes de documentos/fontes).
 """
@@ -13,10 +14,11 @@ import motor
 
 URL = os.environ.get('SUPABASE_URL', '').rstrip('/'); PUB = os.environ.get('SUPABASE_CHAVE_PUB', '')
 CHAVE = os.environ.get('DOC_WORKER_CHAVE', ''); NOME = os.environ.get('DOC_WORKER_NOME', socket.gethostname())
+REST = os.environ.get('SUPABASE_REST', '').rstrip('/') or f'{URL}/rest/v1'
 
 
 def rpc(fn, corpo):
-    req = urllib.request.Request(f'{URL}/rest/v1/rpc/{fn}', data=json.dumps(corpo).encode(), method='POST',
+    req = urllib.request.Request(f'{REST}/rpc/{fn}', data=json.dumps(corpo).encode(), method='POST',
                                  headers={'apikey': PUB, 'Authorization': f'Bearer {PUB}', 'Content-Type': 'application/json'})
     try:
         with urllib.request.urlopen(req, timeout=120) as r: return json.loads(r.read().decode() or 'null')
