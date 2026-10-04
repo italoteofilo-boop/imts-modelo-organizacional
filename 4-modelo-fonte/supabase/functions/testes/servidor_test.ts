@@ -32,6 +32,7 @@ async function simulado(input: string | URL | Request, init?: RequestInit): Prom
   if (url.includes("/calendar/v3/calendars/primary/events") && metodo === "POST") return J({ id: "eventoSimulado1", hangoutLink: "https://meet.google.com/abc-defg-hij" });
   if (url.startsWith("https://api.anthropic.com/")) return J({ content: [{ type: "text", text: 'Segue: {"resumo":"Reunião de teste.","decisoes":["Aprovar o cronograma"],"encaminhamentos":[{"descricao":"Enviar a ata","responsavel":"Operações · pessoa","prazo":"2026-10-10"}]}' }], usage: { input_tokens: 120, output_tokens: 80 } });
   if (url.startsWith("https://gmail.googleapis.com/")) return J({ id: "msg1" });
+  if (url === "https://kimi.teste/v1/chat/completions") return J({ choices: [{ message: { content: '{"resumo":"Ata pela Kimi.","decisoes":["Seguir"],"encaminhamentos":[]}' } }], usage: { prompt_tokens: 50, completion_tokens: 30 } });
   return J({ error: { message: "rota não simulada: " + url } }, 500);
 }
 const deps = { sql, fetch: simulado as typeof fetch };
@@ -47,7 +48,7 @@ async function preparar() {
   await sql`update adm.parametro set valor = '"sistema@imts.com.br"' where chave = 'google.usuario_sistema'`;
   await sql`update adm.parametro set valor = '"raizCompartilhada123"' where chave = 'google.drive_raiz'`;
   await sql`update adm.parametro set valor = '2000000' where chave = 'ia.orcamento_mensal_tokens'`;
-  await sql`delete from adm.registro_servidor where funcao = 'ia'`;
+  await sql`delete from adm.registro_servidor where funcao = 'ia' or alvo like 'arquivoSimulado%'`;
 }
 async function contaDeServico() {
   const k = await crypto.subtle.generateKey({ name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" }, true, ["sign", "verify"]);
@@ -121,6 +122,31 @@ Deno.test({ name: "funções do servidor", sanitizeResources: false, sanitizeOps
     const r = await ia(pedir({ acao: "ata_rascunho", reuniao: reu.id, transcricao: "Falamos do cronograma e decidimos aprovar." }, U.olga), deps);
     ok(r.status === 403 && chamadas.length === antes && (await r.json()).erro.includes("orçamento"), "status " + r.status);
     await sql`update adm.parametro set valor = '2000000' where chave = 'ia.orcamento_mensal_tokens'`;
+  });
+  await t.step("IA: Kimi como principal, com o formato compatível com a OpenAI", async () => {
+    if (!reu) return;
+    await sql`update adm.parametro set valor = '"kimi"' where chave = 'ia.provedor'`;
+    await sql`update adm.parametro set valor = '"https://kimi.teste/v1"' where chave = 'ia.kimi_url'`;
+    await sql`update adm.parametro set valor = '"modelo-kimi-teste"' where chave = 'ia.kimi_modelo'`;
+    await sql`delete from vault.secrets where name = 'kimi_chave'`;
+    await sql`select vault.create_secret('chave-kimi-teste', 'kimi_chave')`;
+    const r = await ia(pedir({ acao: "ata_rascunho", reuniao: reu.id, transcricao: "Falamos do cronograma e decidimos seguir com o plano." }, U.olga), deps);
+    const j = await r.json(); ok(r.status === 200 && j.ata.resumo === "Ata pela Kimi.", JSON.stringify(j));
+    const c = ultimo("kimi.teste")!; const corpo = JSON.parse(c.corpo);
+    ok(c.auth === "Bearer chave-kimi-teste" && corpo.model === "modelo-kimi-teste" && corpo.messages[0].role === "system", "pedido à Kimi");
+    const [u] = await sql`select detalhe, tokens_entrada + tokens_saida as t from adm.registro_servidor where funcao = 'ia' and ok order by id desc limit 1`;
+    ok(u.detalhe === "kimi" && u.t === 80, JSON.stringify(u));
+  });
+  await t.step("IA: principal fora do ar, a reserva responde", async () => {
+    if (!reu) return;
+    await sql`update adm.parametro set valor = '"https://kimi-fora.teste/v1"' where chave = 'ia.kimi_url'`;
+    const r = await ia(pedir({ acao: "ata_rascunho", reuniao: reu.id, transcricao: "Falamos do cronograma e decidimos aprovar." }, U.olga), deps);
+    const j = await r.json(); ok(r.status === 200 && j.ata.decisoes[0] === "Aprovar o cronograma", JSON.stringify(j));
+    const [u] = await sql`select detalhe from adm.registro_servidor where funcao = 'ia' and ok order by id desc limit 1`;
+    ok(u.detalhe === "anthropic (reserva)", JSON.stringify(u));
+    await sql`update adm.parametro set valor = '"anthropic"' where chave = 'ia.provedor'`;
+    await sql`update adm.parametro set valor = '""' where chave in ('ia.kimi_url', 'ia.kimi_modelo')`;
+    await sql`delete from vault.secrets where name = 'kimi_chave'`;
   });
   await t.step("ata ilegível vira recusa clara", () => { let ok2 = false; try { lerAta("sem json"); } catch { ok2 = true; } ok(ok2, "aceitou"); });
 

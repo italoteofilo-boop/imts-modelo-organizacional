@@ -120,10 +120,10 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | LGPD art. 33 | Base para transferência internacional (provedores fora do Brasil) | Governança e jurídico |
 | Telegram | Criar o bot e gravar o token no Vault; rodar `rt.telegram_configurar()` | Ítalo |
 | Domínio | Domínio próprio para o portal e o Mini App | Ítalo |
-| Login de produção | Supabase Auth com link no e-mail; retirar as funções `_como` e a atuação simulada das páginas. Depois do cadastro real, zerar as simulações pela aba Simulação | Integração |
+| Login de produção | Construído (P1 e P3): login Google da equipe, link por e-mail para clientes e parceiros, perfil de produção sem `_como` nem simulação. Falta implantar: E05 e E06 do manual | Integração |
 | Projeto de produção | Projeto Supabase separado, com PITR e backup confirmados; pg_net fora do esquema public | Integração |
-| Worker | Serviço com Chromium e as fontes, com a chave do worker no ambiente | Integração |
-| Arquivos | Storage para doc.arquivo (hoje no banco) | Integração |
+| Worker | Construído (P4): contêiner `documentos/Dockerfile`, testado no ensaio. Falta implantar: E09 do manual | Integração |
+| Arquivos | B25 aprovado em 04/10/2026: os PDFs ficam no banco com alerta acima de 2 GB; a ida ao Storage é feita quando o alerta disparar | Integração |
 | Sistemas | ERP, emissor fiscal, bancos e provedor de IA no lugar dos adaptadores simulados | Gestão e Integração |
 | Assinatura | DocuSign ligado às âncoras /ass_A/, /ass_B/, /ass_T1/, /ass_T2/ | Governança |
 | Google Drive | Terceira saída do motor (Google Docs) | Integração |
@@ -131,7 +131,7 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | Comissões | Regra real de cada contrato de parceria comercial (percentual, base, parcelas) no lugar da simulada; não há regra no Drive (busca de 04/10/2026). Escritório de advocacia não recebe comissão (decisão de set/2026): é remunerado pela OS-Cliente | Negócios e Gestão |
 | Vídeo | Nada a registrar: Zoom, Teams e Webex por participação no convite. Na produção, a agenda do Meet passa da conta Gmail para o Workspace IMTS (conectar o Google Calendar com a conta @imts.com.br) | Integração e Ítalo |
 | Prazos de atendimento | Valores em vigor, mais rigorosos que as referências conferidas (Decreto 11.034/2022, art. 13; Lei 13.460/2017, art. 16); mudar só se a operação pedir | Relações, Operações e Governança |
-| Arquivos de fora | Em produção, o arquivo enviado pelo portal vai para o Drive por função do servidor (hoje é a página, pelo conector) | Integração |
+| Arquivos de fora | Construído (P4): o arquivo do portal vai ao Drive pela função `google`. Falta implantar: E04 do manual | Integração |
 
 Nada fora desta tabela depende de construção no protótipo.
 

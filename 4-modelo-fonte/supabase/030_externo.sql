@@ -340,7 +340,7 @@ begin
   if exists (select 1 from ext.contraparte where simulado) then return; end if;
   insert into ext.contraparte (empresa, tipo, nome, setor_publico, simulado) values ('80d8f119-a3fc-40ce-afaa-34d974f25d31', 'cliente', 'Secretaria Municipal de Saúde (simulada)', true, true) returning id into c1;
   insert into ext.contraparte (empresa, tipo, nome, setor_publico, simulado) values ('9ce4812d-e39d-4fb3-bbda-a59a0f4aa897', 'cliente', 'Secretaria Municipal de Educação (simulada)', true, true) returning id into c2;
-  insert into ext.contraparte (empresa, tipo, nome, setor_publico, simulado) values ('80d8f119-a3fc-40ce-afaa-34d974f25d31', 'parceiro', 'Escritório regional de advocacia (simulado)', false, true) returning id into p1;
+  insert into ext.contraparte (empresa, tipo, nome, setor_publico, simulado) values ('80d8f119-a3fc-40ce-afaa-34d974f25d31', 'parceiro', 'Representante comercial regional (simulado)', false, true) returning id into p1;
   insert into ext.contraparte (empresa, tipo, nome, setor_publico, simulado) values ('9ce4812d-e39d-4fb3-bbda-a59a0f4aa897', 'parceiro', 'Distribuidora parceira (simulada)', false, true) returning id into p2;
   insert into ext.usuario (auth_uid, contraparte, nome, perfil, simulado) values
    (gen_random_uuid(), c1, 'Secretária de saúde (simulada)', 'gestor', true), (gen_random_uuid(), c1, 'Fiscal do contrato (simulado)', 'fiscal', true),

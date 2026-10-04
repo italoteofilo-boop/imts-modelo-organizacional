@@ -46,7 +46,7 @@ begin
 end $$;
 -- parceiros simulados com CNPJ de exemplo (11.222.333/0001-81 é o número de exemplo usado em validadores; filial 0002 com dígito calculado),
 -- para a conferência da nota rodar de ponta a ponta no protótipo; parceiro real entra com o CNPJ do contrato
-update ext.contraparte set documento = '11.222.333/0001-81' where simulado and tipo = 'parceiro' and nome like 'Escritório regional%' and documento is null;
+update ext.contraparte set documento = '11.222.333/0001-81' where simulado and tipo = 'parceiro' and nome like 'Representante comercial regional%' and documento is null;
 update ext.contraparte set documento = '11.222.333/0002-62' where simulado and tipo = 'parceiro' and nome like 'Distribuidora parceira%' and documento is null;
 -- rodada única com as 15 suítes (vale esta definição; os arquivos de teste anteriores redefinem a função com menos suítes)
 create or replace function adm.testar_tudo() returns jsonb language plpgsql set search_path = '' as $f$
