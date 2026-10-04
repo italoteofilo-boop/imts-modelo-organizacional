@@ -88,5 +88,13 @@ with sync_playwright() as pw, tempfile.TemporaryDirectory() as tmp:
     rr = E(A('relatorio-imts.json'))
     t('T28 capa no mesmo PDF, com marcação de acessibilidade', PdfReader(os.path.join(tmp, rr['id'] + '.pdf')).trailer['/Root'].get('/MarkInfo') is not None and rr['situacao'] == 'emitido')
     t('T29 registro guarda a versão de modelo, marca e motor', {'base.css', 'documento.html.j2', 'ajuste.js', 'marca.json', 'motor.py'} <= set(r1.get('versoes', {})))
+    # T30 pacote de marca do banco (worker) vale no lugar do arquivo; dado de marca de outra marca é ignorado
+    import hashlib
+    mj = json.load(open(os.path.join(motor.MARCAS, 'imts', 'marca.json'))); mj['cores']['primaria'] = '#123456'
+    r30 = E({**c, 'id': 'teste-marca-banco', '_marca_dados': mj})
+    html30 = open(os.path.join(tmp, 'teste-marca-banco.html'), encoding='utf-8').read()
+    r30b = E({**c, 'id': 'teste-marca-outra', '_marca_dados': {**mj, 'id': 'onni'}})
+    t('T30 marca do banco usada e registrada', '#123456' in html30 and r30['versoes']['marca.json'] == hashlib.sha256(json.dumps(mj, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+      and r30b['versoes']['marca.json'] != r30['versoes']['marca.json'] and r30['situacao'] != 'bloqueado', r30.get('gates'))
     nav.close()
 print(f'\n{len(ok)} ok, {len(falhas)} falhas'); sys.exit(1 if falhas else 0)

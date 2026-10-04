@@ -44,7 +44,7 @@ button { cursor:pointer; }
 .btn.prim { background:var(--marca); border-color:var(--marca); color:var(--marca-tinta); }
 .btn.perigo { border-color:var(--mal); color:var(--mal); }
 .btn:disabled { opacity:.45; cursor:not-allowed; }
-.barra .btn.prim { margin-left:auto; }
+#b-telegram { margin-left:auto; }
 .lista { display:flex; flex-direction:column; gap:10px; }
 .item { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:14px 16px; display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 16px; align-items:start; }
 .item .t { font-weight:700; }
@@ -59,7 +59,8 @@ button { cursor:pointer; }
 .linha-tempo li:last-child::before { background:var(--realce); }
 .linha-tempo .q { font-size:12px; color:var(--apoio); font-variant-numeric:tabular-nums; }
 details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-height:24px; padding-block:4px; }
-.acoes { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; }
+.acoes { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.acoes select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); }
 .cod { font-family:var(--dados); font-size:12px; }
 .vazio { background:var(--folha); border:1px dashed var(--fio); border-radius:12px; padding:16px; color:var(--apoio); font-size:14px; }
 .resposta { grid-column:1 / -1; background:var(--chao); border-radius:8px; padding:8px 10px; font-size:14px; }
@@ -75,7 +76,20 @@ details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-hei
 .recibo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--realce); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--sombra); }
 .recibo.feito { border-left-color:var(--bom); } .recibo.recusado { border-left-color:var(--mal); }
 .rodape { font-size:12px; color:var(--apoio); max-width:75ch; }
-@media (max-width: 640px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .barra .btn.prim { margin-left:0; } }
+.totais { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:8px; }
+.total { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:10px 14px; }
+.total .v { font-size:20px; font-weight:700; font-variant-numeric:tabular-nums; } .total .r { font-size:13px; color:var(--apoio); }
+.sala { grid-column:1 / -1; display:flex; flex-direction:column; gap:6px; background:var(--chao); border-radius:10px; padding:10px; max-height:280px; overflow:auto; }
+.msg { max-width:85%; padding:6px 10px; border-radius:10px; font-size:14px; background:var(--folha); border:1px solid var(--fio); }
+.msg.parceiro { align-self:end; background:var(--realce-suave); border-color:transparent; } .msg.sistema { align-self:center; font-size:12px; color:var(--apoio); background:transparent; border-style:dashed; }
+.msg .q { font-size:11px; color:var(--apoio); }
+.form-linha { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; }
+.form-linha input[type="text"] { flex:1 1 240px; min-width:0; padding:8px 10px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); }
+.conf { grid-column:1 / -1; margin:0; padding-left:18px; font-size:13px; } .conf .ok { color:var(--bom); } .conf .nao { color:var(--mal); }
+.escolha { display:flex; flex-direction:column; gap:6px; max-height:220px; overflow:auto; }
+.escolha label { display:flex; gap:8px; align-items:center; font-size:14px; background:var(--chao); border-radius:8px; padding:8px 10px; }
+.codigo { font-family:var(--dados); font-size:26px; letter-spacing:.12em; background:var(--chao); border-radius:10px; padding:12px; text-align:center; }
+@media (max-width: 640px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } #b-telegram { margin-left:0; } }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
 
@@ -98,9 +112,13 @@ details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-hei
     <div role="tablist" aria-label="O que você acompanha" style="display:contents">
       <button class="aba" role="tab" id="t-andamentos" data-aba="andamentos" aria-controls="conteudo" aria-selected="true" tabindex="0">Andamentos<span class="n" id="n-andamentos"></span></button>
       <button class="aba" role="tab" id="t-documentos" data-aba="documentos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Documentos<span class="n" id="n-documentos"></span></button>
+      <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Reuniões<span class="n" id="n-reunioes"></span></button>
       <button class="aba" role="tab" id="t-pedidos" data-aba="pedidos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Pedidos<span class="n" id="n-pedidos"></span></button>
       <button class="aba" role="tab" id="t-oportunidades" data-aba="oportunidades" aria-controls="conteudo" aria-selected="false" tabindex="-1" hidden>Oportunidades<span class="n" id="n-oportunidades"></span></button>
+      <button class="aba" role="tab" id="t-carteira" data-aba="carteira" aria-controls="conteudo" aria-selected="false" tabindex="-1" hidden>Comissões<span class="n" id="n-carteira"></span></button>
+      <button class="aba" role="tab" id="t-prestacao" data-aba="prestacao" aria-controls="conteudo" aria-selected="false" tabindex="-1" hidden>Prestação de contas<span class="n" id="n-prestacao"></span></button>
     </div>
+    <button class="btn" id="b-telegram" type="button" disabled>Telegram</button>
     <button class="btn prim" id="b-novo" type="button" disabled>Novo pedido</button>
   </div>
   <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-andamentos"><p class="vazio">Conectando ao portal…</p></section>
@@ -117,14 +135,17 @@ const lit = s => "'" + String(s).replace(/'/g, "''") + "'";
 const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
 const dia = t => t ? new Date(t + (String(t).length === 10 ? 'T12:00:00' : '')).toLocaleDateString('pt-BR') : '';
 const TIPO = { chamado: 'Chamado', duvida: 'Dúvida', titular: 'Pedido de titular de dados (LGPD)', adesao: 'Adesão à ata de registro de preços',
-  oportunidade: 'Registro de oportunidade', aceite: 'Aceite de entrega', devolucao: 'Devolução de entrega' };
+  oportunidade: 'Registro de oportunidade', aceite: 'Aceite de entrega', devolucao: 'Devolução de entrega', reclamacao: 'Reclamação', os: 'Ordem de serviço', ouvidoria: 'Ouvidoria' };
 const AJUDA = { chamado: 'Algo não funciona como deveria ou precisa de atendimento. O prazo de resposta aparece no acompanhamento.', duvida: 'Pergunta sobre o contrato, o serviço ou o portal. O prazo de resposta aparece no acompanhamento.',
   titular: 'Direitos sobre os seus dados pessoais. Confirmação e acesso: até 15 dias (Lei 13.709/2018, art. 19, II). Os demais direitos seguem o prazo informado no acompanhamento.', adesao: 'Pedido para aderir à ata de registro de preços vigente.',
-  oportunidade: 'Registre o cliente final e o assunto. O registro aceito dá exclusividade pelo prazo definido pela empresa, mostrado na aba Oportunidades.' };
-const SIT = s => ({ recebido: 'espera', em_atendimento: 'realce', respondido: 'bom', encerrado: '', recusado: 'mal', registrada: 'realce', em_negociacao: 'espera', ganha: 'bom', perdida: 'mal', expirada: '' }[s] ?? '');
+  oportunidade: 'Registre o cliente final e o assunto. O registro aceito dá exclusividade pelo prazo definido pela empresa, mostrado na aba Oportunidades.',
+  reclamacao: 'Algo saiu errado e você quer correção. A equipe registra os encaminhamentos com responsável e prazo; você acompanha cada um.',
+  os: 'Pedido de execução de um serviço do contrato. Cada etapa vira um encaminhamento datado; ao final, você confirma o encerramento.',
+  ouvidoria: 'Canal independente, conduzido pela Governança. Use quando o atendimento comum não resolveu ou para relatar conduta. Pode ser anônima: a equipe não vê quem escreveu.' };
+const SIT = s => ({ prevista: 'realce', adquirida: 'espera', a_pagar: 'espera', paga: 'bom', enviada: 'realce', conferida: 'realce', divergente: 'mal', aprovada: 'bom', recusada: 'mal', recebido: 'espera', em_atendimento: 'realce', respondido: 'bom', encerrado: '', recusado: 'mal', registrada: 'realce', em_negociacao: 'espera', ganha: 'bom', perdida: 'mal', expirada: '' }[s] ?? '');
 const AVISOS = { server_not_connected: 'o conector do Supabase não está adicionado', needs_reauth: 'o conector do Supabase precisa ser reconectado',
   not_in_manifest: 'a leitura ao vivo não foi permitida para esta página', blocked_by_policy: 'bloqueado pela política da organização', server_unavailable: 'o Supabase não respondeu a tempo' };
-let mcp = null, downloads = null, usuarios = [], eu = null, dados = null, aba = 'andamentos', voltarFoco = null;
+let mcp = null, downloads = null, usuarios = [], eu = null, dados = null, parc = null, reus = [], aba = 'andamentos', voltarFoco = null;
 
 function lerPayload(p) {
   const s = typeof p === 'string' ? p : (p && typeof p.result === 'string') ? p.result : JSON.stringify(p);
@@ -133,6 +154,17 @@ function lerPayload(p) {
   const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
   if (v === undefined) throw { code: 'formato' };
   return typeof v === 'string' && /^[\[{]/.test(v) ? JSON.parse(v) : v;
+}
+const RAIZ_ACERVO = '13uAN-SsTxErXyZh2_36xNi-nkYNy5x9O';   // pasta do acervo no Drive do Workspace IMTS (protótipo)
+const brl = v => v == null ? '' : Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const SITC = { prevista: 'Prevista', adquirida: 'Adquirida', a_pagar: 'A pagar', paga: 'Paga' };
+const REGRA = { comissoes: 'Comissões escolhidas', cnpj: 'CNPJ do emitente', numero: 'Número da nota', valor: 'Valor da nota' };
+async function drive(ferramenta, args) {
+  const r = await mcp.callTool('Google Drive', ferramenta, args, { cache: false });
+  const s = r?.payload ?? r?.content?.[0]?.text;
+  if (r?.isError) throw { message: typeof s === 'string' ? s : JSON.stringify(s ?? r?.error) };
+  if (s && typeof s === 'object') return s;
+  try { return JSON.parse(s); } catch (e) { return { texto: s }; }
 }
 async function sql(q) {
   const r = await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false });
@@ -197,18 +229,63 @@ function vPedidos() {
   const ps = dados.pedidos || [];
   if (!ps.length) return '<p class="vazio">Nenhum pedido ainda. Use “Novo pedido” para abrir um chamado, tirar uma dúvida ou exercer um direito sobre seus dados pessoais.</p>';
   return `<div class="lista">${ps.map(p => `<article class="item">
-      <div><div class="t">${esc(p.assunto)}</div><div class="sub">${esc(TIPO[p.tipo] || p.tipo)} · nº ${p.id} · aberto em ${quando(p.criado_em)}</div></div>
+      <div><div class="t">${esc(p.assunto)}</div><div class="sub">${esc(TIPO[p.tipo] || p.tipo)}${p.anonimo ? ' anônima' : ''} · nº ${p.id} · aberto em ${quando(p.criado_em)}${p.reaberturas ? ' · reaberto ' + p.reaberturas + 'x' : ''}</div></div>
       <div class="lado"><span class="chip ${SIT(p.situacao)}">${esc(String(p.situacao).replace(/_/g, ' '))}</span><span class="sub">prazo ${quando(p.prazo)}</span></div>
+      ${(p.encaminhamentos || []).length ? `<ol class="linha-tempo">${p.encaminhamentos.map(e => `<li><div>${esc(e.descricao)}</div><div class="sub">${esc(e.area || 'equipe')} · aberto em ${quando(e.criado_em)} · prazo ${quando(e.prazo)}${e.concluido_em ? ' · ' + (e.situacao === 'cancelado' ? 'cancelado' : 'concluído') + ' em ' + quando(e.concluido_em) : ''}</div>${e.conclusao ? `<div class="q">${esc(e.conclusao)}</div>` : ''}</li>`).join('')}</ol>` : ''}
       ${p.resposta ? `<div class="resposta"><strong>Resposta:</strong> ${esc(p.resposta)}</div>` : ''}
+      ${p.situacao === 'respondido' && p.confirmar_ate ? `<div class="resposta">Confirme o encerramento até ${quando(p.confirmar_ate)}; depois disso ele se encerra sozinho (aceite tácito).</div>
+        <div class="acoes"><label class="sub" for="av-${p.id}">Avaliação</label><select id="av-${p.id}"><option value="">sem nota</option>${[5, 4, 3, 2, 1].map(n => `<option>${n}</option>`).join('')}</select>
+        <button class="btn prim" type="button" data-confirmar="${p.id}">Confirmar encerramento</button><button class="btn perigo" type="button" data-reabrir="${p.id}">Reabrir</button></div>` : ''}
+      ${p.situacao === 'encerrado' && p.encerrado_como ? `<div class="sub" style="grid-column:1 / -1">Encerrado em ${quando(p.encerrado_em)} · ${p.encerrado_como === 'tacito' ? 'aceite tácito' : 'confirmado'}${p.avaliacao ? ' · nota ' + p.avaliacao : ''}</div>` : ''}
     </article>`).join('')}</div>`;
+}
+const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
+function vReunioes() {
+  if (!reus.length) return '<p class="vazio">Nenhuma reunião marcada com a sua organização.</p>';
+  return `<div class="lista">${reus.map(r => `<article class="item">
+      <div><div class="t">${esc(r.titulo)}</div><div class="sub">${quando(r.inicio)} · ${r.duracao_min} min · ${esc(PLAT[r.plataforma] || r.plataforma)}${r.pedido ? ' · pedido nº ' + r.pedido : ''}</div>
+        ${r.gravar ? `<div class="sub">Esta reunião será gravada e transcrita para a ata. ${r.consenti ? 'Você consentiu.' : 'A gravação só é guardada com consentimento registrado.'}</div>` : ''}</div>
+      <div class="lado"><span class="chip ${r.situacao === 'realizada' ? 'bom' : r.situacao === 'cancelada' ? '' : 'realce'}">${esc(r.situacao)}</span>${r.link ? `<a href="${esc(r.link)}" target="_blank" rel="noopener" style="display:inline-block;min-height:24px;padding-block:2px">Entrar na reunião</a>` : ''}</div>
+      ${r.gravar && !r.consenti && r.situacao === 'agendada' ? `<div class="acoes"><button class="btn" type="button" data-consentir="${r.id}">Consinto com a gravação</button></div>` : ''}
+      ${r.ata ? `<div class="resposta"><strong>Ata</strong> (${quando(r.ata.em)}): ${esc(r.ata.resumo)}${(r.ata.decisoes || []).length ? '<br>Decisões: ' + r.ata.decisoes.map(esc).join('; ') : ''}</div>` : ''}
+      ${(r.encaminhamentos || []).length ? `<ol class="linha-tempo">${r.encaminhamentos.map(e => `<li><div>${esc(e.descricao)}</div><div class="sub">${esc(e.area || 'equipe')} · prazo ${quando(e.prazo)}${e.concluido_em ? ' · concluído em ' + quando(e.concluido_em) : ''}</div></li>`).join('')}</ol>` : ''}
+    </article>`).join('')}</div>`;
+}
+function vCarteira() {
+  const k = parc?.carteira; if (!k) return '<p class="vazio">As comissões são do gestor e do financeiro do parceiro.</p>';
+  const t = k.totais || {}, ct = parc.contrato;
+  const tot = `<div class="totais">${['prevista', 'adquirida', 'a_pagar', 'paga'].map(s => `<div class="total"><div class="r">${SITC[s]}</div><div class="v">${brl(t[s]?.valor || 0)}</div><div class="r">${t[s]?.quantidade || 0} parcela(s)</div></div>`).join('')}</div>`;
+  const regra = ct ? `<p class="rodape">Regra vigente: ${String(ct.percentual).replace('.', ',')}% sobre cada parcela recebida do cliente, até ${ct.parcelas_max} parcelas.${ct.simulado ? ' Regra simulada do protótipo, não é a do seu contrato.' : ''} Prevista: negócio ganho, parcela futura. Adquirida: o cliente pagou; emita a nota. A pagar: nota aprovada. Paga: pagamento registrado.</p>` : '<p class="rodape">Sem contrato de parceria vigente cadastrado.</p>';
+  const itens = (k.itens || []).length ? `<div class="lista">${k.itens.map(i => `<article class="item"><div><div class="t">${esc(i.cliente_final)} · parcela ${i.parcela}${i.parcelas ? ' de ' + i.parcelas : ''}</div>
+      <div class="sub">Competência ${dia(i.competencia)} · base ${brl(i.base)} · ${String(i.percentual).replace('.', ',')}%${i.prestacao ? ' · na prestação nº ' + i.prestacao : ''}</div></div>
+      <div class="lado"><span class="chip ${SIT(i.situacao)}">${SITC[i.situacao] || esc(i.situacao)}</span><strong>${brl(i.valor)}</strong></div></article>`).join('')}</div>`
+    : '<p class="vazio">Nenhuma comissão ainda. Quando uma oportunidade sua vira negócio ganho, as parcelas aparecem aqui como previstas.</p>';
+  return tot + regra + itens;
+}
+function vPrestacao() {
+  const ps = parc?.prestacoes; if (!ps) return '<p class="vazio">A prestação de contas é do gestor e do financeiro do parceiro.</p>';
+  const adq = (parc.carteira?.itens || []).filter(i => i.situacao === 'adquirida' && !i.prestacao);
+  const topo = `<div class="item"><div><div class="t">Enviar nota fiscal ou relatório</div><div class="sub">${adq.length ? adq.length + ' comissão(ões) adquirida(s) aguardando nota.' : 'Nenhuma comissão adquirida aguardando nota.'}${parc.cnpj_cadastrado ? '' : ' O CNPJ da sua organização ainda não está cadastrado na IMTS: a nota ficará pendente na conferência até o cadastro.'}</div></div>
+    <div class="lado"><button class="btn prim" type="button" id="b-prestar">Enviar</button></div></div>`;
+  const lista = ps.length ? `<div class="lista">${ps.map(p => `<article class="item"><div><div class="t">${p.tipo === 'nf' ? 'Nota fiscal ' + esc(p.numero || 'sem número lido') : 'Relatório de prestação de contas'}</div>
+      <div class="sub">${esc(p.arquivo || '')} · enviado em ${quando(p.em)}${p.valor != null ? ' · ' + brl(p.valor) : ''}</div></div>
+      <div class="lado"><span class="chip ${SIT(p.situacao)}">${esc(p.situacao)}</span></div>
+      ${(p.conferencia || []).length ? `<ul class="conf">${p.conferencia.map(c => `<li class="${c.ok ? 'ok' : 'nao'}">${c.ok ? 'Confere' : 'Não confere'} · ${esc(REGRA[c.regra] || c.regra)}: ${esc(c.detalhe)}</li>`).join('')}</ul>` : ''}
+      ${p.motivo ? `<div class="resposta"><strong>Motivo da recusa:</strong> ${esc(p.motivo)}</div>` : ''}${p.situacao === 'divergente' ? '<div class="resposta">Corrija e envie de novo: a nota com divergência não segue para aprovação.</div>' : ''}</article>`).join('')}</div>`
+    : '<p class="vazio">Nada enviado ainda.</p>';
+  return topo + lista;
 }
 function vOportunidades() {
   const os = dados.oportunidades || [];
   if (!os.length) return '<p class="vazio">Nenhuma oportunidade registrada. Registre o cliente final pelo “Novo pedido”: o registro aceito garante exclusividade pelo prazo combinado.</p>';
-  return `<div class="lista">${os.map(o => `<article class="item">
-      <div><div class="t">${esc(o.cliente_final)}</div><div class="sub">Registro nº ${o.id}</div></div>
-      <div class="lado"><span class="chip ${SIT(o.situacao)}">${esc(String(o.situacao).replace(/_/g, ' '))}</span><span class="sub">exclusiva até ${dia(o.exclusiva_ate)}</span></div>
-    </article>`).join('')}</div>`;
+  const salas = Object.fromEntries((parc?.salas || []).map(s => [s.oportunidade, s]));
+  return `<div class="lista">${os.map(o => { const s = salas[o.id] || { mensagens: [] };
+    return `<article class="item">
+      <div><div class="t">${esc(o.cliente_final)}</div><div class="sub">Registro nº ${o.id}${s.valor ? ' · negócio de ' + brl(s.valor) : ''}</div></div>
+      <div class="lado"><span class="chip ${SIT(o.situacao)}">${esc(String(o.situacao).replace(/_/g, ' '))}</span>${['registrada', 'em_negociacao'].includes(o.situacao) ? `<span class="sub">exclusiva até ${dia(o.exclusiva_ate)}</span>` : ''}</div>
+      <div class="sala" tabindex="0" aria-label="Sala do negócio ${esc(o.cliente_final)}">${s.mensagens.length ? s.mensagens.map(m => `<div class="msg ${m.lado}">${esc(m.texto)}<div class="q">${m.lado === 'imts' ? 'IMTS' : m.lado === 'parceiro' ? 'Você' : 'Sistema'} · ${quando(m.em)}${m.origem === 'telegram' ? ' · Telegram' : ''}</div></div>`).join('') : '<div class="sub">Sala do negócio: converse aqui com a equipe sobre o andamento.</div>'}</div>
+      <div class="form-linha"><input type="text" id="sm-${o.id}" maxlength="2000" aria-label="Mensagem para a sala" placeholder="Escreva para a equipe"><button class="btn" type="button" data-sala="${o.id}">Enviar</button></div>
+    </article>`; }).join('')}</div>`;
 }
 function desenhar() {
   for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
@@ -220,20 +297,23 @@ function desenhar() {
   $('titulo').textContent = c.tipo === 'parceiro' ? 'Portal do parceiro' : 'Portal do cliente';
   $('org').textContent = `${c.nome || ''} · ${dados.eu?.nome || ''} (perfil ${dados.eu?.perfil || ''})`;
   $('t-oportunidades').hidden = !dados.pode?.oportunidade;
-  if (aba === 'oportunidades' && !dados.pode?.oportunidade) aba = 'andamentos';
+  $('t-carteira').hidden = !parc?.pode?.carteira; $('t-prestacao').hidden = !parc?.pode?.prestacao;
+  if ((aba === 'oportunidades' && !dados.pode?.oportunidade) || (aba === 'carteira' && !parc?.pode?.carteira) || (aba === 'prestacao' && !parc?.pode?.prestacao)) aba = 'andamentos';
+  $('n-carteira').textContent = (parc?.carteira?.itens || []).filter(i => i.situacao === 'adquirida' && !i.prestacao).length || '';
+  $('n-prestacao').textContent = (parc?.prestacoes || []).filter(p => ['divergente', 'recusada'].includes(p.situacao)).length || '';
   $('n-andamentos').textContent = (dados.andamentos || []).length || '';
   $('n-documentos').textContent = (dados.documentos || []).length || '';
-  $('n-pedidos').textContent = (dados.pedidos || []).length || '';
+  $('n-pedidos').textContent = (dados.pedidos || []).length || ''; $('n-reunioes').textContent = reus.filter(r => r.situacao === 'agendada').length || '';
   $('n-oportunidades').textContent = (dados.oportunidades || []).length || '';
-  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, pedidos: vPedidos, oportunidades: vOportunidades }[aba]();
-  $('b-novo').disabled = false;
+  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, pedidos: vPedidos, oportunidades: vOportunidades, reunioes: vReunioes, carteira: vCarteira, prestacao: vPrestacao }[aba]();
+  $('b-novo').disabled = false; $('b-telegram').disabled = false;
   $('rodape').textContent = 'Você vê só o que foi publicado para a sua organização e o seu perfil. Mudanças internas da empresa não aparecem aqui; cada etapa visível tem título e texto aprovados para o público externo.';
 }
 
 // ---------- ações ----------
 function fechar() { $('painel').hidden = true; $('painel').innerHTML = ''; if (voltarFoco && document.contains(voltarFoco)) voltarFoco.focus(); voltarFoco = null; }
 function abrirPainel(html) { $('painel').innerHTML = html; $('painel').hidden = false; const f = $('painel').querySelector('select,input,textarea'); (f || $('painel')).focus(); $('p-fechar').onclick = fechar; const c = $('p-cancelar'); if (c) c.onclick = fechar; }
-function tiposPermitidos() { const p = dados.pode || {}; return ['chamado', 'duvida', 'titular'].concat(p.adesao ? ['adesao'] : [], p.oportunidade ? ['oportunidade'] : []); }
+function tiposPermitidos() { const p = dados.pode || {}; return ['chamado', 'duvida'].concat(p.reclamacao ? ['reclamacao'] : [], p.os ? ['os'] : [], ['titular'], p.ouvidoria ? ['ouvidoria'] : [], p.adesao ? ['adesao'] : [], p.oportunidade ? ['oportunidade'] : []); }
 function abrirNovo() {
   const ts = tiposPermitidos();
   abrirPainel(`<div class="topo"><h2 id="p-titulo">Novo pedido</h2><button class="btn" type="button" id="p-fechar">Fechar</button></div>
@@ -241,14 +321,15 @@ function abrirNovo() {
     <form id="f-novo" style="display:flex;flex-direction:column;gap:12px">
       <label class="campo" for="f-tipo">Tipo<select id="f-tipo">${ts.map(t => `<option value="${t}">${esc(TIPO[t])}</option>`).join('')}</select></label>
       <p id="f-ajuda"></p>
+      <label id="l-anonimo" hidden style="display:flex;gap:8px;align-items:center;font-size:14px"><input type="checkbox" id="f-anonimo"> Enviar anônima (a equipe não verá o seu nome nem a sua organização)</label>
       <label class="campo" for="f-cliente" id="l-cliente" hidden>Cliente final<input id="f-cliente" maxlength="200" placeholder="nome do órgão ou da empresa"></label>
       <label class="campo" for="f-assunto">Assunto<input id="f-assunto" maxlength="200" required></label>
       <label class="campo" for="f-ref">Referência (opcional)<select id="f-ref"><option value="">nenhuma</option>${(dados.andamentos || []).map(a => `<option value="${a.ref}">${esc(a.assunto || a.jornada)} · ${a.ref}</option>`).join('')}</select></label>
       <label class="campo" for="f-texto">Descrição<textarea id="f-texto" maxlength="4000" required></textarea></label>
       <div class="acoes"><button class="btn prim" type="submit">Enviar pedido</button><button class="btn" type="button" id="p-cancelar">Cancelar</button></div></form>`);
-  const ajusta = () => { const t = $('f-tipo').value; $('f-ajuda').textContent = AJUDA[t] || ''; $('l-cliente').hidden = t !== 'oportunidade'; };
+  const ajusta = () => { const t = $('f-tipo').value; $('f-ajuda').textContent = AJUDA[t] || ''; $('l-cliente').hidden = t !== 'oportunidade'; $('l-anonimo').hidden = t !== 'ouvidoria'; $('l-anonimo').style.display = t === 'ouvidoria' ? 'flex' : 'none'; };
   $('f-tipo').onchange = ajusta; ajusta();
-  $('f-novo').onsubmit = ev => { ev.preventDefault(); enviar($('f-tipo').value, $('f-assunto').value, $('f-texto').value, $('f-ref').value || null, $('f-cliente').value || null); };
+  $('f-novo').onsubmit = ev => { ev.preventDefault(); enviar($('f-tipo').value, $('f-assunto').value, $('f-texto').value, $('f-ref').value || null, $('f-cliente').value || null, $('f-anonimo').checked); };
 }
 function abrirAceite(ref, tipo) {
   const a = (dados.andamentos || []).find(x => String(x.ref) === String(ref)); if (!a) return;
@@ -261,10 +342,11 @@ function abrirAceite(ref, tipo) {
   $('f-ac').onsubmit = ev => { ev.preventDefault();
     enviar(tipo, (devolve ? 'Devolução: ' : 'Aceite: ') + (a.assunto || a.jornada), $('f-obs').value.trim() || 'Aceite sem observações.', a.ref, null); };
 }
-async function enviar(tipo, assunto, texto, ref, cliente) {
+async function enviar(tipo, assunto, texto, ref, cliente, anonimo) {
   const b = $('painel').querySelector('button[type="submit"]'); if (b) b.disabled = true;
   try {
-    const id = await sql(`select ext.pedir_como(${lit(eu)}::uuid, ${lit(tipo)}, ${lit(assunto)}, ${lit(texto)}, ${ref ? Number(ref) : 'null'}, ${cliente ? lit(cliente) : 'null'}) as p`);
+    const id = tipo === 'ouvidoria' ? await sql(`select ext.ouvidoria_como(${lit(eu)}::uuid, ${lit(assunto)}, ${lit(texto)}, ${anonimo ? 'true' : 'false'}) as p`)
+      : await sql(`select ext.pedir_como(${lit(eu)}::uuid, ${lit(tipo)}, ${lit(assunto)}, ${lit(texto)}, ${ref ? Number(ref) : 'null'}, ${cliente ? lit(cliente) : 'null'}) as p`);
     recibo('feito', `Pedido nº ${id} registrado (${TIPO[tipo].toLowerCase()}). Acompanhe na aba Pedidos.`);
     fechar(); await carregar(); if (!['aceite', 'devolucao'].includes(tipo)) { aba = tipo === 'oportunidade' ? 'oportunidades' : 'pedidos'; desenhar(); }
   } catch (e) { recibo('recusado', 'Não foi registrado: ' + motivo(e)); if (b) b.disabled = false; }
@@ -280,7 +362,93 @@ async function baixar(emissao, nome, botao) {
   finally { botao.disabled = false; }
 }
 
-async function carregar() { dados = await sql(`select ext.portal_como(${lit(eu)}::uuid) as p`); desenhar(); }
+async function carregar() {
+  dados = await sql(`select ext.portal_como(${lit(eu)}::uuid) as p`);
+  parc = dados.contraparte?.tipo === 'parceiro' ? await sql(`select ext.portal_parceiro_como(${lit(eu)}::uuid) as p`) : null;
+  reus = await sql(`select ext.portal_reunioes_como(${lit(eu)}::uuid) as p`) || [];
+  desenhar();
+}
+async function falarSala(op, botao) {
+  const t = $('sm-' + op).value.trim(); if (!t) { recibo('recusado', 'Escreva a mensagem.'); return; }
+  botao.disabled = true;
+  try { await sql(`select ext.sala_enviar_como(${lit(eu)}::uuid, ${Number(op)}, ${lit(t)}) as p`); recibo('feito', 'Mensagem enviada à equipe.'); await carregar(); }
+  catch (e) { recibo('recusado', 'Não enviou: ' + motivo(e)); botao.disabled = false; }
+}
+async function confirmar(id, botao) {
+  botao.disabled = true; const n = $('av-' + id).value;
+  try { await sql(`select 1 as p from (select ext.atendimento_confirmar_como(${lit(eu)}::uuid, ${Number(id)}, ${n ? Number(n) + '::smallint' : 'null'}, null)) x`); recibo('feito', 'Encerramento confirmado.'); await carregar(); }
+  catch (e) { recibo('recusado', 'Não confirmou: ' + motivo(e)); botao.disabled = false; }
+}
+function abrirReabrir(id) {
+  const p = (dados.pedidos || []).find(x => String(x.id) === String(id)); if (!p) return;
+  abrirPainel(`<div class="topo"><h2 id="p-titulo">Reabrir o atendimento</h2><button class="btn" type="button" id="p-fechar">Fechar</button></div>
+    <p>${esc(p.assunto)} · nº ${p.id}. Diga o que faltou; a equipe recebe de novo com prazo.</p>
+    <form id="f-re" style="display:flex;flex-direction:column;gap:12px"><label class="campo" for="f-rem">O que faltou<textarea id="f-rem" maxlength="2000" required></textarea></label>
+      <div class="acoes"><button class="btn perigo" type="submit">Reabrir</button><button class="btn" type="button" id="p-cancelar">Cancelar</button></div></form>`);
+  $('f-re').onsubmit = async ev => { ev.preventDefault(); const b = ev.target.querySelector('button[type="submit"]'); b.disabled = true;
+    try { await sql(`select 1 as p from (select ext.atendimento_reabrir_como(${lit(eu)}::uuid, ${Number(id)}, ${lit($('f-rem').value)})) x`); recibo('feito', 'Atendimento reaberto.'); fechar(); await carregar(); }
+    catch (e) { recibo('recusado', 'Não reabriu: ' + motivo(e)); b.disabled = false; } };
+}
+// ---------- Telegram ----------
+function abrirTelegram() {
+  const tg = parc?.telegram || dados.telegram;
+  abrirPainel(`<div class="topo"><h2 id="p-titulo">Telegram</h2><button class="btn" type="button" id="p-fechar">Fechar</button></div>
+    <p>${tg?.vinculado ? 'Este acesso está ligado a um Telegram desde ' + quando(tg.desde) + '.' : 'Ligue o seu Telegram para receber avisos e consultar ' + (parc ? 'comissões, oportunidades e a sala do negócio' : 'os seus pedidos') + ' pelo bot da IMTS.'}</p>
+    <p>Nota fiscal, relatório e anexos continuam pelo portal: aqui o arquivo é lido, conferido e guardado.</p>
+    <div id="tg-codigo"></div>
+    <div class="acoes"><button class="btn prim" type="button" id="b-tg-gerar">${tg?.vinculado ? 'Ligar outro Telegram' : 'Gerar código'}</button>${tg?.vinculado ? '<button class="btn perigo" type="button" id="b-tg-desligar">Desligar</button>' : ''}</div>`);
+  $('b-tg-gerar').onclick = async ev => { ev.target.disabled = true;
+    try { const r = await sql(`select ext.telegram_codigo_como(${lit(eu)}::uuid) as p`);
+      $('tg-codigo').innerHTML = `<div class="codigo" aria-label="Código">${esc(r.codigo)}</div><p>Envie ao bot: <span class="cod">/vincular ${esc(r.codigo)}</span>. Vale até ${quando(r.expira)} e serve uma vez.</p>`;
+    } catch (e) { recibo('recusado', 'Não gerou: ' + motivo(e)); } finally { ev.target.disabled = false; } };
+  const d = $('b-tg-desligar'); if (d) d.onclick = async () => { d.disabled = true;
+    try { await sql(`select 1 as p from (select ext.telegram_desligar_como(${lit(eu)}::uuid)) x`); recibo('feito', 'Telegram desligado.'); fechar(); await carregar(); }
+    catch (e) { recibo('recusado', 'Não desligou: ' + motivo(e)); d.disabled = false; } };
+}
+// ---------- prestação de contas ----------
+async function sha256(buf) { const h = await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+function b64(buf) { let s = ''; const b = new Uint8Array(buf); for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(s); }
+async function pastaPorNome(pai, nome) {
+  const r = await drive('search_files', { query: `parentId = '${pai}' and mimeType = 'application/vnd.google-apps.folder' and title = '${nome.replace(/'/g, "\\'")}'`, excludeContentSnippets: true, pageSize: 5 });
+  return r.files?.[0]?.id || null;
+}
+async function pastaDestino() {
+  const p = await sql(`select ext.pasta_externa_como(${lit(eu)}::uuid) as p`);
+  if (p.pasta) return p.pasta;
+  let raiz = p.raiz;
+  if (!raiz) { raiz = await pastaPorNome(RAIZ_ACERVO, p.empresa) || (await drive('create_file', { title: p.empresa, contentMimeType: 'application/vnd.google-apps.folder', parentId: RAIZ_ACERVO })).id;
+    await sql(`select 1 as p from (select ext.pasta_externa_registrar_como(${lit(eu)}::uuid, 'raiz', ${lit(raiz)})) x`); }
+  const id = await pastaPorNome(raiz, p.nome_pasta) || (await drive('create_file', { title: p.nome_pasta, contentMimeType: 'application/vnd.google-apps.folder', parentId: raiz })).id;
+  await sql(`select 1 as p from (select ext.pasta_externa_registrar_como(${lit(eu)}::uuid, ${lit(p.codigo)}, ${lit(id)})) x`);
+  return id;
+}
+function abrirPrestacao() {
+  const adq = (parc.carteira?.itens || []).filter(i => i.situacao === 'adquirida' && !i.prestacao);
+  abrirPainel(`<div class="topo"><h2 id="p-titulo">Enviar prestação de contas</h2><button class="btn" type="button" id="p-fechar">Fechar</button></div>
+    <p>A nota é lida e conferida na hora: CNPJ da sua organização, número que não se repete e valor igual à soma das comissões escolhidas. Conferida, segue para aprovação; quem aprova não registra o pagamento.</p>
+    <form id="f-pr" style="display:flex;flex-direction:column;gap:12px">
+      <label class="campo" for="f-prt">Tipo<select id="f-prt"><option value="nf">Nota fiscal de comissão</option><option value="relatorio">Relatório de prestação de contas</option></select></label>
+      <fieldset class="campo" id="f-prc" style="border:0;padding:0;margin:0"><legend>Comissões que esta nota cobra</legend>
+        <div class="escolha">${adq.length ? adq.map(i => `<label><input type="checkbox" value="${i.id}" checked> ${esc(i.cliente_final)} · parcela ${i.parcela} · ${brl(i.valor)}</label>`).join('') : '<span class="sub">Nenhuma comissão adquirida livre.</span>'}</div></fieldset>
+      <label class="campo" for="f-pra">Arquivo (PDF com texto, XML ou texto)<input type="file" id="f-pra" required></label>
+      <div class="acoes"><button class="btn prim" type="submit">Enviar e conferir</button><button class="btn" type="button" id="p-cancelar">Cancelar</button></div></form>`);
+  $('f-prt').onchange = () => { $('f-prc').hidden = $('f-prt').value !== 'nf'; };
+  $('f-pr').onsubmit = async ev => { ev.preventDefault();
+    const b = ev.target.querySelector('button[type="submit"]'), f = $('f-pra').files[0], tipo = $('f-prt').value;
+    const coms = tipo === 'nf' ? [...$('f-prc').querySelectorAll('input:checked')].map(x => Number(x.value)) : [];
+    if (!f) { recibo('recusado', 'Escolha o arquivo.'); return; }
+    b.disabled = true; b.textContent = 'Enviando…';
+    try {
+      const buf = await f.arrayBuffer(), h = await sha256(buf), pasta = await pastaDestino();
+      const up = await drive('create_file', { title: f.name, base64Content: b64(buf), contentMimeType: f.type || 'application/octet-stream', disableConversionToGoogleType: true, parentId: pasta });
+      let texto = ''; try { const r = await drive('read_file_content', { fileId: up.id }); texto = String(r.fileContent ?? r.texto ?? '').slice(0, 30000); } catch (e) { }
+      const r = await sql(`select ext.prestacao_enviar_como(${lit(eu)}::uuid, ${lit(tipo)}, ${lit(f.name)}, ${lit(h)}, ${lit(f.type || null)}, ${f.size}, ${lit(texto)}, ${coms.length ? 'array[' + coms.join(',') + ']::bigint[]' : "'{}'::bigint[]"}, ${lit(up.id)}) as p`);
+      try { await drive('update_file', { fileId: up.id, title: r.nome }); } catch (e) { }
+      recibo(r.situacao === 'divergente' ? 'recusado' : 'feito', r.situacao === 'conferida' ? 'Nota conferida; seguiu para aprovação.' : r.situacao === 'divergente' ? 'A nota não conferiu: veja os pontos na lista.' : 'Relatório enviado para análise.');
+      fechar(); aba = 'prestacao'; await carregar();
+    } catch (e) { recibo('recusado', 'Não enviou: ' + motivo(e)); b.disabled = false; b.textContent = 'Enviar e conferir'; }
+  };
+}
 
 document.addEventListener('click', e => {
   const t = e.target.closest('button'); if (!t) return;
@@ -289,6 +457,12 @@ document.addEventListener('click', e => {
   if (t.id === 'b-novo') abrirNovo();
   else if (t.dataset.aceite) abrirAceite(t.dataset.aceite, t.dataset.t);
   else if (t.dataset.baixar) baixar(t.dataset.baixar, t.dataset.nome, t);
+  else if (t.dataset.sala) falarSala(t.dataset.sala, t);
+  else if (t.dataset.confirmar) confirmar(t.dataset.confirmar, t);
+  else if (t.dataset.consentir) { t.disabled = true; sql(`select 1 as p from (select ext.reuniao_consentir_como(${lit(eu)}::uuid, ${Number(t.dataset.consentir)})) x`).then(() => { recibo('feito', 'Consentimento registrado.'); return carregar(); }).catch(er => { recibo('recusado', 'Não registrou: ' + motivo(er)); t.disabled = false; }); }
+  else if (t.dataset.reabrir) abrirReabrir(t.dataset.reabrir);
+  else if (t.id === 'b-telegram') abrirTelegram();
+  else if (t.id === 'b-prestar') abrirPrestacao();
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !$('painel').hidden) { fechar(); return; }

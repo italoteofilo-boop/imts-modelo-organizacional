@@ -58,8 +58,9 @@ begin
   if v.id is null then return null; end if;
   perform doc._evento(v.id, 'em_emissao', jsonb_build_object('worker', p_worker));
   -- o modelo nunca vem do conteúdo: é o do pedido (validado em doc.pedir) ou o do tipo
-  return (v.conteudo - 'modelo' - 'id' - 'tipo' - 'marca') || jsonb_build_object('id', 'pedido-' || v.id, 'tipo', v.tipo, 'marca', v.marca, 'pedido', v.id,
-         'modelo', coalesce(v.modelo, (select modelo from doc.tipo where id = v.tipo)));
+  -- o pacote de marca vem do banco (aprovado em duas mãos, 045); o conteúdo do pedido não consegue trocá-lo
+  return (v.conteudo - 'modelo' - 'id' - 'tipo' - 'marca' - '_marca_dados') || jsonb_build_object('id', 'pedido-' || v.id, 'tipo', v.tipo, 'marca', v.marca, 'pedido', v.id,
+         'modelo', coalesce(v.modelo, (select modelo from doc.tipo where id = v.tipo)), '_marca_dados', (select dados from doc.marca where id = v.marca));
 end $$;
 
 drop function if exists doc.worker_registrar(text, bigint, jsonb, text, text);

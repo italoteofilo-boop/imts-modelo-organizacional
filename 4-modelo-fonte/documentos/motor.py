@@ -75,7 +75,7 @@ TIPOS_BLOCO = {'secao', 'subsecao', 'p', 'item', 'alinea', 'lista', 'citacao', '
 TEXTO_DO_MOTOR = ('Sumário Anexo Glossário Legenda Referências normativas Disponível em Verificado TESTEMUNHA Nome CPF Assunto Página de '
                   'Emissão Emitente Capa ' + ' '.join(MESES) + ' I II III IV V VI VII VIII IX X XI XII')
 # chaves que não são texto do documento (não passam por inline)
-NAO_TEXTO = {'_modelo', 't', 'tipo', 'marca', 'modelo', 'id', 'data', 'verificado_em', 'longa', 'total', 'esq', 'densa', 'ordenada', 'sumario', 'capa',
+NAO_TEXTO = {'_modelo', '_marca_dados', 't', 'tipo', 'marca', 'modelo', 'id', 'data', 'verificado_em', 'longa', 'total', 'esq', 'densa', 'ordenada', 'sumario', 'capa',
              'titulo_linhas', 'testemunhas', 'pedido', 'empresa'}
 
 
@@ -535,7 +535,9 @@ def emitir(pedido, saida, navegador=None):
     if erros: return {'situacao': 'recusado', 'erros': erros, 'gates': [], 'alertas': []}
     tipo = cat[pedido['tipo']]; modelo = pedido.get('modelo') or tipo['modelo']
     pedido = {**pedido, '_modelo': modelo}
-    marca = json.load(open(os.path.join(MARCAS, pedido['marca'], 'marca.json')))
+    # pacote de marca: o aprovado no banco (o worker manda em _marca_dados); sem banco, o arquivo de semente
+    marca = pedido.get('_marca_dados') if isinstance(pedido.get('_marca_dados'), dict) and pedido['_marca_dados'].get('id') == pedido['marca'] \
+        else json.load(open(os.path.join(MARCAS, pedido['marca'], 'marca.json')))
     achados = gates_conteudo(pedido, tipo, modelo)
     gates = [a for a in achados if a['nivel'] == 'bloqueia']
     alertas = [{'alerta': a['gate'], 'onde': a['onde']} for a in achados if a['nivel'] == 'alerta']
@@ -543,7 +545,7 @@ def emitir(pedido, saida, navegador=None):
         gates.append({'gate': 'marca provisória em documento externo', 'nivel': 'bloqueia', 'onde': marca['id']})
     if marca['tipografia'].get('substituicao'): alertas.append({'alerta': 'fonte substituta', 'onde': marca['tipografia']['substituicao']})
     os.makedirs(saida, exist_ok=True)
-    pid = pedido.get('id') or f"{pedido['tipo']}-{pedido['marca']}-{sha(json.dumps({k: v for k, v in pedido.items() if k != '_modelo'}, sort_keys=True).encode())[:8]}"
+    pid = pedido.get('id') or f"{pedido['tipo']}-{pedido['marca']}-{sha(json.dumps({k: v for k, v in pedido.items() if k not in ('_modelo', '_marca_dados')}, sort_keys=True).encode())[:8]}"
     cab, rod, margens = cabecalho_rodape(pedido, marca, tipo, modelo)
     from playwright.sync_api import sync_playwright
     dono = None
@@ -571,11 +573,11 @@ def emitir(pedido, saida, navegador=None):
     gravar(os.path.join(saida, f'{pid}.pdf'), pdf)
     gravar(os.path.join(saida, f'{pid}.html'), html_final, 'w')
     versoes = {f: sha(open(os.path.join(MODELOS, f), 'rb').read()) for f in ('base.css', 'documento.html.j2', 'ajuste.js')}
-    versoes['marca.json'] = sha(open(os.path.join(MARCAS, pedido['marca'], 'marca.json'), 'rb').read())
+    versoes['marca.json'] = sha(json.dumps(marca, sort_keys=True, ensure_ascii=False).encode())
     versoes['motor.py'] = sha(open(os.path.abspath(__file__), 'rb').read())
     reg = {'id': pid, 'tipo': pedido['tipo'], 'tipo_nome': tipo['nome'], 'marca': pedido['marca'], 'modelo': modelo, 'emitido_em': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
            'situacao': situacao, 'paginas': n_pag, 'sumario': dict(zip(itens, pags or [])),
-           'hash_pedido': sha(json.dumps({k: v for k, v in pedido.items() if k != '_modelo'}, sort_keys=True, ensure_ascii=False).encode()), 'hash_pdf': sha(pdf), 'hash_html': sha(html_final.encode()),
+           'hash_pedido': sha(json.dumps({k: v for k, v in pedido.items() if k not in ('_modelo', '_marca_dados')}, sort_keys=True, ensure_ascii=False).encode()), 'hash_pdf': sha(pdf), 'hash_html': sha(html_final.encode()),
            'versoes': versoes, 'ajustes_terco': ajuste['ajustados'], 'gates': gates, 'alertas': alertas, 'arquivos': [f'{pid}.pdf', f'{pid}.html']}
     gravar(os.path.join(saida, f'{pid}.emissao.json'), json.dumps(reg, ensure_ascii=False, indent=1), 'w')
     return reg

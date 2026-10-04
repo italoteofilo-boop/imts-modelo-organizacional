@@ -66,7 +66,7 @@ create table if not exists doc.evento (id bigint generated always as identity pr
 for m in MODELOS: A(f"insert into doc.modelo values ({q(m[0])}, {q(m[1])}, {str(m[2]).lower()}, {q(m[3])}) on conflict (id) do update set nome = excluded.nome, formal = excluded.formal, descricao = excluded.descricao;")
 for mid in ('imts', 'onni', 'tron', 'neutra'):
     mj = json.load(open(os.path.join(AQUI, 'marcas', mid, 'marca.json')))
-    A(f"insert into doc.marca (id, nome, situacao, dados) values ({q(mid)}, {q(mj['nome'])}, {q(mj['situacao'])}, {q(json.dumps(mj, ensure_ascii=False))}::jsonb) on conflict (id) do update set nome = excluded.nome, situacao = excluded.situacao, dados = excluded.dados, atualizado_em = now();")
+    A(f"insert into doc.marca (id, nome, situacao, dados) values ({q(mid)}, {q(mj['nome'])}, {q(mj['situacao'])}, {q(json.dumps(mj, ensure_ascii=False))}::jsonb) on conflict (id) do nothing;")  # o arquivo é semente: depois da carga, o pacote de marca muda só por aprovação no banco (045)
 for t in cat['tipos']:
     orig = [{k: o[k] for k in ('jornada', 'etapa', 'saida')} for o in t['origens']]
     A(f"insert into doc.tipo values ({q(t['id'])}, {q(t['nome'])}, {q(t['familia'])}, {q(t['modelo'])}, {q(t['alcance'])}, {q(t['regra'])}, 'heuristica', {q(json.dumps(orig, ensure_ascii=False))}::jsonb) on conflict (id) do update set nome = excluded.nome, familia = excluded.familia, modelo = excluded.modelo, alcance = excluded.alcance, regra = excluded.regra, origens = excluded.origens;")

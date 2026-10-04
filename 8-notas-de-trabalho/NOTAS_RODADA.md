@@ -252,3 +252,13 @@ Respostas: worker próprio; IMTS, Onni e TRON primeiro; um motor só; PDF e HTML
 - **Legal.OS:** vale o SKILL.md onde as referências divergem; atualização do SKILL.md proposta para Ítalo salvar.
 - **Alçadas:** as 20 na tabela. **Acessibilidade:** relatório do axe-core 4.10.2, zero violação em cinco páginas.
 - **Página de administração duplicada:** apagada.
+
+## 04/10/2026, 12:55 a 14:10: E17 a E21 ("Prossiga")
+- **E17 (043, 044):** acervo por empresa no Drive com árvore padrão, hash contra duplicidade, versão, triagem, CNPJ/razão social/regime com duas mãos, divergências.
+- **E18 (045, 046):** manual de marca vira proposta de cores e fontes (duas mãos); modelo vira minuta em blocos, aprovada por quem não subiu, emitida pelo motor.
+- **E19 (047, 048):** sala de negócio, carteira de comissões (regra simulada de 10% por contrato de parceria), nota e relatório pelo portal com conferência automática, aprovação e pagamento por pessoas diferentes, Telegram do parceiro por código.
+- **E20 (049, 050):** reclamação, OS e ouvidoria (Governança, anônima opcional), encaminhamentos datados, encerramento confirmado pelo cliente ou aceite tácito.
+- **E21 (051, 052):** reuniões com Meet pela Agenda Google, Zoom/Teams/Webex como conexões pendentes, consentimento, transcrição no acervo, ata por IA aprovada por pessoa, encaminhamentos.
+- **Páginas:** acervo (abas Marca e Modelos), portal (Oportunidades com sala, Comissões, Prestação de contas, Reuniões, Telegram, novos tipos de pedido), Central de atendimento nova.
+- **Testes:** 152 no Supabase (15 suítes) e 31 do motor; axe-core sem violação nas abas novas.
+- **Achado:** esquema `arq` no banco, sobra de rascunho da E17, sem dados nem dependências; apagar depende de Ítalo. Rascunhos 043/044 antigos fora do pacote.

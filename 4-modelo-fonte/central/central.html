@@ -1,0 +1,431 @@
+<title>Central de Atendimento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<script>document.documentElement.lang = 'pt-BR';</script>
+<style>
+/* Layout: barra (empresa, quem atua), resumo, abas Atendimento · Parceiros · Reuniões; cada demanda é um cartão com encaminhamentos e ações. */
+:root {
+  --chao:#ECEDE8; --folha:#FFFFFF; --tinta:#1D201C; --apoio:#575C55; --fio:#D4D7CF; --realce:#2D5B3F; --realce-suave:#DFEBE2; --pill:#1D201C; --pill-tinta:#FFFFFF;
+  --bom:#17663A; --bom-suave:#DDF0E4; --espera:#835600; --espera-suave:#F6EBD3; --mal:#A8321E; --mal-suave:#F7E1DC; --azul:#2F52C7; --azul-suave:#E3E8F8;
+  --sombra:0 1px 2px rgba(0,0,0,.06), 0 3px 10px rgba(0,0,0,.05); --prim-tinta:#FFFFFF;
+  --texto:'Atkinson Hyperlegible', system-ui, sans-serif; --titulo:'Newsreader', Georgia, serif; --dados:ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --chao:#141613; --folha:#1E211D; --tinta:#E9ECE6; --apoio:#A3A9A0; --fio:#323730; --realce:#8FC7A2; --realce-suave:#22362A; --pill:#E9ECE6; --pill-tinta:#141613;
+  --bom:#7CD3A0; --bom-suave:#1C3326; --espera:#E8C276; --espera-suave:#3A3020; --mal:#F2948A; --mal-suave:#3A2420; --azul:#8AA4F5; --azul-suave:#232C47;
+  --sombra:0 1px 2px rgba(0,0,0,.4); --prim-tinta:#10161A; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --chao:#141613; --folha:#1E211D; --tinta:#E9ECE6; --apoio:#A3A9A0; --fio:#323730; --realce:#8FC7A2; --realce-suave:#22362A; --pill:#E9ECE6; --pill-tinta:#141613;
+  --bom:#7CD3A0; --bom-suave:#1C3326; --espera:#E8C276; --espera-suave:#3A3020; --mal:#F2948A; --mal-suave:#3A2420; --azul:#8AA4F5; --azul-suave:#232C47;
+  --sombra:0 1px 2px rgba(0,0,0,.4); --prim-tinta:#10161A; color-scheme: dark; }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+body { margin:0; background:var(--chao); color:var(--tinta); font-family:var(--texto); font-size:15px; line-height:1.45; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--azul); outline-offset:2px; }
+.chao { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; padding-block:12px; padding-inline:max(16px, 3vw); border-bottom:1px solid var(--fio); background:var(--folha); }
+.marca { font-family:var(--titulo); font-weight:600; font-size:21px; margin:0 auto 0 0; }
+.marca small { font-family:var(--texto); font-weight:400; font-size:13px; color:var(--apoio); margin-left:6px; }
+.campo-topo { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--apoio); }
+.campo-topo select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); max-width:min(260px, 80vw); }
+.selo { font-size:12px; padding:3px 9px; border-radius:99px; background:var(--espera-suave); color:var(--espera); white-space:nowrap; }
+.selo.vivo { background:var(--bom-suave); color:var(--bom); }
+.icone { border:1px solid var(--fio); background:var(--folha); border-radius:8px; padding:5px 9px; font-size:13px; }
+.casca { padding-block:14px 40px; padding-inline:max(16px, 3vw); display:flex; flex-direction:column; gap:14px; max-width:1200px; }
+.resumo { display:flex; flex-wrap:wrap; gap:8px; }
+.resumo span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--folha); border:1px solid var(--fio); color:var(--apoio); font-variant-numeric:tabular-nums; }
+.resumo b { color:var(--tinta); } .resumo .esp b { color:var(--espera); } .resumo .mal b { color:var(--mal); }
+.abas, .filtros { display:flex; flex-wrap:wrap; gap:8px; }
+.aba, .filtro { border:1px solid var(--fio); background:transparent; border-radius:99px; padding:6px 14px; font-size:14px; }
+.aba[aria-selected="true"], .filtro[aria-pressed="true"] { background:var(--pill); color:var(--pill-tinta); border-color:var(--pill); }
+.aba .n { font-size:12px; opacity:.8; margin-left:4px; font-variant-numeric:tabular-nums; }
+h2.secao { font-family:var(--titulo); font-weight:600; font-size:19px; margin:10px 0 0; }
+.lista { display:flex; flex-direction:column; gap:8px; }
+.item { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:11px 14px; display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 14px; align-items:start; }
+.item .t { font-weight:700; overflow-wrap:anywhere; }
+.item .sub { font-size:13px; color:var(--apoio); overflow-wrap:anywhere; }
+.item .lado { display:flex; flex-direction:column; gap:6px; align-items:end; }
+.cheio { grid-column:1 / -1; }
+.acoes { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.acoes select, .acoes input, .acoes textarea { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); max-width:100%; }
+.acoes textarea { flex:1 1 100%; min-height:60px; resize:vertical; }
+.acoes input[type="text"] { flex:1 1 200px; min-width:0; }
+.btn { border:1px solid var(--fio); background:var(--folha); border-radius:10px; padding:7px 13px; font-size:14px; }
+.btn.prim { background:var(--realce); border-color:var(--realce); color:var(--prim-tinta); }
+.btn.perigo { border-color:var(--mal); color:var(--mal); }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.chip { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--chao); color:var(--apoio); white-space:nowrap; }
+.chip.bom { background:var(--bom-suave); color:var(--bom); } .chip.esp { background:var(--espera-suave); color:var(--espera); } .chip.mal { background:var(--mal-suave); color:var(--mal); } .chip.azul { background:var(--azul-suave); color:var(--azul); }
+.encs { grid-column:1 / -1; display:flex; flex-direction:column; gap:6px; margin:0; padding:0; list-style:none; }
+.encs li { background:var(--chao); border-radius:8px; padding:8px 10px; display:flex; flex-direction:column; gap:4px; font-size:14px; }
+.sala { grid-column:1 / -1; display:flex; flex-direction:column; gap:6px; background:var(--chao); border-radius:10px; padding:10px; max-height:240px; overflow:auto; }
+.msg { max-width:85%; padding:6px 10px; border-radius:10px; font-size:14px; background:var(--folha); border:1px solid var(--fio); }
+.msg.imts { align-self:end; background:var(--realce-suave); border-color:transparent; } .msg.sistema { align-self:center; font-size:12px; color:var(--apoio); background:transparent; border-style:dashed; }
+.msg .q { font-size:11px; color:var(--apoio); }
+.conf { grid-column:1 / -1; margin:0; padding-left:18px; font-size:13px; } .conf .ok { color:var(--bom); } .conf .nao { color:var(--mal); }
+.tabela { width:100%; border-collapse:collapse; font-size:14px; background:var(--folha); border:1px solid var(--fio); border-radius:12px; overflow:hidden; }
+.tabela th, .tabela td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--fio); vertical-align:top; }
+.tabela th { font-size:12px; color:var(--apoio); font-weight:700; }
+.tabela td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.rolar { overflow-x:auto; }
+.form { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:12px 14px; display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; }
+.form label { display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--apoio); }
+.form input, .form select, .form textarea { padding:7px 9px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); }
+.form .linha { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.ata { grid-column:1 / -1; display:flex; flex-direction:column; gap:8px; background:var(--chao); border-radius:10px; padding:10px; }
+.ata label { display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--apoio); }
+.ata textarea, .ata input, .ata select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); }
+.ata textarea { min-height:70px; resize:vertical; }
+.ata .enc { display:grid; grid-template-columns:minmax(0, 2fr) minmax(0, 1fr) 90px auto; gap:6px; align-items:end; }
+.vazio { background:var(--folha); border:1px dashed var(--fio); border-radius:12px; padding:16px; color:var(--apoio); font-size:14px; }
+.cod { font-family:var(--dados); font-size:12px; }
+a { color:var(--azul); } .lado a { display:inline-block; min-height:24px; padding-block:2px; }
+details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-height:24px; padding-block:3px; }
+.recibos { position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); display:flex; flex-direction:column; gap:6px; z-index:6; max-width:min(440px, calc(100% - 32px)); }
+.recibo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--azul); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--sombra); }
+.recibo.feito { border-left-color:var(--bom); } .recibo.recusado { border-left-color:var(--mal); }
+.rodape { font-size:12px; color:var(--apoio); max-width:80ch; margin:0; }
+@media (max-width: 760px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .ata .enc { grid-template-columns:minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+
+<header class="chao">
+  <h1 class="marca">Central de atendimento<small>clientes, parceiros e reuniões</small></h1>
+  <label class="campo-topo" for="empresa">Empresa <select id="empresa"></select></label>
+  <label class="campo-topo" for="como">Atuando como <select id="como"></select></label>
+  <span class="selo" id="fonte">Sem conexão</span>
+  <button class="icone" id="b-tema" type="button">Tema</button>
+</header>
+
+<main class="casca">
+  <div class="resumo" id="resumo" aria-live="polite"></div>
+  <nav class="abas" aria-label="Áreas da central"><div role="tablist" style="display:contents">
+    <button class="aba" role="tab" id="t-atendimento" data-aba="atendimento" aria-controls="conteudo" aria-selected="true" tabindex="0">Atendimento<span class="n" id="n-atendimento"></span></button>
+    <button class="aba" role="tab" id="t-parceiros" data-aba="parceiros" aria-controls="conteudo" aria-selected="false" tabindex="-1">Parceiros<span class="n" id="n-parceiros"></span></button>
+    <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Reuniões<span class="n" id="n-reunioes"></span></button>
+  </div></nav>
+  <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-atendimento"><p class="vazio">Conectando…</p></section>
+  <p class="rodape">Cada demanda vira encaminhamentos com responsável e prazo, que o cliente acompanha no portal. Encerrar é do cliente: a equipe propõe, o cliente confirma ou reabre; sem resposta, o aceite tácito encerra no prazo do parâmetro. A ouvidoria só aparece para a Governança, e a anônima não mostra quem escreveu. Nota de parceiro: a máquina confere, uma pessoa aprova, outra paga. Ata de reunião pode ser rascunhada por IA e só vale aprovada por uma pessoa. No protótipo a página atua como a pessoa escolhida acima; em produção vale o login de cada um.</p>
+</main>
+<div class="recibos" id="recibos" aria-live="polite"></div>
+
+<script>
+const PROJETO = 'rzkfolkqdgtounqjjzss';
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const lit = s => s == null ? 'null' : "'" + String(s).replace(/\u0000/g, '').replace(/'/g, "''") + "'";
+const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+const dia = t => t ? new Date(t + (String(t).length === 10 ? 'T12:00:00' : '')).toLocaleDateString('pt-BR') : '';
+const brl = v => v == null ? '' : Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const TIPO = { chamado: 'Chamado', duvida: 'Dúvida', reclamacao: 'Reclamação', os: 'Ordem de serviço', ouvidoria: 'Ouvidoria', titular: 'Titular de dados (LGPD)', adesao: 'Adesão à ata', devolucao: 'Devolução de entrega' };
+const SIT = { recebido: 'esp', em_atendimento: 'azul', respondido: 'esp', encerrado: 'bom', recusado: 'mal', registrada: 'azul', em_negociacao: 'esp', ganha: 'bom', perdida: 'mal', expirada: '',
+  prevista: 'azul', adquirida: 'esp', a_pagar: 'esp', paga: 'bom', enviada: 'azul', conferida: 'azul', divergente: 'mal', aprovada: 'bom', recusada: 'mal', agendada: 'azul', realizada: 'bom', cancelada: '' };
+const ROT = { em_atendimento: 'em atendimento', respondido: 'aguardando o cliente', a_pagar: 'a pagar', em_negociacao: 'em negociação' };
+const REGRA = { comissoes: 'Comissões', cnpj: 'CNPJ do emitente', numero: 'Número', valor: 'Valor' };
+const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
+const AVISOS = { server_not_connected: 'o conector não está adicionado', needs_reauth: 'o conector precisa ser reconectado', not_in_manifest: 'esta página não tem permissão para esse conector',
+  blocked_by_policy: 'bloqueado pela política da organização', server_unavailable: 'o serviço não respondeu a tempo' };
+let mcp = null, sample = null, ctx = null, empresa = null, como = null, A = null, P = null, R = null, aba = 'atendimento', filtro = 'abertos', prefill = null;
+
+function motivo(e) {
+  const m = String(e?.message || '');
+  const x = m.match(/ERROR:\s*P0001:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*[0-9A-Z]{5}:\s*([^\n"\\]+)/) || m.match(/ERROR:\s*([^\n"\\]+)/);
+  return x ? x[1].trim() : (AVISOS[e?.code] || m.slice(0, 200) || e?.code || 'erro');
+}
+function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 8000); }
+function corpo(r) { const s = r?.payload ?? r?.content?.[0]?.text; if (r?.isError) throw { message: typeof s === 'string' ? s : JSON.stringify(s ?? r?.error) }; return s; }
+async function sql(q) {
+  const s = corpo(await mcp.callTool('Supabase', 'execute_sql', { project_id: PROJETO, query: q }, { cache: false }));
+  const t = typeof s === 'string' ? s : (typeof s?.result === 'string' ? s.result : JSON.stringify(s));
+  if (/ERROR:/.test(t)) throw { message: t };
+  const m = t.match(/<untrusted-data-[^>]*>\s*([\s\S]*?)\s*<\/untrusted-data/);
+  let linhas; try { linhas = JSON.parse(m ? m[1] : t); } catch (e) { throw { message: 'resposta fora do formato: ' + t.slice(0, 200) }; }
+  const v = Array.isArray(linhas) ? linhas[0]?.p : linhas?.p;
+  return typeof v === 'string' && /^[\[{]/.test(v) ? JSON.parse(v) : v;
+}
+async function ferramenta(servidor, nome, args) {
+  const s = corpo(await mcp.callTool(servidor, nome, args, { cache: false }));
+  if (s && typeof s === 'object') return s;
+  try { return JSON.parse(s); } catch (e) { return { texto: s }; }
+}
+const C = () => `${lit(como)}::uuid`;
+const papel = id => (ctx?.pessoas || []).find(p => p.pessoa === id)?.papel || 'outra pessoa';
+const chip = s => `<span class="chip ${SIT[s] || ''}">${esc(ROT[s] || String(s || '').replace(/_/g, ' '))}</span>`;
+const respOpcoes = (sel) => (A?.responsaveis || []).map(r => `<option value="${esc(r.pessoa)}"${sel === r.pessoa ? ' selected' : ''}>${esc(r.papel)}</option>`).join('');
+const localISO = d => { const z = new Date(d.getTime() - d.getTimezoneOffset() * 60000); return z.toISOString().slice(0, 16); };
+
+// ---------- Atendimento ----------
+function vAtendimento() {
+  const ps = (A.pedidos || []).filter(p => filtro === 'abertos' ? ['recebido', 'em_atendimento'].includes(p.situacao) : filtro === 'cliente' ? p.situacao === 'respondido' : ['encerrado', 'recusado'].includes(p.situacao));
+  const n = s => (A.pedidos || []).filter(p => s.includes(p.situacao)).length;
+  const fl = `<div class="filtros" role="group" aria-label="Filtro">${[['abertos', 'Abertos', n(['recebido', 'em_atendimento'])], ['cliente', 'Aguardando o cliente', n(['respondido'])], ['encerrados', 'Encerrados', n(['encerrado', 'recusado'])]]
+    .map(([k, r, q]) => `<button class="filtro" type="button" data-filtro="${k}" aria-pressed="${filtro === k}">${r} ${q}</button>`).join('')}</div>`;
+  if (!ps.length) return fl + '<p class="vazio">Nada aqui. Chamados, dúvidas, reclamações, ordens de serviço e, para a Governança, a ouvidoria aparecem nesta lista quando o cliente abre pelo portal ou pelo Telegram.</p>';
+  const prazoPadrao = localISO(new Date(Date.now() + 2 * 864e5));
+  return fl + `<div class="lista">${ps.map(p => {
+    const aberto = !['encerrado', 'recusado'].includes(p.situacao), temAberto = (p.encaminhamentos || []).some(e => e.situacao === 'aberto');
+    return `<article class="item"><div><div class="t">${esc(p.assunto)}</div>
+      <div class="sub">${esc(TIPO[p.tipo] || p.tipo)} nº ${p.id} · ${esc(p.contraparte)}${p.quem ? ' · ' + esc(p.quem) : ''} · aberto em ${quando(p.criado_em)} · prazo ${quando(p.prazo)}${p.reaberturas ? ' · reaberto ' + p.reaberturas + 'x' : ''}</div></div>
+      <div class="lado">${chip(p.situacao)}${p.atrasado ? '<span class="chip mal">prazo vencido</span>' : ''}${p.anonimo ? '<span class="chip">anônima</span>' : ''}</div>
+      <details class="cheio"><summary>Texto do cliente</summary><p class="sub" style="white-space:pre-wrap">${esc(p.texto)}</p></details>
+      ${(p.encaminhamentos || []).length ? `<ul class="encs">${p.encaminhamentos.map(e => `<li><div><strong>${esc(e.descricao)}</strong> ${chip(e.situacao === 'aberto' ? (e.atrasado ? 'recusado' : 'em_atendimento') : e.situacao === 'concluido' ? 'encerrado' : 'expirada').replace(/>[^<]*</, '>' + (e.situacao === 'aberto' ? (e.atrasado ? 'atrasado' : 'aberto') : e.situacao === 'concluido' ? 'concluído' : 'cancelado') + '<')}</div>
+          <div class="sub">${esc(e.responsavel || '')} · aberto em ${quando(e.criado_em)} · prazo ${quando(e.prazo)}${e.concluido_em ? ' · fechado em ' + quando(e.concluido_em) : ''}${e.origem === 'reuniao' ? ' · saiu de reunião' : ''}</div>
+          ${e.conclusao ? `<div class="sub">${esc(e.conclusao)}</div>` : ''}
+          ${e.situacao === 'aberto' ? `<div class="acoes"><input type="text" id="ec-${e.id}" aria-label="O que foi feito" placeholder="o que foi feito (ou por que cancelou)"><button class="btn prim" type="button" data-enc="${e.id}" data-d="concluido">Concluir</button><button class="btn" type="button" data-enc="${e.id}" data-d="cancelado">Cancelar</button></div>` : ''}</li>`).join('')}</ul>` : ''}
+      ${p.resposta ? `<div class="cheio sub"><strong>Última resposta:</strong> ${esc(p.resposta)}</div>` : ''}
+      ${p.situacao === 'respondido' && p.confirmar_ate ? `<div class="cheio sub">Encerramento proposto; o cliente confirma até ${quando(p.confirmar_ate)} ou o aceite tácito encerra.</div>` : ''}
+      ${p.situacao === 'encerrado' ? `<div class="cheio sub">Encerrado em ${quando(p.encerrado_em)} · ${p.encerrado_como === 'tacito' ? 'aceite tácito' : 'confirmado pelo cliente'}${p.avaliacao ? ' · nota ' + p.avaliacao : ''}${p.comentario ? ' · "' + esc(p.comentario) + '"' : ''}</div>` : ''}
+      ${aberto && p.situacao !== 'respondido' ? `<div class="acoes"><input type="text" id="nd-${p.id}" aria-label="Novo encaminhamento" placeholder="novo encaminhamento: o que fazer">
+          <label class="sub" for="nr-${p.id}">Responsável</label><select id="nr-${p.id}">${respOpcoes()}</select>
+          <label class="sub" for="np-${p.id}">Prazo</label><input type="datetime-local" id="np-${p.id}" value="${prazoPadrao}">
+          <button class="btn" type="button" data-encaminhar="${p.id}">Encaminhar</button><button class="btn" type="button" data-reuniao="${p.id}">Marcar reunião</button></div>
+        <div class="acoes"><textarea id="rr-${p.id}" aria-label="Resposta ao cliente" placeholder="resposta ao cliente (ele vê no portal)"></textarea>
+          <button class="btn" type="button" data-responder="${p.id}" data-s="em_atendimento">Responder e seguir</button>
+          <button class="btn prim" type="button" data-responder="${p.id}" data-s="respondido" ${temAberto ? 'disabled title="Há encaminhamentos abertos"' : ''}>Propor encerramento</button>
+          <button class="btn perigo" type="button" data-responder="${p.id}" data-s="recusado">Recusar</button></div>` : ''}
+    </article>`; }).join('')}</div>`;
+}
+
+// ---------- Parceiros ----------
+function vParceiros() {
+  const ps = P.parceiros || [];
+  const pend = (P.prestacoes || []).filter(x => ['conferida', 'enviada', 'divergente', 'aprovada'].includes(x.situacao));
+  const parc = ps.length ? `<div class="lista">${ps.map(p => `<article class="item"><div><div class="t">${esc(p.nome)}</div>
+      <div class="sub">${p.contrato ? `Contrato: ${String(p.contrato.percentual).replace('.', ',')}% sobre o recebido, até ${p.contrato.parcelas_max} parcelas${p.contrato.simulado ? ' · regra simulada' : ''}` : 'Sem contrato de parceria vigente'} · Telegram ligado: ${p.telegram}</div></div>
+      <div class="lado">${p.cnpj ? `<span class="cod">${esc(p.cnpj)}</span>` : '<span class="chip esp">sem CNPJ</span>'}</div>
+      ${p.cnpj ? '' : `<div class="acoes"><input type="text" id="cn-${p.id}" inputmode="numeric" aria-label="CNPJ do parceiro" placeholder="CNPJ do contrato de parceria"><button class="btn" type="button" data-cnpj="${p.id}">Cadastrar CNPJ</button></div>`}</article>`).join('')}</div>`
+    : '<p class="vazio">Nenhum parceiro nesta empresa.</p>';
+  const prest = pend.length ? `<div class="lista">${pend.map(x => `<article class="item"><div><div class="t">${x.tipo === 'nf' ? 'Nota fiscal ' + esc(x.numero || '?') : 'Relatório de prestação de contas'} · ${esc(x.parceiro)}</div>
+      <div class="sub">${esc(x.arquivo || '')} · ${quando(x.em)}${x.valor != null ? ' · ' + brl(x.valor) : ''}${x.decisoes?.length ? ' · decidiu: ' + x.decisoes.map(d => esc(papel(d.por)) + ' (' + d.decisao + ')').join(', ') : ''}</div></div>
+      <div class="lado">${chip(x.situacao)}${x.drive_id ? `<a href="https://drive.google.com/file/d/${esc(x.drive_id)}/view" target="_blank" rel="noopener">Abrir no Drive</a>` : ''}</div>
+      ${(x.conferencia || []).length ? `<ul class="conf">${x.conferencia.map(c => `<li class="${c.ok ? 'ok' : 'nao'}">${c.ok ? 'Confere' : 'Não confere'} · ${esc(REGRA[c.regra] || c.regra)}: ${esc(c.detalhe)}</li>`).join('')}</ul>` : ''}
+      ${x.situacao === 'aprovada' ? `<div class="acoes"><input type="text" id="pg-${x.id}" aria-label="Comprovante" placeholder="referência do comprovante de pagamento"><button class="btn prim" type="button" data-pagar="${x.id}">Registrar pagamento</button></div>`
+        : `<div class="acoes"><input type="text" id="pm-${x.id}" aria-label="Motivo" placeholder="motivo (obrigatório para recusar)"><button class="btn prim" type="button" data-prest="${x.id}" data-d="aprovado" ${x.situacao === 'divergente' ? 'disabled title="Divergente não se aprova"' : ''}>Aprovar</button><button class="btn perigo" type="button" data-prest="${x.id}" data-d="recusado">Recusar</button></div>`}</article>`).join('')}</div>`
+    : '<p class="vazio">Nenhuma nota ou relatório esperando decisão.</p>';
+  const ops = (P.oportunidades || []).length ? `<div class="lista">${P.oportunidades.map(o => `<article class="item"><div><div class="t">${esc(o.cliente_final)} · ${esc(o.assunto)}</div>
+      <div class="sub">${esc(o.parceiro)} · oportunidade nº ${o.id}${['registrada', 'em_negociacao'].includes(o.situacao) ? ' · exclusiva até ' + dia(o.exclusiva_ate) : ''}${o.valor ? ' · ' + brl(o.valor) + ' em ' + o.parcelas + ' parcela(s)' : ''}${o.motivo ? ' · ' + esc(o.motivo) : ''}</div></div>
+      <div class="lado">${chip(o.situacao)}${o.ultima_do_parceiro && (!o.ultima_da_imts || o.ultima_do_parceiro > o.ultima_da_imts) ? '<span class="chip esp">mensagem sem resposta</span>' : ''}</div>
+      <div class="sala" tabindex="0" aria-label="Sala do negócio">${o.mensagens.length ? o.mensagens.map(m => `<div class="msg ${m.lado}">${esc(m.texto)}<div class="q">${m.lado === 'imts' ? 'IMTS' : m.lado === 'parceiro' ? 'Parceiro' : 'Sistema'} · ${quando(m.em)}${m.origem === 'telegram' ? ' · Telegram' : ''}</div></div>`).join('') : '<div class="sub">Sem mensagens.</div>'}</div>
+      <div class="acoes"><input type="text" id="sr-${o.id}" aria-label="Responder na sala" placeholder="responder ao parceiro"><button class="btn" type="button" data-sala="${o.id}">Enviar</button></div>
+      ${['registrada', 'em_negociacao'].includes(o.situacao) ? `<div class="acoes"><label class="sub" for="os-${o.id}">Situação</label><select id="os-${o.id}"><option value="em_negociacao">em negociação</option><option value="ganha">ganha</option><option value="perdida">perdida</option></select>
+        <label class="sub" for="ov-${o.id}">Valor</label><input id="ov-${o.id}" inputmode="decimal" size="10" placeholder="0,00">
+        <label class="sub" for="opa-${o.id}">Parcelas</label><input id="opa-${o.id}" type="number" min="1" max="60" value="1" style="width:70px">
+        <label class="sub" for="oi-${o.id}">1ª parcela</label><input id="oi-${o.id}" type="month">
+        <input type="text" id="om-${o.id}" aria-label="Motivo" placeholder="motivo (obrigatório se perdida)"><button class="btn prim" type="button" data-oport="${o.id}">Registrar</button></div>` : ''}</article>`).join('')}</div>`
+    : '<p class="vazio">Nenhuma oportunidade registrada pelos parceiros desta empresa.</p>';
+  const cs = P.comissoes || [];
+  const com = cs.length ? `<div class="rolar"><table class="tabela"><thead><tr><th scope="col">Parceiro</th><th scope="col">Cliente final</th><th scope="col">Parcela</th><th scope="col">Competência</th><th scope="col">Valor</th><th scope="col">Situação</th><th scope="col"><span class="sub">ação</span></th></tr></thead>
+      <tbody>${cs.map(k => `<tr><td>${esc(k.parceiro)}</td><td>${esc(k.cliente_final)}</td><td>${k.parcela}</td><td>${dia(k.competencia)}</td><td class="num">${brl(k.valor)}</td><td>${chip(k.situacao)}</td>
+        <td>${k.situacao === 'prevista' ? `<button class="btn" type="button" data-adquirir="${k.id}">Parcela recebida</button>` : k.prestacao ? 'nota nº ' + k.prestacao : ''}</td></tr>`).join('')}</tbody></table></div>`
+    : '<p class="vazio">Nenhuma comissão. Ela nasce prevista quando a oportunidade é registrada como ganha.</p>';
+  return `<h2 class="secao">Notas e relatórios para decidir</h2>${prest}<h2 class="secao">Oportunidades e salas de negócio</h2>${ops}<h2 class="secao">Comissões</h2>${com}<h2 class="secao">Parceiros</h2>${parc}`;
+}
+
+// ---------- Reuniões ----------
+function vReunioes() {
+  const abertos = (A.pedidos || []).filter(p => !['encerrado', 'recusado'].includes(p.situacao));
+  const inicio = localISO(new Date(Date.now() + 864e5));
+  const form = `<form class="form" id="f-reuniao" aria-label="Marcar reunião">
+    <label>Título<input id="fr-titulo" maxlength="200" required value="${esc(prefill ? 'Reunião: ' + (abertos.find(p => p.id === prefill)?.assunto || '') : '')}"></label>
+    <label>Início<input id="fr-inicio" type="datetime-local" value="${inicio}" required></label>
+    <label>Duração (min)<input id="fr-dur" type="number" min="10" max="480" value="45"></label>
+    <label>Plataforma<select id="fr-plat">${Object.entries(PLAT).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label>
+    <label>Demanda (opcional)<select id="fr-ped"><option value="">nenhuma</option>${abertos.map(p => `<option value="${p.id}"${prefill === p.id ? ' selected' : ''}>nº ${p.id} · ${esc(p.assunto)}</option>`).join('')}</select></label>
+    <label>Com quem (sem demanda)<select id="fr-cp"><option value="">só equipe interna</option>${(R.contrapartes || []).map(c => `<option value="${esc(c.id)}">${esc(c.nome)}</option>`).join('')}</select></label>
+    <label>Link (Zoom, Teams, Webex ou outra)<input id="fr-link" placeholder="https://… (o Meet é criado aqui)"></label>
+    <div class="linha"><label style="flex-direction:row;align-items:center;gap:8px"><input type="checkbox" id="fr-gravar" style="width:24px;height:24px;min-width:24px;padding:0;margin:0;flex:0 0 24px"> Gravar e transcrever (precisa de consentimento registrado)</label>
+      <button class="btn prim" type="submit">Marcar</button></div></form>`;
+  const cx = `<p class="rodape">Conexões de vídeo: ${(R.conexoes || []).map(c => `${esc(c.nome)} <span class="chip ${c.estado === 'ativa' ? 'bom' : 'esp'}">${esc(c.estado)}</span>`).join(' · ')}. O Google Meet sai pela Agenda Google desta página; Zoom, Teams e Webex entram pelo mesmo contrato quando os apps forem registrados (por enquanto, cole o link).</p>`;
+  const rs = R.reunioes || [];
+  const lista = rs.length ? `<div class="lista">${rs.map(r => {
+    const ata = r.ata && r.ata_situacao !== 'sem' && !r.ata.cancelada ? r.ata : null;
+    return `<article class="item"><div><div class="t">${esc(r.titulo)}</div>
+      <div class="sub">${quando(r.inicio)} · ${r.duracao_min} min · ${PLAT[r.plataforma]}${r.contraparte ? ' · ' + esc(r.contraparte) : ''}${r.pedido ? ' · demanda nº ' + r.pedido : ''}${r.gravar ? ' · com gravação' : ''}</div>
+      ${r.consentimentos?.length ? `<div class="sub">Consentimentos: ${r.consentimentos.map(c => esc(c.quem) + ' (' + esc(c.canal) + ')').join('; ')}</div>` : r.gravar ? '<div class="sub">Sem consentimento registrado ainda: a transcrição não entra.</div>' : ''}
+      ${r.transcricao ? `<div class="sub">Transcrição: ${esc(r.transcricao)}${r.apagar_gravacao_em ? ' · guardar até ' + dia(r.apagar_gravacao_em) : ''}</div>` : ''}</div>
+      <div class="lado">${chip(r.situacao)}${r.ata_situacao !== 'sem' ? `<span class="chip ${r.ata_situacao === 'aprovada' ? 'bom' : 'esp'}">ata ${r.ata_situacao}</span>` : ''}${r.link && r.situacao === 'agendada' ? `<a href="${esc(r.link)}" target="_blank" rel="noopener">Entrar</a>` : ''}</div>
+      ${r.situacao === 'agendada' ? `<div class="acoes">${r.gravar ? `<input type="text" id="cs-${r.id}" aria-label="Quem consentiu" placeholder="quem consentiu com a gravação"><button class="btn" type="button" data-consent="${r.id}">Registrar consentimento</button>` : ''}
+          ${r.link ? '' : `<input type="text" id="lk-${r.id}" aria-label="Link da reunião" placeholder="https://…"><button class="btn" type="button" data-link="${r.id}">Salvar link</button>`}
+          <input type="text" id="cm-${r.id}" aria-label="Motivo do cancelamento" placeholder="motivo para cancelar"><button class="btn perigo" type="button" data-cancelar="${r.id}">Cancelar</button></div>` : ''}
+      ${r.situacao !== 'cancelada' && r.ata_situacao !== 'aprovada' ? `<div class="acoes">${r.gravar && !r.transcricao ? `<input type="text" id="tr-${r.id}" aria-label="Transcrição no Drive" placeholder="link da transcrição no Drive"><button class="btn" type="button" data-transc="${r.id}">Ligar transcrição</button>
+          <label class="sub" for="tf-${r.id}">ou arquivo .txt/.vtt</label><input type="file" id="tf-${r.id}" accept=".txt,.vtt,.srt,text/plain,text/vtt">` : ''}
+          ${r.transcricao && sample ? `<button class="btn" type="button" data-ia="${r.id}">Rascunhar ata com IA</button>` : ''}
+          ${ata ? '' : `<button class="btn" type="button" data-escrever="${r.id}">Escrever ata</button>`}</div>` : ''}
+      <div class="ata" id="ata-${r.id}" ${ata || r.ata_situacao === 'aprovada' ? '' : 'hidden'}>${ata ? ataHtml(r, ata) : ''}</div>
+      ${(r.encaminhamentos || []).length ? `<ul class="encs">${r.encaminhamentos.map(e => `<li><div><strong>${esc(e.descricao)}</strong> ${chip(e.situacao === 'aberto' ? 'em_atendimento' : 'encerrado').replace(/>[^<]*</, '>' + e.situacao + '<')}</div><div class="sub">${esc(e.responsavel || '')} · prazo ${quando(e.prazo)}</div>
+          ${e.situacao === 'aberto' ? `<div class="acoes"><input type="text" id="ec-${e.id}" aria-label="O que foi feito" placeholder="o que foi feito"><button class="btn prim" type="button" data-enc="${e.id}" data-d="concluido">Concluir</button></div>` : ''}</li>`).join('')}</ul>` : ''}
+    </article>`; }).join('')}</div>` : '<p class="vazio">Nenhuma reunião nesta empresa.</p>';
+  return `<h2 class="secao">Marcar reunião</h2>${form}${cx}<h2 class="secao">Reuniões</h2>${lista}`;
+}
+function ataHtml(r, ata) {
+  const ro = r.ata_situacao === 'aprovada';
+  if (ro) return `<div><strong>Ata aprovada</strong> em ${quando(r.ata_em)}</div><div>${esc(ata.resumo)}</div>${(ata.decisoes || []).length ? '<ul>' + ata.decisoes.map(d => `<li>${esc(d)}</li>`).join('') + '</ul>' : ''}`;
+  const papeis = [...new Set((A.responsaveis || []).map(x => x.papel))];
+  const linha = (e, i) => `<div class="enc" data-i="${i}"><label>Encaminhamento<input data-k="descricao" value="${esc(e.descricao || '')}"></label>
+     <label>Responsável<select data-k="responsavel">${papeis.map(p => `<option${p === e.responsavel ? ' selected' : ''}>${esc(p)}</option>`).join('')}</select></label>
+     <label>Prazo (dias)<input data-k="prazo_dias" type="number" min="1" max="90" value="${esc(e.prazo_dias || 7)}"></label><button class="btn" type="button" data-tirar="${r.id}">Tirar</button></div>`;
+  return `<div><strong>${r.ata_situacao === 'rascunho' ? 'Rascunho da ata' : 'Nova ata'}</strong>${ata.origem === 'ia' ? ' · rascunhada por IA a partir da transcrição: confira antes de aprovar' : ''}</div>
+    <label>Resumo<textarea data-k="resumo">${esc(ata.resumo || '')}</textarea></label>
+    <label>Decisões (uma por linha)<textarea data-k="decisoes">${esc((ata.decisoes || []).join('\n'))}</textarea></label>
+    <div class="encs-ata">${(ata.encaminhamentos || []).map(linha).join('')}</div>
+    <div class="acoes"><button class="btn" type="button" data-maisenc="${r.id}">Mais um encaminhamento</button><button class="btn" type="button" data-salvarata="${r.id}">Salvar rascunho</button>
+      <button class="btn prim" type="button" data-aprovarata="${r.id}">Aprovar ata e criar encaminhamentos</button></div>`;
+}
+function lerAta(id) {
+  const b = $('ata-' + id);
+  return { resumo: b.querySelector('[data-k="resumo"]').value.trim(), decisoes: b.querySelector('[data-k="decisoes"]').value.split('\n').map(x => x.trim()).filter(Boolean),
+    encaminhamentos: [...b.querySelectorAll('.enc')].map(l => ({ descricao: l.querySelector('[data-k="descricao"]').value.trim(), responsavel: l.querySelector('[data-k="responsavel"]').value,
+      prazo_dias: Number(l.querySelector('[data-k="prazo_dias"]').value) || 7 })).filter(e => e.descricao), origem: b.dataset.origem || 'pessoa' };
+}
+function abrirAta(id, ata) { const r = R.reunioes.find(x => x.id === id); const b = $('ata-' + id); b.dataset.origem = ata.origem || 'pessoa'; b.innerHTML = ataHtml({ ...r, ata_situacao: r.ata_situacao === 'aprovada' ? 'aprovada' : (r.ata_situacao === 'rascunho' ? 'rascunho' : 'sem') }, ata); b.hidden = false; b.querySelector('textarea')?.focus(); }
+
+// ---------- desenho ----------
+function desenhar() {
+  for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
+  $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
+  if (!A || !P || !R) return;
+  const ab = (A.pedidos || []).filter(p => ['recebido', 'em_atendimento'].includes(p.situacao)), atr = ab.filter(p => p.atrasado).length;
+  const np = (P.prestacoes || []).filter(x => ['conferida', 'enviada', 'aprovada'].includes(x.situacao)).length;
+  const nr = (R.reunioes || []).filter(r => r.situacao === 'agendada' || (r.situacao === 'realizada' && r.ata_situacao !== 'aprovada')).length;
+  $('resumo').innerHTML = `<span>Demandas abertas <b>${ab.length}</b></span><span class="${atr ? 'mal' : ''}">Com prazo vencido <b>${atr}</b></span>
+    <span>Aguardando o cliente <b>${(A.pedidos || []).filter(p => p.situacao === 'respondido').length}</b></span><span class="${np ? 'esp' : ''}">Notas de parceiro para decidir <b>${np}</b></span>
+    <span>Reuniões em aberto <b>${nr}</b></span>${A.ve_ouvidoria ? '<span>Você vê a ouvidoria</span>' : ''}`;
+  $('n-atendimento').textContent = ab.length || ''; $('n-parceiros').textContent = np || ''; $('n-reunioes').textContent = nr || '';
+  $('conteudo').innerHTML = { atendimento: vAtendimento, parceiros: vParceiros, reunioes: vReunioes }[aba]();
+  if (aba === 'reunioes') $('f-reuniao').onsubmit = marcar;
+}
+async function carregar() {
+  [A, P, R] = await Promise.all([sql(`select ext.painel_atendimento(${lit(empresa)}::uuid, ${C()}) as p`), sql(`select ext.painel_parceiros(${lit(empresa)}::uuid, ${C()}) as p`),
+    sql(`select ext.painel_reunioes(${lit(empresa)}::uuid, ${C()}) as p`)]);
+  desenhar();
+}
+async function agir(q, ok, botao) {
+  if (botao) botao.disabled = true;
+  try { await sql(`select 1 as p from (${q}) x`); recibo('feito', ok); await carregar(); }
+  catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); if (botao) botao.disabled = false; }
+}
+
+// ---------- reuniões: ações ----------
+async function marcar(ev) {
+  ev.preventDefault();
+  const b = ev.target.querySelector('button[type="submit"]'), plat = $('fr-plat').value, ped = $('fr-ped').value, cp = $('fr-cp').value, ini = new Date($('fr-inicio').value), dur = Number($('fr-dur').value) || 45;
+  if (isNaN(ini)) { recibo('recusado', 'Informe o início.'); return; }
+  b.disabled = true;
+  try {
+    const id = await sql(`select ext.reuniao_agendar(${lit(empresa)}::uuid, ${lit($('fr-titulo').value)}, ${lit(ini.toISOString())}::timestamptz, ${dur}, ${lit(plat)}, ${ped ? Number(ped) : 'null'}, ${!ped && cp ? lit(cp) + '::uuid' : 'null'}, ${$('fr-gravar').checked}, ${C()}) as p`);
+    let link = $('fr-link').value.trim() || null, evento = null;
+    if (plat === 'meet') {
+      try {
+        const e = await ferramenta('Google Calendar', 'create_event', { summary: $('fr-titulo').value, startTime: ini.toISOString(), endTime: new Date(ini.getTime() + dur * 60000).toISOString(),
+          addGoogleMeetUrl: true, description: 'Reunião marcada pela Central de atendimento (IMTS.OS), registro nº ' + id + '.' });
+        evento = e.id || e.eventId || null;
+        link = e.hangoutLink || e.meetUrl || e.googleMeetUrl || e.conferenceData?.entryPoints?.find(x => x.entryPointType === 'video')?.uri || link;
+      } catch (er) { recibo('recusado', 'Reunião registrada, mas o evento com Meet não foi criado: ' + motivo(er) + '. Cole o link depois.'); }
+    }
+    if (link || evento) await sql(`select 1 as p from (select ext.reuniao_registrar_externa(${Number(id)}, ${lit(evento)}, ${lit(link)}, ${C()})) x`);
+    recibo('feito', link ? 'Reunião marcada com link.' : 'Reunião marcada; falta o link.'); prefill = null; await carregar();
+  } catch (e) { recibo('recusado', 'Não marcou: ' + motivo(e)); b.disabled = false; }
+}
+async function sha256Texto(t) { const h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+async function ligarTranscricao(id, botao) {
+  const link = $('tr-' + id).value.trim(), f = $('tf-' + id).files[0];
+  let texto = '', nome = '', drive = null;
+  botao.disabled = true;
+  try {
+    if (f) { texto = await f.text(); nome = f.name; }
+    else {
+      drive = (link.match(/\/d\/([A-Za-z0-9_-]{10,})/) || link.match(/[?&]id=([A-Za-z0-9_-]{10,})/) || link.match(/^([A-Za-z0-9_-]{20,})$/) || [])[1];
+      if (!drive) { recibo('recusado', 'Cole o link do arquivo no Drive ou escolha um arquivo.'); botao.disabled = false; return; }
+      const r = await ferramenta('Google Drive', 'read_file_content', { fileId: drive }); texto = String(r.fileContent ?? r.texto ?? ''); nome = r.title || 'transcricao';
+    }
+    const h = await sha256Texto(texto);
+    await sql(`select ext.reuniao_transcricao(${id}, ${lit(nome)}, ${lit(h)}, 'text/plain', ${texto.length}, ${lit(texto.slice(0, 200000))}, ${lit(drive)}, ${C()}) as p`);
+    sessionTranscricao[id] = texto; recibo('feito', 'Transcrição guardada no acervo (pasta 09).'); await carregar();
+  } catch (e) { recibo('recusado', 'Não ligou: ' + motivo(e)); botao.disabled = false; }
+}
+const sessionTranscricao = {};
+async function textoDaTranscricao(r) {
+  if (sessionTranscricao[r.id]) return sessionTranscricao[r.id];
+  if (!r.transcricao_drive) throw { message: 'a transcrição veio de arquivo local; ligue de novo nesta sessão para a IA ler' };
+  const x = await ferramenta('Google Drive', 'read_file_content', { fileId: r.transcricao_drive }); return String(x.fileContent ?? x.texto ?? '');
+}
+async function ataIA(id, botao) {
+  const r = R.reunioes.find(x => x.id === id); botao.disabled = true; botao.textContent = 'Lendo a transcrição…';
+  try {
+    const texto = (await textoDaTranscricao(r)).slice(0, 60000);
+    const papeis = [...new Set((A.responsaveis || []).map(x => x.papel))];
+    const ata = await sample.json(`Você redige a ata de uma reunião de atendimento a partir da transcrição abaixo, em português do Brasil, sem inventar nada que não esteja nela.
+Responda só com JSON: {"resumo": "3 a 6 frases", "decisoes": ["..."], "encaminhamentos": [{"descricao": "ação concreta", "responsavel": "um destes papéis: ${papeis.join(' | ')}", "prazo_dias": número}]}.
+Se a transcrição não disser prazo, use 7. Se não houver decisão ou encaminhamento, devolva lista vazia. Reunião: "${r.titulo}".
+<transcricao>
+${texto}
+</transcricao>`, { modelTier: 'default', cache: false });
+    ata.origem = 'ia'; ata.encaminhamentos = (ata.encaminhamentos || []).map(e => ({ ...e, responsavel: papeis.includes(e.responsavel) ? e.responsavel : papeis[0] }));
+    abrirAta(id, ata); recibo('feito', 'Rascunho pronto: confira e aprove.');
+  } catch (e) { recibo('recusado', 'A IA não rascunhou: ' + (e?.code === 'not_granted' ? 'permissão negada' : motivo(e))); }
+  finally { botao.disabled = false; botao.textContent = 'Rascunhar ata com IA'; }
+}
+
+document.addEventListener('click', async e => {
+  const t = e.target.closest('button'); if (!t) return;
+  const d = t.dataset;
+  if (d.aba) { aba = d.aba; desenhar(); return; }
+  if (d.filtro) { filtro = d.filtro; desenhar(); return; }
+  if (d.enc) return agir(`select ext.encaminhamento_concluir(${Number(d.enc)}, ${lit(d.d)}, ${lit($('ec-' + d.enc).value)}, ${C()})`, d.d === 'concluido' ? 'Encaminhamento concluído.' : 'Encaminhamento cancelado.', t);
+  if (d.encaminhar) {
+    const p = $('np-' + d.encaminhar).value; if (!p) { recibo('recusado', 'Informe o prazo.'); return; }
+    return agir(`select ext.encaminhar(${Number(d.encaminhar)}, ${lit($('nd-' + d.encaminhar).value)}, ${lit($('nr-' + d.encaminhar).value)}::uuid, ${lit(new Date(p).toISOString())}::timestamptz, ${C()})`, 'Encaminhado; o responsável recebeu a tarefa com o prazo.', t);
+  }
+  if (d.responder) return agir(`select ext.responder(${Number(d.responder)}, ${lit($('rr-' + d.responder).value)}, ${lit(d.s)}, ${C()})`,
+    d.s === 'respondido' ? 'Encerramento proposto; o cliente confirma ou reabre.' : d.s === 'recusado' ? 'Pedido recusado com a resposta.' : 'Resposta enviada.', t);
+  if (d.reuniao) { prefill = Number(d.reuniao); aba = 'reunioes'; desenhar(); $('fr-titulo')?.focus(); return; }
+  if (d.cnpj) return agir(`select ext.contraparte_documento(${lit(d.cnpj)}::uuid, ${lit($('cn-' + d.cnpj).value)}, ${C()})`, 'CNPJ cadastrado; as próximas notas são conferidas contra ele.', t);
+  if (d.prest) return agir(`select ext.prestacao_decidir(${Number(d.prest)}, ${lit(d.d)}, ${lit($('pm-' + d.prest).value)}, ${C()})`, d.d === 'aprovado' ? 'Aprovada; o pagamento é de outra pessoa.' : 'Recusada; o parceiro vê o motivo.', t);
+  if (d.pagar) return agir(`select ext.prestacao_pagar(${Number(d.pagar)}, ${lit($('pg-' + d.pagar).value)}, ${C()})`, 'Pagamento registrado; comissões pagas.', t);
+  if (d.sala) return agir(`select ext.sala_responder(${Number(d.sala)}, ${lit($('sr-' + d.sala).value)}, ${C()})`, 'Mensagem enviada ao parceiro.', t);
+  if (d.adquirir) return agir(`select ext.comissao_adquirir(${Number(d.adquirir)}, ${C()})`, 'Parcela recebida: comissão adquirida.', t);
+  if (d.oport) {
+    const s = $('os-' + d.oport).value, v = $('ov-' + d.oport).value.replace(/\./g, '').replace(',', '.'), m = $('oi-' + d.oport).value;
+    return agir(`select ext.oportunidade_decidir(${Number(d.oport)}, ${lit(s)}, ${v ? Number(v) : 'null'}, ${s === 'ganha' ? Number($('opa-' + d.oport).value) : 'null'}, ${m ? lit(m + '-01') + '::date' : 'null'}, ${lit($('om-' + d.oport).value || null)}, ${C()})`,
+      s === 'ganha' ? 'Negócio ganho; comissões previstas criadas pela regra do contrato.' : 'Situação registrada.', t);
+  }
+  if (d.consent) return agir(`select ext.reuniao_consentir(${Number(d.consent)}, ${lit($('cs-' + d.consent).value)}, ${C()})`, 'Consentimento registrado.', t);
+  if (d.link) return agir(`select ext.reuniao_registrar_externa(${Number(d.link)}, null, ${lit($('lk-' + d.link).value.trim())}, ${C()})`, 'Link salvo.', t);
+  if (d.cancelar) return agir(`select ext.reuniao_cancelar(${Number(d.cancelar)}, ${lit($('cm-' + d.cancelar).value)}, ${C()})`, 'Reunião cancelada.', t);
+  if (d.transc) return ligarTranscricao(Number(d.transc), t);
+  if (d.ia) return ataIA(Number(d.ia), t);
+  if (d.escrever) return abrirAta(Number(d.escrever), { resumo: '', decisoes: [], encaminhamentos: [], origem: 'pessoa' });
+  if (d.maisenc) { const id = Number(d.maisenc), a = lerAta(id); a.encaminhamentos.push({ descricao: '', responsavel: (A.responsaveis || [])[0]?.papel, prazo_dias: 7 }); a.origem = $('ata-' + id).dataset.origem; abrirAta(id, a); return; }
+  if (d.tirar) { t.closest('.enc').remove(); return; }
+  if (d.salvarata) return agir(`select ext.reuniao_ata_rascunho(${Number(d.salvarata)}, ${lit(JSON.stringify(lerAta(Number(d.salvarata))))}::jsonb, ${C()})`, 'Rascunho salvo.', t);
+  if (d.aprovarata) return agir(`select ext.reuniao_ata_aprovar(${Number(d.aprovarata)}, ${lit(JSON.stringify(lerAta(Number(d.aprovarata))))}::jsonb, ${C()})`, 'Ata aprovada; encaminhamentos criados com cartão para cada responsável.', t);
+});
+document.addEventListener('keydown', e => {
+  const t = e.target.closest?.('.aba');
+  if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
+    const abas = [...document.querySelectorAll('.aba')], i = abas.indexOf(t);
+    const j = e.key === 'Home' ? 0 : e.key === 'End' ? abas.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
+    e.preventDefault(); aba = abas[j].dataset.aba; desenhar(); abas[j].focus();
+  }
+});
+$('empresa').onchange = async e => { empresa = e.target.value; try { await carregar(); } catch (er) { recibo('recusado', motivo(er)); } };
+$('como').onchange = async e => { como = e.target.value; try { await carregar(); } catch (er) { recibo('recusado', motivo(er)); } };
+$('b-tema').onclick = () => { const r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; r.dataset.theme = escuro ? 'light' : 'dark'; };
+
+(async () => {
+  [mcp, sample] = await Promise.all([window.claude?.use?.('mcp').catch(() => null), window.claude?.use?.('sample').catch(() => null)]);
+  if (!mcp) { $('conteudo').innerHTML = '<p class="vazio">Esta página usa os conectores do Supabase, do Google Drive e da Agenda Google da sua conta. Adicione ou reconecte e abra a página de novo.</p>'; return; }
+  try {
+    ctx = await sql('select ext.contexto_central() as p');
+    $('empresa').innerHTML = ctx.empresas.map(e => `<option value="${esc(e.id)}">${esc(e.nome)}</option>`).join('');
+    empresa = (ctx.empresas.find(e => /saúde/i.test(e.nome)) || ctx.empresas[0]).id; $('empresa').value = empresa;
+    $('como').innerHTML = ctx.pessoas.map(p => `<option value="${esc(p.pessoa)}">${esc(p.papel)} (simulado)</option>`).join('');
+    como = (ctx.pessoas.find(p => p.papel === 'Operações · pessoa') || ctx.pessoas[0]).pessoa; $('como').value = como;
+    await carregar();
+    $('fonte').textContent = 'Ao vivo · Supabase'; $('fonte').classList.add('vivo');
+  } catch (e) { $('conteudo').innerHTML = `<p class="vazio">Não carregou: ${esc(motivo(e))}.</p>`; }
+})();
+</script>

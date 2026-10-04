@@ -36,6 +36,8 @@ decisões do dono do projeto e os círculos 7 a 9 desenhados por delegação del
   documentos/ ................. o motor documental (E12): catálogo de tipos, marcas, modelos de design, motor, worker, testes e as amostras emitidas.
   admin/ ...................... a página de administração geral (E13): modelo da página, gerador e o retrato de 04/10/2026.
   portal/ ..................... o portal externo de clientes e parceiros (E14), ao vivo pelo conector do Supabase.
+  acervo/ ..................... o acervo das empresas (E17 e E18): upload, pastas do Drive, triagem, dados conferidos, marca e minutas.
+  central/ .................... a Central de atendimento (E19 a E21): demandas e encaminhamentos, parceiros, reuniões.
   instrucoes.py, instrucoes_pdf.mjs  geram as instruções de trabalho (HTML e PDF).
   ml/ ......................... treino dos primeiros modelos de ML com eventos simulados e os modelos treinados.
   fontes_oficiais/ ............ texto literal dos dispositivos legais citados (retrato de 03/10/2026) e o conferidor de contingência.

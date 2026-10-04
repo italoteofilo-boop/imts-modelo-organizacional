@@ -90,7 +90,21 @@ Incidente registrado: às 11:05 sete suítes de teste foram chamadas sem o envel
 | Alçadas da tabela | As 20 alçadas na tabela, com GE-14, GE-15, margem fora da política, risco 15 ou mais, regra 10 e crise | parametros_em_aberto.md, seção 1 |
 | Acessibilidade | Relatório do axe-core 4.10.2 guardado: zero violação em portal, administração, biblioteca, Mesa e painel | acessibilidade_axe.json |
 
-## 7. Backlog só com pendências externas (produção)
+## 7. Ondas E17 a E21, aprovadas em 04/10/2026 ("Prossiga")
+
+| Onda | Entrega | Testes |
+|---|---|---|
+| E17 Alimentação pelas pastas | Página do acervo: subir arquivos ou ligar uma pasta do Drive; cada arquivo é conferido por hash, lido, classificado e guardado na pasta certa da empresa (uma pasta por empresa, árvore padrão); o que não é reconhecido vai para a triagem; CNPJ, razão social e regime viram proposta com duas mãos; divergências abertas para uma pessoa escolher | 10 |
+| E18 Marca e modelos | Manual de marca vira proposta de cores e fontes com duas mãos; modelo de documento vira minuta em blocos, comparada com a anterior (azul incluído, vermelho removido, verde ajustado), aprovada por quem não subiu, emitida pelo motor | 10 |
+| E19 Parceiro | Portal: sala de negócio, comissões por situação, prestação de contas (nota e relatório pelo portal, conferência automática), Telegram por código. Central: decidir oportunidade, parcela recebida, aprovar e pagar (pessoas diferentes) | 12 |
+| E20 Cliente | Reclamação, ordem de serviço e ouvidoria (Governança, anônima opcional); encaminhamentos datados visíveis ao cliente; encerramento confirmado pelo cliente ou por aceite tácito | 10 |
+| E21 Reuniões | Marcar pela Central (Meet pela Agenda Google; Zoom, Teams e Webex pelo link até o registro dos apps), consentimento de gravação, transcrição no acervo, ata rascunhada por IA e aprovada por pessoa, encaminhamentos | 8 |
+
+Padrões adotados (declarados ao aprovar): uma pasta por empresa no Drive da IMTS com a árvore padrão; ouvidoria com a Governança; regra de comissão simulada por contrato de parceria até a regra real.
+
+Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conectores de quem abre (Supabase, Google Drive, Agenda Google). Acessibilidade: axe-core 4.10.2 sem violação nas abas novas, em tema claro, escuro e tela de 390 px.
+
+## 8. Backlog só com pendências externas (produção)
 
 | Item | O que falta | Quem |
 |---|---|---|
@@ -112,5 +126,9 @@ Incidente registrado: às 11:05 sete suítes de teste foram chamadas sem o envel
 | Assinatura | DocuSign ligado às âncoras /ass_A/, /ass_B/, /ass_T1/, /ass_T2/ | Governança |
 | Google Drive | Terceira saída do motor (Google Docs) | Integração |
 | Marcas | Fonte Nexa (Onni); manual da TRON; razão social e CNPJ de IMTS e Onni confirmados no contrato social | Ítalo |
+| Comissões | Regra real de cada contrato de parceria (percentual, base, parcelas) no lugar da regra simulada; CNPJ de cada parceiro | Negócios e Gestão |
+| Vídeo | Registrar os apps de Zoom, Teams e Webex (OAuth) e gravar os segredos no Vault; confirmar o Meet com a primeira reunião real | Integração |
+| Prazos de atendimento | Confirmar aceite tácito, prazo de OS, prazo da ouvidoria e retenção da gravação (valores de partida nos parâmetros) | Relações, Operações e Governança |
+| Arquivos de fora | Em produção, o arquivo enviado pelo portal vai para o Drive por função do servidor (hoje é a página, pelo conector) | Integração |
 
 Nada fora desta tabela depende de construção no protótipo.

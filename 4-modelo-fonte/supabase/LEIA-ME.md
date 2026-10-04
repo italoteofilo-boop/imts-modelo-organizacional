@@ -239,9 +239,26 @@ Desde a 039, `select adm.testar_tudo();` roda as 10 suítes de uma vez. Veja a s
 
 Prazos do portal externo, em `adm.parametro`: resposta em 48 horas, aceite em 24 horas, pedido do titular em 15 dias (LGPD, art. 19, II) e exclusividade de 90 dias. Só vai para fora documento de alcance externo e aprovado. Da marca, o portal mostra só nome, cores, logos e tipografia.
 
+## Migrações 043 a 052 (alimentação pelas pastas, parceiros, clientes e reuniões)
+
+| Arquivo | O que faz |
+|---|---|
+| `043_acervo.sql` | E17. Esquema `acervo`: árvore padrão de pastas por empresa no Drive (00 a 09 e 99 Triagem), 14 tipos de documento com regra de reconhecimento, registro de cada arquivo por hash (o mesmo arquivo não entra duas vezes), versão por número ou por tipo, extração de CNPJ (com dígito verificador), razão social e regime. Dado sensível da empresa só vale com duas pessoas diferentes; valores diferentes abrem divergência e uma pessoa escolhe com motivo |
+| `044_testes_acervo.sql` | 10 testes do acervo |
+| `045_marca_modelos.sql` | E18. Manual de marca vira proposta de cores e fontes; duas pessoas escolhem os papéis (a segunda não muda o que a primeira escolheu). Modelo de documento vira minuta em blocos; aprova quem não subiu; a aprovada substitui a anterior do mesmo tipo e emite pelo motor. CNPJ e razão social aprovados entram no pacote de marca |
+| `046_testes_marca_modelos.sql` | 10 testes de marca e minutas |
+| `047_parceiro.sql` | E19. Contrato de parceria (regra de comissão, no protótipo SIMULADA: 10% sobre o recebido), sala de negócio por oportunidade, carteira de comissões (prevista, adquirida, a pagar, paga), prestação de contas com conferência da nota (CNPJ do parceiro, número único, valor igual às comissões), aprovação por uma pessoa e pagamento por outra, Telegram de quem é de fora por código de uso único. Cartões de pedidos de fora passam a levar a empresa |
+| `048_testes_parceiro.sql` | 12 testes do parceiro |
+| `049_atendimento.sql` | E20. Reclamação, ordem de serviço e ouvidoria (Governança, pode ser anônima; dentro só a Governança lê, fora só quem escreveu). Encaminhamentos com responsável e prazo, que o cliente vê com as datas. Encerrar: a equipe propõe com tudo fechado; o cliente confirma (com nota) ou reabre; sem resposta, aceite tácito pela rotina `imts-atendimento-tacito` |
+| `050_testes_atendimento.sql` | 10 testes do atendimento |
+| `051_reunioes.sql` | E21. Reunião com contrato comum de adaptador (`ext.reuniao_registrar_externa`, `ext.reuniao_transcricao`); Meet pela Agenda Google; Zoom, Teams e Webex como conexões pendentes. Gravação só com consentimento registrado; transcrição no acervo (pasta 09); ata rascunhada por IA ou pessoa, válida só aprovada por pessoa; a aprovação cria os encaminhamentos. Retenção da gravação por parâmetro |
+| `052_testes_reunioes.sql` | 8 testes das reuniões |
+
+Parâmetros novos: `parceiro.prazo_aprovacao_horas` (48), `parceiro.prazo_pagamento_dias` (10), `parceiro.codigo_telegram_minutos` (15), `atendimento.aceite_tacito_dias` (5), `atendimento.prazo_os_horas` (72), `atendimento.prazo_ouvidoria_dias` (10), `reuniao.retencao_gravacao_dias` (90), `reuniao.prazo_encaminhamento_dias` (7). Os valores são de partida, a confirmar pelos círculos indicados na coluna fonte.
+
 ### Ordem de implantação
 
-001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042.
+001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042 → 043 → 044 → 045 → 046 → 047 → 048 → 049 → 050 → 051 → 052.
 
 Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a execução das funções e troca as políticas.
 
@@ -251,7 +268,7 @@ Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a exec
 select adm.testar_tudo();
 ```
 
-Roda as 10 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10 e segurança 11. Total: 102 testes.
+Roda as 15 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10, segurança 11, acervo 10, marca e minutas 10, parceiro 12, atendimento 10 e reuniões 8. Total: 152 testes.
 
 > **Aviso.** Nunca chame as funções `_testar_*` com `select` direto. Assim elas gravam os efeitos no banco. Isso aconteceu em 04/10/2026 e foi limpo no mesmo dia. Para rodar uma suíte sozinha, use sempre o bloco que desfaz tudo:
 >
