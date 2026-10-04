@@ -3,7 +3,7 @@
 begin;
 
 do $$
-declare n int; v text; p uuid; t_id bigint; j text; dest smallint; esperado smallint;
+declare n int; v text; v_antes text; p uuid; t_id bigint; j text; dest smallint; esperado smallint;
 begin
   -- T1. Nove motores, um por círculo; Identidade é o piloto
   select count(*) into n from rt.motor;
@@ -15,15 +15,16 @@ begin
    where jsonb_array_length((select valor from rt.config where motor = m.circulo and chave = 'jornadas'))
          <> (select count(*) from org.jornada where circulo = m.circulo);
   if n <> 0 then raise exception 'FALHA T2: % motores com jornadas diferentes do modelo', n; end if;
-  if (select sum(jsonb_array_length(valor)) from rt.config where chave = 'jornadas') <> 73 then raise exception 'FALHA T2: total de jornadas'; end if;
+  if (select sum(jsonb_array_length(valor)) from rt.config where chave = 'jornadas') <> (select count(*) from org.jornada) then raise exception 'FALHA T2: total de jornadas'; end if;
 
   -- T3. Publicar uma versão abre uma atualização pendente em cada um dos nove motores
   n := rt.publicar_versao('teste-1', 'versão de teste');
   if n <> 9 then raise exception 'FALHA T3: % atualizações abertas', n; end if;
 
   -- T4. Testes vermelhos recusam e não mudam a versão do motor; verdes aplicam
+  v_antes := (select versao_base from rt.motor where circulo = 2);
   v := rt.concluir_atualizacao(2::smallint, 'teste-1', false, 'teste do círculo falhou');
-  if v <> 'recusada' or (select versao_base from rt.motor where circulo = 2) <> '2026-10-03' then raise exception 'FALHA T4: recusa'; end if;
+  if v <> 'recusada' or (select versao_base from rt.motor where circulo = 2) is distinct from v_antes then raise exception 'FALHA T4: recusa'; end if;
   v := rt.concluir_atualizacao(1::smallint, 'teste-1', true);
   if v <> 'aplicada' or (select versao_base from rt.motor where circulo = 1) <> 'teste-1' then raise exception 'FALHA T4: aplicação'; end if;
   begin
@@ -33,7 +34,7 @@ begin
     if sqlerrm like 'FALHA%' then raise; end if;
   end;
 
-  -- T5. Toda troca do modelo chega ao motor do círculo que a recebe (as 410)
+  -- T5. Toda troca do modelo chega ao motor do círculo que a recebe (todas)
   select count(*) into n from org.troca t
     join org.circulo cd on cd.nome = t.de_circulo join org.circulo cp on cp.nome = t.para_circulo
    where not exists (select 1 from rt.motor where circulo = cd.numero) or not exists (select 1 from rt.motor where circulo = cp.numero);

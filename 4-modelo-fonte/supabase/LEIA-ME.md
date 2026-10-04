@@ -22,6 +22,16 @@ Projeto Supabase **imts-modelo-organizacional** (código rzkfolkqdgtounqjjzss), 
 - `009_painel_detalhe.sql`: `rt.painel_detalhe(jornada, n)` e `rt.painel_execucao(id)`, o detalhe de jornada, etapa e execução do painel. Só leem.
 - `010_mesa.sql`: a Mesa de trabalho (E11). O motor passa a rodar em modo interativo: tarefa de gente vira cartão e decisão de gente vira cartão para decidir. Cartões de fluxo, avulsas e pedidos de ajuda (`rt.cartao`), delegação ao agente com teto no modo da etapa e a colega com aceite, sugestão da jornada existente e quadros (`rt.quadro`, `rt.quadro_circulo`).
 - `testar_mesa.sql` e `011_testes_mesa.sql`: 12 testes da Mesa (M1 a M12); o 011 traz a função `rt._testar_mesa()`, para rodar no Supabase sem gravar nada.
+- `012_sincronizar_modelo.sql`, `012a_org_novo.sql` e `preparar_versao.py`: migração versionada do modelo. A versão nova é carregada em `org_novo` e `org.sincronizar_modelo()` atualiza `org` no lugar, casando círculo, jornada, etapa, tarefa e troca pela chave natural: os ids que o runtime usa ficam. Se algo que saiu do modelo ainda é usado pelo runtime, para e nada muda.
+- `013_grafos_versao.sql` (gerado pelo `gerar_grafos.py`): troca só os grafos das jornadas que mudaram e marca os fluxos de volta (`volta`) e as saídas de decisão que abrem laço (`laco`).
+- `014_versao_2.sql`: versão 2026-10-03.2 publicada pelo runtime dos runtimes e aplicada nos nove motores; os oito motores que estavam em desenho passam a piloto (E10); sistemas contábil, fiscal e bancário com adaptador simulado e o contrato de interface (`rt.adaptador_operacao`).
+- `015_motor_ajuste.sql`: o teto das voltas passa a valer por laço, não por nó (ponto de junção alcançado por caminhos diferentes travava a ES-01).
+- `016_simulacao_continua.sql`: uma execução simulada a cada 5 minutos (pg_cron) e limpeza diária do dado simulado com mais de 30 dias.
+- `017_acesso.sql`, `testar_acesso.sql` e `018_testes_acesso.sql`: empresas (quatro simuladas até o G1), login ligado ao pseudônimo, permissões por pessoa, empresa, círculo, papel e nível, papéis incompatíveis barrados, funções do app (`rt.app_*`) e direitos do titular (exportar e eliminar). 10 testes.
+- `019_telegram.sql`, `testar_telegram.sql`, `020_testes_telegram.sql`, `021_telegram_agenda.sql` e `functions/telegram/index.ts`: canal Telegram (E5) e conversa (E9). 12 testes.
+- `022_simulador.sql`: esquema `sim`, onde o simulador de cenários (E7) deixa as propostas para a ID-04. Nunca escreve no motor.
+- `023_modelos_v2.sql`: modelos de ML retreinados com os nove motores (fora de uso).
+- `024_painel_ajuste.sql`: `rt.painel()` com execução interativa ainda aberta e só os eventos de execução de tarefa nas medidas.
 - `gerar_sql.py`: refaz os dois arquivos a partir de `saida/`, a pasta que os scripts do modelo criam ao rodar (no repositório, a cópia publicada dos dados está em `dados-gerados/`). Rode depois de qualquer mudança no modelo: `python3 supabase/gerar_sql.py`.
 
 ## Tabelas
@@ -124,3 +134,36 @@ No Supabase, em 03/10/2026, rodaram 2.000 instâncias simuladas da Identidade (4
 Avulsas e pedidos de ajuda não saem pela API: a política de leitura de `rt.cartao` só libera cartões de fluxo. Testes: 12 da Mesa sem falha, no Postgres 16 local e no Supabase.
 
 O verificador de desempenho aponta, como informação, chaves estrangeiras sem índice e índices ainda sem uso. Fica para quando houver volume real.
+
+## Versão 2026-10-03.2 (03/10/2026, 21:05)
+
+| Medida | Antes | Agora |
+|---|---|---|
+| Jornadas, etapas, tarefas, trocas | 73, 292, 1.555, 410 | 75, 299, 1.586, 411 |
+| Motores em piloto | 1 (Identidade) | 9 |
+| Tarefas executadas pela simulação | 99 (Identidade) | 1.586 de 1.586 |
+| Testes no Supabase | 31 | 53 (runtime 10, motor 9, Mesa 12, Telegram 12, acesso 10) |
+
+Como subir uma versão nova do modelo: rode os testes do modelo (`python3 testar.py`), `python3 supabase/gerar_sql.py`, `python3 supabase/preparar_versao.py` e `python3 supabase/gerar_grafos.py`; carregue `012a_org_novo.sql`; rode `select org.sincronizar_modelo();`; apague `org_novo`; rode `013_grafos_versao.sql`; publique a versão com `rt.publicar_versao` e conclua a atualização de cada motor com `rt.concluir_atualizacao`.
+
+## Canal Telegram (E5) e conversa (E9)
+
+| Peça | O que faz |
+|---|---|
+| Edge Function `telegram` | Recebe o webhook (confere o cabeçalho secreto), entrega a `rt.receber_update`, responde ao botão e esvazia a fila. Com `?tarefa=` e a chave das tarefas: `estado`, `manutencao` (fila e autodestruição) e `configurar` (webhook e comandos) |
+| `rt.receber_update` | Identifica a pessoa pelo id do Telegram, liga a conversa ao motor, grava a mensagem com autodestruição (47 horas pela configuração do motor) e põe a resposta na fila |
+| `rt.interpretar` | /quadro, /concluir, /decidir, /aceitar, /recusar, /nova, /iniciar, botões e texto livre (procura a jornada que já existe antes de criar avulsa) |
+| `rt.proximos_envios`, `rt.confirmar_envio` | Fila com os limites do Telegram: 1 por segundo por chat, 20 por minuto por grupo, 30 por segundo no total |
+| Fora do Telegram | Senha ou chave no texto: a mensagem é apagada; aprovação de pagamento (GE-04, GE-05): só na Mesa |
+| Vault | `telegram_webhook_segredo` e `imts_funcao_chave` gerados dentro da base; `telegram_ambiente` = teste. Falta `telegram_bot_token` |
+| pg_cron | `imts-telegram-manutencao` a cada 10 minutos |
+
+Para ligar o bot de teste, no editor SQL do Supabase:
+```sql
+select vault.create_secret('<token do BotFather>', 'telegram_bot_token');
+select rt.telegram_configurar();
+```
+
+O verificador de segurança aponta o pg_net no esquema public (aviso): a troca para o esquema extensions pede apagar e recriar a extensão, e ficou para quando houver janela. As fontes novas já criam no esquema certo.
+
+A Edge Function `teste-html` foi o teste de hospedagem do Mini App (03/10/2026): o Supabase devolveu `text/plain` para HTML no domínio padrão. Ela responde 410 e pode ser apagada no painel do Supabase.

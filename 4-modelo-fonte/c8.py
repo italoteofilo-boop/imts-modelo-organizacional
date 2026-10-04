@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Círculo 8 · Gestão. Fechado em 03/10/2026, aprovado às 11:50: treze jornadas.
+"""Círculo 8 · Gestão. Fechado em 03/10/2026, aprovado às 11:50: treze jornadas; GE-14 e GE-15 acrescentadas em 03/10/2026, às 21:05.
 Regra do círculo: a Gestão decide o que é do seu ofício (o desdobramento e o controle do orçamento aprovado, o ritual de
 acompanhamento, a cobrança, a compra, o fechamento das contas, a aplicação do rateio e os processos de pessoas), dentro
 da alçada. Os sócios aprovam alvos e orçamento; o executivo decide o que passa da alçada da Gestão e o líder decide a
@@ -10,11 +10,12 @@ NUM, NOME, SIGLA, PREF = 8, 'Gestão', 'GE', 'GE'
 LANES, PARTES = configurar(NOME, SIGLA, PREF)
 SLUG = 'circulo8-gestao'
 FECHADO = True
-STATUS = 'Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026'
+STATUS = 'Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 · GE-14, GE-15 e as etapas novas aprovadas às 21:05'
 LEAD = ('A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento '
         'dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e '
         'cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida '
-        'também dos ativos. Não define as regras nem escolhe o rumo. São treze jornadas.')
+        'também dos ativos, das dívidas tributárias e dos parcelamentos, do plano de contas, dos centros de custo e do plano tributário do grupo. '
+        'Não define as regras nem escolhe o rumo. São quinze jornadas.')
 PRINCIPIO = ('Regra do círculo, aprovada por você às 11:50 de 03/10/2026: a Gestão decide o que é do seu ofício '
              '(o desdobramento e o controle do orçamento aprovado, o ritual de acompanhamento, a cobrança, a compra, o '
              'fechamento das contas, a aplicação do rateio e os processos de pessoas), dentro da alçada. Os sócios aprovam '
@@ -194,7 +195,7 @@ JORNADAS.append(dict(
     code='GE-02',
     nome='Rodar o ritual de acompanhamento dos alvos e cobrar as ações',
     dominio='Planejamento e controle', classe='essencial', onda=1,
-    objetivo='Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo.',
+    objetivo='Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada contrato ter o planejado no racional financeiro comparado com o realizado, e o que estiver fora do racional entrar na pauta com o dono; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo.',
     frequencia='No calendário do método de estratégia (cadência: mensal) e por evento: pedido de plano de correção',
     automacao=('alta', 'Reunir, apontar desvios, registrar e cobrar são de agente e automação; conduzir o ritual é de pessoa da Gestão; propor e decidir as ações é dos líderes e do executivo.'),
     base=['apqc'],
@@ -207,12 +208,20 @@ JORNADAS.append(dict(
         E('Reunir os resultados do período contra os alvos', 'Gestão, com a Inteligência', 'Autopiloto', 'baixo',
           [(ALVOS, 'Estratégia'), (METODO_EST, 'Estratégia'), (INDICADORES, 'Inteligência'), (REV_IND, 'Inteligência'),
            (PAINEL, 'Inteligência'), (DESVIO_PREV, 'Negócios'), (SITUACAO, 'Integração'), (PROJ_ENC, 'Integração'),
-           (ORC_VIG, 'GE-01'), (EXEC_ORC, 'GE-05'), ('Ações em atraso do ritual', 'etapa 3')],
+           (ORC_VIG, 'GE-01'), (EXEC_ORC, 'GE-05'), ('Ações em atraso do ritual', 'etapa 4')],
           [T('Reunir indicadores, execução do orçamento, iniciativas e desvios do período', R),
            T('Apontar os desvios, as causas prováveis e os donos', A)],
-          [('Pauta do ritual com os desvios e os donos', ['etapa 2'])]),
+          [('Pauta do ritual com os desvios e os donos', ['etapa 3'])]),
+        E('Comparar o planejado e o realizado de cada contrato', 'Gestão', 'Autopiloto', 'baixo',
+          [('Racional financeiro do contrato aprovado', 'Negócios'), (RECEITAS, 'GE-03')],
+          [T('Reunir o racional financeiro de cada contrato e o realizado: receita, custo, margem e caixa', R),
+           T('Apontar os contratos fora do racional e a causa provável', A),
+           D('Há contrato fora do racional?', A,
+             [S('Não', 'seg'),
+              S('Sim', 'seg', via=[T('Incluir o contrato fora do racional na pauta do ritual, com o dono', R)])])],
+          [('Contratos fora do racional, com a causa provável e o dono', ['etapa 3'])]),
         E('Conduzir o ritual e registrar as decisões', 'Gestão conduz; o líder decide na alçada; acima dela, o executivo; mudança de alvo, a Estratégia; recurso novo, a GE-01', 'Copiloto', 'médio',
-          [('Pauta do ritual com os desvios e os donos', 'etapa 1'), (PED_CORRECAO, 'Estratégia'), (CORRECOES, 'Estratégia'),
+          [('Pauta do ritual com os desvios e os donos', 'etapa 1'), ('Contratos fora do racional, com a causa provável e o dono', 'etapa 2'), (PED_CORRECAO, 'Estratégia'), (CORRECOES, 'Estratégia'),
            (REV_SEM, 'Estratégia')],
           [T('Incluir na pauta os pedidos de plano de correção e as correções publicadas', R),
            T('Conduzir o ritual com os donos dos alvos', P),
@@ -229,9 +238,9 @@ JORNADAS.append(dict(
           [(DESVIOS, ['Estratégia']),
            ('Desvio grave ou mudança de alvo apontados pelo ritual', ['Estratégia']),
            (PED_REC, ['GE-01']),
-           ('Ações do ritual, com dono e prazo', ['etapa 3'])]),
+           ('Ações do ritual, com dono e prazo', ['etapa 4'])]),
         E('Cobrar as ações até concluir', 'Gestão', 'Autômato', 'baixo',
-          [('Ações do ritual, com dono e prazo', 'etapa 2')],
+          [('Ações do ritual, com dono e prazo', 'etapa 3')],
           [T('Lembrar cada dono e acompanhar o prazo das ações', R),
            D('A ação foi concluída no prazo?', A,
              [S('Sim', 'prox'),
@@ -312,7 +321,7 @@ JORNADAS.append(dict(
           [T('Atualizar a situação de faturas e pagamentos de cada cliente', R),
            T('Apontar clientes com atraso recorrente', A)],
           [(SIT_FAT, ['Relações', 'Negócios']),
-           (RECEITAS, ['GE-05', 'GE-13'])]),
+           (RECEITAS, ['GE-05', 'GE-13', 'GE-02'])]),
     ]))
 
 JORNADAS.append(dict(
@@ -404,17 +413,20 @@ JORNADAS.append(dict(
           F('Período fechado e informado, sem execução pendente', R)],
     etapas=[
         E('Registrar e conciliar o movimento e projetar o caixa', 'Gestão', 'Autopiloto', 'baixo',
-          [(RECEITAS, 'GE-03'), (PAGOS, 'GE-04'), (FOLHA, 'GE-13'), (PREVISAO, 'Negócios'), (ORC_VIG, 'GE-01')],
+          [(RECEITAS, 'GE-03'), (PAGOS, 'GE-04'), (FOLHA, 'GE-13'), (PREVISAO, 'Negócios'), (ORC_VIG, 'GE-01'),
+           ('Passivo tributário e parcelas em dia', 'GE-14')],
           [D('O que iniciou o trabalho?', R,
              [S('Fechamento do período', 'seg'),
               S('Decisão de alocação, de destino do resultado ou mandato', 'E3')]),
            T('Registrar e conciliar contas, recebimentos e pagamentos', R),
            T('Projetar o caixa com a previsão de receita, os compromissos e o orçamento', A)],
-          [(CAIXA, ['Estratégia']),
+          [(CAIXA, ['Estratégia', 'GE-14']),
            ('Movimento do período conciliado', ['etapa 2'])]),
         E('Fechar as contas, apurar o resultado e os impostos', 'Gestão', 'Copiloto', 'médio',
-          [('Movimento do período conciliado', 'etapa 1'), (RATEIO, 'GE-06'), (ATIVOS, 'GE-12')],
+          [('Movimento do período conciliado', 'etapa 1'), (RATEIO, 'GE-06'), (ATIVOS, 'GE-12'),
+           ('Plano de contas e centros de custo vigentes', 'GE-15'), ('Plano tributário do grupo e regras das operações entre empresas', 'GE-15')],
           [T('Fechar a contabilidade do período por empresa e consolidar', A),
+           T('Emitir o balancete, a DRE e o balanço de cada empresa e o consolidado', A),
            T('Apurar os impostos do período e preparar as obrigações fiscais', A),
            T('Conferir o fechamento e os impostos', P),
            T('Aprovar o fechamento e o recolhimento dos impostos', 'LCI'),
@@ -423,10 +435,10 @@ JORNADAS.append(dict(
            D('Há aporte, distribuição ou mudança de contas a executar?', R,
              [S('Não', 'F2'),
               S('Sim', 'prox')])],
-          [(RESULTADO, ['Estratégia', 'Inteligência']),
+          [(RESULTADO, ['Estratégia', 'Inteligência', 'GE-15']),
            (MARGENS, ['Inteligência']),
            (EXEC_ORC, ['Estratégia', 'GE-02']),
-           ('Demonstrações e obrigações fiscais do período', ['Governança']),
+           ('Demonstrações e obrigações fiscais do período', ['Governança', 'GE-14']),
            ('Período fechado', ['etapa 3'])]),
         E('Executar aportes, distribuição e mudanças de contas', 'Gestão prepara; o líder do círculo, o executivo ou o Administrador do IMTS.OS aprovam; a Governança confere as contas', 'Copiloto', 'alto',
           [('Período fechado', 'etapa 2'), (DEC_ALOC, 'Estratégia'), (ALOCACAO, 'Estratégia'), (MANDATO, 'Estratégia'),
@@ -461,7 +473,8 @@ JORNADAS.append(dict(
     fins=[F('Rateio publicado e lançado', R)],
     etapas=[
         E('Apurar o custo dos círculos e o uso de cada empresa', 'Gestão', 'Autopiloto', 'baixo',
-          [(CRITERIO_RATEIO, 'Governança'), (CUSTO_TEC, 'Integração'), (PORTFOLIO, 'Estratégia')],
+          [(CRITERIO_RATEIO, 'Governança'), (CUSTO_TEC, 'Integração'), (PORTFOLIO, 'Estratégia'),
+           ('Plano de contas e centros de custo vigentes', 'GE-15'), ('Plano tributário do grupo e regras das operações entre empresas', 'GE-15')],
           [T('Reunir o custo de cada círculo e o uso dos serviços por empresa', R),
            T('Aplicar o critério de rateio e calcular a parte de cada empresa', A)],
           [('Rateio calculado', ['etapa 2'])]),
@@ -813,10 +826,102 @@ JORNADAS.append(dict(
           [(ATIVOS, ['GE-05'])]),
     ]))
 
+# ---------------------------------------------------------------------------------------------------------------
+# Jornadas GE-14 e GE-15: aprovadas por você em 03/10/2026, às 21:05 (cruzamento do dia a dia com o modelo, propostas 1 e 2)
+
+PASSIVO = 'Passivo tributário e parcelas em dia'
+PLANO_CONTAS = 'Plano de contas e centros de custo vigentes'
+PLANO_TRIB = 'Plano tributário do grupo e regras das operações entre empresas'
+DEMONSTR = 'Demonstrações e obrigações fiscais do período'
+
+JORNADAS.append(dict(
+    code='GE-14',
+    nome='Gerir as dívidas tributárias: parcelamentos, transações, negociações e renegociações',
+    dominio='Finanças', classe='essencial', onda=1,
+    objetivo='Fazer cada débito tributário, autuação ou intimação ser registrado com a origem, o valor atualizado e o efeito na certidão; '
+             'ter as opções levantadas (pagar, parcelar, transacionar ou contestar) com o efeito no caixa e a opinião da assessoria tributária; '
+             'ter o caminho decidido na alçada (o executivo; acima dela, os sócios); e cada parcelamento ou transação ser pago em dia e acompanhado, '
+             'com o risco de perder as condições levado a renegociação. A Gestão levanta, propõe e paga; a assessoria opina e defende; o executivo ou os sócios decidem.',
+    frequencia='Por evento: débito, autuação ou intimação identificado; e na revisão periódica do passivo tributário (cadência: mensal, com o fechamento)',
+    automacao=('baixa', 'Registrar o débito, levantar as opções, pagar as parcelas e acompanhar as condições são de agente e automação; '
+                        'propor o caminho e formalizar são de pessoa da Gestão; opinar e defender são da assessoria tributária; decidir é do executivo ou dos sócios.'),
+    base=['apqc', 'l13988'],
+    lanes=['EXE', 'SOC', 'ASS', P, A, R],
+    inicios=[I('Débito tributário, autuação ou intimação identificado', R, 'message'),
+             I('Revisão periódica do passivo tributário iniciada', R, 'timer')],
+    fins=[F('Débito pago, parcelado ou transacionado e acompanhado', R),
+          F('Débito contestado e entregue à defesa', R)],
+    etapas=[
+        E('Levantar o débito e as opções', 'Gestão, com a assessoria tributária', 'Copiloto', 'médio',
+          [(DEMONSTR, 'GE-05'), (CAIXA, 'GE-05')],
+          [T('Registrar o débito, a origem, o valor atualizado e o efeito na certidão', R),
+           T('Levantar as opções de pagar, parcelar, transacionar ou contestar, com o efeito no caixa', A),
+           T('Opinar sobre a procedência do débito e as opções', 'ASS')],
+          [('Débito tributário com as opções e o efeito no caixa', ['etapa 2'])]),
+        E('Decidir o caminho e formalizar', 'Gestão propõe; o executivo decide; acima da alçada dele, os sócios', 'Assistido', 'alto',
+          [('Débito tributário com as opções e o efeito no caixa', 'etapa 1'), (ALCADAS, 'Governança')],
+          [T('Propor o caminho com o custo, o efeito no caixa e o efeito na certidão', P),
+           D('Qual caminho foi proposto?', P,
+             [S('Pagar à vista', 'seg', via=[T('Aprovar o pagamento do débito', 'EXE')]),
+              S('Parcelar ou transacionar dentro da alçada do executivo', 'seg',
+                via=[T('Decidir o parcelamento ou a transação', 'EXE')]),
+              S('Parcelar ou transacionar acima da alçada do executivo', 'seg',
+                via=[T('Decidir o parcelamento ou a transação pelos sócios', 'SOC', 'manual')]),
+              S('Contestar o débito', 'F2', via=[T('Entregar o débito à defesa da assessoria tributária', 'ASS')])]),
+           T('Formalizar o pagamento, o parcelamento ou a transação e registrar as condições', P)],
+          [('Pagamento, parcelamento ou transação formalizado, com as condições', ['etapa 3']),
+           ('Débito tributário e caminho decidido', ['Executivos'])]),
+        E('Pagar as parcelas e acompanhar as condições', 'Gestão; a renegociação, o executivo', 'Autopiloto', 'médio',
+          [('Pagamento, parcelamento ou transação formalizado, com as condições', 'etapa 2')],
+          [T('Programar e pagar a quitação ou as parcelas e registrá-las', R),
+           T('Acompanhar as condições do parcelamento ou da transação e o risco de perdê-las', A),
+           D('Há risco de perder o parcelamento ou a transação?', A,
+             [S('Não', 'prox'),
+              S('Sim', 'prox', via=[T('Propor a renegociação ou a regularização ao executivo', P),
+                                     T('Decidir a renegociação ou a regularização', 'EXE')])])],
+          [(PASSIVO, ['GE-05', 'Executivos'])]),
+    ]))
+
+JORNADAS.append(dict(
+    code='GE-15',
+    nome='Manter a estrutura contábil e o plano tributário do grupo: plano de contas, centros de custo e operações entre as empresas',
+    dominio='Finanças', classe='essencial', onda=1,
+    objetivo='Fazer o grupo ter um plano de contas comum, com as contas de cada empresa, e centros de custo por empresa, círculo e projeto, '
+             'conferidos pela assessoria contábil; e um plano tributário do grupo, com o regime de cada empresa, as operações entre as empresas '
+             'e as regras de preço entre elas, simulado pela Gestão, recomendado pela assessoria tributária, conferido pela Governança e decidido '
+             'pelo executivo ou, quando muda o regime ou a estrutura, pelos sócios. A Gestão mantém; a assessoria recomenda; a Governança confere; o executivo ou os sócios decidem.',
+    frequencia='Por evento: empresa, projeto ou operação entre empresas criado ou mudado; e na revisão anual da estrutura contábil e tributária',
+    automacao=('média', 'Manter o plano de contas, abrir e encerrar centros de custo, simular os tributos e registrar são de agente e automação; '
+                        'conferir é da assessoria e da Governança; decidir é do executivo ou dos sócios.'),
+    base=['apqc', 'cc2002'],
+    lanes=['GOV', 'EXE', 'SOC', 'ASS', P, A, R],
+    inicios=[I('Empresa, projeto ou operação entre empresas criado ou mudado', R, 'message'),
+             I('Revisão anual da estrutura contábil e tributária iniciada', R, 'timer')],
+    fins=[F('Estrutura contábil e plano tributário do grupo vigentes', R)],
+    etapas=[
+        E('Manter o plano de contas e os centros de custo', 'Gestão, com a assessoria contábil', 'Copiloto', 'médio',
+          [(PORTFOLIO, 'Estratégia'), (SITUACAO, 'Integração')],
+          [T('Manter o plano de contas comum, com as contas de cada empresa', A),
+           T('Abrir e encerrar os centros de custo por empresa, círculo e projeto', R),
+           T('Conferir o plano de contas e os centros de custo', 'ASS')],
+          [(PLANO_CONTAS, ['etapa 2', 'GE-05', 'GE-06'])]),
+        E('Planejar os tributos do grupo e as operações entre as empresas', 'Gestão simula; a assessoria recomenda; a Governança confere; o executivo ou os sócios decidem', 'Copiloto', 'alto',
+          [(PLANO_CONTAS, 'etapa 1'), (RESULTADO, 'GE-05'), (ACORDO_CONJ, 'Negócios'), (ALCADAS, 'Governança')],
+          [T('Simular o regime e os tributos de cada empresa e das operações entre elas', A),
+           T('Recomendar o regime, as operações entre empresas e os preços entre elas', 'ASS'),
+           T('Conferir a recomendação com as regras e o risco', 'GOV'),
+           T('Preparar a proposta de plano tributário para quem decide', P),
+           D('A mudança altera o regime de uma empresa ou a estrutura do grupo?', P,
+             [S('Não', 'seg', via=[T('Aprovar o plano tributário na alçada do executivo', 'EXE')]),
+              S('Sim', 'seg', via=[T('Decidir o plano tributário do grupo', 'SOC', 'manual')])]),
+           T('Registrar o plano tributário e as regras das operações entre empresas', R)],
+          [(PLANO_TRIB, ['GE-05', 'GE-06', 'Executivos'])]),
+    ]))
+
 # -------------------------------------------------------------- domínios
 DOMINIOS = [
     ('Planejamento e controle', 'Orçamento aprovado desdobrado e controlado e ritual de acompanhamento dos alvos.'),
-    ('Finanças', 'Faturamento e cobrança, compras e pagamentos, caixa, contas, impostos, prestação de contas e rateio.'),
+    ('Finanças', 'Faturamento e cobrança, compras e pagamentos, caixa, contas, impostos, prestação de contas, rateio, dívidas tributárias e parcelamentos, plano de contas, centros de custo e plano tributário do grupo.'),
     ('Pessoas e cultura', 'Provimento, integração à cultura, avaliação, desenvolvimento, folha, rituais, reconhecimento e comunicação interna.'),
     ('Ativos e administração', 'Ativos, espaços e serviços administrativos.'),
 ]
@@ -827,14 +932,15 @@ ONDAS = {
 
 # ------------------------------------------------- o que usamos de cada fonte
 USO = {
-    'apqc': 'PCF 7.4. Os processos da Gestão estão em três categorias e num grupo: 7.0, capital humano (planejamento, recrutamento, integração, desempenho, desenvolvimento, recompensa, desligamento, informação e comunicação com as pessoas), base da GE-07 a GE-11 e da GE-13; 9.0, recursos financeiros (planejamento e orçamento, receita, contabilidade, folha, contas a pagar, tesouraria e impostos), base da GE-01, da GE-03 a GE-06 e da GE-13; 10.0, ativos (planejar e adquirir, manter e baixar), base da GE-12; e o grupo 4.2, compra de materiais e serviços, base da GE-04. O grupo 9.8, controles internos, fica com a Governança. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.',
+    'apqc': 'PCF 7.4. Os processos da Gestão estão em três categorias e num grupo: 7.0, capital humano (planejamento, recrutamento, integração, desempenho, desenvolvimento, recompensa, desligamento, informação e comunicação com as pessoas), base da GE-07 a GE-11 e da GE-13; 9.0, recursos financeiros (planejamento e orçamento, receita, contabilidade, folha, contas a pagar, tesouraria e impostos), base da GE-01, da GE-03 a GE-06 e da GE-13; 10.0, ativos (planejar e adquirir, manter e baixar), base da GE-12; e o grupo 4.2, compra de materiais e serviços, base da GE-04. O grupo 9.8, controles internos, fica com a Governança. A tabela de cobertura, na aba Método, mostra onde cada um foi parar. Nas GE-14 e GE-15 (03/10/2026): 9.3.2.1 (Maintain chart of accounts), 9.3.2.5 (Post and reconcile intercompany transactions), 9.4.2.1 (Create project account codes) e 9.9 (Manage taxes).',
     'lgpd': 'Na GE-07 e na GE-09 (e também na GE-08, na GE-10 e na GE-13, que usam dados de pessoas): os dados de candidatos e de pessoas são dados pessoais, tratados com finalidade, adequação e necessidade (art. 6º, I a III) e pelas regras de sigilo da Governança. Na GE-07, a triagem feita pelo agente é revista por pessoa antes de recusar candidatos, porque o titular pode pedir a revisão de decisão tomada só por tratamento automatizado (art. 20, caput). Na GE-09, a pesquisa de cultura é analisada sem identificar quem respondeu.',
     'bpmn': 'Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, serviço, script e recebimento; a tarefa de outro círculo ou papel aparece como tarefa simples.',
     'camunda': 'Regra de nomes: tarefa com verbo no infinitivo e objeto; evento com objeto e estado; gateway com pergunta; raia com papel ou sistema.',
     'sipoc': 'Fornecedor, entrada, processo, saída e cliente: a base de “quem gera a entrada” e “quem recebe a saída” em cada etapa.',
     'clt': 'Na GE-13: o salário mensal é pago até o quinto dia útil do mês seguinte (art. 459, § 1º); as férias, até dois dias antes do início (art. 145); acima de vinte trabalhadores no estabelecimento, o registro de entrada e saída é obrigatório, e o ponto por exceção é permitido por acordo (art. 74, §§ 2º e 4º). Na GE-07: no desligamento, as verbas rescisórias e os documentos são entregues em até dez dias do término do contrato (art. 477, § 6º).',
     'fgts': 'Na GE-13: o depósito do FGTS é feito até o vigésimo dia de cada mês (art. 15, na redação da Lei 14.438/2022, com a arrecadação digital).',
-    'cc2002': 'Na GE-05: cada empresa segue um sistema de contabilidade com escrituração uniforme e levanta todo ano o balanço patrimonial e o de resultado (art. 1.179), com o livro Diário (art. 1.180), e guarda a escrituração enquanto não houver prescrição ou decadência (art. 1.194).',
+    'l13988': 'Na GE-14: a transação resolutiva de litígio na cobrança de créditos da Fazenda Pública federal, tributários ou não, e as suas modalidades (arts. 1º e 2º). Parcelamentos e transações de estados e municípios seguem a lei de cada ente e não foram lidos.',
+    'cc2002': 'Na GE-15: o plano de contas segue o sistema de contabilidade com escrituração uniforme (art. 1.179). Na GE-05: cada empresa segue um sistema de contabilidade com escrituração uniforme e levanta todo ano o balanço patrimonial e o de resultado (art. 1.179), com o livro Diário (art. 1.180), e guarda a escrituração enquanto não houver prescrição ou decadência (art. 1.194).',
 }
 
 # ----------------------------------- cobertura do referencial (APQC PCF 7.4)
@@ -860,7 +966,7 @@ COBERTURA = [
     ('7.8.1', 'Develop employee communication plan', 'GE-11, etapa 1'),
     ('7.8.2', 'Conduct employee engagement surveys', 'GE-09, etapa 3'),
     ('7.8.3', 'Deliver employee communications', 'GE-11, etapas 2 a 4'),
-    ('9.1.1', 'Perform planning/budgeting/forecasting', 'GE-01; a montagem do orçamento é tarefa da Gestão na ES-03, etapa 3'),
+    ('9.1.1', 'Perform planning/budgeting/forecasting', 'GE-01; a montagem do orçamento é tarefa da Gestão na ES-03, etapa 3; o planejado e o realizado por contrato, GE-02, etapa 2'),
     ('9.1.2', 'Perform cost accounting and control', 'GE-05, etapa 2, e GE-06'),
     ('9.1.4', 'Evaluate and manage financial performance', 'GE-05, etapa 2, e GE-02'),
     ('9.2.1', 'Process customer credit', 'Limite: a análise de crédito do cliente não tem etapa própria'),
@@ -869,9 +975,9 @@ COBERTURA = [
     ('9.2.4', 'Manage and process collections', 'GE-03, etapa 3'),
     ('9.2.5', 'Manage and process adjustments/deductions', 'GE-03, etapa 2: crédito na fatura ou reembolso ao cliente'),
     ('9.3.1', 'Manage financial policies and procedures', 'Em parte: a Gestão aplica as políticas; as regras e alçadas são da Governança'),
-    ('9.3.2', 'Perform general accounting', 'GE-05, etapas 1 e 2'),
+    ('9.3.2', 'Perform general accounting', 'GE-05, etapas 1 e 2; o plano de contas (9.3.2.1) e as operações entre empresas (9.3.2.5), GE-15'),
     ('9.3.3', 'Perform fixed-asset accounting', 'GE-12, etapa 2, e GE-05, etapa 2'),
-    ('9.3.4', 'Perform financial reporting', 'GE-05, etapa 2'),
+    ('9.3.4', 'Perform financial reporting', 'GE-05, etapa 2: balancete, DRE e balanço de cada empresa e o consolidado'),
     ('9.5', 'Process payroll', 'GE-13'),
     ('9.6.1', 'Process accounts payable (AP)', 'GE-04, etapa 5, inclusive a remuneração de parceiros'),
     ('9.6.2', 'Process expense reimbursements', 'Limite: não desenhado como etapa própria'),
@@ -879,8 +985,8 @@ COBERTURA = [
     ('9.7.4', 'Manage debt and investment', 'Em parte: aportes e distribuição decididos pelos sócios (GE-05, etapa 3). Dívida e aplicações não têm etapa própria'),
     ('9.7.6', 'Manage financial fraud/dispute cases', 'Fora: Governança, pelo canal de relato'),
     ('9.8', 'Manage internal controls', 'Fora: Governança'),
-    ('9.9.1', 'Develop tax strategy and plan', 'Limite: não desenhado como etapa própria'),
-    ('9.9.2', 'Process taxes', 'GE-05, etapa 2'),
+    ('9.9.1', 'Develop tax strategy and plan', 'GE-15, etapa 2'),
+    ('9.9.2', 'Process taxes', 'GE-05, etapa 2; as dívidas tributárias, os parcelamentos e as transações, GE-14'),
     ('10.1', 'Plan and acquire assets', 'GE-12, etapa 1'),
     ('10.2', 'Design and construct assets', 'Limite: obras não foram desenhadas'),
     ('10.3', 'Maintain assets', 'GE-12, etapa 2'),
@@ -930,6 +1036,9 @@ DECISOES = [
     ('A folha é jornada própria; a remuneração de parceiros é paga na jornada de compras e pagamentos', 'Ponto 7, aprovado por você (11:50)',
      'GE-13 e GE-04, como Negócios pediu: a remuneração de quem vende e de parceiros fica com a Gestão.'),
     ('Treze jornadas', 'Ponto 8, aprovado por você (11:50)', 'GE-01 a GE-13.'),
+    ('Quinze jornadas: dívidas tributárias (GE-14) e estrutura contábil e plano tributário do grupo (GE-15); planejado x realizado por contrato (GE-02, etapa 2); balancete, DRE e balanço (GE-05, etapa 2)',
+     'Aprovado por você (21:05 de 03/10/2026), no cruzamento do dia a dia com o modelo',
+     'O racional financeiro de cada contrato nasce em Negócios (NE-04, etapa 2) e é comparado com o realizado no ritual. As decisões acima do executivo estão na tabela matéria × órgão.'),
     ('Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem',
      'Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)',
      'De Assistido para Copiloto, pelas tarefas: GE-02 etapa 2. De Autopiloto para Autômato, pelas tarefas: GE-01 etapa 3, GE-02 etapa 3, GE-07 etapa 4, GE-11 etapa 3. De Copiloto para Assistido, pelas tarefas: GE-06 etapa 2, GE-07 etapa 2, GE-08 etapa 2, GE-09 etapa 1, GE-10 etapa 2. Nível de automação pela faixa: GE-05 média → alta; GE-06 alta → média; GE-12 média → alta.'),
@@ -979,12 +1088,16 @@ MUDANCAS = [
      'Rascunho da Identidade assumido pela Gestão.'),
     ('Ajustado', 'ID-09 do círculo 1 (transferida) · Comunicação interna e institucional', 'GE-11',
      'Só a parte interna; a externa é de Relações (RE-07).'),
+    ('Acrescentado', 'Sem equivalente', 'GE-14',
+     'Dívidas tributárias, parcelamentos, transações, negociações e renegociações, aprovada em 03/10/2026, às 21:05.'),
+    ('Acrescentado', 'Sem equivalente', 'GE-15',
+     'Plano de contas, centros de custo por empresa, círculo e projeto e plano tributário do grupo, aprovada em 03/10/2026, às 21:05.'),
     ('Ajustado', 'I-GE3 · Do ativo adquirido ao ativo baixado', 'GE-12',
      'Ganha os espaços e os serviços administrativos e a eliminação de dados guardados no ativo baixado.'),
 ]
 
 LIMITES = [
-    'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+    'Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. O alerta do círculo 1 sobre a carga humana das jornadas transferidas continua sem medida.',
     'O ritual de acompanhamento é mensal, pelo método de estratégia aprovado em 03/10/2026. As outras cadências (fechamento, folha, avaliação, rituais de cultura, comunicação interna, rateio e inventário) são decididas pelo líder do círculo, na implantação.',
     'Os rascunhos de políticas de cobrança, compras, remuneração e desenvolvimento foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.',
@@ -994,7 +1107,7 @@ LIMITES = [
     'A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.',
     'O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).',
     'A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As saídas estão listadas por etapa, não por caminho.',
     'Os números descrevem este desenho, não a operação atual.',

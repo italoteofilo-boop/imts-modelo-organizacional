@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Círculo 8 · Gestão. Fechado em 03/10/2026, aprovado às 11:50: treze jornadas.
+"""Círculo 8 · Gestão. Fechado em 03/10/2026, aprovado às 11:50: treze jornadas; GE-14 e GE-15 acrescentadas em 03/10/2026, às 21:05.
 Regra do círculo: a Gestão decide o que é do seu ofício (o desdobramento e o controle do orçamento aprovado, o ritual de
 acompanhamento, a cobrança, a compra, o fechamento das contas, a aplicação do rateio e os processos de pessoas), dentro
 da alçada. Os sócios aprovam alvos e orçamento; o executivo decide o que passa da alçada da Gestão e o líder decide a
@@ -10,11 +10,12 @@ NUM, NOME, SIGLA, PREF = 8, 'Gestão', 'GE', 'GE'
 LANES, PARTES = configurar(NOME, SIGLA, PREF)
 SLUG = 'circulo8-gestao'
 FECHADO = True
-STATUS = 'Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026'
+STATUS = 'Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 · GE-14, GE-15 e as etapas novas aprovadas às 21:05'
 LEAD = ('A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento '
         'dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e '
         'cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida '
-        'também dos ativos. Não define as regras nem escolhe o rumo. São treze jornadas.')
+        'também dos ativos, das dívidas tributárias e dos parcelamentos, do plano de contas, dos centros de custo e do plano tributário do grupo. '
+        'Não define as regras nem escolhe o rumo. São quinze jornadas.')
 PRINCIPIO = ('Regra do círculo, aprovada por você às 11:50 de 03/10/2026: a Gestão decide o que é do seu ofício '
              '(o desdobramento e o controle do orçamento aprovado, o ritual de acompanhamento, a cobrança, a compra, o '
              'fechamento das contas, a aplicação do rateio e os processos de pessoas), dentro da alçada. Os sócios aprovam '

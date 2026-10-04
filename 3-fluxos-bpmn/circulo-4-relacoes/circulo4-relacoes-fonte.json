@@ -4644,7 +4644,7 @@
        "cond": null
       },
       {
-       "nome": "Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito",
+       "nome": "Levar ao dono da crise a declaração, a posição e o porta-voz, pelo comitê",
        "exec": "C",
        "raia": "Governança",
        "tipo": "call",
@@ -4655,13 +4655,13 @@
        "exec": "R",
        "raia": "Relações · automação",
        "tipo": "script",
-       "cond": "O comitê declarou crise? Não"
+       "cond": "O dono da crise declarou crise? Não"
       }
      ],
      "paralelo": false,
      "decisoes": [
       {
-       "pergunta": "O comitê declarou crise?",
+       "pergunta": "O dono da crise declarou crise?",
        "quem": "Governança",
        "saidas": [
         {
@@ -4954,7 +4954,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4. Os processos das funções de Relações estão em quatro blocos: 1.2.8, estratégia de experiência do cliente; 3.2 e 3.3, estratégia e planos de marketing; 3.4.2, 3.5.1, 3.5.2 e 3.5.5, oportunidades, clientes e parceiros; 12.2 e 12.5, relações com governo, entidades e imprensa. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -6259,7 +6259,7 @@
    "parte": "Governança",
    "code": "RE-08",
    "etapa": 2,
-   "nome": "Declarar ou não a crise e decidir a posição, o porta-voz e o que pode ser dito"
+   "nome": "Levar ao dono da crise a declaração, a posição e o porta-voz, pelo comitê"
   },
   {
    "parte": "Executivos",
@@ -6504,7 +6504,7 @@
   },
   {
    "o": "Governança (círculo 9)",
-   "nota": "Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise (que declara, decide a posição e encerra a crise) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise."
+   "nota": "Relações espera as regras de dados pessoais, os pedidos dos titulares com a resposta decidida, as alçadas, a decisão dos sócios sobre a parceria acima da alçada, o comitê de crise da Governança (o dono da crise, executivo, Administrador do IMTS.OS ou sócios, declara, decide a posição e encerra a crise; GO-08) e os contratos de parceria. Entrega os pedidos cumpridos, as autorizações de uso da marca com prazo, o alerta de crise e as lições da crise."
   }
  ],
  "propostas": [],
@@ -6602,14 +6602,14 @@
   }
  ],
  "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções de Relações, grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
- "principio": "Regra do círculo, aprovada às 19:05: Relações decide o que é do seu ofício (o plano de demanda, a qualificação das oportunidades, a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias dentro da alçada), ouvidos o executivo da empresa e Negócios. O executivo aprova o que se diz em nome da empresa e quem fala por ela. Negócios vende e renova; Operações atende e entrega; a Identidade dá a marca e os padrões; a Governança decide a crise, os contratos e as regras de dados pessoais.",
+ "principio": "Regra do círculo, aprovada às 19:05: Relações decide o que é do seu ofício (o plano de demanda, a qualificação das oportunidades, a estratégia de experiência do cliente, a pauta e o conteúdo externo e as parcerias dentro da alçada), ouvidos o executivo da empresa e Negócios. O executivo aprova o que se diz em nome da empresa e quem fala por ela. Negócios vende e renova; Operações atende e entrega; a Identidade dá a marca e os padrões; a Governança conduz o comitê de crise, e o dono da crise decide; a Governança cuida dos contratos e das regras de dados pessoais.",
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
   "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
   "Os rascunhos de critério de oportunidade qualificada, regra de saúde do cliente e critério de crise foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.",
   "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 44001 e da ISO 22361 lemos só o resumo; o texto dos Barcelona Principles 3.0 foi lido numa transcrição da MEPRA, porque a página da AMEC só os oferece em anexos.",
-  "Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "A tarefa de quem não é do círculo (cliente, parceiro, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.",
   "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
   "Programa de fidelidade e lobby não estão desenhados: nenhum círculo pediu.",

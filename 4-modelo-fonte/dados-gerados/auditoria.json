@@ -1423,6 +1423,16 @@
   {
    "circulo": "Negócios",
    "ref": "NE-04 etapa 2",
+   "nome": "Montar o racional financeiro do contrato",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 1
+  },
+  {
+   "circulo": "Negócios",
+   "ref": "NE-04 etapa 3",
    "nome": "Formalizar e assinar o contrato",
    "modo": "Assistido",
    "risco": "alto",
@@ -1432,13 +1442,13 @@
   },
   {
    "circulo": "Negócios",
-   "ref": "NE-04 etapa 3",
+   "ref": "NE-04 etapa 4",
    "nome": "Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha",
    "modo": "Autômato",
    "risco": "baixo",
    "real": "Autômata",
-   "n": 3,
-   "maq": 3
+   "n": 4,
+   "maq": 4
   },
   {
    "circulo": "Negócios",
@@ -2193,6 +2203,16 @@
   {
    "circulo": "Gestão",
    "ref": "GE-02 etapa 2",
+   "nome": "Comparar o planejado e o realizado de cada contrato",
+   "modo": "Autopiloto",
+   "risco": "baixo",
+   "real": "Autopiloto",
+   "n": 3,
+   "maq": 3
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-02 etapa 3",
    "nome": "Conduzir o ritual e registrar as decisões",
    "modo": "Copiloto",
    "risco": "médio",
@@ -2202,7 +2222,7 @@
   },
   {
    "circulo": "Gestão",
-   "ref": "GE-02 etapa 3",
+   "ref": "GE-02 etapa 4",
    "nome": "Cobrar as ações até concluir",
    "modo": "Autômato",
    "risco": "baixo",
@@ -2317,8 +2337,8 @@
    "modo": "Copiloto",
    "risco": "médio",
    "real": "Copiloto",
-   "n": 6,
-   "maq": 4
+   "n": 7,
+   "maq": 5
   },
   {
    "circulo": "Gestão",
@@ -2589,6 +2609,56 @@
    "real": "Copiloto",
    "n": 2,
    "maq": 1
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-14 etapa 1",
+   "nome": "Levantar o débito e as opções",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-14 etapa 2",
+   "nome": "Decidir o caminho e formalizar",
+   "modo": "Assistido",
+   "risco": "alto",
+   "real": "Exclusivamente humana",
+   "n": 6,
+   "maq": 0
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-14 etapa 3",
+   "nome": "Pagar as parcelas e acompanhar as condições",
+   "modo": "Autopiloto",
+   "risco": "médio",
+   "real": "Autopiloto",
+   "n": 4,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-15 etapa 1",
+   "nome": "Manter o plano de contas e os centros de custo",
+   "modo": "Copiloto",
+   "risco": "médio",
+   "real": "Copiloto",
+   "n": 3,
+   "maq": 2
+  },
+  {
+   "circulo": "Gestão",
+   "ref": "GE-15 etapa 2",
+   "nome": "Planejar os tributos do grupo e as operações entre as empresas",
+   "modo": "Copiloto",
+   "risco": "alto",
+   "real": "Copiloto",
+   "n": 7,
+   "maq": 2
   },
   {
    "circulo": "Governança",
@@ -3219,6 +3289,12 @@
   {
    "gravidade": "leve",
    "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
+   "onde": "GE-14 etapa 3",
+   "detalhe": "Há risco de perder o parcelamento ou a transação? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
+  },
+  {
+   "gravidade": "leve",
+   "tipo": "Decisão do caminho tomada pelo agente em etapa de risco médio ou alto",
    "onde": "GO-02 etapa 3",
    "detalhe": "A decisão pede ato societário fora de um mandato? Conferir se é regra objetiva; se for julgamento, vai para pessoa."
   },
@@ -3322,21 +3398,21 @@
   },
   "Negócios": {
    "tarefas": {
-    "R": 67,
-    "A": 22,
-    "P": 29,
-    "H": 21,
+    "R": 68,
+    "A": 23,
+    "P": 30,
+    "H": 22,
     "C": 35
    },
    "modos": {
     "Autopiloto": 4,
-    "Copiloto": 10,
+    "Copiloto": 11,
     "Assistido": 7,
     "Autômato": 4
    },
    "reais": {
     "Autopiloto": 4,
-    "Copiloto": 10,
+    "Copiloto": 11,
     "Assistida": 7,
     "Autômata": 4
    }
@@ -3385,24 +3461,25 @@
   },
   "Gestão": {
    "tarefas": {
-    "A": 39,
-    "P": 38,
-    "R": 56,
-    "H": 39,
-    "C": 4
+    "A": 45,
+    "P": 42,
+    "R": 62,
+    "H": 45,
+    "C": 5,
+    "X": 4
    },
    "modos": {
-    "Copiloto": 19,
+    "Copiloto": 22,
     "Autômato": 4,
-    "Autopiloto": 14,
-    "Assistido": 7
+    "Autopiloto": 16,
+    "Assistido": 8
    },
    "reais": {
-    "Copiloto": 19,
+    "Copiloto": 22,
     "Autômata": 4,
-    "Autopiloto": 14,
+    "Autopiloto": 16,
     "Assistida": 5,
-    "Exclusivamente humana": 2
+    "Exclusivamente humana": 3
    }
   },
   "Governança": {
@@ -3490,6 +3567,11 @@
    "tarefas": 5
   },
   {
+   "quem": "Governança",
+   "em": "Gestão",
+   "tarefas": 5
+  },
+  {
    "quem": "Gestão",
    "em": "Estratégia",
    "tarefas": 4
@@ -3522,11 +3604,6 @@
   {
    "quem": "Governança",
    "em": "Operações",
-   "tarefas": 4
-  },
-  {
-   "quem": "Governança",
-   "em": "Gestão",
    "tarefas": 4
   },
   {
@@ -3855,8 +3932,8 @@
    "code": "NE-04",
    "circulo": "Negócios",
    "declarado": "média",
-   "maq": 0.4,
-   "n": 20
+   "maq": 0.4166666666666667,
+   "n": 24
   },
   {
    "code": "NE-05",
@@ -4002,8 +4079,8 @@
    "code": "GE-02",
    "circulo": "Gestão",
    "declarado": "alta",
-   "maq": 0.6923076923076923,
-   "n": 13
+   "maq": 0.75,
+   "n": 16
   },
   {
    "code": "GE-03",
@@ -4023,8 +4100,8 @@
    "code": "GE-05",
    "circulo": "Gestão",
    "declarado": "média",
-   "maq": 0.47058823529411764,
-   "n": 17
+   "maq": 0.5,
+   "n": 18
   },
   {
    "code": "GE-06",
@@ -4081,6 +4158,20 @@
    "declarado": "alta",
    "maq": 0.7777777777777778,
    "n": 9
+  },
+  {
+   "code": "GE-14",
+   "circulo": "Gestão",
+   "declarado": "baixa",
+   "maq": 0.3076923076923077,
+   "n": 13
+  },
+  {
+   "code": "GE-15",
+   "circulo": "Gestão",
+   "declarado": "média",
+   "maq": 0.4,
+   "n": 10
   },
   {
    "code": "GO-01",

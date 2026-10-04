@@ -17,7 +17,7 @@ Um modelo conceitual da estrutura organizacional e operacional do Ecossistema IM
 | 5 · Negócios | Fechado em 02/10/2026 · proposta do círculo 6 aplicada em 03/10/2026 · auditoria de execução aplicada em 03/10/2026 | 7 (NE-01 a NE-07) | https://claude.ai/artifact/PsNEXAeWAACHMiyXTzhpva |
 | 6 · Integração | Fechado em 03/10/2026 · propostas dos círculos 7 e 9 aplicadas em 03/10/2026 · auditoria de execução aplicada em 03/10/2026 | 8 (IT-01 a IT-08) | https://claude.ai/artifact/VPQjvqYjALWqj1HLmKfvAj |
 | 7 · Operações | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 8 (OP-01 a OP-08) | https://claude.ai/artifact/UFrAbKRRJgDjhs1obbVJPV |
-| 8 · Gestão | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 13 (GE-01 a GE-13) | https://claude.ai/artifact/NiG1cQx83MFwcL4GDrWj6y |
+| 8 · Gestão | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 · GE-14, GE-15 e as etapas novas aprovadas às 21:05 | 15 (GE-01 a GE-15) | https://claude.ai/artifact/NiG1cQx83MFwcL4GDrWj6y |
 | 9 · Governança | Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 | 10 (GO-01 a GO-10) | https://claude.ai/artifact/7CZVqjYCBJB5zw4KqfbD2J |
 
 Documento vivo do projeto (Documento-base, Mapa de jornadas, Parâmetros, Auditorias, Propostas e Gates): https://claude.ai/code/artifact/97e51770-d3ab-4475-a7e6-57f2361d2b0e
@@ -30,13 +30,13 @@ Documento vivo do projeto (Documento-base, Mapa de jornadas, Parâmetros, Audito
 | 2 · Estratégia | 6 | 31 | 200 | 51 | 3288 | 0 | 26 | 0 | 200 | 21 de 21 |
 | 3 · Inteligência | 8 | 42 | 292 | 77 | 4611 | 0 | 26 | 0 | 292 | 21 de 21 |
 | 4 · Relações | 8 | 33 | 190 | 46 | 3140 | 0 | 26 | 0 | 190 | 21 de 21 |
-| 5 · Negócios | 7 | 25 | 174 | 40 | 2761 | 0 | 26 | 0 | 174 | 21 de 21 |
+| 5 · Negócios | 7 | 26 | 178 | 41 | 2820 | 0 | 26 | 0 | 178 | 21 de 21 |
 | 6 · Integração | 8 | 29 | 166 | 37 | 2741 | 0 | 26 | 0 | 166 | 21 de 21 |
 | 7 · Operações | 8 | 30 | 128 | 32 | 2218 | 0 | 26 | 0 | 128 | 21 de 21 |
-| 8 · Gestão | 13 | 44 | 176 | 42 | 3069 | 0 | 26 | 0 | 176 | 21 de 21 |
+| 8 · Gestão | 15 | 50 | 203 | 46 | 3504 | 0 | 26 | 0 | 203 | 21 de 21 |
 | 9 · Governança | 10 | 33 | 130 | 33 | 2268 | 0 | 26 | 0 | 130 | 21 de 21 |
 
-Trocas entre os nove círculos: 410 produtos conferidos dos dois lados, em 1048 verificações, com 0 falhas; 12 de 12 defeitos plantados foram detectados. Os números descrevem o desenho, não a operação atual.
+Trocas entre os nove círculos: 411 produtos conferidos dos dois lados, em 1055 verificações, com 0 falhas; 12 de 12 defeitos plantados foram detectados. Os números descrevem o desenho, não a operação atual.
 
 ## Decisões do dono do projeto, por círculo
 
@@ -131,7 +131,7 @@ Trocas entre os nove círculos: 410 produtos conferidos dos dois lados, em 1048 
 | A regra de remuneração de quem vende e de parceiros é decidida pelos sócios | Decidido por você (13:09 de 03/10/2026) | Negócios propõe com a Gestão; os sócios decidem, porque mexe em custo e incentivo de todas as empresas. Também: prazos da Lei 14.133 (arts. 84, 86, 90, 164 e 165) conferidos no texto oficial (Planalto) em 03/10/2026 e registrados nas fontes. |
 | Alçada de concessão comercial | Aprovado por você (13:51 de 03/10/2026) | A NE-01 fixa, por oferta, a faixa entre o preço de tabela e o preço-base. Quem vende concede até metade da faixa; o executivo, até o preço-base e a condição de pagamento fora da política; os sócios decidem preço abaixo do preço-base, exclusividade e prazo maior que o ciclo estratégico. No contrato público, a concessão é a que o edital permite. A fração é escolha de desenho, a recalibrar com dados. |
 | Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | NE-01 semestral; NE-02 trimestral, com previsão mensal; NE-07 semestral; estrutura dos modelos de contrato e regra de remuneração. O que depende de dado real ficou nos gates G1 a G9. |
-| Correções da auditoria geral | Aprovado por você (16:05 de 03/10/2026) | NE-04, etapa 2: a cláusula que é matéria dos sócios pela regra 10 dos contratos vai à decisão deles, depois da revisão da Governança (M1). Lei 14.133 conferida no texto oficial, inclusive o art. 86, § 3º, sobre a adesão de órgão municipal. |
+| Correções da auditoria geral | Aprovado por você (16:05 de 03/10/2026) | NE-04, etapa 3: a cláusula que é matéria dos sócios pela regra 10 dos contratos vai à decisão deles, depois da revisão da Governança (M1). Lei 14.133 conferida no texto oficial, inclusive o art. 86, § 3º, sobre a adesão de órgão municipal. |
 
 ### Círculo 6 · Integração
 
@@ -181,6 +181,7 @@ Trocas entre os nove círculos: 410 produtos conferidos dos dois lados, em 1048 
 | A realocação entre empresas não é decidida na Gestão | Ponto 6, aprovado por você (11:50) | O pedido acima da alçada vai ao executivo; entre empresas, fica registrado para a revisão do portfólio (ES-02), que lê a execução do orçamento. |
 | A folha é jornada própria; a remuneração de parceiros é paga na jornada de compras e pagamentos | Ponto 7, aprovado por você (11:50) | GE-13 e GE-04, como Negócios pediu: a remuneração de quem vende e de parceiros fica com a Gestão. |
 | Treze jornadas | Ponto 8, aprovado por você (11:50) | GE-01 a GE-13. |
+| Quinze jornadas: dívidas tributárias (GE-14) e estrutura contábil e plano tributário do grupo (GE-15); planejado x realizado por contrato (GE-02, etapa 2); balancete, DRE e balanço (GE-05, etapa 2) | Aprovado por você (21:05 de 03/10/2026), no cruzamento do dia a dia com o modelo | O racional financeiro de cada contrato nasce em Negócios (NE-04, etapa 2) e é comparado com o realizado no ritual. As decisões acima do executivo estão na tabela matéria × órgão. |
 | Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | De Assistido para Copiloto, pelas tarefas: GE-02 etapa 2. De Autopiloto para Autômato, pelas tarefas: GE-01 etapa 3, GE-02 etapa 3, GE-07 etapa 4, GE-11 etapa 3. De Copiloto para Assistido, pelas tarefas: GE-06 etapa 2, GE-07 etapa 2, GE-08 etapa 2, GE-09 etapa 1, GE-10 etapa 2. Nível de automação pela faixa: GE-05 média → alta; GE-06 alta → média; GE-12 média → alta. |
 | A regra de remuneração é dos sócios; fontes da folha e da escrituração | Decidido e pedido por você (13:09 de 03/10/2026) | A Gestão aplica a regra que os sócios decidem. GE-13 e GE-07: CLT (arts. 74, 145, 459 e 477) e FGTS (art. 15); GE-05: Código Civil (arts. 1.179, 1.180 e 1.194). A regra fiscal depende do regime de cada empresa, que não está no modelo. |
 | Alçadas da Gestão | Aprovado por você (13:51 de 03/10/2026) | Remanejamento dentro do círculo e da empresa sem mudar o total: Gestão; entre círculos, executivo; entre empresas, Estratégia; aumento do total, sócios. Cobrança privada: na segunda fatura vencida, proposta de suspensão ao executivo; contrato público segue a lei e o contrato. Pagamento só com pedido, recebimento e nota conferidos; quem lança não aprova; fora do orçamento, executivo; acima da reserva de contingência, sócios. Aportes e distribuição: só o que os sócios decidiram; contas e poderes bancários com o executivo e a Governança. Vaga no orçamento: Gestão com o líder; fora, executivo; desligamento de executivo ou líder, sócios. |
@@ -200,14 +201,14 @@ Trocas entre os nove círculos: 410 produtos conferidos dos dois lados, em 1048 
 | Dez jornadas | Ponto 7, aprovado por você (11:50) | GO-01 a GO-10. |
 | A IT-06 recebe da Governança o desvio de agente apontado pela auditoria | Proposta ao círculo 6, aprovada por você (11:50) | IT-06, etapa 4. |
 | Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem | Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026) | GO-05 etapa 1: a decisão sobre cláusula fora do modelo ou risco relevante passa à pessoa da Governança; o agente aponta as diferenças (item 9). De Autopiloto para Autômato, pelas tarefas: GO-01 etapa 3, GO-05 etapa 2, GO-06 etapa 1, GO-07 etapa 3, GO-09 etapa 4. Nível de automação pela faixa: GO-03 média → alta; GO-06 média → alta; GO-07 média → alta; GO-08 baixa → média; GO-09 baixa → média. |
-| O apetite a risco é dos sócios; prazo de comunicação de incidente lido | Decidido e pedido por você (13:09 de 03/10/2026) | GO-03: a Governança mantém a matriz de riscos; os sócios decidem o apetite a risco. GO-09: três dias úteis para comunicar a autoridade e o titular (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º), em dobro para o agente de pequeno porte, lida em transcrição secundária. GO-05: Código Civil, arts. 421-A e 422. |
+| O apetite a risco é dos sócios; prazo de comunicação de incidente lido | Decidido e pedido por você (13:09 de 03/10/2026) | GO-03: a Governança mantém a matriz de riscos; os sócios decidem o apetite a risco. GO-09: três dias úteis para comunicar a autoridade e o titular (Resolução CD/ANPD nº 15/2024, arts. 6º e 9º), em dobro para o agente de pequeno porte (art. 6º, § 8º), conferida na ANPD e na reprodução do DOU. GO-05: Código Civil, arts. 421-A e 422. |
 | O que a Governança decide sozinha e as regras gerais dos contratos | Aprovado por você (13:51 de 03/10/2026) | A Governança decide sozinha as regras que aplicam regra geral aprovada, os modelos de proposta e contrato, sigilo, dados e guarda, a alçada de pessoas no círculo e de agentes no critério, a matriz de riscos dentro do apetite dos sócios, o rateio com a Estratégia e a amostra. Vão aos sócios as alçadas dos executivos, as regras gerais, as exceções e a alçada da própria Governança. Regras gerais dos contratos: modelo obrigatório; assina o executivo; alocação de riscos escrita (Código Civil, art. 421-A); garantia escrita; papéis de dados e aviso de incidente a tempo dos três dias úteis; reajuste anual por índice escrito (recomendado o IPCA); exclusividade, prazo longo, multa acima do modelo, foro e garantia financeira vão aos sócios; contrato público usa a minuta do edital. |
 | Cadências e conteúdos validados; gates de implantação | Validado por você (14:07 de 03/10/2026) | GO-01 anual; GO-02 e GO-03 trimestrais; GO-06 trimestral; matriz de riscos 5 por 5, desenho da amostra e regras de sigilo, dados e guarda. O que depende de dado real ficou nos gates G1 a G9. |
 | Correções da auditoria geral | Aprovado por você (16:05 de 03/10/2026) | GO-01: quem decide sai da lista de matérias, por regra; a alçada das pessoas da Governança e os limites dos agentes vão aos sócios (M2). GO-03: risco de nota 15 ou mais vai aos sócios; a remediação volta com evidência (M1, M8). GO-05: matéria da regra 10 dos contratos vai aos sócios; vencimento sem decisão do dono volta com a decisão do executivo (M1, M8). GO-06: pessoa revê amostra dos conformes do agente; correções voltam; auditoria externa anual da própria Governança, com as correções decididas pelos sócios (M3, M8). GO-07: a execução do pedido do titular volta confirmada (M8). GO-08: dono único da crise: o executivo, o Administrador do IMTS.OS ou os sócios (M4). GO-09: relato que cita a Governança vai à assessoria externa, e os sócios decidem a medida (D4). GO-02: a devolução de matéria é decidida por pessoa (L9). Tabela matéria × órgão (D1). |
 
 ## Consolidação das jornadas cross
 
-O modelo fechado tem 73 jornadas. As 26 jornadas cross da rodada 2 viraram cadeias de jornadas dos círculos; os 47 passos das cadeias foram conferidos nos dados, com 0 falhas.
+O modelo fechado tem 75 jornadas. As 26 jornadas cross da rodada 2 viraram cadeias de jornadas dos círculos; os 47 passos das cadeias foram conferidos nos dados, com 0 falhas.
 
 | Cross | Nome | Cadeia nova | Dono do resultado | Nota |
 | --- | --- | --- | --- | --- |
@@ -369,7 +370,7 @@ Negócios transforma oportunidade em contrato e cuida dos contratos dos clientes
 | NE-01 | Manter a tabela de preços, a política comercial e o material de venda de cada empresa | 3 | Ter, em cada empresa, uma tabela de preços e uma política comercial vigentes (preço de cada oferta, descontos, condições de pagamento e faixa de desconto de quem vende) que pessoas e agentes usam, a partir do preço-base decidido pela Inteligência e do papel de cada oferta no portfólio-alvo, com o material de venda de cada oferta conforme os padrões de identidade; e parar a venda da oferta encerrada. Negócios decide a tabela e a política, ouvidos o executivo e a Gestão; a faixa de desconto e as condições que mexem nos modelos de contrato são aprovadas pela Governança, dona das alçadas. O preço de tabela fica no preço-base ou acima dele; abaixo, só depois de a Inteligência rever o preço-base. |
 | NE-02 | Planejar as vendas do ciclo e prever a receita | 3 | Ter, a cada ciclo, os alvos de venda de cada empresa por oferta e canal, desdobrados dos alvos do ciclo, os clientes-chave com o plano de conta de cada um, e uma previsão de receita e de vendas atualizada a cada período a partir do funil, das propostas, dos contratos, das atas e das renovações, entregue a quem precisa dela para o orçamento, o caixa, a capacidade e a implantação. Negócios decide o desdobramento e a previsão, ouvido o executivo; o desvio contra os alvos vai ao executivo e à Gestão. |
 | NE-03 | Aceitar a oportunidade, desenhar a solução e fazer a proposta | 4 | Fazer cada oportunidade qualificada receber aceite ou devolução com o motivo no prazo combinado com Relações e, aceita, virar uma proposta com escopo que a operação e a implantação conseguem entregar, preço pela tabela, concessão dentro da alçada, conforme os padrões de identidade e no modelo da Governança. A oportunidade de parceiro ou de oferta conjunta já aceita na NE-07 entra direto no escopo, que é confirmado com o cliente. O que foge do catálogo vai à Inteligência ou à Estratégia, e a resposta da Inteligência retoma a proposta; o contato que chega direto a Negócios vai a Relações para ser qualificado. |
-| NE-04 | Negociar e fechar o contrato com o cliente | 3 | Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda. |
+| NE-04 | Negociar e fechar o contrato com o cliente | 4 | Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com o racional financeiro (receita, custos, margem, impostos e caixa por período) montado, conferido com a política comercial e passado à Gestão para comparar o planejado com o realizado, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda. |
 | NE-05 | Disputar licitações e contratar com o setor público | 4 | Decidir em cada edital se a empresa participa, montar a proposta e os documentos de habilitação nas regras do edital, disputar, acompanhar o julgamento, a habilitação, os recursos e a homologação e, ganhando, assinar o contrato ou a ata de registro de preços; responder ao pedido de cotação para pesquisa de preços; e responder ao órgão não participante que pede para aderir à ata. Negócios decide participar e recorrer, ouvidos o executivo e a Governança; a Governança confere a habilitação e conduz esclarecimentos, impugnações, recursos e contrarrazões; o executivo assina. Prazos e regras de impugnação, recurso, convocação e adesão seguem a lei e o edital e não foram conferidos neste desenho. |
 | NE-06 | Cuidar dos contratos dos clientes: renovar, ampliar, aditar e encerrar | 5 | Fazer cada contrato de cliente ser renovado, ampliado ou aditado no tempo certo, com as concessões dentro das alçadas e com o escopo novo confirmado por Operações e pela Integração, a partir da oportunidade que Relações aponta, do pedido do cliente e do plano de conta; tratar o pedido de cancelamento com uma negociação de retenção e, perdido o cliente ou vencida a vigência sem renovação, formalizar o fim do contrato e avisar quem entrega, implanta e fatura; atender a contratação de órgão participante pela ata; e, quando uma oferta é encerrada ou uma empresa sai, encerrar ou transferir os contratos pelo plano de saída coordenado pela Integração. O vencimento próximo só avisa Relações, que decide se abre a renovação. Relações acompanha o sucesso do cliente; Negócios negocia e formaliza; o executivo assina. |
 | NE-07 | Vender com parceiros e em oferta conjunta entre as empresas | 3 | Fazer a oportunidade trazida por um parceiro de venda ativo ser conferida com o critério combinado com Relações e com o funil e, aceita, chegar à proposta sem conflito; montar com outra empresa do Ecossistema a oferta conjunta quando o cliente de uma tem um problema que a outra resolve, com a divisão de receita e de responsabilidade decidida pelos executivos das duas empresas (exceção à regra de que o executivo opina, porque mexe no resultado de duas empresas) e formalizada pela Governança antes da proposta; e medir a venda com parceiros e conjunta. Relações forma, ativa e acompanha o parceiro; Negócios vende com ele. |
@@ -406,12 +407,12 @@ Operações cumpre a promessa feita ao cliente. Planeja a capacidade de entrega,
 
 ### Círculo 8 · Gestão
 
-A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida também dos ativos. Não define as regras nem escolhe o rumo. São treze jornadas.
+A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida também dos ativos, das dívidas tributárias e dos parcelamentos, do plano de contas, dos centros de custo e do plano tributário do grupo. Não define as regras nem escolhe o rumo. São quinze jornadas.
 
 | Código | Jornada | Etapas | Objetivo |
 | --- | --- | --- | --- |
 | GE-01 | Desdobrar o orçamento aprovado e controlar as mudanças de recurso | 3 | Fazer o orçamento aprovado pelos sócios ser desdobrado por empresa, círculo, oferta, aposta e conta, com um dono por linha; os planos de demanda, de vendas, de capacidade e de lançamento caberem nele ou terem a diferença apontada; cada pedido de recurso, liberação, congelamento ou devolução ser decidido na alçada, pela Gestão ou, acima dela, pelo executivo (recurso da empresa), pelo Administrador do IMTS.OS (recurso dos círculos compartilhados) ou pelos sócios (aumento do total aprovado); e o orçamento vigente ser publicado a quem executa. Os sócios aprovam; a Gestão desdobra e controla; a realocação entre empresas fica na revisão do portfólio da Estratégia. |
-| GE-02 | Rodar o ritual de acompanhamento dos alvos e cobrar as ações | 3 | Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo. |
+| GE-02 | Rodar o ritual de acompanhamento dos alvos e cobrar as ações | 4 | Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada contrato ter o planejado no racional financeiro comparado com o realizado, e o que estiver fora do racional entrar na pauta com o dono; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo. |
 | GE-03 | Faturar os clientes e receber e cobrar o que é devido | 4 | Fazer cada cliente ter o cadastro de cobrança conforme o contrato, a tabela, a ata e a divisão da oferta conjunta; cada entrega confirmada por Operações virar fatura, com a medição dos níveis de serviço e os créditos aprovados; cada recebimento ser conciliado e cada atraso cobrado, com a negociação acima do limite decidida pela Gestão, ouvido o executivo, e a suspensão das novas entregas do cliente privado na segunda fatura vencida decidida pelo executivo; o reembolso pago só depois de aprovado pelo líder do círculo; e a situação de faturas e pagamentos de cada cliente ir a Relações e a Negócios. Operações confirma a entrega; a Gestão fatura e recebe. |
 | GE-04 | Comprar e pagar: do pedido de compra ao fornecedor e ao parceiro pagos | 5 | Fazer cada pedido de compra ser conferido contra o orçamento e a alçada; cada fornecedor ser escolhido por preço, prazo, qualidade e risco, com o contrato revisado e guardado pela Governança; cada compra ser recebida e conferida por quem pediu; cada fatura de fornecedor ser conferida com o pedido e o recebimento e paga com a aprovação do líder do círculo, que não é quem escolhe o fornecedor; cada fornecedor ser avaliado e cobrado pelas falhas; a remuneração de cada parceiro ser apurada pelo contrato e paga; e os contratos de fornecedor serem encerrados ou transferidos na saída. Quem precisa pede, inclusive a Integração nas compras da implantação e de tecnologia; a Gestão compra e paga; a Governança revisa e guarda o contrato. |
 | GE-05 | Gerir o caixa, fechar as contas e os impostos e prestar contas | 3 | Fazer cada recebimento e pagamento ser registrado e conciliado; o caixa ser projetado com a previsão de receita, os compromissos e o orçamento e informado à Estratégia; cada período ser fechado por empresa e consolidado, com os impostos apurados e as obrigações entregues, o resultado, os custos e margens e a execução do orçamento publicados; e cada aporte, distribuição ou mudança de contas decidido pelos sócios ou pelo mandato ser executado com dupla aprovação: a Gestão prepara e confere; o líder do círculo, o executivo ou o Administrador do IMTS.OS aprovam; as contas e os poderes bancários são conferidos pela Governança. Os sócios decidem; a Governança recebe as demonstrações para prestar contas. |
@@ -423,6 +424,8 @@ A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprov
 | GE-10 | Realizar os rituais de cultura e o reconhecimento de pessoas e equipes | 4 | Reforçar, com cadência fixa, os comportamentos que os valores pedem: cada ritual preparado pelo padrão do kit de cultura, cada indicação de reconhecimento conferida com os critérios e decidida com os líderes, o ritual conduzido pelo líder, as histórias registradas e comunicadas e os reconhecimentos levados à folha. A Identidade define o padrão; a Gestão prepara, decide com os líderes e registra; o líder conduz. |
 | GE-11 | Planejar e publicar a comunicação interna | 4 | Manter as pessoas informadas e alinhadas, com uma só voz: cada mudança na identidade, nos padrões e na estratégia, cada alvo, correção, mudança no portfólio e conteúdo externo relevante entrar na pauta; cada conteúdo ser redigido na voz e na marca vigentes, conferido, validado pela Governança quando sensível e aprovado; os materiais vencidos saírem dos canais; e o alcance e o entendimento serem medidos. A Identidade define a voz e as mensagens; a Gestão comunica para dentro; Relações, para fora. |
 | GE-12 | Gerir os ativos, os espaços e os serviços administrativos | 3 | Fazer cada pedido de ativo, de espaço ou de serviço administrativo ser atendido pela melhor opção (comprar, alugar, remanejar ativo ocioso ou recusar), decidida pela Gestão dentro do orçamento; cada ativo ser registrado com o responsável e a depreciação, mantido e inventariado; e cada ativo ocioso, perdido ou no fim da vida ser baixado (vendido, doado, reciclado ou descartado), com os dados guardados nele eliminados. A Gestão decide e controla; a compra segue a jornada de compras. |
+| GE-14 | Gerir as dívidas tributárias: parcelamentos, transações, negociações e renegociações | 3 | Fazer cada débito tributário, autuação ou intimação ser registrado com a origem, o valor atualizado e o efeito na certidão; ter as opções levantadas (pagar, parcelar, transacionar ou contestar) com o efeito no caixa e a opinião da assessoria tributária; ter o caminho decidido na alçada (o executivo; acima dela, os sócios); e cada parcelamento ou transação ser pago em dia e acompanhado, com o risco de perder as condições levado a renegociação. A Gestão levanta, propõe e paga; a assessoria opina e defende; o executivo ou os sócios decidem. |
+| GE-15 | Manter a estrutura contábil e o plano tributário do grupo: plano de contas, centros de custo e operações entre as empresas | 2 | Fazer o grupo ter um plano de contas comum, com as contas de cada empresa, e centros de custo por empresa, círculo e projeto, conferidos pela assessoria contábil; e um plano tributário do grupo, com o regime de cada empresa, as operações entre as empresas e as regras de preço entre elas, simulado pela Gestão, recomendado pela assessoria tributária, conferido pela Governança e decidido pelo executivo ou, quando muda o regime ou a estrutura, pelos sócios. A Gestão mantém; a assessoria recomenda; a Governança confere; o executivo ou os sócios decidem. |
 
 ### Círculo 9 · Governança
 
@@ -506,9 +509,9 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 1 · Identidade
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.
 - Na ID-02, as consultas entram pela etapa 1. Se o volume crescer, vale separar em jornada própria; hoje não há medida de volume.
 - Na ID-03, a jornada termina no pedido de registro; oposição ou recusa do registro ainda não tem caminho desenhado.
@@ -517,7 +520,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 2 · Estratégia
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
 - As cadências vêm do método de estratégia aprovado em 03/10/2026: ciclo estratégico anual, com revisão no meio do ciclo (ES-01); portfólio semestral (ES-02); alvos anuais, com o ciclo (ES-03); revisão da execução trimestral (ES-06). São escolha de desenho, sem fonte externa: recalibrar com dados depois de dois ciclos.
 - O método de estratégia foi aprovado em 03/10/2026 e ainda não foi ratificado pelos sócios (gate G6).
@@ -532,17 +535,17 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - Na venda decidida sem comprador, a busca do comprador não está desenhada: o mandato a descreve, e a oportunidade volta à ES-05 quando houver comprador.
 - A ES-04 registra a incoerência com a identidade na avaliação e não recomenda avançar; a decisão do portão continua sendo de pessoas.
 - As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.
 - Os números descrevem este desenho, não a operação atual.
 
 ### Círculo 3 · Inteligência
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder ajusta na implantação. O prazo de resposta da IN-02 depende de volume e ficou para o gate G9 (calibração).
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. A versão 8.0, de 27/02/2026, foi conferida só nas 13 categorias.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - Quando uma empresa sai do portfólio, a IN-07 retira as ofertas dela do catálogo e a IN-04 revê os indicadores. O destino dos dados (IN-03) e das bases (IN-05) dessa empresa ainda não está desenhado.
 - O ajuste de oferta em uso não gera aviso à Estratégia: fica registrado no catálogo de ofertas. Tratar a mudança de preço-base como revisão é leitura do desenho, a confirmar.
 - As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.
@@ -565,12 +568,12 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 4 · Relações
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - Os rascunhos de critério de oportunidade qualificada, regra de saúde do cliente e critério de crise foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 44001 e da ISO 22361 lemos só o resumo; o texto dos Barcelona Principles 3.0 foi lido numa transcrição da MEPRA, porque a página da AMEC só os oferece em anexos.
-- Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Onde faltava o outro lado, as três propostas aos círculos 2 e 3 foram aceitas e aplicadas às 19:05. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - A tarefa de quem não é do círculo (cliente, parceiro, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - Programa de fidelidade e lobby não estão desenhados: nenhum círculo pediu.
@@ -580,12 +583,12 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 5 · Negócios
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos no texto oficial os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17, 18, 82 a 84, 86, 90, 140, 141, 164 e 165; a contratação direta não foi conferida. No fluxo, os prazos seguem “nos prazos da lei e do edital”.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.
@@ -595,13 +598,13 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 6 · Integração
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - Os rascunhos de método de projetos, regra de prioridade, critério de liberação de agente e política de segurança foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
 - Continuidade de TI (APQC 8.3.4) e recuperação de desastre não estão desenhadas como etapa própria.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 21502 e da ISO/IEC 27001 lemos só o resumo.
-- Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - A tarefa de quem não é do círculo (cliente, executivo, líder do círculo dono, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - O rateio do custo dos círculos entre as empresas (E3) e o acordo de serviço como jornada entre empresas (E1) ficam para a consolidação das jornadas entre empresas.
@@ -616,7 +619,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 7 · Operações
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. Os únicos prazos citados são os da lei (CDC e Código Civil), com a fonte.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - Os rascunhos de procedimentos, níveis de serviço e garantia foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
@@ -626,7 +629,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - Quando a ação corretiva conclui, quem apontou a lacuna (Identidade, Relações ou Estratégia) vê o efeito pelo painel da Inteligência: os círculos fechados não têm entrada para um aviso direto.
 - A recusa de capacidade no plano chega a Negócios pela confirmação de capacidade feita nas jornadas de Negócios e ao executivo pelo plano publicado; Negócios não recebe o plano como entrada.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 9001 lemos só a página oficial; da ISO 10002, só o resumo.
-- Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - A tarefa de quem não é do círculo (cliente, executivo, Negócios, Gestão, Governança) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.
 - As saídas estão listadas por etapa, não por caminho: o pedido à Integração, à Identidade ou à Inteligência só sai quando a decisão pede.
@@ -634,7 +637,7 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 
 ### Círculo 8 · Gestão
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. O alerta do círculo 1 sobre a carga humana das jornadas transferidas continua sem medida.
 - O ritual de acompanhamento é mensal, pelo método de estratégia aprovado em 03/10/2026. As outras cadências (fechamento, folha, avaliação, rituais de cultura, comunicação interna, rateio e inventário) são decididas pelo líder do círculo, na implantação.
 - Os rascunhos de políticas de cobrança, compras, remuneração e desenvolvimento foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.
@@ -644,19 +647,19 @@ A Governança faz o Ecossistema decidir bem e dentro das regras. Mantém as regr
 - A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.
 - O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024.
-- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.
+- Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).
 - A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.
 - As saídas estão listadas por etapa, não por caminho.
 - Os números descrevem este desenho, não a operação atual.
 
 ### Círculo 9 · Governança
 
-- Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 - Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. Os únicos prazos citados são os da LGPD e da Resolução CD/ANPD nº 15/2024, com a fonte.
 - As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.
 - As alçadas, o que a Governança decide sozinha e as regras gerais dos contratos foram aprovados em 03/10/2026 (abas Parâmetros em aberto e Propostas de parâmetros). Os rascunhos da matriz de riscos, do critério de rateio, da amostra e das regras de sigilo e guarda foram validados em 03/10/2026; o texto final é o gate G8, e o tamanho da amostra, o G9.
 - Continuidade dos negócios (APQC 11.4.2 a 11.4.4), assessoria externa (12.4.5) e litígios (12.4.7) não têm etapa própria.
-- Da LGPD foram conferidos os arts. 6º, 15, 16, 18, 19, 41 e 48 citados. O prazo de comunicação de incidente (três dias úteis, Resolução CD/ANPD nº 15/2024) foi lido em transcrição secundária, porque o Diário Oficial não abriu nas ferramentas de leitura: conferir no oficial antes de usar (gate G5). O Código Civil citado na GO-05 foi conferido no texto oficial.
+- Da LGPD foram conferidos os arts. 6º, 15, 16, 18, 19, 41 e 48 citados. O prazo de comunicação de incidente (três dias úteis, Resolução CD/ANPD nº 15/2024) foi conferido em 03/10/2026 na página oficial da ANPD e na reprodução do DOU (26/04/2024, edição 81, seção 1, p. 114); gate G5 cumprido. O Código Civil citado na GO-05 foi conferido no texto oficial.
 - Cada empresa do Ecossistema é um controlador e indica o seu encarregado; o modelo põe o papel de encarregado na Governança, sem desenhar a indicação nem a divulgação.
 - O desenho da amostra (estratos e tamanho) tem rascunho validado em 03/10/2026 (aba Gates de implantação, item 2.13); o texto final é o gate G8 e os números, o G9.
 - O referencial de processos é o APQC PCF 7.4, de agosto de 2024.

@@ -126,6 +126,7 @@ Resolve os defeitos D1 e D2 da auditoria geral. A raia "Sócios" dos fluxos é l
 | Criar, adquirir, vender ou encerrar empresa | Sócios do Ecossistema, com os sócios da empresa envolvida | ES-05 |
 | Desligamento de líder de círculo; correções da auditoria externa da Governança; relato anual de impacto | Sócios do Ecossistema | GE-07, GO-06, GO-10 |
 | Alvos e orçamento da empresa, aumento do total do orçamento, destino do resultado, concessão abaixo do preço-base, parceria fora da alçada, contrato na regra 10, compra acima da reserva, risco de nota 15 ou mais, desligamento do executivo e crise que envolve o executivo | Sócios da empresa | ES-03, GE-01, GE-04, GE-05, GE-07, GO-03, GO-05, NE-03 a NE-06, RE-06, GO-08 |
+| Parcelamento ou transação tributária acima da alçada do executivo; mudança do regime tributário de uma empresa ou da estrutura tributária do grupo (acrescentado em 03/10/2026, 21:05) | Sócios da empresa; o que envolve mais de uma empresa, sócios do Ecossistema | GE-14, GE-15 |
 | Relato que envolve o executivo ou um sócio | Sócios não envolvidos do órgão da matéria | GO-09 |
 | Relato que cita a Governança | Assessoria externa apura e comunica; sócios decidem a medida | GO-09 |
 | Pauta dos sócios | O órgão de cada matéria, por esta tabela; a Governança secretaria | GO-02 |

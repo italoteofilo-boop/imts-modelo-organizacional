@@ -5,8 +5,8 @@
   "sigla": "GE",
   "pref": "GE",
   "slug": "circulo8-gestao",
-  "status": "Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026",
-  "lead": "A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida também dos ativos. Não define as regras nem escolhe o rumo. São treze jornadas.",
+  "status": "Fechado em 03/10/2026, aprovado às 11:50 · auditoria de execução aplicada em 03/10/2026 · GE-14, GE-15 e as etapas novas aprovadas às 21:05",
+  "lead": "A Gestão garante os recursos e a rotina. Desdobra e controla o orçamento aprovado, roda o ritual de acompanhamento dos alvos, fatura e recebe, compra e paga, fecha as contas e os impostos, aplica o rateio entre as empresas e cuida das pessoas: provê, integra à cultura, avalia, desenvolve, paga, reconhece e comunica para dentro. Cuida também dos ativos, das dívidas tributárias e dos parcelamentos, do plano de contas, dos centros de custo e do plano tributário do grupo. Não define as regras nem escolhe o rumo. São quinze jornadas.",
   "fechado": true,
   "o": "a Gestão",
   "do": "da Gestão",
@@ -19,11 +19,11 @@
    "dominio": "Planejamento e controle",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer o orçamento aprovado pelos sócios ser desdobrado por empresa, círculo, oferta, aposta e conta, com um dono por linha; os planos de demanda, de vendas, de capacidade e de lançamento caberem nele ou terem a diferença apontada; cada pedido de recurso, liberação, congelamento ou devolução ser decidido na alçada, pela Gestão ou, acima dela, pelo executivo; e o orçamento vigente ser publicado a quem executa. Os sócios aprovam; a Gestão desdobra e controla; a realocação entre empresas fica na revisão do portfólio da Estratégia.",
+   "objetivo": "Fazer o orçamento aprovado pelos sócios ser desdobrado por empresa, círculo, oferta, aposta e conta, com um dono por linha; os planos de demanda, de vendas, de capacidade e de lançamento caberem nele ou terem a diferença apontada; cada pedido de recurso, liberação, congelamento ou devolução ser decidido na alçada, pela Gestão ou, acima dela, pelo executivo (recurso da empresa), pelo Administrador do IMTS.OS (recurso dos círculos compartilhados) ou pelos sócios (aumento do total aprovado); e o orçamento vigente ser publicado a quem executa. Os sócios aprovam; a Gestão desdobra e controla; a realocação entre empresas fica na revisão do portfólio da Estratégia.",
    "frequencia": "A cada ciclo de orçamento, depois da aprovação dos sócios, e por evento: pedido de recurso, aposta aprovada, devolvida ou encerrada, projeto suspenso, recurso liberado",
    "automacao": {
     "nivel": "média",
-    "motivo": "Desdobrar, conferir os planos com o orçamento, calcular o efeito e publicar são de agente e automação; fechar o desdobramento e decidir dentro da alçada são de pessoa da Gestão; acima da alçada, do executivo."
+    "motivo": "Desdobrar, conferir os planos com o orçamento, calcular o efeito e publicar são de agente e automação; fechar o desdobramento e decidir dentro da alçada são de pessoa da Gestão; acima da alçada, do executivo, do Administrador do IMTS.OS ou dos sócios."
    },
    "base": [
     "apqc"
@@ -45,6 +45,8 @@
    ],
    "raias": [
     "Estratégia",
+    "Sócios",
+    "Administrador do IMTS.OS",
     "Executivo da empresa",
     "Gestão · pessoa",
     "Gestão · agente",
@@ -189,21 +191,21 @@
       261.0,
       -44,
       1220.0,
-      932
+      1284
      ],
      "foco": [
       132.0,
       70.0,
       1279.0,
-      747.0,
+      1099.0,
       356,
-      792.0
+      1144.0
      ]
     },
     {
      "n": 2,
      "nome": "Decidir pedidos de recurso, liberações e devoluções",
-     "dono": "Gestão; acima da alçada, o executivo",
+     "dono": "Gestão; acima da alçada, o executivo, o Administrador do IMTS.OS ou os sócios",
      "modo": "Copiloto",
      "risco": "médio",
      "entradas": [
@@ -254,6 +256,10 @@
       {
        "o": "Regras e alçadas vigentes",
        "de": "Governança"
+      },
+      {
+       "o": "Pedido de recurso adicional para demanda",
+       "de": "GE-02"
       }
      ],
      "tarefas": [
@@ -290,7 +296,21 @@
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "Quem decide o pedido? O executivo: passa da alçada da Gestão"
+       "cond": "Quem decide o pedido? O executivo: recurso da empresa acima da alçada da Gestão"
+      },
+      {
+       "nome": "Decidir o pedido de recurso dos círculos acima da alçada da Gestão",
+       "exec": "H",
+       "raia": "Administrador do IMTS.OS",
+       "tipo": "user",
+       "cond": "Quem decide o pedido? O Administrador do IMTS.OS: recurso de círculo compartilhado, ou entre círculos, acima da alçada da Gestão"
+      },
+      {
+       "nome": "Decidir o aumento do total do orçamento aprovado",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "user",
+       "cond": "Quem decide o pedido? Os sócios: aumenta o total do orçamento aprovado"
       },
       {
        "nome": "Registrar o pedido para a revisão do portfólio e avisar quem pediu",
@@ -328,9 +348,23 @@
          "vai": "segue na etapa"
         },
         {
-         "rotulo": "O executivo: passa da alçada da Gestão",
+         "rotulo": "O executivo: recurso da empresa acima da alçada da Gestão",
          "via": [
           "Decidir o pedido acima da alçada da Gestão"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "O Administrador do IMTS.OS: recurso de círculo compartilhado, ou entre círculos, acima da alçada da Gestão",
+         "via": [
+          "Decidir o pedido de recurso dos círculos acima da alçada da Gestão"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Os sócios: aumenta o total do orçamento aprovado",
+         "via": [
+          "Decidir o aumento do total do orçamento aprovado"
          ],
          "vai": "segue na etapa"
         },
@@ -373,7 +407,8 @@
        "o": "Decisão sobre o recurso pedido, com o motivo",
        "para": [
         "Executivos",
-        "Líderes dos círculos"
+        "Líderes dos círculos",
+        "Administrador do IMTS.OS"
        ]
       },
       {
@@ -386,16 +421,16 @@
      "box": [
       1497.0,
       -44,
-      2662.0,
-      932
+      3074.0,
+      1284
      ],
      "foco": [
       1567.0,
       214.0,
-      2577.0,
-      628.0,
+      2989.0,
+      980.0,
       1592,
-      792.0
+      1144.0
      ]
     },
     {
@@ -440,24 +475,24 @@
       }
      ],
      "box": [
-      4175.0,
+      4587.0,
       -44,
       396.0,
-      932
+      1284
      ],
      "foco": [
-      4245.0,
-      742.0,
+      4657.0,
+      1094.0,
       455.0,
       100.0,
-      4270,
-      792.0
+      4682,
+      1144.0
      ]
     }
    ],
    "size": [
-    4832,
-    880
+    5244,
+    1232
    ]
   },
   {
@@ -466,10 +501,10 @@
    "dominio": "Planejamento e controle",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo.",
+   "objetivo": "Fazer cada período ter os resultados reunidos contra os alvos, com a execução do orçamento, os desvios e as causas prováveis; cada contrato ter o planejado no racional financeiro comparado com o realizado, e o que estiver fora do racional entrar na pauta com o dono; cada desvio ser discutido com o dono no ritual e ter uma ação com dono e prazo, decidida na alçada; cada pedido de plano de correção e cada correção publicada pela Estratégia entrar na pauta; e cada ação ser cobrada até concluir, com o atraso levado ao executivo. A Gestão roda o ritual; os donos decidem as ações; a Estratégia decide a correção de rumo.",
    "frequencia": "No calendário do método de estratégia (cadência: mensal) e por evento: pedido de plano de correção",
    "automacao": {
-    "nivel": "média",
+    "nivel": "alta",
     "motivo": "Reunir, apontar desvios, registrar e cobrar são de agente e automação; conduzir o ritual é de pessoa da Gestão; propor e decidir as ações é dos líderes e do executivo."
    },
    "base": [
@@ -488,7 +523,8 @@
     }
    ],
    "fins": [
-    "Ritual realizado e ações acompanhadas"
+    "Ritual realizado e ações acompanhadas",
+    "Ritual realizado, com ação em atraso levada ao executivo"
    ],
    "raias": [
     "Estratégia",
@@ -545,6 +581,10 @@
       {
        "o": "Execução do orçamento e da alocação por empresa, oferta e aposta",
        "de": "GE-05"
+      },
+      {
+       "o": "Ações em atraso do ritual",
+       "de": "etapa 4"
       }
      ],
      "tarefas": [
@@ -569,7 +609,7 @@
       {
        "o": "Pauta do ritual com os desvios e os donos",
        "para": [
-        "etapa 2"
+        "etapa 3"
        ]
       }
      ],
@@ -590,14 +630,101 @@
     },
     {
      "n": 2,
+     "nome": "Comparar o planejado e o realizado de cada contrato",
+     "dono": "Gestão",
+     "modo": "Autopiloto",
+     "risco": "baixo",
+     "entradas": [
+      {
+       "o": "Racional financeiro do contrato aprovado",
+       "de": "Negócios"
+      },
+      {
+       "o": "Receitas faturadas e recebidas",
+       "de": "GE-03"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Reunir o racional financeiro de cada contrato e o realizado: receita, custo, margem e caixa",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Apontar os contratos fora do racional e a causa provável",
+       "exec": "A",
+       "raia": "Gestão · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Incluir o contrato fora do racional na pauta do ritual, com o dono",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": "Há contrato fora do racional? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há contrato fora do racional?",
+       "quem": "Gestão · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Incluir o contrato fora do racional na pauta do ritual, com o dono"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Contratos fora do racional, com a causa provável e o dono",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      879.0,
+      -44,
+      808.0,
+      1108
+     ],
+     "foco": [
+      894.0,
+      742.0,
+      778.0,
+      276.0,
+      974,
+      968.0
+     ]
+    },
+    {
+     "n": 3,
      "nome": "Conduzir o ritual e registrar as decisões",
-     "dono": "Gestão conduz; o líder decide na alçada; acima dela, o executivo",
+     "dono": "Gestão conduz; o líder decide na alçada; acima dela, o executivo; mudança de alvo, a Estratégia; recurso novo, a GE-01",
      "modo": "Copiloto",
      "risco": "médio",
      "entradas": [
       {
        "o": "Pauta do ritual com os desvios e os donos",
        "de": "etapa 1"
+      },
+      {
+       "o": "Contratos fora do racional, com a causa provável e o dono",
+       "de": "etapa 2"
       },
       {
        "o": "Pedido de plano de correção",
@@ -646,7 +773,21 @@
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "A ação cabe na alçada do líder do círculo? Não"
+       "cond": "A ação cabe na alçada do líder do círculo? Não: passa do orçamento ou da alçada do círculo"
+      },
+      {
+       "nome": "Levar a mudança de alvo à revisão da execução pela Estratégia",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": "A ação cabe na alçada do líder do círculo? Não: a ação muda alvo"
+      },
+      {
+       "nome": "Abrir o pedido de recurso no orçamento",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": "A ação cabe na alçada do líder do círculo? Não: a ação pede recurso novo"
       },
       {
        "nome": "Registrar desvios, decisões, donos e prazos",
@@ -654,6 +795,13 @@
        "raia": "Gestão · automação",
        "tipo": "script",
        "cond": null
+      },
+      {
+       "nome": "Apontar o desvio grave à Estratégia, que abre a revisão da execução",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": "Há desvio grave pelo critério do método de estratégia? Sim"
       }
      ],
      "paralelo": false,
@@ -670,9 +818,41 @@
          "vai": "segue na etapa"
         },
         {
-         "rotulo": "Não",
+         "rotulo": "Não: passa do orçamento ou da alçada do círculo",
          "via": [
           "Decidir a ação acima da alçada do líder"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não: a ação muda alvo",
+         "via": [
+          "Levar a mudança de alvo à revisão da execução pela Estratégia"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não: a ação pede recurso novo",
+         "via": [
+          "Abrir o pedido de recurso no orçamento"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "Há desvio grave pelo critério do método de estratégia?",
+       "quem": "Gestão · automação",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Apontar o desvio grave à Estratégia, que abre a revisão da execução"
          ],
          "vai": "segue na etapa"
         }
@@ -687,29 +867,41 @@
        ]
       },
       {
+       "o": "Desvio grave ou mudança de alvo apontados pelo ritual",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
+       "o": "Pedido de recurso adicional para demanda",
+       "para": [
+        "GE-01"
+       ]
+      },
+      {
        "o": "Ações do ritual, com dono e prazo",
        "para": [
-        "etapa 3"
+        "etapa 4"
        ]
       }
      ],
      "box": [
-      879.0,
+      1703.0,
       -44,
-      1632.0,
+      2662.0,
       1108
      ],
      "foco": [
-      894.0,
+      1773.0,
       214.0,
-      1602.0,
+      2577.0,
       804.0,
-      974,
+      1798,
       968.0
      ]
     },
     {
-     "n": 3,
+     "n": 4,
      "nome": "Cobrar as ações até concluir",
      "dono": "Gestão",
      "modo": "Autômato",
@@ -717,7 +909,7 @@
      "entradas": [
       {
        "o": "Ações do ritual, com dono e prazo",
-       "de": "etapa 2"
+       "de": "etapa 3"
       }
      ],
      "tarefas": [
@@ -752,7 +944,7 @@
          "via": [
           "Levar o atraso ao próximo ritual e ao executivo"
          ],
-         "vai": "fim: Ritual realizado e ações acompanhadas"
+         "vai": "fim: Ritual realizado, com ação em atraso levada ao executivo"
         }
        ]
       }
@@ -764,26 +956,32 @@
         "Executivos",
         "Líderes dos círculos"
        ]
+      },
+      {
+       "o": "Ações em atraso do ritual",
+       "para": [
+        "etapa 1"
+       ]
       }
      ],
      "box": [
-      2527.0,
+      4381.0,
       -44,
-      602.0,
+      808.0,
       1108
      ],
      "foco": [
-      2542.0,
+      4451.0,
       767.0,
-      922.0,
+      1073.0,
       251.0,
-      2622,
+      4476,
       968.0
      ]
     }
    ],
    "size": [
-    3596,
+    5656,
     1056
    ]
   },
@@ -793,11 +991,11 @@
    "dominio": "Finanças",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada cliente ter o cadastro de cobrança conforme o contrato, a tabela, a ata e a divisão da oferta conjunta; cada entrega confirmada por Operações virar fatura, com a medição dos níveis de serviço e os créditos aprovados; cada recebimento ser conciliado e cada atraso cobrado, com a negociação acima do limite decidida pela Gestão, ouvido o executivo; e a situação de faturas e pagamentos de cada cliente ir a Relações e a Negócios. Operações confirma a entrega; a Gestão fatura e recebe.",
+   "objetivo": "Fazer cada cliente ter o cadastro de cobrança conforme o contrato, a tabela, a ata e a divisão da oferta conjunta; cada entrega confirmada por Operações virar fatura, com a medição dos níveis de serviço e os créditos aprovados; cada recebimento ser conciliado e cada atraso cobrado, com a negociação acima do limite decidida pela Gestão, ouvido o executivo, e a suspensão das novas entregas do cliente privado na segunda fatura vencida decidida pelo executivo; o reembolso pago só depois de aprovado pelo líder do círculo; e a situação de faturas e pagamentos de cada cliente ir a Relações e a Negócios. Operações confirma a entrega; a Gestão fatura e recebe.",
    "frequencia": "Por evento: contrato, oferta ou cliente novo, mudado ou encerrado; entregas confirmadas; vencimento de fatura",
    "automacao": {
     "nivel": "alta",
-    "motivo": "Cadastrar, calcular, emitir, conciliar, cobrar e informar são de agente e automação; aprovar a fatura fora do padrão e decidir a negociação do atraso são de pessoa da Gestão."
+    "motivo": "Cadastrar, calcular, emitir, conciliar, cobrar e informar são de agente e automação; aprovar a fatura fora do padrão, decidir a negociação do atraso e propor a suspensão são de pessoa da Gestão; aprovar o reembolso é do líder do círculo; decidir a suspensão é do executivo."
    },
    "base": [
     "apqc"
@@ -827,6 +1025,8 @@
    "raias": [
     "Negócios",
     "Operações",
+    "Executivo da empresa",
+    "Líder do círculo",
     "Gestão · pessoa",
     "Gestão · agente",
     "Gestão · automação"
@@ -956,15 +1156,15 @@
       261.0,
       -44,
       1014.0,
-      932
+      1284
      ],
      "foco": [
       132.0,
       70.0,
       1272.0,
-      790.0,
+      1142.0,
       356,
-      792.0
+      1144.0
      ]
     },
     {
@@ -994,6 +1194,13 @@
        "raia": "Gestão · automação",
        "tipo": "script",
        "cond": "Há crédito ou reembolso aprovado para o cliente? Crédito na próxima fatura"
+      },
+      {
+       "nome": "Aprovar o pagamento do reembolso na alçada",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": "Há crédito ou reembolso aprovado para o cliente? Reembolso, ou cliente sem fatura futura"
       },
       {
        "nome": "Pagar o reembolso ao cliente e registrar",
@@ -1045,6 +1252,7 @@
         {
          "rotulo": "Reembolso, ou cliente sem fatura futura",
          "via": [
+          "Aprovar o pagamento do reembolso na alçada",
           "Pagar o reembolso ao cliente e registrar"
          ],
          "vai": "segue na etapa"
@@ -1104,16 +1312,16 @@
      "box": [
       1497.0,
       -44,
-      2250.0,
-      932
+      2456.0,
+      1284
      ],
      "foco": [
       1567.0,
-      390.0,
-      2309.0,
-      470.0,
+      566.0,
+      2515.0,
+      646.0,
       1592,
-      792.0
+      1144.0
      ]
     },
     {
@@ -1137,6 +1345,13 @@
        "cond": null
       },
       {
+       "nome": "Avisar Operações da retomada das entregas do cliente que quitou o atraso",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": "A fatura foi paga no vencimento? Paga depois do vencimento por cliente com entregas suspensas"
+      },
+      {
        "nome": "Cobrar o cliente pelos canais combinados",
        "exec": "A",
        "raia": "Gestão · agente",
@@ -1149,6 +1364,20 @@
        "raia": "Gestão · pessoa",
        "tipo": "user",
        "cond": "O atraso passa do limite da política de cobrança? Sim"
+      },
+      {
+       "nome": "Propor ao executivo a suspensão das novas entregas",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": "O cliente é privado e já tem a segunda fatura vencida? Sim"
+      },
+      {
+       "nome": "Decidir a suspensão das novas entregas do cliente",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "O cliente é privado e já tem a segunda fatura vencida? Sim"
       }
      ],
      "paralelo": false,
@@ -1160,6 +1389,13 @@
         {
          "rotulo": "Sim",
          "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Paga depois do vencimento por cliente com entregas suspensas",
+         "via": [
+          "Avisar Operações da retomada das entregas do cliente que quitou o atraso"
+         ],
          "vai": "etapa 4"
         },
         {
@@ -1185,6 +1421,25 @@
          "via": [
           "Decidir a negociação ou a cobrança do atraso, ouvido o executivo"
          ],
+         "vai": "segue na etapa"
+        }
+       ]
+      },
+      {
+       "pergunta": "O cliente é privado e já tem a segunda fatura vencida?",
+       "quem": "Gestão · automação",
+       "saidas": [
+        {
+         "rotulo": "Não, ou é contrato público",
+         "via": [],
+         "vai": "etapa 4"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Propor ao executivo a suspensão das novas entregas",
+          "Decidir a suspensão das novas entregas do cliente"
+         ],
          "vai": "etapa 4"
         }
        ]
@@ -1196,21 +1451,33 @@
        "para": [
         "etapa 4"
        ]
+      },
+      {
+       "o": "Suspensão de novas entregas por atraso, decidida pelo executivo",
+       "para": [
+        "Operações"
+       ]
+      },
+      {
+       "o": "Retomada das entregas do cliente que quitou o atraso",
+       "para": [
+        "Operações"
+       ]
       }
      ],
      "box": [
-      3969.0,
+      4175.0,
       -44,
-      1220.0,
-      932
+      2044.0,
+      1284
      ],
      "foco": [
-      4039.0,
+      4245.0,
       390.0,
-      1135.0,
-      452.0,
-      4064,
-      792.0
+      1959.0,
+      804.0,
+      4270,
+      1144.0
      ]
     },
     {
@@ -1254,29 +1521,31 @@
       {
        "o": "Receitas faturadas e recebidas",
        "para": [
-        "GE-05"
+        "GE-05",
+        "GE-13",
+        "GE-02"
        ]
       }
      ],
      "box": [
-      5205.0,
+      6235.0,
       -44,
       602.0,
-      932
+      1284
      ],
      "foco": [
-      5275.0,
-      566.0,
+      6305.0,
+      918.0,
       661.0,
       276.0,
-      5300,
-      792.0
+      6330,
+      1144.0
      ]
     }
    ],
    "size": [
-    6068,
-    880
+    7098,
+    1232
    ]
   },
   {
@@ -1285,11 +1554,11 @@
    "dominio": "Finanças",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada pedido de compra ser conferido contra o orçamento e a alçada; cada fornecedor ser escolhido por preço, prazo, qualidade e risco, com o contrato revisado e guardado pela Governança; cada compra ser recebida e conferida por quem pediu; cada fatura de fornecedor ser conferida com o pedido e o recebimento e paga na alçada; cada fornecedor ser avaliado e cobrado pelas falhas; a remuneração de cada parceiro ser apurada pelo contrato e paga; e os contratos de fornecedor serem encerrados ou transferidos na saída. Quem precisa pede, inclusive a Integração nas compras da implantação e de tecnologia; a Gestão compra e paga; a Governança revisa e guarda o contrato.",
+   "objetivo": "Fazer cada pedido de compra ser conferido contra o orçamento e a alçada; cada fornecedor ser escolhido por preço, prazo, qualidade e risco, com o contrato revisado e guardado pela Governança; cada compra ser recebida e conferida por quem pediu; cada fatura de fornecedor ser conferida com o pedido e o recebimento e paga com a aprovação do líder do círculo, que não é quem escolhe o fornecedor; cada fornecedor ser avaliado e cobrado pelas falhas; a remuneração de cada parceiro ser apurada pelo contrato e paga; e os contratos de fornecedor serem encerrados ou transferidos na saída. Quem precisa pede, inclusive a Integração nas compras da implantação e de tecnologia; a Gestão compra e paga; a Governança revisa e guarda o contrato.",
    "frequencia": "Por evento: pedido de compra, fatura de fornecedor, falha ou desempenho de fornecedor apontado",
    "automacao": {
     "nivel": "média",
-    "motivo": "Conferir orçamento e alçada, cotar, emitir o pedido, registrar o recebimento, conferir a fatura e pagar são de agente e automação; escolher o fornecedor, aprovar o pagamento e cobrar a falha são de pessoa da Gestão."
+    "motivo": "Conferir orçamento e alçada, cotar, emitir o pedido, registrar o recebimento, conferir a fatura e pagar são de agente e automação; escolher o fornecedor, resolver divergências e cobrar a falha são de pessoa da Gestão; aprovar o pagamento é do líder do círculo."
    },
    "base": [
     "apqc"
@@ -1329,7 +1598,9 @@
     "Solicitante",
     "Estratégia",
     "Governança",
+    "Sócios",
     "Executivo da empresa",
+    "Líder do círculo",
     "Gestão · pessoa",
     "Gestão · agente",
     "Gestão · automação"
@@ -1338,7 +1609,7 @@
     {
      "n": 1,
      "nome": "Receber e conferir o pedido de compra",
-     "dono": "Gestão; acima da alçada, o executivo",
+     "dono": "Gestão; acima da alçada, o executivo; acima da reserva de contingência, os sócios",
      "modo": "Autopiloto",
      "risco": "baixo",
      "entradas": [
@@ -1418,7 +1689,14 @@
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "O pedido tem orçamento e cabe na alçada de quem pediu? Não"
+       "cond": "O pedido tem orçamento e cabe na alçada de quem pediu? Não, fora do orçamento ou acima da alçada"
+      },
+      {
+       "nome": "Aprovar o pedido acima da reserva de contingência",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "user",
+       "cond": "O pedido tem orçamento e cabe na alçada de quem pediu? Não, acima da reserva de contingência"
       }
      ],
      "paralelo": false,
@@ -1468,9 +1746,16 @@
          "vai": "etapa 2"
         },
         {
-         "rotulo": "Não",
+         "rotulo": "Não, fora do orçamento ou acima da alçada",
          "via": [
           "Aprovar o pedido fora do orçamento ou acima da alçada"
+         ],
+         "vai": "etapa 2"
+        },
+        {
+         "rotulo": "Não, acima da reserva de contingência",
+         "via": [
+          "Aprovar o pedido acima da reserva de contingência"
          ],
          "vai": "etapa 2"
         }
@@ -1494,16 +1779,16 @@
      "box": [
       285.0,
       -44,
-      1426.0,
-      1284
+      1632.0,
+      1636
      ],
      "foco": [
       60.0,
       70.0,
-      1636.0,
-      1146.0,
+      1842.0,
+      1498.0,
       380,
-      1144.0
+      1496.0
      ]
     },
     {
@@ -1595,18 +1880,18 @@
       }
      ],
      "box": [
-      1727.0,
+      1933.0,
       -44,
       1426.0,
-      1284
+      1636
      ],
      "foco": [
-      1797.0,
+      2003.0,
       390.0,
       1341.0,
-      804.0,
-      1822,
-      968.0
+      1156.0,
+      2028,
+      1320.0
      ]
     },
     {
@@ -1649,17 +1934,17 @@
       }
      ],
      "box": [
-      3169.0,
+      3375.0,
       -44,
       396.0,
-      1284
+      1636
      ],
      "foco": [
-      3184.0,
+      3390.0,
       38.0,
       366.0,
-      1156.0,
-      3264,
+      1508.0,
+      3470,
       88.0
      ]
     },
@@ -1733,18 +2018,18 @@
       }
      ],
      "box": [
-      3581.0,
+      3787.0,
       -44,
       1220.0,
-      1284
+      1636
      ],
      "foco": [
-      3651.0,
-      742.0,
+      3857.0,
+      1094.0,
       1135.0,
       276.0,
-      3676,
-      968.0
+      3882,
+      1320.0
      ]
     },
     {
@@ -1784,8 +2069,8 @@
       },
       {
        "nome": "Aprovar o pagamento na alçada",
-       "exec": "P",
-       "raia": "Gestão · pessoa",
+       "exec": "H",
+       "raia": "Líder do círculo",
        "tipo": "user",
        "cond": null
       },
@@ -1843,24 +2128,24 @@
       }
      ],
      "box": [
-      4817.0,
+      5023.0,
       -44,
       1838.0,
-      1284
+      1636
      ],
      "foco": [
-      4887.0,
-      742.0,
+      5093.0,
+      918.0,
       1897.0,
-      452.0,
-      4912,
-      1144.0
+      628.0,
+      5118,
+      1496.0
      ]
     }
    ],
    "size": [
-    6916,
-    1232
+    7122,
+    1584
    ]
   },
   {
@@ -1869,11 +2154,11 @@
    "dominio": "Finanças",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada recebimento e pagamento ser registrado e conciliado; o caixa ser projetado com a previsão de receita, os compromissos e o orçamento e informado à Estratégia; cada período ser fechado por empresa e consolidado, com os impostos apurados e as obrigações entregues, o resultado, os custos e margens e a execução do orçamento publicados; e cada aporte, distribuição ou mudança de contas decidido pelos sócios ou pelo mandato ser executado na alçada. A Gestão registra, fecha e executa; os sócios decidem; a Governança recebe as demonstrações para prestar contas.",
+   "objetivo": "Fazer cada recebimento e pagamento ser registrado e conciliado; o caixa ser projetado com a previsão de receita, os compromissos e o orçamento e informado à Estratégia; cada período ser fechado por empresa e consolidado, com os impostos apurados e as obrigações entregues, o resultado, os custos e margens e a execução do orçamento publicados; e cada aporte, distribuição ou mudança de contas decidido pelos sócios ou pelo mandato ser executado com dupla aprovação: a Gestão prepara e confere; o líder do círculo, o executivo ou o Administrador do IMTS.OS aprovam; as contas e os poderes bancários são conferidos pela Governança. Os sócios decidem; a Governança recebe as demonstrações para prestar contas.",
    "frequencia": "A cada período de fechamento (cadência: fechamento mensal; balanço anual) e por evento: decisão de alocação ou de destino do resultado, mandato ou mudança no portfólio",
    "automacao": {
-    "nivel": "alta",
-    "motivo": "Registrar, conciliar, projetar, fechar e apurar são de agente e automação; aprovar o fechamento e os impostos e conferir a execução de aportes e distribuições são de pessoa da Gestão; acima da alçada, do executivo."
+    "nivel": "média",
+    "motivo": "Registrar, conciliar, projetar, fechar e apurar são de agente e automação; conferir o fechamento e os impostos e conferir a execução de aportes e distribuições são de pessoa da Gestão; aprovar o fechamento e os impostos é do líder do círculo; aprovar a execução é do líder do círculo ou, acima da alçada, do executivo; as contas do IMTS.OS, do Administrador; a conferência das contas, da Governança."
    },
    "base": [
     "apqc",
@@ -1897,7 +2182,10 @@
    ],
    "raias": [
     "Estratégia",
+    "Governança",
+    "Administrador do IMTS.OS",
     "Executivo da empresa",
+    "Líder do círculo",
     "Gestão · pessoa",
     "Gestão · agente",
     "Gestão · automação"
@@ -1929,6 +2217,10 @@
       {
        "o": "Orçamento vigente por empresa, círculo, oferta e aposta",
        "de": "GE-01"
+      },
+      {
+       "o": "Passivo tributário e parcelas em dia",
+       "de": "GE-14"
       }
      ],
      "tarefas": [
@@ -1970,7 +2262,8 @@
       {
        "o": "Posição e projeção de caixa",
        "para": [
-        "Estratégia"
+        "Estratégia",
+        "GE-14"
        ]
       },
       {
@@ -1984,15 +2277,15 @@
       261.0,
       -44,
       808.0,
-      932
+      1460
      ],
      "foco": [
       132.0,
       70.0,
       922.0,
-      772.0,
+      1300.0,
       356,
-      792.0
+      1320.0
      ]
     },
     {
@@ -2013,11 +2306,26 @@
       {
        "o": "Registro de ativos atualizado, com depreciação e baixas",
        "de": "GE-12"
+      },
+      {
+       "o": "Plano de contas e centros de custo vigentes",
+       "de": "GE-15"
+      },
+      {
+       "o": "Plano tributário do grupo e regras das operações entre empresas",
+       "de": "GE-15"
       }
      ],
      "tarefas": [
       {
        "nome": "Fechar a contabilidade do período por empresa e consolidar",
+       "exec": "A",
+       "raia": "Gestão · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Emitir o balancete, a DRE e o balanço de cada empresa e o consolidado",
        "exec": "A",
        "raia": "Gestão · agente",
        "tipo": "service",
@@ -2031,9 +2339,16 @@
        "cond": null
       },
       {
-       "nome": "Conferir e aprovar o fechamento e os impostos",
+       "nome": "Conferir o fechamento e os impostos",
        "exec": "P",
        "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Aprovar o fechamento e o recolhimento dos impostos",
+       "exec": "H",
+       "raia": "Líder do círculo",
        "tipo": "user",
        "cond": null
       },
@@ -2076,7 +2391,8 @@
        "o": "Resultado por empresa e consolidado",
        "para": [
         "Estratégia",
-        "Inteligência"
+        "Inteligência",
+        "GE-15"
        ]
       },
       {
@@ -2095,7 +2411,8 @@
       {
        "o": "Demonstrações e obrigações fiscais do período",
        "para": [
-        "Governança"
+        "Governança",
+        "GE-14"
        ]
       },
       {
@@ -2108,22 +2425,22 @@
      "box": [
       1085.0,
       -44,
-      1220.0,
-      932
+      1632.0,
+      1460
      ],
      "foco": [
       1100.0,
-      390.0,
-      1334.0,
-      470.0,
+      742.0,
+      1746.0,
+      646.0,
       1180,
-      616.0
+      1144.0
      ]
     },
     {
      "n": 3,
      "nome": "Executar aportes, distribuição e mudanças de contas",
-     "dono": "Gestão; acima da alçada, o executivo",
+     "dono": "Gestão prepara; o líder do círculo, o executivo ou o Administrador do IMTS.OS aprovam; a Governança confere as contas",
      "modo": "Copiloto",
      "risco": "alto",
      "entradas": [
@@ -2168,11 +2485,46 @@
        "cond": null
       },
       {
+       "nome": "Aprovar a execução do aporte ou da distribuição",
+       "exec": "H",
+       "raia": "Líder do círculo",
+       "tipo": "user",
+       "cond": "O que será executado? Aporte ou distribuição dentro da alçada da Gestão"
+      },
+      {
        "nome": "Autorizar a execução acima da alçada da Gestão",
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "A execução passa da alçada da Gestão? Sim"
+       "cond": "O que será executado? Aporte ou distribuição acima da alçada da Gestão"
+      },
+      {
+       "nome": "Autorizar a mudança de contas da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "O que será executado? Abertura, encerramento ou mudança de poderes de contas da empresa"
+      },
+      {
+       "nome": "Conferir os poderes e a mudança de contas",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "O que será executado? Abertura, encerramento ou mudança de poderes de contas da empresa"
+      },
+      {
+       "nome": "Autorizar a mudança de contas do IMTS.OS",
+       "exec": "H",
+       "raia": "Administrador do IMTS.OS",
+       "tipo": "user",
+       "cond": "O que será executado? Contas do IMTS.OS ou dos círculos compartilhados"
+      },
+      {
+       "nome": "Conferir os poderes e a mudança de contas do IMTS.OS",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "O que será executado? Contas do IMTS.OS ou dos círculos compartilhados"
       },
       {
        "nome": "Executar e registrar a movimentação",
@@ -2185,18 +2537,36 @@
      "paralelo": false,
      "decisoes": [
       {
-       "pergunta": "A execução passa da alçada da Gestão?",
+       "pergunta": "O que será executado?",
        "quem": "Gestão · pessoa",
        "saidas": [
         {
-         "rotulo": "Não",
-         "via": [],
+         "rotulo": "Aporte ou distribuição dentro da alçada da Gestão",
+         "via": [
+          "Aprovar a execução do aporte ou da distribuição"
+         ],
          "vai": "segue na etapa"
         },
         {
-         "rotulo": "Sim",
+         "rotulo": "Aporte ou distribuição acima da alçada da Gestão",
          "via": [
           "Autorizar a execução acima da alçada da Gestão"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Abertura, encerramento ou mudança de poderes de contas da empresa",
+         "via": [
+          "Autorizar a mudança de contas da empresa",
+          "Conferir os poderes e a mudança de contas"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Contas do IMTS.OS ou dos círculos compartilhados",
+         "via": [
+          "Autorizar a mudança de contas do IMTS.OS",
+          "Conferir os poderes e a mudança de contas do IMTS.OS"
          ],
          "vai": "segue na etapa"
         }
@@ -2213,24 +2583,24 @@
       }
      ],
      "box": [
-      2527.0,
+      2939.0,
       -44,
-      1426.0,
-      932
+      2456.0,
+      1460
      ],
      "foco": [
-      2597.0,
+      3009.0,
       214.0,
-      1485.0,
-      628.0,
-      2622,
-      616.0
+      2515.0,
+      1156.0,
+      3034,
+      1144.0
      ]
     }
    ],
    "size": [
-    4214,
-    880
+    5656,
+    1408
    ]
   },
   {
@@ -2283,6 +2653,14 @@
       {
        "o": "Portfólio de empresas atualizado",
        "de": "Estratégia"
+      },
+      {
+       "o": "Plano de contas e centros de custo vigentes",
+       "de": "GE-15"
+      },
+      {
+       "o": "Plano tributário do grupo e regras das operações entre empresas",
+       "de": "GE-15"
       }
      ],
      "tarefas": [
@@ -2446,11 +2824,11 @@
    "dominio": "Pessoas e cultura",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada vaga, movimentação ou desligamento pedido pelo líder, pelo plano de capacidade ou pelo mandato ser conferido contra o orçamento, o perfil do kit de cultura e a alçada; cada vaga ser preenchida por seleção pelos comportamentos esperados, com a contratação decidida pelo líder; cada pessoa ser contratada, movimentada ou desligada com o registro, a folha e os acessos atualizados; e cada pessoa nova ir à integração. O líder decide quem entra na sua equipe; a Gestão conduz e confere; o executivo decide o que passa da alçada.",
+   "objetivo": "Fazer cada vaga, movimentação ou desligamento pedido pelo líder, pelo plano de capacidade ou pelo mandato ser conferido contra o orçamento, o perfil do kit de cultura e a alçada; cada vaga ser preenchida por seleção pelos comportamentos esperados, com a contratação decidida pelo líder; cada pessoa ser contratada, movimentada ou desligada com o registro, a folha e os acessos atualizados; e cada pessoa nova ir à integração. O líder decide quem entra na sua equipe; a Gestão conduz e confere; o executivo decide o que passa da alçada na empresa, e o Administrador do IMTS.OS, nos círculos; os sócios decidem o desligamento de executivo ou de líder de círculo.",
    "frequencia": "Por evento: pedido do líder, plano de capacidade, mandato, saída, recurso liberado",
    "automacao": {
     "nivel": "média",
-    "motivo": "Registrar, conferir orçamento e perfil, divulgar, triar e atualizar registros e acessos são de agente e automação; aprovar a abertura, conferir a decisão e fazer a proposta são de pessoa da Gestão; a escolha é do líder; o desligamento, com o executivo."
+    "motivo": "Registrar, conferir orçamento e perfil, divulgar, triar e atualizar registros e acessos são de agente e automação; aprovar a abertura, conferir a decisão e fazer a proposta são de pessoa da Gestão; a escolha é do líder; o desligamento, com o executivo, o Administrador do IMTS.OS ou os sócios; o acerto rescisório é pago pela folha (GE-13), com o segundo aprovador dela."
    },
    "base": [
     "apqc",
@@ -2475,6 +2853,8 @@
    "raias": [
     "Líder da equipe",
     "Pessoa",
+    "Sócios",
+    "Administrador do IMTS.OS",
     "Executivo da empresa",
     "Gestão · pessoa",
     "Gestão · agente",
@@ -2491,6 +2871,10 @@
       {
        "o": "Pedido de vaga, de movimentação ou de desligamento",
        "de": "Líderes"
+      },
+      {
+       "o": "Pedido de vaga, de movimentação ou de desligamento",
+       "de": "GE-08"
       },
       {
        "o": "Plano de capacidade de entrega: pessoas, parceiros, materiais e ativos",
@@ -2549,7 +2933,14 @@
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "O pedido passa da alçada da Gestão? Sim"
+       "cond": "O pedido passa da alçada da Gestão? Sim, pessoa de uma empresa"
+      },
+      {
+       "nome": "Decidir o pedido de pessoa dos círculos acima da alçada da Gestão",
+       "exec": "H",
+       "raia": "Administrador do IMTS.OS",
+       "tipo": "user",
+       "cond": "O pedido passa da alçada da Gestão? Sim, pessoa dos círculos do IMTS.OS"
       },
       {
        "nome": "Cadastrar as pessoas da empresa adquirida conforme o mandato",
@@ -2570,14 +2961,42 @@
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "O que é pedido? Desligamento"
+       "cond": "O que é pedido? Desligamento de pessoa de uma empresa"
       },
       {
-       "nome": "Fazer o desligamento, o acerto rescisório e a devolução do que é da empresa",
+       "nome": "Fazer o desligamento e a devolução do que é da empresa e mandar o acerto rescisório à folha",
        "exec": "P",
        "raia": "Gestão · pessoa",
        "tipo": "user",
-       "cond": "O que é pedido? Desligamento"
+       "cond": "O que é pedido? Desligamento de pessoa de uma empresa"
+      },
+      {
+       "nome": "Decidir o desligamento de pessoa dos círculos com o líder",
+       "exec": "H",
+       "raia": "Administrador do IMTS.OS",
+       "tipo": "user",
+       "cond": "O que é pedido? Desligamento de pessoa dos círculos do IMTS.OS"
+      },
+      {
+       "nome": "Fazer o desligamento decidido pelo Administrador e mandar o acerto rescisório à folha",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": "O que é pedido? Desligamento de pessoa dos círculos do IMTS.OS"
+      },
+      {
+       "nome": "Decidir o desligamento do executivo ou do líder de círculo",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "user",
+       "cond": "O que é pedido? Desligamento de executivo ou de líder de círculo"
+      },
+      {
+       "nome": "Fazer o desligamento decidido pelos sócios e mandar o acerto rescisório à folha",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": "O que é pedido? Desligamento de executivo ou de líder de círculo"
       }
      ],
      "paralelo": false,
@@ -2592,9 +3011,16 @@
          "vai": "segue na etapa"
         },
         {
-         "rotulo": "Sim",
+         "rotulo": "Sim, pessoa de uma empresa",
          "via": [
           "Decidir o pedido acima da alçada da Gestão"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim, pessoa dos círculos do IMTS.OS",
+         "via": [
+          "Decidir o pedido de pessoa dos círculos acima da alçada da Gestão"
          ],
          "vai": "segue na etapa"
         }
@@ -2624,10 +3050,26 @@
          "vai": "vai para a etapa 4"
         },
         {
-         "rotulo": "Desligamento",
+         "rotulo": "Desligamento de pessoa de uma empresa",
          "via": [
           "Decidir o desligamento com o líder",
-          "Fazer o desligamento, o acerto rescisório e a devolução do que é da empresa"
+          "Fazer o desligamento e a devolução do que é da empresa e mandar o acerto rescisório à folha"
+         ],
+         "vai": "vai para a etapa 4"
+        },
+        {
+         "rotulo": "Desligamento de pessoa dos círculos do IMTS.OS",
+         "via": [
+          "Decidir o desligamento de pessoa dos círculos com o líder",
+          "Fazer o desligamento decidido pelo Administrador e mandar o acerto rescisório à folha"
+         ],
+         "vai": "vai para a etapa 4"
+        },
+        {
+         "rotulo": "Desligamento de executivo ou de líder de círculo",
+         "via": [
+          "Decidir o desligamento do executivo ou do líder de círculo",
+          "Fazer o desligamento decidido pelos sócios e mandar o acerto rescisório à folha"
          ],
          "vai": "vai para a etapa 4"
         }
@@ -2651,16 +3093,16 @@
      "box": [
       261.0,
       -44,
-      2250.0,
-      1108
+      3280.0,
+      1460
      ],
      "foco": [
       132.0,
       70.0,
-      2364.0,
-      948.0,
+      3394.0,
+      1300.0,
       356,
-      792.0
+      1144.0
      ]
     },
     {
@@ -2753,18 +3195,18 @@
       }
      ],
      "box": [
-      2527.0,
+      3557.0,
       -44,
       1632.0,
-      1108
+      1460
      ],
      "foco": [
-      2597.0,
+      3627.0,
       38.0,
       1547.0,
-      804.0,
-      2622,
-      792.0
+      1156.0,
+      3652,
+      1144.0
      ]
     },
     {
@@ -2840,18 +3282,18 @@
       }
      ],
      "box": [
-      4175.0,
+      5205.0,
       -44,
       808.0,
-      1108
+      1460
      ],
      "foco": [
-      4190.0,
+      5220.0,
       239.0,
       778.0,
-      779.0,
-      4270,
-      616.0
+      1131.0,
+      5300,
+      968.0
      ]
     },
     {
@@ -2905,24 +3347,24 @@
       }
      ],
      "box": [
-      4999.0,
+      6029.0,
       -44,
       602.0,
-      1108
+      1460
      ],
      "foco": [
-      5069.0,
-      918.0,
+      6099.0,
+      1270.0,
       661.0,
       100.0,
-      5094,
-      968.0
+      6124,
+      1320.0
      ]
     }
    ],
    "size": [
-    5862,
-    1056
+    6892,
+    1408
    ]
   },
   {
@@ -3182,7 +3624,7 @@
        "cond": "A pessoa se integrou? Não, com reforço possível"
       },
       {
-       "nome": "Levar ao líder e ao executivo a decisão sobre a permanência",
+       "nome": "Abrir na GE-07 o pedido de mudança de papel ou de desligamento, para a decisão na alçada",
        "exec": "R",
        "raia": "Gestão · automação",
        "tipo": "script",
@@ -3217,7 +3659,7 @@
         {
          "rotulo": "Não, sem condição de seguir no papel",
          "via": [
-          "Levar ao líder e ao executivo a decisão sobre a permanência"
+          "Abrir na GE-07 o pedido de mudança de papel ou de desligamento, para a decisão na alçada"
          ],
          "vai": "segue na etapa"
         }
@@ -3230,6 +3672,12 @@
        "para": [
         "Líderes",
         "GE-09"
+       ]
+      },
+      {
+       "o": "Pedido de vaga, de movimentação ou de desligamento",
+       "para": [
+        "GE-07"
        ]
       }
      ],
@@ -3260,11 +3708,11 @@
    "dominio": "Pessoas e cultura",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada pessoa ser avaliada pelos alvos e pelos comportamentos do kit de cultura, com as avaliações calibradas, as mudanças de remuneração decididas na política e um plano de desenvolvimento combinado com o líder; quem quiser, ligar o seu propósito ao seu papel, com participação voluntária, a declaração guardada pela pessoa e o ajuste de papel só com o acordo dela; e a cultura e o engajamento serem medidos sem identificar quem respondeu e entregues à Identidade e à Inteligência. O líder avalia; a Gestão calibra, desenvolve e mede.",
+   "objetivo": "Fazer cada pessoa ser avaliada pelos alvos e pelos comportamentos do kit de cultura, com as avaliações calibradas, as mudanças de remuneração propostas na política pela Gestão e aprovadas pelo executivo ou, nos círculos do IMTS.OS, pelo Administrador, e um plano de desenvolvimento combinado com o líder; quem quiser, ligar o seu propósito ao seu papel, com participação voluntária, a declaração guardada pela pessoa e o ajuste de papel só com o acordo dela; e a cultura e o engajamento serem medidos sem identificar quem respondeu e entregues à Identidade e à Inteligência. O líder avalia; a Gestão calibra, desenvolve e mede.",
    "frequencia": "A cada ciclo de avaliação e desenvolvimento e a cada pesquisa de cultura (cadências: avaliação semestral; pesquisa de cultura anual)",
    "automacao": {
     "nivel": "média",
-    "motivo": "Preparar a avaliação, guiar a reflexão, acompanhar o treino e aplicar e analisar a pesquisa são de agente e automação; calibrar, aprovar treinos e apresentar o resultado são de pessoa da Gestão; avaliar é do líder."
+    "motivo": "Preparar a avaliação, guiar a reflexão, acompanhar o treino e aplicar e analisar a pesquisa são de agente e automação; calibrar, propor a remuneração, aprovar treinos e apresentar o resultado são de pessoa da Gestão; avaliar é do líder; aprovar a remuneração é do executivo ou do Administrador do IMTS.OS."
    },
    "base": [
     "apqc",
@@ -3284,11 +3732,14 @@
    ],
    "fins": [
     "Pesquisa de cultura aplicada e resultado entregue",
-    "Ciclo de avaliação e desenvolvimento concluído"
+    "Ciclo de avaliação e desenvolvimento concluído",
+    "Ciclo concluído, com pendências de desenvolvimento levadas ao próximo"
    ],
    "raias": [
     "Líder da equipe",
     "Pessoa",
+    "Executivo da empresa",
+    "Administrador do IMTS.OS",
     "Gestão · pessoa",
     "Gestão · agente",
     "Gestão · automação"
@@ -3345,14 +3796,28 @@
        "cond": null
       },
       {
-       "nome": "Calibrar as avaliações e decidir as mudanças de remuneração na política",
+       "nome": "Calibrar as avaliações e propor as mudanças de remuneração na política",
        "exec": "P",
        "raia": "Gestão · pessoa",
        "tipo": "user",
        "cond": null
       },
       {
-       "nome": "Lançar as mudanças de remuneração na próxima folha",
+       "nome": "Aprovar as mudanças de remuneração da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "De quem é a mudança de remuneração? Pessoas de uma empresa"
+      },
+      {
+       "nome": "Aprovar as mudanças de remuneração dos círculos",
+       "exec": "H",
+       "raia": "Administrador do IMTS.OS",
+       "tipo": "user",
+       "cond": "De quem é a mudança de remuneração? Pessoas dos círculos do IMTS.OS, inclusive da Gestão"
+      },
+      {
+       "nome": "Lançar as mudanças de remuneração aprovadas na próxima folha",
        "exec": "R",
        "raia": "Gestão · automação",
        "tipo": "script",
@@ -3376,6 +3841,26 @@
          "vai": "vai para a etapa 3"
         }
        ]
+      },
+      {
+       "pergunta": "De quem é a mudança de remuneração?",
+       "quem": "Gestão · automação",
+       "saidas": [
+        {
+         "rotulo": "Pessoas de uma empresa",
+         "via": [
+          "Aprovar as mudanças de remuneração da empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Pessoas dos círculos do IMTS.OS, inclusive da Gestão",
+         "via": [
+          "Aprovar as mudanças de remuneração dos círculos"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
       }
      ],
      "saidas": [
@@ -3395,16 +3880,16 @@
      "box": [
       285.0,
       -44,
-      1426.0,
-      932
+      2250.0,
+      1284
      ],
      "foco": [
       60.0,
       38.0,
-      1636.0,
-      812.0,
+      2460.0,
+      1164.0,
       380,
-      792.0
+      1144.0
      ]
     },
     {
@@ -3474,7 +3959,14 @@
        "exec": "R",
        "raia": "Gestão · automação",
        "tipo": "script",
-       "cond": "O desenvolvimento do ciclo foi registrado? Não"
+       "cond": null
+      },
+      {
+       "nome": "Registrar as pendências do plano e levá-las ao próximo ciclo",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": "O plano de desenvolvimento do ciclo foi cumprido? Não, com pendência"
       }
      ],
      "paralelo": false,
@@ -3501,7 +3993,7 @@
        ]
       },
       {
-       "pergunta": "O desenvolvimento do ciclo foi registrado?",
+       "pergunta": "O plano de desenvolvimento do ciclo foi cumprido?",
        "quem": "Gestão · automação",
        "saidas": [
         {
@@ -3510,11 +4002,11 @@
          "vai": "fim: Ciclo de avaliação e desenvolvimento concluído"
         },
         {
-         "rotulo": "Não",
+         "rotulo": "Não, com pendência",
          "via": [
-          "Registrar o plano e os treinos do ciclo"
+          "Registrar as pendências do plano e levá-las ao próximo ciclo"
          ],
-         "vai": "fim: Ciclo de avaliação e desenvolvimento concluído"
+         "vai": "fim: Ciclo concluído, com pendências de desenvolvimento levadas ao próximo"
         }
        ]
       }
@@ -3528,18 +4020,18 @@
       }
      ],
      "box": [
-      1727.0,
+      2551.0,
       -44,
-      2250.0,
-      932
+      2662.0,
+      1284
      ],
      "foco": [
-      1742.0,
+      2566.0,
       214.0,
-      2570.0,
-      628.0,
-      1822,
-      792.0
+      2776.0,
+      980.0,
+      2646,
+      1144.0
      ]
     },
     {
@@ -3597,24 +4089,24 @@
       }
      ],
      "box": [
-      4405.0,
+      5435.0,
       -44,
       602.0,
-      932
+      1284
      ],
      "foco": [
-      4420.0,
-      390.0,
+      5450.0,
+      742.0,
       716.0,
       452.0,
-      4500,
-      792.0
+      5530,
+      1144.0
      ]
     }
    ],
    "size": [
-    5268,
-    880
+    6298,
+    1232
    ]
   },
   {
@@ -3623,11 +4115,11 @@
    "dominio": "Pessoas e cultura",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada folha ter o ponto, as variáveis, as comissões de quem vende, os reconhecimentos e as mudanças de remuneração do período apurados a partir dos registros de pessoas, conferida e aprovada pela Gestão, paga no prazo e com os encargos recolhidos. A Gestão apura, aprova e paga.",
+   "objetivo": "Fazer cada folha ter o ponto, as variáveis, as comissões de quem vende sobre a receita recebida, os reconhecimentos e as mudanças de remuneração do período apurados a partir dos registros de pessoas, conferida pela Gestão, aprovada pelo executivo ou, nos círculos do IMTS.OS, pelo Administrador, paga no prazo e com os encargos recolhidos. A Gestão apura, confere e paga; quem aprova é outra pessoa.",
    "frequencia": "A cada período de folha (cadência: mensal; salário até o quinto dia útil do mês seguinte; FGTS até o dia 20)",
    "automacao": {
-    "nivel": "alta",
-    "motivo": "Apurar, pagar e recolher são de agente e automação; conferir e aprovar a folha são de pessoa da Gestão."
+    "nivel": "média",
+    "motivo": "Apurar, pagar e recolher são de agente e automação; conferir a folha é de pessoa da Gestão; aprovar é do executivo ou do Administrador do IMTS.OS."
    },
    "base": [
     "apqc",
@@ -3645,6 +4137,8 @@
     "Folha paga e encargos recolhidos"
    ],
    "raias": [
+    "Executivo da empresa",
+    "Administrador do IMTS.OS",
     "Gestão · pessoa",
     "Gestão · agente",
     "Gestão · automação"
@@ -3678,20 +4172,24 @@
        "de": "Negócios"
       },
       {
+       "o": "Receitas faturadas e recebidas",
+       "de": "GE-03"
+      },
+      {
        "o": "Regras de sigilo e de dados pessoais",
        "de": "Governança"
       }
      ],
      "tarefas": [
       {
-       "nome": "Reunir o ponto, as mudanças de pessoas, os contratos vendidos e os reconhecimentos",
+       "nome": "Reunir o ponto, as mudanças de pessoas, as receitas recebidas e os reconhecimentos",
        "exec": "R",
        "raia": "Gestão · automação",
        "tipo": "script",
        "cond": null
       },
       {
-       "nome": "Apurar salários, variáveis, comissões de quem vende e reconhecimentos",
+       "nome": "Apurar salários, variáveis, comissões sobre a receita recebida e reconhecimentos",
        "exec": "A",
        "raia": "Gestão · agente",
        "tipo": "service",
@@ -3712,15 +4210,15 @@
       261.0,
       -44,
       396.0,
-      580
+      932
      ],
      "foco": [
       132.0,
-      214.0,
+      566.0,
       510.0,
       276.0,
       356,
-      440.0
+      792.0
      ]
     },
     {
@@ -3737,14 +4235,28 @@
      ],
      "tarefas": [
       {
-       "nome": "Conferir e aprovar a folha",
+       "nome": "Conferir a folha",
        "exec": "P",
        "raia": "Gestão · pessoa",
        "tipo": "user",
        "cond": null
       },
       {
-       "nome": "Pagar a folha e recolher os encargos",
+       "nome": "Aprovar a folha da empresa",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "De quem é a folha? De uma empresa"
+      },
+      {
+       "nome": "Aprovar a folha dos círculos",
+       "exec": "H",
+       "raia": "Administrador do IMTS.OS",
+       "tipo": "user",
+       "cond": "De quem é a folha? Dos círculos do IMTS.OS"
+      },
+      {
+       "nome": "Pagar a folha, os acertos rescisórios no prazo da lei (CLT, art. 477, § 6º) e recolher os encargos",
        "exec": "R",
        "raia": "Gestão · automação",
        "tipo": "script",
@@ -3752,7 +4264,28 @@
       }
      ],
      "paralelo": false,
-     "decisoes": [],
+     "decisoes": [
+      {
+       "pergunta": "De quem é a folha?",
+       "quem": "Gestão · automação",
+       "saidas": [
+        {
+         "rotulo": "De uma empresa",
+         "via": [
+          "Aprovar a folha da empresa"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Dos círculos do IMTS.OS",
+         "via": [
+          "Aprovar a folha dos círculos"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
      "saidas": [
       {
        "o": "Folha e encargos pagos",
@@ -3764,22 +4297,22 @@
      "box": [
       673.0,
       -44,
-      396.0,
-      580
+      1220.0,
+      932
      ],
      "foco": [
       688.0,
       38.0,
-      510.0,
-      452.0,
+      1334.0,
+      804.0,
       768,
-      88.0
+      440.0
      ]
     }
    ],
    "size": [
-    1330,
-    528
+    2154,
+    880
    ]
   },
   {
@@ -4799,6 +5332,567 @@
     4214,
     704
    ]
+  },
+  {
+   "code": "GE-14",
+   "nome": "Gerir as dívidas tributárias: parcelamentos, transações, negociações e renegociações",
+   "dominio": "Finanças",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer cada débito tributário, autuação ou intimação ser registrado com a origem, o valor atualizado e o efeito na certidão; ter as opções levantadas (pagar, parcelar, transacionar ou contestar) com o efeito no caixa e a opinião da assessoria tributária; ter o caminho decidido na alçada (o executivo; acima dela, os sócios); e cada parcelamento ou transação ser pago em dia e acompanhado, com o risco de perder as condições levado a renegociação. A Gestão levanta, propõe e paga; a assessoria opina e defende; o executivo ou os sócios decidem.",
+   "frequencia": "Por evento: débito, autuação ou intimação identificado; e na revisão periódica do passivo tributário (cadência: mensal, com o fechamento)",
+   "automacao": {
+    "nivel": "baixa",
+    "motivo": "Registrar o débito, levantar as opções, pagar as parcelas e acompanhar as condições são de agente e automação; propor o caminho e formalizar são de pessoa da Gestão; opinar e defender são da assessoria tributária; decidir é do executivo ou dos sócios."
+   },
+   "base": [
+    "apqc",
+    "l13988"
+   ],
+   "inicios": [
+    {
+     "nome": "Débito tributário, autuação ou intimação identificado",
+     "raia": "Gestão · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Revisão periódica do passivo tributário iniciada",
+     "raia": "Gestão · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Débito pago, parcelado ou transacionado e acompanhado",
+    "Débito contestado e entregue à defesa"
+   ],
+   "raias": [
+    "Executivo da empresa",
+    "Sócios",
+    "Assessoria externa",
+    "Gestão · pessoa",
+    "Gestão · agente",
+    "Gestão · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Levantar o débito e as opções",
+     "dono": "Gestão, com a assessoria tributária",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Demonstrações e obrigações fiscais do período",
+       "de": "GE-05"
+      },
+      {
+       "o": "Posição e projeção de caixa",
+       "de": "GE-05"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Registrar o débito, a origem, o valor atualizado e o efeito na certidão",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Levantar as opções de pagar, parcelar, transacionar ou contestar, com o efeito no caixa",
+       "exec": "A",
+       "raia": "Gestão · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Opinar sobre a procedência do débito e as opções",
+       "exec": "X",
+       "raia": "Assessoria externa",
+       "tipo": "task",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Débito tributário com as opções e o efeito no caixa",
+       "para": [
+        "etapa 2"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      808.0,
+      1108
+     ],
+     "foco": [
+      60.0,
+      390.0,
+      1018.0,
+      636.0,
+      380,
+      968.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Decidir o caminho e formalizar",
+     "dono": "Gestão propõe; o executivo decide; acima da alçada dele, os sócios",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Débito tributário com as opções e o efeito no caixa",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Propor o caminho com o custo, o efeito no caixa e o efeito na certidão",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Aprovar o pagamento do débito",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "Qual caminho foi proposto? Pagar à vista"
+      },
+      {
+       "nome": "Decidir o parcelamento ou a transação",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "Qual caminho foi proposto? Parcelar ou transacionar dentro da alçada do executivo"
+      },
+      {
+       "nome": "Decidir o parcelamento ou a transação pelos sócios",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "Qual caminho foi proposto? Parcelar ou transacionar acima da alçada do executivo"
+      },
+      {
+       "nome": "Entregar o débito à defesa da assessoria tributária",
+       "exec": "X",
+       "raia": "Assessoria externa",
+       "tipo": "task",
+       "cond": "Qual caminho foi proposto? Contestar o débito"
+      },
+      {
+       "nome": "Formalizar o pagamento, o parcelamento ou a transação e registrar as condições",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Qual caminho foi proposto?",
+       "quem": "Gestão · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Pagar à vista",
+         "via": [
+          "Aprovar o pagamento do débito"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Parcelar ou transacionar dentro da alçada do executivo",
+         "via": [
+          "Decidir o parcelamento ou a transação"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Parcelar ou transacionar acima da alçada do executivo",
+         "via": [
+          "Decidir o parcelamento ou a transação pelos sócios"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Contestar o débito",
+         "via": [
+          "Entregar o débito à defesa da assessoria tributária"
+         ],
+         "vai": "fim: Débito contestado e entregue à defesa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Pagamento, parcelamento ou transação formalizado, com as condições",
+       "para": [
+        "etapa 3"
+       ]
+      },
+      {
+       "o": "Débito tributário e caminho decidido",
+       "para": [
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      1109.0,
+      -44,
+      1838.0,
+      1108
+     ],
+     "foco": [
+      1124.0,
+      38.0,
+      1808.0,
+      628.0,
+      1204,
+      616.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Pagar as parcelas e acompanhar as condições",
+     "dono": "Gestão; a renegociação, o executivo",
+     "modo": "Autopiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Pagamento, parcelamento ou transação formalizado, com as condições",
+       "de": "etapa 2"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Programar e pagar a quitação ou as parcelas e registrá-las",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Acompanhar as condições do parcelamento ou da transação e o risco de perdê-las",
+       "exec": "A",
+       "raia": "Gestão · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Propor a renegociação ou a regularização ao executivo",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": "Há risco de perder o parcelamento ou a transação? Sim"
+      },
+      {
+       "nome": "Decidir a renegociação ou a regularização",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "Há risco de perder o parcelamento ou a transação? Sim"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "Há risco de perder o parcelamento ou a transação?",
+       "quem": "Gestão · agente",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "fim: Débito pago, parcelado ou transacionado e acompanhado"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Propor a renegociação ou a regularização ao executivo",
+          "Decidir a renegociação ou a regularização"
+         ],
+         "vai": "fim: Débito pago, parcelado ou transacionado e acompanhado"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Passivo tributário e parcelas em dia",
+       "para": [
+        "GE-05",
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      2963.0,
+      -44,
+      1014.0,
+      1108
+     ],
+     "foco": [
+      2978.0,
+      38.0,
+      1334.0,
+      980.0,
+      3058,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    4444,
+    1056
+   ]
+  },
+  {
+   "code": "GE-15",
+   "nome": "Manter a estrutura contábil e o plano tributário do grupo: plano de contas, centros de custo e operações entre as empresas",
+   "dominio": "Finanças",
+   "classe": "essencial",
+   "onda": 1,
+   "objetivo": "Fazer o grupo ter um plano de contas comum, com as contas de cada empresa, e centros de custo por empresa, círculo e projeto, conferidos pela assessoria contábil; e um plano tributário do grupo, com o regime de cada empresa, as operações entre as empresas e as regras de preço entre elas, simulado pela Gestão, recomendado pela assessoria tributária, conferido pela Governança e decidido pelo executivo ou, quando muda o regime ou a estrutura, pelos sócios. A Gestão mantém; a assessoria recomenda; a Governança confere; o executivo ou os sócios decidem.",
+   "frequencia": "Por evento: empresa, projeto ou operação entre empresas criado ou mudado; e na revisão anual da estrutura contábil e tributária",
+   "automacao": {
+    "nivel": "média",
+    "motivo": "Manter o plano de contas, abrir e encerrar centros de custo, simular os tributos e registrar são de agente e automação; conferir é da assessoria e da Governança; decidir é do executivo ou dos sócios."
+   },
+   "base": [
+    "apqc",
+    "cc2002"
+   ],
+   "inicios": [
+    {
+     "nome": "Empresa, projeto ou operação entre empresas criado ou mudado",
+     "raia": "Gestão · automação",
+     "tipo": "message"
+    },
+    {
+     "nome": "Revisão anual da estrutura contábil e tributária iniciada",
+     "raia": "Gestão · automação",
+     "tipo": "timer"
+    }
+   ],
+   "fins": [
+    "Estrutura contábil e plano tributário do grupo vigentes"
+   ],
+   "raias": [
+    "Governança",
+    "Executivo da empresa",
+    "Sócios",
+    "Assessoria externa",
+    "Gestão · pessoa",
+    "Gestão · agente",
+    "Gestão · automação"
+   ],
+   "etapas": [
+    {
+     "n": 1,
+     "nome": "Manter o plano de contas e os centros de custo",
+     "dono": "Gestão, com a assessoria contábil",
+     "modo": "Copiloto",
+     "risco": "médio",
+     "entradas": [
+      {
+       "o": "Portfólio de empresas atualizado",
+       "de": "Estratégia"
+      },
+      {
+       "o": "Situação das iniciativas na carteira de projetos",
+       "de": "Integração"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Manter o plano de contas comum, com as contas de cada empresa",
+       "exec": "A",
+       "raia": "Gestão · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Abrir e encerrar os centros de custo por empresa, círculo e projeto",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o plano de contas e os centros de custo",
+       "exec": "X",
+       "raia": "Assessoria externa",
+       "tipo": "task",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [],
+     "saidas": [
+      {
+       "o": "Plano de contas e centros de custo vigentes",
+       "para": [
+        "etapa 2",
+        "GE-05",
+        "GE-06"
+       ]
+      }
+     ],
+     "box": [
+      285.0,
+      -44,
+      808.0,
+      1284
+     ],
+     "foco": [
+      60.0,
+      566.0,
+      1018.0,
+      636.0,
+      380,
+      968.0
+     ]
+    },
+    {
+     "n": 2,
+     "nome": "Planejar os tributos do grupo e as operações entre as empresas",
+     "dono": "Gestão simula; a assessoria recomenda; a Governança confere; o executivo ou os sócios decidem",
+     "modo": "Copiloto",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Plano de contas e centros de custo vigentes",
+       "de": "etapa 1"
+      },
+      {
+       "o": "Resultado por empresa e consolidado",
+       "de": "GE-05"
+      },
+      {
+       "o": "Acordo de oferta conjunta entre as empresas",
+       "de": "Negócios"
+      },
+      {
+       "o": "Regras e alçadas vigentes",
+       "de": "Governança"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Simular o regime e os tributos de cada empresa e das operações entre elas",
+       "exec": "A",
+       "raia": "Gestão · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Recomendar o regime, as operações entre empresas e os preços entre elas",
+       "exec": "X",
+       "raia": "Assessoria externa",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Conferir a recomendação com as regras e o risco",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": null
+      },
+      {
+       "nome": "Preparar a proposta de plano tributário para quem decide",
+       "exec": "P",
+       "raia": "Gestão · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Aprovar o plano tributário na alçada do executivo",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A mudança altera o regime de uma empresa ou a estrutura do grupo? Não"
+      },
+      {
+       "nome": "Decidir o plano tributário do grupo",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "A mudança altera o regime de uma empresa ou a estrutura do grupo? Sim"
+      },
+      {
+       "nome": "Registrar o plano tributário e as regras das operações entre empresas",
+       "exec": "R",
+       "raia": "Gestão · automação",
+       "tipo": "script",
+       "cond": null
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A mudança altera o regime de uma empresa ou a estrutura do grupo?",
+       "quem": "Gestão · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [
+          "Aprovar o plano tributário na alçada do executivo"
+         ],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Decidir o plano tributário do grupo"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Plano tributário do grupo e regras das operações entre empresas",
+       "para": [
+        "GE-05",
+        "GE-06",
+        "Executivos"
+       ]
+      }
+     ],
+     "box": [
+      1109.0,
+      -44,
+      1838.0,
+      1284
+     ],
+     "foco": [
+      1124.0,
+      38.0,
+      1952.0,
+      1156.0,
+      1204,
+      968.0
+     ]
+    }
+   ],
+   "size": [
+    3208,
+    1232
+   ]
   }
  ],
  "dominios": [
@@ -4808,7 +5902,7 @@
   },
   {
    "nome": "Finanças",
-   "desc": "Faturamento e cobrança, compras e pagamentos, caixa, contas, impostos, prestação de contas e rateio."
+   "desc": "Faturamento e cobrança, compras e pagamentos, caixa, contas, impostos, prestação de contas, rateio, dívidas tributárias e parcelamentos, plano de contas, centros de custo e plano tributário do grupo."
   },
   {
    "nome": "Pessoas e cultura",
@@ -4822,8 +5916,8 @@
  "fontes": {
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
-   "uso": "PCF 7.4. Os processos da Gestão estão em três categorias e num grupo: 7.0, capital humano (planejamento, recrutamento, integração, desempenho, desenvolvimento, recompensa, desligamento, informação e comunicação com as pessoas), base da GE-07 a GE-11 e da GE-13; 9.0, recursos financeiros (planejamento e orçamento, receita, contabilidade, folha, contas a pagar, tesouraria e impostos), base da GE-01, da GE-03 a GE-06 e da GE-13; 10.0, ativos (planejar e adquirir, manter e baixar), base da GE-12; e o grupo 4.2, compra de materiais e serviços, base da GE-04. O grupo 9.8, controles internos, fica com a Governança. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "uso": "PCF 7.4. Os processos da Gestão estão em três categorias e num grupo: 7.0, capital humano (planejamento, recrutamento, integração, desempenho, desenvolvimento, recompensa, desligamento, informação e comunicação com as pessoas), base da GE-07 a GE-11 e da GE-13; 9.0, recursos financeiros (planejamento e orçamento, receita, contabilidade, folha, contas a pagar, tesouraria e impostos), base da GE-01, da GE-03 a GE-06 e da GE-13; 10.0, ativos (planejar e adquirir, manter e baixar), base da GE-12; e o grupo 4.2, compra de materiais e serviços, base da GE-04. O grupo 9.8, controles internos, fica com a Governança. A tabela de cobertura, na aba Método, mostra onde cada um foi parar. Nas GE-14 e GE-15 (03/10/2026): 9.3.2.1 (Maintain chart of accounts), 9.3.2.5 (Post and reconcile intercompany transactions), 9.4.2.1 (Create project account codes) e 9.9 (Manage taxes).",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -4884,64 +5978,47 @@
     ]
    ]
   },
-  "cc2002": {
-   "ref": "Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)",
-   "uso": "Na GE-05: cada empresa segue um sistema de contabilidade com escrituração uniforme e levanta todo ano o balanço patrimonial e o de resultado (art. 1.179), com o livro Diário (art. 1.180), e guarda a escrituração enquanto não houver prescrição ou decadência (art. 1.194).",
-   "conf": "Os arts. 389 e 395 (redação da Lei 14.905/2024) e os arts. 421 e 421-A (redação da Lei 13.874/2019) foram lidos no Planalto, nas leis que deram a redação. Os arts. 422, 441, 442, 443, 445, 446, 475, 1.179, 1.180 e 1.194 foram lidos em transcrição secundária: a página compilada do Planalto foi cortada antes deles. Conferir no oficial antes de usar em peça ou contrato.",
+  "l13988": {
+   "ref": "Brasil, Lei nº 13.988, de 14 de abril de 2020 (transação resolutiva de litígio na cobrança de créditos da Fazenda Pública federal)",
+   "uso": "Na GE-14: a transação resolutiva de litígio na cobrança de créditos da Fazenda Pública federal, tributários ou não, e as suas modalidades (arts. 1º e 2º). Parcelamentos e transações de estados e municípios seguem a lei de cada ente e não foram lidos.",
+   "conf": "Texto aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 1º, caput e § 1º, e art. 2º, caput e incisos I a III (modalidades).",
    "links": [
     [
-     "planalto.gov.br, Lei 13.874/2019",
-     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13874.htm"
-    ],
+     "planalto.gov.br, Lei 13.988/2020",
+     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13988.htm"
+    ]
+   ]
+  },
+  "cc2002": {
+   "ref": "Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)",
+   "uso": "Na GE-15: o plano de contas segue o sistema de contabilidade com escrituração uniforme (art. 1.179). Na GE-05: cada empresa segue um sistema de contabilidade com escrituração uniforme e levanta todo ano o balanço patrimonial e o de resultado (art. 1.179), com o livro Diário (art. 1.180), e guarda a escrituração enquanto não houver prescrição ou decadência (art. 1.194).",
+   "conf": "Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: arts. 389 (parágrafo único: IPCA quando o índice não foi convencionado), 395, 421, 421-A (inciso II), 422, 441 a 446 (art. 445: 30 dias para móvel e 1 ano para imóvel; art. 446: os prazos não correm na garantia contratual, e o defeito é denunciado em 30 dias da descoberta), 475, 1.179, 1.180 e 1.194.",
+   "links": [
     [
-     "planalto.gov.br, Lei 14.905/2024",
-     "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14905.htm"
-    ],
-    [
-     "Petições Online, art. 445 (secundária)",
-     "https://www.peticoesonline.com.br/art-445-cc"
-    ],
-    [
-     "Petições Online, art. 446 (secundária)",
-     "https://www.peticoesonline.com.br/art-446-cc"
-    ],
-    [
-     "Petições Online, art. 1.179 (secundária)",
-     "https://www.peticoesonline.com.br/art-1179-cc"
-    ],
-    [
-     "Petições Online, art. 1.194 (secundária)",
-     "https://www.peticoesonline.com.br/art-1194-cc"
+     "planalto.gov.br, Código Civil compilado",
+     "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
     ]
    ]
   },
   "clt": {
    "ref": "Brasil, Decreto-Lei nº 5.452, de 1º de maio de 1943 (Consolidação das Leis do Trabalho)",
    "uso": "Na GE-13: o salário mensal é pago até o quinto dia útil do mês seguinte (art. 459, § 1º); as férias, até dois dias antes do início (art. 145); acima de vinte trabalhadores no estabelecimento, o registro de entrada e saída é obrigatório, e o ponto por exceção é permitido por acordo (art. 74, §§ 2º e 4º). Na GE-07: no desligamento, as verbas rescisórias e os documentos são entregues em até dez dias do término do contrato (art. 477, § 6º).",
-   "conf": "O art. 459, § 1º (redação da Lei 7.855/1989), o art. 477, caput e § 6º (redação da Lei 13.467/2017), e o art. 74, caput e §§ 2º e 4º (redação da Lei 13.874/2019), foram lidos no Planalto, nas leis que deram a redação. O art. 145 foi lido em transcrição secundária. A página da CLT no Planalto foi cortada no art. 51.",
+   "conf": "Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 74, § 2º (registro de ponto obrigatório acima de 20 trabalhadores) e § 4º (ponto por exceção); art. 145 (férias pagas até 2 dias antes do início); art. 459, § 1º (salário até o quinto dia útil do mês seguinte); art. 477, § 6º (verbas rescisórias em até 10 dias do término).",
    "links": [
     [
-     "planalto.gov.br, Lei 7.855/1989",
-     "https://www.planalto.gov.br/ccivil_03/leis/l7855.htm"
-    ],
-    [
-     "planalto.gov.br, Lei 13.467/2017",
-     "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13467.htm"
-    ],
-    [
-     "Petições Online, art. 145 (secundária)",
-     "https://www.peticoesonline.com.br/art-145-clt"
+     "planalto.gov.br, CLT",
+     "https://www.planalto.gov.br/ccivil_03/decreto-lei/del5452.htm"
     ]
    ]
   },
   "fgts": {
    "ref": "Brasil, Lei nº 8.036, de 11 de maio de 1990 (FGTS), art. 15, na redação da Lei nº 14.438, de 24 de agosto de 2022",
    "uso": "Na GE-13: o depósito do FGTS é feito até o vigésimo dia de cada mês (art. 15, na redação da Lei 14.438/2022, com a arrecadação digital).",
-   "conf": "Lido no Planalto, na Lei 14.438/2022, o início do caput do art. 15 (depósito até o vigésimo dia de cada mês) e o art. 19 da mesma lei, que liga o efeito ao início da arrecadação digital. A data de início do FGTS Digital (1º/03/2024) só foi achada em notícia da CNI; o ato oficial não foi localizado.",
+   "conf": "Texto consolidado aberto no site do Planalto em 03/10/2026: depósito até o vigésimo dia de cada mês, de 8% da remuneração do mês anterior (art. 15, redação da Lei 14.438/2022). A data de início do FGTS Digital (1º/03/2024) só foi achada em notícia da CNI; o ato oficial não foi localizado.",
    "links": [
     [
-     "planalto.gov.br, Lei 14.438/2022",
-     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14438.htm"
+     "planalto.gov.br, Lei 8.036 consolidada",
+     "https://www.planalto.gov.br/ccivil_03/leis/l8036consol.htm"
     ],
     [
      "CNI, notícia sobre o FGTS Digital (secundária)",
@@ -5033,6 +6110,18 @@
    "antes": "ID-09 do círculo 1 (transferida) · Comunicação interna e institucional",
    "agora": "GE-11",
    "nota": "Só a parte interna; a externa é de Relações (RE-07)."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "GE-14",
+   "nota": "Dívidas tributárias, parcelamentos, transações, negociações e renegociações, aprovada em 03/10/2026, às 21:05."
+  },
+  {
+   "tipo": "Acrescentado",
+   "antes": "Sem equivalente",
+   "agora": "GE-15",
+   "nota": "Plano de contas, centros de custo por empresa, círculo e projeto e plano tributário do grupo, aprovada em 03/10/2026, às 21:05."
   },
   {
    "tipo": "Ajustado",
@@ -5231,7 +6320,8 @@
      "em": [
       "GE-05",
       "GE-06",
-      "GE-11"
+      "GE-11",
+      "GE-15"
      ]
     },
     {
@@ -5254,6 +6344,12 @@
     }
    ],
    "recebe": [
+    {
+     "o": "Desvio grave ou mudança de alvo apontados pelo ritual",
+     "de": [
+      "GE-02"
+     ]
+    },
     {
      "o": "Desvios e decisões do ritual de acompanhamento",
      "de": [
@@ -5388,7 +6484,8 @@
      "o": "Acordo de oferta conjunta entre as empresas",
      "em": [
       "GE-03",
-      "GE-04"
+      "GE-04",
+      "GE-15"
      ]
     },
     {
@@ -5434,6 +6531,12 @@
      "em": [
       "GE-01",
       "GE-05"
+     ]
+    },
+    {
+     "o": "Racional financeiro do contrato aprovado",
+     "em": [
+      "GE-02"
      ]
     },
     {
@@ -5523,7 +6626,8 @@
      "o": "Situação das iniciativas na carteira de projetos",
      "em": [
       "GE-01",
-      "GE-02"
+      "GE-02",
+      "GE-15"
      ]
     }
    ],
@@ -5600,6 +6704,18 @@
      "de": [
       "GE-01"
      ]
+    },
+    {
+     "o": "Retomada das entregas do cliente que quitou o atraso",
+     "de": [
+      "GE-03"
+     ]
+    },
+    {
+     "o": "Suspensão de novas entregas por atraso, decidida pelo executivo",
+     "de": [
+      "GE-03"
+     ]
     }
    ],
    "tarefas": []
@@ -5628,7 +6744,9 @@
       "GE-04",
       "GE-05",
       "GE-07",
-      "GE-12"
+      "GE-12",
+      "GE-14",
+      "GE-15"
      ]
     }
    ],
@@ -5660,7 +6778,21 @@
    ],
    "tarefas": [
     "GE-04",
-    "GE-11"
+    "GE-05",
+    "GE-11",
+    "GE-15"
+   ]
+  },
+  {
+   "parte": "Sócios",
+   "entrega": [],
+   "recebe": [],
+   "tarefas": [
+    "GE-01",
+    "GE-04",
+    "GE-07",
+    "GE-14",
+    "GE-15"
    ]
   },
   {
@@ -5680,9 +6812,27 @@
      ]
     },
     {
+     "o": "Débito tributário e caminho decidido",
+     "de": [
+      "GE-14"
+     ]
+    },
+    {
      "o": "Orçamento vigente por empresa, círculo, oferta e aposta",
      "de": [
       "GE-01"
+     ]
+    },
+    {
+     "o": "Passivo tributário e parcelas em dia",
+     "de": [
+      "GE-14"
+     ]
+    },
+    {
+     "o": "Plano tributário do grupo e regras das operações entre empresas",
+     "de": [
+      "GE-15"
      ]
     },
     {
@@ -5701,10 +6851,15 @@
    "tarefas": [
     "GE-01",
     "GE-02",
+    "GE-03",
     "GE-04",
     "GE-05",
     "GE-06",
-    "GE-07"
+    "GE-07",
+    "GE-09",
+    "GE-13",
+    "GE-14",
+    "GE-15"
    ]
   },
   {
@@ -5731,7 +6886,10 @@
     }
    ],
    "tarefas": [
-    "GE-02"
+    "GE-02",
+    "GE-03",
+    "GE-04",
+    "GE-05"
    ]
   },
   {
@@ -5839,6 +6997,15 @@
    ]
   },
   {
+   "parte": "Assessoria externa",
+   "entrega": [],
+   "recebe": [],
+   "tarefas": [
+    "GE-14",
+    "GE-15"
+   ]
+  },
+  {
    "parte": "Clientes",
    "entrega": [],
    "recebe": [
@@ -5856,6 +7023,25 @@
     }
    ],
    "tarefas": []
+  },
+  {
+   "parte": "Administrador do IMTS.OS",
+   "entrega": [],
+   "recebe": [
+    {
+     "o": "Decisão sobre o recurso pedido, com o motivo",
+     "de": [
+      "GE-01"
+     ]
+    }
+   ],
+   "tarefas": [
+    "GE-01",
+    "GE-05",
+    "GE-07",
+    "GE-09",
+    "GE-13"
+   ]
   }
  ],
  "tarefas_fora": [
@@ -5866,28 +7052,58 @@
    "nome": "Decidir o pedido acima da alçada da Gestão"
   },
   {
+   "parte": "Administrador do IMTS.OS",
+   "code": "GE-01",
+   "etapa": 2,
+   "nome": "Decidir o pedido de recurso dos círculos acima da alçada da Gestão"
+  },
+  {
+   "parte": "Sócios",
+   "code": "GE-01",
+   "etapa": 2,
+   "nome": "Decidir o aumento do total do orçamento aprovado"
+  },
+  {
    "parte": "Líderes dos círculos",
    "code": "GE-02",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Apresentar os desvios e propor as ações"
   },
   {
    "parte": "Líderes dos círculos",
    "code": "GE-02",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Decidir a ação na sua alçada"
   },
   {
    "parte": "Executivos",
    "code": "GE-02",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Decidir a ação acima da alçada do líder"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "GE-03",
+   "etapa": 2,
+   "nome": "Aprovar o pagamento do reembolso na alçada"
+  },
+  {
+   "parte": "Executivos",
+   "code": "GE-03",
+   "etapa": 3,
+   "nome": "Decidir a suspensão das novas entregas do cliente"
   },
   {
    "parte": "Executivos",
    "code": "GE-04",
    "etapa": 1,
    "nome": "Aprovar o pedido fora do orçamento ou acima da alçada"
+  },
+  {
+   "parte": "Sócios",
+   "code": "GE-04",
+   "etapa": 1,
+   "nome": "Aprovar o pedido acima da reserva de contingência"
   },
   {
    "parte": "Governança",
@@ -5902,10 +7118,52 @@
    "nome": "Receber e conferir o que foi entregue"
   },
   {
+   "parte": "Líderes dos círculos",
+   "code": "GE-04",
+   "etapa": 5,
+   "nome": "Aprovar o pagamento na alçada"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "GE-05",
+   "etapa": 2,
+   "nome": "Aprovar o fechamento e o recolhimento dos impostos"
+  },
+  {
+   "parte": "Líderes dos círculos",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Aprovar a execução do aporte ou da distribuição"
+  },
+  {
    "parte": "Executivos",
    "code": "GE-05",
    "etapa": 3,
    "nome": "Autorizar a execução acima da alçada da Gestão"
+  },
+  {
+   "parte": "Executivos",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Autorizar a mudança de contas da empresa"
+  },
+  {
+   "parte": "Governança",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Conferir os poderes e a mudança de contas"
+  },
+  {
+   "parte": "Administrador do IMTS.OS",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Autorizar a mudança de contas do IMTS.OS"
+  },
+  {
+   "parte": "Governança",
+   "code": "GE-05",
+   "etapa": 3,
+   "nome": "Conferir os poderes e a mudança de contas do IMTS.OS"
   },
   {
    "parte": "Executivos",
@@ -5920,10 +7178,28 @@
    "nome": "Decidir o pedido acima da alçada da Gestão"
   },
   {
+   "parte": "Administrador do IMTS.OS",
+   "code": "GE-07",
+   "etapa": 1,
+   "nome": "Decidir o pedido de pessoa dos círculos acima da alçada da Gestão"
+  },
+  {
    "parte": "Executivos",
    "code": "GE-07",
    "etapa": 1,
    "nome": "Decidir o desligamento com o líder"
+  },
+  {
+   "parte": "Administrador do IMTS.OS",
+   "code": "GE-07",
+   "etapa": 1,
+   "nome": "Decidir o desligamento de pessoa dos círculos com o líder"
+  },
+  {
+   "parte": "Sócios",
+   "code": "GE-07",
+   "etapa": 1,
+   "nome": "Decidir o desligamento do executivo ou do líder de círculo"
   },
   {
    "parte": "Líderes",
@@ -5980,6 +7256,18 @@
    "nome": "Fazer a autoavaliação e combinar o plano"
   },
   {
+   "parte": "Executivos",
+   "code": "GE-09",
+   "etapa": 1,
+   "nome": "Aprovar as mudanças de remuneração da empresa"
+  },
+  {
+   "parte": "Administrador do IMTS.OS",
+   "code": "GE-09",
+   "etapa": 1,
+   "nome": "Aprovar as mudanças de remuneração dos círculos"
+  },
+  {
    "parte": "Pessoas",
    "code": "GE-09",
    "etapa": 2,
@@ -5992,6 +7280,18 @@
    "nome": "Conversar com o líder sobre propósito e papel e fechar o plano"
   },
   {
+   "parte": "Executivos",
+   "code": "GE-13",
+   "etapa": 2,
+   "nome": "Aprovar a folha da empresa"
+  },
+  {
+   "parte": "Administrador do IMTS.OS",
+   "code": "GE-13",
+   "etapa": 2,
+   "nome": "Aprovar a folha dos círculos"
+  },
+  {
    "parte": "Líderes",
    "code": "GE-10",
    "etapa": 3,
@@ -6002,63 +7302,132 @@
    "code": "GE-11",
    "etapa": 2,
    "nome": "Validar o conteúdo sensível"
+  },
+  {
+   "parte": "Assessoria externa",
+   "code": "GE-14",
+   "etapa": 1,
+   "nome": "Opinar sobre a procedência do débito e as opções"
+  },
+  {
+   "parte": "Executivos",
+   "code": "GE-14",
+   "etapa": 2,
+   "nome": "Aprovar o pagamento do débito"
+  },
+  {
+   "parte": "Executivos",
+   "code": "GE-14",
+   "etapa": 2,
+   "nome": "Decidir o parcelamento ou a transação"
+  },
+  {
+   "parte": "Sócios",
+   "code": "GE-14",
+   "etapa": 2,
+   "nome": "Decidir o parcelamento ou a transação pelos sócios"
+  },
+  {
+   "parte": "Assessoria externa",
+   "code": "GE-14",
+   "etapa": 2,
+   "nome": "Entregar o débito à defesa da assessoria tributária"
+  },
+  {
+   "parte": "Executivos",
+   "code": "GE-14",
+   "etapa": 3,
+   "nome": "Decidir a renegociação ou a regularização"
+  },
+  {
+   "parte": "Assessoria externa",
+   "code": "GE-15",
+   "etapa": 1,
+   "nome": "Conferir o plano de contas e os centros de custo"
+  },
+  {
+   "parte": "Assessoria externa",
+   "code": "GE-15",
+   "etapa": 2,
+   "nome": "Recomendar o regime, as operações entre empresas e os preços entre elas"
+  },
+  {
+   "parte": "Governança",
+   "code": "GE-15",
+   "etapa": 2,
+   "nome": "Conferir a recomendação com as regras e o risco"
+  },
+  {
+   "parte": "Executivos",
+   "code": "GE-15",
+   "etapa": 2,
+   "nome": "Aprovar o plano tributário na alçada do executivo"
+  },
+  {
+   "parte": "Sócios",
+   "code": "GE-15",
+   "etapa": 2,
+   "nome": "Decidir o plano tributário do grupo"
   }
  ],
  "stats": {
-  "jornadas": 13,
-  "essenciais": 13,
+  "jornadas": 15,
+  "essenciais": 15,
   "recomendadas": 0,
-  "etapas": 44,
-  "tarefas": 150,
-  "decisoes": 38,
+  "etapas": 50,
+  "tarefas": 203,
+  "decisoes": 46,
   "exec": {
-   "A": 39,
-   "P": 36,
-   "R": 51,
-   "H": 22,
-   "C": 2
+   "A": 45,
+   "P": 42,
+   "R": 62,
+   "H": 45,
+   "C": 5,
+   "X": 4
   },
   "modos": {
-   "Copiloto": 19,
+   "Copiloto": 22,
    "Autômato": 4,
-   "Autopiloto": 14,
-   "Assistido": 7
+   "Autopiloto": 16,
+   "Assistido": 8
   },
   "riscos": {
-   "médio": 18,
-   "baixo": 24,
-   "alto": 2
+   "médio": 21,
+   "baixo": 25,
+   "alto": 4
   },
   "por_jornada": {
    "GE-01": {
     "A": 3,
     "P": 3,
     "R": 5,
-    "H": 1
+    "H": 3
    },
    "GE-02": {
-    "R": 5,
-    "A": 1,
+    "R": 10,
+    "A": 2,
     "P": 1,
     "H": 3
    },
    "GE-03": {
-    "R": 6,
+    "R": 7,
     "A": 4,
-    "P": 2
+    "H": 2,
+    "P": 3
    },
    "GE-04": {
     "A": 4,
-    "P": 6,
+    "P": 5,
     "R": 4,
-    "H": 2,
+    "H": 4,
     "C": 1
    },
    "GE-05": {
     "R": 3,
-    "A": 5,
+    "A": 6,
     "P": 2,
-    "H": 1
+    "H": 5,
+    "C": 2
    },
    "GE-06": {
     "R": 3,
@@ -6068,8 +7437,8 @@
    },
    "GE-07": {
     "A": 3,
-    "P": 6,
-    "H": 4,
+    "P": 8,
+    "H": 7,
     "R": 5
    },
    "GE-08": {
@@ -6080,14 +7449,15 @@
    },
    "GE-09": {
     "A": 4,
-    "H": 4,
+    "H": 6,
     "P": 4,
-    "R": 4
+    "R": 5
    },
    "GE-13": {
     "R": 2,
     "A": 1,
-    "P": 1
+    "P": 1,
+    "H": 2
    },
    "GE-10": {
     "R": 2,
@@ -6105,9 +7475,24 @@
     "A": 3,
     "P": 2,
     "R": 4
+   },
+   "GE-14": {
+    "R": 2,
+    "A": 2,
+    "X": 2,
+    "P": 3,
+    "H": 4
+   },
+   "GE-15": {
+    "A": 2,
+    "R": 2,
+    "X": 2,
+    "C": 1,
+    "P": 1,
+    "H": 2
    }
   },
-  "verificacoes": 2800,
+  "verificacoes": 3504,
   "problemas": 0
  },
  "exec_nome": {
@@ -6203,6 +7588,11 @@
    "efeito": "GE-01 a GE-13."
   },
   {
+   "o": "Quinze jornadas: dívidas tributárias (GE-14) e estrutura contábil e plano tributário do grupo (GE-15); planejado x realizado por contrato (GE-02, etapa 2); balancete, DRE e balanço (GE-05, etapa 2)",
+   "origem": "Aprovado por você (21:05 de 03/10/2026), no cruzamento do dia a dia com o modelo",
+   "efeito": "O racional financeiro de cada contrato nasce em Negócios (NE-04, etapa 2) e é comparado com o realizado no ritual. As decisões acima do executivo estão na tabela matéria × órgão."
+  },
+  {
    "o": "Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem",
    "origem": "Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)",
    "efeito": "De Assistido para Copiloto, pelas tarefas: GE-02 etapa 2. De Autopiloto para Autômato, pelas tarefas: GE-01 etapa 3, GE-02 etapa 3, GE-07 etapa 4, GE-11 etapa 3. De Copiloto para Assistido, pelas tarefas: GE-06 etapa 2, GE-07 etapa 2, GE-08 etapa 2, GE-09 etapa 1, GE-10 etapa 2. Nível de automação pela faixa: GE-05 média → alta; GE-06 alta → média; GE-12 média → alta."
@@ -6221,6 +7611,11 @@
    "o": "Cadências e conteúdos validados; gates de implantação",
    "origem": "Validado por você (14:07 de 03/10/2026)",
    "efeito": "Cadências da Gestão (fechamento, rateio, folha, avaliação, cultura, comunicação, inventário); políticas de cobrança, compras, remuneração e desenvolvimento; critério de rateio. O que depende de dado real ficou nos gates G1 a G9."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "Administrador do IMTS.OS (você) decide acima dos círculos compartilhados: recurso (GE-01), contas do IMTS.OS (GE-05), pessoas, remuneração e folha dos círculos (GE-07, GE-09, GE-13) (D2). Quem prepara não aprova: o líder do círculo aprova pagamento, reembolso, fechamento e impostos (GE-03, GE-04, GE-05); a folha e a remuneração têm o executivo ou o Administrador como segundo aprovador (D3). Aumento do orçamento e compra acima da reserva vão aos sócios; desligamento de executivo ou de líder também (M1). A comissão sai da receita recebida (M6); a segunda fatura vencida leva à proposta de suspensão ao executivo (M7). GE-02: desvio grave à ES-06, mudança de alvo à Estratégia, recurso novo à GE-01, e fim próprio para ação em atraso (M9, L1, L7)."
   }
  ],
  "alertas": [
@@ -6340,7 +7735,7 @@
   {
    "ref": "9.1.1",
    "nome": "Perform planning/budgeting/forecasting",
-   "onde": "GE-01; a montagem do orçamento é tarefa da Gestão na ES-03, etapa 3"
+   "onde": "GE-01; a montagem do orçamento é tarefa da Gestão na ES-03, etapa 3; o planejado e o realizado por contrato, GE-02, etapa 2"
   },
   {
    "ref": "9.1.2",
@@ -6385,7 +7780,7 @@
   {
    "ref": "9.3.2",
    "nome": "Perform general accounting",
-   "onde": "GE-05, etapas 1 e 2"
+   "onde": "GE-05, etapas 1 e 2; o plano de contas (9.3.2.1) e as operações entre empresas (9.3.2.5), GE-15"
   },
   {
    "ref": "9.3.3",
@@ -6395,7 +7790,7 @@
   {
    "ref": "9.3.4",
    "nome": "Perform financial reporting",
-   "onde": "GE-05, etapa 2"
+   "onde": "GE-05, etapa 2: balancete, DRE e balanço de cada empresa e o consolidado"
   },
   {
    "ref": "9.5",
@@ -6435,12 +7830,12 @@
   {
    "ref": "9.9.1",
    "nome": "Develop tax strategy and plan",
-   "onde": "Limite: não desenhado como etapa própria"
+   "onde": "GE-15, etapa 2"
   },
   {
    "ref": "9.9.2",
    "nome": "Process taxes",
-   "onde": "GE-05, etapa 2"
+   "onde": "GE-05, etapa 2; as dívidas tributárias, os parcelamentos e as transações, GE-14"
   },
   {
    "ref": "10.1",
@@ -6466,17 +7861,17 @@
  "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções da Gestão (categorias 7.0, 9.0 e 10.0 e o grupo 4.2), grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
  "principio": "Regra do círculo, aprovada por você às 11:50 de 03/10/2026: a Gestão decide o que é do seu ofício (o desdobramento e o controle do orçamento aprovado, o ritual de acompanhamento, a cobrança, a compra, o fechamento das contas, a aplicação do rateio e os processos de pessoas), dentro da alçada. Os sócios aprovam alvos e orçamento; o executivo decide o que passa da alçada da Gestão; o líder decide a contratação na sua equipe; o desligamento é decidido pelo executivo, com o líder; a Governança define as alçadas, o critério de rateio e as regras e guarda os contratos.",
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. O alerta do círculo 1 sobre a carga humana das jornadas transferidas continua sem medida.",
   "O ritual de acompanhamento é mensal, pelo método de estratégia aprovado em 03/10/2026. As outras cadências (fechamento, folha, avaliação, rituais de cultura, comunicação interna, rateio e inventário) são decididas pelo líder do círculo, na implantação.",
   "Os rascunhos de políticas de cobrança, compras, remuneração e desenvolvimento foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.",
-  "Da área trabalhista e contábil foram lidos os prazos da folha, das férias e da rescisão (CLT), o depósito do FGTS e a escrituração (Código Civil), parte em transcrição secundária. A regra fiscal não foi citada: os tributos dependem do regime de cada empresa, que não está no modelo (empresas e pessoas ficaram para depois). A apuração segue a lei vigente, com a assessoria.",
+  "Da área trabalhista e contábil foram lidos os prazos da folha, das férias e da rescisão (CLT), o depósito do FGTS e a escrituração (Código Civil), conferidos no texto oficial (Planalto) em 03/10/2026. A regra fiscal não foi citada: os tributos dependem do regime de cada empresa, que não está no modelo (empresas e pessoas ficaram para depois). A apuração segue a lei vigente, com a assessoria.",
   "Estratégia e políticas de pessoas (APQC 7.1), relações sindicais e queixas (7.4), benefícios (7.5.2), reembolso de despesas (9.6.2), dívida e aplicações (9.7.4) não têm etapa própria.",
   "O fornecedor não é uma parte do vocabulário do modelo: as trocas com ele aparecem como tarefas da Gestão.",
   "A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.",
   "O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.",
   "O referencial de processos é o APQC PCF 7.4, de agosto de 2024.",
-  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.",
   "As saídas estão listadas por etapa, não por caminho.",
   "Os números descrevem este desenho, não a operação atual."

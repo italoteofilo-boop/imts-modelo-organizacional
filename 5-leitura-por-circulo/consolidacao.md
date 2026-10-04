@@ -1,6 +1,6 @@
 # Consolidação das jornadas cross
 
-Jornadas nos nove círculos: 73. Cada jornada cross da rodada 2 virou uma cadeia de jornadas dos círculos; cada elo foi conferido nos dados (a jornada de origem entrega um produto que a seguinte recebe).
+Jornadas nos nove círculos: 75. Cada jornada cross da rodada 2 virou uma cadeia de jornadas dos círculos; cada elo foi conferido nos dados (a jornada de origem entrega um produto que a seguinte recebe).
 
 | Cross | Nome | Cadeia nova | Dono do resultado | Elos conferidos | Nota |
 |---|---|---|---|---|---|

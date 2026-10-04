@@ -26,7 +26,7 @@ copy (
   with ev as (
     select e.instancia, e.jornada, e.etapa, e.inicio, e.fim, e.id,
            sum(case when e.etapa is distinct from lag_etapa then 1 else 0 end) over (partition by e.instancia order by e.id) as bloco
-      from (select *, lag(etapa) over (partition by instancia order by id) as lag_etapa from rt.evento where tarefa is not null and simulado) e
+      from (select *, lag(etapa) over (partition by instancia order by id) as lag_etapa from rt.evento where tarefa is not null and simulado and tipo = 'fim' and fim is not null) e
   ), blocos as (
     select instancia, jornada, etapa, bloco, min(inicio) as ini, max(fim) as fim from ev group by 1, 2, 3, 4
   ), vis as (
@@ -51,7 +51,7 @@ copy (
          count(e.*) filter (where e.tipo = 'decisao') as decisoes,
          (select count(*) from (select tarefa from rt.evento x where x.instancia = i.id and x.tarefa is not null group by 1 having count(*) > 1) r) as voltas
     from rt.instancia i join rt.evento e on e.instancia = i.id
-   where i.simulado and i.estado = 'concluida' group by i.id order by i.id
+   where i.simulado and i.estado = 'concluida' and not i.interativo group by i.id order by i.id
 ) to stdout with csv header
 """
 

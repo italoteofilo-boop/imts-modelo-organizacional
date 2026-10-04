@@ -1179,11 +1179,11 @@ MUDANCAS = [
 ]
 
 LIMITES = [
-    'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+    'Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.',
     'As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder ajusta na implantação. O prazo de resposta da IN-02 depende de volume e ficou para o gate G9 (calibração).',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. A versão 8.0, de 27/02/2026, foi conferida só nas 13 categorias.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).',
     'Quando uma empresa sai do portfólio, a IN-07 retira as ofertas dela do catálogo e a IN-04 revê os indicadores. O destino dos dados (IN-03) e das bases (IN-05) dessa empresa ainda não está desenhado.',
     'O ajuste de oferta em uso não gera aviso à Estratégia: fica registrado no catálogo de ofertas. Tratar a mudança de preço-base como revisão é leitura do desenho, a confirmar.',
     'As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.',

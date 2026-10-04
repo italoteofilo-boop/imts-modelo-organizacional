@@ -31,6 +31,10 @@ REGRAS = {
     'Compra fora do orçamento e pagamento': [('GE-04', 'Executivo da empresa', 'Aprovar o pedido fora do orçamento'),
                                              ('GE-04', 'Sócios', 'Aprovar o pedido acima da reserva de contingência'),
                                              ('GE-04', 'Líder do círculo', 'Aprovar o pagamento')],
+    # acrescentadas com as jornadas GE-14 e GE-15 e a etapa nova da NE-04 (aprovadas às 21:05 de 03/10/2026)
+    'Dívida tributária': [('GE-14', 'Executivo da empresa', 'Decidir o parcelamento ou a transação'), ('GE-14', 'Sócios', 'Decidir o parcelamento ou a transação pelos sócios')],
+    'Plano tributário do grupo': [('GE-15', 'Executivo da empresa', 'Aprovar o plano tributário'), ('GE-15', 'Sócios', 'Decidir o plano tributário do grupo')],
+    'Margem do contrato fora da política': [('NE-04', 'Executivo da empresa', 'Decidir seguir com a margem fora da política comercial')],
     'Aportes, distribuição e contas': [('GE-05', 'Executivo da empresa', ''), ('GE-05', 'Governança', 'Conferir os poderes'),
                                        ('GE-05', 'Administrador do IMTS.OS', ''), ('GE-05', 'Líder do círculo', '')],
     'Vaga, movimentação e desligamento': [('GE-07', 'Executivo da empresa', ''), ('GE-07', 'Sócios', ''),

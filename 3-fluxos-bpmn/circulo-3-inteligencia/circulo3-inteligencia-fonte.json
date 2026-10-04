@@ -4494,7 +4494,7 @@
    "dominio": "Método e oferta",
    "classe": "essencial",
    "onda": 2,
-   "objetivo": "Levar uma aposta aprovada no portão de entrada até uma oferta pronta para vender e entregar: enquadramento, solução e método de entrega, modelo de negócio e preço-base, validação com clientes reais e pacote completo. Entre os dois portões, quem decide é a Inteligência; o executivo da empresa, Negócios e a Gestão opinam e sugerem. A Estratégia decide os dois portões. O ajuste de uma oferta em uso, quando não muda problema, público, modelo nem preço-base, é decidido e feito aqui, sem portão; a revisão que muda um deles volta ao portão de entrada.",
+   "objetivo": "Levar uma aposta aprovada no portão de entrada até uma oferta pronta para vender e entregar: enquadramento, solução e método de entrega, modelo de negócio e preço-base, validação com clientes reais e pacote completo. Entre os dois portões, quem decide é a Inteligência; o executivo da empresa, Negócios e a Gestão opinam e sugerem. A Estratégia decide os dois portões. O ajuste de uma oferta em uso, quando cumpre o limite do ajuste (não muda público, promessa nem escopo principal, não reduz o preço-base, não pede capacidade nova nem muda o risco do contrato-modelo), é decidido e feito aqui, sem portão; a revisão que falha em alguma condição volta ao portão de entrada.",
    "frequencia": "Por evento: aposta aprovada no portão de entrada, decisão da Estratégia sobre aposta devolvida, decisão do portão de lançamento, pedido sobre oferta em uso, aposta ou oferta encerrada, ou empresa que sai do portfólio",
    "automacao": {
     "nivel": "média na preparação, baixa nas decisões",
@@ -4883,14 +4883,14 @@
        "exec": "R",
        "raia": "Inteligência · automação",
        "tipo": "script",
-       "cond": "O que foi decidido sobre o pedido? Revisão: muda problema, público, modelo ou preço-base"
+       "cond": "O que foi decidido sobre o pedido? Revisão: falha em alguma condição do limite do ajuste"
       },
       {
        "nome": "Avisar quem pediu de que a revisão foi ao portão de entrada",
        "exec": "R",
        "raia": "Inteligência · automação",
        "tipo": "script",
-       "cond": "O que foi decidido sobre o pedido? Revisão: muda problema, público, modelo ou preço-base"
+       "cond": "O que foi decidido sobre o pedido? Revisão: falha em alguma condição do limite do ajuste"
       },
       {
        "nome": "Registrar a recusa do pedido e avisar quem pediu, com o motivo",
@@ -4963,11 +4963,18 @@
        "cond": "O ajuste está conforme os padrões de identidade? Há ponto que os padrões não cobrem"
       },
       {
-       "nome": "Aprovar o ajuste e conferir que ele não mudou problema, público, modelo nem preço-base",
+       "nome": "Aprovar o ajuste e conferir as cinco condições do limite do ajuste",
        "exec": "P",
        "raia": "Inteligência · pessoa",
        "tipo": "user",
        "cond": null
+      },
+      {
+       "nome": "Avisar a Estratégia do ajuste feito sem portão, com o motivo da dispensa",
+       "exec": "R",
+       "raia": "Inteligência · automação",
+       "tipo": "script",
+       "cond": "O ajuste ficou dentro do limite do ajuste? Sim"
       },
       {
        "nome": "Enviar à Estratégia a revisão em que o ajuste se transformou, com a evidência",
@@ -4991,12 +4998,12 @@
        "quem": "Inteligência · pessoa",
        "saidas": [
         {
-         "rotulo": "Ajuste: não muda problema, público, modelo nem preço-base",
+         "rotulo": "Ajuste: cumpre as cinco condições do limite do ajuste",
          "via": [],
          "vai": "segue na etapa"
         },
         {
-         "rotulo": "Revisão: muda problema, público, modelo ou preço-base",
+         "rotulo": "Revisão: falha em alguma condição do limite do ajuste",
          "via": [
           "Enviar à Estratégia o pedido de revisão da oferta, com a evidência",
           "Avisar quem pediu de que a revisão foi ao portão de entrada"
@@ -5086,7 +5093,9 @@
        "saidas": [
         {
          "rotulo": "Sim",
-         "via": [],
+         "via": [
+          "Avisar a Estratégia do ajuste feito sem portão, com o motivo da dispensa"
+         ],
          "vai": "vai para a etapa 9"
         },
         {
@@ -5113,6 +5122,12 @@
        ]
       },
       {
+       "o": "Ajuste de oferta feito sem portão, com o motivo da dispensa",
+       "para": [
+        "Estratégia"
+       ]
+      },
+      {
        "o": "Pedido de revisão da aposta ou da oferta",
        "para": [
         "Estratégia"
@@ -5134,13 +5149,13 @@
      "box": [
       4999.0,
       -44,
-      5752.0,
+      5958.0,
       2516
      ],
      "foco": [
       5069.0,
       390.0,
-      6017.0,
+      6223.0,
       2036.0,
       5094,
       2200.0
@@ -5291,17 +5306,17 @@
       }
      ],
      "box": [
-      11179.0,
+      11385.0,
       -44,
       2044.0,
       2516
      ],
      "foco": [
-      11249.0,
+      11455.0,
       390.0,
       1959.0,
       2036.0,
-      11274,
+      11480,
       2200.0
      ]
     },
@@ -5468,17 +5483,17 @@
       }
      ],
      "box": [
-      13239.0,
+      13445.0,
       -44,
       2662.0,
       2516
      ],
      "foco": [
-      13309.0,
+      13515.0,
       566.0,
       2522.0,
       1860.0,
-      13334,
+      13540,
       2200.0
      ]
     },
@@ -5642,17 +5657,17 @@
       }
      ],
      "box": [
-      15917.0,
+      16123.0,
       -44,
       3074.0,
       2516
      ],
      "foco": [
-      15987.0,
+      16193.0,
       214.0,
       2989.0,
       2212.0,
-      16012,
+      16218,
       2200.0
      ]
     },
@@ -5997,17 +6012,17 @@
       }
      ],
      "box": [
-      19007.0,
+      19213.0,
       -44,
       5958.0,
       2516
      ],
      "foco": [
-      19077.0,
+      19283.0,
       390.0,
       6223.0,
       2036.0,
-      19102,
+      19308,
       2200.0
      ]
     },
@@ -6276,17 +6291,17 @@
       }
      ],
      "box": [
-      25393.0,
+      25599.0,
       -44,
       4516.0,
       2516
      ],
      "foco": [
-      25463.0,
+      25669.0,
       742.0,
       4431.0,
       1684.0,
-      25488,
+      25694,
       2376.0
      ]
     },
@@ -6342,17 +6357,17 @@
       }
      ],
      "box": [
-      29925.0,
+      30131.0,
       -44,
       602.0,
       2516
      ],
      "foco": [
-      29940.0,
+      30146.0,
       214.0,
       572.0,
       2212.0,
-      30020,
+      30226,
       2376.0
      ]
     },
@@ -6494,23 +6509,23 @@
       }
      ],
      "box": [
-      30543.0,
+      30749.0,
       -44,
       1632.0,
       2516
      ],
      "foco": [
-      30613.0,
+      30819.0,
       2326.0,
       1691.0,
       100.0,
-      30638,
+      30844,
       2376.0
      ]
     }
    ],
    "size": [
-    32436,
+    32642,
     2464
    ]
   },
@@ -6561,6 +6576,7 @@
     "Solicitante",
     "Líder do círculo",
     "Governança",
+    "Executivo da empresa",
     "Inteligência · pessoa",
     "Inteligência · agente",
     "Inteligência · automação"
@@ -6732,15 +6748,15 @@
       285.0,
       -44,
       2250.0,
-      1108
+      1284
      ],
      "foco": [
       60.0,
       30.0,
       2810.0,
-      988.0,
+      1164.0,
       380,
-      968.0
+      1144.0
      ]
     },
     {
@@ -6831,15 +6847,15 @@
       2963.0,
       -44,
       808.0,
-      1108
+      1284
      ],
      "foco": [
       2978.0,
-      566.0,
+      742.0,
       922.0,
       452.0,
       3058,
-      792.0
+      968.0
      ]
     },
     {
@@ -6914,6 +6930,20 @@
        "raia": "Inteligência · automação",
        "tipo": "script",
        "cond": "Qual foi a resposta do dono? Não respondeu no prazo"
+      },
+      {
+       "nome": "Decidir a recomendação sem resposta do dono: aceitar, adiar ou recusar",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "Qual foi a resposta do dono? Não respondeu no prazo"
+      },
+      {
+       "nome": "Registrar a decisão do executivo sobre a recomendação",
+       "exec": "R",
+       "raia": "Inteligência · automação",
+       "tipo": "script",
+       "cond": "Qual foi a resposta do dono? Não respondeu no prazo"
       }
      ],
      "paralelo": false,
@@ -6962,7 +6992,9 @@
         {
          "rotulo": "Não respondeu no prazo",
          "via": [
-          "Apontar ao executivo a recomendação sem resposta"
+          "Apontar ao executivo a recomendação sem resposta",
+          "Decidir a recomendação sem resposta do dono: aceitar, adiar ou recusar",
+          "Registrar a decisão do executivo sobre a recomendação"
          ],
          "vai": "fim: Recomendação recusada, adiada ou sem resposta"
         }
@@ -7001,16 +7033,16 @@
      "box": [
       3993.0,
       -44,
-      2456.0,
-      1108
+      2868.0,
+      1284
      ],
      "foco": [
       4063.0,
       214.0,
-      2721.0,
-      804.0,
+      3133.0,
+      980.0,
       4088,
-      792.0
+      968.0
      ]
     },
     {
@@ -7052,6 +7084,20 @@
        "cond": "A melhoria foi feita? Não, e o dono desistiu ou o novo prazo venceu"
       },
       {
+       "nome": "Decidir a melhoria não feita: cobrar o dono, adiar ou retirar",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A melhoria foi feita? Não, e o dono desistiu ou o novo prazo venceu"
+      },
+      {
+       "nome": "Registrar a decisão do executivo sobre a melhoria",
+       "exec": "R",
+       "raia": "Inteligência · automação",
+       "tipo": "script",
+       "cond": "A melhoria foi feita? Não, e o dono desistiu ou o novo prazo venceu"
+      },
+      {
        "nome": "Medir o resultado da melhoria contra o ganho esperado",
        "exec": "A",
        "raia": "Inteligência · agente",
@@ -7087,7 +7133,9 @@
         {
          "rotulo": "Não, e o dono desistiu ou o novo prazo venceu",
          "via": [
-          "Apontar a melhoria não feita ao executivo"
+          "Apontar a melhoria não feita ao executivo",
+          "Decidir a melhoria não feita: cobrar o dono, adiar ou retirar",
+          "Registrar a decisão do executivo sobre a melhoria"
          ],
          "vai": "fim: Melhoria não feita, apontada ao executivo"
         }
@@ -7112,24 +7160,24 @@
       }
      ],
      "box": [
-      6877.0,
+      7289.0,
       -44,
-      1632.0,
-      1108
+      2044.0,
+      1284
      ],
      "foco": [
-      6947.0,
-      742.0,
-      1691.0,
-      276.0,
-      6972,
-      968.0
+      7359.0,
+      566.0,
+      2103.0,
+      628.0,
+      7384,
+      1144.0
      ]
     }
    ],
    "size": [
-    8770,
-    1056
+    9594,
+    1232
    ]
   }
  ],
@@ -7155,7 +7203,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4. Os processos das funções da Inteligência estão em dez grupos de cinco categorias: 1.4, modelos de negócio; 2.1 a 2.3, desenvolvimento de produtos e serviços; 3.1 e parte do 3.2, mercados, clientes e estratégia de marketing; 8.4, gestão da informação; e 13.5 a 13.7, gestão do conhecimento, medição e análise. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -7554,7 +7602,7 @@
    "tipo": "Acrescentado",
    "antes": "Sem equivalente",
    "agora": "Ajuste de oferta em uso, sem portão",
-   "nota": "Na IN-07, etapa 2, a Inteligência classifica o pedido sobre oferta em uso, ouvido o executivo: o ajuste que não muda problema, público, modelo nem preço-base é feito ali, só no que muda, com Negócios e a Governança quando mexe nos termos, e vai ao catálogo; a revisão volta ao portão de entrada. Decisão das 20:02."
+   "nota": "Na IN-07, etapa 2, a Inteligência classifica o pedido sobre oferta em uso, ouvido o executivo: o ajuste que cumpre o limite do ajuste (não muda público, promessa nem escopo principal, não reduz o preço-base, não pede capacidade nova nem muda o risco do contrato-modelo) é feito ali, só no que muda, com Negócios e a Governança quando mexe nos termos, e vai ao catálogo; a revisão volta ao portão de entrada. Decisão das 20:02."
   },
   {
    "tipo": "Acrescentado",
@@ -7826,6 +7874,12 @@
     }
    ],
    "recebe": [
+    {
+     "o": "Ajuste de oferta feito sem portão, com o motivo da dispensa",
+     "de": [
+      "IN-07"
+     ]
+    },
     {
      "o": "Aposta devolvida com evidência e recomendação",
      "de": [
@@ -8368,7 +8422,8 @@
    ],
    "tarefas": [
     "IN-04",
-    "IN-07"
+    "IN-07",
+    "IN-08"
    ]
   },
   {
@@ -8963,6 +9018,18 @@
    "code": "IN-08",
    "etapa": 3,
    "nome": "Responder à recomendação: aceitar, adiar ou recusar, com o motivo"
+  },
+  {
+   "parte": "Executivos",
+   "code": "IN-08",
+   "etapa": 3,
+   "nome": "Decidir a recomendação sem resposta do dono: aceitar, adiar ou recusar"
+  },
+  {
+   "parte": "Executivos",
+   "code": "IN-08",
+   "etapa": 4,
+   "nome": "Decidir a melhoria não feita: cobrar o dono, adiar ou retirar"
   }
  ],
  "stats": {
@@ -8970,14 +9037,14 @@
   "essenciais": 8,
   "recomendadas": 0,
   "etapas": 42,
-  "tarefas": 287,
+  "tarefas": 292,
   "decisoes": 77,
   "exec": {
    "A": 55,
    "P": 56,
-   "R": 115,
+   "R": 118,
    "C": 48,
-   "H": 12,
+   "H": 14,
    "X": 1
   },
   "modos": {
@@ -9033,7 +9100,7 @@
     "C": 6
    },
    "IN-07": {
-    "R": 29,
+    "R": 30,
     "P": 28,
     "C": 27,
     "A": 13,
@@ -9044,11 +9111,11 @@
     "A": 5,
     "P": 2,
     "C": 1,
-    "R": 13,
-    "H": 1
+    "R": 15,
+    "H": 3
    }
   },
-  "verificacoes": 4569,
+  "verificacoes": 4611,
   "problemas": 0
  },
  "exec_nome": {
@@ -9176,7 +9243,7 @@
   {
    "o": "O ajuste de oferta em uso não passa pelo portão; a revisão passa",
    "origem": "Ponto 5: você aprovou a alternativa que recomendei (20:02)",
-   "efeito": "Na IN-07, etapa 2, a Inteligência decide, ouvido o executivo, se o pedido é ajuste ou revisão. O ajuste, que não muda problema, público, modelo nem preço-base, é feito ali mesmo, só no que muda, e vai direto ao catálogo de ofertas. A revisão volta ao portão de entrada. Tratar a mudança de preço-base como revisão foi confirmado por você às 20:11 de 02/10/2026."
+   "efeito": "Na IN-07, etapa 2, a Inteligência decide, ouvido o executivo, se o pedido é ajuste ou revisão. O ajuste, que cumpre o limite do ajuste (não muda público, promessa nem escopo principal, não reduz o preço-base, não pede capacidade nova nem muda o risco do contrato-modelo), é feito ali mesmo, só no que muda, e vai direto ao catálogo de ofertas. A revisão volta ao portão de entrada. Tratar a mudança de preço-base como revisão foi confirmado por você às 20:11 de 02/10/2026."
   },
   {
    "o": "O círculo fica com oito jornadas",
@@ -9207,6 +9274,11 @@
    "o": "Cadências e conteúdos validados; gates de implantação",
    "origem": "Validado por você (14:07 de 03/10/2026)",
    "efeito": "IN-01 mensal; IN-04 medição mensal e revisão anual; IN-05 trimestral; IN-08 trimestral. O que depende de dado real ficou nos gates G1 a G9."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "IN-07: o ajuste feito sem portão é avisado à Estratégia, com o motivo da dispensa (L8). IN-08: a recomendação sem resposta e a melhoria não feita, levadas ao executivo, voltam com a decisão dele (M8)."
   }
  ],
  "alertas": [
@@ -9216,7 +9288,7 @@
   },
   {
    "o": "Amostra da Governança",
-   "nota": "A avaliação do resultado dos métodos depende do desenho da amostra, que só será feito no círculo 9. A entrega feita sem método publicado não é avaliada."
+   "nota": "A avaliação do resultado dos métodos usa a amostra única da GO-06, com desenho validado em 03/10/2026 (aba Gates de implantação, item 2.13). A entrega feita sem método publicado não é avaliada."
   },
   {
    "o": "Integração",
@@ -9246,7 +9318,7 @@
   {
    "ref": "1.4.2",
    "nome": "Maintain business models",
-   "onde": "IN-07, etapa 2: o ajuste de oferta em uso é decidido e feito na jornada; a revisão que muda problema, público, modelo ou preço-base volta ao portão de entrada, com os indicadores da IN-04"
+   "onde": "IN-07, etapa 2: o ajuste de oferta em uso é decidido e feito na jornada; a revisão que falha em alguma condição do limite do ajuste volta ao portão de entrada, com os indicadores da IN-04"
   },
   {
    "ref": "1.4.3",
@@ -9362,11 +9434,11 @@
  "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções da Inteligência, grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
  "principio": null,
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
   "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder ajusta na implantação. O prazo de resposta da IN-02 depende de volume e ficou para o gate G9 (calibração).",
   "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. A versão 8.0, de 27/02/2026, foi conferida só nas 13 categorias.",
-  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "Quando uma empresa sai do portfólio, a IN-07 retira as ofertas dela do catálogo e a IN-04 revê os indicadores. O destino dos dados (IN-03) e das bases (IN-05) dessa empresa ainda não está desenhado.",
   "O ajuste de oferta em uso não gera aviso à Estratégia: fica registrado no catálogo de ofertas. Tratar a mudança de preço-base como revisão é leitura do desenho, a confirmar.",
   "As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.",
@@ -9376,7 +9448,7 @@
   "O mandato de criação ou de aquisição de empresa chega à Inteligência, mas a IN-07 só age no de venda fechada ou de encerramento.",
   "Exceção ao cálculo único: os indicadores de clareza e atualidade dos padrões são calculados pela Identidade (ID-05) e conferidos com a ficha na IN-04.",
   "O líder do círculo aparece como dono de dado, de indicador, de tema e de melhoria. A delegação e a carga desse papel ficam para quando as pessoas forem tratadas.",
-  "Os indicadores do próprio círculo são calculados por ele; a conferência independente fica para a Governança, no círculo 9.",
+  "Os indicadores do próprio círculo são calculados por ele; a conferência independente é da Governança, por amostra (GO-03, etapa 2).",
   "A comparação de desempenho com referências (benchmarking) não está desenhada.",
   "O prazo de guarda vale para dados (IN-03). O registro de perguntas e respostas e o registro de lições entram no catálogo de dados como qualquer fonte, com ficha, classificação e prazo de guarda; as bases saem pela revisão da base (IN-05).",
   "Cinco jornadas (IN-01, IN-02, IN-03, IN-04 e IN-08) não têm ponto de conferência com a identidade, porque produzem análise e medida para uso interno. Se a regra do círculo 1 vale para toda jornada, falta incluir o ponto nas cinco.",

@@ -1,19 +1,19 @@
 {
  "integridade": {
-  "verificacoes": 3069,
+  "verificacoes": 3504,
   "problemas": 0
  },
  "lint": {
-  "arquivos": 13,
+  "arquivos": 15,
   "apontamentos": 0,
   "regras": 26
  },
  "render": {
-  "arquivos": 13,
+  "arquivos": 15,
   "avisos": 0
  },
  "rotulos": {
-  "tarefas": 176,
+  "tarefas": 203,
   "problemas": 0
  },
  "mutacao": {
@@ -21,13 +21,13 @@
   "total": 21
  },
  "cruzamento": {
-  "trocas": 410,
-  "verificacoes": 1048,
+  "trocas": 411,
+  "verificacoes": 1055,
   "problemas": 0,
   "mut_detectados": 12,
   "mut_total": 12,
-  "alcadas": 17,
-  "alcadas_niveis": 40,
+  "alcadas": 20,
+  "alcadas_niveis": 45,
   "alcadas_faltas": 0,
   "alcadas_mut": 4,
   "alcadas_mut_total": 4,

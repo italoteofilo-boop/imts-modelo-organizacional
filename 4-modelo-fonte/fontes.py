@@ -184,6 +184,9 @@ FONTES_BASE.update({
                       ('DOU (in.gov.br)', 'https://www.in.gov.br/en/web/dou/-/resolucao-cd/anpd-n-15-de-24-de-abril-de-2024-556243024'),
                       ('Reprodução do DOU, Governo de MS (PDF)', 'https://www.lgpd.ms.gov.br/wp-content/uploads/2024/05/REGULAMENTO-DE-COMUNICACAO-DE-INCIDENTE-DE-SEGURANCA-ABRIL-2024-ANPD-.pdf'),
                       ('LegisWeb (transcrição)', 'https://www.legisweb.com.br/legislacao/?id=458235')]},
+ 'l13988': {'ref': 'Brasil, Lei nº 13.988, de 14 de abril de 2020 (transação resolutiva de litígio na cobrança de créditos da Fazenda Pública federal)',
+            'conf': 'Texto aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 1º, caput e § 1º, e art. 2º, caput e incisos I a III (modalidades).',
+            'links': [('planalto.gov.br, Lei 13.988/2020', 'https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2020/lei/l13988.htm')]},
  'cc2002': {'ref': 'Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)',
             'conf': 'Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: arts. 389 (parágrafo único: IPCA quando o índice '
                     'não foi convencionado), 395, 421, 421-A (inciso II), 422, 441 a 446 (art. 445: 30 dias para móvel e 1 ano para imóvel; art. 446: os '

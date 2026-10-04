@@ -137,6 +137,10 @@
       {
        "o": "Projeto reativado",
        "de": "IT-03"
+      },
+      {
+       "o": "Decisão do executivo sobre o impasse da implantação",
+       "de": "IT-02"
       }
      ],
      "tarefas": [
@@ -647,6 +651,7 @@
     "Operações",
     "Gestão",
     "Identidade",
+    "Executivo da empresa",
     "Integração · pessoa",
     "Integração · agente",
     "Integração · automação"
@@ -754,15 +759,15 @@
       261.0,
       -44,
       2044.0,
-      1460
+      1636
      ],
      "foco": [
       132.0,
       70.0,
       2158.0,
-      1124.0,
+      1300.0,
       356,
-      1144.0
+      1320.0
      ]
     },
     {
@@ -959,15 +964,15 @@
       2321.0,
       -44,
       2662.0,
-      1460
+      1636
      ],
      "foco": [
       2336.0,
       566.0,
       2632.0,
-      804.0,
+      980.0,
       2416,
-      1320.0
+      1496.0
      ]
     },
     {
@@ -1017,6 +1022,20 @@
        "raia": "Integração · automação",
        "tipo": "script",
        "cond": "O cliente aceitou a implantação? Impasse: a pendência não se resolve na implantação"
+      },
+      {
+       "nome": "Decidir o impasse da implantação: corrigir com recurso, rever o contrato ou encerrar",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "O cliente aceitou a implantação? Impasse: a pendência não se resolve na implantação"
+      },
+      {
+       "nome": "Registrar a decisão do executivo e devolvê-la à carteira de projetos",
+       "exec": "R",
+       "raia": "Integração · automação",
+       "tipo": "script",
+       "cond": "O cliente aceitou a implantação? Impasse: a pendência não se resolve na implantação"
       }
      ],
      "paralelo": false,
@@ -1040,7 +1059,9 @@
         {
          "rotulo": "Impasse: a pendência não se resolve na implantação",
          "via": [
-          "Levar o impasse ao executivo, com o que falta e as opções, e suspender o projeto na carteira"
+          "Levar o impasse ao executivo, com o que falta e as opções, e suspender o projeto na carteira",
+          "Decidir o impasse da implantação: corrigir com recurso, rever o contrato ou encerrar",
+          "Registrar a decisão do executivo e devolvê-la à carteira de projetos"
          ],
          "vai": "fim: Impasse da implantação levado ao executivo"
         }
@@ -1061,6 +1082,12 @@
        ]
       },
       {
+       "o": "Decisão do executivo sobre o impasse da implantação",
+       "para": [
+        "IT-01"
+       ]
+      },
+      {
        "o": "Projeto suspenso ou encerrado por outra jornada",
        "para": [
         "IT-01"
@@ -1070,16 +1097,16 @@
      "box": [
       4999.0,
       -44,
-      1426.0,
-      1460
+      1838.0,
+      1636
      ],
      "foco": [
       5069.0,
       214.0,
-      1691.0,
-      1156.0,
+      2103.0,
+      1332.0,
       5094,
-      968.0
+      1144.0
      ]
     },
     {
@@ -1128,24 +1155,24 @@
       }
      ],
      "box": [
-      6853.0,
+      7265.0,
       -44,
       396.0,
-      1460
+      1636
      ],
      "foco": [
-      6868.0,
-      1270.0,
+      7280.0,
+      1446.0,
       510.0,
       100.0,
-      6948,
-      1320.0
+      7360,
+      1496.0
      ]
     }
    ],
    "size": [
-    7510,
-    1408
+    7922,
+    1584
    ]
   },
   {
@@ -2648,7 +2675,7 @@
    "objetivo": "Fazer cada agente ou automação ser montado pela ficha da capacidade, com o método, o conhecimento, os padrões de identidade e a alçada; passar nos casos de teste da Inteligência e da Identidade antes de entrar em uso; ser aceito pelo líder do círculo dono; e ser monitorado em uso, com o desvio corrigido, suspenso quando sai da alçada e retirado quando o método, a base ou a marca saem de uso. A Inteligência diz o que o agente precisa saber e mede se ele acertou; a Integração monta, testa, libera e mantém; a Governança define a alçada e audita.",
    "frequencia": "Por evento: pedido de montagem ou de mudança, método, base, padrão ou marca alterados, falha ou desvio detectado; e a cada ciclo de monitoramento (cadência: mensal)",
    "automacao": {
-    "nivel": "alta",
+    "nivel": "média",
     "motivo": "Montar, rodar os casos de teste, medir o acerto e monitorar são de agente e automação; decidir a arquitetura, julgar os casos de fronteira, liberar e decidir a correção são de pessoa da Integração; aceitar o agente é do líder do círculo dono; a alçada é da Governança."
    },
    "base": [
@@ -3088,8 +3115,8 @@
     {
      "n": 4,
      "nome": "Monitorar o agente em uso e tratar o desvio",
-     "dono": "Integração",
-     "modo": "Autômato",
+     "dono": "Integração; a pessoa confirma o desvio",
+     "modo": "Autopiloto",
      "risco": "médio",
      "entradas": [
       {
@@ -3117,25 +3144,39 @@
        "cond": null
       },
       {
+       "nome": "Confirmar o desvio apontado e a correção a fazer",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "O agente passou de algum limite de erro, custo ou alçada? Sim, erro ou custo acima do limite"
+      },
+      {
        "nome": "Abrir a correção do agente",
        "exec": "R",
        "raia": "Integração · automação",
        "tipo": "script",
-       "cond": "Há desvio no agente? Sim, corrigível na montagem"
+       "cond": "O agente passou de algum limite de erro, custo ou alçada? Sim, erro ou custo acima do limite"
       },
       {
        "nome": "Suspender o agente, avisar a Governança e o dono e registrar a correção pendente",
        "exec": "R",
        "raia": "Integração · automação",
        "tipo": "script",
-       "cond": "Há desvio no agente? Sim: risco ou decisão fora da alçada"
+       "cond": "O agente passou de algum limite de erro, custo ou alçada? Sim: risco ou decisão fora da alçada"
+      },
+      {
+       "nome": "Confirmar a suspensão e a causa do desvio",
+       "exec": "P",
+       "raia": "Integração · pessoa",
+       "tipo": "user",
+       "cond": "O agente passou de algum limite de erro, custo ou alçada? Sim: risco ou decisão fora da alçada"
       }
      ],
      "paralelo": false,
      "decisoes": [
       {
-       "pergunta": "Há desvio no agente?",
-       "quem": "Integração · agente",
+       "pergunta": "O agente passou de algum limite de erro, custo ou alçada?",
+       "quem": "Integração · automação",
        "saidas": [
         {
          "rotulo": "Não",
@@ -3143,8 +3184,9 @@
          "vai": "fim: Agente em uso, monitorado"
         },
         {
-         "rotulo": "Sim, corrigível na montagem",
+         "rotulo": "Sim, erro ou custo acima do limite",
          "via": [
+          "Confirmar o desvio apontado e a correção a fazer",
           "Abrir a correção do agente"
          ],
          "vai": "volta à etapa 1"
@@ -3152,7 +3194,8 @@
         {
          "rotulo": "Sim: risco ou decisão fora da alçada",
          "via": [
-          "Suspender o agente, avisar a Governança e o dono e registrar a correção pendente"
+          "Suspender o agente, avisar a Governança e o dono e registrar a correção pendente",
+          "Confirmar a suspensão e a causa do desvio"
          ],
          "vai": "fim: Agente suspenso, com a Governança e o dono avisados"
         }
@@ -3202,21 +3245,21 @@
      "box": [
       5023.0,
       -44,
-      1220.0,
+      1632.0,
       1284
      ],
      "foco": [
       5093.0,
-      943.0,
-      1485.0,
-      251.0,
+      742.0,
+      1897.0,
+      452.0,
       5118,
       1144.0
      ]
     }
    ],
    "size": [
-    6710,
+    7122,
     1232
    ]
   },
@@ -4300,7 +4343,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4. Os processos da Integração estão em duas categorias: 8.0, tecnologia da informação (arquitetura, portfólio de TI, segurança, identidade e acesso, criação e teste de soluções, implantação, controle de mudança e suporte), base da IT-06 e da IT-07; e 13.0, capacidades do negócio (processos, portfólio e projetos, mudança), base da IT-01 a IT-05 e da IT-08. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -5127,6 +5170,7 @@
    ],
    "tarefas": [
     "IT-01",
+    "IT-02",
     "IT-03",
     "IT-04"
    ]
@@ -5262,6 +5306,12 @@
    "code": "IT-02",
    "etapa": 3,
    "nome": "Conferir a implantação com o cliente"
+  },
+  {
+   "parte": "Executivos",
+   "code": "IT-02",
+   "etapa": 3,
+   "nome": "Decidir o impasse da implantação: corrigir com recurso, rever o contrato ou encerrar"
   },
   {
    "parte": "Relações",
@@ -5425,20 +5475,20 @@
   "essenciais": 8,
   "recomendadas": 0,
   "etapas": 29,
-  "tarefas": 162,
+  "tarefas": 166,
   "decisoes": 37,
   "exec": {
-   "R": 76,
+   "R": 77,
    "A": 25,
-   "P": 28,
-   "H": 10,
+   "P": 30,
+   "H": 11,
    "C": 23
   },
   "modos": {
    "Copiloto": 11,
-   "Autopiloto": 5,
+   "Autopiloto": 6,
    "Assistido": 7,
-   "Autômato": 6
+   "Autômato": 5
   },
   "riscos": {
    "baixo": 12,
@@ -5456,9 +5506,9 @@
    "IT-02": {
     "A": 4,
     "P": 5,
-    "H": 2,
+    "H": 3,
     "C": 3,
-    "R": 7
+    "R": 8
    },
    "IT-03": {
     "A": 4,
@@ -5483,7 +5533,7 @@
    },
    "IT-06": {
     "R": 11,
-    "P": 3,
+    "P": 5,
     "A": 2,
     "C": 2,
     "H": 1
@@ -5502,7 +5552,7 @@
     "H": 2
    }
   },
-  "verificacoes": 2706,
+  "verificacoes": 2741,
   "problemas": 0
  },
  "exec_nome": {
@@ -5626,6 +5676,11 @@
    "o": "Cadências e conteúdos validados; gates de implantação",
    "origem": "Validado por você (14:07 de 03/10/2026)",
    "efeito": "IT-01 mensal; IT-05 trimestral; IT-06 mensal; IT-08 trimestral; método de projetos, prioridade da carteira, critério de liberação de agente (cinco testes) e política de segurança. O que depende de dado real ficou nos gates G1 a G9."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "IT-02, etapa 3: o impasse levado ao executivo volta com a decisão dele à carteira (IT-01) (M8). IT-06, etapa 4: a automação aponta a passagem de limite e uma pessoa confirma o desvio e a suspensão (M3)."
   }
  ],
  "alertas": [
@@ -5739,13 +5794,13 @@
  "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções da Integração, grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
  "principio": "Regra do círculo, aprovada às 09:30 de 03/10/2026: a Integração decide o que é do seu ofício (o método de projetos, a arquitetura e a plataforma, a ficha técnica de cada capacidade, a liberação do agente pelos casos de teste e a mudança em sistemas), ouvidos os donos. O executivo decide a prioridade dos projetos da sua empresa, como diz o documento-base; o líder do círculo dono decide o redesenho da jornada do seu círculo e aceita a capacidade e o agente; a Inteligência diz o que o agente precisa saber e mede se ele acertou; a Governança define a alçada, confere a segurança e audita.",
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
   "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
   "Os rascunhos de método de projetos, regra de prioridade, critério de liberação de agente e política de segurança foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.",
   "Continuidade de TI (APQC 8.3.4) e recuperação de desastre não estão desenhadas como etapa própria.",
   "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 21502 e da ISO/IEC 27001 lemos só o resumo.",
-  "Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Onde faltava o outro lado, as propostas à NE-01, à IT-04 e à IT-06 foram aprovadas e aplicadas. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "A tarefa de quem não é do círculo (cliente, executivo, líder do círculo dono, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.",
   "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
   "O rateio do custo dos círculos entre as empresas (E3) e o acordo de serviço como jornada entre empresas (E1) ficam para a consolidação das jornadas entre empresas.",

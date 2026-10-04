@@ -36,7 +36,7 @@ COBERTURA = [
     ('3.5.1', 'Manage leads/opportunities', 'Até a qualificação (3.5.1.1 a 3.5.1.3), Relações (RE-03). Daí em diante, NE-03 (aceite, quem conduz a venda, solução e proposta) e NE-02 (funil e previsão)'),
     ('3.5.2', 'Manage customers and accounts', 'NE-02, etapa 2: clientes-chave e plano de conta de venda; NE-06 para os contratos. O relacionamento e o plano de sucesso são de Relações (RE-05) e os dados mestres, da base de relacionamento (RE-03)'),
     ('3.5.3', 'Develop and manage sales proposals, bids, and quotes', 'NE-03 (propostas e cotações) e NE-05 (licitações)'),
-    ('3.5.4', 'Manage sales orders', 'NE-04, etapa 3, e NE-06, etapa 4 (contratação pela ata); o atendimento do pedido é de Operações e o faturamento, da Gestão'),
+    ('3.5.4', 'Manage sales orders', 'NE-04, etapa 4, e NE-06, etapa 4 (contratação pela ata); o atendimento do pedido é de Operações e o faturamento, da Gestão'),
     ('3.5.5', 'Manage sales partners and alliances', 'Capacitação e material do parceiro: Relações (RE-06). Resultado da venda com o parceiro: NE-07, etapa 3'),
     ('3.5.6 a 3.5.8', 'Perform sales at physical outlets; Perform field sales; Perform digital sales', 'Não desenhados como jornadas próprias: o canal de venda é atributo da oportunidade e da proposta (NE-03)'),
 ]
@@ -103,7 +103,7 @@ DECISOES = [
      'NE-01 semestral; NE-02 trimestral, com previsão mensal; NE-07 semestral; estrutura dos modelos de contrato e regra de remuneração. O que depende de dado real ficou nos gates G1 a G9.'),
     ('Correções da auditoria geral',
      'Aprovado por você (16:05 de 03/10/2026)',
-     'NE-04, etapa 2: a cláusula que é matéria dos sócios pela regra 10 dos contratos vai à decisão deles, depois da revisão da Governança (M1). Lei 14.133 conferida no texto oficial, inclusive o art. 86, § 3º, sobre a adesão de órgão municipal.'),
+     'NE-04, etapa 3: a cláusula que é matéria dos sócios pela regra 10 dos contratos vai à decisão deles, depois da revisão da Governança (M1). Lei 14.133 conferida no texto oficial, inclusive o art. 86, § 3º, sobre a adesão de órgão municipal.'),
 ]
 
 # ------------------- propostas de mudança em círculos já fechados (nenhuma)
@@ -135,12 +135,12 @@ MUDANCAS = [
 ]
 
 LIMITES = [
-    'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+    'Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.',
     'As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.',
     'A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos no texto oficial os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17, 18, 82 a 84, 86, 90, 140, 141, 164 e 165; a contratação direta não foi conferida. No fluxo, os prazos seguem “nos prazos da lei e do edital”.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).',
     'A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.',
     'Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.',

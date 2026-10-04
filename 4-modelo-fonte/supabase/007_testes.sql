@@ -1,7 +1,7 @@
 -- Gerado de testar_runtime.sql e testar_motor.sql: os mesmos testes como funções, para rodar no Supabase.
 -- Uso (desfaz tudo): do $$ begin raise exception '%', rt._testar_runtime() || ' | ' || rt._testar_motor(); end $$;
 create or replace function rt._testar_runtime() returns text language plpgsql set search_path = '' as $f$
-declare n int; v text; p uuid; t_id bigint; j text; dest smallint; esperado smallint;
+declare n int; v text; v_antes text; p uuid; t_id bigint; j text; dest smallint; esperado smallint;
 begin
   -- T1. Nove motores, um por círculo; Identidade é o piloto
   select count(*) into n from rt.motor;
@@ -13,15 +13,16 @@ begin
    where jsonb_array_length((select valor from rt.config where motor = m.circulo and chave = 'jornadas'))
          <> (select count(*) from org.jornada where circulo = m.circulo);
   if n <> 0 then raise exception 'FALHA T2: % motores com jornadas diferentes do modelo', n; end if;
-  if (select sum(jsonb_array_length(valor)) from rt.config where chave = 'jornadas') <> 73 then raise exception 'FALHA T2: total de jornadas'; end if;
+  if (select sum(jsonb_array_length(valor)) from rt.config where chave = 'jornadas') <> (select count(*) from org.jornada) then raise exception 'FALHA T2: total de jornadas'; end if;
 
   -- T3. Publicar uma versão abre uma atualização pendente em cada um dos nove motores
   n := rt.publicar_versao('teste-1', 'versão de teste');
   if n <> 9 then raise exception 'FALHA T3: % atualizações abertas', n; end if;
 
   -- T4. Testes vermelhos recusam e não mudam a versão do motor; verdes aplicam
+  v_antes := (select versao_base from rt.motor where circulo = 2);
   v := rt.concluir_atualizacao(2::smallint, 'teste-1', false, 'teste do círculo falhou');
-  if v <> 'recusada' or (select versao_base from rt.motor where circulo = 2) <> '2026-10-03' then raise exception 'FALHA T4: recusa'; end if;
+  if v <> 'recusada' or (select versao_base from rt.motor where circulo = 2) is distinct from v_antes then raise exception 'FALHA T4: recusa'; end if;
   v := rt.concluir_atualizacao(1::smallint, 'teste-1', true);
   if v <> 'aplicada' or (select versao_base from rt.motor where circulo = 1) <> 'teste-1' then raise exception 'FALHA T4: aplicação'; end if;
   begin
@@ -31,7 +32,7 @@ begin
     if sqlerrm like 'FALHA%' then raise; end if;
   end;
 
-  -- T5. Toda troca do modelo chega ao motor do círculo que a recebe (as 410)
+  -- T5. Toda troca do modelo chega ao motor do círculo que a recebe (todas)
   select count(*) into n from org.troca t
     join org.circulo cd on cd.nome = t.de_circulo join org.circulo cp on cp.nome = t.para_circulo
    where not exists (select 1 from rt.motor where circulo = cd.numero) or not exists (select 1 from rt.motor where circulo = cp.numero);
@@ -98,12 +99,13 @@ revoke all on function rt._testar_runtime() from public;
 create or replace function rt._testar_motor() returns text language plpgsql set search_path = '' as $f$
 declare n int; m int; i1 bigint; i2 bigint; j record; v_inst bigint;
 begin
-  -- T1. Cada uma das 1.555 tarefas está ligada a um sistema coerente com o executor (G7)
+  -- T1. Cada tarefa está ligada a um sistema coerente com o executor (G7)
   select count(*) into n from org.tarefa t left join rt.vinculo v on v.tarefa = t.id where v.tarefa is null;
   if n <> 0 then raise exception 'FALHA T1: % tarefas sem sistema', n; end if;
   select count(*) into n from rt.vinculo v join org.tarefa t on t.id = v.tarefa
-   where v.sistema <> case t.executor when 'P' then 'canal-pessoa' when 'H' then 'canal-pessoa' when 'A' then 'agente-ia'
-                                      when 'R' then 'automacao' when 'C' then 'troca-circulo' when 'X' then 'canal-externo' end;
+   where not (v.sistema = case t.executor when 'P' then 'canal-pessoa' when 'H' then 'canal-pessoa' when 'A' then 'agente-ia'
+                                      when 'R' then 'automacao' when 'C' then 'troca-circulo' when 'X' then 'canal-externo' end
+              or (t.executor = 'R' and v.sistema in ('erp-contabil', 'banco', 'emissor-fiscal')));
   if n <> 0 then raise exception 'FALHA T1: % tarefas no sistema errado', n; end if;
 
   -- T2. Toda raia de pessoa tem usuário simulado em todos os motores que a usam
@@ -114,9 +116,9 @@ begin
   if n <> 0 then raise exception 'FALHA T2: % raias sem pessoa simulada', n; end if;
   if exists (select 1 from rt.pessoa where not simulado) then raise exception 'FALHA T2: pessoa real na carga'; end if;
 
-  -- T3. O grafo bate com o modelo: 1.555 tarefas, cada uma num nó; toda jornada tem início e fim
+  -- T3. O grafo bate com o modelo: todas as tarefas, cada uma num nó; toda jornada tem início e fim
   select count(*) into n from rt.no where tarefa is not null;
-  if n <> 1555 then raise exception 'FALHA T3: % nós de tarefa', n; end if;
+  if n <> (select count(*) from org.tarefa) then raise exception 'FALHA T3: % nós de tarefa', n; end if;
   select count(*) into n from org.jornada jo where not exists (select 1 from rt.no where jornada = jo.codigo and tipo = 'startEvent')
                                                   or not exists (select 1 from rt.no where jornada = jo.codigo and tipo = 'endEvent');
   if n <> 0 then raise exception 'FALHA T3: % jornadas sem início ou fim', n; end if;
@@ -139,12 +141,12 @@ begin
     raise exception 'FALHA T5: mesma semente deu caminhos diferentes';
   end if;
 
-  -- T6. Eventos: todos simulados; pessoa nas tarefas de gente, nenhuma nas de máquina; relógio não volta
+  -- T6. Eventos: todos simulados; na execução da tarefa, pessoa nas tarefas de gente, nenhuma nas de máquina; relógio não volta
   select count(*) into n from rt.evento where instancia is not null and not simulado;
   if n <> 0 then raise exception 'FALHA T6: % eventos sem marca de simulado', n; end if;
-  select count(*) into n from rt.evento where tarefa is not null and ((executor in ('A', 'R') and pessoa is not null) or (executor not in ('A', 'R') and pessoa is null));
+  select count(*) into n from rt.evento where tarefa is not null and tipo = 'fim' and ((executor in ('A', 'R') and pessoa is not null) or (executor not in ('A', 'R') and pessoa is null));
   if n <> 0 then raise exception 'FALHA T6: % eventos com pessoa errada', n; end if;
-  select count(*) into n from rt.evento e join org.tarefa t on t.id = e.tarefa join rt.pessoa p on p.pseudonimo = e.pessoa where p.papel <> t.raia;
+  select count(*) into n from rt.evento e join org.tarefa t on t.id = e.tarefa join rt.pessoa p on p.pseudonimo = e.pessoa where e.tipo = 'fim' and p.papel <> t.raia;
   if n <> 0 then raise exception 'FALHA T6: % eventos com pessoa de outro papel', n; end if;
   select count(*) into n from (select fim, lag(fim) over (partition by instancia order by id) as ant from rt.evento where tarefa is not null) x where fim < ant;
   if n <> 0 then raise exception 'FALHA T6: relógio voltou % vezes', n; end if;
@@ -155,11 +157,13 @@ begin
   if n <> 0 then raise exception 'FALHA T7: % trocas no motor errado', n; end if;
   if not exists (select 1 from rt.troca_envio) then raise exception 'FALHA T7: nenhuma troca enviada'; end if;
 
-  -- T8. Voltas cortadas: nenhuma tarefa roda mais de 3 vezes numa instância
-  select count(*) into n from (select instancia, tarefa from rt.evento where tarefa is not null group by 1, 2 having count(*) > 3) x;
+  -- T8. Voltas cortadas: cada fluxo de volta passa no máximo duas vezes, então uma tarefa roda no máximo 1 + 2 × (fluxos de volta da jornada)
+  select count(*) into n from (select e.instancia, e.tarefa, i.jornada, count(*) c from rt.evento e join rt.instancia i on i.id = e.instancia
+                                where e.tarefa is not null and e.tipo = 'fim' group by 1, 2, 3) x
+   where c > 1 + 2 * (select count(*) from rt.fluxo f where f.jornada = x.jornada and f.volta);
   if n <> 0 then raise exception 'FALHA T8: % tarefas rodaram mais de 3 vezes', n; end if;
 
-  -- T9. As 73 jornadas rodam (uma vez cada) sem erro: o motor serve aos nove círculos
+  -- T9. Todas as jornadas rodam (uma vez cada) sem erro: o motor serve aos nove círculos
   for j in select codigo from org.jornada loop
     v_inst := rt.executar_simulada(j.codigo, 0.77, timestamptz '2026-10-05 08:00-03');
     if (select estado from rt.instancia where id = v_inst) <> 'concluida' then

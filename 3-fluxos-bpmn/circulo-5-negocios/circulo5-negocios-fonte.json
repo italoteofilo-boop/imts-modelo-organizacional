@@ -1730,7 +1730,7 @@
    "dominio": "Venda",
    "classe": "essencial",
    "onda": 1,
-   "objetivo": "Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda.",
+   "objetivo": "Fazer cada proposta aceita ou em negociação terminar em contrato assinado no modelo da Governança, com o racional financeiro (receita, custos, margem, impostos e caixa por período) montado, conferido com a política comercial e passado à Gestão para comparar o planejado com o realizado, com as concessões dentro das alçadas, ou em perda registrada com o motivo; e passar o contrato a quem implanta, entrega, fatura e acompanha o cliente. Contratos e aditivos seguem o modelo da Governança, que já traz os padrões de identidade. O executivo assina pela empresa; a Governança revisa o que foge do modelo, confere os poderes de quem assina e guarda.",
    "frequencia": "Por evento: proposta aceita ou em negociação",
    "automacao": {
     "nivel": "média",
@@ -1925,14 +1925,97 @@
     },
     {
      "n": 2,
-     "nome": "Formalizar e assinar o contrato",
-     "dono": "Negócios, com a Governança; assina o executivo",
-     "modo": "Assistido",
-     "risco": "alto",
+     "nome": "Montar o racional financeiro do contrato",
+     "dono": "Negócios, com a Gestão; a margem fora da política, o executivo",
+     "modo": "Copiloto",
+     "risco": "médio",
      "entradas": [
       {
        "o": "Condições acordadas com o cliente",
        "de": "etapa 1"
+      },
+      {
+       "o": "Tabela de preços e política comercial vigentes",
+       "de": "NE-01"
+      }
+     ],
+     "tarefas": [
+      {
+       "nome": "Montar o racional financeiro do contrato: receita, custos, margem, impostos e caixa por período",
+       "exec": "A",
+       "raia": "Negócios · agente",
+       "tipo": "service",
+       "cond": null
+      },
+      {
+       "nome": "Conferir o racional com a política comercial e o orçamento",
+       "exec": "P",
+       "raia": "Negócios · pessoa",
+       "tipo": "user",
+       "cond": null
+      },
+      {
+       "nome": "Decidir seguir com a margem fora da política comercial",
+       "exec": "H",
+       "raia": "Executivo da empresa",
+       "tipo": "user",
+       "cond": "A margem do racional está dentro da política comercial? Não"
+      }
+     ],
+     "paralelo": false,
+     "decisoes": [
+      {
+       "pergunta": "A margem do racional está dentro da política comercial?",
+       "quem": "Negócios · pessoa",
+       "saidas": [
+        {
+         "rotulo": "Sim",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Não",
+         "via": [
+          "Decidir seguir com a margem fora da política comercial"
+         ],
+         "vai": "segue na etapa"
+        }
+       ]
+      }
+     ],
+     "saidas": [
+      {
+       "o": "Condições acordadas e racional financeiro do contrato",
+       "para": [
+        "etapa 3"
+       ]
+      }
+     ],
+     "box": [
+      2527.0,
+      -44,
+      808.0,
+      1284
+     ],
+     "foco": [
+      2542.0,
+      390.0,
+      778.0,
+      628.0,
+      2622,
+      968.0
+     ]
+    },
+    {
+     "n": 3,
+     "nome": "Formalizar e assinar o contrato",
+     "dono": "Negócios, com a Governança; assina o executivo; matéria da regra 10 dos contratos, os sócios",
+     "modo": "Assistido",
+     "risco": "alto",
+     "entradas": [
+      {
+       "o": "Condições acordadas e racional financeiro do contrato",
+       "de": "etapa 2"
       },
       {
        "o": "Modelos de proposta e de contrato",
@@ -1953,6 +2036,20 @@
        "raia": "Governança",
        "tipo": "call",
        "cond": "O contrato foge do modelo? Sim"
+      },
+      {
+       "nome": "Revisar a cláusula de matéria dos sócios e propor a redação",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "call",
+       "cond": "O contrato foge do modelo? Sim, com matéria dos sócios pela regra dos contratos"
+      },
+      {
+       "nome": "Decidir a cláusula de matéria dos sócios do contrato",
+       "exec": "H",
+       "raia": "Sócios",
+       "tipo": "manual",
+       "cond": "O contrato foge do modelo? Sim, com matéria dos sócios pela regra dos contratos"
       },
       {
        "nome": "Conferir o contrato final com o que foi acordado",
@@ -2014,6 +2111,14 @@
           "Revisar as cláusulas fora do modelo e o risco do contrato"
          ],
          "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim, com matéria dos sócios pela regra dos contratos",
+         "via": [
+          "Revisar a cláusula de matéria dos sócios e propor a redação",
+          "Decidir a cláusula de matéria dos sócios do contrato"
+         ],
+         "vai": "segue na etapa"
         }
        ]
       },
@@ -2040,7 +2145,7 @@
       {
        "o": "Contrato assinado e guardado",
        "para": [
-        "etapa 3"
+        "etapa 4"
        ]
       },
       {
@@ -2058,22 +2163,22 @@
       }
      ],
      "box": [
-      2527.0,
+      3351.0,
       -44,
-      2662.0,
+      3280.0,
       1284
      ],
      "foco": [
-      2542.0,
+      3421.0,
       38.0,
-      2632.0,
+      3195.0,
       1156.0,
-      2622,
+      3446,
       968.0
      ]
     },
     {
-     "n": 3,
+     "n": 4,
      "nome": "Registrar a venda e passar o cliente a quem implanta, entrega, fatura e acompanha",
      "dono": "Negócios",
      "modo": "Autômato",
@@ -2081,12 +2186,19 @@
      "entradas": [
       {
        "o": "Contrato assinado e guardado",
-       "de": "etapa 2"
+       "de": "etapa 3"
       }
      ],
      "tarefas": [
       {
        "nome": "Registrar o contrato, o escopo vendido, o valor, a vigência e o vencimento",
+       "exec": "R",
+       "raia": "Negócios · automação",
+       "tipo": "script",
+       "cond": null
+      },
+      {
+       "nome": "Registrar o racional financeiro aprovado do contrato e passá-lo à Gestão",
        "exec": "R",
        "raia": "Negócios · automação",
        "tipo": "script",
@@ -2121,6 +2233,12 @@
        ]
       },
       {
+       "o": "Racional financeiro do contrato aprovado",
+       "para": [
+        "Gestão"
+       ]
+      },
+      {
        "o": "Registros de propostas, vendas e contratos",
        "para": [
         "Inteligência",
@@ -2143,23 +2261,23 @@
       }
      ],
      "box": [
-      5205.0,
+      6647.0,
       -44,
-      602.0,
+      808.0,
       1284
      ],
      "foco": [
-      5220.0,
+      6662.0,
       1094.0,
-      716.0,
+      922.0,
       100.0,
-      5300,
+      6742,
       1144.0
      ]
     }
    ],
    "size": [
-    6068,
+    7716,
     1232
    ]
   },
@@ -4329,7 +4447,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4. Os processos de Negócios estão em quatro grupos da categoria 3: 3.2.2 e 3.3.3, estratégia e gestão de preços, e 3.3.9, material de produto (NE-01); 3.2.3, estratégia de canais, e 3.4, estratégia de vendas, com previsão, alvos e orçamento de vendas (NE-02); e 3.5, planos de venda, com oportunidades, contas, propostas e cotações, pedidos e parceiros (NE-03 a NE-07). A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -4403,36 +4521,12 @@
   },
   "l14133": {
    "ref": "Brasil, Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos)",
-   "uso": "Fases do processo de licitação, em sequência: preparatória, divulgação do edital, apresentação de propostas e lances, quando for o caso, julgamento, habilitação, recursal e homologação (art. 17, caput); a habilitação pode vir antes das propostas e do julgamento, por ato motivado, se o edital prever (§ 1º); a forma eletrônica é a preferida (§ 2º). A NE-05 começa na divulgação do edital (art. 17, II); a fase preparatória, caracterizada pelo planejamento (art. 18, caput), não tem tarefa de Negócios, salvo responder a pedido de cotação. Sistema de registro de preços, ata de registro de preços e órgão participante e não participante (art. 6º, incisos XLV, XLVI, XLVIII e XLIX). Base das etapas da NE-05. Lidos em 03/10/2026, em transcrição secundária: esclarecimento e impugnação pedidos até três dias úteis antes da abertura, com resposta em até três dias úteis (art. 164); intenção de recorrer manifestada de imediato, recurso e contrarrazões em três dias úteis e decisão da autoridade superior em até dez dias úteis (art. 165); convocação para assinar no prazo do edital, prorrogável uma vez (art. 90). Na NE-06: a ata vale um ano, prorrogável por igual período se o preço for vantajoso (art. 84); a adesão de órgão não participante exige justificativa, preço compatível com o mercado e aceite do gerenciador e do fornecedor, até 50% dos quantitativos por órgão e, no total, até o dobro de cada item (art. 86). No desenho, os prazos seguem “nos prazos da lei e do edital”; a contratação direta não foi conferida.",
-   "conf": "Texto aberto no site do Planalto em 02/10/2026; conferidos o art. 6º (incisos XLV, XLVI, XLVIII e XLIX), o art. 17 (caput e incisos I a VII) e o caput do art. 18. O Planalto, a Câmara e o Senado entregaram o texto só até os arts. 36, 45 e 53. Em 03/10/2026, os arts. 82 (incisos I a IX), 83, 84, 86 (caput e §§ 2º a 8º), 90 (caput e §§ 1º e 5º), 140, 141, 164 e 165 foram lidos em transcrição secundária (LegJur, uma página por artigo); conferir no texto oficial antes de usar em peça.",
+   "uso": "Fases do processo de licitação, em sequência: preparatória, divulgação do edital, apresentação de propostas e lances, quando for o caso, julgamento, habilitação, recursal e homologação (art. 17, caput); a habilitação pode vir antes das propostas e do julgamento, por ato motivado, se o edital prever (§ 1º); a forma eletrônica é a preferida (§ 2º). A NE-05 começa na divulgação do edital (art. 17, II); a fase preparatória, caracterizada pelo planejamento (art. 18, caput), não tem tarefa de Negócios, salvo responder a pedido de cotação. Sistema de registro de preços, ata de registro de preços e órgão participante e não participante (art. 6º, incisos XLV, XLVI, XLVIII e XLIX). Base das etapas da NE-05. Conferidos no texto oficial (Planalto) em 03/10/2026: esclarecimento e impugnação pedidos até três dias úteis antes da abertura, com resposta em até três dias úteis (art. 164); recurso em três dias úteis contra os atos listados no art. 165, I (pré-qualificação ou registro cadastral, julgamento das propostas, habilitação ou inabilitação, anulação ou revogação e extinção unilateral do contrato), com intenção de recorrer imediata no julgamento e na habilitação, reconsideração em três dias úteis e decisão da autoridade superior em até dez dias úteis (art. 165); convocação para assinar no prazo do edital, prorrogável uma vez (art. 90). Na NE-06: a ata vale um ano, prorrogável por igual período se o preço for vantajoso (art. 84); a adesão de órgão não participante exige justificativa, preço compatível com o mercado e aceite do gerenciador e do fornecedor, até 50% dos quantitativos por órgão e, no total, até o dobro de cada item (art. 86, §§ 4º e 5º); órgão municipal pode aderir a ata federal, estadual ou distrital, e a ata de outro município só se o registro de preços veio de licitação (art. 86, § 3º, redação da Lei 14.770/2023), o que pesa nas vendas a prefeituras. No desenho, os prazos seguem “nos prazos da lei e do edital”; a contratação direta não foi conferida.",
+   "conf": "Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 6º (incisos XLV, XLVI, XLVIII e XLIX); art. 17 (caput, incisos I a VII e §§ 1º e 2º: fases em sequência, habilitação antes do julgamento só por ato motivado e prevista no edital, forma preferencialmente eletrônica); caput do art. 18; arts. 82 a 84 (registro de preços; ata de 1 ano, prorrogável por igual período com preço vantajoso comprovado); art. 86 (caput e §§ 2º a 8º; o § 3º, na redação da Lei 14.770/2023, deixa órgão municipal aderir a ata federal, estadual ou distrital e a ata municipal só se o registro de preços veio de licitação); art. 90 (prazo de convocação fixado no edital, prorrogável uma vez); art. 140 (obras e serviços: recebimento provisório pelo fiscal e definitivo por servidor ou comissão, com termo detalhado; compras: provisório de forma sumária e definitivo com termo detalhado; prazos no regulamento ou no contrato); art. 141 (ordem cronológica de pagamento por fonte e categoria); art. 164 (impugnação até 3 dias úteis antes da abertura, resposta em 3 dias úteis); art. 165 (recurso em 3 dias úteis só contra os atos das alíneas a a e do inciso I, e pedido de reconsideração em 3 dias úteis; § 1º: intenção de recorrer imediata no julgamento e na habilitação; § 2º: a autoridade reconsidera em 3 dias úteis e a superior decide em até 10 dias úteis). Contratação direta não foi lida.",
    "links": [
     [
      "planalto.gov.br",
      "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
-    ],
-    [
-     "LegJur, art. 164 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-164"
-    ],
-    [
-     "LegJur, art. 165 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-165"
-    ],
-    [
-     "LegJur, art. 84 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-84"
-    ],
-    [
-     "LegJur, art. 86 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-86"
-    ],
-    [
-     "LegJur, art. 90 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-90"
-    ],
-    [
-     "LegJur, art. 140 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-140"
     ]
    ]
   }
@@ -4985,6 +5079,12 @@
      ]
     },
     {
+     "o": "Racional financeiro do contrato aprovado",
+     "de": [
+      "NE-04"
+     ]
+    },
+    {
      "o": "Tabela de preços e política comercial vigentes",
      "de": [
       "NE-01"
@@ -5319,33 +5419,51 @@
    "nome": "Decidir a concessão negociada pelos sócios"
   },
   {
-   "parte": "Governança",
+   "parte": "Executivos",
    "code": "NE-04",
    "etapa": 2,
+   "nome": "Decidir seguir com a margem fora da política comercial"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-04",
+   "etapa": 3,
    "nome": "Revisar as cláusulas fora do modelo e o risco do contrato"
   },
   {
    "parte": "Governança",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
+   "nome": "Revisar a cláusula de matéria dos sócios e propor a redação"
+  },
+  {
+   "parte": "Sócios",
+   "code": "NE-04",
+   "etapa": 3,
+   "nome": "Decidir a cláusula de matéria dos sócios do contrato"
+  },
+  {
+   "parte": "Governança",
+   "code": "NE-04",
+   "etapa": 3,
    "nome": "Conferir os poderes de quem assina pela empresa e pelo cliente"
   },
   {
    "parte": "Executivos",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Assinar o contrato em nome da empresa"
   },
   {
    "parte": "Clientes",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Assinar o contrato"
   },
   {
    "parte": "Governança",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Guardar o contrato assinado"
   },
   {
@@ -5545,25 +5663,25 @@
   "jornadas": 7,
   "essenciais": 7,
   "recomendadas": 0,
-  "etapas": 25,
-  "tarefas": 172,
-  "decisoes": 40,
+  "etapas": 26,
+  "tarefas": 178,
+  "decisoes": 41,
   "exec": {
-   "R": 67,
-   "A": 22,
-   "P": 29,
-   "H": 20,
-   "C": 34
+   "R": 68,
+   "A": 23,
+   "P": 30,
+   "H": 22,
+   "C": 35
   },
   "modos": {
    "Autopiloto": 4,
-   "Copiloto": 10,
+   "Copiloto": 11,
    "Assistido": 7,
    "Autômato": 4
   },
   "riscos": {
    "baixo": 9,
-   "médio": 8,
+   "médio": 9,
    "alto": 8
   },
   "por_jornada": {
@@ -5589,11 +5707,11 @@
     "H": 2
    },
    "NE-04": {
-    "P": 2,
-    "A": 2,
-    "H": 4,
-    "C": 4,
-    "R": 6
+    "P": 3,
+    "A": 3,
+    "H": 6,
+    "C": 5,
+    "R": 7
    },
    "NE-05": {
     "R": 14,
@@ -5617,7 +5735,7 @@
     "H": 1
    }
   },
-  "verificacoes": 2745,
+  "verificacoes": 2820,
   "problemas": 0
  },
  "exec_nome": {
@@ -5725,7 +5843,7 @@
   {
    "o": "A regra de remuneração de quem vende e de parceiros é decidida pelos sócios",
    "origem": "Decidido por você (13:09 de 03/10/2026)",
-   "efeito": "Negócios propõe com a Gestão; os sócios decidem, porque mexe em custo e incentivo de todas as empresas. Também: prazos da Lei 14.133 (arts. 84, 86, 90, 164 e 165) lidos em transcrição secundária e registrados nas fontes."
+   "efeito": "Negócios propõe com a Gestão; os sócios decidem, porque mexe em custo e incentivo de todas as empresas. Também: prazos da Lei 14.133 (arts. 84, 86, 90, 164 e 165) conferidos no texto oficial (Planalto) em 03/10/2026 e registrados nas fontes."
   },
   {
    "o": "Alçada de concessão comercial",
@@ -5736,6 +5854,11 @@
    "o": "Cadências e conteúdos validados; gates de implantação",
    "origem": "Validado por você (14:07 de 03/10/2026)",
    "efeito": "NE-01 semestral; NE-02 trimestral, com previsão mensal; NE-07 semestral; estrutura dos modelos de contrato e regra de remuneração. O que depende de dado real ficou nos gates G1 a G9."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "NE-04, etapa 3: a cláusula que é matéria dos sócios pela regra 10 dos contratos vai à decisão deles, depois da revisão da Governança (M1). Lei 14.133 conferida no texto oficial, inclusive o art. 86, § 3º, sobre a adesão de órgão municipal."
   }
  ],
  "alertas": [
@@ -5822,7 +5945,7 @@
   {
    "ref": "3.5.4",
    "nome": "Manage sales orders",
-   "onde": "NE-04, etapa 3, e NE-06, etapa 4 (contratação pela ata); o atendimento do pedido é de Operações e o faturamento, da Gestão"
+   "onde": "NE-04, etapa 4, e NE-06, etapa 4 (contratação pela ata); o atendimento do pedido é de Operações e o faturamento, da Gestão"
   },
   {
    "ref": "3.5.5",
@@ -5838,12 +5961,12 @@
  "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções de Negócios, grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
  "principio": "Regra do círculo, aprovada às 20:11: Negócios decide o que é do seu ofício (o aceite da oportunidade, o escopo e a proposta dentro do catálogo, a tabela de preços e a política comercial, a concessão dentro da alçada de quem vende e a participação em licitação), ouvido o executivo da empresa. O executivo aprova a concessão acima da alçada de quem vende e assina pela empresa; acima da alçada dele, decidem os sócios; a faixa de desconto de quem vende é aprovada pela Governança. Relações gera e qualifica a demanda e acompanha o cliente; a Inteligência desenha a oferta e o preço-base; a Integração implanta; Operações entrega; a Gestão fatura; a Governança mantém os modelos e as alçadas e revisa e guarda os contratos.",
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
   "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
   "A alçada de concessão e as regras gerais dos contratos foram aprovadas em 03/10/2026 (aba Parâmetros em aberto); a estrutura dos modelos e a regra de remuneração (fixo mais variável sobre a receita recebida) foram validadas em 03/10/2026; o texto dos modelos é o gate G8 e os percentuais, o G3.",
-  "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17 e 18; os prazos e o rito de esclarecimento, impugnação, recurso, adesão à ata e contratação direta não foram conferidos e estão como “no prazo do edital”.",
-  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da Lei 14.133 conferimos no texto oficial os arts. 6º (incisos XLV, XLVI, XLVIII e XLIX), 17, 18, 82 a 84, 86, 90, 140, 141, 164 e 165; a contratação direta não foi conferida. No fluxo, os prazos seguem “nos prazos da lei e do edital”.",
+  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "A tarefa de quem não é do círculo (cliente, parceiro, executivo, sócios, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.",
   "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
   "Contratos, aditivos e documentos de licitação seguem o modelo da Governança ou o formato do edital; a conferência com os padrões de identidade fica no material de venda, na proposta e na parte livre da proposta de licitação.",

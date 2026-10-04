@@ -1,0 +1,448 @@
+{
+ "cenario": "base",
+ "descricao": "Uma pessoa por papel; o volume de cada jornada pela frequência do modelo",
+ "meses": 3,
+ "semente": 7,
+ "papeis": {
+  "Integração · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.177,
+   "tarefas": 41,
+   "espera_media_h": 7.0,
+   "espera_p90_h": 14.5
+  },
+  "Governança · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.306,
+   "tarefas": 68,
+   "espera_media_h": 5.4,
+   "espera_p90_h": 15.0
+  },
+  "Negócios · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.137,
+   "tarefas": 34,
+   "espera_media_h": 5.9,
+   "espera_p90_h": 12.8
+  },
+  "Operações · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.323,
+   "tarefas": 78,
+   "espera_media_h": 15.5,
+   "espera_p90_h": 43.3
+  },
+  "Identidade · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.285,
+   "tarefas": 69,
+   "espera_media_h": 20.6,
+   "espera_p90_h": 15.9
+  },
+  "Estratégia · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.471,
+   "tarefas": 104,
+   "espera_media_h": 63.0,
+   "espera_p90_h": 312.6
+  },
+  "Relações · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.334,
+   "tarefas": 82,
+   "espera_media_h": 21.5,
+   "espera_p90_h": 72.6
+  },
+  "Inteligência · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.179,
+   "tarefas": 43,
+   "espera_media_h": 10.0,
+   "espera_p90_h": 25.4
+  },
+  "Gestão · pessoa": {
+   "pessoas": 1,
+   "ocupacao": 0.359,
+   "tarefas": 79,
+   "espera_media_h": 33.6,
+   "espera_p90_h": 94.3
+  }
+ },
+ "jornadas": {
+  "IT-01": {
+   "execucoes": 6,
+   "lead_mediana_h": 12.8,
+   "lead_p90_h": 61.9
+  },
+  "GO-05": {
+   "execucoes": 3,
+   "lead_mediana_h": 3.0,
+   "lead_p90_h": 3.0
+  },
+  "NE-02": {
+   "execucoes": 6,
+   "lead_mediana_h": 59.0,
+   "lead_p90_h": 64.7
+  },
+  "GE-12": {
+   "execucoes": 3,
+   "lead_mediana_h": 91.0,
+   "lead_p90_h": 91.0
+  },
+  "GO-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 29.4,
+   "lead_p90_h": 29.4
+  },
+  "RE-03": {
+   "execucoes": 4,
+   "lead_mediana_h": 32.9,
+   "lead_p90_h": 65.6
+  },
+  "IT-06": {
+   "execucoes": 6,
+   "lead_mediana_h": 3.2,
+   "lead_p90_h": 45.1
+  },
+  "IT-02": {
+   "execucoes": 3,
+   "lead_mediana_h": 173.7,
+   "lead_p90_h": 173.7
+  },
+  "IT-08": {
+   "execucoes": 4,
+   "lead_mediana_h": 4.1,
+   "lead_p90_h": 8.2
+  },
+  "OP-06": {
+   "execucoes": 3,
+   "lead_mediana_h": 108.9,
+   "lead_p90_h": 108.9
+  },
+  "ID-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 53.1,
+   "lead_p90_h": 53.1
+  },
+  "IN-05": {
+   "execucoes": 4,
+   "lead_mediana_h": 69.5,
+   "lead_p90_h": 101.0
+  },
+  "ES-02": {
+   "execucoes": 4,
+   "lead_mediana_h": 553.1,
+   "lead_p90_h": 603.7
+  },
+  "NE-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 124.9,
+   "lead_p90_h": 124.9
+  },
+  "RE-05": {
+   "execucoes": 4,
+   "lead_mediana_h": 110.4,
+   "lead_p90_h": 212.0
+  },
+  "ES-06": {
+   "execucoes": 4,
+   "lead_mediana_h": 349.8,
+   "lead_p90_h": 360.3
+  },
+  "RE-01": {
+   "execucoes": 4,
+   "lead_mediana_h": 94.6,
+   "lead_p90_h": 111.6
+  },
+  "NE-07": {
+   "execucoes": 4,
+   "lead_mediana_h": 16.1,
+   "lead_p90_h": 18.5
+  },
+  "ID-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 239.3,
+   "lead_p90_h": 239.3
+  },
+  "ID-02": {
+   "execucoes": 3,
+   "lead_mediana_h": 6.4,
+   "lead_p90_h": 6.4
+  },
+  "RE-06": {
+   "execucoes": 4,
+   "lead_mediana_h": 21.4,
+   "lead_p90_h": 42.8
+  },
+  "GE-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 44.7,
+   "lead_p90_h": 44.7
+  },
+  "IT-05": {
+   "execucoes": 4,
+   "lead_mediana_h": 49.0,
+   "lead_p90_h": 69.1
+  },
+  "NE-06": {
+   "execucoes": 3,
+   "lead_mediana_h": 99.6,
+   "lead_p90_h": 99.6
+  },
+  "GO-08": {
+   "execucoes": 3,
+   "lead_mediana_h": 82.5,
+   "lead_p90_h": 82.5
+  },
+  "RE-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 235.8,
+   "lead_p90_h": 235.8
+  },
+  "ES-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 719.6,
+   "lead_p90_h": 719.6
+  },
+  "IN-04": {
+   "execucoes": 6,
+   "lead_mediana_h": 0.0,
+   "lead_p90_h": 0.1
+  },
+  "IT-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 10.4,
+   "lead_p90_h": 10.4
+  },
+  "ID-05": {
+   "execucoes": 4,
+   "lead_mediana_h": 131.9,
+   "lead_p90_h": 252.6
+  },
+  "GE-08": {
+   "execucoes": 3,
+   "lead_mediana_h": 252.3,
+   "lead_p90_h": 252.3
+  },
+  "GO-01": {
+   "execucoes": 3,
+   "lead_mediana_h": 39.9,
+   "lead_p90_h": 39.9
+  },
+  "GE-11": {
+   "execucoes": 6,
+   "lead_mediana_h": 91.1,
+   "lead_p90_h": 149.3
+  },
+  "IT-07": {
+   "execucoes": 3,
+   "lead_mediana_h": 21.5,
+   "lead_p90_h": 21.5
+  },
+  "IT-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 17.2,
+   "lead_p90_h": 17.2
+  },
+  "ID-01": {
+   "execucoes": 3,
+   "lead_mediana_h": 291.7,
+   "lead_p90_h": 291.7
+  },
+  "RE-08": {
+   "execucoes": 6,
+   "lead_mediana_h": 154.8,
+   "lead_p90_h": 213.4
+  },
+  "OP-02": {
+   "execucoes": 3,
+   "lead_mediana_h": 29.7,
+   "lead_p90_h": 29.7
+  },
+  "GO-06": {
+   "execucoes": 4,
+   "lead_mediana_h": 33.3,
+   "lead_p90_h": 45.1
+  },
+  "GE-05": {
+   "execucoes": 6,
+   "lead_mediana_h": 82.5,
+   "lead_p90_h": 133.8
+  },
+  "ES-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 0.1,
+   "lead_p90_h": 0.1
+  },
+  "GE-02": {
+   "execucoes": 6,
+   "lead_mediana_h": 139.6,
+   "lead_p90_h": 191.8
+  },
+  "GE-14": {
+   "execucoes": 6,
+   "lead_mediana_h": 184.1,
+   "lead_p90_h": 207.4
+  },
+  "GE-01": {
+   "execucoes": 3,
+   "lead_mediana_h": 108.9,
+   "lead_p90_h": 108.9
+  },
+  "OP-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 43.3,
+   "lead_p90_h": 43.3
+  },
+  "OP-05": {
+   "execucoes": 6,
+   "lead_mediana_h": 49.6,
+   "lead_p90_h": 96.6
+  },
+  "NE-01": {
+   "execucoes": 4,
+   "lead_mediana_h": 0.0,
+   "lead_p90_h": 0.0
+  },
+  "GE-15": {
+   "execucoes": 3,
+   "lead_mediana_h": 198.9,
+   "lead_p90_h": 198.9
+  },
+  "IN-02": {
+   "execucoes": 3,
+   "lead_mediana_h": 14.2,
+   "lead_p90_h": 14.2
+  },
+  "GO-09": {
+   "execucoes": 3,
+   "lead_mediana_h": 50.7,
+   "lead_p90_h": 50.7
+  },
+  "OP-07": {
+   "execucoes": 3,
+   "lead_mediana_h": 147.8,
+   "lead_p90_h": 147.8
+  },
+  "OP-01": {
+   "execucoes": 4,
+   "lead_mediana_h": 93.5,
+   "lead_p90_h": 139.7
+  },
+  "RE-07": {
+   "execucoes": 6,
+   "lead_mediana_h": 68.9,
+   "lead_p90_h": 141.6
+  },
+  "IN-01": {
+   "execucoes": 6,
+   "lead_mediana_h": 35.9,
+   "lead_p90_h": 57.1
+  },
+  "IN-07": {
+   "execucoes": 3,
+   "lead_mediana_h": 28.0,
+   "lead_p90_h": 28.0
+  },
+  "GO-07": {
+   "execucoes": 3,
+   "lead_mediana_h": 9.8,
+   "lead_p90_h": 9.8
+  },
+  "GO-02": {
+   "execucoes": 4,
+   "lead_mediana_h": 40.7,
+   "lead_p90_h": 53.2
+  },
+  "ES-05": {
+   "execucoes": 3,
+   "lead_mediana_h": 529.1,
+   "lead_p90_h": 529.1
+  },
+  "NE-05": {
+   "execucoes": 3,
+   "lead_mediana_h": 111.6,
+   "lead_p90_h": 111.6
+  },
+  "GE-06": {
+   "execucoes": 3,
+   "lead_mediana_h": 45.8,
+   "lead_p90_h": 45.8
+  },
+  "GE-07": {
+   "execucoes": 3,
+   "lead_mediana_h": 104.1,
+   "lead_p90_h": 104.1
+  },
+  "GO-03": {
+   "execucoes": 4,
+   "lead_mediana_h": 37.8,
+   "lead_p90_h": 61.0
+  },
+  "OP-08": {
+   "execucoes": 3,
+   "lead_mediana_h": 32.3,
+   "lead_p90_h": 32.3
+  },
+  "IN-08": {
+   "execucoes": 4,
+   "lead_mediana_h": 22.0,
+   "lead_p90_h": 43.8
+  },
+  "GE-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 24.6,
+   "lead_p90_h": 24.6
+  },
+  "GO-10": {
+   "execucoes": 1,
+   "lead_mediana_h": 43.3,
+   "lead_p90_h": 43.3
+  },
+  "NE-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 0.0,
+   "lead_p90_h": 0.0
+  },
+  "IN-03": {
+   "execucoes": 3,
+   "lead_mediana_h": 99.2,
+   "lead_p90_h": 99.2
+  },
+  "GE-13": {
+   "execucoes": 3,
+   "lead_mediana_h": 92.7,
+   "lead_p90_h": 92.7
+  },
+  "IN-06": {
+   "execucoes": 3,
+   "lead_mediana_h": 27.2,
+   "lead_p90_h": 27.2
+  },
+  "ES-01": {
+   "execucoes": 3,
+   "lead_mediana_h": 398.2,
+   "lead_p90_h": 398.2
+  },
+  "RE-02": {
+   "execucoes": 3,
+   "lead_mediana_h": 3.8,
+   "lead_p90_h": 3.8
+  },
+  "GE-10": {
+   "execucoes": 1,
+   "lead_mediana_h": 43.7,
+   "lead_p90_h": 43.7
+  },
+  "OP-04": {
+   "execucoes": 3,
+   "lead_mediana_h": 161.5,
+   "lead_p90_h": 161.5
+  },
+  "GE-09": {
+   "execucoes": 1,
+   "lead_mediana_h": 121.5,
+   "lead_p90_h": 121.5
+  }
+ }
+}

@@ -1,5 +1,5 @@
 {
- "jornadas": 73,
+ "jornadas": 75,
  "por_circulo": {
   "Identidade": 5,
   "Estratégia": 6,
@@ -8,7 +8,7 @@
   "Negócios": 7,
   "Integração": 8,
   "Operações": 8,
-  "Gestão": 13,
+  "Gestão": 15,
   "Governança": 10
  },
  "cross": [

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Auditoria de execução: classifica cada etapa e cada tarefa das 73 jornadas pelo modo de execução
+"""Auditoria de execução: classifica cada etapa e cada tarefa das jornadas pelo modo de execução
 (exclusivamente humana, assistida, copiloto, autopiloto, autômata) e aponta o que não confere.
 Lê saida/cN/circulo.json (gerado pelo gerar.py). Uso: python3 auditar.py"""
 import json, os, re

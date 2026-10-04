@@ -2,7 +2,7 @@
 # -------------------------------------------------------------- domínios
 DOMINIOS = [
     ('Planejamento e controle', 'Orçamento aprovado desdobrado e controlado e ritual de acompanhamento dos alvos.'),
-    ('Finanças', 'Faturamento e cobrança, compras e pagamentos, caixa, contas, impostos, prestação de contas e rateio.'),
+    ('Finanças', 'Faturamento e cobrança, compras e pagamentos, caixa, contas, impostos, prestação de contas, rateio, dívidas tributárias e parcelamentos, plano de contas, centros de custo e plano tributário do grupo.'),
     ('Pessoas e cultura', 'Provimento, integração à cultura, avaliação, desenvolvimento, folha, rituais, reconhecimento e comunicação interna.'),
     ('Ativos e administração', 'Ativos, espaços e serviços administrativos.'),
 ]
@@ -13,14 +13,15 @@ ONDAS = {
 
 # ------------------------------------------------- o que usamos de cada fonte
 USO = {
-    'apqc': 'PCF 7.4. Os processos da Gestão estão em três categorias e num grupo: 7.0, capital humano (planejamento, recrutamento, integração, desempenho, desenvolvimento, recompensa, desligamento, informação e comunicação com as pessoas), base da GE-07 a GE-11 e da GE-13; 9.0, recursos financeiros (planejamento e orçamento, receita, contabilidade, folha, contas a pagar, tesouraria e impostos), base da GE-01, da GE-03 a GE-06 e da GE-13; 10.0, ativos (planejar e adquirir, manter e baixar), base da GE-12; e o grupo 4.2, compra de materiais e serviços, base da GE-04. O grupo 9.8, controles internos, fica com a Governança. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.',
+    'apqc': 'PCF 7.4. Os processos da Gestão estão em três categorias e num grupo: 7.0, capital humano (planejamento, recrutamento, integração, desempenho, desenvolvimento, recompensa, desligamento, informação e comunicação com as pessoas), base da GE-07 a GE-11 e da GE-13; 9.0, recursos financeiros (planejamento e orçamento, receita, contabilidade, folha, contas a pagar, tesouraria e impostos), base da GE-01, da GE-03 a GE-06 e da GE-13; 10.0, ativos (planejar e adquirir, manter e baixar), base da GE-12; e o grupo 4.2, compra de materiais e serviços, base da GE-04. O grupo 9.8, controles internos, fica com a Governança. A tabela de cobertura, na aba Método, mostra onde cada um foi parar. Nas GE-14 e GE-15 (03/10/2026): 9.3.2.1 (Maintain chart of accounts), 9.3.2.5 (Post and reconcile intercompany transactions), 9.4.2.1 (Create project account codes) e 9.9 (Manage taxes).',
     'lgpd': 'Na GE-07 e na GE-09 (e também na GE-08, na GE-10 e na GE-13, que usam dados de pessoas): os dados de candidatos e de pessoas são dados pessoais, tratados com finalidade, adequação e necessidade (art. 6º, I a III) e pelas regras de sigilo da Governança. Na GE-07, a triagem feita pelo agente é revista por pessoa antes de recusar candidatos, porque o titular pode pedir a revisão de decisão tomada só por tratamento automatizado (art. 20, caput). Na GE-09, a pesquisa de cultura é analisada sem identificar quem respondeu.',
     'bpmn': 'Notação dos fluxos. A ISO/IEC 19510:2013 é idêntica ao BPMN 2.0.1. Tipos de tarefa usados: usuário, serviço, script e recebimento; a tarefa de outro círculo ou papel aparece como tarefa simples.',
     'camunda': 'Regra de nomes: tarefa com verbo no infinitivo e objeto; evento com objeto e estado; gateway com pergunta; raia com papel ou sistema.',
     'sipoc': 'Fornecedor, entrada, processo, saída e cliente: a base de “quem gera a entrada” e “quem recebe a saída” em cada etapa.',
     'clt': 'Na GE-13: o salário mensal é pago até o quinto dia útil do mês seguinte (art. 459, § 1º); as férias, até dois dias antes do início (art. 145); acima de vinte trabalhadores no estabelecimento, o registro de entrada e saída é obrigatório, e o ponto por exceção é permitido por acordo (art. 74, §§ 2º e 4º). Na GE-07: no desligamento, as verbas rescisórias e os documentos são entregues em até dez dias do término do contrato (art. 477, § 6º).',
     'fgts': 'Na GE-13: o depósito do FGTS é feito até o vigésimo dia de cada mês (art. 15, na redação da Lei 14.438/2022, com a arrecadação digital).',
-    'cc2002': 'Na GE-05: cada empresa segue um sistema de contabilidade com escrituração uniforme e levanta todo ano o balanço patrimonial e o de resultado (art. 1.179), com o livro Diário (art. 1.180), e guarda a escrituração enquanto não houver prescrição ou decadência (art. 1.194).',
+    'l13988': 'Na GE-14: a transação resolutiva de litígio na cobrança de créditos da Fazenda Pública federal, tributários ou não, e as suas modalidades (arts. 1º e 2º). Parcelamentos e transações de estados e municípios seguem a lei de cada ente e não foram lidos.',
+    'cc2002': 'Na GE-15: o plano de contas segue o sistema de contabilidade com escrituração uniforme (art. 1.179). Na GE-05: cada empresa segue um sistema de contabilidade com escrituração uniforme e levanta todo ano o balanço patrimonial e o de resultado (art. 1.179), com o livro Diário (art. 1.180), e guarda a escrituração enquanto não houver prescrição ou decadência (art. 1.194).',
 }
 
 # ----------------------------------- cobertura do referencial (APQC PCF 7.4)
@@ -46,7 +47,7 @@ COBERTURA = [
     ('7.8.1', 'Develop employee communication plan', 'GE-11, etapa 1'),
     ('7.8.2', 'Conduct employee engagement surveys', 'GE-09, etapa 3'),
     ('7.8.3', 'Deliver employee communications', 'GE-11, etapas 2 a 4'),
-    ('9.1.1', 'Perform planning/budgeting/forecasting', 'GE-01; a montagem do orçamento é tarefa da Gestão na ES-03, etapa 3'),
+    ('9.1.1', 'Perform planning/budgeting/forecasting', 'GE-01; a montagem do orçamento é tarefa da Gestão na ES-03, etapa 3; o planejado e o realizado por contrato, GE-02, etapa 2'),
     ('9.1.2', 'Perform cost accounting and control', 'GE-05, etapa 2, e GE-06'),
     ('9.1.4', 'Evaluate and manage financial performance', 'GE-05, etapa 2, e GE-02'),
     ('9.2.1', 'Process customer credit', 'Limite: a análise de crédito do cliente não tem etapa própria'),
@@ -55,9 +56,9 @@ COBERTURA = [
     ('9.2.4', 'Manage and process collections', 'GE-03, etapa 3'),
     ('9.2.5', 'Manage and process adjustments/deductions', 'GE-03, etapa 2: crédito na fatura ou reembolso ao cliente'),
     ('9.3.1', 'Manage financial policies and procedures', 'Em parte: a Gestão aplica as políticas; as regras e alçadas são da Governança'),
-    ('9.3.2', 'Perform general accounting', 'GE-05, etapas 1 e 2'),
+    ('9.3.2', 'Perform general accounting', 'GE-05, etapas 1 e 2; o plano de contas (9.3.2.1) e as operações entre empresas (9.3.2.5), GE-15'),
     ('9.3.3', 'Perform fixed-asset accounting', 'GE-12, etapa 2, e GE-05, etapa 2'),
-    ('9.3.4', 'Perform financial reporting', 'GE-05, etapa 2'),
+    ('9.3.4', 'Perform financial reporting', 'GE-05, etapa 2: balancete, DRE e balanço de cada empresa e o consolidado'),
     ('9.5', 'Process payroll', 'GE-13'),
     ('9.6.1', 'Process accounts payable (AP)', 'GE-04, etapa 5, inclusive a remuneração de parceiros'),
     ('9.6.2', 'Process expense reimbursements', 'Limite: não desenhado como etapa própria'),
@@ -65,8 +66,8 @@ COBERTURA = [
     ('9.7.4', 'Manage debt and investment', 'Em parte: aportes e distribuição decididos pelos sócios (GE-05, etapa 3). Dívida e aplicações não têm etapa própria'),
     ('9.7.6', 'Manage financial fraud/dispute cases', 'Fora: Governança, pelo canal de relato'),
     ('9.8', 'Manage internal controls', 'Fora: Governança'),
-    ('9.9.1', 'Develop tax strategy and plan', 'Limite: não desenhado como etapa própria'),
-    ('9.9.2', 'Process taxes', 'GE-05, etapa 2'),
+    ('9.9.1', 'Develop tax strategy and plan', 'GE-15, etapa 2'),
+    ('9.9.2', 'Process taxes', 'GE-05, etapa 2; as dívidas tributárias, os parcelamentos e as transações, GE-14'),
     ('10.1', 'Plan and acquire assets', 'GE-12, etapa 1'),
     ('10.2', 'Design and construct assets', 'Limite: obras não foram desenhadas'),
     ('10.3', 'Maintain assets', 'GE-12, etapa 2'),
@@ -116,6 +117,9 @@ DECISOES = [
     ('A folha é jornada própria; a remuneração de parceiros é paga na jornada de compras e pagamentos', 'Ponto 7, aprovado por você (11:50)',
      'GE-13 e GE-04, como Negócios pediu: a remuneração de quem vende e de parceiros fica com a Gestão.'),
     ('Treze jornadas', 'Ponto 8, aprovado por você (11:50)', 'GE-01 a GE-13.'),
+    ('Quinze jornadas: dívidas tributárias (GE-14) e estrutura contábil e plano tributário do grupo (GE-15); planejado x realizado por contrato (GE-02, etapa 2); balancete, DRE e balanço (GE-05, etapa 2)',
+     'Aprovado por você (21:05 de 03/10/2026), no cruzamento do dia a dia com o modelo',
+     'O racional financeiro de cada contrato nasce em Negócios (NE-04, etapa 2) e é comparado com o realizado no ritual. As decisões acima do executivo estão na tabela matéria × órgão.'),
     ('Auditoria de execução: modo de cada etapa e nível de automação pelo que as tarefas fazem',
      'Itens 1 a 14 da auditoria, aprovados por você (12:33 de 03/10/2026)',
      'De Assistido para Copiloto, pelas tarefas: GE-02 etapa 2. De Autopiloto para Autômato, pelas tarefas: GE-01 etapa 3, GE-02 etapa 3, GE-07 etapa 4, GE-11 etapa 3. De Copiloto para Assistido, pelas tarefas: GE-06 etapa 2, GE-07 etapa 2, GE-08 etapa 2, GE-09 etapa 1, GE-10 etapa 2. Nível de automação pela faixa: GE-05 média → alta; GE-06 alta → média; GE-12 média → alta.'),
@@ -165,12 +169,16 @@ MUDANCAS = [
      'Rascunho da Identidade assumido pela Gestão.'),
     ('Ajustado', 'ID-09 do círculo 1 (transferida) · Comunicação interna e institucional', 'GE-11',
      'Só a parte interna; a externa é de Relações (RE-07).'),
+    ('Acrescentado', 'Sem equivalente', 'GE-14',
+     'Dívidas tributárias, parcelamentos, transações, negociações e renegociações, aprovada em 03/10/2026, às 21:05.'),
+    ('Acrescentado', 'Sem equivalente', 'GE-15',
+     'Plano de contas, centros de custo por empresa, círculo e projeto e plano tributário do grupo, aprovada em 03/10/2026, às 21:05.'),
     ('Ajustado', 'I-GE3 · Do ativo adquirido ao ativo baixado', 'GE-12',
      'Ganha os espaços e os serviços administrativos e a eliminação de dados guardados no ativo baixado.'),
 ]
 
 LIMITES = [
-    'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+    'Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. O alerta do círculo 1 sobre a carga humana das jornadas transferidas continua sem medida.',
     'O ritual de acompanhamento é mensal, pelo método de estratégia aprovado em 03/10/2026. As outras cadências (fechamento, folha, avaliação, rituais de cultura, comunicação interna, rateio e inventário) são decididas pelo líder do círculo, na implantação.',
     'Os rascunhos de políticas de cobrança, compras, remuneração e desenvolvimento foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.',
@@ -180,7 +188,7 @@ LIMITES = [
     'A cobrança judicial e a recusa de pedido de compra pelo executivo não têm ramo desenhado: a recusa devolve o pedido a quem pediu.',
     'O pedido de recurso que mexe na alocação entre empresas fica registrado para a revisão do portfólio: a ES-02 não tem entrada para um pedido direto e lê a execução do orçamento.',
     'O referencial de processos é o APQC PCF 7.4, de agosto de 2024.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).',
     'A tarefa de quem não é do círculo (líder, pessoa, executivo, outro círculo) está desenhada como participação; o detalhe dela fica no círculo dono.',
     'As saídas estão listadas por etapa, não por caminho.',
     'Os números descrevem este desenho, não a operação atual.',

@@ -193,3 +193,15 @@ Pedido do Ítalo (literal): "pode manter os acessos, é até bom para garantirmo
 - Mesa da Identidade publicada: quadro, foco, periferia (precisa de você, carga do círculo só em números para o líder, recibos), captura por texto ou voz com sugestão da jornada, delegação com teto do modo. Ao vivo pelo conector do Supabase (cada ação roda o motor e a regra do banco decide) ou retrato gravado com as mesmas regras na tela.
 - Cérebro vivo no painel: 73 neurônios, 9 lobos, 660 sinapses; lobos de motor em desenho só acendem ao receber troca; alerta por regra (acima do p90 da jornada ou erro). O modelo de anomalia segue fora de uso. Ao vivo, lê rt.evento e rt.instancia a cada 30 segundos.
 - Em aberto: ritmo da simulação contínua (1 por minuto ou 1 a cada 5 minutos); proposta do texto de limites dos nove círculos; travas do token do bot de teste e do termo do art. 33.
+
+## 03/10/2026, 21:05 — backlog até o fim
+
+Ítalo (literal): "Tudo 100% analisado, validado e aprovado. Prossiga o processo de evolução da execução das pendências do Backlog em loop continuo, sempre evoluindo na quantidade de tarefas executadas, até não restar mais nenhuma pendência e/ou tarefa sua a ser implementada, e chegarmos a 100% de conclusão do projeto/demanda, restando no máximo pendências e/ou tarefas externas relacionadas a montagem e homologação do ambiente de produção quando aplicável."
+
+- Modelo 2026-10-03.2: texto de limites novo nos nove círculos; GE-14 e GE-15; etapa 2 da NE-04 (racional financeiro) e da GE-02 (planejado x realizado por contrato); balancete, DRE e balanço na GE-05. testar.py verde nos nove círculos; 411 trocas; 20 alçadas; tabela matéria × órgão com a linha nova. Fonte nova: Lei 13.988/2020, arts. 1º e 2º, conferida no Planalto.
+- Migração versionada (012/013): a versão nova entrou no Supabase sem trocar os ids que o runtime usa; conferência linha a linha igual à carga nova.
+- E10: nove motores em piloto; ajuste do teto de voltas (por laço); 10.211 execuções, 0 erros, 1.586 de 1.586 tarefas executadas; simulação contínua a cada 5 minutos (escolha minha, por custo).
+- Acesso e multiempresa (017), canal Telegram e conversa (019 a 021, Edge Function no ar), simulador (E7), integrações contábil, fiscal e bancária com adaptador simulado, ML retreinado, acessibilidade (axe-core sem violação).
+- 53 testes verdes no Supabase. Canal de carga apagado por ele mesmo; token apagado.
+- Conferido: o Supabase entrega HTML de Edge Function como texto simples no domínio padrão; o Mini App precisa de outro endereço.
+- Externo: token do bot de teste; termo do art. 33; G1 a G9; escolha do sistema contábil e fiscal; hospedagem do Mini App.

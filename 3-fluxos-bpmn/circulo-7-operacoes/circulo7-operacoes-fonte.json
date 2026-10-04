@@ -370,7 +370,8 @@
     }
    ],
    "fins": [
-    "Ciclo de entrega confirmado, passado a faturar e registrado"
+    "Ciclo de entrega confirmado, passado a faturar e registrado",
+    "Entregas do cliente suspensas por atraso, registradas"
    ],
    "raias": [
     "Integração",
@@ -520,9 +521,24 @@
       {
        "o": "Padrões de identidade vigentes",
        "de": "Identidade"
+      },
+      {
+       "o": "Suspensão de novas entregas por atraso, decidida pelo executivo",
+       "de": "Gestão"
+      },
+      {
+       "o": "Retomada das entregas do cliente que quitou o atraso",
+       "de": "Gestão"
       }
      ],
      "tarefas": [
+      {
+       "nome": "Registrar a suspensão e avisar o cliente e o responsável pelo cliente",
+       "exec": "R",
+       "raia": "Operações · automação",
+       "tipo": "script",
+       "cond": "As novas entregas do cliente estão suspensas por atraso? Sim"
+      },
       {
        "nome": "Programar as entregas do ciclo e alocar pessoas, agentes e parceiros",
        "exec": "A",
@@ -562,6 +578,24 @@
      "paralelo": true,
      "decisoes": [
       {
+       "pergunta": "As novas entregas do cliente estão suspensas por atraso?",
+       "quem": "Operações · automação",
+       "saidas": [
+        {
+         "rotulo": "Não",
+         "via": [],
+         "vai": "segue na etapa"
+        },
+        {
+         "rotulo": "Sim",
+         "via": [
+          "Registrar a suspensão e avisar o cliente e o responsável pelo cliente"
+         ],
+         "vai": "fim: Entregas do cliente suspensas por atraso, registradas"
+        }
+       ]
+      },
+      {
        "pergunta": "A entrega passou na conferência?",
        "quem": "Operações · agente",
        "saidas": [
@@ -591,16 +625,16 @@
      "box": [
       1291.0,
       -44,
-      1838.0,
+      2456.0,
       1108
      ],
      "foco": [
       1361.0,
       566.0,
-      1753.0,
-      276.0,
+      2371.0,
+      452.0,
       1386,
-      792.0
+      968.0
      ]
     },
     {
@@ -700,17 +734,17 @@
       }
      ],
      "box": [
-      3145.0,
+      3763.0,
       -44,
       1014.0,
       1108
      ],
      "foco": [
-      3160.0,
+      3778.0,
       390.0,
       984.0,
       628.0,
-      3240,
+      3858,
       440.0
      ]
     },
@@ -769,23 +803,23 @@
       }
      ],
      "box": [
-      4175.0,
+      4793.0,
       -44,
       602.0,
       1108
      ],
      "foco": [
-      4245.0,
+      4863.0,
       742.0,
       661.0,
       276.0,
-      4270,
+      4888,
       968.0
      ]
     }
    ],
    "size": [
-    5038,
+    5656,
     1056
    ]
   },
@@ -1569,7 +1603,7 @@
    "frequencia": "Por evento: reclamação aberta no atendimento ou na entrega, ou recebida de outro canal",
    "automacao": {
     "nivel": "média",
-    "motivo": "Registrar, classificar, confirmar o recebimento, propor a solução, analisar a causa e registrar são de agente e automação; conferir a classificação, decidir a solução e aplicá-la são de pessoa de Operações; o que passa da alçada é do executivo."
+    "motivo": "Registrar, classificar, confirmar o recebimento, propor a solução, analisar a causa e registrar são de agente e automação; conferir a classificação, decidir a solução e aplicá-la são de pessoa de Operações; o que passa da alçada é do executivo, com a avaliação da Governança."
    },
    "base": [
     "apqc",
@@ -1718,7 +1752,7 @@
     {
      "n": 2,
      "nome": "Investigar e decidir a solução",
-     "dono": "Operações; acima da alçada, o executivo",
+     "dono": "Operações; acima da alçada, o executivo com a Governança",
      "modo": "Copiloto",
      "risco": "médio",
      "entradas": [
@@ -1757,6 +1791,13 @@
        "cond": "A solução cabe na alçada de Operações? Sim"
       },
       {
+       "nome": "Avaliar a responsabilidade e o risco da solução acima da alçada",
+       "exec": "C",
+       "raia": "Governança",
+       "tipo": "task",
+       "cond": "A solução cabe na alçada de Operações? Não"
+      },
+      {
        "nome": "Decidir a solução acima da alçada de Operações",
        "exec": "H",
        "raia": "Executivo da empresa",
@@ -1787,6 +1828,7 @@
         {
          "rotulo": "Não",
          "via": [
+          "Avaliar a responsabilidade e o risco da solução acima da alçada",
           "Decidir a solução acima da alçada de Operações"
          ],
          "vai": "segue na etapa"
@@ -1829,14 +1871,14 @@
      "box": [
       1909.0,
       -44,
-      2044.0,
+      2250.0,
       1108
      ],
      "foco": [
       1979.0,
-      390.0,
-      1959.0,
-      628.0,
+      214.0,
+      2165.0,
+      804.0,
       2004,
       792.0
      ]
@@ -1926,17 +1968,17 @@
       }
      ],
      "box": [
-      3969.0,
+      4175.0,
       -44,
       1014.0,
       1108
      ],
      "foco": [
-      3984.0,
+      4190.0,
       566.0,
       984.0,
       452.0,
-      4064,
+      4270,
       616.0
      ]
     },
@@ -2068,23 +2110,23 @@
       }
      ],
      "box": [
-      4999.0,
+      5205.0,
       -44,
       1838.0,
       1108
      ],
      "foco": [
-      5069.0,
+      5275.0,
       566.0,
       1897.0,
       452.0,
-      5094,
+      5300,
       792.0
      ]
     }
    ],
    "size": [
-    7098,
+    7304,
     1056
    ]
   },
@@ -3673,7 +3715,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4. Os processos de Operações estão em três categorias: 4.0, cadeia de suprimentos de produtos físicos (demanda, materiais, produção, teste, armazém e transporte), base da OP-06; 5.0, entrega de serviços (governança da entrega, recursos, início, execução e conclusão), base da OP-01, da OP-02 e da OP-08; e 6.0, atendimento ao cliente (estratégia, contatos, reclamações, devoluções, pós-venda, recall e avaliação), base da OP-03, da OP-04, da OP-05 e da OP-07. A tabela de cobertura, na aba Método, mostra onde cada um foi parar.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -3737,66 +3779,22 @@
   "l14133": {
    "ref": "Brasil, Lei nº 14.133, de 1º de abril de 2021 (Lei de Licitações e Contratos Administrativos)",
    "uso": "Na OP-02, contrato público: o objeto é recebido provisoriamente pelo fiscal e definitivamente por servidor ou comissão, com termo detalhado, e pode ser rejeitado no todo ou em parte (art. 140). A OP-02 trata os dois recebimentos como aceite do cliente.",
-   "conf": "Texto aberto no site do Planalto em 02/10/2026; conferidos o art. 6º (incisos XLV, XLVI, XLVIII e XLIX), o art. 17 (caput e incisos I a VII) e o caput do art. 18. O Planalto, a Câmara e o Senado entregaram o texto só até os arts. 36, 45 e 53. Em 03/10/2026, os arts. 82 (incisos I a IX), 83, 84, 86 (caput e §§ 2º a 8º), 90 (caput e §§ 1º e 5º), 140, 141, 164 e 165 foram lidos em transcrição secundária (LegJur, uma página por artigo); conferir no texto oficial antes de usar em peça.",
+   "conf": "Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: art. 6º (incisos XLV, XLVI, XLVIII e XLIX); art. 17 (caput, incisos I a VII e §§ 1º e 2º: fases em sequência, habilitação antes do julgamento só por ato motivado e prevista no edital, forma preferencialmente eletrônica); caput do art. 18; arts. 82 a 84 (registro de preços; ata de 1 ano, prorrogável por igual período com preço vantajoso comprovado); art. 86 (caput e §§ 2º a 8º; o § 3º, na redação da Lei 14.770/2023, deixa órgão municipal aderir a ata federal, estadual ou distrital e a ata municipal só se o registro de preços veio de licitação); art. 90 (prazo de convocação fixado no edital, prorrogável uma vez); art. 140 (obras e serviços: recebimento provisório pelo fiscal e definitivo por servidor ou comissão, com termo detalhado; compras: provisório de forma sumária e definitivo com termo detalhado; prazos no regulamento ou no contrato); art. 141 (ordem cronológica de pagamento por fonte e categoria); art. 164 (impugnação até 3 dias úteis antes da abertura, resposta em 3 dias úteis); art. 165 (recurso em 3 dias úteis só contra os atos das alíneas a a e do inciso I, e pedido de reconsideração em 3 dias úteis; § 1º: intenção de recorrer imediata no julgamento e na habilitação; § 2º: a autoridade reconsidera em 3 dias úteis e a superior decide em até 10 dias úteis). Contratação direta não foi lida.",
    "links": [
     [
      "planalto.gov.br",
      "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm"
-    ],
-    [
-     "LegJur, art. 164 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-164"
-    ],
-    [
-     "LegJur, art. 165 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-165"
-    ],
-    [
-     "LegJur, art. 84 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-84"
-    ],
-    [
-     "LegJur, art. 86 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-86"
-    ],
-    [
-     "LegJur, art. 90 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-90"
-    ],
-    [
-     "LegJur, art. 140 (secundária)",
-     "https://www.legjur.com/legislacao/art/LEI_00141332021-140"
     ]
    ]
   },
   "cc2002": {
    "ref": "Brasil, Lei nº 10.406, de 10 de janeiro de 2002 (Código Civil)",
    "uso": "Na OP-07, quando o cliente é empresa e não consumidor: a coisa com vício oculto pode ser enjeitada (art. 441) ou ter o preço abatido (art. 442); o prazo para isso é de trinta dias para coisa móvel, contado da entrega, e, se o vício só puder ser conhecido mais tarde, conta da ciência, até cento e oitenta dias (art. 445); na garantia contratual os prazos não correm, mas o defeito deve ser denunciado em trinta dias da descoberta (art. 446). O contrato entre empresas presume-se paritário e a alocação de riscos combinada é respeitada (art. 421-A).",
-   "conf": "Os arts. 389 e 395 (redação da Lei 14.905/2024) e os arts. 421 e 421-A (redação da Lei 13.874/2019) foram lidos no Planalto, nas leis que deram a redação. Os arts. 422, 441, 442, 443, 445, 446, 475, 1.179, 1.180 e 1.194 foram lidos em transcrição secundária: a página compilada do Planalto foi cortada antes deles. Conferir no oficial antes de usar em peça ou contrato.",
+   "conf": "Texto compilado aberto no site do Planalto em 03/10/2026 e conferidos no texto oficial: arts. 389 (parágrafo único: IPCA quando o índice não foi convencionado), 395, 421, 421-A (inciso II), 422, 441 a 446 (art. 445: 30 dias para móvel e 1 ano para imóvel; art. 446: os prazos não correm na garantia contratual, e o defeito é denunciado em 30 dias da descoberta), 475, 1.179, 1.180 e 1.194.",
    "links": [
     [
-     "planalto.gov.br, Lei 13.874/2019",
-     "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2019/lei/l13874.htm"
-    ],
-    [
-     "planalto.gov.br, Lei 14.905/2024",
-     "https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2024/lei/l14905.htm"
-    ],
-    [
-     "Petições Online, art. 445 (secundária)",
-     "https://www.peticoesonline.com.br/art-445-cc"
-    ],
-    [
-     "Petições Online, art. 446 (secundária)",
-     "https://www.peticoesonline.com.br/art-446-cc"
-    ],
-    [
-     "Petições Online, art. 1.179 (secundária)",
-     "https://www.peticoesonline.com.br/art-1179-cc"
-    ],
-    [
-     "Petições Online, art. 1.194 (secundária)",
-     "https://www.peticoesonline.com.br/art-1194-cc"
+     "planalto.gov.br, Código Civil compilado",
+     "https://www.planalto.gov.br/ccivil_03/leis/2002/l10406compilada.htm"
     ]
    ]
   },
@@ -4283,6 +4281,18 @@
      "em": [
       "OP-01"
      ]
+    },
+    {
+     "o": "Retomada das entregas do cliente que quitou o atraso",
+     "em": [
+      "OP-02"
+     ]
+    },
+    {
+     "o": "Suspensão de novas entregas por atraso, decidida pelo executivo",
+     "em": [
+      "OP-02"
+     ]
     }
    ],
    "recebe": [
@@ -4464,6 +4474,12 @@
    "nome": "Avaliar o risco e o dever de comunicar a autoridade"
   },
   {
+   "parte": "Governança",
+   "code": "OP-04",
+   "etapa": 2,
+   "nome": "Avaliar a responsabilidade e o risco da solução acima da alçada"
+  },
+  {
    "parte": "Executivos",
    "code": "OP-04",
    "etapa": 2,
@@ -4517,14 +4533,14 @@
   "essenciais": 6,
   "recomendadas": 2,
   "etapas": 30,
-  "tarefas": 126,
-  "decisoes": 31,
+  "tarefas": 128,
+  "decisoes": 32,
   "exec": {
-   "R": 49,
+   "R": 50,
    "A": 35,
    "H": 8,
    "P": 29,
-   "C": 5
+   "C": 6
   },
   "modos": {
    "Autopiloto": 8,
@@ -4547,8 +4563,8 @@
    "OP-02": {
     "A": 7,
     "P": 3,
-    "H": 1,
-    "R": 3
+    "R": 4,
+    "H": 1
    },
    "OP-08": {
     "A": 3,
@@ -4566,7 +4582,7 @@
     "R": 9,
     "A": 5,
     "P": 5,
-    "C": 1,
+    "C": 2,
     "H": 1
    },
    "OP-05": {
@@ -4590,7 +4606,7 @@
     "C": 2
    }
   },
-  "verificacoes": 2189,
+  "verificacoes": 2218,
   "problemas": 0
  },
  "exec_nome": {
@@ -4693,7 +4709,7 @@
   {
    "o": "Fontes do pós-venda entre empresas e do recebimento público",
    "origem": "Pedido seu (13:09 de 03/10/2026): pesquisar e resolver as fontes",
-   "efeito": "OP-07: Código Civil, arts. 421-A e 441 a 446; OP-02: Lei 14.133, art. 140. Lidos em transcrição secundária; conferir no oficial antes de usar em peça."
+   "efeito": "OP-07: Código Civil, arts. 421-A e 441 a 446; OP-02: Lei 14.133, art. 140. Conferidos no texto oficial (Planalto), em 03/10/2026."
   },
   {
    "o": "Alçadas de Operações",
@@ -4704,6 +4720,11 @@
    "o": "Cadências e conteúdos validados; gates de implantação",
    "origem": "Validado por você (14:07 de 03/10/2026)",
    "efeito": "OP-01 trimestral; OP-05 e OP-06 mensais; procedimento, três níveis de serviço e garantia por oferta. O que depende de dado real ficou nos gates G1 a G9."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "OP-02, etapa 2: as entregas do cliente suspenso por atraso, por decisão do executivo na GE-03, são suspensas e avisadas (M7). OP-04, etapa 2: acima da alçada, a Governança avalia a responsabilidade e o risco antes da decisão do executivo (M1)."
   }
  ],
  "alertas": [
@@ -4938,17 +4959,17 @@
  "cobertura_txt": "Processos do APQC PCF 7.4 ligados às funções de Operações (categorias 4.0, 5.0 e 6.0), grupo a grupo: onde cada um está neste modelo. Os nomes estão como no referencial.",
  "principio": "Regra do círculo, aprovada por você às 11:50 de 03/10/2026: Operações decide o que é do seu ofício (o plano de capacidade, o plano de entrega de cada cliente, os procedimentos e os níveis de serviço, a solução da reclamação dentro da alçada e a ação corretiva). O executivo decide o que passa da alçada de Operações e o recall; Relações define os padrões de experiência; a Integração muda jornadas, sistemas e agentes; a Gestão compra e fatura; a Governança define a alçada e avalia o dever de comunicar a autoridade.",
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado. Os únicos prazos citados são os da lei (CDC e Código Civil), com a fonte.",
   "As cadências foram validadas em 03/10/2026 (aba Parâmetros em aberto); o líder do círculo ajusta na implantação e a calibração com dados é o gate G9.",
   "Os rascunhos de procedimentos, níveis de serviço e garantia foram validados em 03/10/2026 (aba Gates de implantação); o texto final é o gate G8, e os números que dependem de dado real ficam nos gates G3 e G9.",
-  "O CDC vale quando o cliente é consumidor. Contrato entre empresas segue o que foi contratado e o Código Civil (arts. 421-A e 441 a 446), lido em transcrição secundária: conferir no texto oficial antes de usar.",
+  "O CDC vale quando o cliente é consumidor. Contrato entre empresas segue o que foi contratado e o Código Civil (arts. 421-A e 441 a 446), conferido no texto oficial (Planalto) em 03/10/2026.",
   "Uma estratégia de recall prévia (APQC 6.1.7), a manutenção de equipamentos (APQC 4.3.1.5 e 4.3.1.6), o planejamento da distribuição (4.1.5 a 4.1.7), a governança da logística (4.4.1), o registro de produtos (6.3.1) e a estratégia de canais de atendimento (6.1.3) não têm etapa própria.",
-  "No contrato público, o recebimento provisório e o definitivo seguem o art. 140 da Lei 14.133, lido em transcrição secundária: a OP-02 trata os dois como aceite do cliente.",
+  "No contrato público, o recebimento provisório e o definitivo seguem o art. 140 da Lei 14.133, conferido no texto oficial: em obras e serviços, o provisório é do fiscal e o definitivo de servidor ou comissão, com termo detalhado; em compras, o provisório é sumário; os prazos ficam no contrato. A OP-02 trata os dois como aceite do cliente.",
   "Quando a ação corretiva conclui, quem apontou a lacuna (Identidade, Relações ou Estratégia) vê o efeito pelo painel da Inteligência: os círculos fechados não têm entrada para um aviso direto.",
   "A recusa de capacidade no plano chega a Negócios pela confirmação de capacidade feita nas jornadas de Negócios e ao executivo pelo plano publicado; Negócios não recebe o plano como entrada.",
   "O referencial de processos é o APQC PCF 7.4, de agosto de 2024. Da ISO 9001 lemos só a página oficial; da ISO 10002, só o resumo.",
-  "Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Onde faltava o outro lado, a proposta à IT-04 foi aprovada e aplicada. Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "A tarefa de quem não é do círculo (cliente, executivo, Negócios, Gestão, Governança) está desenhada como participação; o detalhe dela fica no círculo dono.",
   "As aprovações e conferências sem decisão desenhada não têm ramo de recusa: a recusa devolve o trabalho a quem preparou.",
   "As saídas estão listadas por etapa, não por caminho: o pedido à Integração, à Identidade ou à Inteligência só sai quando a decisão pede.",

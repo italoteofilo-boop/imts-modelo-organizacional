@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Instruções de trabalho das 73 jornadas (E3), geradas da fonte do modelo (saida/cN/circulo.json).
+"""Instruções de trabalho das jornadas (E3), geradas da fonte do modelo (saida/cN/circulo.json).
 Escreve saida/instrucoes/html/<JORNADA>.html (uma por jornada, para imprimir em A4) e
-saida/instrucoes/instrucoes.html (a versão digital, com as 73 navegáveis). Nada é escrito à mão:
+saida/instrucoes/instrucoes.html (a versão digital, com todas navegáveis). Nada é escrito à mão:
 cada linha vem do modelo; o que o modelo não diz, a instrução também não diz.
 Uso: python3 instrucoes.py  (depois: node instrucoes_pdf.mjs, que gera os PDFs)"""
 import csv, html, json, math, os, re
@@ -9,7 +9,7 @@ import xml.etree.ElementTree as ET
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 SAIDA = os.path.join(BASE, 'saida', 'instrucoes')
-VERSAO = '2026-10-03'
+VERSAO = '2026-10-03.2'
 DATA = '03/10/2026'
 E = html.escape
 TIPO_INICIO = {'message': 'ao receber', 'timer': 'na data marcada', 'signal': 'ao sinal', None: 'ao iniciar'}
@@ -362,7 +362,7 @@ main { max-width: 1120px; margin: 0 auto; padding-block: 16px 40px; }
 <button id="ant" aria-label="Jornada anterior">←</button><button id="prox" aria-label="Próxima jornada">→</button></div></div>
 <main>
 <section id="vmapa" hidden>
-  <div class="tela"><svg id="mapa" viewBox="-640 -560 1280 1120" role="img" aria-label="Mapa das 73 jornadas e das ligações entre elas"></svg>
+  <div class="tela"><svg id="mapa" viewBox="-640 -560 1280 1120" role="img" aria-label="Mapa das jornadas e das ligações entre elas"></svg>
   <div class="leg"><span><i style="background:var(--sai)"></i>entrega para</span><span><i style="background:var(--entra)"></i>recebe de</span><span>%NARESTAS% ligações entre jornadas · espessura = quantas entregas</span></div></div>
   <aside class="lado" id="lado" aria-live="polite"></aside>
 </section>

@@ -52,8 +52,10 @@ begin
   end loop;
 
   -- M5. Motor em desenho não inicia jornada
+  update rt.motor set estado = 'desenho' where circulo = 2;
   ok := false; begin perform rt.iniciar_jornada('ES-01', lider); exception when others then ok := true; end;
   if not ok then raise exception 'FALHA M5: iniciou jornada de motor em desenho'; end if;
+  update rt.motor set estado = 'piloto' where circulo = 2;
 
   -- M6. Avulsa: sem prazo não entra; com prazo vai a a fazer e anda livre
   ok := false; begin perform rt.criar_avulsa(p1, 'Ligar para o contador', null); exception when others then ok := true; end;

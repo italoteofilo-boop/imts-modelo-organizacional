@@ -937,7 +937,7 @@ MUDANCAS = [
 ]
 
 LIMITES = [
-    'Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+    'Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.',
     'Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.',
     'As cadências vêm do método de estratégia aprovado em 03/10/2026: ciclo estratégico anual, com revisão no meio do ciclo (ES-01); portfólio semestral (ES-02); alvos anuais, com o ciclo (ES-03); revisão da execução trimestral (ES-06). São escolha de desenho, sem fonte externa: recalibrar com dados depois de dois ciclos.',
     'O método de estratégia foi aprovado em 03/10/2026 e ainda não foi ratificado pelos sócios (gate G6).',
@@ -952,7 +952,7 @@ LIMITES = [
     'Na venda decidida sem comprador, a busca do comprador não está desenhada: o mandato a descreve, e a oportunidade volta à ES-05 quando houver comprador.',
     'A ES-04 registra a incoerência com a identidade na avaliação e não recomenda avançar; a decisão do portão continua sendo de pessoas.',
     'As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.',
-    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 410 trocas, sem problema.',
+    'Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).',
     'As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.',
     'Os números descrevem este desenho, não a operação atual.',
 ]

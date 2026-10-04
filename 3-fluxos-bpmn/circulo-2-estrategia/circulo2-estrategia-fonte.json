@@ -45,6 +45,11 @@
      "tipo": "timer"
     },
     {
+     "nome": "Revisão do meio do ciclo iniciada",
+     "raia": "Estratégia · automação",
+     "tipo": "timer"
+    },
+    {
      "nome": "Revisão da estratégia decidida",
      "raia": "Estratégia · automação",
      "tipo": "message"
@@ -228,17 +233,17 @@
       }
      ],
      "box": [
-      285.0,
+      1085.0,
       -44,
       2044.0,
       1636
      ],
      "foco": [
-      60.0,
+      132.0,
       70.0,
-      2254.0,
-      1498.0,
-      380,
+      2982.0,
+      1476.0,
+      1180,
       1496.0
      ]
     },
@@ -385,17 +390,17 @@
       }
      ],
      "box": [
-      2345.0,
+      3145.0,
       -44,
       2250.0,
       1636
      ],
      "foco": [
-      2415.0,
+      3215.0,
       918.0,
       2110.0,
       452.0,
-      2440,
+      3240,
       1320.0
      ]
     },
@@ -612,17 +617,17 @@
       }
      ],
      "box": [
-      4611.0,
+      5411.0,
       -44,
       3898.0,
       1636
      ],
      "foco": [
-      4681.0,
+      5481.0,
       566.0,
       3758.0,
       955.0,
-      4706,
+      5506,
       1320.0
      ]
     },
@@ -752,17 +757,17 @@
       }
      ],
      "box": [
-      8525.0,
+      9325.0,
       -44,
       1632.0,
       1636
      ],
      "foco": [
-      8595.0,
+      9395.0,
       214.0,
       1897.0,
       1332.0,
-      8620,
+      9420,
       440.0
      ]
     },
@@ -892,23 +897,23 @@
       }
      ],
      "box": [
-      10585.0,
+      11385.0,
       -44,
       1220.0,
       1636
      ],
      "foco": [
-      10600.0,
+      11400.0,
       1094.0,
       1334.0,
       452.0,
-      10680,
+      11480,
       1320.0
      ]
     }
    ],
    "size": [
-    12066,
+    12866,
     1584
    ]
   },
@@ -2167,7 +2172,7 @@
    "dominio": "Apostas e empresas",
    "classe": "essencial",
    "onda": 2,
-   "objetivo": "Fazer cada ideia, oferta ou negócio novo passar por decisões explícitas antes de receber recursos: entrar na carteira e, depois de produtizada pela Inteligência, ser lançada. Em qualquer portão ou revisão, a aposta pode avançar, seguir como está, esperar, voltar para ajuste ou ser encerrada. A Estratégia decide, ouvido o executivo, dentro da alçada; acima dela, decidem os sócios. Encerrar aposta em desenvolvimento ou oferta em uso só termina com o plano de saída conferido, a data de saída decidida por pessoa e a saída conferida.",
+   "objetivo": "Fazer cada ideia, oferta ou negócio novo passar por decisões explícitas antes de receber recursos: entrar na carteira e, depois de produtizada pela Inteligência, ser lançada. Em qualquer portão ou revisão, a aposta pode avançar, seguir como está, esperar, voltar para ajuste ou ser encerrada. A Estratégia decide, ouvido o executivo, dentro da alçada; decidem os sócios quando os recursos passam da alçada, quando se encerra oferta com contratos vigentes e quando a decisão contraria o portfólio-alvo. Encerrar aposta em desenvolvimento ou oferta em uso só termina com o plano de saída conferido, a data de saída decidida por pessoa e a saída conferida.",
    "frequencia": "Por evento: ideia nova, aposta definida no portfólio-alvo, oferta pronta para lançar, aposta devolvida pela Inteligência, revisão pedida (a de oferta em uso chega pela Inteligência ou pela ES-06), estudo de saída pedido na ES-02, caso de empresa nascido de aposta e arquivado na ES-05, ou data de revisão ou de retomada da aposta",
    "automacao": {
     "nivel": "alta na entrada e na preparação, baixa na decisão",
@@ -2642,7 +2647,7 @@
      ],
      "tarefas": [
       {
-       "nome": "Aplicar a tabela de alçadas aos recursos pedidos",
+       "nome": "Aplicar a tabela de alçadas aos recursos pedidos e ao tipo de decisão",
        "exec": "R",
        "raia": "Estratégia · automação",
        "tipo": "rule",
@@ -2667,28 +2672,28 @@
        "exec": "H",
        "raia": "Executivo da empresa",
        "tipo": "user",
-       "cond": "A decisão passa da alçada da Estratégia? Não"
+       "cond": "A decisão passa da alçada da Estratégia pelos recursos ou pelo tipo? Não"
       },
       {
        "nome": "Decidir o destino da aposta e se ela vira oferta ou empresa própria, ouvido o executivo",
        "exec": "P",
        "raia": "Estratégia · pessoa",
        "tipo": "user",
-       "cond": "A decisão passa da alçada da Estratégia? Não"
+       "cond": "A decisão passa da alçada da Estratégia pelos recursos ou pelo tipo? Não"
       },
       {
        "nome": "Levar a aposta à decisão dos sócios",
        "exec": "C",
        "raia": "Governança",
        "tipo": "call",
-       "cond": "A decisão passa da alçada da Estratégia? Sim"
+       "cond": "A decisão passa da alçada da Estratégia pelos recursos ou pelo tipo? Sim: recursos acima da alçada, encerramento de oferta com contratos vigentes ou decisão contra o portfólio-alvo"
       },
       {
        "nome": "Decidir o destino da aposta pelos sócios",
        "exec": "H",
        "raia": "Sócios",
        "tipo": "manual",
-       "cond": "A decisão passa da alçada da Estratégia? Sim"
+       "cond": "A decisão passa da alçada da Estratégia pelos recursos ou pelo tipo? Sim: recursos acima da alçada, encerramento de oferta com contratos vigentes ou decisão contra o portfólio-alvo"
       },
       {
        "nome": "Enviar a decisão de encerrar a quem desenha, vende e entrega, para parar novas vendas",
@@ -2729,7 +2734,7 @@
      "paralelo": false,
      "decisoes": [
       {
-       "pergunta": "A decisão passa da alçada da Estratégia?",
+       "pergunta": "A decisão passa da alçada da Estratégia pelos recursos ou pelo tipo?",
        "quem": "Estratégia · automação",
        "saidas": [
         {
@@ -2741,7 +2746,7 @@
          "vai": "segue na etapa"
         },
         {
-         "rotulo": "Sim",
+         "rotulo": "Sim: recursos acima da alçada, encerramento de oferta com contratos vigentes ou decisão contra o portfólio-alvo",
          "via": [
           "Levar a aposta à decisão dos sócios",
           "Decidir o destino da aposta pelos sócios"
@@ -4706,6 +4711,14 @@
        "de": "Gestão"
       },
       {
+       "o": "Desvio grave ou mudança de alvo apontados pelo ritual",
+       "de": "Gestão"
+      },
+      {
+       "o": "Ajuste de oferta feito sem portão, com o motivo da dispensa",
+       "de": "Inteligência"
+      },
+      {
        "o": "Indicadores e análises por empresa, oferta e aposta",
        "de": "Inteligência"
       },
@@ -5232,7 +5245,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4, categoria 1.0, Develop Vision and Strategy, com quatro grupos: 1.1, conceito de negócio e visão de longo prazo; 1.2, estratégia de negócio; 1.3, iniciativas estratégicas; 1.4, modelos de negócio. A tabela de cobertura, na aba Método, mostra onde cada processo foi parar: nas seis jornadas ou em outro círculo.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -5387,8 +5400,8 @@
   },
   "realloc": {
    "ref": "Stephen Hall, Dan Lovallo e Reinier Musters, How to put your money where your strategy is, McKinsey Quarterly, março de 2012",
-   "uso": "Quatro atividades de alocação: semear (entrar em área de negócio nova, por aquisição ou investimento próprio), nutrir (reforçar um negócio existente), podar (tirar recursos de um negócio existente) e colher (vender negócios inteiros que não cabem mais no portfólio ou separá-los). Quatro recomendações: ter um portfólio-alvo, usar todos os instrumentos de realocação, adotar regras simples para romper o status quo e implantar processos que reduzam a inércia. Numa amostra de mais de 1.600 empresas dos Estados Unidos, de 1990 a 2005, os autores relatam que o terço que mais realocou capital entre unidades de negócio teve, em média, retorno total ao acionista 30% maior por ano que o terço que menos realocou: 10,2% contra 7,8% ao ano, diferença relativa, não de 30 pontos percentuais. Em períodos de menos de três anos, quem mais realocou teve retorno menor. Base da ES-02 e, na venda de empresa, da ES-05.",
-   "conf": "Artigo aberto no site da McKinsey (página e PDF). O número citado é dos autores, sobre a amostra deles; não foi reproduzido por nós.",
+   "uso": "Quatro atividades de alocação: semear (entrar em área de negócio nova, por aquisição ou investimento próprio), nutrir (reforçar um negócio existente), podar (tirar recursos de um negócio existente) e colher (vender negócios inteiros que não cabem mais no portfólio ou separá-los). Quatro recomendações: ter um portfólio-alvo, usar todos os instrumentos de realocação, adotar regras simples para romper o status quo e implantar processos que reduzam a inércia. Numa amostra de mais de 1.600 empresas dos Estados Unidos, de 1990 a 2005, os autores relatam que o terço que mais realocou capital entre unidades de negócio teve, em média, retorno total ao acionista 30% maior por ano que o terço que menos realocou: 10,2% contra 7,8% ao ano no Exhibit 2 do artigo, diferença relativa, não de 30 pontos percentuais. Em períodos de menos de três anos, quem mais realocou teve retorno menor. Base da ES-02 e, na venda de empresa, da ES-05.",
+   "conf": "Artigo aberto no site da McKinsey em 03/10/2026. O texto diz que o terço que mais realocou teve, em média, retorno total ao acionista 30% maior por ano que o terço que menos realocou; os valores 10,2% e 7,8% ao ano (1990 a 2005, 1.616 empresas) estão no Exhibit 2 do artigo, não no texto corrido. Os números são dos autores, sobre a amostra deles; não foram reproduzidos por nós.",
    "links": [
     [
      "mckinsey.com",
@@ -5752,6 +5765,12 @@
   {
    "parte": "Inteligência",
    "entrega": [
+    {
+     "o": "Ajuste de oferta feito sem portão, com o motivo da dispensa",
+     "em": [
+      "ES-06"
+     ]
+    },
     {
      "o": "Aposta devolvida com evidência e recomendação",
      "em": [
@@ -6194,6 +6213,12 @@
   {
    "parte": "Gestão",
    "entrega": [
+    {
+     "o": "Desvio grave ou mudança de alvo apontados pelo ritual",
+     "em": [
+      "ES-06"
+     ]
+    },
     {
      "o": "Desvios e decisões do ritual de acompanhamento",
      "em": [
@@ -7011,7 +7036,7 @@
     "H": 1
    }
   },
-  "verificacoes": 3281,
+  "verificacoes": 3288,
   "problemas": 0
  },
  "exec_nome": {
@@ -7165,6 +7190,11 @@
    "o": "Método de estratégia: calendário, portões, realocação e hipóteses",
    "origem": "Aprovado por você (13:51 de 03/10/2026)",
    "efeito": "Calendário: ES-01 anual com revisão no meio do ciclo, ES-02 semestral, ES-03 anual, ES-06 trimestral, GE-02 mensal, ES-04 por evento. Portão 1 (entrar na carteira): problema e público claros, coerência com a identidade, hipótese testável com indicador, próximo passo dentro da reserva, dono. Portão 2 (lançar): evidência de demanda, preço-base que cobre o custo, capacidade confirmada, contrato no modelo, indicadores definidos. Realocação por resultado contra o alvo e coerência: crescer, manter, reduzir ou estudar a saída. Alçada da aposta: cada aposta dentro da reserva dos sócios, até um terço dela."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "ES-01: a revisão do meio do ciclo ganha evento de início (L4). ES-04, etapa 3: vão aos sócios, além dos recursos acima da alçada, o encerramento de oferta com contratos vigentes e a decisão que contraria o portfólio-alvo (M10). ES-06: recebe da GE-02 o desvio grave e a mudança de alvo, e da IN-07 o ajuste feito sem portão (M9, L1, L8). Método: critério de desvio grave e um só vocabulário de realocação, semear, nutrir, podar ou colher (M9, L2)."
   }
  ],
  "alertas": [
@@ -7178,7 +7208,7 @@
   },
   {
    "o": "Alçadas e sócios",
-   "nota": "Faltam as alçadas que separam a decisão da Estratégia da decisão dos sócios, por recursos e por tipo de decisão (encerrar oferta em uso, virar empresa própria, contrariar o portfólio-alvo aprovado), e quem são os sócios em cada caso: os do Ecossistema ou os de cada empresa. Fica para o círculo 9."
+   "nota": "Resolvido em 03/10/2026: a alçada da ES-04 vale por recursos e por tipo de decisão (encerrar oferta com contratos vigentes e contrariar o portfólio-alvo vão aos sócios), e a tabela matéria × órgão diz quando decidem os sócios do Ecossistema e quando os de cada empresa (aba Propostas de parâmetros, seção 5)."
   },
   {
    "o": "Cadências",
@@ -7186,7 +7216,7 @@
   },
   {
    "o": "Método de estratégia",
-   "nota": "Tem lugar no desenho (ES-01) e passa a ser aprovado pelos sócios, mas o conteúdo ainda não foi escrito: critérios dos portões, regras de realocação, critério de desvio grave e calendário."
+   "nota": "Escrito e aprovado em 03/10/2026 (13:51; desvio grave e vocabulário às 16:05): calendário, critérios dos dois portões, revisão, realocação, registro de hipóteses e critério de desvio grave (aba Propostas de parâmetros, seção 2). Os sócios ratificam no gate G6."
   }
  ],
  "propostas": [],
@@ -7291,12 +7321,11 @@
  "cobertura_txt": null,
  "principio": null,
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
   "As cadências vêm do método de estratégia aprovado em 03/10/2026: ciclo estratégico anual, com revisão no meio do ciclo (ES-01); portfólio semestral (ES-02); alvos anuais, com o ciclo (ES-03); revisão da execução trimestral (ES-06). São escolha de desenho, sem fonte externa: recalibrar com dados depois de dois ciclos.",
-  "O método de estratégia tem lugar no desenho (ES-01), mas o conteúdo ainda não foi escrito: critérios dos portões, regras de realocação, critério de desvio grave e calendário.",
-  "As alçadas que separam a decisão da Estratégia da decisão dos sócios ainda não existem; serão definidas no círculo 9, Governança.",
-  "A raia “Sócios” não distingue os sócios do Ecossistema dos sócios de cada empresa. Quem delibera o quê fica para o círculo 9.",
+  "O método de estratégia foi aprovado em 03/10/2026 e ainda não foi ratificado pelos sócios (gate G6).",
+  "A raia “Sócios” é uma só nos fluxos; quem decide em cada matéria, os sócios do Ecossistema ou os de cada empresa, está na tabela matéria × órgão (aba Propostas de parâmetros, seção 5).",
   "Fusão e cisão de empresas não estão desenhadas: a ES-05 cobre criação, aquisição, venda e encerramento.",
   "O plano de saída de clientes, contratos e pessoas é pedido à Integração e conferido pela Estratégia; como ele é montado só será desenhado nos círculos 4 a 9.",
   "Captar dinheiro de fora ou admitir sócio numa empresa ficam fora do desenho: a ES-05 não tem ramo para essas operações.",
@@ -7307,7 +7336,7 @@
   "Na venda decidida sem comprador, a busca do comprador não está desenhada: o mandato a descreve, e a oportunidade volta à ES-05 quando houver comprador.",
   "A ES-04 registra a incoerência com a identidade na avaliação e não recomenda avançar; a decisão do portão continua sendo de pessoas.",
   "As ofertas de uma empresa adquirida não têm caminho desenhado até o catálogo de ofertas.",
-  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.",
   "Os números descrevem este desenho, não a operação atual."
  ],

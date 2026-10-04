@@ -174,10 +174,12 @@ table.carga td.n, table.carga th.n { text-align:right; font-variant-numeric:tabu
     <div class="resumo" id="resumo" aria-live="polite"></div>
   </header>
 
-  <nav class="abas" role="tablist">
+  <nav class="abas" aria-label="Quadros">
+    <div role="tablist" aria-label="Quadro" style="display:contents">
     <button class="aba" role="tab" data-aba="meu" aria-selected="true">Meu quadro</button>
     <button class="aba" role="tab" data-aba="circulo" aria-selected="false">Círculo</button>
     <button class="aba" role="tab" data-aba="jornada" aria-selected="false">Jornada</button>
+    </div>
     <div class="dir">
       <label id="l-jornada" hidden>Jornada <select id="sel-jornada"></select></label>
       <label>Raias <select id="sel-raia"><option value="nenhuma">sem raias</option><option value="jornada">por jornada</option><option value="tipo">por tipo</option><option value="execucao">por execução</option></select></label>
@@ -524,7 +526,7 @@ function abrir(id, redesenho) {
   if (meu) {
     h += estadoDelegacao(c) ? `<div>${estadoDelegacao(c)}</div>` : '';
     if (c.delegado_pessoa === eu && c.aceite === 'pendente') {
-      h += `<section><h3>Pedido para você</h3><div class="linha"><label class="nota">Novo prazo (opcional) <input type="datetime-local" id="f-nprazo"></label></div>
+      h += `<section><h3>Pedido para você</h3><div class="linha"><label class="nota">Novo prazo (opcional) <input type="datetime-local" id="f-nprazo" aria-label="Novo prazo"></label></div>
         <div class="acoes"><button class="btn prim" id="f-aceitar">Aceitar</button><button class="btn" id="f-recusar">Recusar</button></div></section>`;
     }
     if (c.coluna === 'decidir' && c.opcoes) {
@@ -548,14 +550,14 @@ function abrir(id, redesenho) {
   if (podeDelegar) {
     const cand = pessoas.filter(x => x.id !== eu && x.id !== c.dono && (c.tipo !== 'fluxo' || lider || x.papel === c.papel));
     const porCirc = {}; for (const x of cand) (porCirc[x.circulo ?? 0] ??= []).push(x);
-    h += `<section><h3>Delegar a alguém</h3><div class="linha"><select id="f-para"><option value="">Escolha a pessoa</option>${Object.entries(porCirc).map(([k, xs]) =>
+    h += `<section><h3>Delegar a alguém</h3><div class="linha"><select id="f-para" aria-label="Pessoa que vai receber"><option value="">Escolha a pessoa</option>${Object.entries(porCirc).map(([k, xs]) =>
       `<optgroup label="${k === '0' ? 'Sem círculo' : esc(circNome(+k))}">${xs.map(x => `<option value="${esc(x.id)}">${esc(rotuloPessoa(x))}</option>`).join('')}</optgroup>`).join('')}</select>
       <button class="btn" id="f-delegar">Delegar</button></div>
       <p class="nota">${c.tipo === 'fluxo' ? (lider ? 'Como líder, você pode delegar fora da raia.' : 'Tarefa de fluxo: só na mesma raia. Fora dela, o líder decide.') : 'Quem recebe precisa aceitar. Outro círculo: o líder de lá vê o pedido.'}</p></section>`;
   }
   if (meu && c.tipo === 'fluxo' && c.coluna !== 'feito') {
-    h += `<section><h3>Pedir ajuda</h3><textarea id="f-ajuda" placeholder="Ex.: me traz as últimas pesquisas com clientes"></textarea>
-      <div class="linha"><input type="datetime-local" id="f-ajuda-prazo"><button class="btn" id="f-pedir">Criar pedido de ajuda</button></div>
+    h += `<section><h3>Pedir ajuda</h3><textarea id="f-ajuda" aria-label="O que você pede" placeholder="Ex.: me traz as últimas pesquisas com clientes"></textarea>
+      <div class="linha"><input type="datetime-local" id="f-ajuda-prazo" aria-label="Prazo do pedido de ajuda"><button class="btn" id="f-pedir">Criar pedido de ajuda</button></div>
       <p class="nota">Vira um cartão de ajuda ligado a este, visível só para você e para quem receber.</p></section>`;
   }
   if (!meu) h += `<p class="nota">Cartão de ${esc(nomeDe(c.dono))}. ${lider ? 'Como líder, você pode delegá-lo.' : 'Só o dono ou o líder do círculo age sobre ele.'}</p>`;

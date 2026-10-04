@@ -17,7 +17,7 @@ Jornadas
 
 Como abrir
 - Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.
-- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.
+- Os fluxos BPMN ficam descritivos (isExecutable="false"): o motor próprio sobre o Supabase lê o desenho e executa, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.
 
 Como ler
 - Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.
@@ -26,9 +26,9 @@ Como ler
 - As caixas tracejadas (grupos) são as etapas da jornada.
 
 Testes desta versão
-- 2189 verificações de integridade, 0 falhas.
+- 2218 verificações de integridade, 0 falhas.
 - 8 arquivos lidos pelo metamodelo do BPMN 2.0 e conferidos por 26 regras do bpmnlint: 0 apontamentos.
-- 8 fluxos desenhados no bpmn-js: 0 avisos; 126 nomes de tarefa conferidos, 0 encobertos ou cortados.
-- Trocas entre os círculos já desenhados: 406 produtos conferidos dos dois lados, 0 falhas.
+- 8 fluxos desenhados no bpmn-js: 0 avisos; 128 nomes de tarefa conferidos, 0 encobertos ou cortados.
+- Trocas entre os círculos já desenhados: 411 produtos conferidos dos dois lados, 0 falhas.
 
 Gerado em 02/10/2026 a partir da fonte única do modelo.

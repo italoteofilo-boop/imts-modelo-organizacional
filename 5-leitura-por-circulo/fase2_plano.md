@@ -83,21 +83,37 @@ Proposta de 03/10/2026, com as suas decisões das 17:42, 18:29 e 18:34. Nada aqu
 6. **Privacidade:** a avulsa é vista só por quem é dono e por quem recebeu; o líder vê a carga em números, não o conteúdo.
 7. **Ordem:** motor com estado das tarefas e avulsas; protótipo da Mesa da Identidade; cérebro vivo na sala de situação.
 
-## 7. Andamento (03/10/2026, 21h)
+## 6.2 Decidido em 03/10/2026, às 21:05: o dia a dia no modelo e o backlog até o fim
+
+1. **Texto de limites dos nove círculos:** "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais."
+2. **Jornadas novas na Gestão:** GE-14 (dívidas tributárias: parcelamentos, transações, negociações e renegociações) e GE-15 (plano de contas, centros de custo por empresa, círculo e projeto, e plano tributário do grupo).
+3. **Etapas novas:** racional financeiro do contrato na NE-04 (etapa 2) e planejado x realizado por contrato na GE-02 (etapa 2). Balancete, DRE e balanço nomeados na GE-05.
+4. **Multiempresa e acesso:** empresas na base (simuladas até o G1), login, permissões e direitos do titular.
+5. **Contábil e fiscal:** integrar um sistema de contabilidade e emissão fiscal, com o motor orquestrando; a escolha do fornecedor fica para a stack de produção.
+6. **Ritmo da simulação contínua:** uma execução a cada 5 minutos (escolha minha, por custo; com "tudo aprovado", não houve escolha explícita entre 1 e 5 minutos).
+
+## 7. Andamento (03/10/2026, 22h)
 
 | Entrega | Situação |
 | --- | --- |
-| E0 Runtime dos runtimes | Pronto no Supabase, 10 testes verdes |
-| G7 Tarefas ligadas a sistemas | As 1.555 tarefas ligadas a cinco sistemas, com adaptador simulado |
-| E1 Registro de eventos | Pronto: o motor grava cada passo, marcado como simulado |
-| E2 Usuários simulados | 60 na base, pseudonimizados. Falta o bot no ambiente de teste do Telegram |
-| E4 Motor piloto | Pronto: roda as 73 jornadas a partir do BPMN. Na Identidade, 2.000 instâncias concluídas e 99 de 99 tarefas executadas |
-| E8 ML | Dois modelos treinados com a simulação, registrados e fora de uso. O de atraso fica no acaso, como deve, porque o simulador sorteia os tempos sem padrão |
-| E3 Instruções de trabalho | Prontas: 73 instruções geradas do modelo, com o recorte do fluxo BPMN em cada etapa; página digital com mapa geral das 73 jornadas (660 ligações) e fluxo completo com zoom; 73 PDFs A4 (as 1.555 tarefas conferidas nos PDFs) |
-| E6 Painel | Pronto: sala de comando com rede viva dos nove motores, eventos em reprodução, drill-down de ecossistema a círculo, jornada, etapa e execução (linha do tempo animada) e botão para rodar uma execução simulada no Supabase. Lê o Supabase pelo seu conector; sem ele, usa o retrato gravado |
-| E11 Mesa de trabalho | Motor com estado das tarefas, avulsas, ajuda, decisão e delegação (010_mesa.sql): 12 testes verdes no Postgres local e no Supabase, seis defeitos plantados detectados. Protótipo da Mesa da Identidade publicado: quadro com cinco colunas, três quadros (meu, círculo, jornada), raias à escolha, foco, delegação ao agente com teto no modo da etapa e a colega com aceite, captura por texto ou voz que sugere a jornada existente. Ao vivo pelo conector do Supabase; sem ele, retrato gravado com as mesmas regras |
-| Cérebro vivo | No painel: 73 jornadas em 9 lobos e 660 sinapses; acende a cada evento (reprodução ou, ao vivo, leitura de 30 em 30 segundos); alerta por regra (acima do p90 da jornada ou erro). Falta escolher o ritmo da simulação contínua |
-| E5, E7, E9, E10 | A fazer |
+| E0 Runtime dos runtimes | Pronto. Publicou a versão 2026-10-03.2 do modelo-base e a aplicou nos nove motores, com os testes de cada círculo verdes |
+| G7 Tarefas ligadas a sistemas | As 1.586 tarefas ligadas a oito sistemas: canal das pessoas, agentes, automações, trocas, assessorias, ERP contábil, emissor fiscal e bancos, todos com adaptador simulado e contrato de interface |
+| E1 Registro de eventos | Pronto, com os eventos de cartão, conversa e titular |
+| E2 Usuários simulados | 61 na base, com id fictício de Telegram para a simulação. Falta o bot no ambiente de teste (token) |
+| E3 Instruções de trabalho | Refeitas para 75 jornadas: 75 PDFs (as 1.586 tarefas conferidas nos PDFs) e página digital com 672 ligações |
+| E4 Motor piloto | Pronto; ajuste do teto das voltas, que passa a valer por laço |
+| E5 Canal Telegram | Pronto e no ar (Edge Function, fila com os limites, autodestruição a cada 10 minutos, segredos no Vault): 12 testes verdes. Falta só o token do bot de teste |
+| E6 Painel e cérebro vivo | Nove lobos acesos; leitura ao vivo de 30 em 30 segundos |
+| E7 Simulador de cenários | Pronto: fila por papel, três cenários, 6 testes, 6 propostas para a ID-04 no esquema sim |
+| E8 ML | Modelos retreinados com os nove motores (versão 2026-10-03.2), fora de uso: dado simulado |
+| E9 Conversa | Pronta sobre o Telegram: comandos, botões e texto livre que procura a jornada existente |
+| E10 Os outros oito motores | Os nove em piloto, cada um com a sua configuração; 10.215 execuções, 211.066 eventos, 0 erros; 1.586 de 1.586 tarefas executadas; simulação contínua a cada 5 minutos |
+| E11 Mesa de trabalho | Pronta; acessibilidade WCAG 2.2 AA sem violação no axe-core |
+| Acesso e multiempresa | Login, permissões, papéis incompatíveis barrados, direitos do titular (LGPD, art. 18): 10 testes verdes |
+
+**Testes no Supabase:** 53 verdes (runtime 10, motor 9, Mesa 12, Telegram 12, acesso 10), mais os testes do modelo (testar.py: nove círculos, 411 trocas, 20 alçadas) e do simulador (6).
+
+**O que fica de fora do meu alcance:** o token do bot de teste (você, no BotFather); o termo do art. 33 (Governança); os gates de implantação com dado real (G1 a G9); a escolha do sistema contábil e fiscal e dos sistemas reais de cada adaptador; a hospedagem do Mini App: precisa de um endereço público, e conferi em 03/10/2026 que o Supabase entrega HTML de Edge Function como texto simples no domínio padrão, então ele não serve para isso sem domínio próprio.
 
 ## Fontes
 

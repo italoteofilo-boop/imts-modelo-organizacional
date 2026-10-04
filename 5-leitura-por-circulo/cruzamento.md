@@ -141,12 +141,12 @@
 - Estratégia → Gestão: Aposta em espera ou devolvida [sai em ES-04 etapa 3; entra em GE-01 etapa 2; chega: direto]
 - Estratégia → Gestão: Aposta mantida depois da revisão [sai em ES-04 etapa 3; entra em GE-01 etapa 2; chega: direto]
 - Estratégia → Gestão: Data de saída confirmada da aposta ou da oferta encerrada [sai em ES-04 etapa 4; entra em GE-01 etapa 2, GE-04 etapa 1, GE-07 etapa 1; chega: direto]
-- Estratégia → Gestão: Pedido de plano de correção [sai em ES-06 etapa 3; entra em GE-02 etapa 2; chega: direto]
-- Estratégia → Gestão: Correções de execução publicadas, com dono e prazo [sai em ES-06 etapa 4; entra em GE-02 etapa 2, GE-11 etapa 1; chega: direto]
-- Estratégia → Gestão: Revisão sem correção registrada [sai em ES-06 etapa 2; entra em GE-02 etapa 2; chega: direto]
+- Estratégia → Gestão: Pedido de plano de correção [sai em ES-06 etapa 3; entra em GE-02 etapa 3; chega: direto]
+- Estratégia → Gestão: Correções de execução publicadas, com dono e prazo [sai em ES-06 etapa 4; entra em GE-02 etapa 3, GE-11 etapa 1; chega: direto]
+- Estratégia → Gestão: Revisão sem correção registrada [sai em ES-06 etapa 2; entra em GE-02 etapa 3; chega: direto]
 - Estratégia → Gestão: Mandato da empresa [sai em ES-05 etapa 6; entra em GE-04 etapa 1, GE-05 etapa 3, GE-07 etapa 1; chega: direto]
 - Estratégia → Gestão: Decisão de alocação e de destino do resultado [sai em ES-02 etapa 3; entra em GE-05 etapa 3; chega: direto]
-- Estratégia → Gestão: Portfólio de empresas atualizado [sai em ES-05 etapa 8; entra em GE-05 etapa 3, GE-06 etapa 1, GE-11 etapa 1; chega: direto]
+- Estratégia → Gestão: Portfólio de empresas atualizado [sai em ES-05 etapa 8; entra em GE-05 etapa 3, GE-06 etapa 1, GE-11 etapa 1, GE-15 etapa 1; chega: direto]
 - Estratégia → Gestão: Lista de pessoas da empresa adquirida [sai em ES-05 etapa 6; entra em GE-07 etapa 1, GE-08 etapa 1; chega: direto]
 - Estratégia → Gestão: Mudança na estratégia a comunicar [sai em ES-01 etapa 5; entra em GE-11 etapa 1; chega: direto]
 - Estratégia → Governança: Decisão dos sócios sobre a estratégia [sai em ES-01 etapa 4; entra em GO-01 etapa 1, GO-02 etapa 2; chega: direto]
@@ -268,38 +268,39 @@
 - Relações → Governança: Lições da crise [sai em RE-08 etapa 3; entra em GO-08 etapa 3; chega: direto]
 - Negócios → Identidade: Consulta sobre caso não coberto [sai em NE-01 etapa 3, NE-03 etapa 3, NE-05 etapa 2, NE-06 etapa 1; entra em ID-02 etapa 1; chega: como pedido]
 - Negócios → Estratégia: Ideia ou aposta nova [sai em NE-03 etapa 2; entra em ES-04 etapa 1; chega: como pedido]
-- Negócios → Inteligência: Registros de propostas, vendas e contratos [sai em NE-03 etapa 4, NE-04 etapa 3, NE-05 etapa 3, NE-06 etapa 5; entra em IN-03 etapa 2; chega: direto]
-- Negócios → Inteligência: Motivos de ganho e de perda de propostas [sai em NE-03 etapa 2, NE-03 etapa 4, NE-04 etapa 1, NE-04 etapa 2, NE-04 etapa 3, NE-05 etapa 3, NE-06 etapa 2; entra em IN-03 etapa 2; chega: direto]
+- Negócios → Inteligência: Registros de propostas, vendas e contratos [sai em NE-03 etapa 4, NE-04 etapa 4, NE-05 etapa 3, NE-06 etapa 5; entra em IN-03 etapa 2; chega: direto]
+- Negócios → Inteligência: Motivos de ganho e de perda de propostas [sai em NE-03 etapa 2, NE-03 etapa 4, NE-04 etapa 1, NE-04 etapa 3, NE-04 etapa 4, NE-05 etapa 3, NE-06 etapa 2; entra em IN-03 etapa 2; chega: direto]
 - Negócios → Inteligência: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em IN-07 etapa 5; chega: direto]
 - Negócios → Inteligência: Pedido de ajuste ou de revisão de oferta em uso [sai em NE-01 etapa 2, NE-03 etapa 2; entra em IN-07 etapa 1; chega: como pedido]
 - Negócios → Relações: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em RE-02 etapa 1; chega: direto]
 - Negócios → Relações: Aceite ou devolução da oportunidade, com o motivo [sai em NE-03 etapa 1; entra em RE-03 etapa 4; chega: direto]
-- Negócios → Relações: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em RE-05 etapa 1; chega: direto]
+- Negócios → Relações: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 4, NE-05 etapa 4, NE-06 etapa 5; entra em RE-05 etapa 1; chega: direto]
 - Negócios → Relações: Vencimento do contrato e resultado da renovação [sai em NE-06 etapa 1, NE-06 etapa 5; entra em RE-05 etapa 2, RE-05 etapa 4; chega: direto]
 - Negócios → Relações: Contato de interessado [sai em NE-03 etapa 1; entra em RE-03 etapa 1; chega: como pedido]
 - Negócios → Relações: Pedido de encerramento de parceria [sai em NE-07 etapa 3; entra em RE-06 etapa 1, RE-06 etapa 4; chega: como pedido]
 - Negócios → Integração: Previsão de receita e de vendas [sai em NE-02 etapa 3; entra em IT-01 etapa 1; chega: direto]
-- Negócios → Integração: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em IT-02 etapa 1; chega: direto]
+- Negócios → Integração: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 4, NE-05 etapa 4, NE-06 etapa 5; entra em IT-02 etapa 1; chega: direto]
 - Negócios → Integração: Contratos afetados pela saída [sai em NE-06 etapa 3; entra em IT-04 etapa 1; chega: direto]
 - Negócios → Integração: Contratos encerrados ou transferidos na saída [sai em NE-06 etapa 3; entra em IT-04 etapa 2; chega: direto]
 - Negócios → Integração: Pendência de contrato na saída [sai em NE-06 etapa 3; entra em IT-04 etapa 2; chega: direto]
 - Negócios → Integração: Contrato encerrado, com a data de fim [sai em NE-06 etapa 5; entra em IT-07 etapa 1; chega: direto]
 - Negócios → Operações: Previsão de receita e de vendas [sai em NE-02 etapa 3; entra em OP-01 etapa 1, OP-06 etapa 1; chega: direto]
 - Negócios → Operações: Ata de registro de preços vigente, com saldo e órgãos participantes [sai em NE-05 etapa 4; entra em OP-01 etapa 1; chega: direto]
-- Negócios → Operações: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em OP-02 etapa 1, OP-05 etapa 1, OP-06 etapa 1, OP-07 etapa 1; chega: direto]
+- Negócios → Operações: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 4, NE-05 etapa 4, NE-06 etapa 5; entra em OP-02 etapa 1, OP-05 etapa 1, OP-06 etapa 1, OP-07 etapa 1; chega: direto]
 - Negócios → Operações: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em OP-02 etapa 1; chega: direto]
 - Negócios → Operações: Contrato encerrado, com a data de fim [sai em NE-06 etapa 5; entra em OP-08 etapa 1; chega: direto]
 - Negócios → Gestão: Plano de vendas do ciclo: alvos por empresa, oferta e canal [sai em NE-02 etapa 3; entra em GE-01 etapa 1; chega: direto]
 - Negócios → Gestão: Previsão de receita e de vendas [sai em NE-02 etapa 3; entra em GE-01 etapa 1, GE-05 etapa 1; chega: direto]
 - Negócios → Gestão: Desvio da previsão contra os alvos, com as ações [sai em NE-02 etapa 2; entra em GE-02 etapa 1; chega: direto]
-- Negócios → Gestão: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 3, NE-05 etapa 4, NE-06 etapa 5; entra em GE-03 etapa 1, GE-04 etapa 1, GE-13 etapa 1; chega: direto]
+- Negócios → Gestão: Racional financeiro do contrato aprovado [sai em NE-04 etapa 4; entra em GE-02 etapa 2; chega: direto]
+- Negócios → Gestão: Contrato de cliente assinado, com o escopo vendido [sai em NE-04 etapa 4, NE-05 etapa 4, NE-06 etapa 5; entra em GE-03 etapa 1, GE-04 etapa 1, GE-13 etapa 1; chega: direto]
 - Negócios → Gestão: Ata de registro de preços vigente, com saldo e órgãos participantes [sai em NE-05 etapa 4; entra em GE-03 etapa 1; chega: direto]
 - Negócios → Gestão: Tabela de preços e política comercial vigentes [sai em NE-01 etapa 3; entra em GE-03 etapa 1; chega: direto]
-- Negócios → Gestão: Acordo de oferta conjunta entre as empresas [sai em NE-07 etapa 2; entra em GE-03 etapa 1, GE-04 etapa 1; chega: direto]
+- Negócios → Gestão: Acordo de oferta conjunta entre as empresas [sai em NE-07 etapa 2; entra em GE-03 etapa 1, GE-04 etapa 1, GE-15 etapa 2; chega: direto]
 - Negócios → Gestão: Contrato encerrado, com a data de fim [sai em NE-06 etapa 5; entra em GE-03 etapa 1; chega: direto]
 - Negócios → Gestão: Contratos encerrados ou transferidos na saída [sai em NE-06 etapa 3; entra em GE-03 etapa 1; chega: direto]
 - Negócios → Gestão: Vencimento do contrato e resultado da renovação [sai em NE-06 etapa 1, NE-06 etapa 5; entra em GE-03 etapa 1; chega: direto]
-- Negócios → Governança: Contrato para conferir e guardar [sai em NE-04 etapa 2; entra em GO-05 etapa 1; chega: direto]
+- Negócios → Governança: Contrato para conferir e guardar [sai em NE-04 etapa 3; entra em GO-05 etapa 1; chega: direto]
 - Negócios → Governança: Acordo de oferta conjunta entre as empresas [sai em NE-07 etapa 2; entra em GO-05 etapa 1; chega: direto]
 - Integração → Identidade: Pedido de padrão para agente ou canal novo [sai em IT-06 etapa 1; entra em ID-02 etapa 1; chega: direto]
 - Integração → Identidade: Registros de entregas de pessoas e agentes [sai em IT-06 etapa 4; entra em ID-02 etapa 3; chega: direto]
@@ -325,7 +326,7 @@
 - Integração → Operações: Cliente implantado e aceito, passado à entrega [sai em IT-02 etapa 4; entra em OP-02 etapa 1; chega: direto]
 - Integração → Operações: Plano de implantação do cliente [sai em IT-02 etapa 1; entra em OP-02 etapa 1; chega: direto]
 - Integração → Operações: Plano de saída de clientes e contratos [sai em IT-04 etapa 1; entra em OP-08 etapa 1; chega: direto]
-- Integração → Gestão: Situação das iniciativas na carteira de projetos [sai em IT-01 etapa 3; entra em GE-01 etapa 1, GE-02 etapa 1; chega: direto]
+- Integração → Gestão: Situação das iniciativas na carteira de projetos [sai em IT-01 etapa 3; entra em GE-01 etapa 1, GE-02 etapa 1, GE-15 etapa 1; chega: direto]
 - Integração → Gestão: Custo de tecnologia por empresa e por círculo [sai em IT-07 etapa 4; entra em GE-01 etapa 1, GE-06 etapa 1; chega: direto]
 - Integração → Gestão: Plano de lançamento da oferta [sai em IT-03 etapa 1; entra em GE-01 etapa 1, GE-03 etapa 1; chega: direto]
 - Integração → Gestão: Impedimento do lançamento, com as opções [sai em IT-03 etapa 2; entra em GE-01 etapa 2; chega: direto]
@@ -367,8 +368,8 @@
 - Gestão → Estratégia: Resultado por empresa e consolidado [sai em GE-05 etapa 2; entra em ES-01 etapa 1, ES-02 etapa 1, ES-05 etapa 1; chega: direto]
 - Gestão → Estratégia: Execução do orçamento e da alocação por empresa, oferta e aposta [sai em GE-05 etapa 2; entra em ES-02 etapa 1, ES-04 etapa 2; chega: direto]
 - Gestão → Estratégia: Posição e projeção de caixa [sai em GE-05 etapa 1; entra em ES-02 etapa 2, ES-03 etapa 3; chega: direto]
-- Gestão → Estratégia: Desvios e decisões do ritual de acompanhamento [sai em GE-02 etapa 2; entra em ES-06 etapa 1; chega: direto]
-- Gestão → Estratégia: Desvio grave ou mudança de alvo apontados pelo ritual [sai em GE-02 etapa 2; entra em ES-06 etapa 1; chega: direto]
+- Gestão → Estratégia: Desvios e decisões do ritual de acompanhamento [sai em GE-02 etapa 3; entra em ES-06 etapa 1; chega: direto]
+- Gestão → Estratégia: Desvio grave ou mudança de alvo apontados pelo ritual [sai em GE-02 etapa 3; entra em ES-06 etapa 1; chega: direto]
 - Gestão → Inteligência: Resultado por empresa e consolidado [sai em GE-05 etapa 2; entra em IN-03 etapa 2; chega: direto]
 - Gestão → Inteligência: Resultado da pesquisa de cultura e dados de pessoas [sai em GE-09 etapa 3; entra em IN-03 etapa 2; chega: direto]
 - Gestão → Inteligência: Custos e margens por empresa e oferta [sai em GE-05 etapa 2; entra em IN-07 etapa 5; chega: direto]
@@ -400,14 +401,14 @@
 - Governança → Relações: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em RE-06 etapa 2; chega: a todos]
 - Governança → Relações: Declaração, posição e encerramento da crise decididos pelo comitê [sai em GO-08 etapa 2, GO-08 etapa 3; entra em RE-08 etapa 2, RE-08 etapa 3; chega: direto]
 - Governança → Negócios: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em NE-01 etapa 1, NE-03 etapa 3, NE-04 etapa 1, NE-05 etapa 2, NE-06 etapa 2; chega: a todos]
-- Governança → Negócios: Modelos de proposta e de contrato [sai em GO-01 etapa 3; entra em NE-01 etapa 2, NE-03 etapa 3, NE-04 etapa 2, NE-06 etapa 2, NE-06 etapa 4; chega: direto]
+- Governança → Negócios: Modelos de proposta e de contrato [sai em GO-01 etapa 3; entra em NE-01 etapa 2, NE-03 etapa 3, NE-04 etapa 3, NE-06 etapa 2, NE-06 etapa 4; chega: direto]
 - Governança → Negócios: Certidões e documentos de habilitação em dia [sai em GO-04 etapa 2; entra em NE-05 etapa 1, NE-05 etapa 2; chega: direto]
 - Governança → Integração: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em IT-05 etapa 2, IT-06 etapa 1, IT-08 etapa 2; chega: a todos]
 - Governança → Integração: Desvio de agente apontado pela auditoria [sai em GO-06 etapa 3; entra em IT-06 etapa 4; chega: direto]
 - Governança → Integração: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em IT-07 etapa 1; chega: a todos]
 - Governança → Operações: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em OP-01 etapa 2, OP-04 etapa 1, OP-07 etapa 3; chega: a todos]
 - Governança → Operações: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em OP-03 etapa 1, OP-04 etapa 1, OP-08 etapa 2; chega: a todos]
-- Governança → Gestão: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em GE-01 etapa 2, GE-04 etapa 1, GE-05 etapa 3, GE-07 etapa 1, GE-12 etapa 1; chega: a todos]
+- Governança → Gestão: Regras e alçadas vigentes [sai em GO-01 etapa 3; entra em GE-01 etapa 2, GE-04 etapa 1, GE-05 etapa 3, GE-07 etapa 1, GE-12 etapa 1, GE-14 etapa 2, GE-15 etapa 2; chega: a todos]
 - Governança → Gestão: Critério de rateio do custo dos círculos [sai em GO-01 etapa 3; entra em GE-06 etapa 1; chega: direto]
 - Governança → Gestão: Regras de sigilo e de dados pessoais [sai em GO-01 etapa 3; entra em GE-07 etapa 2, GE-09 etapa 3, GE-13 etapa 1; chega: a todos]
 
@@ -537,10 +538,10 @@
 - Identidade, em NE-03 etapa 3: Responder à consulta sobre a proposta não coberta pelos padrões
 - Governança, em NE-03 etapa 3: Revisar a cláusula fora do modelo e o risco
 - Governança, em NE-04 etapa 1: Levar a concessão negociada à decisão dos sócios
-- Governança, em NE-04 etapa 2: Revisar as cláusulas fora do modelo e o risco do contrato
-- Governança, em NE-04 etapa 2: Revisar a cláusula de matéria dos sócios e propor a redação
-- Governança, em NE-04 etapa 2: Conferir os poderes de quem assina pela empresa e pelo cliente
-- Governança, em NE-04 etapa 2: Guardar o contrato assinado
+- Governança, em NE-04 etapa 3: Revisar as cláusulas fora do modelo e o risco do contrato
+- Governança, em NE-04 etapa 3: Revisar a cláusula de matéria dos sócios e propor a redação
+- Governança, em NE-04 etapa 3: Conferir os poderes de quem assina pela empresa e pelo cliente
+- Governança, em NE-04 etapa 3: Guardar o contrato assinado
 - Operações, em NE-05 etapa 1: Confirmar a capacidade de entregar o objeto do edital
 - Governança, em NE-05 etapa 1: Conferir as exigências de habilitação e o risco das cláusulas do edital
 - Governança, em NE-05 etapa 1: Pedir esclarecimento ou impugnar o edital, nos prazos da lei e do edital
@@ -594,6 +595,7 @@
 - Governança, em GE-05 etapa 3: Conferir os poderes e a mudança de contas
 - Governança, em GE-05 etapa 3: Conferir os poderes e a mudança de contas do IMTS.OS
 - Governança, em GE-11 etapa 2: Validar o conteúdo sensível
+- Governança, em GE-15 etapa 2: Conferir a recomendação com as regras e o risco
 - Estratégia, em GO-01 etapa 2: Definir o critério de rateio com a Governança
 - Identidade, em GO-06 etapa 3: Julgar os casos de fronteira
 - Identidade, em GO-08 etapa 2: Opinar sobre a posição pela identidade e pelo protocolo

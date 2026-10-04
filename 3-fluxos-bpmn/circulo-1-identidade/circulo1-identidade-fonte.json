@@ -785,7 +785,7 @@
        "cond": null
       },
       {
-       "nome": "Aprovar voz, persona e limites dos agentes",
+       "nome": "Aprovar voz e persona dos agentes; os limites seguem aos sócios na etapa 3",
        "exec": "P",
        "raia": "Identidade · pessoa",
        "tipo": "user",
@@ -2597,7 +2597,7 @@
   "apqc": {
    "ref": "APQC, Process Classification Framework (PCF), cross-industry",
    "uso": "PCF 7.4. Mostra que os processos de identidade estão espalhados por estratégia (1.1.4, 1.2.1), marketing (3.2.1.2, 3.2.1.4), pessoas (7.1.1.9, 7.3.1.1, 7.5.1, 7.8) e relações externas (categoria 12.0). Não existe categoria de identidade: por isso a Identidade padroniza e os círculos donos dessas funções executam.",
-   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
+   "conf": "PDF da versão 7.4 (agosto de 2024) aberto em dois endereços e lido por inteiro em 01/10/2026, por extração do texto das 35 páginas, que cobrem as 13 categorias. Conferidos um a um os elementos das categorias 1, 3 e 7 (por mim e por um revisor independente) e os da categoria 2 e dos grupos 8.4, 12.4, 12.5, 13.5, 13.6 e 13.7 (por mim e por um segundo revisor, no desenho do círculo 3). Em 03/10/2026, os elementos citados das categorias 4, 5, 6, 7, 9, 10, 11 e 12 e o 13.9.2.3 (por mim e por um revisor independente em cada um dos círculos 7, 8 e 9). Também em 03/10/2026, os 18 elementos das categorias 8 e 13 citados no círculo 6, conferidos código e nome contra o texto do PDF 7.4, e os grupos de nível 2 das categorias 8 e 13, conferidos por um revisor independente no mesmo PDF. A versão 8.0 (27/02/2026) foi conferida só nas 13 categorias, na página da coleção de definições da APQC.",
    "links": [
     [
      "PCF 7.4 (PDF, cópia 1)",
@@ -4004,6 +4004,11 @@
    "o": "Cadências e conteúdos validados; gates de implantação",
    "origem": "Validado por você (14:07 de 03/10/2026)",
    "efeito": "ID-05 semestral. O que depende de dado real ficou nos gates G1 a G9."
+  },
+  {
+   "o": "Correções da auditoria geral",
+   "origem": "Aprovado por você (16:05 de 03/10/2026)",
+   "efeito": "ID-02, etapa 2: a Identidade aprova voz e persona dos agentes; os limites dos agentes vão aos sócios na etapa 3, que passam a ser o dono único deles (M5)."
   }
  ],
  "alertas": [
@@ -4021,7 +4026,7 @@
   },
   {
    "o": "Uma auditoria só",
-   "nota": "A Governança amostra as entregas uma vez, com os critérios de cada círculo. A decidir no círculo 9."
+   "nota": "A Governança amostra as entregas uma vez, com os critérios de cada círculo. Decidido no círculo 9: amostra única na GO-06."
   }
  ],
  "propostas": [],
@@ -5074,7 +5079,7 @@
    "nome": "Monitorar a reputação e responder a incidentes e crises",
    "classe": "essencial",
    "objetivo": "Detectar cedo o que ameaça a reputação, encaminhar ao dono e, em crise, responder com fatos, uma só voz e reparação.",
-   "destino": "Relações monitora; Governança, com o executivo, responde à crise",
+   "destino": "Relações monitora; o dono da crise decide, com o comitê conduzido pela Governança",
    "entrega": "Protocolo de crise (ID-02), mensagens (ID-04) e assento no comitê de crise",
    "volta": "Lições da crise (ID-02 e ID-05); percepção dos públicos e sinais de reputação (ID-05)",
    "etapas": [
@@ -5919,9 +5924,9 @@
  "cobertura_txt": null,
  "principio": null,
  "limites": [
-  "Os fluxos são descritivos. Para executar falta escolher o motor e ligar cada tarefa a um sistema.",
+  "Os fluxos rodam no motor próprio sobre o Supabase, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.",
   "Não há tempo, volume nem carga por pessoa: nada disso foi medido, então nada foi estimado.",
-  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 406 trocas, sem problema.",
+  "Com os nove círculos fechados (03/10/2026), as trocas com os outros oito foram conferidas dos dois lados pelo nome: 411 trocas, sem problema (410 até 03/10/2026, 21:05; a troca nova é o racional financeiro do contrato, de Negócios para a Gestão).",
   "As conferências feitas por outros círculos não têm ramo de recusa desenhado: a recusa devolve o trabalho à tarefa anterior.",
   "Na ID-02, as consultas entram pela etapa 1. Se o volume crescer, vale separar em jornada própria; hoje não há medida de volume.",
   "Na ID-03, a jornada termina no pedido de registro; oposição ou recusa do registro ainda não tem caminho desenhado.",
@@ -5932,7 +5937,7 @@
   "As jornadas ID-01, ID-03 e ID-04 vêm da versão de treze jornadas, que passou por revisão independente: 30 achados, 3 graves, corrigidos naquela versão.",
   "No fechamento, um revisor independente leu as cinco jornadas junto com as da Estratégia e propôs sete mudanças. Três foram aplicadas na hora, porque tratavam de partes novas (ID-02, etapa 1; ID-05, etapa 1; fronteira com a Estratégia). As demais viraram cinco propostas: você aprovou quatro, aplicadas nesta versão, e recusou uma.",
   "As fontes deste círculo foram conferidas por um segundo revisor na versão anterior (23 fontes: 18 confirmadas e 5 confirmadas em parte, corrigidas) e, neste fechamento, a do IIA.",
-  "Depois do fechamento, o cruzamento com a Inteligência gerou uma proposta, que você aprovou às 20:02 e está aplicada. As duas propostas seguintes (data de efeito da retirada e escolha da identidade pela Identidade, ouvido o executivo) foram aprovadas às 20:11 de 02/10/2026 e estão aplicadas. A revisão independente dessas mudanças gerou uma proposta nova (papel da marca e nome na ID-03), na aba Decisões, não aplicada."
+  "Depois do fechamento, o cruzamento com a Inteligência gerou uma proposta, que você aprovou às 20:02 e está aplicada. As duas propostas seguintes (data de efeito da retirada e escolha da identidade pela Identidade, ouvido o executivo) foram aprovadas às 20:11 de 02/10/2026 e estão aplicadas. A revisão independente dessas mudanças gerou uma proposta nova (papel da marca e nome na ID-03), aprovada às 09:30 de 03/10/2026 e aplicada."
  ],
  "ondas": {
   "1": "O que o modelo precisa para rodar com pessoas e agentes",

@@ -107,7 +107,7 @@ footer { color: var(--muted); font-size: 12px; }
     <section class="cx" id="cx-rede">
       <header><div class="vistas" role="group" aria-label="Vista"><button id="v-cerebro" aria-pressed="true">Cérebro</button><button id="v-rede" aria-pressed="false">Rede dos motores</button><button id="b-tela-c" title="Só esta vista em tela cheia">⛶</button></div>
         <p id="vista-sub"></p></header>
-      <canvas id="cerebro" role="img" aria-label="Cérebro da operação: 73 jornadas em 9 lobos, ligadas pelas 660 trocas entre jornadas, acendendo a cada evento"></canvas>
+      <canvas id="cerebro" role="img" aria-label="Cérebro da operação: as jornadas em 9 lobos, ligadas pelas trocas entre jornadas, acendendo a cada evento"></canvas>
       <canvas id="rede" hidden role="img" aria-label="Rede dos nove motores com as trocas entre círculos"></canvas>
       <ul class="alertas" id="alertas" aria-live="polite"></ul>
     </section>
@@ -128,6 +128,7 @@ footer { color: var(--muted); font-size: 12px; }
 <div class="tip" id="tip" role="tooltip"></div>
 
 <script>
+document.documentElement.lang = 'pt-BR';
 const RETRATO = __PAINEL__, DETALHES = __DETALHES__, MODELO = __MODELO__;
 const ATLAS = 'https://claude.ai/artifact/WwGQpKJfeZNzpipzgTcGQj';
 const PROJETO = 'rzkfolkqdgtounqjjzss';
@@ -231,7 +232,7 @@ cv.addEventListener('mouseleave', () => tip.style.display = 'none');
 addEventListener('resize', () => { medidas(); medidasCerebro(); });
 
 // ---------- cérebro vivo ----------
-// 73 neurônios (jornadas) em 9 lobos (círculos), 660 sinapses (trocas entre jornadas, do modelo).
+// Um neurônio por jornada, 9 lobos (círculos) e as sinapses (trocas entre jornadas, do modelo: as mesmas ligações do mapa geral das instruções).
 // Disparo: cada evento das execuções acende a jornada e manda impulsos pelas sinapses. Lobo de motor em desenho fica apagado e só acende ao receber troca.
 // Alerta por regra: execução acima do p90 de duração da jornada, ou com erro. O modelo de anomalia (rt.modelo) não está em uso: foi treinado só com dado simulado.
 const cb = document.getElementById('cerebro'), cc = cb.getContext('2d');
@@ -344,7 +345,7 @@ cb.addEventListener('mousemove', ev => { const n = noCerebro(ev); if (!n) { tip.
   const j = (P.jornadas || []).find(x => x.codigo === n.c); mostraTip(`${n.c} · ${n.n}${j ? ` — ${fmt(j.instancias)} execuções` : ''}; ${(saidas[n.c] || []).length} sinapses de saída`, ev.clientX, ev.clientY); });
 cb.addEventListener('mouseleave', () => tip.style.display = 'none');
 cb.addEventListener('click', ev => { const n = noCerebro(ev); if (n) abre({ nivel: 'jornada', j: n.c }); });
-const SUB = { cerebro: 'Cada ponto é uma jornada; cada lobo, um círculo; as linhas, as 660 trocas entre jornadas. Acende a cada evento. Vermelho: alerta por regra (acima do p90 ou erro). Clique numa jornada.',
+const SUB = { cerebro: `Cada ponto é uma jornada (${MODELO.nos.length}); cada lobo, um círculo; as linhas, as ${MODELO.sinapses.length} ligações entre jornadas. Acende a cada evento. Vermelho: alerta por regra (acima do p90 ou erro). Clique numa jornada.`,
   rede: 'Linhas: trocas previstas no modelo. Pontos em movimento: trocas entregues. Arco em volta: cobertura. Clique num círculo.' };
 function trocaVista(v) {
   vista = v; document.getElementById('cerebro').hidden = v !== 'cerebro'; document.getElementById('rede').hidden = v !== 'rede';

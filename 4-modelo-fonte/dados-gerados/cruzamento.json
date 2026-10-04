@@ -1832,7 +1832,7 @@
     "ES-06 etapa 3"
    ],
    "entra": [
-    "GE-02 etapa 2"
+    "GE-02 etapa 3"
    ]
   },
   {
@@ -1844,7 +1844,7 @@
     "ES-06 etapa 4"
    ],
    "entra": [
-    "GE-02 etapa 2",
+    "GE-02 etapa 3",
     "GE-11 etapa 1"
    ]
   },
@@ -1857,7 +1857,7 @@
     "ES-06 etapa 2"
    ],
    "entra": [
-    "GE-02 etapa 2"
+    "GE-02 etapa 3"
    ]
   },
   {
@@ -1897,7 +1897,8 @@
    "entra": [
     "GE-05 etapa 3",
     "GE-06 etapa 1",
-    "GE-11 etapa 1"
+    "GE-11 etapa 1",
+    "GE-15 etapa 1"
    ]
   },
   {
@@ -3442,7 +3443,7 @@
    "via": "direto",
    "sai": [
     "NE-03 etapa 4",
-    "NE-04 etapa 3",
+    "NE-04 etapa 4",
     "NE-05 etapa 3",
     "NE-06 etapa 5"
    ],
@@ -3459,8 +3460,8 @@
     "NE-03 etapa 2",
     "NE-03 etapa 4",
     "NE-04 etapa 1",
-    "NE-04 etapa 2",
     "NE-04 etapa 3",
+    "NE-04 etapa 4",
     "NE-05 etapa 3",
     "NE-06 etapa 2"
    ],
@@ -3523,7 +3524,7 @@
    "para": "Relações",
    "via": "direto",
    "sai": [
-    "NE-04 etapa 3",
+    "NE-04 etapa 4",
     "NE-05 etapa 4",
     "NE-06 etapa 5"
    ],
@@ -3588,7 +3589,7 @@
    "para": "Integração",
    "via": "direto",
    "sai": [
-    "NE-04 etapa 3",
+    "NE-04 etapa 4",
     "NE-05 etapa 4",
     "NE-06 etapa 5"
    ],
@@ -3675,7 +3676,7 @@
    "para": "Operações",
    "via": "direto",
    "sai": [
-    "NE-04 etapa 3",
+    "NE-04 etapa 4",
     "NE-05 etapa 4",
     "NE-06 etapa 5"
    ],
@@ -3748,12 +3749,24 @@
    ]
   },
   {
+   "o": "Racional financeiro do contrato aprovado",
+   "de": "Negócios",
+   "para": "Gestão",
+   "via": "direto",
+   "sai": [
+    "NE-04 etapa 4"
+   ],
+   "entra": [
+    "GE-02 etapa 2"
+   ]
+  },
+  {
    "o": "Contrato de cliente assinado, com o escopo vendido",
    "de": "Negócios",
    "para": "Gestão",
    "via": "direto",
    "sai": [
-    "NE-04 etapa 3",
+    "NE-04 etapa 4",
     "NE-05 etapa 4",
     "NE-06 etapa 5"
    ],
@@ -3797,7 +3810,8 @@
    ],
    "entra": [
     "GE-03 etapa 1",
-    "GE-04 etapa 1"
+    "GE-04 etapa 1",
+    "GE-15 etapa 2"
    ]
   },
   {
@@ -3843,7 +3857,7 @@
    "para": "Governança",
    "via": "direto",
    "sai": [
-    "NE-04 etapa 2"
+    "NE-04 etapa 3"
    ],
    "entra": [
     "GO-05 etapa 1"
@@ -4164,7 +4178,8 @@
    ],
    "entra": [
     "GE-01 etapa 1",
-    "GE-02 etapa 1"
+    "GE-02 etapa 1",
+    "GE-15 etapa 1"
    ]
   },
   {
@@ -4701,7 +4716,7 @@
    "para": "Estratégia",
    "via": "direto",
    "sai": [
-    "GE-02 etapa 2"
+    "GE-02 etapa 3"
    ],
    "entra": [
     "ES-06 etapa 1"
@@ -4713,7 +4728,7 @@
    "para": "Estratégia",
    "via": "direto",
    "sai": [
-    "GE-02 etapa 2"
+    "GE-02 etapa 3"
    ],
    "entra": [
     "ES-06 etapa 1"
@@ -5121,7 +5136,7 @@
    "entra": [
     "NE-01 etapa 2",
     "NE-03 etapa 3",
-    "NE-04 etapa 2",
+    "NE-04 etapa 3",
     "NE-06 etapa 2",
     "NE-06 etapa 4"
    ]
@@ -5218,7 +5233,9 @@
     "GE-04 etapa 1",
     "GE-05 etapa 3",
     "GE-07 etapa 1",
-    "GE-12 etapa 1"
+    "GE-12 etapa 1",
+    "GE-14 etapa 2",
+    "GE-15 etapa 2"
    ]
   },
   {
@@ -5249,7 +5266,7 @@
   }
  ],
  "problemas": [],
- "verificacoes": 1048,
+ "verificacoes": 1055,
  "tarefas": [
   {
    "quem": "Governança",
@@ -6130,28 +6147,28 @@
    "quem": "Governança",
    "em": "Negócios",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Revisar as cláusulas fora do modelo e o risco do contrato"
   },
   {
    "quem": "Governança",
    "em": "Negócios",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Revisar a cláusula de matéria dos sócios e propor a redação"
   },
   {
    "quem": "Governança",
    "em": "Negócios",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Conferir os poderes de quem assina pela empresa e pelo cliente"
   },
   {
    "quem": "Governança",
    "em": "Negócios",
    "code": "NE-04",
-   "etapa": 2,
+   "etapa": 3,
    "nome": "Guardar o contrato assinado"
   },
   {
@@ -6526,6 +6543,13 @@
    "nome": "Validar o conteúdo sensível"
   },
   {
+   "quem": "Governança",
+   "em": "Gestão",
+   "code": "GE-15",
+   "etapa": 2,
+   "nome": "Conferir a recomendação com as regras e o risco"
+  },
+  {
    "quem": "Estratégia",
    "em": "Governança",
    "code": "GO-01",
@@ -6759,6 +6783,18 @@
      ]
     },
     {
+     "nome": "Decidir o parcelamento ou a transação pelos sócios",
+     "em": [
+      "GE-14"
+     ]
+    },
+    {
+     "nome": "Decidir o plano tributário do grupo",
+     "em": [
+      "GE-15"
+     ]
+    },
+    {
      "nome": "Decidir o tratamento dos riscos de nota 15 ou mais",
      "em": [
       "GO-03"
@@ -6892,6 +6928,12 @@
      ]
     },
     {
+     "o": "Débito tributário e caminho decidido",
+     "de": [
+      "GE-14"
+     ]
+    },
+    {
      "o": "Estratégia de experiência do cliente: personas, mapa da jornada e padrões de experiência",
      "de": [
       "RE-04"
@@ -6988,6 +7030,12 @@
      ]
     },
     {
+     "o": "Passivo tributário e parcelas em dia",
+     "de": [
+      "GE-14"
+     ]
+    },
+    {
      "o": "Pedido de plano de correção",
      "de": [
       "ES-06"
@@ -7057,6 +7105,12 @@
      "o": "Plano de vendas do ciclo: alvos por empresa, oferta e canal",
      "de": [
       "NE-02"
+     ]
+    },
+    {
+     "o": "Plano tributário do grupo e regras das operações entre empresas",
+     "de": [
+      "GE-15"
      ]
     },
     {
@@ -7201,9 +7255,21 @@
      ]
     },
     {
+     "nome": "Aprovar o pagamento do débito",
+     "em": [
+      "GE-14"
+     ]
+    },
+    {
      "nome": "Aprovar o pedido fora do orçamento ou acima da alçada",
      "em": [
       "GE-04"
+     ]
+    },
+    {
+     "nome": "Aprovar o plano tributário na alçada do executivo",
+     "em": [
+      "GE-15"
      ]
     },
     {
@@ -7351,6 +7417,12 @@
      ]
     },
     {
+     "nome": "Decidir a renegociação ou a regularização",
+     "em": [
+      "GE-14"
+     ]
+    },
+    {
      "nome": "Decidir a solução acima da alçada de Operações",
      "em": [
       "OP-04"
@@ -7399,6 +7471,12 @@
      ]
     },
     {
+     "nome": "Decidir o parcelamento ou a transação",
+     "em": [
+      "GE-14"
+     ]
+    },
+    {
      "nome": "Decidir o pedido acima da alçada da Gestão",
      "em": [
       "GE-01",
@@ -7421,6 +7499,12 @@
      "nome": "Decidir renovar ou encerrar o contrato vencido sem decisão do dono",
      "em": [
       "GO-05"
+     ]
+    },
+    {
+     "nome": "Decidir seguir com a margem fora da política comercial",
+     "em": [
+      "NE-04"
      ]
     },
     {
@@ -8372,6 +8456,30 @@
      "nome": "Comunicar à autoridade e, no incidente com dados pessoais, ao titular, no prazo",
      "em": [
       "GO-09"
+     ]
+    },
+    {
+     "nome": "Conferir o plano de contas e os centros de custo",
+     "em": [
+      "GE-15"
+     ]
+    },
+    {
+     "nome": "Entregar o débito à defesa da assessoria tributária",
+     "em": [
+      "GE-14"
+     ]
+    },
+    {
+     "nome": "Opinar sobre a procedência do débito e as opções",
+     "em": [
+      "GE-14"
+     ]
+    },
+    {
+     "nome": "Recomendar o regime, as operações entre empresas e os preços entre elas",
+     "em": [
+      "GE-15"
      ]
     },
     {

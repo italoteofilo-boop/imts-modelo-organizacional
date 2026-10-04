@@ -28,7 +28,7 @@ CURTO = {
     'pdca': 'PDCA (ASQ)', 'nng_blueprint': 'NN/g, service blueprint', 'bmc': 'Business Model Canvas',
     'vpc': 'Value Proposition Canvas', 'leanstartup': 'Lean Startup', 'doublediamond': 'Double Diamond',
     'jaakkola': 'Jaakkola, 2011 (resumo)', 'iso44001': 'ISO 44001:2017 (resumo)', 'barcelona': 'Barcelona Principles 3.0',
-    'nng_journey': 'NN/g, mapa da jornada', 'anpd15': 'Resolução CD/ANPD nº 15/2024', 'cc2002': 'Código Civil', 'clt': 'CLT', 'fgts': 'Lei do FGTS',
+    'nng_journey': 'NN/g, mapa da jornada', 'anpd15': 'Resolução CD/ANPD nº 15/2024', 'cc2002': 'Código Civil', 'clt': 'CLT', 'fgts': 'Lei do FGTS', 'l13988': 'Lei 13.988/2020',
 }
 faltam = [k for k in data['fontes'] if k not in CURTO]
 assert not faltam, faltam

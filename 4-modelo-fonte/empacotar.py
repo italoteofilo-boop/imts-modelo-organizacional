@@ -33,7 +33,7 @@ for mod in sys.argv[1:]:
         '',
         'Como abrir',
         '- Qualquer ferramenta de BPMN 2.0 lê os arquivos: Camunda Modeler, bpmn.io (demo.bpmn.io) e similares.',
-        '- Os fluxos são descritivos (isExecutable="false"). Para executar falta escolher o motor e ligar cada tarefa a um sistema.',
+        '- Os fluxos BPMN ficam descritivos (isExecutable="false"): o motor próprio sobre o Supabase lê o desenho e executa, por enquanto em simulação (piloto: Identidade). Falta trocar os adaptadores simulados pelos sistemas reais.',
         '',
         'Como ler',
         '- Cada raia é um papel ou sistema. As três últimas raias são do próprio círculo: pessoa, agente e automação.',
