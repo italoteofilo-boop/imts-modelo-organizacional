@@ -1,0 +1,29 @@
+/* IMTS.OS · base comum do aplicativo: cores, tipos e a barra de módulos. Cada módulo traz o seu próprio estilo. */
+:root {
+  --ground:#EBEBE6; --surface:#FFFFFF; --ink:#1F201E; --sec:#5C5E5A; --hair:#D6D5CF; --accent:#2F52C7; --accent-soft:#E3E8F8;
+  --late:#B3261E; --late-soft:#F8E1DF; --ok:#17663A; --ok-soft:#DDF0E4; --wait:#8A5A00; --wait-soft:#F6EBD3;
+  --sans:'Atkinson Hyperlegible', system-ui, sans-serif; --serif:'Newsreader', Georgia, serif; color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground:#151614; --surface:#1F201E; --ink:#ECECE7; --sec:#A5A7A1; --hair:#34352F; --accent:#8AA4F5; --accent-soft:#232C47;
+    --late:#F2867D; --late-soft:#3A2220; --ok:#7CD3A0; --ok-soft:#1C3326; --wait:#E8C276; --wait-soft:#3A3020; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground:#151614; --surface:#1F201E; --ink:#ECECE7; --sec:#A5A7A1; --hair:#34352F; --accent:#8AA4F5; --accent-soft:#232C47;
+  --late:#F2867D; --late-soft:#3A2220; --ok:#7CD3A0; --ok-soft:#1C3326; --wait:#E8C276; --wait-soft:#3A3020; color-scheme: dark;
+}
+#imts-barra { display:flex; flex-wrap:wrap; align-items:center; gap:8px 18px; padding:8px 20px; background:var(--ink); color:var(--ground); font-family:var(--sans); font-size:14px; }
+#imts-barra a { color:inherit; text-decoration:none; }
+#imts-barra .imts-marca { font-family:var(--serif); font-weight:600; font-size:18px; }
+#imts-barra .imts-menu { display:flex; flex-wrap:wrap; gap:4px; }
+#imts-barra .imts-menu a { padding:4px 10px; border-radius:99px; opacity:.85; }
+#imts-barra .imts-menu a:hover { opacity:1; background:rgba(255,255,255,.12); }
+#imts-barra .imts-menu a[aria-current="page"] { background:var(--ground); color:var(--ink); opacity:1; }
+#imts-barra .imts-quem { margin-left:auto; display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; }
+#imts-barra select, #imts-barra button { font:inherit; font-size:13px; border:1px solid rgba(255,255,255,.35); background:transparent; color:inherit; border-radius:8px; padding:4px 8px; }
+#imts-barra select option { color:#1F201E; }
+#imts-barra button { cursor:pointer; }
+#imts-barra :focus-visible { outline:2px solid var(--accent-soft); outline-offset:2px; }
+@media (max-width:640px) { #imts-barra { padding:8px 16px; } #imts-barra .imts-quem { margin-left:0; width:100%; } }

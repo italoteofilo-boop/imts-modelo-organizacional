@@ -1,10 +1,12 @@
 -- Testes do acervo (E17) como função; rodam dentro de adm.testar_tudo(), que desfaz tudo.
 begin;
 create or replace function acervo._testar_acervo() returns text language plpgsql set search_path = '' as $$
-declare emp uuid := '54d1ee0e-6ee3-4557-9a47-fdac1d7afc48'; a1 uuid; a2 uuid; leitor uuid; r jsonb; r2 jsonb; ok boolean; base text := '112223330001';
+declare emp uuid := gen_random_uuid(); a1 uuid; a2 uuid; leitor uuid; r jsonb; r2 jsonb; ok boolean; base text := '112223330001';
   v_cnpj text; cnpj_inv text; f bigint; d bigint; arq bigint;
   h text;
 begin
+  -- empresa própria do teste: o acervo das empresas simuladas pode já ter campos propostos pela simulação
+  insert into org.empresa (id, nome, simulado) values (emp, 'Empresa de teste do acervo', true);
   select pessoa into a1 from rt.acesso a join rt.pessoa p on p.pseudonimo = a.pessoa where p.papel = 'Administrador do IMTS.OS' limit 1;
   select pessoa into a2 from rt.acesso a join rt.pessoa p on p.pseudonimo = a.pessoa where p.papel = 'Sócios' limit 1;
   select pessoa into leitor from rt.acesso where nivel = 'ler' limit 1;

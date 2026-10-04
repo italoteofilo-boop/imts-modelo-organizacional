@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel da operação · IMTS.OS</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum/base.css">
+<style>
+/* Painel: faixa de números no topo; à esquerda a rede dos nove motores, à direita os eventos recentes;
+   abaixo, o nível escolhido (ecossistema > círculo > jornada > etapa > execução). */
+:root { --mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; --panel-2: #F4F4F0;
+  --pessoa: #9A4A16; --agente: #4450B0; --regra: #1E7A46; --outro: #5C5E5A; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --panel-2: #262724; --pessoa: #F0A371; --agente: #A9B4F7; --regra: #7CD3A0; --outro: #B9C7CC; } }
+:root[data-theme="dark"] { --panel-2: #262724; --pessoa: #F0A371; --agente: #A9B4F7; --regra: #7CD3A0; --outro: #B9C7CC; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ground); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.45; }
+main { max-width: 1360px; margin: 0 auto; padding: 18px 16px 40px; display: grid; gap: 14px; }
+h1, h2, h3 { margin: 0; line-height: 1.2; }
+h1 { font-family: var(--serif); font-weight: 600; font-size: 28px; }
+h2 { font-family: var(--serif); font-weight: 600; font-size: 19px; }
+.lbl, th { font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--sec); }
+.mono, td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.topo { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+.topo .rel { font-family: var(--mono); font-size: 13px; color: var(--sec); }
+.esp { flex: 1; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--hair); color: var(--sec); white-space: nowrap; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.chip.vivo { color: var(--ink); } .chip.vivo i { background: var(--ok); }
+button { font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--hair); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+button:hover { border-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button[disabled] { opacity: .6; cursor: progress; }
+button.pri { background: var(--accent); border-color: var(--accent); color: #fff; }
+:root[data-theme="dark"] button.pri { color: #10131c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) button.pri { color: #10131c; } }
+button.lk { border: 0; background: none; padding: 0; color: var(--accent); text-align: left; text-decoration: underline; text-underline-offset: 2px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); border-radius: 12px; overflow: hidden; }
+.kpi { background: var(--surface); padding: 10px 14px; min-width: 0; }
+.kpi b { display: block; font-family: var(--mono); font-size: 24px; font-weight: 500; line-height: 1.15; margin-top: 2px; }
+.kpi small { color: var(--sec); font-size: 13px; }
+.palco { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr); gap: 14px; }
+.cx { background: var(--surface); border: 1px solid var(--hair); border-radius: 12px; padding: 12px 14px; min-width: 0; }
+.cx > header { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+.cx > header p { margin: 0; color: var(--sec); font-size: 13px; }
+#rede { width: 100%; aspect-ratio: 16 / 10; display: block; border-radius: 8px; background: var(--panel-2); cursor: pointer; }
+.feed { list-style: none; margin: 0; padding: 0; max-height: 440px; overflow: auto; display: flex; flex-direction: column; gap: 2px; font-size: 13px; }
+.feed li { display: grid; grid-template-columns: 96px 22px 1fr; gap: 6px; padding: 4px 6px; border-radius: 6px; background: var(--panel-2); }
+.feed li .h { font-family: var(--mono); color: var(--sec); font-size: 12px; } .feed li .x { font-family: var(--mono); text-align: center; }
+.feed li .t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.feed li.fim { border-left: 3px solid var(--ok); } .feed li.dec { border-left: 3px solid var(--wait); }
+.x-P, .x-H, .x-X { color: var(--pessoa); } .x-A { color: var(--agente); } .x-R { color: var(--regra); } .x-C { color: var(--outro); } .x-- { color: var(--sec); }
+.ctl { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-top: 8px; font-size: 13px; color: var(--sec); }
+.trilha { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 15px; }
+.trilha button { padding: 3px 9px; font-size: 14px; } .trilha span { color: var(--sec); }
+.trilha .atual { color: var(--ink); font-weight: 700; padding: 3px 4px; }
+.tbl { overflow-x: auto; max-width: 100%; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--hair); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--hair); vertical-align: middle; }
+td.n, th.n { text-align: right; white-space: nowrap; }
+tr.vai { cursor: pointer; } tr.vai:hover td { background: var(--panel-2); }
+.pill { display: inline-block; font-size: 13px; padding: 1px 9px; border-radius: 999px; border: 1px solid var(--hair); color: var(--sec); }
+.pill.ok { color: var(--ok); } .pill.erro { color: var(--late); }
+.cob { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+.cob .tr { flex: 1; height: 6px; background: var(--hair); border-radius: 3px; overflow: hidden; } .cob .tr i { display: block; height: 100%; background: var(--accent); }
+.cob span { font-family: var(--mono); font-size: 12px; color: var(--sec); white-space: nowrap; }
+.bar { display: grid; grid-template-columns: minmax(120px, 36%) 1fr; gap: 10px; align-items: center; padding: 3px 4px; }
+.bar .r { font-size: 14px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .r button { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar .t { position: relative; height: 18px; } .bar .t i { position: absolute; left: 0; top: 4px; height: 10px; background: var(--accent); border-radius: 0 3px 3px 0; }
+.bar .t .k { position: absolute; top: 0; width: 2px; height: 18px; background: var(--ink); opacity: .6; } .bar .t em { position: absolute; top: 0; font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--sec); line-height: 18px; white-space: nowrap; }
+.grade2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 14px 24px; }
+.nota { color: var(--sec); font-size: 14px; margin: 8px 0 0; max-width: 90ch; }
+.vazio { padding: 18px; border: 1px dashed var(--hair); border-radius: 10px; color: var(--sec); }
+.vazio b { display: block; color: var(--ink); font-family: var(--serif); font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+.aviso { padding: 10px 12px; border-radius: 10px; background: var(--wait-soft); color: var(--wait); }
+.aviso.ok { background: var(--ok-soft); color: var(--ok); } .aviso.erro { background: var(--late-soft); color: var(--late); }
+#gantt { width: 100%; min-width: 320px; display: block; }
+.leg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--sec); margin-top: 6px; }
+.leg i { display: inline-block; width: 12px; height: 8px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
+.alertas { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.alertas li { border-left: 3px solid var(--late); background: var(--panel-2); border-radius: 6px; padding: 4px 8px; }
+form.abrir { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin-top: 12px; }
+form.abrir label { font-size: 14px; color: var(--sec); }
+form.abrir select { font: inherit; flex: 1 1 220px; min-width: 0; max-width: 100%; padding: 6px 10px; border: 1px solid var(--hair); border-radius: 8px; background: var(--surface); color: var(--ink); }
+footer { color: var(--sec); font-size: 13px; }
+[hidden] { display: none !important; }
+@media (max-width: 900px) { .palco { grid-template-columns: 1fr; } .feed { max-height: 280px; } }
+@media (max-width: 560px) { h1 { font-size: 22px; } .kpi b { font-size: 20px; } .bar { grid-template-columns: 1fr; gap: 0; } #rede { aspect-ratio: 4 / 5; } .feed li { grid-template-columns: 76px 18px 1fr; } }
+</style>
+</head>
+<body>
+<header id="imts-barra"></header>
+<main>
+  <div class="topo">
+    <h1>Painel da operação</h1><span class="rel" id="relogio"></span>
+    <span class="esp"></span>
+    <span class="chip" id="c-fonte"><i></i><span>Carregando</span></span>
+    <button type="button" id="b-atual">Atualizar</button>
+    <button type="button" id="b-tela">Tela cheia</button>
+  </div>
+  <p class="aviso" id="aviso" role="status" hidden></p>
+  <div class="kpis" id="kpis" hidden></div>
+
+  <div class="palco" id="palco">
+    <section class="cx" id="cx-rede" aria-labelledby="t-rede">
+      <header><h2 id="t-rede">Rede dos motores</h2><p id="rede-sub">Círculos: os nove motores. Linhas: trocas entregues. Arco: cobertura das tarefas.</p></header>
+      <canvas id="rede" role="img" aria-label="Rede dos nove motores com as trocas entregues entre círculos. A mesma informação está na tabela do ecossistema, abaixo."></canvas>
+      <ul class="alertas" id="alertas" aria-label="Alertas"></ul>
+    </section>
+    <section class="cx" aria-labelledby="t-feed" style="display:flex;flex-direction:column">
+      <header><h2 id="t-feed">Eventos recentes</h2><p id="feed-sub">Das últimas execuções</p></header>
+      <ul class="feed" id="feed" tabindex="0" aria-label="Eventos recentes"></ul>
+    </section>
+  </div>
+
+  <section class="cx" aria-label="Detalhe">
+    <header><nav class="trilha" id="trilha" aria-label="Nível"></nav><p id="nivel-sub"></p></header>
+    <p class="aviso" id="aviso-nivel" role="status" hidden></p>
+    <div id="nivel"></div>
+  </section>
+
+  <footer>Fonte: rt.painel, rt.painel_detalhe e rt.painel_execucao pela porta única, com o seu login. Atualiza sozinho a cada minuto.</footer>
+</main>
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="comum/imts.js"></script>
+<script>
+(async function () {
+  'use strict';
+  const quem = await IMTS.iniciar({ exige: 'interno', modulo: 'painel', admin: false });
+  const $ = id => document.getElementById(id);
+  const EXEC = { P: 'Pessoa do círculo', A: 'Agente', R: 'Automação', H: 'Pessoa de fora', C: 'Outro círculo', X: 'Assessoria' };
+  const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt = n => n == null ? '·' : Number(n).toLocaleString('pt-BR');
+  const minutos = m => m == null || isNaN(m) ? '·' : m < 120 ? fmt(Math.round(m * 10) / 10) + ' min' : m < 2880 ? fmt(Math.round(m / 6) / 10) + ' h' : fmt(Math.round(m / 144) / 10) + ' d';
+  const horas = h => h == null ? '·' : minutos(h * 60);
+  const dataHora = s => s ? new Date(s).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : '·';
+  // el() monta nós por DOM (textContent): o texto do banco nunca entra como HTML
+  const el = (t, a = {}, ...f) => { const e = document.createElement(t); for (const [k, v] of Object.entries(a)) { if (v == null) continue; if (k === 'class') e.className = v; else if (k === 'style') e.style.cssText = v; else if (k.startsWith('on')) e[k] = v; else e.setAttribute(k, v); } for (const x of f) if (x != null) e.append(x.nodeType ? x : document.createTextNode(String(x))); return e; };
+
+  let P = null;              // rt.painel()
+  let CAT = null;            // rt.app_catalogo(): círculos e jornadas do modelo, com o que a pessoa pode iniciar
+  const det = {};            // rt.painel_detalhe por jornada
+  const aviso = $('aviso'), avisoNivel = $('aviso-nivel');
+  function mostraAviso(alvo, texto, tipo) { alvo.textContent = texto; alvo.className = 'aviso' + (tipo ? ' ' + tipo : ''); alvo.hidden = !texto; }
+
+  const tic = () => $('relogio').textContent = new Date().toLocaleTimeString('pt-BR'); tic(); setInterval(tic, 1000);
+  $('b-tela').onclick = () => { try { const p = document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen(); p?.catch?.(() => {}); } catch (e) { /* sem tela cheia */ } };
+
+  const motores = () => P?.motores || [];
+  const nomeC = k => (CAT?.circulos || []).find(c => c.numero === +k)?.nome || (motores().find(m => m.circulo === +k) || {}).nome || ('Círculo ' + k);
+  const jornadasP = () => P?.jornadas || [];
+  const jornadaCat = j => (CAT?.jornadas || []).find(x => x.codigo === j);
+  const semExecucao = () => !(P?.operacao?.instancias > 0);
+
+  // ---------- leitura ----------
+  async function lerResumo() {
+    let falha = null;
+    try { P = await IMTS.chamar('rt.painel', {}); } catch (e) { if (e.codigo === 'sessao') throw e; falha = e.message; }
+    if (!CAT) { try { CAT = await IMTS.chamar('rt.app_catalogo', {}); } catch (e) { if (e.codigo === 'sessao') throw e; falha = falha || e.message; } }
+    mostraAviso(aviso, falha ? 'Parte do painel não pôde ser lida agora: ' + falha + '. Tente Atualizar em instantes.' : '', 'erro');
+    const cf = $('c-fonte');
+    cf.className = 'chip' + (P ? ' vivo' : ''); cf.lastElementChild.textContent = P ? 'Lido às ' + new Date(P.gerado_em || Date.now()).toLocaleTimeString('pt-BR', { timeStyle: 'short' }) : 'Sem leitura';
+    for (const k of Object.keys(det)) delete det[k];
+    kpis(); await carregaRecentes(); medidas();
+  }
+  async function carregar() {
+    const b = $('b-atual'); b.disabled = true;
+    try { await lerResumo(); desenhaNivel(); } finally { b.disabled = false; }
+  }
+  async function detalhe(j, forcar) {
+    if (det[j] && !forcar) return det[j];
+    const d = await IMTS.chamar('rt.painel_detalhe', { p_jornada: j, p_ultimas: 8 });
+    if (d) det[j] = d; return d;
+  }
+  // eventos recentes: das jornadas com mais execuções (até seis), pelo detalhe de cada uma
+  async function carregaRecentes() {
+    const lista = [...jornadasP()].sort((a, b) => b.instancias - a.instancias).slice(0, 6).map(j => j.codigo);
+    await Promise.all(lista.map(j => detalhe(j, true).catch(() => null)));
+    feed(lista); alertas();
+  }
+
+  function kpis() {
+    const k = $('kpis'); k.replaceChildren();
+    if (!P) { k.hidden = true; return; }
+    const o = P.operacao || {}, m = P.modelo || {}, ms = motores();
+    [['Execuções', fmt(o.instancias), `${fmt(o.concluidas)} concluídas · ${fmt(o.erros)} com erro`],
+     ['Eventos', fmt(o.eventos), 'registrados pelos motores'],
+     ['Trocas entregues', fmt(o.trocas_enviadas), `${fmt(m.trocas)} trocas previstas no modelo`],
+     ['Motores ligados', `${ms.filter(x => x.estado !== 'desenho').length} de ${ms.length}`, 'em piloto ou ativos'],
+     ['Tarefas ligadas', fmt(m.tarefas_ligadas), `de ${fmt(m.tarefas)} no modelo`],
+     ['Pessoas', fmt(m.pessoas_reais), 'cadastradas na operação']
+    ].forEach(([l, v, s]) => k.append(el('div', { class: 'kpi' }, el('span', { class: 'lbl' }, l), el('b', {}, v), el('small', {}, s))));
+    k.hidden = false;
+  }
+
+  // ---------- eventos recentes ----------
+  function feed(lista) {
+    const ul = $('feed'); ul.replaceChildren();
+    const itens = [];
+    for (const j of lista) for (const x of det[j]?.execucoes || []) for (const e of x.eventos || []) {
+      const [tipo, etapa, tarefa, exe, nome] = e;
+      itens.push({ quando: new Date(new Date(x.inicio).getTime() + (e[6] || 0) * 1000), x, tipo, etapa, tarefa, exe, nome });
+    }
+    itens.sort((a, b) => b.quando - a.quando);
+    if (!itens.length) { ul.append(el('li', { style: 'grid-template-columns:1fr' }, el('span', {}, 'Ainda não há execução. Quando um processo for iniciado, os eventos aparecem aqui.'))); $('feed-sub').textContent = 'Nenhum evento ainda'; return; }
+    $('feed-sub').textContent = `${fmt(Math.min(40, itens.length))} eventos mais recentes`;
+    for (const it of itens.slice(0, 40)) {
+      const h = el('span', { class: 'h', title: it.quando.toLocaleString('pt-BR') }, it.quando.toLocaleTimeString('pt-BR', { timeStyle: 'short' }) + ' ' + it.x.jornada);
+      let li;
+      if (it.tipo === 'troca_enviada') li = el('li', {}, h, el('span', { class: 'x x--', 'aria-hidden': 'true' }, '→'), el('span', { class: 't' }, 'Troca entregue: ' + (it.nome || '')));
+      else if (it.tipo === 'decisao') li = el('li', { class: 'dec' }, h, el('span', { class: 'x x--', 'aria-hidden': 'true' }, '◆'), el('span', { class: 't' }, 'Decisão: ' + (it.nome || '')));
+      else if (it.tipo === 'fim' && !it.tarefa) li = el('li', { class: 'fim' }, h, el('span', { class: 'x x--', 'aria-hidden': 'true' }, '■'), el('span', { class: 't' }, 'Fim: ' + (it.nome || '')));
+      else if (it.tipo === 'inicio') li = el('li', {}, h, el('span', { class: 'x x--', 'aria-hidden': 'true' }, '▶'), el('span', { class: 't' }, `Início da execução ${it.x.id}` + (it.nome ? ': ' + it.nome : '')));
+      else li = el('li', {}, h, el('span', { class: 'x x-' + (it.exe || '-'), title: EXEC[it.exe] || '' }, it.exe || '·'), el('span', { class: 't' }, it.nome || it.tipo));
+      li.title = li.textContent; ul.append(li);
+    }
+  }
+  // alerta por regra: execução com erro, ou que levou mais que o p90 da jornada
+  function alertas() {
+    const ul = $('alertas'); ul.replaceChildren();
+    const out = [];
+    for (const d of Object.values(det)) for (const x of d?.execucoes || []) {
+      const j = jornadasP().find(z => z.codigo === x.jornada);
+      if (x.estado === 'erro') out.push(`Execução ${x.id} da ${x.jornada} terminou com erro`);
+      else if (x.fim && j?.horas_p90) { const h = (new Date(x.fim) - new Date(x.inicio)) / 3.6e6; if (h > j.horas_p90) out.push(`Execução ${x.id} da ${x.jornada} levou ${fmt(Math.round(h * 10) / 10)} h, acima do p90 de ${fmt(j.horas_p90)} h`); }
+    }
+    out.slice(0, 4).forEach(t => ul.append(el('li', {}, t)));
+  }
+
+  // ---------- rede dos motores ----------
+  const cv = $('rede'), ctx = cv.getContext('2d');
+  let W = 0, H = 0, nos = {}, particulas = [], escolhido = null;
+  function medidas() {
+    const r = cv.getBoundingClientRect(), d = devicePixelRatio || 1; if (!r.width) return;
+    W = r.width; H = r.height; cv.width = Math.round(W * d); cv.height = Math.round(H * d); ctx.setTransform(d, 0, 0, d, 0, 0);
+    const ks = motores().length ? motores().map(m => m.circulo) : [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const Ry = H * 0.34, Rx = Math.min(W * 0.38, Ry * 1.45), cx = W / 2, cy = H / 2 + 4; nos = {};
+    ks.forEach((k, i) => { const a = -Math.PI / 2 + i * 2 * Math.PI / ks.length; nos[k] = { x: cx + Rx * Math.cos(a), y: cy + Ry * Math.sin(a), a, k }; });
+    desenha();
+  }
+  function quad(a, b, t, cur) { const mx = (a.x + b.x) / 2 + (b.y - a.y) * cur, my = (a.y + b.y) / 2 - (b.x - a.x) * cur, u = 1 - t; return [u * u * a.x + 2 * u * t * mx + t * t * b.x, u * u * a.y + 2 * u * t * my + t * t * b.y]; }
+  function desenha() {
+    if (!W) return;
+    ctx.clearRect(0, 0, W, H);
+    const linha = css('--hair'), ac = css('--accent'), ink = css('--ink'), sec = css('--sec'), fundo = css('--surface');
+    for (const t of P?.trocas || []) {
+      const a = nos[t.de], b = nos[t.para]; if (!a || !b) continue;
+      const foco = escolhido && (escolhido === t.de || escolhido === t.para);
+      ctx.strokeStyle = foco ? ac : sec; ctx.globalAlpha = foco ? 0.8 : 0.45; ctx.lineWidth = 0.8 + Math.min(3, Math.log10(1 + t.n));
+      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.fillStyle = ac;
+    for (const p of particulas) { const [x, y] = quad(p.a, p.b, p.t, p.curva); ctx.beginPath(); ctx.arc(x, y, 2.4, 0, 7); ctx.fill(); }
+    const fonte = getComputedStyle(document.body).fontFamily, estreito = W < 480;
+    for (const n of Object.values(nos)) {
+      const m = motores().find(z => z.circulo === n.k) || { circulo: n.k, nome: 'Círculo ' + n.k, estado: '', instancias: 0 };
+      const ativo = m.estado && m.estado !== 'desenho', r = (estreito ? 15 : 20) + Math.min(8, Math.log10(1 + (m.instancias || 0)) * 2.4);
+      ctx.fillStyle = fundo; ctx.strokeStyle = ativo ? ac : linha; ctx.lineWidth = escolhido === n.k ? 3 : ativo ? 2 : 1.2;
+      ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 7); ctx.fill(); ctx.stroke();
+      const cob = m.tarefas ? m.tarefas_executadas / m.tarefas : 0;
+      if (cob > 0) { ctx.strokeStyle = ac; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(n.x, n.y, r + 5, -Math.PI / 2, -Math.PI / 2 + cob * 2 * Math.PI); ctx.stroke(); }
+      ctx.fillStyle = ink; ctx.font = `700 14px ${fonte}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(String(n.k), n.x, n.y);
+      const baixo = Math.sin(n.a) > -0.3, ty = baixo ? n.y + r + 14 : n.y - r - 26;
+      ctx.fillStyle = ativo ? ink : sec; ctx.font = `${estreito ? 11 : 13}px ${fonte}`; ctx.fillText(estreito ? m.nome.slice(0, 11) : m.nome, n.x, ty);
+      ctx.fillStyle = sec; ctx.font = '11px ui-monospace, monospace'; ctx.fillText((m.estado || '') + (m.instancias ? ' · ' + fmt(m.instancias) : ''), n.x, ty + 13);
+    }
+  }
+  let rodando = !reduz, ultimo = 0;
+  function quadro(ts) {
+    const dt = Math.min(64, ultimo ? ts - ultimo : 16); ultimo = ts;
+    if (rodando && !document.hidden) {
+      for (const t of P?.trocas || []) if (Math.random() < Math.log10(1 + t.n) * 0.006 * dt / 16 && particulas.length < 200 && nos[t.de] && nos[t.para]) particulas.push({ a: nos[t.de], b: nos[t.para], t: 0, v: 0.006 + Math.random() * 0.005, curva: (Math.random() - .5) * 0.3 });
+      for (const p of particulas) p.t += p.v * dt / 16;
+      particulas = particulas.filter(p => p.t < 1);
+      desenha();
+    }
+    requestAnimationFrame(quadro);
+  }
+  const noEm = ev => { const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top; return Object.values(nos).find(n => Math.hypot(n.x - x, n.y - y) < 30); };
+  cv.addEventListener('click', ev => { const n = noEm(ev); if (n && P) abre({ nivel: 'circulo', k: n.k }); });
+  cv.addEventListener('mousemove', ev => { const n = noEm(ev); cv.style.cursor = n ? 'pointer' : 'default'; const m = n && motores().find(z => z.circulo === n.k);
+    cv.title = m ? `${m.circulo} · ${m.nome}: ${m.estado}; ${fmt(m.instancias)} execuções; ${fmt(m.trocas_envia)} trocas enviadas e ${fmt(m.trocas_recebe)} recebidas` : ''; });
+  addEventListener('resize', medidas);
+  document.addEventListener('fullscreenchange', () => setTimeout(medidas, 60));
+  matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', desenha);
+
+  // ---------- níveis ----------
+  let rota = { nivel: 'eco' }, anim = null;
+  const trilha = $('trilha'), nivel = $('nivel'), sub = $('nivel-sub');
+  function abre(r) { rota = r; escolhido = r.k || (r.j ? circuloDe(r.j) : null) || null; cancelAnimationFrame(anim); mostraAviso(avisoNivel, '', ''); desenhaNivel(); desenha(); trilha.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block: 'nearest' }); }
+  const circuloDe = j => det[j]?.circulo || jornadaCat(j)?.circulo || jornadasP().find(x => x.codigo === j)?.circulo || null;
+  function migalhas() {
+    const p = [['Ecossistema', { nivel: 'eco' }]];
+    const k = rota.k || (rota.j && circuloDe(rota.j));
+    if (k) p.push([`${k} · ${nomeC(k)}`, { nivel: 'circulo', k }]);
+    if (rota.j) p.push([rota.j, { nivel: 'jornada', j: rota.j }]);
+    if (rota.e) p.push(['Etapa ' + rota.e, { nivel: 'etapa', j: rota.j, e: rota.e }]);
+    if (rota.x) p.push(['Execução ' + rota.x, rota]);
+    trilha.replaceChildren();
+    p.forEach(([t, r], i) => { if (i) trilha.append(el('span', { 'aria-hidden': 'true' }, '›')); trilha.append(i === p.length - 1 ? el('span', { class: 'atual', 'aria-current': 'location' }, t) : el('button', { type: 'button', onclick: () => abre(r) }, t)); });
+  }
+  function tabela(rotulo, cab, linhas) {
+    const t = el('table', {}, el('thead', {}, el('tr', {}, ...cab.map(([c, n]) => el('th', n ? { class: 'n', scope: 'col' } : { scope: 'col' }, c)))), el('tbody'));
+    linhas.forEach(l => t.tBodies[0].append(l)); return el('div', { class: 'tbl', role: 'region', 'aria-label': rotulo, tabindex: '0' }, t);
+  }
+  // linha clicável: o botão da primeira célula é o caminho do teclado; o clique na linha é atalho do mouse
+  function linhaVai(rotulo, celulas, f) {
+    const tr = el('tr', { class: 'vai' }, el('td', {}, el('button', { type: 'button', class: 'lk', onclick: ev => { ev.stopPropagation(); f(); } }, rotulo)), ...celulas);
+    tr.onclick = f; return tr;
+  }
+  const cabecalho = t => el('h3', { class: 'lbl', style: 'margin:14px 0 6px' }, t);
+  const vazio = (titulo, texto) => el('div', { class: 'vazio' }, el('b', {}, titulo), texto);
+  function desenhaNivel() { migalhas(); nivel.replaceChildren(); ({ eco: nEco, circulo: nCirculo, jornada: nJornada, etapa: nEtapa, execucao: nExecucao })[rota.nivel]().catch(e => mostraAviso(avisoNivel, e.message, 'erro')); }
+
+  // escolher uma jornada do modelo (rt.app_catalogo) para abrir; iniciar só as que a pessoa pode
+  function formJornada(circulo) {
+    if (!CAT) return el('p', { class: 'nota' }, 'A lista de jornadas do modelo não pôde ser lida agora.');
+    const sel = el('select', { id: 'f-jornada', name: 'jornada' });
+    for (const c of CAT.circulos || []) {
+      if (circulo && c.numero !== circulo) continue;
+      const js = (CAT.jornadas || []).filter(j => j.circulo === c.numero); if (!js.length) continue;
+      sel.append(el('optgroup', { label: `${c.numero} · ${c.nome}` }, ...js.map(j => el('option', { value: j.codigo }, `${j.codigo} ${j.nome}`))));
+    }
+    const bIni = el('button', { type: 'button', class: 'pri', id: 'b-iniciar-cod' }, 'Iniciar uma execução');
+    const dica = el('span', { id: 'f-jornada-dica', class: 'nota', style: 'margin:0' });
+    const f = el('form', { class: 'abrir' }, el('label', { for: 'f-jornada' }, 'Jornada'), sel, el('button', { type: 'submit' }, 'Abrir'), bIni, dica);
+    sel.setAttribute('aria-describedby', 'f-jornada-dica');
+    const confere = () => { const pode = !!jornadaCat(sel.value)?.pode_iniciar; bIni.disabled = !pode; dica.textContent = pode ? '' : 'Você não pode iniciar esta jornada: ela é de outro círculo ou do seu nível de acesso.'; };
+    sel.onchange = confere; confere();
+    f.onsubmit = ev => { ev.preventDefault(); abre({ nivel: 'jornada', j: sel.value }); };
+    bIni.onclick = () => iniciar(sel.value, bIni);
+    return f;
+  }
+  async function iniciar(j, botao) {
+    if (botao) botao.disabled = true;
+    try {
+      const id = await IMTS.chamar('rt.app_iniciar', { p_jornada: j });
+      await carregarSilencioso();
+      abre({ nivel: 'jornada', j });
+      mostraAviso(avisoNivel, `Execução ${id} da ${j} iniciada. As tarefas já estão na Mesa de quem as executa.`, 'ok');
+    } catch (e) { mostraAviso(avisoNivel, 'Não foi possível iniciar a ' + j + ': ' + e.message, 'erro'); }
+    finally { if (botao) botao.disabled = false; }
+  }
+  const carregarSilencioso = lerResumo;
+
+  async function nEco() {
+    if (!P) { sub.textContent = ''; nivel.append(vazio('Resumo indisponível', 'O resumo da operação não pôde ser lido. Você ainda pode abrir uma jornada.'), formJornada()); return; }
+    sub.textContent = 'Os nove motores. Escolha um círculo para descer.';
+    if (semExecucao()) nivel.append(vazio('Ainda não há execução', 'Os motores estão prontos. Quando um processo for iniciado na Mesa ou aqui, os números aparecem neste painel.'));
+    nivel.append(tabela('Motores', [['Círculo'], ['Estado'], ['Versão'], ['Jornadas', 1], ['Cobertura'], ['Execuções', 1], ['Trocas enviadas', 1], ['Trocas recebidas', 1]],
+      motores().map(m => linhaVai(`${m.circulo} · ${m.nome}`, [el('td', {}, el('span', { class: 'pill ' + (m.estado === 'desenho' ? '' : 'ok') }, m.estado)),
+        el('td', { class: 'mono' }, m.versao || '·'), el('td', { class: 'n' }, fmt(m.jornadas)),
+        el('td', {}, el('div', { class: 'cob' }, el('div', { class: 'tr' }, el('i', { style: `width:${(m.tarefas ? m.tarefas_executadas / m.tarefas * 100 : 0).toFixed(1)}%` })), el('span', {}, `${fmt(m.tarefas_executadas)} de ${fmt(m.tarefas)}`))),
+        el('td', { class: 'n' }, fmt(m.instancias)), el('td', { class: 'n' }, fmt(m.trocas_envia)), el('td', { class: 'n' }, fmt(m.trocas_recebe))], () => abre({ nivel: 'circulo', k: m.circulo })))));
+    const ex = el('div', {}, cabecalho('Tarefas por executor'));
+    const xs = P.executores || [], mx = Math.max(1, ...xs.map(x => x.tarefas));
+    if (!xs.length) ex.append(el('p', { class: 'nota' }, 'Nenhuma tarefa concluída ainda.'));
+    xs.forEach(x => { const w = (x.tarefas / mx * 64).toFixed(1);
+      ex.append(el('div', { class: 'bar', title: `${EXEC[x.executor] || x.executor}: ${fmt(x.tarefas)} tarefas, mediana ${minutos(x.min_mediana)} cada` }, el('div', { class: 'r' }, el('span', { class: 'mono x-' + x.executor }, x.executor + ' '), EXEC[x.executor] || ''),
+        el('div', { class: 't' }, el('i', { style: `width:${w}%` }), el('em', { style: `left:calc(${w}% + 6px)` }, `${fmt(x.tarefas)} · ${minutos(x.min_mediana)}`)))); });
+    const emUso = (P.modelos || []).filter(x => x.em_uso);
+    const mo = el('div', {}, cabecalho('Modelos de aprendizado em uso'));
+    if (!emUso.length) mo.append(el('p', { class: 'nota' }, 'Nenhum modelo em uso. Os modelos entram quando houver execução real suficiente para treiná-los.'));
+    emUso.forEach(x => mo.append(el('div', { class: 'bar' }, el('div', { class: 'r' }, x.nome), el('span', { class: 'mono', style: 'color:var(--sec);font-size:12px' }, `${x.versao} · ${fmt(x.amostras)} amostras`))));
+    nivel.append(el('div', { class: 'grade2' }, ex, mo), formJornada());
+  }
+  async function nCirculo() {
+    const k = rota.k, m = motores().find(x => x.circulo === k) || {};
+    sub.textContent = (m.estado === 'desenho' ? 'Motor em desenho.' : 'Motor em ' + (m.estado || '·') + '.') + ` ${fmt(m.jornadas)} jornadas no modelo. Escolha uma jornada para descer.`;
+    const stat = c => jornadasP().find(x => x.codigo === c) || {};
+    const js = CAT ? (CAT.jornadas || []).filter(x => x.circulo === k) : jornadasP().filter(x => x.circulo === k);
+    if (!jornadasP().some(x => x.circulo === k)) nivel.append(vazio('Ainda não há execução neste círculo', 'Nenhuma jornada deste círculo rodou. Abra uma jornada para ver as etapas ou inicie a primeira execução.'));
+    if (js.length) nivel.append(tabela('Jornadas do círculo', [['Jornada'], ['Nome'], ['Execuções', 1], ['Mediana', 1], ['p90', 1], ['Com volta', 1], ['Você inicia']],
+      js.map(j => { const s = stat(j.codigo); return linhaVai(j.codigo, [el('td', {}, j.nome || ''), el('td', { class: 'n' }, fmt(s.instancias || 0)),
+        el('td', { class: 'n' }, horas(s.horas_mediana)), el('td', { class: 'n' }, horas(s.horas_p90)), el('td', { class: 'n' }, s.voltas_pct != null ? s.voltas_pct.toLocaleString('pt-BR') + '%' : '·'),
+        el('td', {}, j.pode_iniciar == null ? '·' : j.pode_iniciar ? 'sim' : 'não')], () => abre({ nivel: 'jornada', j: j.codigo })); })));
+    nivel.append(el('p', { class: 'nota' }, `O círculo enviou ${fmt(m.trocas_envia)} trocas e recebeu ${fmt(m.trocas_recebe)}.`), formJornada(k));
+  }
+  async function nJornada() {
+    const j = rota.j;
+    sub.textContent = 'Carregando…';
+    const d = await detalhe(j, true);
+    if (rota.j !== j || rota.nivel !== 'jornada') return;
+    if (!d || !d.nome) { sub.textContent = ''; nivel.append(vazio('Jornada não encontrada', `Não há jornada com o código ${j} no modelo.`)); return; }
+    sub.textContent = d.nome; migalhas();
+    const s = jornadasP().find(x => x.codigo === j) || {};
+    const pode = jornadaCat(j)?.pode_iniciar;
+    nivel.append(el('div', { class: 'ctl', style: 'margin:0 0 10px' }, ...(pode ? [el('button', { type: 'button', class: 'pri', id: 'b-iniciar', onclick: ev => iniciar(j, ev.currentTarget) }, 'Iniciar uma execução desta jornada'),
+      el('span', {}, 'As tarefas vão para a Mesa de quem as executa.')] : [el('span', { id: 'sem-iniciar' }, 'Você acompanha esta jornada, mas não pode iniciá-la: ela é de outro círculo ou do seu nível de acesso.')])));
+    const et = (P?.etapas || []).filter(x => x.jornada === j), mx = Math.max(1, ...et.map(x => x.min_p75 || 0));
+    const b = el('div', {}, cabecalho('Etapas e duração'));
+    (d.etapas || []).forEach(e => { const x = et.find(z => z.etapa === e.n) || {};
+      const wm = (x.min_mediana || 0) / mx * 64, wk = (x.min_p75 || 0) / mx * 64, fim = Math.max(wm, wk);
+      b.append(el('div', { class: 'bar', title: `Etapa ${e.n} (${e.modo}, risco ${e.risco}): mediana ${minutos(x.min_mediana)}, p75 ${minutos(x.min_p75)}, ${fmt(x.execucoes || 0)} execuções` },
+        el('div', { class: 'r' }, el('button', { type: 'button', class: 'lk', onclick: () => abre({ nivel: 'etapa', j, e: e.n }) }, `E${e.n} ${e.nome}`)),
+        el('div', { class: 't' }, x.min_mediana != null ? el('i', { style: `width:${wm.toFixed(1)}%` }) : null, x.min_p75 != null ? el('span', { class: 'k', style: `left:${wk.toFixed(1)}%` }) : null,
+          el('em', { style: `left:calc(${fim.toFixed(1)}% + 8px)` }, x.min_mediana != null ? minutos(x.min_mediana) : 'sem duração ainda')))); });
+    b.append(el('div', { class: 'leg' }, el('span', {}, el('i', { style: 'background:var(--accent)' }), 'mediana'), el('span', {}, el('i', { style: 'background:var(--ink);width:2px' }), 'p75')));
+    const fins = el('div', {});
+    const fs = Object.entries(s.fins || {});
+    if (fs.length) {
+      fins.append(cabecalho('Como terminaram'));
+      const tot = fs.reduce((a, [, v]) => a + v, 0) || 1;
+      fs.sort((a, b) => b[1] - a[1]).forEach(([f, v]) => { const w = (v / tot * 64).toFixed(1); fins.append(el('div', { class: 'bar' }, el('div', { class: 'r', title: f }, f), el('div', { class: 't' }, el('i', { style: `width:${w}%` }), el('em', { style: `left:calc(${w}% + 6px)` }, `${fmt(v)} · ${Math.round(v / tot * 100)}%`)))); });
+    }
+    fins.append(cabecalho('Últimas execuções'));
+    const xs = d.execucoes || [];
+    if (!xs.length) fins.append(vazio('Ainda não há execução', 'Esta jornada ainda não rodou. Use o botão acima para iniciar a primeira.'));
+    else fins.append(tabela('Últimas execuções', [['Execução'], ['Início'], ['Duração', 1], ['Passos', 1], ['Situação']], xs.map(x => linhaVai('#' + x.id, [
+      el('td', {}, dataHora(x.inicio)), el('td', { class: 'n' }, x.fim ? minutos((new Date(x.fim) - new Date(x.inicio)) / 60000) : 'em andamento'), el('td', { class: 'n' }, fmt(x.passos)),
+      el('td', {}, el('span', { class: 'pill ' + (x.estado === 'erro' ? 'erro' : x.estado === 'concluida' ? 'ok' : '') }, x.fim_no || x.estado))], () => abre({ nivel: 'execucao', j, x: x.id })))));
+    nivel.append(el('div', { class: 'grade2' }, b, fins));
+  }
+  async function nEtapa() {
+    const d = await detalhe(rota.j), e = d?.etapas?.find(x => x.n === rota.e);
+    if (!e) { sub.textContent = ''; nivel.append(vazio('Sem dados desta etapa', '')); return; }
+    sub.textContent = `${e.nome} · modo ${e.modo} · risco ${e.risco} · dono: ${e.dono}`;
+    nivel.append(tabela('Tarefas da etapa', [['#'], ['Tarefa'], ['Quem'], ['Sistema'], ['Execuções', 1], ['Mediana', 1]], (e.tarefas || []).map(t => el('tr', {},
+      el('td', { class: 'mono' }, t.ordem), el('td', {}, el('span', { class: 'mono x-' + t.executor, style: 'margin-right:6px', title: EXEC[t.executor] || '' }, t.executor), t.nome),
+      el('td', {}, t.raia), el('td', { class: 'mono' }, t.sistema || '·'), el('td', { class: 'n' }, fmt(t.execucoes)), el('td', { class: 'n' }, minutos(t.min_mediana))))));
+  }
+  async function nExecucao() {
+    const id = rota.x;
+    sub.textContent = 'Carregando…';
+    const x = await IMTS.chamar('rt.painel_execucao', { p_instancia: id });
+    if (rota.x !== id) return;
+    if (!x) { sub.textContent = ''; nivel.append(vazio('Execução não encontrada', 'Ela não existe ou você não tem acesso a ela.')); return; }
+    sub.textContent = `${x.jornada} · ${x.estado}${x.fim_no ? ' · ' + x.fim_no : ''} · início ${dataHora(x.inicio)}`;
+    const evs = x.eventos || [], tarefas = evs.filter(e => e[2]);
+    const T = Math.max(60, ...evs.map(e => e[7] || 0)), etapas = [...new Set(tarefas.map(e => e[1]))].sort((a, b) => a - b);
+    if (etapas.length) {
+      const lh = 26, top = 26, esq = 64, w = Math.max(320, nivel.clientWidth - 2), h = top + etapas.length * lh + 14;
+      const NSS = 'http://www.w3.org/2000/svg', svg = document.createElementNS(NSS, 'svg'); svg.id = 'gantt'; svg.setAttribute('viewBox', `0 0 ${w} ${h}`); svg.setAttribute('role', 'img'); svg.setAttribute('aria-label', 'Linha do tempo da execução por etapa; os mesmos eventos estão na tabela abaixo');
+      const mk = (t, a) => { const e = document.createElementNS(NSS, t); for (const k in a) e.setAttribute(k, a[k]); svg.append(e); return e; };
+      const X = s => esq + (w - esq - 14) * s / T, Y = n => top + etapas.indexOf(n) * lh;
+      for (let i = 0; i <= 4; i++) { const s = T * i / 4; mk('line', { x1: X(s), x2: X(s), y1: 16, y2: h - 8, stroke: css('--hair'), 'stroke-width': 1 });
+        const tx = mk('text', { x: X(s), y: 11, fill: css('--sec'), 'font-size': 11, 'font-family': 'ui-monospace, monospace', 'text-anchor': i === 0 ? 'start' : i === 4 ? 'end' : 'middle' }); tx.textContent = minutos(s / 60); }
+      etapas.forEach(n => { const t = mk('text', { x: 2, y: Y(n) + lh / 2 + 4, fill: css('--sec'), 'font-size': 12 }); t.textContent = 'Etapa ' + n; });
+      const cores = { P: '--pessoa', H: '--pessoa', X: '--pessoa', A: '--agente', R: '--regra', C: '--outro' };
+      const barras = tarefas.map(e => { const r = mk('rect', { x: X(e[6] || 0), y: Y(e[1]) + 4, width: Math.max(4, X(e[7] || 0) - X(e[6] || 0)), height: lh - 8, rx: 3, fill: css(cores[e[3]] || '--accent'), opacity: 0.95 });
+        const tt = document.createElementNS(NSS, 'title'); tt.textContent = `${e[4]} (${EXEC[e[3]] || e[3] || ''}${e[5] ? ', ' + e[5] : ''}): ${minutos(((e[7] || 0) - (e[6] || 0)) / 60)}`; r.append(tt); return { r, e }; });
+      const cab = mk('line', { x1: X(0), x2: X(0), y1: 16, y2: h - 8, stroke: css('--accent'), 'stroke-width': 2 });
+      nivel.append(el('div', { class: 'tbl', role: 'region', 'aria-label': 'Linha do tempo', tabindex: '0' }, svg),
+        el('div', { class: 'leg' }, ...[['P', 'pessoa (P, H, X)'], ['A', 'agente'], ['R', 'automação'], ['C', 'outro círculo']].map(([k, t]) => el('span', {}, el('i', { style: `background:var(${cores[k]})` }), t))),
+        el('div', { class: 'ctl' }, el('button', { type: 'button', onclick: () => toca() }, 'Reproduzir'), el('span', {}, `${tarefas.length} tarefas · ${minutos(T / 60)} desde o início`)));
+      function toca() {
+        cancelAnimationFrame(anim); const t0 = performance.now(), dur = reduz ? 0 : 6000;
+        const passo = now => { const f = dur ? Math.min(1, (now - t0) / dur) : 1, s = f * T;
+          cab.setAttribute('x1', X(s)); cab.setAttribute('x2', X(s));
+          barras.forEach(({ r, e }) => r.setAttribute('opacity', (e[6] || 0) <= s ? 0.95 : 0.15));
+          if (f < 1) anim = requestAnimationFrame(passo); };
+        anim = requestAnimationFrame(passo);
+      }
+    }
+    nivel.append(cabecalho('Eventos da execução'));
+    if (!evs.length) nivel.append(vazio('Nenhum evento ainda', 'A execução foi aberta e ainda não registrou passos.'));
+    else nivel.append(tabela('Eventos da execução', [['Quando'], ['Tipo'], ['Etapa', 1], ['Quem'], ['O quê']], evs.map(e => el('tr', {},
+      el('td', { class: 'mono' }, new Date(new Date(x.inicio).getTime() + (e[6] || 0) * 1000).toLocaleTimeString('pt-BR', { timeStyle: 'short' })),
+      el('td', {}, String(e[0] || '').replace(/_/g, ' ')), el('td', { class: 'n' }, e[1] ?? '·'),
+      el('td', {}, e[3] ? el('span', { class: 'mono x-' + e[3], title: EXEC[e[3]] || '' }, e[3]) : '·', e[5] ? ' ' + e[5] : ''), el('td', {}, e[4] || '')))));
+  }
+
+  $('b-atual').onclick = () => carregar().then(() => {}, e => mostraAviso(aviso, e.message, 'erro'));
+  document.addEventListener('imts:empresa', () => { for (const k of Object.keys(det)) delete det[k]; carregar().catch(e => mostraAviso(aviso, e.message, 'erro')); });
+  setInterval(() => { if (!document.hidden && rota.nivel !== 'execucao') carregarSilencioso().then(() => { if (rota.nivel === 'eco' || rota.nivel === 'circulo') desenhaNivel(); }, () => {}); }, 60000);
+
+  try { await carregar(); } catch (e) { mostraAviso(aviso, e.message, 'erro'); }
+  requestAnimationFrame(quadro);
+})();
+</script>
+</body>
+</html>

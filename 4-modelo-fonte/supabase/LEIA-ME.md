@@ -262,7 +262,7 @@ Parâmetros novos: `parceiro.prazo_aprovacao_horas` (48), `parceiro.prazo_pagame
 
 ### Ordem de implantação
 
-001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042 → 043 → 044 → 045 → 046 → 047 → 048 → 049 → 050 → 051 → 052 → 053 → 054 → 055 → 056.
+001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042 → 043 → 044 → 045 → 046 → 047 → 048 → 049 → 050 → 051 → 052 → 053 → 054 → 055 → 056 → 057 a 068. A 012a não entra numa implantação nova: é ferramenta de troca de versão do modelo. Para produção, use `producao/aplicar.sh` (seção abaixo).
 
 Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a execução das funções e troca as políticas.
 
@@ -272,7 +272,7 @@ Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a exec
 select adm.testar_tudo();
 ```
 
-Roda as 16 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10, segurança 11, acervo 10, marca e minutas 10, parceiro 12, atendimento 10, reuniões 9 e simulação 7. Total: 160 testes.
+Roda as 19 suítes, cada uma numa subtransação desfeita: runtime 10, motor 9, Mesa 12, acesso 10, Telegram 12, documental 8, administração 10, externo 10, agentes 10, segurança 11, acervo 10, marca e minutas 10, parceiro 12, atendimento 10, reuniões 9, simulação 7, produção 8, motor assistido 5 e funções do servidor 8. Total: 181 testes. A definição final da rodada está na 067.
 
 > **Aviso.** Nunca chame as funções `_testar_*` com `select` direto. Assim elas gravam os efeitos no banco. Isso aconteceu em 04/10/2026 e foi limpo no mesmo dia. Para rodar uma suíte sozinha, use sempre o bloco que desfaz tudo:
 >
@@ -310,3 +310,38 @@ Motor local: `python3 documentos/testar_motor.py` (30 testes).
 | Títulos externos | 8 |
 | Agentes | 3 |
 | Empresas simuladas | 4 |
+
+## Migrações 057 a 068 e a implantação em produção (04/10/2026)
+
+| Arquivo | O que faz |
+|---|---|
+| `057_producao_base.sql` | Login ligado à pessoa pelo e-mail e domínio; convite de cliente e parceiro; importação do cadastro com prévia (papéis válidos = raias do modelo); porta única `public.imts`; índices; retenção de eventos; alertas de operação |
+| `058_testes_producao.sql` | 8 testes da base de produção |
+| `059_endurecer_permissoes.sql` | `adm.endurecer_permissoes()`: nenhuma função dos nossos esquemas executável sem login (a revogação por esquema da 041 não tinha efeito) |
+| `060_indices_troca.sql` | Índices de `org.troca` que existiam só no protótipo |
+| `061_implantacao.sql` | `adm.primeiro_administrador`, `adm.cobertura_papeis`, `adm.conferir_implantacao` |
+| `062_motor_assistido.sql` | Em produção, tarefa de automação ou de agente vira cartão de pessoa e decisão de agente vira cartão de decisão (parâmetro `motor.maquina_assistida`); trocas da etapa ao concluir cartão; pedido de fora sem pessoa na raia vai ao líder (`rt._responsavel`); 5 testes |
+| `063_app.sql` | Nomes em `rt.quem_sou`, `ext.pasta_externa()` e funções do aplicativo na porta única |
+| `064_app_lacunas.sql` | `rt.painel` para quem tem login, `rt.app_catalogo`, `rt.sugerir_jornada` e `ext.contrapartes` na porta única |
+| `065_porta_por_publico.sql` | A porta única confere o público da função (equipe ou portal) |
+| `066_servidor.sql` | Autorização e registro das funções do servidor (google, ia, alertas), orçamento de IA, e-mail dos alertas e alerta de armazenamento |
+| `067_testes_servidor.sql` | 8 testes das funções do servidor e a definição final de `adm.testar_tudo()` (19 suítes) |
+| `068_url_funcoes.sql` | Endereço das Edge Functions por parâmetro (`servidor.url_funcoes`) e as conexões novas |
+
+### Produção (pasta `producao/`)
+
+- `aplicar.sh`: implantação num projeto novo (extensões, 001 a 068, primeiro administrador, perfil de produção, conferência). `--conferir` só confere.
+- `090_perfil_producao.sql`: perfil de produção. Só no projeto de produção, nunca no protótipo.
+- `homologar_banco.sql`: homologação de ponta a ponta pela porta única, desfeita no fim (7 passos).
+- `MANUAL_IMPLANTACAO.md`, `ROTEIRO_HOMOLOGACAO.md`, `RUNBOOK_OPERACAO.md`.
+
+Ensaio em 04/10/2026, Postgres 16 local com a imitação do Supabase:
+- banco vazio com 001 a 068: estrutura idêntica à do protótipo (229 funções, 833 colunas, 87 políticas, 219 índices, 10 rotinas);
+- rodada única: 19 de 19;
+- caminho de produção: `internos_ok=true`;
+- homologação: 7 de 7.
+
+### Funções do servidor (pasta `functions/`)
+
+`google`, `ia`, `alertas` e `telegram`. Testes com Google e Anthropic simulados contra o banco de ensaio:
+`IMTS_DB_URL=postgres://... deno test -A functions/testes/servidor_test.ts`. Resultado: 13 de 13.

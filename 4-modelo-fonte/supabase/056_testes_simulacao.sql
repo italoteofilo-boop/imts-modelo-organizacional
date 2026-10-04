@@ -1,8 +1,9 @@
 -- Testes da simulação completa e do corte para a base de produção (E22); rodam dentro de adm.testar_tudo(), que desfaz tudo.
 begin;
 create or replace function adm._testar_simulacao() returns text language plpgsql set search_path = '' as $$
-declare a1 uuid := 'd9499c2a-3ffc-4ed8-9141-08574f769c01'; op7 uuid; r jsonb; ok boolean; real_emp uuid := gen_random_uuid(); arq bigint; volta int := 0;
+declare a1 uuid; op7 uuid; r jsonb; ok boolean; real_emp uuid := gen_random_uuid(); arq bigint; volta int := 0;
 begin
+  select p.pseudonimo into a1 from rt.pessoa p where rt.pode_estrito(p.pseudonimo, null, null, 'administrar') order by p.pseudonimo limit 1;
   op7 := rt._pessoa('Operações · pessoa', 7::smallint);
   perform set_config('request.jwt.claims', '', true); perform set_config('request.jwt.claim.sub', '', true);
   -- Z1. Só a administração sem restrição simula ou zera

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IMTS.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum/base.css">
+<style>
+* { box-sizing:border-box; }
+html, body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.45; }
+main { max-width:880px; margin:0 auto; padding:32px 20px 48px; }
+h1 { font-family:var(--serif); font-weight:600; font-size:30px; margin:0 0 6px; }
+.sub { color:var(--sec); margin:0 0 24px; }
+.cartao { background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:20px; margin-bottom:16px; }
+.cartao h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0 0 6px; }
+.cartao p { margin:0 0 12px; color:var(--sec); }
+.btn { font:inherit; border:1px solid var(--hair); background:var(--surface); color:var(--ink); border-radius:10px; padding:10px 16px; cursor:pointer; }
+.btn.prim { background:var(--accent); border-color:var(--accent); color:#fff; }
+:root[data-theme="dark"] .btn.prim { color:#10131c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.prim { color:#10131c; } }
+.linha { display:flex; flex-wrap:wrap; gap:8px; }
+.linha input { flex:1 1 260px; min-width:0; font:inherit; padding:10px 12px; border:1px solid var(--hair); border-radius:10px; background:var(--surface); color:var(--ink); }
+.aviso { padding:10px 12px; border-radius:10px; background:var(--wait-soft); color:var(--wait); margin:10px 0 0; }
+.aviso.ok { background:var(--ok-soft); color:var(--ok); }
+.aviso.erro { background:var(--late-soft); color:var(--late); }
+.grade { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:12px; }
+.grade a { display:block; background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:16px; color:inherit; text-decoration:none; }
+.grade a:hover, .grade a:focus-visible { border-color:var(--accent); }
+.grade b { display:block; font-family:var(--serif); font-size:19px; font-weight:600; }
+.grade span { color:var(--sec); font-size:14px; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<header id="imts-barra" hidden></header>
+<main>
+  <section id="entrar" hidden>
+    <h1>IMTS.OS</h1>
+    <p class="sub">Sistema operacional do ecossistema IMTS.</p>
+    <div class="cartao">
+      <h2>Equipe IMTS</h2>
+      <p>Entre com a sua conta Google do IMTS.</p>
+      <button class="btn prim" id="b-google" type="button">Entrar com Google</button>
+    </div>
+    <div class="cartao">
+      <h2>Cliente ou parceiro</h2>
+      <p>Informe o e-mail em que recebeu o convite. Enviaremos um link de acesso.</p>
+      <form class="linha" id="f-email">
+        <label for="email" class="sr" hidden>E-mail</label>
+        <input id="email" type="email" required autocomplete="email" placeholder="seu@email.com" aria-label="E-mail">
+        <button class="btn" type="submit">Receber link</button>
+      </form>
+      <p id="aviso-email" class="aviso" hidden role="status"></p>
+    </div>
+  </section>
+
+  <section id="sem" hidden>
+    <h1>Acesso não liberado</h1>
+    <div class="cartao">
+      <p id="sem-texto"></p>
+      <button class="btn" id="b-sair-sem" type="button">Sair</button>
+    </div>
+  </section>
+
+  <section id="inicio" hidden>
+    <h1 id="ola">Olá</h1>
+    <p class="sub" id="ola-sub"></p>
+    <div class="grade" id="modulos"></div>
+  </section>
+  <p id="erro" class="aviso erro" hidden role="alert"></p>
+</main>
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="comum/imts.js"></script>
+<script>
+(async function () {
+  const $ = id => document.getElementById(id);
+  const DESC = { mesa: 'Suas tarefas, decisões e pedidos.', painel: 'Como os processos estão andando.', central: 'Atendimento, parceiros e reuniões.',
+    acervo: 'Documentos das empresas, marca e modelos.', biblioteca: 'Modelos e documentos de referência.', admin: 'Cadastro, parâmetros, conexões e agentes.' };
+  const mostrar = id => ['entrar', 'sem', 'inicio'].forEach(s => $(s).hidden = s !== id);
+  function falhou(e) { $('erro').textContent = e?.message || String(e); $('erro').hidden = false; }
+
+  $('b-google').onclick = () => IMTS.entrarGoogle().catch(falhou);
+  $('f-email').onsubmit = async ev => {
+    ev.preventDefault();
+    const a = $('aviso-email');
+    try { await IMTS.entrarEmail($('email').value.trim()); a.className = 'aviso ok'; a.textContent = 'Se o e-mail tiver convite, o link chega em instantes. Abra-o neste aparelho.'; }
+    catch (e) { a.className = 'aviso erro'; a.textContent = e.message; }
+    a.hidden = false;
+  };
+  $('b-sair-sem').onclick = () => IMTS.sair();
+
+  let temSessao = IMTS.ensaio ? !!sessionStorage.getItem('imts_token_teste') : false;
+  try { if (!IMTS.ensaio) { const { data } = await IMTS.supa().auth.getSession(); temSessao = !!data?.session; } }
+  catch (e) { falhou(e); mostrar('entrar'); return; }
+  if (!temSessao) { mostrar('entrar'); return; }
+
+  let q;
+  try { q = await IMTS.quemSou(true); } catch (e) { falhou(e); mostrar('entrar'); return; }
+  if (q.tipo === 'sem_cadastro') {
+    $('sem-texto').textContent = `O e-mail ${q.email || ''} ainda não tem acesso ao IMTS.OS. Peça à administração do IMTS o cadastro (equipe) ou o convite (cliente ou parceiro).`;
+    mostrar('sem'); return;
+  }
+  const volta = new URLSearchParams(location.search).get('volta');
+  if (volta && /^[a-z]+\.html(\?[^#]*)?$/.test(volta)) { location.replace(volta); return; }
+  if (q.tipo === 'externo') { location.replace('portal.html'); return; }
+  $('imts-barra').hidden = false;
+  await IMTS.iniciar({ exige: 'interno', modulo: 'inicio' });
+  $('ola').textContent = 'Olá, ' + (q.nome || '').split(' ')[0];
+  $('ola-sub').textContent = [q.papel, (q.empresas || []).length ? (q.empresas.length === 1 ? q.empresas[0].nome : q.empresas.length + ' empresas') : 'sem empresa cadastrada'].filter(Boolean).join(' · ');
+  $('modulos').innerHTML = IMTS.modulos().map(m => `<a href="${m.href}"><b>${IMTS.esc(m.nome)}</b><span>${IMTS.esc(DESC[m.id] || '')}</span></a>`).join('');
+  mostrar('inicio');
+})();
+</script>
+</body>
+</html>

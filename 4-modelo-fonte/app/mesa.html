@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mesa · IMTS.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum/base.css">
+<style>
+:root { --pill:#1F201E; --pill-ink:#FFFFFF; --shadow:0 1px 2px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.05); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --pill:#ECECE7; --pill-ink:#151614; --shadow:0 1px 2px rgba(0,0,0,.4); } }
+:root[data-theme="dark"] { --pill:#ECECE7; --pill-ink:#151614; --shadow:0 1px 2px rgba(0,0,0,.4); }
+* { box-sizing: border-box; }
+html, body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.4; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.app { display:block; }
+
+/* chão comum */
+.chao { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; padding:12px 20px; border-bottom:1px solid var(--hair); background:var(--surface); }
+.marca { font-family:var(--serif); font-weight:600; font-size:20px; margin-right:auto; }
+.marca small { font-family:var(--sans); font-weight:400; font-size:13px; color:var(--sec); margin-left:6px; }
+.icone { border:1px solid var(--hair); background:var(--surface); border-radius:8px; padding:5px 9px; font-size:13px; }
+.resumo { display:flex; flex-wrap:wrap; gap:8px; width:100%; }
+.resumo span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--ground); color:var(--sec); }
+.resumo b { color:var(--ink); }
+.resumo .alerta b { color:var(--late); }
+
+/* abas */
+.abas { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:10px 20px; }
+.aba { border:1px solid var(--hair); background:transparent; border-radius:99px; padding:6px 14px; font-size:14px; }
+.aba[aria-selected="true"] { background:var(--pill); color:var(--pill-ink); border-color:var(--pill); }
+.abas .dir { margin-left:auto; display:flex; gap:8px; align-items:center; font-size:13px; color:var(--sec); }
+.abas select { padding:5px 8px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
+
+/* mesa */
+.mesa { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:16px; padding:0 20px 20px; align-items:start; }
+.quadro { overflow-x:auto; padding-bottom:6px; }
+.grade { display:grid; grid-template-columns:repeat(5, minmax(176px, 1fr)); gap:10px; min-width:920px; }
+.col-cab { position:sticky; top:0; display:flex; justify-content:space-between; align-items:baseline; padding:6px 4px; font-weight:700; font-size:14px; }
+.col-cab small { font-weight:400; color:var(--sec); }
+.col-cab .dica { display:block; font-weight:400; font-size:12px; color:var(--sec); }
+.raia { grid-column:1 / -1; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:var(--sec); padding:10px 4px 2px; border-top:1px solid var(--hair); }
+.celula { min-height:64px; display:flex; flex-direction:column; gap:8px; padding:6px; border-radius:12px; background:color-mix(in srgb, var(--surface) 45%, transparent); }
+.celula.sobre { outline:2px dashed var(--accent); }
+.vazio { font-size:12px; color:var(--sec); padding:8px 4px; }
+
+.cartao { text-align:left; width:100%; background:var(--surface); border:1px solid var(--hair); border-radius:12px; padding:10px 12px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:6px; }
+.cartao:hover { border-color:var(--accent); }
+.cartao[aria-current="true"] { border-color:var(--accent); box-shadow:0 0 0 2px var(--accent-soft); }
+.cartao .titulo { font-weight:700; font-size:14px; }
+.cartao .meta { display:flex; flex-wrap:wrap; gap:4px 8px; font-size:12px; color:var(--sec); }
+.etq { font-size:11px; padding:1px 7px; border-radius:99px; border:1px solid var(--hair); color:var(--sec); }
+.etq.fluxo { border-color:transparent; background:var(--accent-soft); color:var(--accent); }
+.etq.ajuda { border-color:transparent; background:var(--wait-soft); color:var(--wait); }
+.prazo.atraso { color:var(--late); font-weight:700; }
+.chip { font-size:12px; padding:2px 8px; border-radius:6px; background:var(--ground); color:var(--sec); }
+.chip.pend { background:var(--wait-soft); color:var(--wait); }
+.opcoes { display:flex; flex-wrap:wrap; gap:4px; }
+.opcoes span { font-size:12px; border:1px solid var(--hair); border-radius:6px; padding:1px 6px; }
+
+/* periferia */
+.periferia { display:flex; flex-direction:column; gap:14px; position:sticky; top:12px; }
+.bloco { background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:12px 14px; }
+.bloco h2 { font-family:var(--serif); font-weight:600; font-size:17px; margin:0 0 8px; }
+.bloco p { margin:0; font-size:13px; color:var(--sec); }
+.lista { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.lista button { width:100%; text-align:left; background:var(--ground); border:0; border-radius:8px; padding:7px 9px; font-size:13px; }
+.recibo { border-left:3px solid var(--hair); padding:2px 0 2px 9px; font-size:13px; }
+.recibo .tipo { font-size:11px; text-transform:uppercase; letter-spacing:.05em; font-weight:700; }
+.recibo.feito { border-color:var(--ok); } .recibo.feito .tipo { color:var(--ok); }
+.recibo.precisa { border-color:var(--late); } .recibo.precisa .tipo { color:var(--late); }
+.recibo.pedido { border-color:var(--accent); } .recibo.pedido .tipo { color:var(--accent); }
+.recibo small { color:var(--sec); }
+table.carga { width:100%; border-collapse:collapse; font-size:13px; }
+table.carga td, table.carga th { padding:5px 4px; border-bottom:1px solid var(--hair); text-align:left; }
+table.carga td.n, table.carga th.n { text-align:right; font-variant-numeric:tabular-nums; }
+
+/* foco */
+.foco { position:fixed; inset:0 0 0 auto; width:min(460px, 100%); background:var(--surface); border-left:1px solid var(--hair); box-shadow:-8px 0 24px rgba(0,0,0,.12); padding:18px 20px 28px; overflow-y:auto; z-index:20; display:flex; flex-direction:column; gap:14px; }
+.foco[hidden] { display:none; }
+.foco .topo { display:flex; justify-content:space-between; align-items:start; gap:12px; }
+.foco h2 { font-family:var(--serif); font-weight:600; font-size:22px; line-height:1.2; margin:4px 0 0; }
+.foco .contexto { font-size:13px; color:var(--sec); display:grid; grid-template-columns:auto 1fr; gap:3px 10px; }
+.foco .contexto dt { color:var(--sec); } .foco .contexto dd { margin:0; color:var(--ink); }
+.foco section { border-top:1px solid var(--hair); padding-top:12px; display:flex; flex-direction:column; gap:8px; }
+.foco h3 { font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--sec); margin:0; }
+.acoes { display:flex; flex-wrap:wrap; gap:8px; }
+.btn { border:1px solid var(--hair); background:var(--surface); border-radius:10px; padding:8px 14px; font-size:14px; }
+.btn.prim { background:var(--accent); border-color:var(--accent); color:#fff; }
+:root[data-theme="dark"] .btn.prim { color:#10131c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.prim { color:#10131c; } }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.dial { display:grid; grid-template-columns:repeat(4, 1fr); border:1px solid var(--hair); border-radius:12px; overflow:hidden; }
+.dial button { border:0; border-right:1px solid var(--hair); background:var(--surface); padding:9px 6px; font-size:13px; line-height:1.2; }
+.dial button:last-child { border-right:0; }
+.dial button[aria-pressed="true"] { background:var(--pill); color:var(--pill-ink); }
+.dial button:disabled { color:var(--sec); background:var(--ground); text-decoration:line-through; cursor:not-allowed; }
+.nota { font-size:12px; color:var(--sec); margin:0; }
+.linha { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.linha select, .linha input, .foco textarea { padding:7px 9px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
+.linha select { flex:1 1 200px; min-width:0; }
+.foco textarea { width:100%; min-height:60px; resize:vertical; }
+.erro { color:var(--late); font-size:13px; margin:0; }
+.veu { position:fixed; inset:0; background:rgba(0,0,0,.25); z-index:19; }
+.veu[hidden] { display:none; }
+
+/* entrada */
+.entrada { position:sticky; bottom:0; background:var(--surface); border-top:1px solid var(--hair); padding:10px 20px 12px; z-index:10; }
+.entrada form { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.entrada input[type=text] { flex:1 1 320px; min-width:0; padding:10px 14px; border:1px solid var(--hair); border-radius:99px; background:var(--ground); }
+.entrada input[type=datetime-local] { padding:8px 10px; border:1px solid var(--hair); border-radius:10px; background:var(--surface); }
+.entrada .mic { border-radius:99px; width:40px; height:40px; border:1px solid var(--hair); background:var(--surface); }
+.entrada .mic[aria-pressed="true"] { background:var(--late); color:#fff; border-color:var(--late); }
+.sugestao { margin-top:8px; font-size:13px; background:var(--accent-soft); border-radius:10px; padding:8px 12px; display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center; }
+.sugestao[hidden] { display:none; }
+.sugestao b { color:var(--accent); }
+.rodape { font-size:12px; color:var(--sec); padding:0 20px 16px; }
+
+.colnav { display:none; }
+@media (max-width: 900px) {
+  .mesa { grid-template-columns:minmax(0,1fr); }
+  .periferia { position:static; }
+}
+@media (max-width: 640px) {
+  .chao, .abas, .entrada { padding-left:16px; padding-right:16px; }
+  .mesa { padding:0 16px 16px; }
+  .rodape { padding:0 16px 16px; }
+  .marca { width:100%; }
+  .colnav { display:flex; gap:6px; overflow-x:auto; padding:0 0 8px; }
+  .colnav button { flex:0 0 auto; border:1px solid var(--hair); background:var(--surface); border-radius:99px; padding:5px 11px; font-size:13px; }
+  .colnav button[aria-pressed="true"] { background:var(--pill); color:var(--pill-ink); border-color:var(--pill); }
+  .grade { grid-template-columns:1fr; min-width:0; }
+  .grade .col-cab, .grade .celula { display:none; }
+  .grade .col-cab.ativa, .grade .celula.ativa { display:flex; }
+  .abas .dir { margin-left:0; width:100%; }
+  .entrada input[type=text] { flex:1 1 calc(100% - 52px); }
+  .entrada input[type=datetime-local] { flex:1; }
+  .entrada { padding-top:8px; padding-bottom:8px; }
+}
+.etq.assistida { border-style:dashed; }
+.cartao > span { display:flex; }
+.cartao .titulo, .cartao .meta, .cartao .opcoes { display:flex; }
+.cartao .titulo { display:block; }
+.cartao > .chip { display:inline-block; align-self:flex-start; }
+h1.marca { margin:0 auto 0 0; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+.aviso { margin:0 20px 10px; padding:10px 12px; border-radius:10px; background:var(--late-soft); color:var(--late); font-size:14px; }
+.aviso[hidden], [hidden] { display:none !important; }
+.form-ini { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.form-ini select { flex:1 1 160px; max-width:100%; min-width:0; padding:7px 9px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
+.bloco .nota { margin-top:6px; }
+@media (max-width: 640px) { .aviso { margin:0 16px 10px; } }
+</style>
+</head>
+<body>
+<header id="imts-barra"></header>
+<div class="app">
+  <div class="chao">
+    <h1 class="marca">Mesa de trabalho</h1>
+    <button type="button" class="icone" id="b-atual">Atualizar</button>
+    <button type="button" class="icone" id="b-tema" aria-label="Alternar tema">◐</button>
+    <div class="resumo" id="resumo" aria-live="polite"></div>
+  </div>
+
+  <nav class="abas" aria-label="Quadros">
+    <div role="tablist" aria-label="Quadro" style="display:contents">
+    <button type="button" class="aba" role="tab" data-aba="meu" aria-selected="true">Meu quadro</button>
+    <button type="button" class="aba" role="tab" data-aba="circulo" id="aba-circulo" aria-selected="false">Círculo</button>
+    <button type="button" class="aba" role="tab" data-aba="jornada" id="aba-jornada" aria-selected="false">Jornada</button>
+    </div>
+    <div class="dir">
+      <label id="l-circulo" hidden>Círculo <select id="sel-circulo"></select></label>
+      <label id="l-jornada" hidden>Jornada <select id="sel-jornada"></select></label>
+      <label>Raias <select id="sel-raia"><option value="nenhuma">sem raias</option><option value="jornada">por jornada</option><option value="tipo">por tipo</option><option value="execucao">por execução</option></select></label>
+    </div>
+  </nav>
+  <p class="aviso" id="falha" role="alert" hidden></p>
+  <p class="aviso" id="aviso-circulo" role="status" hidden></p>
+
+  <main class="mesa">
+    <section class="quadro" aria-label="Quadro">
+      <div class="colnav" id="colnav"></div>
+      <div class="grade" id="grade"></div>
+    </section>
+    <aside class="periferia" aria-label="Apoio">
+      <div class="bloco" id="b-precisa"><h2>Precisa de você</h2><ul class="lista" id="precisa"></ul></div>
+      <div class="bloco" id="b-iniciar"><h2>Iniciar jornada</h2>
+        <form class="form-ini" id="iniciar" autocomplete="off">
+          <label class="sr" for="ini-jornada">Jornada a iniciar</label>
+          <select id="ini-jornada"></select>
+          <button type="submit" class="btn" id="ini-btn">Iniciar</button>
+        </form>
+        <p class="nota" id="ini-nota">Só aparecem as jornadas que você pode iniciar. O processo nasce na empresa em uso.</p>
+        <p class="nota" id="ini-aviso" hidden>Escolha a empresa no cabeçalho para iniciar uma jornada.</p>
+      </div>
+      <div class="bloco" id="b-carga" hidden><h2>Carga do círculo</h2><p id="carga-nota"></p><table class="carga" id="carga"></table></div>
+      <div class="bloco"><h2>Recibos</h2><div class="lista" id="recibos" aria-live="polite"><p>Cada ação sua aparece aqui: o pedido, o que foi feito e o que precisa de você.</p></div></div>
+    </aside>
+  </main>
+
+  <footer class="entrada">
+    <form id="captura" autocomplete="off">
+      <button type="button" class="mic" id="mic" aria-label="Falar" aria-pressed="false" hidden>🎙</button>
+      <input type="text" id="texto" placeholder="O que precisa ser feito? Escreva ou fale." aria-label="Nova tarefa">
+      <input type="datetime-local" id="prazo" aria-label="Prazo" required>
+      <button class="btn prim" type="submit">Criar</button>
+    </form>
+    <div class="sugestao" id="sugestao" role="status" hidden></div>
+  </footer>
+  <div class="rodape" id="rodape"></div>
+</div>
+
+<div class="veu" id="veu" hidden></div>
+<aside class="foco" id="foco" hidden aria-label="Foco no cartão"></aside>
+
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="comum/imts.js"></script>
+<script>
+(async function () {
+  const quem = await IMTS.iniciar({ exige: 'interno', modulo: 'mesa', admin: false });
+  const esc = IMTS.esc;
+  const $ = id => document.getElementById(id);
+  const eu = quem.pessoa;
+  let CIRCULOS = {}, JORNADAS = {}, catalogoErro = '';
+  const COLUNAS = [
+    ['a_fazer', 'A fazer', 'o que chegou'], ['fazendo', 'Fazendo', 'em mãos'], ['esperando', 'Esperando', 'parado por outro'],
+    ['decidir', 'Decidir', 'o fluxo pede escolha'], ['feito', 'Feito', 'últimos 7 dias']];
+  const MODOS = [['Só informar', 'Assistido'], ['Propor', 'Copiloto'], ['Fazer e você aprova', 'Autopiloto'], ['Fazer e enviar', 'Autômato']];
+  const NIVEL = { Assistido: 0, Copiloto: 1, Autopiloto: 2, 'Autômato': 3 };
+  const ASSISTIDA = /\s*\(assistida:\s*([^)]*)\)\s*$/i;
+
+  // ---------- estado ----------
+  let aba = 'meu', raia = 'nenhuma', colMovel = 'a_fazer', aberto = null, jornadaSel = '';
+  let quadro = [], circulo = { fluxo: [] }, circSel = quem.circulo ?? null, erroCirculo = '';
+  const recibos = [];
+
+  const pessoas = quem.pessoas || [];
+  const pessoa = id => pessoas.find(p => p.pessoa === id);
+  const circNome = k => CIRCULOS[k] || ('círculo ' + k);
+  const nomeJ = k => JORNADAS[k]?.nome || '';
+  const nomeDe = id => pessoa(id)?.nome || 'pessoa';
+  const empresaAtual = () => IMTS.empresa();
+  function meusCirculos() {
+    const emp = empresaAtual();
+    const ks = new Set();
+    if (quem.circulo != null) ks.add(quem.circulo);
+    for (const a of quem.acessos || []) if (a.circulo != null && (!emp || !a.empresa || a.empresa === emp)) ks.add(a.circulo);
+    return [...ks].sort((a, b) => a - b);
+  }
+  const souLider = k => (quem.acessos || []).some(a => a.circulo === k && a.nivel === 'aprovar' && (!a.empresa || !empresaAtual() || a.empresa === empresaAtual()))
+    || (quem.papel === 'Líder do círculo' && quem.circulo === k);
+  const circDe = c => c.circulo ?? (c.dono ? pessoa(c.dono)?.circulo : null) ?? circSel;
+  const tetoModo = c => c.etapa_modo ? NIVEL[c.etapa_modo] : 2;
+  function partes(t) { const m = String(t || '').match(ASSISTIDA); return m ? { titulo: t.replace(ASSISTIDA, ''), assistida: m[1].trim() } : { titulo: t || '', assistida: null }; }
+
+  // ---------- leitura ----------
+  async function carregar() {
+    const [q, c] = await Promise.all([
+      IMTS.chamar('rt.app_quadro', {}),
+      circSel == null ? Promise.resolve(null) : IMTS.chamar('rt.app_quadro_circulo', { p_circulo: circSel }).catch(e => { erroCirculo = e.message; return null; })
+    ]);
+    quadro = (q || []).slice().sort((a, b) => a.prazo < b.prazo ? -1 : 1);
+    if (c) { circulo = c; erroCirculo = ''; } else circulo = { fluxo: [] };
+    atualizarJornadas();
+  }
+  async function carregarCatalogo() {
+    try {
+      const c = await IMTS.chamar('rt.app_catalogo', {});
+      CIRCULOS = Object.fromEntries((c?.circulos || []).map(x => [x.numero, x.nome]));
+      JORNADAS = Object.fromEntries((c?.jornadas || []).map(x => [x.codigo, x]));
+      catalogoErro = '';
+    } catch (e) { catalogoErro = e.message; }
+  }
+  async function recarregar() {
+    try { await carregar(); $('falha').hidden = true; }
+    catch (e) { $('falha').textContent = 'Não foi possível carregar a mesa: ' + e.message; $('falha').hidden = false; }
+    desenhar();
+  }
+
+  // ---------- ações (porta única; a regra é do banco) ----------
+  async function agir(pedido, fn, args, detalheOk) {
+    try {
+      const r = await IMTS.chamar(fn, args);
+      recibo('feito', pedido, typeof detalheOk === 'function' ? detalheOk(r) : (typeof r === 'string' ? r : ''));
+      await recarregar();
+      return true;
+    } catch (e) {
+      recibo('precisa', pedido, 'Recusado: ' + e.message);
+      return false;
+    }
+  }
+  const nomeCol = col => COLUNAS.find(k => k[0] === col)[1].toLowerCase();
+  const tit = c => partes(c.titulo).titulo;
+  const acMover = (c, col) => agir(`Mover “${tit(c)}” para ${nomeCol(col)}`, 'rt.app_mover', { p_cartao: +c.id, p_coluna: col });
+  const acConcluir = c => agir(`Concluir “${tit(c)}”`, 'rt.app_concluir', { p_cartao: +c.id },
+    r => c.tipo === 'fluxo' ? 'O motor seguiu o fluxo; o que for seu já está no quadro.' : (typeof r === 'string' ? r : ''));
+  const acDecidir = (c, op) => agir(`Decidir “${tit(c)}”: ${op.rotulo}`, 'rt.app_decidir', { p_cartao: +c.id, p_para: op.para }, () => 'O fluxo segue pelo caminho escolhido.');
+  const acDelegarAgente = (c, modo) => agir(`Delegar “${tit(c)}” ao agente: ${MODOS[modo][0].toLowerCase()}`, 'rt.app_delegar',
+    { p_cartao: +c.id, p_para: null, p_agente: true, p_modo: modo },
+    () => ['O agente vai só informar; você segue com a tarefa.', 'O agente vai propor; a decisão continua sua.', 'O agente faz e você aprova antes de concluir.', 'O agente faz e envia.'][modo]);
+  function acDelegarPessoa(c, para) {
+    if (!para) { recibo('precisa', 'Delegar', 'Recusado: escolha uma pessoa'); return Promise.resolve(false); }
+    return agir(`Delegar “${tit(c)}” a ${nomeDe(para)}`, 'rt.app_delegar', { p_cartao: +c.id, p_para: para, p_agente: false },
+      () => { const p = pessoa(para); return 'Aguardando o aceite' + (p?.circulo != null && p.circulo !== circDe(c) ? '; o líder do outro círculo vê o pedido.' : '.'); });
+  }
+  const acResponder = (c, aceita, novoPrazo) => agir(`${aceita ? 'Aceitar' : 'Recusar'} “${tit(c)}”`, 'rt.app_responder',
+    { p_cartao: +c.id, p_aceita: aceita, p_novo_prazo: novoPrazo ? new Date(novoPrazo).toISOString() : null }, () => aceita ? '' : 'Volta para quem delegou.');
+  function acCriar(titulo, prazo, pai) {
+    titulo = String(titulo || '').trim();
+    if (!titulo) { recibo('precisa', 'Criar tarefa', 'Recusado: escreva o que precisa ser feito'); return Promise.resolve(false); }
+    if (!prazo) { recibo('precisa', `Criar “${titulo}”`, 'Recusado: toda tarefa tem prazo'); return Promise.resolve(false); }
+    const args = { p_titulo: titulo, p_prazo: new Date(prazo).toISOString() };
+    if (pai) args.p_pai = +pai;
+    return agir(pai ? `Pedir ajuda: “${titulo}”` : `Criar “${titulo}”`, 'rt.app_criar_avulsa', args, () => '');
+  }
+  function acIniciar(j) {
+    j = String(j || '').trim().toUpperCase();
+    if (!j) { recibo('precisa', 'Iniciar jornada', 'Recusado: escolha a jornada'); return Promise.resolve(false); }
+    if (!empresaAtual()) { recibo('precisa', `Iniciar a jornada ${j}`, 'Recusado: escolha a empresa no cabeçalho'); return Promise.resolve(false); }
+    return agir(`Iniciar a jornada ${j}`, 'rt.app_iniciar', { p_jornada: j }, r => `Execução ${r} iniciada; as tarefas de gente chegam como cartões.`);
+  }
+
+  // ---------- recibos ----------
+  function recibo(tipo, pedido, detalhe) {
+    recibos.unshift({ tipo, pedido, detalhe, quando: new Date() }); if (recibos.length > 30) recibos.pop(); desenharRecibos();
+  }
+  function desenharRecibos() {
+    if (!recibos.length) return;
+    $('recibos').innerHTML = recibos.map(r => `<div class="recibo ${r.tipo}"><div class="tipo">${r.tipo === 'feito' ? 'Feito' : 'Precisa de você'}</div>
+      <div>${esc(r.pedido)}</div>${r.detalhe ? `<small>${esc(r.detalhe)}</small><br>` : ''}<small>${r.quando.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</small></div>`).join('');
+  }
+
+  // ---------- desenho ----------
+  function quando(t) {
+    const d = new Date(t), m = Math.round((d - Date.now()) / 60000), a = Math.abs(m);
+    const txt = a < 60 ? `${a} min` : a < 2880 ? `${Math.round(a / 60)} h` : `${Math.round(a / 1440)} dias`;
+    return { atraso: m < 0, txt: m < 0 ? `atrasada ${txt}` : `vence em ${txt}`, data: d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) };
+  }
+  function estadoDelegacao(c) {
+    if (c.delegado_agente) return `<span class="chip">com o agente · ${esc(MODOS[c.modo]?.[0].toLowerCase() || '')}</span>`;
+    if (c.delegado_pessoa && c.aceite === 'pendente') return `<span class="chip pend">${c.delegado_pessoa === eu ? 'pedido para você · aceitar?' : 'aguardando aceite de ' + esc(nomeDe(c.delegado_pessoa))}</span>`;
+    if (c.delegado_pessoa && c.aceite === 'aceita') return `<span class="chip">${c.delegado_pessoa === eu ? 'delegada a você por ' + esc(nomeDe(c.dono)) : 'com ' + esc(nomeDe(c.delegado_pessoa))}</span>`;
+    if (c.aceite === 'recusada') return `<span class="chip pend">delegação recusada</span>`;
+    return '';
+  }
+  function cartaoHTML(c, ro) {
+    const p = quando(c.prazo), t = partes(c.titulo);
+    const ops = c.coluna === 'decidir' && c.opcoes ? `<span class="opcoes">${c.opcoes.map(o => `<span>${esc(o.rotulo)}</span>`).join('')}</span>` : '';
+    const sobre = c.tipo || 'fluxo';
+    return `<button type="button" class="cartao" data-id="${+c.id}" ${ro ? 'data-ro="1"' : `draggable="${c.coluna !== 'feito' && c.coluna !== 'decidir'}"`} aria-current="${aberto === c.id}">
+      <span class="meta"><span class="etq ${esc(sobre)}">${esc(sobre)}</span>${t.assistida ? `<span class="etq assistida" title="Tarefa de máquina feita por pessoa: ${esc(t.assistida)}">assistida</span>` : ''}${c.jornada ? `<span>${esc(c.jornada)}${c.etapa ? ' · etapa ' + esc(c.etapa) : ''}</span>` : ''}</span>
+      <span class="titulo">${esc(t.titulo)}</span>${ops}
+      <span class="meta">${c.coluna === 'feito' ? '<span>concluída</span>' : `<span class="prazo ${p.atraso ? 'atraso' : ''}" title="${esc(p.data)}">${esc(p.txt)}</span>`}
+        ${ro ? `<span>${esc(nomeDe(c.dono))}</span>` : (!c.sou_dono && c.dono ? `<span>de ${esc(nomeDe(c.dono))}</span>` : '')}</span>
+      ${ro ? '' : estadoDelegacao(c)}</button>`;
+  }
+  function grupos(lista) {
+    const chave = { nenhuma: () => '', jornada: c => c.jornada ? c.jornada + ((c.jornada_nome || nomeJ(c.jornada)) ? ' · ' + (c.jornada_nome || nomeJ(c.jornada)) : '') : 'Sem jornada (avulsas)',
+      tipo: c => ({ fluxo: 'Do fluxo', avulsa: 'Avulsas', ajuda: 'Pedidos de ajuda' }[c.tipo || 'fluxo'] || c.tipo),
+      execucao: c => c.instancia ? `Execução ${c.instancia} · ${c.jornada}` : 'Fora de execução' }[raia];
+    const g = new Map(); for (const c of lista) { const k = chave(c); if (!g.has(k)) g.set(k, []); g.get(k).push(c); }
+    return [...g.entries()].sort((a, b) => a[0] < b[0] ? -1 : 1);
+  }
+  function listaAtual() {
+    if (aba === 'meu') return { lista: quadro, ro: false };
+    const f = (circulo.fluxo || []).map(c => ({ ...c, tipo: c.tipo || 'fluxo' }));
+    return { lista: aba === 'jornada' ? f.filter(c => c.jornada === jornadaSel) : f, ro: true };
+  }
+  function atualizarJornadas() {
+    const m = new Map();
+    for (const c of [...quadro, ...(circulo.fluxo || [])]) if (c.jornada && !m.has(c.jornada)) m.set(c.jornada, c.jornada_nome || nomeJ(c.jornada));
+    for (const c of quadro) if (c.jornada && c.jornada_nome) m.set(c.jornada, c.jornada_nome);
+    const js = [...m.entries()].sort((a, b) => a[0] < b[0] ? -1 : 1);
+    if (!js.some(j => j[0] === jornadaSel)) jornadaSel = js[0]?.[0] || '';
+    $('sel-jornada').innerHTML = js.length ? js.map(([k, n]) => `<option value="${esc(k)}"${k === jornadaSel ? ' selected' : ''}>${esc(k)}${n ? ' · ' + esc(n) : ''}</option>`).join('')
+      : '<option value="">nenhuma jornada aberta</option>';
+  }
+  function desenhar() {
+    const { lista, ro } = listaAtual();
+    const cont = Object.fromEntries(COLUNAS.map(k => [k[0], lista.filter(c => c.coluna === k[0]).length]));
+    let h = COLUNAS.map(k => `<div class="col-cab ${k[0] === colMovel ? 'ativa' : ''}"><span>${k[1]}<span class="dica">${k[2]}</span></span><small>${cont[k[0]]}</small></div>`).join('');
+    const gs = grupos(lista);
+    if (!gs.length) gs.push(['', []]);
+    for (const [nome, cs] of gs) {
+      if (raia !== 'nenhuma') h += `<div class="raia">${esc(nome)}</div>`;
+      for (const [col] of COLUNAS) {
+        const dentro = cs.filter(c => c.coluna === col);
+        h += `<div class="celula ${col === colMovel ? 'ativa' : ''}" data-col="${col}">${dentro.map(c => cartaoHTML(c, ro)).join('') || (gs.length === 1 ? '<div class="vazio">nada aqui</div>' : '')}</div>`;
+      }
+    }
+    $('grade').innerHTML = h;
+    $('colnav').innerHTML = COLUNAS.map(k => `<button type="button" data-col="${k[0]}" aria-pressed="${k[0] === colMovel}">${k[1]} ${cont[k[0]]}</button>`).join('');
+    $('aviso-circulo').hidden = !(aba !== 'meu' && erroCirculo);
+    $('aviso-circulo').textContent = erroCirculo ? 'Quadro do círculo indisponível: ' + erroCirculo : '';
+    desenharResumo(); desenharPrecisa(); desenharCarga(); desenharRodape(); desenharIniciar();
+    if (aberto != null) abrir(aberto, true);
+  }
+  function desenharResumo() {
+    const ab = quadro.filter(c => c.coluna !== 'feito');
+    const atr = ab.filter(c => c.coluna !== 'decidir' && new Date(c.prazo) < Date.now()).length;
+    const dec = ab.filter(c => c.coluna === 'decidir').length;
+    const ace = ab.filter(c => c.delegado_pessoa === eu && c.aceite === 'pendente').length;
+    $('resumo').innerHTML = `<span>${esc(quem.papel || '')}${quem.circulo != null ? ' · ' + esc(circNome(quem.circulo)) : ''}</span><span>abertas <b>${ab.length}</b></span>
+      <span class="${atr ? 'alerta' : ''}">atrasadas <b>${atr}</b></span><span>decidir <b>${dec}</b></span><span>para aceitar <b>${ace}</b></span>`;
+  }
+  function desenharPrecisa() {
+    const ab = quadro.filter(c => c.coluna !== 'feito');
+    const itens = [
+      ...ab.filter(c => c.delegado_pessoa === eu && c.aceite === 'pendente').map(c => [c, 'aceitar ou recusar']),
+      ...ab.filter(c => c.coluna === 'decidir').map(c => [c, 'escolher o caminho']),
+      ...ab.filter(c => c.delegado_agente && c.modo === 2 && c.coluna === 'fazendo').map(c => [c, 'aprovar o que o agente fez']),
+      ...ab.filter(c => c.coluna !== 'decidir' && !(c.delegado_pessoa === eu && c.aceite === 'pendente') && new Date(c.prazo) < Date.now()).map(c => [c, 'atrasada'])];
+    $('precisa').innerHTML = itens.length ? itens.slice(0, 8).map(([c, o]) => `<li><button type="button" data-id="${+c.id}"><b>${esc(o)}</b> · ${esc(tit(c))}</button></li>`).join('')
+      : '<li><p>Nada pendente com você agora.</p></li>';
+  }
+  function desenharCarga() {
+    const ver = aba !== 'meu' && Array.isArray(circulo.carga);
+    $('b-carga').hidden = !ver; if (!ver) return;
+    $('carga-nota').textContent = `Só números: o título das avulsas é privado de quem criou e de quem recebeu. Pedidos de outros círculos esperando aceite aqui: ${circulo.pedidos_de_fora || 0}.`;
+    $('carga').innerHTML = `<caption class="sr">Carga do círculo ${esc(circNome(circSel))}</caption><tr><th scope="col">Pessoa</th><th scope="col" class="n">Abertas</th><th scope="col" class="n">Avulsas</th></tr>` +
+      (circulo.carga.length ? circulo.carga.map(l => `<tr><td>${esc(pessoa(l.pessoa)?.nome || l.papel || 'pessoa')}</td><td class="n">${+l.abertas || 0}</td><td class="n">${+l.avulsas || 0}</td></tr>`).join('')
+        : '<tr><td colspan="3">Nenhuma tarefa aberta no círculo.</td></tr>');
+  }
+  function desenharRodape() {
+    const t = { meu: 'Meu quadro: o que é seu ou foi delegado a você.', circulo: `Quadro do círculo ${circNome(circSel)}: só os cartões de fluxo; as avulsas aparecem apenas como números para o líder.`,
+      jornada: 'Quadro da jornada: os cartões de fluxo abertos de cada execução no círculo.' }[aba];
+    $('rodape').textContent = `${t} Cartões de fluxo andam pelo motor: você começa, conclui ou decide; arrastar não pula etapa. Ao criar uma tarefa, a Mesa avisa quando ela já existe numa jornada. A etiqueta “assistida” marca tarefa de máquina feita por pessoa até existir a automação.`;
+  }
+  function desenharIniciar() {
+    const sem = !empresaAtual(), sel = $('ini-jornada'), atual = sel.value;
+    const js = Object.values(JORNADAS).filter(j => j.pode_iniciar).sort((a, b) => a.codigo < b.codigo ? -1 : 1);
+    sel.innerHTML = js.length ? js.map(j => `<option value="${esc(j.codigo)}"${j.codigo === atual ? ' selected' : ''}>${esc(j.codigo)} · ${esc(j.nome)}</option>`).join('')
+      : '<option value="">nenhuma jornada que você possa iniciar</option>';
+    $('ini-nota').textContent = catalogoErro ? 'Catálogo de jornadas indisponível: ' + catalogoErro
+      : 'Só aparecem as jornadas que você pode iniciar. O processo nasce na empresa em uso.';
+    $('ini-aviso').hidden = !sem;
+    $('ini-btn').disabled = sem || !js.length; sel.disabled = !js.length;
+  }
+
+  // ---------- foco ----------
+  function acharCartao(id) { return quadro.find(c => c.id === id) || (circulo.fluxo || []).find(c => c.id === id); }
+  function abrir(id, redesenho) {
+    const c = acharCartao(id);
+    if (!c) { fechar(); return; }
+    aberto = id; const meu = quadro.some(x => x.id === id);
+    const p = quando(c.prazo), pode = c.dono === eu || c.delegado_pessoa === eu, t = partes(c.titulo);
+    const lider = souLider(circDe(c));
+    const tipo = c.tipo || 'fluxo';
+    let h = `<div class="topo"><div><span class="etq ${esc(tipo)}">${esc(tipo)}</span>${t.assistida ? ' <span class="etq assistida">assistida</span>' : ''}<h2 id="foco-titulo">${esc(t.titulo)}</h2></div><button type="button" class="icone" id="f-fechar" aria-label="Fechar">✕</button></div>
+    <dl class="contexto">
+      ${c.jornada ? `<dt>Jornada</dt><dd>${esc(c.jornada)}${(c.jornada_nome || nomeJ(c.jornada)) ? ' · ' + esc(c.jornada_nome || nomeJ(c.jornada)) : ''}</dd>` : ''}
+      ${c.etapa_nome ? `<dt>Etapa</dt><dd>${esc(c.etapa)} · ${esc(c.etapa_nome)}</dd><dt>Modo aprovado</dt><dd>${esc(c.etapa_modo || '')}</dd>` : ''}
+      ${c.papel ? `<dt>Raia</dt><dd>${esc(c.papel)}</dd>` : ''}
+      ${t.assistida ? `<dt>Assistida</dt><dd>tarefa de máquina (${esc(t.assistida)}) feita por pessoa até existir a automação</dd>` : ''}
+      <dt>Dono</dt><dd>${esc(nomeDe(c.dono))}${c.dono === eu ? ' (você)' : ''}</dd>
+      <dt>Prazo</dt><dd>${c.coluna === 'feito' ? 'concluída' : `${esc(p.data)} · <span class="prazo ${p.atraso ? 'atraso' : ''}">${esc(p.txt)}</span>`}</dd>
+      ${c.instancia ? `<dt>Execução</dt><dd>${esc(c.instancia)}</dd>` : ''}
+      ${c.pai ? `<dt>Ajuda para</dt><dd>cartão ${esc(c.pai)}</dd>` : ''}
+    </dl>`;
+    if (meu) {
+      h += estadoDelegacao(c) ? `<div>${estadoDelegacao(c)}</div>` : '';
+      if (c.delegado_pessoa === eu && c.aceite === 'pendente') {
+        h += `<section><h3>Pedido para você</h3><div class="linha"><label class="nota" for="f-nprazo">Novo prazo (opcional)</label><input type="datetime-local" id="f-nprazo"></div>
+          <div class="acoes"><button type="button" class="btn prim" id="f-aceitar">Aceitar</button><button type="button" class="btn" id="f-recusar">Recusar</button></div></section>`;
+      }
+      if (c.coluna === 'decidir' && c.opcoes) {
+        h += `<section><h3>O fluxo pede uma escolha</h3><div class="acoes">${c.opcoes.map((o, i) => `<button type="button" class="btn" data-op="${i}">${esc(o.rotulo)}</button>`).join('')}</div>
+          <p class="nota">A escolha segue o caminho desenhado no BPMN desta jornada.</p></section>`;
+      } else if (c.coluna !== 'feito') {
+        const destinos = tipo === 'fluxo' ? (c.coluna === 'a_fazer' ? [['fazendo', 'Começar']] : c.coluna === 'fazendo' ? [['a_fazer', 'Voltar para a fazer']] : [])
+          : COLUNAS.filter(k => !['feito', 'decidir', c.coluna].includes(k[0])).map(k => [k[0], 'Mover para ' + k[1].toLowerCase()]);
+        h += `<section><h3>Andamento</h3><div class="acoes"><button type="button" class="btn prim" id="f-concluir" ${pode ? '' : 'disabled'}>${c.delegado_agente && c.modo === 2 ? 'Aprovar e concluir' : 'Concluir'}</button>
+          ${destinos.map(d => `<button type="button" class="btn" data-mover="${d[0]}">${d[1]}</button>`).join('')}</div>
+          ${tipo === 'fluxo' ? '<p class="nota">Ao concluir, o motor leva o fluxo ao próximo passo.</p>' : ''}</section>`;
+      }
+    }
+    const podeDelegar = c.coluna !== 'feito' && (c.dono === eu || lider);
+    if (podeDelegar && meu) {
+      const teto = tetoModo(c);
+      h += `<section><h3 id="h-dial">Delegar ao agente: nesta tarefa, ele vai</h3><div class="dial" role="group" aria-labelledby="h-dial">${MODOS.map((m, i) =>
+        `<button type="button" data-modo="${i}" aria-pressed="${!!(c.delegado_agente && c.modo === i)}" ${i > teto ? `disabled title="acima do modo aprovado (${esc(c.etapa_modo || 'avulsa: até fazer e você aprova')})"` : ''}>${m[0]}</button>`).join('')}</div>
+        <p class="nota">Teto: ${c.etapa_modo ? `modo ${esc(c.etapa_modo)} da etapa` : 'avulsas vão até “fazer e você aprova”'}. O que passa do teto fica bloqueado.</p></section>`;
+    }
+    if (podeDelegar) {
+      const cand = pessoas.filter(x => x.pessoa !== eu && x.pessoa !== c.dono);
+      const porCirc = {}; for (const x of cand) (porCirc[x.circulo ?? 0] ??= []).push(x);
+      h += `<section><h3>Delegar a alguém</h3><div class="linha"><select id="f-para" aria-label="Pessoa que vai receber"><option value="">Escolha a pessoa</option>${Object.entries(porCirc).map(([k, xs]) =>
+        `<optgroup label="${k === '0' ? 'Sem círculo' : esc(circNome(+k))}">${xs.map(x => `<option value="${esc(x.pessoa)}">${esc(x.nome)}${x.papel ? ' · ' + esc(x.papel) : ''}</option>`).join('')}</optgroup>`).join('')}</select>
+        <button type="button" class="btn" id="f-delegar">Delegar</button></div>
+        <p class="nota">${tipo === 'fluxo' ? (lider ? 'Como líder, você pode delegar fora da raia.' : 'Tarefa de fluxo: só na mesma raia. Fora dela, o líder decide.') : 'Quem recebe precisa aceitar. Outro círculo: o líder de lá vê o pedido.'}</p></section>`;
+    }
+    if (meu && tipo === 'fluxo' && c.coluna !== 'feito') {
+      h += `<section><h3>Pedir ajuda</h3><textarea id="f-ajuda" aria-label="O que você pede" placeholder="Ex.: me traz as últimas pesquisas com clientes"></textarea>
+        <div class="linha"><input type="datetime-local" id="f-ajuda-prazo" aria-label="Prazo do pedido de ajuda"><button type="button" class="btn" id="f-pedir">Criar pedido de ajuda</button></div>
+        <p class="nota">Vira um cartão de ajuda ligado a este, visível só para você e para quem receber.</p></section>`;
+    }
+    if (!meu) h += `<p class="nota">Cartão de ${esc(nomeDe(c.dono))}. ${lider ? 'Como líder, você pode delegá-lo.' : 'Só o dono ou o líder do círculo age sobre ele.'}</p>`;
+    const f = $('foco'); f.innerHTML = h; f.hidden = false; $('veu').hidden = false;
+    if (!redesenho) $('f-fechar').focus();
+    if ($('f-ajuda-prazo')) $('f-ajuda-prazo').value = toLocal(new Date(Date.now() + 86400000));
+    $('f-fechar').onclick = fechar;
+    f.querySelectorAll('[data-op]').forEach(b => b.onclick = () => acDecidir(c, c.opcoes[+b.dataset.op]));
+    f.querySelectorAll('[data-mover]').forEach(b => b.onclick = () => acMover(c, b.dataset.mover));
+    f.querySelectorAll('[data-modo]').forEach(b => b.onclick = () => acDelegarAgente(c, +b.dataset.modo));
+    if ($('f-concluir')) $('f-concluir').onclick = () => acConcluir(c);
+    if ($('f-aceitar')) $('f-aceitar').onclick = () => acResponder(c, true, $('f-nprazo').value);
+    if ($('f-recusar')) $('f-recusar').onclick = () => acResponder(c, false, null);
+    if ($('f-delegar')) $('f-delegar').onclick = () => acDelegarPessoa(c, $('f-para').value);
+    if ($('f-pedir')) $('f-pedir').onclick = () => acCriar($('f-ajuda').value, $('f-ajuda-prazo').value, c.id);
+    document.querySelectorAll('.cartao').forEach(el => el.setAttribute('aria-current', String(+el.dataset.id === id)));
+  }
+  function fechar() { aberto = null; $('foco').hidden = true; $('veu').hidden = true; document.querySelectorAll('.cartao[aria-current="true"]').forEach(el => el.setAttribute('aria-current', 'false')); }
+  const toLocal = d => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+
+  // ---------- captura ----------
+  let tSug = null, seqSug = 0;
+  async function sugerir(texto) {
+    const t = String(texto || '').trim(); if (t.length < 5) return null;
+    try { const r = await IMTS.chamar('rt.sugerir_jornada', { p_texto: t }); const top = (r || [])[0]; return top && top.pontos >= 2 ? top : null; }
+    catch (e) { return null; }
+  }
+  async function mostrarSugestao() {
+    const n = ++seqSug, top = await sugerir($('texto').value), box = $('sugestao');
+    if (n !== seqSug) return null;
+    if (!top) { box.hidden = true; box.innerHTML = ''; return null; }
+    const j = JORNADAS[top.jornada];
+    const acao = j?.pode_iniciar && empresaAtual() ? `<button class="btn prim" type="button" id="s-iniciar">Iniciar ${esc(top.jornada)}</button>`
+      : j && j.circulo != null && !meusCirculos().includes(j.circulo) ? `<span>É do círculo ${esc(circNome(j.circulo))}: delegue a quem é de lá.</span>`
+      : `<span>Você não pode iniciar esta jornada aqui.</span>`;
+    box.innerHTML = `<span>Isso já existe na jornada <b>${esc(top.jornada)}</b> · ${esc(top.jornada_nome || nomeJ(top.jornada))}<br><small>tarefa “${esc(top.tarefa)}”</small></span>${acao}<button class="btn" type="button" id="s-avulsa">Criar como avulsa mesmo assim</button>`;
+    box.hidden = false;
+    if ($('s-iniciar')) $('s-iniciar').onclick = () => acIniciar(top.jornada).then(ok => { if (ok) limparCaptura(); });
+    $('s-avulsa').onclick = () => criarDaCaptura(true);
+    return top;
+  }
+  function limparCaptura() { $('texto').value = ''; $('sugestao').hidden = true; $('sugestao').innerHTML = ''; }
+  async function criarDaCaptura(forcar) {
+    const t = $('texto').value;
+    if (!forcar && String(t).trim()) {
+      clearTimeout(tSug);
+      const top = await mostrarSugestao();
+      if (top) { recibo('precisa', `Criar “${t.trim()}”`, `Isso já existe na jornada ${top.jornada}. Inicie a jornada ou confirme como avulsa.`); return; }
+    }
+    if (await acCriar(t, $('prazo').value)) limparCaptura();
+  }
+  $('texto').addEventListener('input', () => { clearTimeout(tSug); tSug = setTimeout(mostrarSugestao, 350); });
+  $('captura').addEventListener('submit', e => { e.preventDefault(); criarDaCaptura(false); });
+  $('prazo').value = toLocal(new Date(Date.now() + 86400000));
+  $('iniciar').addEventListener('submit', async e => {
+    e.preventDefault();
+    await acIniciar($('ini-jornada').value);
+  });
+
+  // voz (quando o navegador permite)
+  const Rec = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (Rec) {
+    const mic = $('mic'); mic.hidden = false; let rec = null;
+    mic.onclick = () => {
+      if (rec) { rec.stop(); return; }
+      try { rec = new Rec(); } catch (e) { recibo('precisa', 'Falar', 'O navegador não liberou o microfone aqui.'); return; }
+      rec.lang = 'pt-BR'; rec.interimResults = true; mic.setAttribute('aria-pressed', 'true');
+      rec.onresult = ev => { $('texto').value = [...ev.results].map(r => r[0].transcript).join(' '); clearTimeout(tSug); tSug = setTimeout(mostrarSugestao, 350); };
+      rec.onerror = ev => recibo('precisa', 'Falar', 'Sem microfone: ' + ev.error);
+      rec.onend = () => { rec = null; mic.setAttribute('aria-pressed', 'false'); };
+      rec.start();
+    };
+  }
+
+  // ---------- eventos ----------
+  $('grade').addEventListener('click', e => { const b = e.target.closest('.cartao'); if (b) abrir(+b.dataset.id); });
+  $('precisa').addEventListener('click', e => { const b = e.target.closest('button[data-id]'); if (b) { aba = 'meu'; marcarAba(); desenhar(); abrir(+b.dataset.id); } });
+  $('colnav').addEventListener('click', e => { const b = e.target.closest('button[data-col]'); if (b) { colMovel = b.dataset.col; desenhar(); } });
+  $('veu').onclick = fechar;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && aberto != null) fechar(); });
+  document.querySelectorAll('.aba').forEach(b => b.onclick = () => { aba = b.dataset.aba; marcarAba(); fechar(); desenhar(); });
+  function marcarAba() {
+    document.querySelectorAll('.aba').forEach(x => x.setAttribute('aria-selected', String(x.dataset.aba === aba)));
+    $('l-jornada').hidden = aba !== 'jornada';
+    $('l-circulo').hidden = aba === 'meu' || meusCirculos().length < 2;
+  }
+  $('sel-raia').onchange = e => { raia = e.target.value; desenhar(); };
+  $('sel-jornada').onchange = e => { jornadaSel = e.target.value; desenhar(); };
+  function desenharCirculos() {
+    const ks = meusCirculos();
+    if (circSel == null || !ks.includes(circSel)) circSel = ks[0] ?? null;
+    $('sel-circulo').innerHTML = ks.map(k => `<option value="${k}"${k === circSel ? ' selected' : ''}>${esc(circNome(k))}</option>`).join('');
+    $('aba-circulo').disabled = circSel == null; $('aba-jornada').disabled = circSel == null;
+  }
+  $('sel-circulo').onchange = async e => { circSel = +e.target.value; fechar(); await recarregar(); };
+  $('b-atual').onclick = async () => { const b = $('b-atual'); b.disabled = true; try { await recarregar(); } finally { b.disabled = false; } };
+  document.addEventListener('imts:empresa', async () => { fechar(); await carregarCatalogo(); desenharCirculos(); marcarAba(); await recarregar(); });
+
+  // arrastar (no computador; no celular, use o foco)
+  let arrastando = null;
+  $('grade').addEventListener('dragstart', e => { const b = e.target.closest('.cartao'); if (!b || b.dataset.ro) return; arrastando = +b.dataset.id; e.dataTransfer.effectAllowed = 'move'; });
+  $('grade').addEventListener('dragover', e => { const cel = e.target.closest('.celula'); if (cel && arrastando != null) { e.preventDefault(); cel.classList.add('sobre'); } });
+  $('grade').addEventListener('dragleave', e => { const cel = e.target.closest('.celula'); if (cel) cel.classList.remove('sobre'); });
+  $('grade').addEventListener('drop', e => {
+    const cel = e.target.closest('.celula'); if (!cel || arrastando == null) return; e.preventDefault(); cel.classList.remove('sobre');
+    const c = quadro.find(x => x.id === arrastando); arrastando = null; if (!c || c.coluna === cel.dataset.col) return;
+    if (cel.dataset.col === 'feito') acConcluir(c); else acMover(c, cel.dataset.col);
+  });
+
+  // tema
+  $('b-tema').onclick = () => {
+    const r = document.documentElement, escuro = r.dataset.theme ? r.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    r.dataset.theme = escuro ? 'light' : 'dark';
+  };
+
+  // ---------- início ----------
+  await carregarCatalogo();
+  desenharCirculos(); marcarAba();
+  await recarregar();
+  document.body.dataset.pronto = '1';
+})().catch(e => { const f = document.getElementById('falha'); if (f) { f.textContent = 'Não foi possível abrir a mesa: ' + (e?.message || e); f.hidden = false; } });
+</script>
+</body>
+</html>

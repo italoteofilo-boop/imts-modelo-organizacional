@@ -134,3 +134,25 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | Arquivos de fora | Em produção, o arquivo enviado pelo portal vai para o Drive por função do servidor (hoje é a página, pelo conector) | Integração |
 
 Nada fora desta tabela depende de construção no protótipo.
+
+## 9. Ondas P1 a P5: produção (04/10/2026)
+
+Plano, backlog (B01 a B28 internos, E01 a E15 externos) e manual no documento "IMTS.OS · Plano de produção".
+
+| Onda | Entregue | Prova |
+|---|---|---|
+| P1 Base de produção | Login ligado à pessoa, convite, importação com prévia, porta única, índices, retenção, alertas, perfil de produção | Rodada única 19 de 19 |
+| P2 Ensaio e script | Banco vazio com 001 a 068 idêntico ao protótipo; `producao/aplicar.sh` com conferência; homologação do banco | Ensaio local: `internos_ok=true`; homologação 7 de 7 |
+| P3 Aplicativo | `app/`: entrada, Mesa, Painel, Central, Acervo, Biblioteca, Administração, Portal, pela porta única | 69 testes de navegador; axe-core sem violação |
+| P4 Servidor | Funções google, ia e alertas; worker em contêiner; alerta de armazenamento | 13 testes das funções; imagem construída e PDFs emitidos no ensaio |
+| P5 Manual | Manual de implantação, roteiro de homologação por círculo, runbook | Conferido contra o que foi construído |
+
+Achados do ensaio, corrigidos:
+- o motor registrava tarefas de máquina como feitas e sorteava decisões em instância real; agora vira cartão de pessoa (motor assistido);
+- funções executáveis sem login;
+- importação que recusava todo papel sem o cadastro simulado;
+- pedido de fora sem pessoa na raia;
+- endereço do protótipo escrito no código;
+- índices que só existiam no protótipo.
+
+B25 (PDFs no Storage): entregue o alerta de armazenamento. A migração para o Storage fica como proposta: no ensaio, cada documento emitido ocupou cerca de 380 KB no banco (PDF e HTML); o alerta avisa quando o total passar de documentos.limite_mb (2 GB), antes de pesar.

@@ -18,8 +18,10 @@ end $$;
 -- 1. Empresas -----------------------------------------------------------------------------------------
 alter table org.empresa add column if not exists simulado boolean not null default false;
 alter table org.empresa add column if not exists ativa boolean not null default true;
-insert into org.empresa (nome, simulado) values
-  ('Holding (simulada)', true), ('Empresa de educação (simulada)', true), ('Empresa de saúde (simulada)', true), ('Empresa de crédito (simulada)', true)
+-- ids fixos: as migrações seguintes e o protótipo se referem a eles
+insert into org.empresa (id, nome, simulado) values
+  ('8995fbb2-538c-43cf-94ff-f6b0c75f7c14', 'Holding (simulada)', true), ('9ce4812d-e39d-4fb3-bbda-a59a0f4aa897', 'Empresa de educação (simulada)', true),
+  ('80d8f119-a3fc-40ce-afaa-34d974f25d31', 'Empresa de saúde (simulada)', true), ('54d1ee0e-6ee3-4557-9a47-fdac1d7afc48', 'Empresa de crédito (simulada)', true)
 on conflict (nome) do nothing;
 
 -- 2. Login --------------------------------------------------------------------------------------------

@@ -1,0 +1,79 @@
+acervo.classificar(p_arquivo bigint, p_tipo text, p_chave text DEFAULT NULL::text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] acervo: triagem
+acervo.confirmar_local(p_arquivo bigint, p_drive_id text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] acervo: confirmar pasta
+acervo.decidir_campo(p_campo bigint, p_decisao text, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] acervo: aprovar dado
+acervo.painel(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] acervo
+acervo.pasta_registrar(p_empresa uuid, p_pasta text, p_drive_id text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] acervo: pasta do Drive
+acervo.registrar(p_empresa uuid, p_nome text, p_hash text, p_mime text, p_tamanho bigint, p_texto text, p_origem text, p_drive_id text DEFAULT NULL::text, p_contraparte uuid DEFAULT NULL::uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] acervo: registrar arquivo
+acervo.resolver_divergencia(p_divergencia bigint, p_campo bigint, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] acervo: divergência
+acervo.verificar(p_empresa uuid, p_hash text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] acervo: duplicado?
+adm.alerta_resolver(p_id bigint, p_como uuid DEFAULT NULL::uuid) -> void  [interno] encerrar alerta
+adm.alertas(p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] alertas de operação
+adm.alterar_conexao(p_codigo text, p_campos jsonb, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] alterar conexão
+adm.alterar_parametro(p_chave text, p_valor jsonb, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] alterar parâmetro
+adm.cobertura_papeis() -> jsonb  [interno] Papéis do modelo sem pessoa de verdade
+adm.conferir_implantacao() -> jsonb  [interno] Conferência da implantação (só administração)
+adm.decidir_mudanca(p_mudanca bigint, p_decisao text, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> text  [interno] aprovar ou recusar mudança
+adm.importar_cadastro(p_dados jsonb, p_confirmar boolean DEFAULT false, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] importar o cadastro
+adm.painel_completo() -> jsonb  [interno] administração
+adm.verificar_saude() -> jsonb  [interno] verificar saúde
+doc.decidir_marca(p_proposta bigint, p_decisao text, p_papeis jsonb, p_tipografia jsonb, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir marca
+doc.decidir_minuta(p_minuta bigint, p_decisao text, p_tipo text, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir minuta
+doc.painel_marca_modelos(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] marca e minutas
+doc.pedir_minuta(p_minuta bigint, p_titulo text, p_data date, p_local text, p_como uuid DEFAULT NULL::uuid) -> bigint  [interno] emitir pela minuta
+ext.atendimento_confirmar(p_pedido bigint, p_avaliacao smallint DEFAULT NULL::smallint, p_comentario text DEFAULT NULL::text) -> void  [externo] confirmar encerramento
+ext.atendimento_reabrir(p_pedido bigint, p_motivo text) -> void  [externo] reabrir
+ext.comissao_adquirir(p_comissao bigint, p_como uuid DEFAULT NULL::uuid) -> void  [interno] parcela recebida
+ext.contraparte_documento(p_contraparte uuid, p_cnpj text, p_como uuid DEFAULT NULL::uuid) -> text  [interno] CNPJ do parceiro
+ext.contrapartes(p_empresa uuid) -> jsonb  [interno] Clientes e parceiros da empresa, com usuários e convites
+ext.convidar(p_contraparte uuid, p_email text, p_nome text, p_perfil text, p_como uuid DEFAULT NULL::uuid) -> bigint  [interno] convidar cliente ou parceiro
+ext.documento_pdf(p_emissao bigint) -> text  [externo] baixar documento
+ext.encaminhamento_concluir(p_encaminhamento bigint, p_situacao text, p_conclusao text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] concluir encaminhamento
+ext.encaminhar(p_pedido bigint, p_descricao text, p_responsavel uuid, p_prazo timestamp with time zone, p_como uuid DEFAULT NULL::uuid) -> bigint  [interno] encaminhar
+ext.oportunidade_decidir(p_oportunidade bigint, p_situacao text, p_valor numeric DEFAULT NULL::numeric, p_parcelas integer DEFAULT NULL::integer, p_inicio date DEFAULT NULL::date, p_motivo text DEFAULT NULL::text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir oportunidade
+ext.ouvidoria(p_assunto text, p_texto text, p_anonimo boolean DEFAULT false) -> bigint  [externo] ouvidoria
+ext.painel_atendimento(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] Central: atendimento
+ext.painel_parceiros(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] Central: parceiros
+ext.painel_reunioes(p_empresa uuid, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] Central: reuniões
+ext.pasta_externa() -> jsonb  [externo] Pasta do acervo que recebe os arquivos de quem é de fora
+ext.pedir(p_tipo text, p_assunto text, p_texto text, p_instancia bigint DEFAULT NULL::bigint, p_cliente_final text DEFAULT NULL::text) -> bigint  [externo] novo pedido
+ext.portal() -> jsonb  [externo] portal
+ext.portal_parceiro() -> jsonb  [externo] portal do parceiro
+ext.portal_reunioes() -> jsonb  [externo] reuniões
+ext.prestacao_decidir(p_prestacao bigint, p_decisao text, p_motivo text DEFAULT NULL::text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] decidir nota
+ext.prestacao_enviar(p_tipo text, p_nome text, p_hash text, p_mime text, p_tamanho bigint, p_texto text, p_comissoes bigint[] DEFAULT '{}'::bigint[], p_drive_id text DEFAULT NULL::text, p_origem text DEFAULT 'portal'::text) -> jsonb  [externo] Parceiro envia nota ou relatório da prestação de contas
+ext.prestacao_pagar(p_prestacao bigint, p_comprovante text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] registrar pagamento
+ext.publicar_documento(p_emissao bigint, p_contraparte uuid, p_perfis text[] DEFAULT NULL::text[], p_como uuid DEFAULT NULL::uuid) -> void  [interno] publicar documento no portal
+ext.responder(p_pedido bigint, p_resposta text, p_situacao text DEFAULT 'respondido'::text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] responder pedido
+ext.reuniao_agendar(p_empresa uuid, p_titulo text, p_inicio timestamp with time zone, p_duracao_min integer, p_plataforma text, p_pedido bigint DEFAULT NULL::bigint, p_contraparte uuid DEFAULT NULL::uuid, p_gravar boolean DEFAULT false, p_como uuid DEFAULT NULL::uuid) -> bigint  [interno] marcar reunião
+ext.reuniao_ata_aprovar(p_reuniao bigint, p_ata jsonb, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] aprovar ata
+ext.reuniao_ata_rascunho(p_reuniao bigint, p_ata jsonb, p_como uuid DEFAULT NULL::uuid) -> void  [interno] rascunho da ata
+ext.reuniao_cancelar(p_reuniao bigint, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] cancelar reunião
+ext.reuniao_consentir(p_reuniao bigint, p_quem text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] consentimento
+ext.reuniao_consentir_externo(p_reuniao bigint) -> void  [externo] consentir gravação
+ext.reuniao_gravacao_apagada(p_reuniao bigint, p_como uuid DEFAULT NULL::uuid) -> void  [interno] retenção da gravação
+ext.reuniao_registrar_externa(p_reuniao bigint, p_evento_id text, p_link text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] link da reunião
+ext.reuniao_transcricao(p_reuniao bigint, p_nome text, p_hash text, p_mime text, p_tamanho bigint, p_texto text, p_drive_id text, p_como uuid DEFAULT NULL::uuid) -> jsonb  [interno] transcrição
+ext.sala_enviar(p_oportunidade bigint, p_texto text, p_origem text DEFAULT 'portal'::text) -> bigint  [externo] sala de negócio
+ext.sala_responder(p_oportunidade bigint, p_texto text, p_como uuid DEFAULT NULL::uuid) -> bigint  [interno] responder na sala
+ext.telegram_codigo() -> jsonb  [externo] código do Telegram
+ext.telegram_desligar() -> void  [externo] desligar Telegram
+rt.agente_aprovar_rascunho(p_cartao bigint, p_como uuid DEFAULT NULL::uuid) -> void  [interno] aprovar resposta de agente
+rt.agente_liberar(p_codigo text, p_liberado boolean, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] liberar ou suspender agente
+rt.agente_ligar(p_codigo text, p_ligado boolean, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] ligar ou desligar agente
+rt.agente_memoria_editar(p_id bigint, p_nota text, p_ativa boolean, p_motivo text, p_como uuid DEFAULT NULL::uuid) -> void  [interno] editar memória de agente
+rt.agentes_painel() -> jsonb  [interno] Painel dos agentes residentes (só administração)
+rt.app_catalogo() -> jsonb  [interno] Círculos e jornadas do modelo, com o que a pessoa pode iniciar
+rt.app_concluir(p_cartao bigint) -> text  [interno] concluir tarefa
+rt.app_criar_avulsa(p_titulo text, p_prazo timestamp with time zone, p_pai bigint DEFAULT NULL::bigint) -> bigint  [interno] criar tarefa avulsa
+rt.app_decidir(p_cartao bigint, p_para text) -> text  [interno] decidir caminho
+rt.app_delegar(p_cartao bigint, p_para uuid DEFAULT NULL::uuid, p_agente boolean DEFAULT false, p_modo smallint DEFAULT NULL::smallint) -> void  [interno] delegar tarefa
+rt.app_iniciar(p_jornada text) -> bigint  [interno] iniciar processo
+rt.app_mover(p_cartao bigint, p_coluna text) -> void  [interno] mover tarefa
+rt.app_quadro() -> jsonb  [interno] Mesa: tarefas da pessoa
+rt.app_quadro_circulo(p_circulo smallint) -> jsonb  [interno] Mesa: tarefas do círculo
+rt.app_responder(p_cartao bigint, p_aceita boolean, p_novo_prazo timestamp with time zone DEFAULT NULL::timestamp with time zone) -> void  [interno] aceitar ou recusar delegação
+rt.painel() -> jsonb  [interno] painel dos processos
+rt.painel_detalhe(p_jornada text, p_ultimas integer DEFAULT 8) -> jsonb  [interno] painel: detalhe da jornada
+rt.painel_execucao(p_instancia bigint) -> jsonb  [interno] painel: uma execução
+rt.quem_sou() -> jsonb  [todos] quem está usando e o que pode ver
+rt.sugerir_jornada(p_texto text) -> jsonb  [interno] Jornada que já cobre o texto da captura

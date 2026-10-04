@@ -31,7 +31,8 @@ begin
   -- M4. O worker recebe o pacote aprovado e o conteúdo do pedido não consegue trocá-lo
   ped := doc.pedir('resposta-externa', 'onni', '{"titulo":"t","data":"2026-10-04","local":"x","_marca_dados":{"id":"onni","cores":{"primaria":"#FFFFFF"}}}', emp);
   update doc.pedido set criado_em = '2000-01-01' where id = ped;
-  r := doc.worker_proximo(coalesce(rt._segredo('doc_worker_chave'), 'sem-chave'), 'teste');
+  -- sem a chave do worker no cofre (banco novo), M4 não se aplica
+  if rt._segredo('doc_worker_chave') is not null then r := doc.worker_proximo(rt._segredo('doc_worker_chave'), 'teste'); end if;
   if rt._segredo('doc_worker_chave') is not null and (r->'_marca_dados'->'cores'->>'primaria') <> '#1A2B3C' then raise exception 'FALHA M4: worker sem a marca do banco (%)', r->'_marca_dados'->'cores'; end if;
 
   -- M5. Modelo de documento vira minuta em blocos (cláusula, item, alínea, parágrafo)
@@ -65,6 +66,8 @@ begin
   if jsonb_array_length(doc._texto_em_blocos(E'a\n\nb\nCláusula 2ª\n2.1 c')) <> 4 then raise exception 'FALHA M9: conversão perdeu linhas'; end if;
 
   -- M10. CNPJ aprovado no acervo vai para o pacote de marca da empresa e sai das inferências
+  -- o CNPJ que a simulação tenha proposto para a empresa sai antes (o teste desfaz tudo no fim)
+  delete from acervo.divergencia where empresa = emp and chave = 'cnpj'; delete from acervo.campo where empresa = emp and chave = 'cnpj';
   v_cnpj := acervo._cnpj_formatar(base || acervo._cnpj_dv(base));
   r := acervo.registrar(emp, 'cartao.pdf', encode(extensions.digest('cartao-onni-teste', 'sha256'), 'hex'), 'application/pdf', 10,
         'COMPROVANTE DE INSCRIÇÃO E DE SITUAÇÃO CADASTRAL ' || v_cnpj, 'upload', null, null, a1);

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acervo · IMTS.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum/base.css">
+<style>
+/* Acervo: cabeçalho do módulo, resumo, envio com o registro passo a passo, abas por objeto (arquivos, triagem, dados da empresa, divergências, marca, modelos, pastas). */
+:root {
+  --chao:var(--ground); --folha:var(--surface); --tinta:var(--ink); --apoio:var(--sec); --fio:var(--hair);
+  --bom:var(--ok); --bom-suave:var(--ok-soft); --espera:var(--wait); --espera-suave:var(--wait-soft); --mal:var(--late); --mal-suave:var(--late-soft);
+  --azul:var(--accent); --azul-suave:var(--accent-soft); --pill:var(--ink); --pill-tinta:var(--ground);
+  --realce:#2D5B3F; --realce-suave:#DFEBE2; --prim-tinta:#FFFFFF; --bom:#17663A;
+  --sombra:0 1px 2px rgba(0,0,0,.06), 0 3px 10px rgba(0,0,0,.05); --dados:ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --realce:#8FC7A2; --realce-suave:#22362A; --prim-tinta:#10161A; --sombra:0 1px 2px rgba(0,0,0,.4); --bom:var(--ok); } }
+:root[data-theme="dark"] { --realce:#8FC7A2; --realce-suave:#22362A; --prim-tinta:#10161A; --sombra:0 1px 2px rgba(0,0,0,.4); --bom:var(--ok); }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html, body { margin:0; background:var(--chao); color:var(--tinta); font-family:var(--sans); font-size:15px; line-height:1.45; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--azul); outline-offset:2px; }
+.cab { padding-block:18px 4px; padding-inline:max(16px, 3vw); max-width:1200px; }
+.cab h1 { font-family:var(--serif); font-weight:600; font-size:28px; margin:0; }
+.cab p { margin:2px 0 0; color:var(--apoio); font-size:14px; }
+.casca { padding-block:12px 40px; padding-inline:max(16px, 3vw); display:flex; flex-direction:column; gap:14px; max-width:1200px; }
+.resumo { display:flex; flex-wrap:wrap; gap:8px; }
+.resumo span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--folha); border:1px solid var(--fio); color:var(--apoio); font-variant-numeric:tabular-nums; }
+.resumo b { color:var(--tinta); } .resumo .esp b { color:var(--espera); } .resumo .mal b { color:var(--mal); }
+.envio { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:12px; }
+.zona { border:2px dashed var(--fio); border-radius:14px; background:var(--folha); padding:18px; display:flex; flex-direction:column; gap:10px; min-width:0; }
+.zona.sobre { border-color:var(--realce); background:var(--realce-suave); }
+.zona h2 { margin:0; font-family:var(--serif); font-weight:600; font-size:19px; }
+.zona p { margin:0; font-size:14px; color:var(--apoio); }
+.linha-acao { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.linha-acao input[type="file"] { flex:1 1 220px; min-width:0; max-width:100%; }
+.btn { border:1px solid var(--fio); background:var(--folha); border-radius:10px; padding:8px 14px; font-size:14px; }
+.btn.prim { background:var(--realce); border-color:var(--realce); color:var(--prim-tinta); }
+.btn.perigo { border-color:var(--mal); color:var(--mal); }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.registro { display:flex; flex-direction:column; gap:8px; max-height:420px; overflow:auto; }
+.registro:empty { display:none; }
+.passo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--fio); border-radius:10px; padding:9px 12px; font-size:13px; }
+.passo.ok { border-left-color:var(--bom); } .passo.esp { border-left-color:var(--espera); } .passo.mal { border-left-color:var(--mal); } .passo.and { border-left-color:var(--azul); }
+.passo .t { font-weight:700; font-size:14px; overflow-wrap:anywhere; }
+.passo ol { margin:4px 0 0; padding-left:18px; color:var(--apoio); overflow-wrap:anywhere; }
+.abas { display:flex; flex-wrap:wrap; gap:8px; }
+.aba { border:1px solid var(--fio); background:transparent; border-radius:99px; padding:6px 14px; font-size:14px; }
+.aba[aria-selected="true"] { background:var(--pill); color:var(--pill-tinta); border-color:var(--pill); }
+.aba .n { font-size:12px; opacity:.85; margin-left:4px; font-variant-numeric:tabular-nums; }
+.lista { display:flex; flex-direction:column; gap:8px; }
+.item { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:11px 14px; display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:4px 14px; align-items:start; }
+.item .t { font-weight:700; overflow-wrap:anywhere; }
+.item .sub, .sub { font-size:13px; color:var(--apoio); overflow-wrap:anywhere; }
+.item .lado { display:flex; flex-direction:column; gap:6px; align-items:end; }
+.item .acoes { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.item .acoes select, .item .acoes input, .form-pasta select, .form-pasta input { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); max-width:100%; min-width:0; }
+.chip { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--chao); color:var(--apoio); white-space:nowrap; }
+.chip.bom { background:var(--bom-suave); color:var(--bom); } .chip.esp { background:var(--espera-suave); color:var(--espera); } .chip.mal { background:var(--mal-suave); color:var(--mal); } .chip.azul { background:var(--azul-suave); color:var(--azul); }
+.cod { font-family:var(--dados); font-size:12px; }
+.vazio { background:var(--folha); border:1px dashed var(--fio); border-radius:12px; padding:16px; color:var(--apoio); font-size:14px; margin:0; }
+.valores { display:flex; flex-direction:column; gap:6px; grid-column:1 / -1; }
+.valores label { display:flex; gap:8px; align-items:start; font-size:14px; background:var(--chao); border-radius:8px; padding:8px 10px; }
+.arvore { display:grid; grid-template-columns:repeat(auto-fill, minmax(230px, 1fr)); gap:8px; }
+.arvore .p { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:10px 12px; display:flex; flex-direction:column; gap:4px; align-items:start; }
+.arvore .p .t { font-weight:700; }
+.form-pasta { display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:10px 12px; margin-bottom:10px; }
+.form-pasta input { flex:1 1 240px; }
+a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:24px; padding-block:2px; }
+.recibos { position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); display:flex; flex-direction:column; gap:6px; z-index:6; max-width:min(440px, calc(100% - 32px)); }
+.recibo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--azul); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--sombra); }
+.recibo.feito { border-left-color:var(--bom); } .recibo.recusado { border-left-color:var(--mal); }
+.amostras { display:flex; flex-wrap:wrap; gap:8px; grid-column:1 / -1; }
+.amostra { display:flex; align-items:center; gap:6px; font-size:13px; background:var(--chao); border-radius:8px; padding:4px 8px 4px 4px; }
+.amostra i { width:22px; height:22px; border-radius:6px; border:1px solid var(--fio); display:inline-block; }
+.papeis { display:grid; grid-template-columns:repeat(auto-fill, minmax(190px, 1fr)); gap:6px 10px; grid-column:1 / -1; }
+.papeis label { display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--apoio); }
+.papeis select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); }
+.blocos { grid-column:1 / -1; display:flex; flex-direction:column; gap:3px; font-size:14px; background:var(--chao); border-radius:10px; padding:10px 12px; max-height:340px; overflow:auto; overflow-wrap:anywhere; }
+.blocos .b-secao { font-weight:700; margin-top:6px; } .blocos .b-alinea { padding-left:18px; }
+.blocos .add { color:var(--azul); } .blocos .rem { color:var(--mal); text-decoration:line-through; } .blocos .aju { color:var(--bom); }
+.legenda { grid-column:1 / -1; font-size:12px; color:var(--apoio); display:flex; flex-wrap:wrap; gap:10px; }
+.legenda .add { color:var(--azul); } .legenda .rem { color:var(--mal); text-decoration:line-through; } .legenda .aju { color:var(--bom); }
+.rodape { font-size:12px; color:var(--apoio); max-width:80ch; margin:0; }
+.aviso { padding:10px 12px; border-radius:10px; background:var(--espera-suave); color:var(--espera); margin:0; font-size:14px; }
+.aviso.erro { background:var(--mal-suave); color:var(--mal); }
+@media (max-width: 760px) { .envio { grid-template-columns:minmax(0, 1fr); } .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<header id="imts-barra"></header>
+<div class="cab">
+  <h1>Acervo das empresas</h1>
+  <p id="cab-sub">Arquivos, pastas e dados conferidos</p>
+</div>
+<main class="casca">
+  <p id="erro" class="aviso erro" role="alert" hidden></p>
+  <div class="resumo" id="resumo" aria-live="polite"></div>
+  <section class="envio" aria-label="Entrada de arquivos">
+    <div class="zona" id="zona">
+      <h2>Subir arquivos</h2>
+      <p>Arraste aqui ou escolha. Cada arquivo é conferido contra o acervo (o mesmo arquivo não entra duas vezes), enviado ao Drive da empresa, lido e classificado. O que não for reconhecido com segurança vai para a triagem.</p>
+      <div class="linha-acao"><input type="file" id="arquivos" multiple aria-label="Escolher arquivos"><button class="btn prim" id="b-subir" type="button" disabled>Subir e organizar</button></div>
+    </div>
+    <div class="zona">
+      <h2>Como o acervo decide</h2>
+      <p>O nome e o texto do arquivo dizem o tipo e a pasta. Dado sensível da empresa (CNPJ e razão social) e mudança de marca só valem depois que duas pessoas diferentes aprovam. Minuta de modelo só vale aprovada por quem não a subiu.</p>
+    </div>
+  </section>
+  <section aria-label="Registro do envio"><div class="registro" id="registro" aria-live="polite"></div></section>
+  <nav class="abas" aria-label="Objetos do acervo"><div role="tablist" style="display:contents">
+    <button class="aba" role="tab" id="t-arquivos" data-aba="arquivos" aria-controls="conteudo" aria-selected="true" tabindex="0">Arquivos<span class="n" id="n-arquivos"></span></button>
+    <button class="aba" role="tab" id="t-triagem" data-aba="triagem" aria-controls="conteudo" aria-selected="false" tabindex="-1">Triagem<span class="n" id="n-triagem"></span></button>
+    <button class="aba" role="tab" id="t-dados" data-aba="dados" aria-controls="conteudo" aria-selected="false" tabindex="-1">Dados da empresa<span class="n" id="n-dados"></span></button>
+    <button class="aba" role="tab" id="t-divergencias" data-aba="divergencias" aria-controls="conteudo" aria-selected="false" tabindex="-1">Divergências<span class="n" id="n-divergencias"></span></button>
+    <button class="aba" role="tab" id="t-marca" data-aba="marca" aria-controls="conteudo" aria-selected="false" tabindex="-1">Marca<span class="n" id="n-marca"></span></button>
+    <button class="aba" role="tab" id="t-modelos" data-aba="modelos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Modelos<span class="n" id="n-modelos"></span></button>
+    <button class="aba" role="tab" id="t-pastas" data-aba="pastas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Pastas</button>
+  </div></nav>
+  <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-arquivos"><p class="vazio">Carregando…</p></section>
+  <p class="rodape">Os arquivos ficam no Google Drive do Workspace IMTS, na pasta da empresa, com a árvore padrão. Aqui fica o registro de cada um: hash, tipo, versão, dados extraídos e situação.</p>
+</main>
+<div class="recibos" id="recibos" aria-live="polite"></div>
+
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="comum/imts.js"></script>
+<script>
+(async function () {
+  const $ = id => document.getElementById(id);
+  const esc = IMTS.esc;
+  const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+  const SIT = { organizado: ['organizado', 'bom'], triagem: ['triagem', 'esp'], entrada: ['na entrada', 'azul'], substituido: ['substituído', ''] };
+  const CHAVE = { cnpj: 'CNPJ', razao_social: 'Razão social', regime_tributario: 'Regime tributário' };
+  let quem = null, empresa = null, dados = null, mm = null, aba = 'arquivos', ocupado = false;
+
+  const motivo = e => String(e?.message || e || 'erro');
+  function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 8000); }
+  const linkArquivo = id => `https://drive.google.com/file/d/${encodeURIComponent(id)}/view`;
+  const linkPasta = id => `https://drive.google.com/drive/folders/${encodeURIComponent(id)}`;
+  const nomePessoa = id => { const p = (quem?.pessoas || []).find(x => x.pessoa === id); return p ? p.nome + ' (' + p.papel + ')' : (id === quem?.pessoa ? quem.nome : 'outra pessoa'); };
+
+  // ---------- envio de um arquivo ----------
+  async function sha256(buf) { const h = await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+  function b64(buf) { let s = ''; const b = new Uint8Array(buf); for (let i = 0; i < b.length; i += 0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i + 0x8000)); return btoa(s); }
+  const TEXTO_LOCAL = /^text\/|json|xml|csv|markdown/;
+  const LEGIVEL_NO_DRIVE = /pdf|document|word|sheet|presentation|image\/(png|jpe?g)/;
+  const limpo = s => String(s || '').replace(/\u0000/g, '').slice(0, 30000);
+  function cartao(titulo) {
+    const d = document.createElement('div'); d.className = 'passo and'; d.innerHTML = `<div class="t">${esc(titulo)}</div><ol></ol>`; $('registro').prepend(d);
+    return { passo: t => d.querySelector('ol').insertAdjacentHTML('beforeend', `<li>${esc(t)}</li>`),
+      fim: (cls, t) => { d.className = 'passo ' + cls; if (t) d.querySelector('ol').insertAdjacentHTML('beforeend', `<li><strong>${esc(t)}</strong></li>`); } };
+  }
+  async function lerTexto(f, driveId, c) {
+    const mime = f.type || '';
+    if (TEXTO_LOCAL.test(mime) || /\.(txt|md|csv|json|xml|html?)$/i.test(f.name)) { try { return limpo(await f.text()); } catch (e) { return ''; } }
+    if (!driveId || !LEGIVEL_NO_DRIVE.test(mime)) return '';
+    try { const r = await IMTS.google('drive_ler', { id: driveId }); return limpo(r?.texto); }
+    catch (e) { c.passo('Leitura do texto no Drive indisponível: ' + motivo(e) + '. A classificação usa o nome.'); return ''; }
+  }
+  function derivados(r, c) {
+    if (r.derivado?.proposta_marca) c.passo('Manual de marca: cores e tipografia viraram proposta na aba Marca (duas aprovações).');
+    if (r.derivado?.minuta) c.passo('Modelo de documento: virou minuta na aba Modelos (aprovação de quem não subiu).');
+  }
+  async function subirUm(f) {
+    const c = cartao(f.name);
+    try {
+      const buf = await f.arrayBuffer(); const h = await sha256(buf);
+      c.passo(`Impressão digital SHA-256 ${h.slice(0, 12)}…`);
+      const v = await IMTS.chamar('acervo.verificar', { p_empresa: empresa, p_hash: h });
+      if (v.duplicado) { c.fim('esp', `Já está no acervo como "${v.nome}" (pasta ${v.pasta}). Não subiu de novo.`); return; }
+      let up;
+      try { up = await IMTS.google('drive_enviar', { empresa, pasta: '00', nome: f.name, mime: f.type || 'application/octet-stream', conteudo: b64(buf) }); }
+      catch (e) { c.fim('mal', 'Envio ao Drive indisponível: ' + motivo(e) + '. O arquivo não foi registrado; tente de novo mais tarde.'); return; }
+      if (!up?.id) { c.fim('mal', 'O Drive não devolveu o código do arquivo. O arquivo não foi registrado.'); return; }
+      c.passo('Enviado ao Drive, na pasta 00 Entrada.');
+      const texto = await lerTexto(f, up.id, c);
+      c.passo(texto ? `Texto lido (${texto.length.toLocaleString('pt-BR')} caracteres).` : 'Sem texto legível: a classificação usa o nome.');
+      const r = await IMTS.chamar('acervo.registrar', { p_empresa: empresa, p_nome: f.name, p_hash: h, p_mime: f.type || null, p_tamanho: f.size, p_texto: texto, p_origem: 'upload', p_drive_id: up.id });
+      if (r.situacao === 'duplicado') { c.fim('esp', 'Outra pessoa subiu o mesmo arquivo agora; ficou o primeiro.'); return; }
+      c.passo(r.tipo ? `Reconhecido como ${r.tipo_nome} (pelo ${r.reconhecido_por}).` : 'Tipo não reconhecido com segurança.');
+      if (r.versao_de) c.passo(`É versão nova de "${r.versao_de_nome}"; a anterior fica no histórico como substituída.`);
+      for (const p of r.campos_propostos || []) c.passo(`Dado proposto: ${CHAVE[p.chave] || p.chave} = ${p.valor}.`);
+      for (const d of r.divergencias || []) c.passo(`Divergência em ${CHAVE[d.chave] || d.chave}: valores diferentes entre documentos.`);
+      derivados(r, c);
+      if (r.situacao === 'entrada') {
+        const m = await mover({ id: r.arquivo, pasta: r.pasta, nome: r.nome, drive_id: up.id }, r.pasta_nome);
+        c.passo(m);
+        c.fim(r.divergencias?.length ? 'esp' : 'ok', 'Registrado.');
+      } else c.fim('esp', 'Na triagem: escolha o tipo na aba Triagem.');
+    } catch (e) { c.fim('mal', 'Não concluiu: ' + motivo(e)); }
+  }
+  // Mover no Drive para a pasta certa e confirmar o local. Sem a ação no servidor, o arquivo fica na entrada e o motivo aparece.
+  async function mover(a, pastaNome) {
+    try { await IMTS.google('drive_mover', { id: a.drive_id, empresa, pasta: a.pasta, nome: a.nome }); }
+    catch (e) { return `Fica na entrada: mover no Drive indisponível (${motivo(e)}). Use "Mover para a pasta certa" depois.`; }
+    await IMTS.chamar('acervo.confirmar_local', { p_arquivo: a.id, p_drive_id: a.drive_id });
+    return `Guardado em ${pastaNome || 'pasta ' + a.pasta} como "${a.nome}".`;
+  }
+  async function subir() {
+    const fs = [...$('arquivos').files]; if (!fs.length || ocupado) return;
+    ocupado = true; $('b-subir').disabled = true;
+    try { for (const f of fs) await subirUm(f); await carregar(); }
+    catch (e) { recibo('recusado', motivo(e)); }
+    finally { ocupado = false; $('arquivos').value = ''; $('b-subir').disabled = true; }
+  }
+
+  // ---------- visões ----------
+  const abrirDrive = id => id ? `<a href="${esc(linkArquivo(id))}" target="_blank" rel="noopener">Abrir no Drive</a>` : '';
+  function vArquivos() {
+    const as = dados.arquivos || [];
+    if (!as.length) return '<p class="vazio">Nenhum arquivo desta empresa ainda. Suba um arquivo acima.</p>';
+    return `<div class="lista">${as.map(a => { const [rot, cls] = SIT[a.situacao] || [a.situacao, ''];
+      return `<article class="item" data-arquivo="${Number(a.id)}"><div><div class="t">${esc(a.nome)}</div>
+        <div class="sub">${esc(a.tipo || 'tipo não definido')} · pasta ${esc(a.pasta)} · ${a.origem === 'drive' ? 'pasta conectada' : a.externo ? 'enviado por parceiro ou cliente' : 'enviado aqui'} · ${esc(quando(a.em))}${a.original !== a.nome ? ' · original: ' + esc(a.original) : ''}</div>
+        ${a.motivo ? `<div class="sub">${esc(a.motivo)}</div>` : ''}${a.versao_de ? `<div class="sub">Substitui o arquivo ${Number(a.versao_de)}</div>` : ''}</div>
+        <div class="lado"><span class="chip ${cls}">${esc(rot)}</span>${abrirDrive(a.drive_id)}</div>
+        ${a.situacao === 'entrada' && a.drive_id ? `<div class="acoes"><button class="btn" type="button" data-mover="${Number(a.id)}">Mover para a pasta certa</button></div>` : ''}</article>`; }).join('')}</div>`;
+  }
+  function vTriagem() {
+    const ts = (dados.arquivos || []).filter(a => a.situacao === 'triagem');
+    if (!ts.length) return '<p class="vazio">Nada na triagem. Arquivo que o sistema não reconhece com segurança aparece aqui para uma pessoa decidir o tipo.</p>';
+    const opcoes = (dados.tipos || []).map(t => `<option value="${esc(t.id)}">${esc(t.nome)} (pasta ${esc(t.pasta)})</option>`).join('');
+    return `<div class="lista">${ts.map(a => { const id = Number(a.id); return `<article class="item" data-arquivo="${id}"><div><div class="t">${esc(a.original)}</div><div class="sub">${esc(a.motivo || '')} · ${esc(quando(a.em))}</div></div>
+      <div class="lado">${abrirDrive(a.drive_id)}</div>
+      <div class="acoes"><label class="sub" for="tp-${id}">Tipo</label><select id="tp-${id}"><option value="">escolha</option>${opcoes}</select>
+        <label class="sub" for="nu-${id}">Número (se houver)</label><input id="nu-${id}" size="10" inputmode="numeric">
+        <button class="btn prim" type="button" data-classificar="${id}">Classificar</button></div></article>`; }).join('')}</div>`;
+  }
+  function vDados() {
+    const e = dados.empresa || {}, cs = dados.campos || [];
+    const atual = `<article class="item"><div><div class="t">${esc(e.nome)}</div><div class="sub">CNPJ: ${esc(e.cnpj || 'não aprovado ainda')} · Razão social: ${esc(e.razao_social || 'não aprovada ainda')} · Regime: ${esc(e.regime_tributario || 'não aprovado ainda')}</div></div><div class="lado"><span class="chip">valendo hoje</span></div></article>`;
+    const pend = cs.filter(c => c.situacao !== 'aprovado');
+    return `<div class="lista">${atual}${pend.length ? pend.map(c => { const id = Number(c.id); return `<article class="item" data-campo-item="${id}"><div><div class="t">${esc(CHAVE[c.chave] || c.chave)}: ${esc(c.valor)}</div>
+        <div class="sub">De "${esc(c.arquivo_nome)}"${c.trecho ? ` · trecho: <span class="cod">${esc(c.trecho)}</span>` : ''}</div>
+        <div class="sub">${Number(c.aprovacoes)} de ${Number(c.precisa)} aprovações${c.decisoes?.length ? ' · já decidiu: ' + c.decisoes.map(d => esc(nomePessoa(d.por))).join(', ') : ''}</div></div>
+        <div class="lado"><span class="chip ${c.situacao === 'divergente' ? 'mal' : 'esp'}">${c.situacao === 'divergente' ? 'divergente' : 'proposto'}</span></div>
+        ${c.situacao === 'proposto' ? `<div class="acoes"><input id="mo-${id}" placeholder="motivo (obrigatório para recusar)" aria-label="Motivo"><button class="btn prim" type="button" data-campo="${id}" data-d="aprovado">Aprovar</button><button class="btn perigo" type="button" data-campo="${id}" data-d="recusado">Recusar</button></div>` : '<div class="acoes sub">Resolva primeiro na aba Divergências.</div>'}</article>`; }).join('')
+      : '<p class="vazio">Nenhum dado esperando decisão. Quando um documento trouxer CNPJ, razão social ou regime, a proposta aparece aqui.</p>'}</div>`;
+  }
+  function vDivergencias() {
+    const ds = dados.divergencias || [];
+    if (!ds.length) return '<p class="vazio">Nenhuma divergência aberta. Quando dois documentos disserem coisas diferentes sobre o mesmo dado, o sistema não escolhe: a comparação aparece aqui.</p>';
+    return `<div class="lista">${ds.map(d => { const id = Number(d.id); return `<article class="item" data-div="${id}"><div><div class="t">${esc(CHAVE[d.chave] || d.chave)}</div><div class="sub">Aberta em ${esc(quando(d.criado_em))}</div></div><div class="lado"><span class="chip mal">divergente</span></div>
+      <div class="valores" role="radiogroup" aria-label="Valor que vale">${(d.valores || []).map(v => `<label><input type="radio" name="dv-${id}" value="${Number(v.campo)}"><span><strong>${esc(v.valor)}</strong><br><span class="sub">de "${esc(v.nome)}"${v.situacao === 'aprovado' ? ' · é o que vale hoje' : ''}</span></span></label>`).join('')}</div>
+      <div class="acoes"><input id="dm-${id}" placeholder="por que este valor vale (obrigatório)" aria-label="Motivo da escolha" style="flex:1 1 240px"><button class="btn prim" type="button" data-divergencia="${id}">Escolher este valor</button></div></article>`; }).join('')}</div>`;
+  }
+  const PAPEIS = { primaria: 'Primária', texto: 'Texto', fundo: 'Fundo', destaque: 'Destaque', apoio: 'Apoio', apoio2: 'Apoio 2', claro: 'Claro', barra: 'Barra', linha: 'Linha' };
+  const TIPOG = { texto: 'Fonte do texto', display: 'Fonte dos títulos' };
+  const corOk = h => /^#[0-9A-Fa-f]{6}$/.test(String(h || '')) ? h : 'transparent';
+  const amostra = (hex, rot) => `<span class="amostra"><i style="background:${corOk(hex)}"></i>${rot ? esc(rot) + ' ' : ''}<span class="cod">${esc(hex)}</span></span>`;
+  function vMarca() {
+    const m = mm.marca, ps = mm.propostas || [];
+    if (!m) return '<p class="vazio">Esta empresa não tem pacote de marca associado.</p>';
+    const atual = `<article class="item"><div><div class="t">${esc(m.nome)} · pacote que vale hoje</div>
+        <div class="sub">Tipografia: ${esc(Object.entries(m.tipografia || {}).map(([k, v]) => (TIPOG[k] || k) + ' ' + v).join(' · ') || 'padrão')}</div>
+        <div class="sub">Origem: ${esc(m.fonte || 'semente do modelo')}${m.cnpj ? ' · CNPJ ' + esc(m.cnpj) : ''}${m.razao_social ? ' · ' + esc(m.razao_social) : ''}</div>
+        ${(m.inferencias || []).length ? `<div class="sub">Ainda inferido, sem documento: ${m.inferencias.map(esc).join('; ')}</div>` : ''}</div>
+        <div class="lado"><span class="chip ${['aprovada', 'oficial'].includes(m.situacao) ? 'bom' : 'esp'}">${esc(m.situacao || '')}</span></div>
+        <div class="amostras">${Object.entries(m.cores || {}).map(([k, v]) => amostra(v, PAPEIS[k] || k)).join('')}</div></article>`;
+    const props = ps.map(p => {
+      const id = Number(p.id), primeira = !(p.decisoes || []).length, cores = p.cores || [], fontes = p.fontes || [];
+      const opc = () => `<option value="">manter a atual</option>${cores.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}`;
+      const fop = () => `<option value="">manter a atual</option>${fontes.map(f => `<option value="${esc(f)}">${esc(f)}</option>`).join('')}`;
+      const escolha = primeira
+        ? `<div class="papeis">${Object.keys(PAPEIS).map(k => `<label for="pp-${id}-${k}">${PAPEIS[k]} <span class="cod">atual ${esc(m.cores?.[k] || '-')}</span><select id="pp-${id}-${k}" data-papel="${k}">${opc()}</select></label>`).join('')}
+            ${Object.keys(TIPOG).map(k => `<label for="pt-${id}-${k}">${TIPOG[k]} <span class="cod">atual ${esc(m.tipografia?.[k] || '-')}</span><select id="pt-${id}-${k}" data-tipog="${k}">${fop()}</select></label>`).join('')}</div>`
+        : `<div class="amostras">${Object.entries(p.papeis || {}).map(([k, v]) => amostra(v, (PAPEIS[k] || k) + ': ' + (m.cores?.[k] || '-') + ' para')).join('')}${Object.entries(p.tipografia || {}).map(([k, v]) => `<span class="amostra">${esc(TIPOG[k] || k)}: ${esc(m.tipografia?.[k] || '-')} para <b>${esc(v)}</b></span>`).join('')}</div>
+           <div class="sub" style="grid-column:1 / -1">Primeira aprovação: ${esc(nomePessoa(p.decisoes[0].por))}${p.decisoes[0].motivo ? ' · "' + esc(p.decisoes[0].motivo) + '"' : ''}. A segunda pessoa confere estas escolhas; para mudar, recuse com motivo.</div>`;
+      return `<article class="item" data-proposta="${id}"><div><div class="t">Proposta de marca de "${esc(p.arquivo)}"</div><div class="sub">${cores.length} cores e ${fontes.length} fontes lidas do texto · ${esc(quando(p.em))}</div></div>
+        <div class="lado"><span class="chip esp">${(p.decisoes || []).length} de 2 aprovações</span>${abrirDrive(p.drive_id)}</div>
+        <div class="amostras">${cores.map(c => amostra(c)).join('')}${fontes.map(f => `<span class="amostra">${esc(f)}</span>`).join('')}</div>
+        ${escolha}
+        <div class="acoes"><input id="mmo-${id}" placeholder="motivo (obrigatório para recusar)" aria-label="Motivo" style="flex:1 1 220px"><button class="btn prim" type="button" data-marca="${id}" data-d="aprovado">${primeira ? 'Aprovar estas escolhas' : 'Conferir e aprovar'}</button><button class="btn perigo" type="button" data-marca="${id}" data-d="recusado">Recusar</button></div></article>`;
+    }).join('');
+    return `<div class="lista">${atual}${props || '<p class="vazio">Nenhuma proposta de marca. Suba o manual de marca da empresa (pasta 04 Marca) e as cores e fontes lidas aparecem aqui para duas pessoas decidirem os papéis.</p>'}</div>`;
+  }
+  const txtBloco = b => b.t === 'secao' ? b.titulo : b.t === 'item' ? b.n + ' ' + b.texto : b.t === 'alinea' ? b.m + ' ' + b.texto : b.texto;
+  function diffBlocos(ant, nov) {
+    const a = ant.map(txtBloco), n = nov.map(txtBloco), L = Array.from({ length: a.length + 1 }, () => new Array(n.length + 1).fill(0));
+    for (let i = a.length - 1; i >= 0; i--) for (let j = n.length - 1; j >= 0; j--) L[i][j] = a[i] === n[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+    const out = []; let i = 0, j = 0;
+    while (i < a.length || j < n.length) {
+      if (i < a.length && j < n.length && a[i] === n[j]) { out.push({ c: '', b: nov[j] }); i++; j++; }
+      else if (i < a.length && j < n.length && ant[i].t === nov[j].t && L[i + 1][j + 1] >= Math.max(L[i + 1][j], L[i][j + 1])) { out.push({ c: 'aju', b: nov[j], antes: a[i] }); i++; j++; }
+      else if (i < a.length && (j >= n.length || L[i + 1][j] >= L[i][j + 1])) { out.push({ c: 'rem', b: ant[i] }); i++; }
+      else { out.push({ c: 'add', b: nov[j] }); j++; }
+    }
+    return out;
+  }
+  const classeBloco = t => ['secao', 'item', 'alinea'].includes(t) ? 'b-' + t : 'b-texto';
+  function blocosHtml(lin) { return lin.map(o => `<div class="${classeBloco(o.b.t)} ${o.c}">${esc(txtBloco(o.b))}${o.c === 'aju' ? `<span class="sub"> (antes: ${esc(o.antes)})</span>` : ''}</div>`).join(''); }
+  function vModelos() {
+    const ms = mm.minutas || [];
+    if (!ms.length) return '<p class="vazio">Nenhuma minuta. Suba um modelo de documento (pasta 05 Modelos de documento): o texto vira minuta em cláusulas, itens e alíneas, e uma pessoa que não o subiu aprova antes de o motor emitir por ela.</p>';
+    const tipos = sel => (mm.tipos_documento || []).map(t => `<option value="${esc(t.id)}"${t.id === sel ? ' selected' : ''}>${esc(t.nome)}</option>`).join('');
+    const hoje = new Date().toISOString().slice(0, 10);
+    return `<div class="lista">${ms.map(m => {
+      const id = Number(m.id), blocos = m.blocos || [];
+      const lin = m.anterior && m.situacao === 'proposta' ? diffBlocos(m.anterior, blocos) : blocos.map(b => ({ c: '', b }));
+      const mud = lin.filter(o => o.c).length;
+      return `<article class="item" data-minuta-item="${id}"><div><div class="t">${esc(m.titulo || m.arquivo)}</div>
+        <div class="sub">${esc(m.tipo_nome || 'tipo a escolher')} · de "${esc(m.arquivo)}" · ${blocos.length} blocos · ${esc(quando(m.em))}</div>
+        ${m.situacao === 'proposta' ? `<div class="sub">${m.anterior ? (mud ? mud + ' mudanças contra a minuta aprovada que vale hoje' : 'igual à minuta aprovada que vale hoje') : 'primeira minuta deste tipo nesta empresa'}</div>` : ''}</div>
+        <div class="lado"><span class="chip ${m.situacao === 'aprovada' ? 'bom' : 'esp'}">${m.situacao === 'aprovada' ? 'aprovada, vale hoje' : 'proposta'}</span>${abrirDrive(m.drive_id)}</div>
+        ${m.anterior && m.situacao === 'proposta' ? '<div class="legenda"><span class="add">azul: incluído</span><span class="rem">vermelho: removido</span><span class="aju">verde: ajustado</span></div>' : ''}
+        <div class="blocos" tabindex="0" role="region" aria-label="Texto da minuta ${esc(m.titulo || m.arquivo)}">${blocosHtml(lin)}</div>
+        ${m.situacao === 'proposta'
+          ? `<div class="acoes"><label class="sub" for="mt-${id}">Tipo</label><select id="mt-${id}"><option value="">escolha</option>${tipos(m.tipo)}</select>
+             <input id="mmi-${id}" placeholder="motivo (obrigatório para recusar)" aria-label="Motivo" style="flex:1 1 200px">
+             <button class="btn prim" type="button" data-minuta="${id}" data-d="aprovado">Aprovar</button><button class="btn perigo" type="button" data-minuta="${id}" data-d="recusado">Recusar</button></div>`
+          : `<div class="acoes"><label class="sub" for="et-${id}">Título</label><input id="et-${id}" value="${esc(m.titulo || '')}" style="flex:1 1 200px">
+             <label class="sub" for="ed-${id}">Data</label><input id="ed-${id}" type="date" value="${hoje}">
+             <label class="sub" for="el-${id}">Local</label><input id="el-${id}" value="Fortaleza/CE" size="14">
+             <button class="btn prim" type="button" data-emitir="${id}">Emitir pela minuta</button></div>`}</article>`; }).join('')}</div>`;
+  }
+  function vPastas() {
+    const ps = dados.pastas || [];
+    const opc = [{ codigo: 'raiz', nome: 'Pasta da empresa (raiz)' }, ...ps].map(p => `<option value="${esc(p.codigo)}">${esc(p.nome)}</option>`).join('');
+    return `<form class="form-pasta" id="f-pasta"><label class="sub" for="fp-pasta">Associar pasta existente do Drive</label><select id="fp-pasta">${opc}</select>
+        <input id="fp-link" placeholder="link ou código da pasta no Drive" aria-label="Link ou código da pasta no Drive"><button class="btn prim" type="submit">Associar</button></form>
+      <div class="arvore">${ps.map(p => `<div class="p" data-pasta="${esc(p.codigo)}"><div class="t">${esc(p.nome)}</div><div class="sub">${esc(p.descricao)}</div>
+      <div class="sub">${Number(p.arquivos)} ${Number(p.arquivos) === 1 ? 'arquivo organizado' : 'arquivos organizados'}</div>${p.drive_id ? `<a href="${esc(linkPasta(p.drive_id))}" target="_blank" rel="noopener">Abrir no Drive</a>` : `<button class="btn" type="button" data-criar-pasta="${esc(p.codigo)}">Criar no Drive</button>`}</div>`).join('')}</div>
+      ${dados.raiz ? `<p class="rodape" style="margin-top:10px"><a href="${esc(linkPasta(dados.raiz))}" target="_blank" rel="noopener">Abrir a pasta da empresa no Drive</a></p>` : ''}`;
+  }
+  function desenhar() {
+    for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
+    $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
+    if (!dados) return;
+    const r = dados.resumo || {};
+    $('resumo').innerHTML = `<span>Organizados <b>${Number(r.organizados)}</b></span><span class="${r.triagem ? 'esp' : ''}">Na triagem <b>${Number(r.triagem)}</b></span><span>Na entrada <b>${Number(r.entrada)}</b></span>
+      <span>Versões substituídas <b>${Number(r.substituidos)}</b></span><span class="${r.campos_pendentes ? 'esp' : ''}">Dados para decidir <b>${Number(r.campos_pendentes)}</b></span><span class="${r.divergencias ? 'mal' : ''}">Divergências <b>${Number(r.divergencias)}</b></span>`;
+    $('n-arquivos').textContent = (dados.arquivos || []).length || ''; $('n-triagem').textContent = r.triagem || '';
+    $('n-dados').textContent = r.campos_pendentes || ''; $('n-divergencias').textContent = r.divergencias || '';
+    $('n-marca').textContent = mm?.propostas?.length || ''; $('n-modelos').textContent = mm?.minutas?.filter(m => m.situacao === 'proposta').length || '';
+    if ((aba === 'marca' || aba === 'modelos') && !mm) { $('conteudo').innerHTML = '<p class="vazio">Marca e modelos não carregaram.</p>'; return; }
+    $('conteudo').innerHTML = { arquivos: vArquivos, triagem: vTriagem, dados: vDados, divergencias: vDivergencias, marca: vMarca, modelos: vModelos, pastas: vPastas }[aba]();
+  }
+  async function carregar() {
+    empresa = IMTS.empresa();
+    if (!empresa) { dados = null; $('conteudo').innerHTML = '<p class="vazio">Você não tem empresa com acesso ao acervo.</p>'; return; }
+    const [d, m] = await Promise.all([
+      IMTS.chamar('acervo.painel', { p_empresa: empresa }),
+      IMTS.chamar('doc.painel_marca_modelos', { p_empresa: empresa }).catch(e => { recibo('recusado', 'Marca e modelos: ' + motivo(e)); return null; })]);
+    dados = d; mm = m;
+    $('cab-sub').textContent = (dados.empresa?.nome ? dados.empresa.nome + ': ' : '') + 'arquivos, pastas e dados conferidos';
+    $('erro').hidden = true;
+    desenhar();
+  }
+
+  // ---------- ações ----------
+  async function agir(fn, args, ok, botao) {
+    if (botao) botao.disabled = true;
+    try { await IMTS.chamar(fn, args); await carregar(); recibo('feito', ok); }
+    catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); if (botao) botao.disabled = false; }
+  }
+  document.addEventListener('submit', async e => {
+    if (e.target.id !== 'f-pasta') return;
+    e.preventDefault();
+    const v = $('fp-link').value.trim(), m = v.match(/folders\/([A-Za-z0-9_-]{10,})/) || v.match(/^([A-Za-z0-9_-]{10,})$/);
+    if (!m) { recibo('recusado', 'Cole o link de uma pasta do Drive ou o código dela.'); return; }
+    await agir('acervo.pasta_registrar', { p_empresa: empresa, p_pasta: $('fp-pasta').value, p_drive_id: m[1] }, 'Pasta associada.', e.target.querySelector('button'));
+  });
+  document.addEventListener('click', async e => {
+    const t = e.target.closest('button'); if (!t || t.closest('#imts-barra')) return;
+    if (t.dataset.aba) { aba = t.dataset.aba; desenhar(); return; }
+    if (t.dataset.criarPasta) {
+      t.disabled = true;
+      try { await IMTS.google('drive_pasta', { empresa, pasta: t.dataset.criarPasta }); await carregar(); recibo('feito', 'Pasta criada no Drive.'); }
+      catch (er) { recibo('recusado', 'Criar pasta no Drive indisponível: ' + motivo(er)); t.disabled = false; }
+      return;
+    }
+    if (t.dataset.mover) {
+      const a = dados.arquivos.find(x => Number(x.id) === Number(t.dataset.mover)); if (!a) return; t.disabled = true;
+      try { const msg = await mover(a, dados.pastas.find(p => p.codigo === a.pasta)?.nome); await carregar(); recibo(/^Fica/.test(msg) ? 'recusado' : 'feito', msg); }
+      catch (er) { recibo('recusado', 'Não moveu: ' + motivo(er)); t.disabled = false; }
+      return;
+    }
+    if (t.dataset.classificar) {
+      const id = Number(t.dataset.classificar), tp = $('tp-' + id).value, nu = $('nu-' + id).value.trim();
+      if (!tp) { recibo('recusado', 'Escolha o tipo.'); return; }
+      t.disabled = true;
+      try {
+        const r = await IMTS.chamar('acervo.classificar', { p_arquivo: id, p_tipo: tp, p_chave: nu || null });
+        const a = dados.arquivos.find(x => Number(x.id) === id);
+        const msg = a?.drive_id ? await mover({ id, pasta: r.pasta, nome: r.nome, drive_id: a.drive_id }, r.pasta_nome) : '';
+        await carregar(); recibo('feito', `Classificado como ${r.nome}. ${msg}`);
+      } catch (er) { recibo('recusado', 'Recusado: ' + motivo(er)); t.disabled = false; }
+      return;
+    }
+    if (t.dataset.campo) {
+      const id = Number(t.dataset.campo), d = t.dataset.d;
+      return agir('acervo.decidir_campo', { p_campo: id, p_decisao: d, p_motivo: $('mo-' + id).value }, d === 'aprovado' ? 'Aprovação registrada.' : 'Recusa registrada.', t);
+    }
+    if (t.dataset.marca) {
+      const id = Number(t.dataset.marca), d = t.dataset.d, art = t.closest('article');
+      let pap = null, tip = null;
+      if (d === 'aprovado' && art.querySelector('[data-papel]')) {
+        pap = {}; tip = {};
+        for (const s of art.querySelectorAll('[data-papel]')) if (s.value) pap[s.dataset.papel] = s.value;
+        for (const s of art.querySelectorAll('[data-tipog]')) if (s.value) tip[s.dataset.tipog] = s.value;
+        if (!Object.keys(pap).length && !Object.keys(tip).length) { recibo('recusado', 'Escolha ao menos um papel de cor ou uma fonte.'); return; }
+      }
+      return agir('doc.decidir_marca', { p_proposta: id, p_decisao: d, p_papeis: pap, p_tipografia: tip, p_motivo: $('mmo-' + id).value },
+        d === 'recusado' ? 'Recusa registrada.' : 'Aprovação registrada. Com a segunda, a marca muda e o histórico guarda o antes e o depois.', t);
+    }
+    if (t.dataset.minuta) {
+      const id = Number(t.dataset.minuta), d = t.dataset.d;
+      return agir('doc.decidir_minuta', { p_minuta: id, p_decisao: d, p_tipo: $('mt-' + id).value || null, p_motivo: $('mmi-' + id).value },
+        d === 'aprovado' ? 'Minuta aprovada; a anterior do mesmo tipo fica substituída.' : 'Recusa registrada.', t);
+    }
+    if (t.dataset.emitir) {
+      const id = Number(t.dataset.emitir), dt = $('ed-' + id).value;
+      if (!dt) { recibo('recusado', 'Informe a data.'); return; }
+      return agir('doc.pedir_minuta', { p_minuta: id, p_titulo: $('et-' + id).value, p_data: dt, p_local: $('el-' + id).value }, 'Pedido na fila do motor; o PDF sai com a marca aprovada da empresa.', t);
+    }
+    if (t.dataset.divergencia) {
+      const id = Number(t.dataset.divergencia), sel = document.querySelector(`input[name="dv-${id}"]:checked`);
+      if (!sel) { recibo('recusado', 'Escolha um dos valores.'); return; }
+      return agir('acervo.resolver_divergencia', { p_divergencia: id, p_campo: Number(sel.value), p_motivo: $('dm-' + id).value }, 'Valor escolhido; agora ele segue para aprovação.', t);
+    }
+  });
+  document.addEventListener('keydown', e => {
+    const t = e.target.closest?.('.aba');
+    if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
+      const abas = [...document.querySelectorAll('.aba')], i = abas.indexOf(t);
+      const j = e.key === 'Home' ? 0 : e.key === 'End' ? abas.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
+      e.preventDefault(); aba = abas[j].dataset.aba; desenhar(); abas[j].focus();
+    }
+  });
+  const zona = $('zona');
+  ['dragenter', 'dragover'].forEach(ev => zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.add('sobre'); }));
+  ['dragleave', 'drop'].forEach(ev => zona.addEventListener(ev, e => { e.preventDefault(); zona.classList.remove('sobre'); }));
+  zona.addEventListener('drop', e => { if (!dados) return; $('arquivos').files = e.dataTransfer.files; $('b-subir').disabled = !e.dataTransfer.files.length; });
+  $('arquivos').onchange = () => { $('b-subir').disabled = !dados || !$('arquivos').files.length; };
+  $('b-subir').onclick = subir;
+
+  quem = await IMTS.iniciar({ exige: 'interno', modulo: 'acervo', admin: false });
+  document.addEventListener('imts:empresa', () => { carregar().catch(e => { $('erro').textContent = motivo(e); $('erro').hidden = false; }); });
+  try { await carregar(); }
+  catch (e) { $('erro').textContent = 'Não carregou: ' + motivo(e); $('erro').hidden = false; $('conteudo').innerHTML = '<p class="vazio">Sem dados do acervo.</p>'; }
+})();
+</script>
+</body>
+</html>

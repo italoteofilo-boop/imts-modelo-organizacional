@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Central de atendimento · IMTS.OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum/base.css">
+<style>
+/* Central: resumo, abas Atendimento · Parceiros · Reuniões; cada demanda é um cartão com encaminhamentos e ações. Cores vêm da base comum. */
+:root {
+  --chao:var(--ground); --folha:var(--surface); --tinta:var(--ink); --apoio:var(--sec); --fio:var(--hair); --azul:var(--accent); --azul-suave:var(--accent-soft);
+  --bom:var(--ok); --bom-suave:var(--ok-soft); --espera:var(--wait); --espera-suave:var(--wait-soft); --mal:var(--late); --mal-suave:var(--late-soft);
+  --realce:#2D5B3F; --realce-suave:#DFEBE2; --pill:var(--ink); --pill-tinta:var(--surface); --prim-tinta:#FFFFFF;
+  --sombra:0 1px 2px rgba(0,0,0,.06), 0 3px 10px rgba(0,0,0,.05); --dados:ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --realce:#8FC7A2; --realce-suave:#22362A; --prim-tinta:#10161A; --sombra:0 1px 2px rgba(0,0,0,.4); } }
+:root[data-theme="dark"] { --realce:#8FC7A2; --realce-suave:#22362A; --prim-tinta:#10161A; --sombra:0 1px 2px rgba(0,0,0,.4); }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html, body { margin:0; background:var(--chao); color:var(--tinta); font-family:var(--sans); font-size:15px; line-height:1.45; }
+button, select, input, textarea { font:inherit; color:inherit; }
+button { cursor:pointer; }
+:focus-visible { outline:2px solid var(--azul); outline-offset:2px; }
+.chao { display:flex; flex-wrap:wrap; align-items:center; gap:10px 16px; padding-block:12px; padding-inline:max(16px, 3vw); border-bottom:1px solid var(--fio); background:var(--folha); }
+.marca { font-family:var(--serif); font-weight:600; font-size:21px; margin:0 auto 0 0; }
+.marca small { font-family:var(--sans); font-weight:400; font-size:13px; color:var(--apoio); margin-left:6px; }
+.casca { padding-block:14px 40px; padding-inline:max(16px, 3vw); display:flex; flex-direction:column; gap:14px; max-width:1200px; }
+.resumo { display:flex; flex-wrap:wrap; gap:8px; }
+.resumo span { font-size:13px; padding:3px 10px; border-radius:99px; background:var(--folha); border:1px solid var(--fio); color:var(--apoio); font-variant-numeric:tabular-nums; }
+.resumo b { color:var(--tinta); } .resumo .esp b { color:var(--espera); } .resumo .mal b { color:var(--mal); }
+.abas, .filtros { display:flex; flex-wrap:wrap; gap:8px; }
+.aba, .filtro { border:1px solid var(--fio); background:transparent; border-radius:99px; padding:6px 14px; font-size:14px; }
+.aba[aria-selected="true"], .filtro[aria-pressed="true"] { background:var(--pill); color:var(--pill-tinta); border-color:var(--pill); }
+.aba .n { font-size:12px; margin-left:4px; font-variant-numeric:tabular-nums; }
+h2.secao { font-family:var(--serif); font-weight:600; font-size:19px; margin:10px 0 0; }
+.lista { display:flex; flex-direction:column; gap:8px; }
+.item { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:11px 14px; display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:6px 14px; align-items:start; }
+.item .t { font-weight:700; overflow-wrap:anywhere; }
+.sub { font-size:13px; color:var(--apoio); overflow-wrap:anywhere; }
+.item .lado { display:flex; flex-direction:column; gap:6px; align-items:end; }
+.cheio { grid-column:1 / -1; }
+.acoes { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.acoes select, .acoes input, .acoes textarea { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); max-width:100%; min-width:0; }
+.acoes textarea { flex:1 1 100%; min-height:60px; resize:vertical; }
+.acoes input[type="text"], .acoes input[type="email"] { flex:1 1 200px; min-width:0; }
+.btn { border:1px solid var(--fio); background:var(--folha); border-radius:10px; padding:7px 13px; font-size:14px; }
+.btn.prim { background:var(--realce); border-color:var(--realce); color:var(--prim-tinta); }
+.btn.perigo { border-color:var(--mal); color:var(--mal); }
+.btn:disabled { opacity:.45; cursor:not-allowed; }
+.chip { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--chao); color:var(--apoio); white-space:nowrap; }
+.chip.bom { background:var(--bom-suave); color:var(--bom); } .chip.esp { background:var(--espera-suave); color:var(--espera); } .chip.mal { background:var(--mal-suave); color:var(--mal); } .chip.azul { background:var(--azul-suave); color:var(--azul); }
+.encs { grid-column:1 / -1; display:flex; flex-direction:column; gap:6px; margin:0; padding:0; list-style:none; }
+.encs li { background:var(--chao); border-radius:8px; padding:8px 10px; display:flex; flex-direction:column; gap:4px; font-size:14px; }
+.sala { grid-column:1 / -1; display:flex; flex-direction:column; gap:6px; background:var(--chao); border-radius:10px; padding:10px; max-height:240px; overflow:auto; }
+.msg { max-width:85%; padding:6px 10px; border-radius:10px; font-size:14px; background:var(--folha); border:1px solid var(--fio); overflow-wrap:anywhere; }
+.msg.imts { align-self:end; background:var(--realce-suave); border-color:transparent; } .msg.sistema { align-self:center; font-size:12px; color:var(--apoio); background:transparent; border-style:dashed; }
+.msg .q { font-size:11px; color:var(--apoio); }
+.conf { grid-column:1 / -1; margin:0; padding-left:18px; font-size:13px; } .conf .ok { color:var(--bom); } .conf .nao { color:var(--mal); }
+.tabela { width:100%; border-collapse:collapse; font-size:14px; background:var(--folha); border:1px solid var(--fio); border-radius:12px; overflow:hidden; }
+.tabela th, .tabela td { text-align:left; padding:7px 10px; border-bottom:1px solid var(--fio); vertical-align:top; }
+.tabela th { font-size:12px; color:var(--apoio); font-weight:700; }
+.tabela td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.rolar { overflow-x:auto; }
+.form { background:var(--folha); border:1px solid var(--fio); border-radius:12px; padding:12px 14px; display:grid; grid-template-columns:repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap:10px; }
+.form label { display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--apoio); min-width:0; }
+.form input, .form select, .form textarea { padding:7px 9px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); min-width:0; max-width:100%; }
+.form .linha { grid-column:1 / -1; display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.form .marcar { flex-direction:row; align-items:center; gap:8px; }
+.form .marcar input { width:24px; height:24px; min-width:24px; padding:0; margin:0; flex:0 0 24px; }
+.ata { grid-column:1 / -1; display:flex; flex-direction:column; gap:8px; background:var(--chao); border-radius:10px; padding:10px; }
+.ata label { display:flex; flex-direction:column; gap:3px; font-size:13px; color:var(--apoio); }
+.ata textarea, .ata input, .ata select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); min-width:0; }
+.ata textarea { min-height:70px; resize:vertical; }
+.ata .enc { display:grid; grid-template-columns:minmax(0, 2fr) minmax(0, 1fr) 90px auto; gap:6px; align-items:end; }
+.vazio { background:var(--folha); border:1px dashed var(--fio); border-radius:12px; padding:16px; color:var(--apoio); font-size:14px; margin:0; }
+.cod { font-family:var(--dados); font-size:12px; }
+a { color:var(--azul); } .lado a { display:inline-block; min-height:24px; padding-block:2px; }
+details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-height:24px; padding-block:3px; }
+.recibos { position:fixed; left:16px; bottom:calc(16px + env(safe-area-inset-bottom, 0px)); display:flex; flex-direction:column; gap:6px; z-index:6; max-width:min(440px, calc(100% - 32px)); }
+.recibo { background:var(--folha); border:1px solid var(--fio); border-left:4px solid var(--azul); border-radius:10px; padding:8px 12px; font-size:13px; box-shadow:var(--sombra); }
+.recibo.feito { border-left-color:var(--bom); } .recibo.recusado { border-left-color:var(--mal); }
+.rodape { font-size:12px; color:var(--apoio); max-width:80ch; margin:0; }
+@media (max-width: 760px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .ata .enc { grid-template-columns:minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<header id="imts-barra"></header>
+<main>
+  <div class="chao">
+    <h1 class="marca">Central de atendimento<small>clientes, parceiros e reuniões</small></h1>
+  </div>
+  <div class="casca">
+    <div class="resumo" id="resumo" aria-live="polite"></div>
+    <nav class="abas" aria-label="Áreas da central"><div role="tablist" style="display:contents">
+      <button class="aba" role="tab" id="t-atendimento" data-aba="atendimento" aria-controls="conteudo" aria-selected="true" tabindex="0" type="button">Atendimento<span class="n" id="n-atendimento"></span></button>
+      <button class="aba" role="tab" id="t-parceiros" data-aba="parceiros" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Parceiros<span class="n" id="n-parceiros"></span></button>
+      <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Reuniões<span class="n" id="n-reunioes"></span></button>
+    </div></nav>
+    <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-atendimento"><p class="vazio">Carregando…</p></section>
+    <p class="rodape">Cada demanda vira encaminhamentos com responsável e prazo, que o cliente acompanha no portal. Encerrar é do cliente: a equipe propõe, o cliente confirma ou reabre; sem resposta, o aceite tácito encerra no prazo do parâmetro. A ouvidoria só aparece para a Governança, e a anônima não mostra quem escreveu. Nota de parceiro: a máquina confere, uma pessoa aprova, outra paga. Ata de reunião pode ser rascunhada por IA e só vale aprovada por uma pessoa.</p>
+  </div>
+</main>
+<div class="recibos" id="recibos" aria-live="polite"></div>
+
+<script src="vendor/supabase.js"></script>
+<script src="config.js"></script>
+<script src="comum/imts.js"></script>
+<script>
+(async function () {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = IMTS.esc;
+  const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+  const dia = t => t ? new Date(t + (String(t).length === 10 ? 'T12:00:00' : '')).toLocaleDateString('pt-BR') : '';
+  const brl = v => v == null ? '' : Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const TIPO = { chamado: 'Chamado', duvida: 'Dúvida', reclamacao: 'Reclamação', os: 'Ordem de serviço', ouvidoria: 'Ouvidoria', titular: 'Titular de dados (LGPD)', adesao: 'Adesão à ata', devolucao: 'Devolução de entrega' };
+  const SIT = { recebido: 'esp', em_atendimento: 'azul', respondido: 'esp', encerrado: 'bom', recusado: 'mal', registrada: 'azul', em_negociacao: 'esp', ganha: 'bom', perdida: 'mal', expirada: '',
+    prevista: 'azul', adquirida: 'esp', a_pagar: 'esp', paga: 'bom', enviada: 'azul', conferida: 'azul', divergente: 'mal', aprovada: 'bom', recusada: 'mal', agendada: 'azul', realizada: 'bom', cancelada: '' };
+  const ROT = { em_atendimento: 'em atendimento', respondido: 'aguardando o cliente', a_pagar: 'a pagar', em_negociacao: 'em negociação' };
+  const REGRA = { comissoes: 'Comissões', cnpj: 'CNPJ do emitente', numero: 'Número', valor: 'Valor' };
+  const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
+  const PERFIS = { gestor: 'Gestor', fiscal: 'Fiscal', financeiro: 'Financeiro', operacional: 'Operacional' };
+  let quem = null, A = null, P = null, R = null, CP = [], aba = 'atendimento', filtro = 'abertos', prefill = null;
+  const transcricoes = {};   // texto da transcrição ligada nesta sessão, por reunião (para a IA ler sem ir ao Drive de novo)
+
+  const motivo = e => String(e?.message || e || 'erro').slice(0, 300);
+  function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 9000); }
+  const pessoas = () => (quem?.pessoas || []).length ? quem.pessoas : (A?.responsaveis || []);
+  const papeis = () => [...new Set(pessoas().map(x => x.papel).filter(Boolean))];
+  const papel = id => pessoas().find(p => p.pessoa === id)?.papel || 'outra pessoa';
+  const chip = (s, rotulo) => `<span class="chip ${SIT[s] || ''}">${esc(rotulo || ROT[s] || String(s || '').replace(/_/g, ' '))}</span>`;
+  const respOpcoes = () => pessoas().map(r => `<option value="${esc(r.pessoa)}">${esc(r.nome ? r.nome + ' · ' + r.papel : r.papel)}</option>`).join('');
+  const localISO = d => { const z = new Date(d.getTime() - d.getTimezoneOffset() * 60000); return z.toISOString().slice(0, 16); };
+
+  // ---------- Atendimento ----------
+  function vAtendimento() {
+    const todos = A.pedidos || [];
+    const ps = todos.filter(p => filtro === 'abertos' ? ['recebido', 'em_atendimento'].includes(p.situacao) : filtro === 'cliente' ? p.situacao === 'respondido' : ['encerrado', 'recusado'].includes(p.situacao));
+    const n = s => todos.filter(p => s.includes(p.situacao)).length;
+    const fl = `<div class="filtros" role="group" aria-label="Filtro">${[['abertos', 'Abertos', n(['recebido', 'em_atendimento'])], ['cliente', 'Aguardando o cliente', n(['respondido'])], ['encerrados', 'Encerrados', n(['encerrado', 'recusado'])]]
+      .map(([k, r, q]) => `<button class="filtro" type="button" data-filtro="${k}" aria-pressed="${filtro === k}">${r} ${q}</button>`).join('')}</div>`;
+    const prazoPadrao = localISO(new Date(Date.now() + 2 * 864e5));
+    const lista = !ps.length ? '<p class="vazio">Nada aqui. Chamados, dúvidas, reclamações, ordens de serviço e, para a Governança, a ouvidoria aparecem nesta lista quando o cliente abre pelo portal ou pelo Telegram.</p>'
+      : `<div class="lista">${ps.map(p => {
+      const id = Number(p.id), aberto = !['encerrado', 'recusado'].includes(p.situacao), temAberto = (p.encaminhamentos || []).some(e => e.situacao === 'aberto');
+      return `<article class="item" data-pedido="${id}"><div><h3 class="t" style="margin:0;font-size:inherit">${esc(p.assunto)}</h3>
+        <div class="sub">${esc(TIPO[p.tipo] || p.tipo)} nº ${id} · ${esc(p.contraparte)}${p.quem ? ' · ' + esc(p.quem) : ''} · aberto em ${quando(p.criado_em)} · prazo ${quando(p.prazo)}${p.reaberturas ? ' · reaberto ' + Number(p.reaberturas) + 'x' : ''}</div></div>
+        <div class="lado">${chip(p.situacao)}${p.atrasado ? '<span class="chip mal">prazo vencido</span>' : ''}${p.anonimo ? '<span class="chip">anônima</span>' : ''}</div>
+        <details class="cheio"><summary>Texto do cliente</summary><p class="sub" style="white-space:pre-wrap">${esc(p.texto)}</p></details>
+        ${(p.encaminhamentos || []).length ? `<ul class="encs">${p.encaminhamentos.map(e => { const eid = Number(e.id);
+          const rot = e.situacao === 'aberto' ? (e.atrasado ? 'atrasado' : 'aberto') : e.situacao === 'concluido' ? 'concluído' : 'cancelado';
+          const cor = e.situacao === 'aberto' ? (e.atrasado ? 'recusado' : 'em_atendimento') : e.situacao === 'concluido' ? 'encerrado' : 'expirada';
+          return `<li><div><strong>${esc(e.descricao)}</strong> ${chip(cor, rot)}</div>
+            <div class="sub">${esc(e.responsavel || '')} · aberto em ${quando(e.criado_em)} · prazo ${quando(e.prazo)}${e.concluido_em ? ' · fechado em ' + quando(e.concluido_em) : ''}${e.origem === 'reuniao' ? ' · saiu de reunião' : ''}</div>
+            ${e.conclusao ? `<div class="sub">${esc(e.conclusao)}</div>` : ''}
+            ${e.situacao === 'aberto' ? `<div class="acoes"><input type="text" id="ec-${eid}" aria-label="O que foi feito" placeholder="o que foi feito (ou por que cancelou)"><button class="btn prim" type="button" data-enc="${eid}" data-d="concluido">Concluir</button><button class="btn" type="button" data-enc="${eid}" data-d="cancelado">Cancelar</button></div>` : ''}</li>`; }).join('')}</ul>` : ''}
+        ${p.resposta ? `<div class="cheio sub"><strong>Última resposta:</strong> ${esc(p.resposta)}</div>` : ''}
+        ${p.situacao === 'respondido' && p.confirmar_ate ? `<div class="cheio sub">Encerramento proposto; o cliente confirma até ${quando(p.confirmar_ate)} ou o aceite tácito encerra.</div>` : ''}
+        ${p.situacao === 'encerrado' ? `<div class="cheio sub">Encerrado em ${quando(p.encerrado_em)} · ${p.encerrado_como === 'tacito' ? 'aceite tácito' : 'confirmado pelo cliente'}${p.avaliacao ? ' · nota ' + Number(p.avaliacao) : ''}${p.comentario ? ' · "' + esc(p.comentario) + '"' : ''}</div>` : ''}
+        ${aberto && p.situacao !== 'respondido' ? `<div class="acoes"><input type="text" id="nd-${id}" aria-label="Novo encaminhamento" placeholder="novo encaminhamento: o que fazer">
+            <label class="sub" for="nr-${id}">Responsável</label><select id="nr-${id}">${respOpcoes()}</select>
+            <label class="sub" for="np-${id}">Prazo</label><input type="datetime-local" id="np-${id}" value="${prazoPadrao}">
+            <button class="btn" type="button" data-encaminhar="${id}">Encaminhar</button><button class="btn" type="button" data-reuniao="${id}">Marcar reunião</button></div>
+          <div class="acoes"><textarea id="rr-${id}" aria-label="Resposta ao cliente" placeholder="resposta ao cliente (ele vê no portal)"></textarea>
+            <button class="btn" type="button" data-responder="${id}" data-s="em_atendimento">Responder e seguir</button>
+            <button class="btn prim" type="button" data-responder="${id}" data-s="respondido" ${temAberto ? 'disabled title="Há encaminhamentos abertos"' : ''}>Propor encerramento</button>
+            <button class="btn perigo" type="button" data-responder="${id}" data-s="recusado">Recusar</button></div>` : ''}
+      </article>`; }).join('')}</div>`;
+    return fl + lista + vPortal();
+  }
+  // convite e publicação no portal: para clientes e parceiros desta empresa
+  function vPortal() {
+    const cps = R.contrapartes || [];
+    if (!cps.length) return '';
+    const ops = cps.map(c => `<option value="${esc(c.id)}">${esc(c.nome)} (${esc(c.tipo)})</option>`).join('');
+    return `<h2 class="secao">Acesso ao portal</h2>
+      <form class="form" id="f-convite" aria-label="Convidar para o portal">
+        <label>Cliente ou parceiro<select id="cv-cp">${ops}</select></label>
+        <label>Nome<input id="cv-nome" maxlength="200" required autocomplete="off"></label>
+        <label>E-mail<input id="cv-email" type="email" required autocomplete="off"></label>
+        <label>Perfil<select id="cv-perfil">${Object.entries(PERFIS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label>
+        <div class="linha"><button class="btn prim" type="submit">Convidar</button><span class="sub">A pessoa entra pelo link enviado ao e-mail do convite.</span></div>
+      </form>
+      <form class="form" id="f-publicar" aria-label="Publicar documento no portal">
+        <label>Nº da emissão do documento<input id="pb-emissao" type="number" min="1" required></label>
+        <label>Para<select id="pb-cp">${ops}</select></label>
+        <div class="linha"><button class="btn" type="submit">Publicar no portal</button><span class="sub">Só documento externo aprovado em duas mãos, na emissão mais nova.</span></div>
+      </form>`;
+  }
+
+  // ---------- Parceiros ----------
+  function vParceiros() {
+    const ps = P.parceiros || [];
+    const pend = (P.prestacoes || []).filter(x => ['conferida', 'enviada', 'divergente', 'aprovada'].includes(x.situacao));
+    const parc = ps.length ? `<div class="lista">${ps.map(p => `<article class="item"><div><div class="t">${esc(p.nome)}</div>
+        <div class="sub">${p.contrato ? `Contrato: ${esc(String(p.contrato.percentual).replace('.', ','))}% sobre o recebido, até ${Number(p.contrato.parcelas_max)} parcelas${p.contrato.simulado ? ' · regra simulada' : ''}` : 'Sem contrato de parceria vigente'} · Telegram ligado: ${Number(p.telegram) || 0}</div></div>
+        <div class="lado">${p.cnpj ? `<span class="cod">${esc(p.cnpj)}</span>` : '<span class="chip esp">sem CNPJ</span>'}</div>
+        ${p.cnpj ? '' : `<div class="acoes"><input type="text" id="cn-${esc(p.id)}" inputmode="numeric" aria-label="CNPJ do parceiro" placeholder="CNPJ do contrato de parceria"><button class="btn" type="button" data-cnpj="${esc(p.id)}">Cadastrar CNPJ</button></div>`}</article>`).join('')}</div>`
+      : '<p class="vazio">Nenhum parceiro nesta empresa.</p>';
+    const prest = pend.length ? `<div class="lista">${pend.map(x => { const id = Number(x.id); return `<article class="item"><div><div class="t">${x.tipo === 'nf' ? 'Nota fiscal ' + esc(x.numero || '?') : 'Relatório de prestação de contas'} · ${esc(x.parceiro)}</div>
+        <div class="sub">${esc(x.arquivo || '')} · ${quando(x.em)}${x.valor != null ? ' · ' + brl(x.valor) : ''}${x.decisoes?.length ? ' · decidiu: ' + x.decisoes.map(d => esc(papel(d.por)) + ' (' + esc(d.decisao) + ')').join(', ') : ''}</div></div>
+        <div class="lado">${chip(x.situacao)}${x.drive_id ? `<a href="https://drive.google.com/file/d/${encodeURIComponent(x.drive_id)}/view" target="_blank" rel="noopener">Abrir no Drive</a>` : ''}</div>
+        ${(x.conferencia || []).length ? `<ul class="conf">${x.conferencia.map(c => `<li class="${c.ok ? 'ok' : 'nao'}">${c.ok ? 'Confere' : 'Não confere'} · ${esc(REGRA[c.regra] || c.regra)}: ${esc(c.detalhe)}</li>`).join('')}</ul>` : ''}
+        ${x.situacao === 'aprovada' ? `<div class="acoes"><input type="text" id="pg-${id}" aria-label="Comprovante" placeholder="referência do comprovante de pagamento"><button class="btn prim" type="button" data-pagar="${id}">Registrar pagamento</button></div>`
+          : `<div class="acoes"><input type="text" id="pm-${id}" aria-label="Motivo" placeholder="motivo (obrigatório para recusar)"><button class="btn prim" type="button" data-prest="${id}" data-d="aprovado" ${x.situacao === 'divergente' ? 'disabled title="Divergente não se aprova"' : ''}>Aprovar</button><button class="btn perigo" type="button" data-prest="${id}" data-d="recusado">Recusar</button></div>`}</article>`; }).join('')}</div>`
+      : '<p class="vazio">Nenhuma nota ou relatório esperando decisão.</p>';
+    const ops = (P.oportunidades || []).length ? `<div class="lista">${P.oportunidades.map(o => { const id = Number(o.id); return `<article class="item" data-oportunidade="${id}"><div><h3 class="t" style="margin:0;font-size:inherit">${esc(o.cliente_final)} · ${esc(o.assunto)}</h3>
+        <div class="sub">${esc(o.parceiro)} · oportunidade nº ${id}${['registrada', 'em_negociacao'].includes(o.situacao) ? ' · exclusiva até ' + dia(o.exclusiva_ate) : ''}${o.valor ? ' · ' + brl(o.valor) + ' em ' + Number(o.parcelas) + ' parcela(s)' : ''}${o.motivo ? ' · ' + esc(o.motivo) : ''}</div></div>
+        <div class="lado">${chip(o.situacao)}${o.ultima_do_parceiro && (!o.ultima_da_imts || o.ultima_do_parceiro > o.ultima_da_imts) ? '<span class="chip esp">mensagem sem resposta</span>' : ''}</div>
+        <div class="sala" role="log" tabindex="0" aria-label="Sala do negócio nº ${id}">${(o.mensagens || []).length ? o.mensagens.map(m => `<div class="msg ${m.lado === 'imts' ? 'imts' : m.lado === 'sistema' ? 'sistema' : ''}">${esc(m.texto)}<div class="q">${m.lado === 'imts' ? 'IMTS' : m.lado === 'parceiro' ? 'Parceiro' : 'Sistema'} · ${quando(m.em)}${m.origem === 'telegram' ? ' · Telegram' : ''}</div></div>`).join('') : '<div class="sub">Sem mensagens.</div>'}</div>
+        <div class="acoes"><input type="text" id="sr-${id}" aria-label="Responder na sala" placeholder="responder ao parceiro"><button class="btn" type="button" data-sala="${id}">Enviar</button></div>
+        ${['registrada', 'em_negociacao'].includes(o.situacao) ? `<div class="acoes"><label class="sub" for="os-${id}">Situação</label><select id="os-${id}"><option value="em_negociacao">em negociação</option><option value="ganha">ganha</option><option value="perdida">perdida</option></select>
+          <label class="sub" for="ov-${id}">Valor</label><input id="ov-${id}" inputmode="decimal" size="10" placeholder="0,00">
+          <label class="sub" for="opa-${id}">Parcelas</label><input id="opa-${id}" type="number" min="1" max="60" value="1" style="width:70px">
+          <label class="sub" for="oi-${id}">1ª parcela</label><input id="oi-${id}" type="month">
+          <input type="text" id="om-${id}" aria-label="Motivo" placeholder="motivo (obrigatório se perdida)"><button class="btn prim" type="button" data-oport="${id}">Registrar</button></div>` : ''}</article>`; }).join('')}</div>`
+      : '<p class="vazio">Nenhuma oportunidade registrada pelos parceiros desta empresa.</p>';
+    const cs = P.comissoes || [];
+    const com = cs.length ? `<div class="rolar" role="region" tabindex="0" aria-label="Tabela de comissões"><table class="tabela"><thead><tr><th scope="col">Parceiro</th><th scope="col">Cliente final</th><th scope="col">Parcela</th><th scope="col">Competência</th><th scope="col">Valor</th><th scope="col">Situação</th><th scope="col">Ação</th></tr></thead>
+        <tbody>${cs.map(k => `<tr><td>${esc(k.parceiro)}</td><td>${esc(k.cliente_final)}</td><td>${Number(k.parcela)}</td><td>${dia(k.competencia)}</td><td class="num">${brl(k.valor)}</td><td>${chip(k.situacao)}</td>
+          <td>${k.situacao === 'prevista' ? `<button class="btn" type="button" data-adquirir="${Number(k.id)}">Parcela recebida</button>` : k.prestacao ? 'nota nº ' + Number(k.prestacao) : ''}</td></tr>`).join('')}</tbody></table></div>`
+      : '<p class="vazio">Nenhuma comissão. Ela nasce prevista quando a oportunidade é registrada como ganha.</p>';
+    return `<h2 class="secao">Notas e relatórios para decidir</h2>${prest}<h2 class="secao">Oportunidades e salas de negócio</h2>${ops}<h2 class="secao">Comissões</h2>${com}<h2 class="secao">Parceiros</h2>${parc}`;
+  }
+
+  // ---------- Reuniões ----------
+  function vReunioes() {
+    const abertos = (A.pedidos || []).filter(p => !['encerrado', 'recusado'].includes(p.situacao));
+    const inicio = localISO(new Date(Date.now() + 864e5));
+    const form = `<form class="form" id="f-reuniao" aria-label="Marcar reunião">
+      <label>Título<input id="fr-titulo" maxlength="200" required value="${esc(prefill ? 'Reunião: ' + (abertos.find(p => Number(p.id) === prefill)?.assunto || '') : '')}"></label>
+      <label>Início<input id="fr-inicio" type="datetime-local" value="${inicio}" required></label>
+      <label>Duração (min)<input id="fr-dur" type="number" min="10" max="480" value="45"></label>
+      <label>Plataforma<select id="fr-plat">${Object.entries(PLAT).map(([k, v]) => `<option value="${k}">${v}</option>`).join('')}</select></label>
+      <label>Demanda (opcional)<select id="fr-ped"><option value="">nenhuma</option>${abertos.map(p => `<option value="${Number(p.id)}"${prefill === Number(p.id) ? ' selected' : ''}>nº ${Number(p.id)} · ${esc(p.assunto)}</option>`).join('')}</select></label>
+      <label>Com quem (sem demanda)<select id="fr-cp"><option value="">só equipe interna</option>${(R.contrapartes || []).map(c => `<option value="${esc(c.id)}">${esc(c.nome)}</option>`).join('')}</select></label>
+      <label>Convidados do Meet (e-mails, separados por vírgula)<input id="fr-conv" autocomplete="off" placeholder="nome@exemplo.gov.br"></label>
+      <label>Link do convite (Zoom, Teams, Webex)<input id="fr-link" placeholder="https://… (o Meet é criado aqui)"></label>
+      <div class="linha"><label class="marcar"><input type="checkbox" id="fr-gravar"> Gravar e transcrever (precisa de consentimento registrado)</label>
+        <button class="btn prim" type="submit">Marcar</button></div></form>`;
+    const cx = `<p class="rodape">Conexões de vídeo: ${(R.conexoes || []).map(c => `${esc(c.nome)} ${chip(c.estado === 'ativa' ? 'paga' : 'a_pagar', c.estado)}`).join(' · ')}. Plataforma formal: Google Workspace, com o Google Meet criado aqui na Agenda do Workspace IMTS. Zoom, Teams e Webex: a IMTS não hospeda; participa das reuniões de terceiros pelo link do convite recebido no Gmail, entrando com a conta Google quando a plataforma oferece; a ata vem das anotações ou da transcrição que o anfitrião enviar.</p>`;
+    const rs = R.reunioes || [];
+    const hoje = new Date().toISOString().slice(0, 10);
+    const lista = rs.length ? `<div class="lista">${rs.map(r => {
+      const id = Number(r.id), ata = r.ata && r.ata_situacao !== 'sem' && !r.ata.cancelada ? r.ata : null;
+      return `<article class="item" data-reuniao-id="${id}"><div><h3 class="t" style="margin:0;font-size:inherit">${esc(r.titulo)}</h3>
+        <div class="sub">${quando(r.inicio)} · ${Number(r.duracao_min)} min · ${esc(PLAT[r.plataforma] || r.plataforma)}${r.contraparte ? ' · ' + esc(r.contraparte) : ''}${r.pedido ? ' · demanda nº ' + Number(r.pedido) : ''}${r.gravar ? ' · com gravação' : ''}</div>
+        ${r.consentimentos?.length ? `<div class="sub">Consentimentos: ${r.consentimentos.map(c => esc(c.quem) + ' (' + esc(c.canal) + ')').join('; ')}</div>` : r.gravar ? '<div class="sub">Sem consentimento registrado ainda: a transcrição não entra.</div>' : ''}
+        ${r.transcricao ? `<div class="sub">Transcrição: ${esc(r.transcricao)}${r.gravacao_apagada_em ? ' · eliminada em ' + quando(r.gravacao_apagada_em) : r.apagar_gravacao_em ? ' · guardar até ' + dia(r.apagar_gravacao_em) : ''}</div>` : ''}</div>
+        <div class="lado">${chip(r.situacao)}${r.ata_situacao !== 'sem' ? chip(r.ata_situacao === 'aprovada' ? 'paga' : 'a_pagar', 'ata ' + r.ata_situacao) : ''}${r.link && r.situacao === 'agendada' && /^https:\/\//.test(r.link) ? `<a href="${esc(r.link)}" target="_blank" rel="noopener">Entrar</a>` : ''}</div>
+        ${r.situacao === 'agendada' ? `<div class="acoes">${r.gravar ? `<input type="text" id="cs-${id}" aria-label="Quem consentiu" placeholder="quem consentiu com a gravação"><button class="btn" type="button" data-consent="${id}">Registrar consentimento</button>` : ''}
+            ${r.link ? '' : `<input type="text" id="lk-${id}" aria-label="Link da reunião" placeholder="https://…"><button class="btn" type="button" data-link="${id}">Salvar link</button>`}
+            <input type="text" id="cm-${id}" aria-label="Motivo do cancelamento" placeholder="motivo para cancelar"><button class="btn perigo" type="button" data-cancelar="${id}">Cancelar</button></div>` : ''}
+        ${r.situacao !== 'cancelada' && r.ata_situacao !== 'aprovada' ? `<div class="acoes">${r.gravar && !r.transcricao ? `<input type="text" id="tr-${id}" aria-label="Transcrição no Drive" placeholder="link da transcrição no Drive"><button class="btn" type="button" data-transc="${id}">Ligar transcrição</button>
+            <label class="sub" for="tf-${id}">ou arquivo .txt/.vtt</label><input type="file" id="tf-${id}" accept=".txt,.vtt,.srt,text/plain,text/vtt">` : ''}
+            ${r.transcricao && !r.gravacao_apagada_em ? `<button class="btn" type="button" data-ia="${id}">Rascunhar ata com IA</button>` : ''}
+            ${ata ? '' : `<button class="btn" type="button" data-escrever="${id}">Escrever ata</button>`}</div>` : ''}
+        ${r.transcricao && !r.gravacao_apagada_em && r.apagar_gravacao_em && r.apagar_gravacao_em <= hoje ? `<div class="acoes"><span class="sub">Prazo de retenção vencido.</span><button class="btn perigo" type="button" data-reter="${id}">Eliminar gravação e transcrição</button></div>` : ''}
+        <div class="ata" id="ata-${id}" ${ata ? '' : 'hidden'}>${ata ? ataHtml(r, ata) : ''}</div>
+        ${(r.encaminhamentos || []).length ? `<ul class="encs">${r.encaminhamentos.map(e => { const eid = Number(e.id); return `<li><div><strong>${esc(e.descricao)}</strong> ${chip(e.situacao === 'aberto' ? 'em_atendimento' : 'encerrado', e.situacao === 'concluido' ? 'concluído' : e.situacao)}</div><div class="sub">${esc(e.responsavel || '')} · prazo ${quando(e.prazo)}</div>
+            ${e.situacao === 'aberto' ? `<div class="acoes"><input type="text" id="ec-${eid}" aria-label="O que foi feito" placeholder="o que foi feito"><button class="btn prim" type="button" data-enc="${eid}" data-d="concluido">Concluir</button></div>` : ''}</li>`; }).join('')}</ul>` : ''}
+      </article>`; }).join('')}</div>` : '<p class="vazio">Nenhuma reunião nesta empresa.</p>';
+    return `<h2 class="secao">Marcar reunião</h2>${form}${cx}<h2 class="secao">Reuniões</h2>${lista}`;
+  }
+  function ataHtml(r, ata) {
+    const id = Number(r.id);
+    if (r.ata_situacao === 'aprovada') return `<div><strong>Ata aprovada</strong> em ${quando(r.ata_em)}</div><div>${esc(ata.resumo)}</div>${(ata.decisoes || []).length ? '<ul>' + ata.decisoes.map(d => `<li>${esc(d)}</li>`).join('') + '</ul>' : ''}`;
+    const ps = papeis();
+    const linha = (e, i) => `<div class="enc" data-i="${i}"><label>Encaminhamento<input data-k="descricao" value="${esc(e.descricao || '')}"></label>
+       <label>Responsável<select data-k="responsavel">${ps.map(p => `<option${p === e.responsavel ? ' selected' : ''}>${esc(p)}</option>`).join('')}</select></label>
+       <label>Prazo (dias)<input data-k="prazo_dias" type="number" min="1" max="90" value="${Number(e.prazo_dias) || 7}"></label><button class="btn" type="button" data-tirar="${id}">Tirar</button></div>`;
+    return `<div><strong>${r.ata_situacao === 'rascunho' ? 'Rascunho da ata' : 'Nova ata'}</strong>${ata.origem === 'ia' ? ' · rascunhada por IA a partir da transcrição: confira antes de aprovar' : ''}</div>
+      <label>Resumo<textarea data-k="resumo">${esc(ata.resumo || '')}</textarea></label>
+      <label>Decisões (uma por linha)<textarea data-k="decisoes">${esc((ata.decisoes || []).join('\n'))}</textarea></label>
+      <div class="encs-ata">${(ata.encaminhamentos || []).map(linha).join('')}</div>
+      <div class="acoes"><button class="btn" type="button" data-maisenc="${id}">Mais um encaminhamento</button><button class="btn" type="button" data-salvarata="${id}">Salvar rascunho</button>
+        <button class="btn prim" type="button" data-aprovarata="${id}">Aprovar ata e criar encaminhamentos</button></div>`;
+  }
+  function lerAta(id) {
+    const b = $('ata-' + id);
+    return { resumo: b.querySelector('[data-k="resumo"]').value.trim(), decisoes: b.querySelector('[data-k="decisoes"]').value.split('\n').map(x => x.trim()).filter(Boolean),
+      encaminhamentos: [...b.querySelectorAll('.enc')].map(l => ({ descricao: l.querySelector('[data-k="descricao"]').value.trim(), responsavel: l.querySelector('[data-k="responsavel"]').value,
+        prazo_dias: Number(l.querySelector('[data-k="prazo_dias"]').value) || 7 })).filter(e => e.descricao), origem: b.dataset.origem || 'pessoa' };
+  }
+  function abrirAta(id, ata) {
+    const r = R.reunioes.find(x => Number(x.id) === id), b = $('ata-' + id);
+    b.dataset.origem = ata.origem || 'pessoa';
+    b.innerHTML = ataHtml({ ...r, ata_situacao: r.ata_situacao === 'rascunho' ? 'rascunho' : 'sem' }, ata); b.hidden = false; b.querySelector('textarea')?.focus();
+  }
+
+  // ---------- desenho e carga ----------
+  function desenhar() {
+    for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
+    $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
+    if (!A || !P || !R) return;
+    const ab = (A.pedidos || []).filter(p => ['recebido', 'em_atendimento'].includes(p.situacao)), atr = ab.filter(p => p.atrasado).length;
+    const np = (P.prestacoes || []).filter(x => ['conferida', 'enviada', 'aprovada'].includes(x.situacao)).length;
+    const nr = (R.reunioes || []).filter(r => r.situacao === 'agendada' || (r.situacao === 'realizada' && r.ata_situacao !== 'aprovada')).length;
+    $('resumo').innerHTML = `<span>Demandas abertas <b>${ab.length}</b></span><span class="${atr ? 'mal' : ''}">Com prazo vencido <b>${atr}</b></span>
+      <span>Aguardando o cliente <b>${(A.pedidos || []).filter(p => p.situacao === 'respondido').length}</b></span><span class="${np ? 'esp' : ''}">Notas de parceiro para decidir <b>${np}</b></span>
+      <span>Reuniões em aberto <b>${nr}</b></span>${A.ve_ouvidoria ? '<span>Você vê a ouvidoria</span>' : ''}`;
+    $('n-atendimento').textContent = ab.length || ''; $('n-parceiros').textContent = np || ''; $('n-reunioes').textContent = nr || '';
+    $('conteudo').innerHTML = { atendimento: vAtendimento, parceiros: vParceiros, reunioes: vReunioes }[aba]();
+    if (aba === 'reunioes') { $('f-reuniao').onsubmit = marcar; $('fr-cp').onchange = $('fr-ped').onchange = preencherConvidados; preencherConvidados(); }
+    if (aba === 'atendimento') { if ($('f-convite')) $('f-convite').onsubmit = convidar; if ($('f-publicar')) $('f-publicar').onsubmit = publicar; }
+  }
+  async function carregar() {
+    const emp = IMTS.empresa();
+    if (!emp) { A = P = R = null; $('resumo').innerHTML = ''; $('conteudo').innerHTML = '<p class="vazio">Você ainda não tem acesso a nenhuma empresa. Peça à administração do IMTS.</p>'; return; }
+    const [a, p, r] = await Promise.all([IMTS.chamar('ext.painel_atendimento', { p_empresa: emp }), IMTS.chamar('ext.painel_parceiros', { p_empresa: emp }),
+      IMTS.chamar('ext.painel_reunioes', { p_empresa: emp })]);
+    A = a || {}; P = p || {}; R = r || {};
+    // usuários de cada cliente ou parceiro: e-mails para convidar ao Meet (se falhar, os convidados ficam à mão)
+    try { CP = (await IMTS.chamar('ext.contrapartes', { p_empresa: emp })) || []; } catch (e) { CP = []; }
+    desenhar();
+  }
+  async function agir(fn, args, ok, botao) {
+    if (botao) botao.disabled = true;
+    try { await IMTS.chamar(fn, args); }
+    catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); if (botao) botao.disabled = false; return; }
+    await recarregar('feito', ok);
+  }
+  // redesenha com o banco e só então avisa (o aviso chega com a tela já atualizada)
+  async function recarregar(tipo, texto) {
+    try { await carregar(); } catch (e) { recibo('recusado', 'Feito, mas a tela não recarregou: ' + motivo(e)); return; }
+    if (texto) recibo(tipo, texto);
+  }
+
+  // ---------- portal: convite e publicação ----------
+  async function convidar(ev) {
+    ev.preventDefault();
+    const b = ev.target.querySelector('button[type="submit"]'); b.disabled = true;
+    try {
+      await IMTS.chamar('ext.convidar', { p_contraparte: $('cv-cp').value, p_email: $('cv-email').value.trim(), p_nome: $('cv-nome').value.trim(), p_perfil: $('cv-perfil').value });
+      recibo('feito', 'Convite registrado para ' + $('cv-email').value.trim() + '.'); ev.target.reset();
+    } catch (e) { recibo('recusado', 'Não convidou: ' + motivo(e)); }
+    b.disabled = false;
+  }
+  async function publicar(ev) {
+    ev.preventDefault();
+    const b = ev.target.querySelector('button[type="submit"]'); b.disabled = true;
+    try {
+      await IMTS.chamar('ext.publicar_documento', { p_emissao: Number($('pb-emissao').value), p_contraparte: $('pb-cp').value });
+      recibo('feito', 'Documento publicado no portal.'); ev.target.reset();
+    } catch (e) { recibo('recusado', 'Não publicou: ' + motivo(e)); }
+    b.disabled = false;
+  }
+
+  // ---------- reuniões: ações ----------
+  // convidados do Meet: e-mails dos usuários ativos da contraparte escolhida (direta ou pela demanda); a pessoa pode editar
+  function preencherConvidados() {
+    const ped = $('fr-ped').value, cpId = $('fr-cp').value;
+    const nomePed = ped ? (A.pedidos || []).find(p => String(p.id) === ped)?.contraparte : null;
+    const c = ped ? CP.find(x => x.nome === nomePed) : CP.find(x => x.id === cpId);
+    $('fr-conv').value = c ? (c.usuarios || []).filter(u => u.ativo && u.email).map(u => u.email).join(', ') : '';
+  }
+  async function marcar(ev) {
+    ev.preventDefault();
+    const b = ev.target.querySelector('button[type="submit"]'), plat = $('fr-plat').value, ped = $('fr-ped').value, cp = $('fr-cp').value, ini = new Date($('fr-inicio').value), dur = Number($('fr-dur').value) || 45;
+    const titulo = $('fr-titulo').value.trim();
+    if (isNaN(ini)) { recibo('recusado', 'Informe o início.'); return; }
+    b.disabled = true;
+    let id;
+    try {
+      id = await IMTS.chamar('ext.reuniao_agendar', { p_empresa: IMTS.empresa(), p_titulo: titulo, p_inicio: ini.toISOString(), p_duracao_min: dur, p_plataforma: plat,
+        p_pedido: ped ? Number(ped) : null, p_contraparte: !ped && cp ? cp : null, p_gravar: $('fr-gravar').checked });
+    } catch (e) { recibo('recusado', 'Não marcou: ' + motivo(e)); b.disabled = false; return; }
+    let link = $('fr-link').value.trim() || null, evento = null;
+    if (plat === 'meet') {
+      try {
+        const convidados = $('fr-conv').value.split(/[,;\s]+/).map(x => x.trim()).filter(x => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x));
+        const e = await IMTS.google('agenda_evento', { titulo, inicio: ini.toISOString(), fim: new Date(ini.getTime() + dur * 60000).toISOString(), convidados,
+          descricao: 'Reunião marcada pela Central de atendimento (IMTS.OS), registro nº ' + id + '.' });
+        evento = e?.evento_id || null; link = e?.link || link;
+      } catch (er) { recibo('recusado', 'Reunião registrada, mas o evento com Meet não foi criado: ' + motivo(er) + '. Cole o link depois.'); }
+    }
+    try {
+      if (link || evento) await IMTS.chamar('ext.reuniao_registrar_externa', { p_reuniao: Number(id), p_evento_id: evento, p_link: link });
+      prefill = null; await recarregar('feito', link ? 'Reunião marcada com link.' : 'Reunião marcada; falta o link.');
+    } catch (e) { prefill = null; await recarregar('recusado', 'Reunião marcada, mas o link não foi gravado: ' + motivo(e)); }
+  }
+  async function cancelarReuniao(id, botao) {
+    const r = R.reunioes.find(x => Number(x.id) === id); botao.disabled = true;
+    try { await IMTS.chamar('ext.reuniao_cancelar', { p_reuniao: id, p_motivo: $('cm-' + id).value }); }
+    catch (e) { recibo('recusado', 'Recusado: ' + motivo(e)); botao.disabled = false; return; }
+    if (r?.evento_id) {
+      try { await IMTS.google('agenda_cancelar', { evento_id: r.evento_id }); await recarregar('feito', 'Reunião cancelada; evento retirado da Agenda.'); }
+      catch (e) { await recarregar('recusado', 'Reunião cancelada aqui, mas o evento continua na Agenda: ' + motivo(e) + '. Cancele lá.'); }
+    } else await recarregar('feito', 'Reunião cancelada.');
+  }
+  async function sha256(buf) { const h = await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+  const base64 = buf => { let s = ''; const u = new Uint8Array(buf); for (let i = 0; i < u.length; i += 0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i + 0x8000)); return btoa(s); };
+  async function ligarTranscricao(id, botao) {
+    const link = $('tr-' + id).value.trim(), f = $('tf-' + id).files[0];
+    let texto = '', nome = '', drive = null, mime = 'text/plain';
+    botao.disabled = true;
+    try {
+      if (f) {
+        const buf = await f.arrayBuffer(); texto = new TextDecoder().decode(buf); nome = f.name; mime = f.type || 'text/plain';
+        try { const d = await IMTS.google('drive_enviar', { empresa: IMTS.empresa(), pasta: '09', nome, mime, conteudo: base64(buf) }); drive = d?.id || null; }
+        catch (e) { recibo('recusado', 'O arquivo não foi para o Drive (' + motivo(e) + '); fica no acervo esperando a pasta.'); }
+      } else {
+        drive = (link.match(/\/d\/([A-Za-z0-9_-]{10,})/) || link.match(/[?&]id=([A-Za-z0-9_-]{10,})/) || link.match(/^([A-Za-z0-9_-]{20,})$/) || [])[1];
+        if (!drive) { recibo('recusado', 'Cole o link do arquivo no Drive ou escolha um arquivo.'); botao.disabled = false; return; }
+        const r = await IMTS.google('drive_ler', { id: drive }); texto = String(r?.texto ?? ''); nome = r?.nome || 'transcricao'; mime = r?.mime || mime;
+      }
+      const h = await sha256(new TextEncoder().encode(texto));
+      await IMTS.chamar('ext.reuniao_transcricao', { p_reuniao: id, p_nome: nome, p_hash: h, p_mime: mime, p_tamanho: texto.length, p_texto: texto.slice(0, 200000), p_drive_id: drive });
+      transcricoes[id] = texto; await recarregar('feito', 'Transcrição guardada no acervo (pasta 09).');
+    } catch (e) { recibo('recusado', 'Não ligou: ' + motivo(e)); botao.disabled = false; }
+  }
+  async function textoDaTranscricao(r) {
+    if (transcricoes[r.id]) return transcricoes[r.id];
+    if (!r.transcricao_drive) throw new Error('a transcrição veio de arquivo local e não está no Drive; ligue de novo nesta sessão para a IA ler');
+    const x = await IMTS.google('drive_ler', { id: r.transcricao_drive }); return String(x?.texto ?? '');
+  }
+  function prazoDias(p) {
+    if (typeof p === 'number' && p > 0) return Math.round(p);
+    if (/^\d+$/.test(String(p || ''))) return Number(p);
+    const d = p ? new Date(p) : null;
+    return d && !isNaN(d) ? Math.max(1, Math.ceil((d - Date.now()) / 864e5)) : 7;
+  }
+  async function ataIA(id, botao) {
+    const r = R.reunioes.find(x => Number(x.id) === id); botao.disabled = true; botao.textContent = 'Lendo a transcrição…';
+    try {
+      const texto = (await textoDaTranscricao(r)).slice(0, 60000);
+      const res = await IMTS.ia('ata_rascunho', { reuniao: id, transcricao: texto });
+      const a = res?.ata; if (!a || typeof a !== 'object') throw new Error('a IA não devolveu uma ata');
+      const ps = papeis();
+      const resp = x => ps.includes(x) ? x : (pessoas().find(p => p.nome && p.nome === x)?.papel || ps[0]);
+      const ata = { resumo: String(a.resumo || ''), decisoes: (a.decisoes || []).map(String), origem: 'ia',
+        encaminhamentos: (a.encaminhamentos || []).map(e => ({ descricao: String(e.descricao || ''), responsavel: resp(e.responsavel), prazo_dias: prazoDias(e.prazo ?? e.prazo_dias) })) };
+      abrirAta(id, ata); recibo('feito', 'Rascunho pronto: confira e aprove.');
+    } catch (e) { recibo('recusado', 'A IA não rascunhou: ' + motivo(e) + '. Escreva a ata à mão.'); }
+    finally { if (botao.isConnected) { botao.disabled = false; botao.textContent = 'Rascunhar ata com IA'; } }
+  }
+  async function eliminarGravacao(id, botao) {
+    const r = R.reunioes.find(x => Number(x.id) === id); botao.disabled = true;
+    try {
+      if (r.transcricao_drive) await IMTS.google('drive_lixeira', { id: r.transcricao_drive });
+      await IMTS.chamar('ext.reuniao_gravacao_apagada', { p_reuniao: id }); await recarregar('feito', 'Transcrição na lixeira do Drive; a ata fica.');
+    } catch (e) { recibo('recusado', 'Não eliminou: ' + motivo(e)); botao.disabled = false; }
+  }
+
+  document.addEventListener('click', e => {
+    const t = e.target.closest('button'); if (!t || t.closest('#imts-barra')) return;
+    const d = t.dataset;
+    if (d.aba) { aba = d.aba; desenhar(); return; }
+    if (d.filtro) { filtro = d.filtro; desenhar(); return; }
+    if (d.enc) return agir('ext.encaminhamento_concluir', { p_encaminhamento: Number(d.enc), p_situacao: d.d, p_conclusao: $('ec-' + d.enc).value }, d.d === 'concluido' ? 'Encaminhamento concluído.' : 'Encaminhamento cancelado.', t);
+    if (d.encaminhar) {
+      const p = $('np-' + d.encaminhar).value; if (!p) { recibo('recusado', 'Informe o prazo.'); return; }
+      return agir('ext.encaminhar', { p_pedido: Number(d.encaminhar), p_descricao: $('nd-' + d.encaminhar).value, p_responsavel: $('nr-' + d.encaminhar).value, p_prazo: new Date(p).toISOString() },
+        'Encaminhado; o responsável recebeu a tarefa com o prazo.', t);
+    }
+    if (d.responder) return agir('ext.responder', { p_pedido: Number(d.responder), p_resposta: $('rr-' + d.responder).value, p_situacao: d.s },
+      d.s === 'respondido' ? 'Encerramento proposto; o cliente confirma ou reabre.' : d.s === 'recusado' ? 'Pedido recusado com a resposta.' : 'Resposta enviada.', t);
+    if (d.reuniao) { prefill = Number(d.reuniao); aba = 'reunioes'; desenhar(); $('fr-titulo')?.focus(); return; }
+    if (d.cnpj) return agir('ext.contraparte_documento', { p_contraparte: d.cnpj, p_cnpj: $('cn-' + d.cnpj).value }, 'CNPJ cadastrado; as próximas notas são conferidas contra ele.', t);
+    if (d.prest) return agir('ext.prestacao_decidir', { p_prestacao: Number(d.prest), p_decisao: d.d, p_motivo: $('pm-' + d.prest).value || null }, d.d === 'aprovado' ? 'Aprovada; o pagamento é de outra pessoa.' : 'Recusada; o parceiro vê o motivo.', t);
+    if (d.pagar) return agir('ext.prestacao_pagar', { p_prestacao: Number(d.pagar), p_comprovante: $('pg-' + d.pagar).value }, 'Pagamento registrado; comissões pagas.', t);
+    if (d.sala) return agir('ext.sala_responder', { p_oportunidade: Number(d.sala), p_texto: $('sr-' + d.sala).value }, 'Mensagem enviada ao parceiro.', t);
+    if (d.adquirir) return agir('ext.comissao_adquirir', { p_comissao: Number(d.adquirir) }, 'Parcela recebida: comissão adquirida.', t);
+    if (d.oport) {
+      const s = $('os-' + d.oport).value, v = $('ov-' + d.oport).value.replace(/\./g, '').replace(',', '.'), m = $('oi-' + d.oport).value;
+      return agir('ext.oportunidade_decidir', { p_oportunidade: Number(d.oport), p_situacao: s, p_valor: v ? Number(v) : null, p_parcelas: s === 'ganha' ? Number($('opa-' + d.oport).value) : null,
+        p_inicio: m ? m + '-01' : null, p_motivo: $('om-' + d.oport).value || null }, s === 'ganha' ? 'Negócio ganho; comissões previstas criadas pela regra do contrato.' : 'Situação registrada.', t);
+    }
+    if (d.consent) return agir('ext.reuniao_consentir', { p_reuniao: Number(d.consent), p_quem: $('cs-' + d.consent).value }, 'Consentimento registrado.', t);
+    if (d.link) return agir('ext.reuniao_registrar_externa', { p_reuniao: Number(d.link), p_evento_id: null, p_link: $('lk-' + d.link).value.trim() }, 'Link salvo.', t);
+    if (d.cancelar) return cancelarReuniao(Number(d.cancelar), t);
+    if (d.transc) return ligarTranscricao(Number(d.transc), t);
+    if (d.reter) return eliminarGravacao(Number(d.reter), t);
+    if (d.ia) return ataIA(Number(d.ia), t);
+    if (d.escrever) return abrirAta(Number(d.escrever), { resumo: '', decisoes: [], encaminhamentos: [], origem: 'pessoa' });
+    if (d.maisenc) { const id = Number(d.maisenc), a = lerAta(id); a.encaminhamentos.push({ descricao: '', responsavel: papeis()[0], prazo_dias: 7 }); abrirAta(id, a); return; }
+    if (d.tirar) { t.closest('.enc').remove(); return; }
+    if (d.salvarata) return agir('ext.reuniao_ata_rascunho', { p_reuniao: Number(d.salvarata), p_ata: lerAta(Number(d.salvarata)) }, 'Rascunho salvo.', t);
+    if (d.aprovarata) return agir('ext.reuniao_ata_aprovar', { p_reuniao: Number(d.aprovarata), p_ata: lerAta(Number(d.aprovarata)) }, 'Ata aprovada; encaminhamentos criados com cartão para cada responsável.', t);
+  });
+  document.addEventListener('keydown', e => {
+    const t = e.target.closest?.('.aba');
+    if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {
+      const abas = [...document.querySelectorAll('.aba')], i = abas.indexOf(t);
+      const j = e.key === 'Home' ? 0 : e.key === 'End' ? abas.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + abas.length) % abas.length;
+      e.preventDefault(); aba = abas[j].dataset.aba; desenhar(); abas[j].focus();
+    }
+  });
+
+  try {
+    quem = await IMTS.iniciar({ exige: 'interno', modulo: 'central', admin: false });
+  } catch (e) { $('conteudo').innerHTML = `<p class="vazio">Não carregou: ${esc(motivo(e))}.</p>`; return; }
+  document.addEventListener('imts:empresa', () => { carregar().catch(e => { $('conteudo').innerHTML = `<p class="vazio">Não carregou: ${esc(motivo(e))}.</p>`; }); });
+  try { await carregar(); }
+  catch (e) { $('conteudo').innerHTML = `<p class="vazio">Não carregou: ${esc(motivo(e))}.</p>`; }
+})();
+</script>
+</body>
+</html>
