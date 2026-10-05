@@ -2,7 +2,8 @@
 # Implantação do banco do IMTS.OS num projeto Supabase NOVO (B11).
 # Uso:
 #   export DB_URL='postgresql://postgres:<senha>@db.<ref>.supabase.co:5432/postgres'   # Dashboard > Connect > Direct (ou Session pooler)
-#   export ADMIN_NOME='Nome Sobrenome' ADMIN_EMAIL='nome@imts.com.br'
+#   export ADMIN_NOME='Nome Sobrenome' ADMIN_EMAIL='nome@imts.email'
+#   export LOGIN_DOMINIOS='imts.email'   # opcional; padrão imts.email
 #   ./aplicar.sh            # aplica tudo, cadastra o primeiro administrador, aplica o perfil de produção e confere
 #   ./aplicar.sh --conferir # só a conferência
 # Para o primeiro erro. Nada aqui imprime ou grava segredo.
@@ -26,6 +27,9 @@ echo "== migrações"
 for f in $(ls "$MIG"/[0-9][0-9][0-9]_*.sql | sort -V); do
   "${PSQL[@]}" -f "$f" > /dev/null; echo "ok $(basename "$f")"
 done
+echo "== domínios aceitos no login"
+# LOGIN_DOMINIOS: lista separada por vírgula; padrão imts.email (Workspace do IMTS)
+"${PSQL[@]}" -At -v doms="${LOGIN_DOMINIOS:-imts.email}" <<< "update adm.parametro set valor = to_jsonb(string_to_array(replace(:'doms', ' ', ''), ',')) where chave = 'login.dominios' returning 'login.dominios = ' || valor::text;"
 echo "== primeiro administrador"
 "${PSQL[@]}" -At -v nome="$ADMIN_NOME" -v email="$ADMIN_EMAIL" <<< "select 'pessoa ' || adm.primeiro_administrador(:'nome', :'email');"
 echo "== perfil de produção"; "${PSQL[@]}" -f "$AQUI/090_perfil_producao.sql" > /dev/null; echo "ok 090_perfil_producao.sql"

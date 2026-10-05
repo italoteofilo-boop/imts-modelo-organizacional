@@ -14,7 +14,7 @@ Para o time de tecnologia. Execute na ordem. Cada etapa diz quem faz, o que entr
 | Aplicativo | Hospedagem estática em www.imts.global | Páginas HTML e JavaScript (`app/`). Login Google para a equipe e link por e-mail para clientes e parceiros. |
 | Funções do servidor | Supabase Edge Functions | `google` (Drive e Agenda), `ia` (rascunho de ata), `alertas` (e-mail), `telegram` (bot). |
 | Worker de documentos | Contêiner Docker | Emite os PDFs da fila (`documentos/Dockerfile`). |
-| Google Workspace | imts.com.br | Login, Drive do acervo, Agenda com Meet e Gmail dos alertas. |
+| Google Workspace | imts.email | Login, Drive do acervo, Agenda com Meet e Gmail dos alertas. |
 
 ## Responsáveis
 
@@ -43,9 +43,9 @@ Para o time de tecnologia. Execute na ordem. Cada etapa diz quem faz, o que entr
 
 ## 1. Workspace mínimo (E01, Ítalo)
 
-1. Domínio `imts.com.br` verificado no Google Workspace.
-2. Cada pessoa da equipe com conta `@imts.com.br`. O login do aplicativo aceita só os domínios do parâmetro `login.dominios`, que vem com `["imts.com.br"]`.
-3. Uma conta de sistema, por exemplo `sistema@imts.com.br`. É a dona do acervo no Drive e a remetente dos alertas. Ninguém usa essa conta no dia a dia.
+1. Domínio `imts.email` verificado no Google Workspace.
+2. Cada pessoa da equipe com conta `@imts.email`. O login do aplicativo aceita só os domínios do parâmetro `login.dominios`, que vem com `["imts.email"]`.
+3. Uma conta de sistema, por exemplo `sistema@imts.email`. É a dona do acervo no Drive e a remetente dos alertas. Ninguém usa essa conta no dia a dia.
 4. Uma pasta raiz do acervo:
    - num drive compartilhado, se o plano contratado tiver;
    - senão, no Meu Drive da conta de sistema.
@@ -67,7 +67,7 @@ Para o time de tecnologia. Execute na ordem. Cada etapa diz quem faz, o que entr
 ```bash
 cd imts-modelo-organizacional/<pasta>/supabase/producao
 export DB_URL='postgresql://postgres:<senha>@db.<ref>.supabase.co:5432/postgres'
-export ADMIN_NOME='Nome do primeiro administrador' ADMIN_EMAIL='nome@imts.com.br'
+export ADMIN_NOME='Nome do primeiro administrador' ADMIN_EMAIL='nome@imts.email'
 ./aplicar.sh
 ```
 
@@ -130,7 +130,7 @@ Referências oficiais:
    ```
 5. Preencha os parâmetros (pela Administração > Parâmetros, ou por SQL na implantação):
    ```sql
-   update adm.parametro set valor = '"sistema@imts.com.br"' where chave = 'google.usuario_sistema';
+   update adm.parametro set valor = '"sistema@imts.email"' where chave = 'google.usuario_sistema';
    update adm.parametro set valor = '"<id da pasta raiz>"'  where chave = 'google.drive_raiz';
    ```
 
@@ -161,7 +161,7 @@ Guia de publicação: https://supabase.com/docs/guides/functions/deploy
 Depois de publicar:
 ```sql
 update adm.parametro set valor = '"https://<ref>.supabase.co/functions/v1"' where chave = 'servidor.url_funcoes';
-update adm.parametro set valor = '["ti@imts.com.br"]' where chave = 'alerta.emails';      -- quem recebe os alertas
+update adm.parametro set valor = '["ti@imts.email"]' where chave = 'alerta.emails';      -- quem recebe os alertas
 ```
 
 Na Administração > Conexões, preencha o endereço de produção e marque como ativa cada conexão pendente:

@@ -129,7 +129,7 @@ Páginas: acervo, portal externo e Central de atendimento, ao vivo pelos conecto
 | Google Drive | Terceira saída do motor (Google Docs) | Integração |
 | Marcas | Fonte Nexa (Onni); manual da TRON; razão social e CNPJ de IMTS e Onni confirmados no contrato social | Ítalo |
 | Comissões | Regra real de cada contrato de parceria comercial (percentual, base, parcelas) no lugar da simulada; não há regra no Drive (busca de 04/10/2026). Escritório de advocacia não recebe comissão (decisão de set/2026): é remunerado pela OS-Cliente | Negócios e Gestão |
-| Vídeo | Nada a registrar: Zoom, Teams e Webex por participação no convite. Na produção, a agenda do Meet passa da conta Gmail para o Workspace IMTS (conectar o Google Calendar com a conta @imts.com.br) | Integração e Ítalo |
+| Vídeo | Nada a registrar: Zoom, Teams e Webex por participação no convite. Na produção, a agenda do Meet passa da conta Gmail para o Workspace IMTS (conectar o Google Calendar com a conta @imts.email) | Integração e Ítalo |
 | Prazos de atendimento | Valores em vigor, mais rigorosos que as referências conferidas (Decreto 11.034/2022, art. 13; Lei 13.460/2017, art. 16); mudar só se a operação pedir | Relações, Operações e Governança |
 | Arquivos de fora | Construído (P4): o arquivo do portal vai ao Drive pela função `google`. Falta implantar: E04 do manual | Integração |
 

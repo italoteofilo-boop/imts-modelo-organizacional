@@ -1,5 +1,5 @@
 -- Perfil de produção (B08). SÓ NO PROJETO DE PRODUÇÃO, nunca no protótipo.
--- Ordem: migrações 001 a 072 num projeto novo -> select adm.primeiro_administrador('Nome', 'email@imts.com.br') -> este arquivo
+-- Ordem: migrações 001 a 072 num projeto novo -> select adm.primeiro_administrador('Nome', 'email@imts.email') -> este arquivo
 --        -> select adm.conferir_implantacao().
 -- O que faz: desliga a simulação, tira as rotinas de simulação da agenda, apaga o cadastro simulado que as migrações criam
 -- (empresas, pessoas, identidades, acessos, clientes, parceiros, usuários e contratos), passa os agentes residentes para o
@@ -13,18 +13,32 @@ begin
   if exists (select 1 from adm.parametro where chave = 'implantacao.perfil' and valor = '"producao"') then
     raise notice 'perfil de produção já aplicado: nada a fazer'; return;
   end if;
-  if exists (select 1 from rt.instancia) or exists (select 1 from rt.cartao) or exists (select 1 from ext.pedido) then
-    raise exception 'o perfil de produção roda num projeto novo, logo depois das migrações (há movimento no banco)';
+  -- só movimento simulado é aceito (a rotina de simulação pode ter rodado entre as migrações e este perfil); movimento real, nunca
+  if exists (select 1 from rt.instancia where not simulado) or exists (select 1 from rt.cartao where not simulado) or exists (select 1 from ext.pedido) then
+    raise exception 'o perfil de produção roda num projeto novo, logo depois das migrações (há movimento real no banco)';
   end if;
   select p.pseudonimo into v_adm from rt.acesso a join rt.pessoa p on p.pseudonimo = a.pessoa
    where not p.simulado and a.nivel = 'administrar' and a.empresa is null and a.circulo is null order by a.id limit 1;
-  if v_adm is null then raise exception 'cadastre antes o primeiro administrador: select adm.primeiro_administrador(''Nome'', ''email@imts.com.br'');'; end if;
+  if v_adm is null then raise exception 'cadastre antes o primeiro administrador: select adm.primeiro_administrador(''Nome'', ''email@imts.email'');'; end if;
 
   -- 1. simulação desligada e fora da agenda
   update adm.parametro set valor = 'false', atualizado_em = now(), atualizado_por = v_adm where chave = 'simulacao.ativa';
   -- tarefas de automação e de agente viram cartão de pessoa até existir o adaptador real (062)
   update adm.parametro set valor = 'true', atualizado_em = now(), atualizado_por = v_adm where chave = 'motor.maquina_assistida';
   perform cron.unschedule(jobid) from cron.job where jobname in ('imts-simulacao-continua', 'imts-externo-simulado');
+
+  -- movimento simulado que a rotina tenha criado antes deste perfil
+  delete from ext.publicacao where simulado;
+  delete from ext.vinculo w using rt.instancia i where w.instancia = i.id and i.simulado;
+  delete from rt.troca_envio where simulado;
+  delete from rt.evento where simulado;
+  update rt.cartao set pai = null where simulado and pai is not null;
+  delete from rt.cartao where simulado;
+  delete from rt.token t using rt.instancia i where t.instancia = i.id and i.simulado;
+  delete from doc.pedido p using rt.instancia i where p.instancia = i.id and i.simulado;
+  delete from rt.instancia where simulado;
+  delete from rt.fila_envio where simulado;
+  delete from rt.mensagem where simulado;
 
   -- 2. cadastro simulado das migrações
   select coalesce(array_agg(id), '{}') into emp_sim from org.empresa where simulado;

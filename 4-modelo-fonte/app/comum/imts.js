@@ -76,7 +76,7 @@
   async function entrarGoogle() {
     const volta = new URLSearchParams(location.search).get('volta') || 'index.html';
     const { error } = await supa().auth.signInWithOAuth({ provider: 'google', options: {
-      redirectTo: new URL(volta, location.href).href, queryParams: { hd: C.dominio || 'imts.com.br', prompt: 'select_account' } } });
+      redirectTo: new URL(volta, location.href).href, queryParams: { hd: C.dominio || 'imts.email', prompt: 'select_account' } } });
     if (error) throw erro(error.message);
   }
   async function entrarEmail(email) {

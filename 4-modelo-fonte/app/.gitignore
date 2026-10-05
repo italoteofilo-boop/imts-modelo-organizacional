@@ -1,2 +1,3 @@
 # configuração local (ensaio ou produção): nunca vai para o repositório
 config.js
+dist*/

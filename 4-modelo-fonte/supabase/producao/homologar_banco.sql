@@ -9,7 +9,7 @@ begin;
 do $$
 declare adm_p uuid; u_adm uuid := gen_random_uuid(); u_op uuid := gen_random_uuid(); u_cli uuid := gen_random_uuid(); u_x uuid := gen_random_uuid();
   r jsonb; emp uuid; inst bigint; ped bigint; ok boolean; v_cnpj text; base text := '445556660001';
-  dominio text := (adm.valor('login.dominios', '["imts.com.br"]') ->> 0);
+  dominio text := (adm.valor('login.dominios', '["imts.email"]') ->> 0);
 begin
   select p.pseudonimo into adm_p from rt.acesso a join rt.pessoa p on p.pseudonimo = a.pessoa
    where not p.simulado and a.nivel = 'administrar' and a.empresa is null and a.circulo is null order by a.id limit 1;

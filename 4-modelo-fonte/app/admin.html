@@ -580,7 +580,7 @@ function aKimi() {
 }
 function aGoogle() {
   return `<ol class="passos">
-    ${passo(1, 'Conta do sistema', 'No Google Workspace do IMTS, crie uma conta para o sistema (ex.: sistema@imts.com.br). É em nome dela que o IMTS.OS grava no Drive, marca reuniões e envia e-mails.', campoParam('google.usuario_sistema', 'Conta do sistema', { exemplo: 'sistema@imts.com.br' }))}
+    ${passo(1, 'Conta do sistema', 'No Google Workspace do IMTS, crie uma conta para o sistema (ex.: sistema@imts.email). É em nome dela que o IMTS.OS grava no Drive, marca reuniões e envia e-mails.', campoParam('google.usuario_sistema', 'Conta do sistema', { exemplo: 'sistema@imts.email' }))}
     ${passo(2, 'Projeto e APIs', 'No Google Cloud Console, crie um projeto e ative as APIs Google Drive, Google Calendar e Gmail.')}
     ${passo(3, 'Conta de serviço', 'Em IAM, crie uma conta de serviço e gere uma chave JSON. Baixe o arquivo: ele só aparece uma vez.')}
     ${passo(4, 'Delegação no Workspace', 'No Admin do Workspace (Segurança, Controles de API, Delegação em todo o domínio), autorize o ID do cliente da conta de serviço com os três escopos:<br><code>https://www.googleapis.com/auth/drive</code><br><code>https://www.googleapis.com/auth/calendar.events</code><br><code>https://www.googleapis.com/auth/gmail.send</code>')}

@@ -4,5 +4,5 @@
 window.IMTS_CONFIG = {
   supabaseUrl: 'https://<ref-do-projeto>.supabase.co',
   anonKey: '<chave publicável do projeto>',
-  dominio: 'imts.com.br'          // domínio do Google Workspace aceito no login de quem é de dentro
+  dominio: 'imts.email'          // domínio do Google Workspace aceito no login de quem é de dentro
 };

@@ -15,41 +15,48 @@ O protótipo (`imts-modelo-organizacional`) continua como está, para simular e 
 
 | Nº | Etapa | Quem | Tempo estimado |
 | --- | --- | --- | --- |
-| 1 | Aprovar a criação dos 2 projetos Supabase | Ítalo (clique na aprovação) | 1 min |
-| 2 | Banco, funções e conferência nos 2 projetos | Claude | automático |
-| 3 | Workspace: conta do sistema e drive do acervo | Ítalo | 20 min |
+| 1 | Criar os 2 projetos Supabase | Ítalo | **feito** |
+| 2 | Banco, funções e conferência nos 2 projetos | Claude | **feito** |
+| 3 | Workspace em imts.email: domínio, conta do sistema e drive do acervo | Ítalo | 40 min |
 | 4 | Google Cloud: APIs, login e contas de serviço | Ítalo | 40 min |
 | 5 | Supabase: login Google, URLs e e-mail | Ítalo ou time | 20 min |
-| 6 | DNS e hospedagem de imts.global | Ítalo ou time | 30 min |
+| 6 | Site em imts.global: Cloudflare Pages e DNS no GoDaddy | Ítalo ou time | 30 min |
 | 7 | Telegram: 2 bots | Ítalo | 10 min |
 | 8 | Anthropic e Kimi: chaves e limites | Ítalo | 20 min |
 | 9 | Teste ponta a ponta real em homologação | Claude, com você entrando no app | 1 h |
 
-## 1. Projetos Supabase (Ítalo aprova, Claude cria)
+## 1. Projetos Supabase (feito)
 
-- Organização: **IMTS.OS** (plano Pro).
-- Região: `sa-east-1` (São Paulo).
-- Quando eu pedir a criação de `imts-os-homologacao` e `imts-os-producao`, aprove. O custo de cada projeto aparece na própria aprovação e na fatura da organização.
+Organização **IMTS.OS** (plano Pro), região `sa-east-1` (São Paulo).
 
-## 2. Banco e funções (Claude)
+| Ambiente | Ref do projeto | Endereço da API |
+| --- | --- | --- |
+| Homologação | `eaaycpeenahiengutfic` | `https://eaaycpeenahiengutfic.supabase.co` |
+| Produção | `jloyxteijsnrwnnwfhyk` | `https://jloyxteijsnrwnnwfhyk.supabase.co` |
 
-Em cada projeto, eu faço:
-- `aplicar.sh`: extensões, migrações 001 a 073, você como primeiro administrador (`italo.teofilo@imts.com.br`) e perfil de produção;
-- publicação das funções `google`, `ia`, `alertas` e `telegram`;
-- conferência, que lista o que falta.
+## 2. Banco e funções (feito)
+
+Nos dois projetos:
+- extensões, migrações 000 a 073, primeiro administrador `italo.teofilo@imts.email`, perfil de produção e endurecimento de permissões;
+- parâmetros: `login.dominios = ["imts.email"]`, `google.usuario_sistema = sistema@imts.email`, `alerta.emails = ["italo.teofilo@imts.email"]`, `servidor.url_funcoes` do próprio projeto;
+- funções publicadas: `google`, `ia` e `conexoes` (exigem login) e `alertas` e `telegram` (protegidas pela chave do cofre);
+- conferência: `internos_ok = true`; o que falta é externo (passos 3 a 8).
 
 ## 3. Google Workspace (Ítalo, como superadministrador)
 
+O Workspace usa **imts.email**; o site usa **imts.global**. Os dois domínios estão registrados no GoDaddy. O domínio imts.com.br não é usado.
+
 No Admin Console (admin.google.com):
 
-1. Confirme que `imts.com.br` está verificado e com o e-mail ativo:
-   - verificação: https://support.google.com/a/answer/183895
-   - registros MX: https://support.google.com/a/answer/16004259
-2. Crie o usuário **sistema@imts.com.br**, com licença. Ninguém usa essa conta no dia a dia. Ela:
+1. Verifique `imts.email` e ative o e-mail. Os dois registros são criados no GoDaddy, em **Meus produtos > imts.email > DNS**:
+   - **TXT de verificação:** o valor que o Admin Console mostrar (https://support.google.com/a/answer/183895);
+   - **MX:** exatamente os valores que o Admin Console mostrar na ativação do Gmail (https://support.google.com/a/answer/61158). Antes, apague no GoDaddy os MX antigos que existirem;
+   - confira no Admin Console que o domínio aparece como verificado e o Gmail como ativo.
+2. Crie o usuário **sistema@imts.email**, com licença. Ninguém usa essa conta no dia a dia. Ela:
    - é dona do acervo no Drive;
    - envia os alertas por e-mail.
 3. No Drive, crie um drive compartilhado **IMTS.OS Acervo**, com duas pastas: `Produção` e `Homologação`.
-   - Ponha sistema@imts.com.br como **gerente de conteúdo**.
+   - Ponha sistema@imts.email como **gerente de conteúdo**.
    - Me mande o id de cada pasta: o trecho da URL depois de `/folders/`.
    - Se o plano não tiver drive compartilhado, crie as duas pastas no Meu Drive da conta sistema.
 
@@ -57,14 +64,16 @@ No Admin Console (admin.google.com):
 
 Em console.cloud.google.com:
 
-1. Crie o projeto **imts-os** dentro da organização imts.com.br.
+1. Crie o projeto **imts-os** dentro da organização imts.email.
 2. Ative as APIs **Google Drive**, **Google Calendar** e **Gmail**.
 3. Tela de consentimento OAuth (https://developers.google.com/workspace/guides/configure-oauth-consent):
-   - tipo **Interno** (só contas @imts.com.br entram);
+   - tipo **Interno** (só contas @imts.email entram);
    - nome do app: IMTS.OS;
    - e-mail de suporte: o seu.
 4. Credencial **ID do cliente OAuth**, tipo **Aplicativo da Web**:
-   - URIs de redirecionamento autorizados: os dois que eu te passar depois do passo 1, no formato `https://<ref>.supabase.co/auth/v1/callback`;
+   - URIs de redirecionamento autorizados, os dois:
+     - `https://eaaycpeenahiengutfic.supabase.co/auth/v1/callback`
+     - `https://jloyxteijsnrwnnwfhyk.supabase.co/auth/v1/callback`
    - guarde o ID do cliente e a chave secreta só até o passo 5.
 5. **Contas de serviço**: crie duas, `imts-os-homologacao` e `imts-os-producao`, e baixe uma chave JSON de cada. Guia: https://developers.google.com/identity/protocols/oauth2/service-account
 6. No Admin Console, **delegação em todo o domínio** (https://support.google.com/a/answer/162106). Para cada conta de serviço:
@@ -91,24 +100,26 @@ Em console.cloud.google.com:
 
 3. **E-mail próprio (SMTP)** para o link de clientes e parceiros (https://supabase.com/docs/guides/auth/auth-smtp):
    - o time escolhe o serviço de envio;
-   - remetente sugerido: `naoresponda@imts.com.br`.
+   - remetente sugerido: `naoresponda@imts.email`.
 4. **Email Templates:** textos em português (eu te passo prontos).
 
-## 6. DNS e hospedagem de imts.global (Ítalo ou time)
+## 6. Hospedagem do site em imts.global (Ítalo ou time)
 
-Preciso saber **onde o domínio imts.global está registrado**.
+O DNS fica no GoDaddy; a hospedagem é o Cloudflare Pages (conta gratuita basta para páginas estáticas). As páginas são estáticas e a publicação é por envio direto (https://developers.cloudflare.com/pages/get-started/direct-upload/).
 
-Recomendação: DNS e hospedagem no Cloudflare. As páginas são estáticas e a publicação é por envio direto:
-- envio direto: https://developers.cloudflare.com/pages/get-started/direct-upload/
-- domínios: https://developers.cloudflare.com/pages/configuration/custom-domains/
+1. No Cloudflare, crie dois projetos Pages por envio direto: `imts-os` (produção) e `imts-os-homolog` (homologação). Envie a pasta de cada ambiente que eu gerar.
+2. Em cada projeto, **Custom domains > Set up a domain**: `www.imts.global` e `homolog.imts.global`. O Cloudflare mostra o registro CNAME a criar (https://developers.cloudflare.com/pages/configuration/custom-domains/).
+3. No GoDaddy, em **imts.global > DNS**, crie os dois CNAME exatamente como o Cloudflare mostrou:
 
-Com o domínio no Cloudflare, fica assim:
+   | Nome | Tipo | Aponta para |
+   | --- | --- | --- |
+   | `www` | CNAME | o endereço `.pages.dev` do projeto `imts-os` |
+   | `homolog` | CNAME | o endereço `.pages.dev` do projeto `imts-os-homolog` |
 
-| Nome | Aponta para |
-| --- | --- |
-| `www.imts.global` | projeto Pages `imts-os` (o Cloudflare cria o registro ao ligar o domínio) |
-| `homolog.imts.global` | projeto Pages `imts-os-homolog` |
-| `imts.global` | redireciona para `www.imts.global` |
+4. No GoDaddy, **encaminhamento** de `imts.global` para `https://www.imts.global` (https://www.godaddy.com/help/forward-my-godaddy-domain-12123).
+5. Espere o Cloudflare marcar os dois domínios como ativos (o certificado é emitido por ele).
+
+Alternativa: mudar os servidores de nome de imts.global para o Cloudflare. Só vale se o time quiser gerir o DNS lá; para este site, os CNAME no GoDaddy bastam.
 
 Eu gero as duas pastas publicáveis com `montar.sh`, uma por ambiente. Você, ou o time, publica.
 

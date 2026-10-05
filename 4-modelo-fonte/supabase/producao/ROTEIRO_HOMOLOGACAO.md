@@ -9,7 +9,7 @@ Execute depois do manual de implantação, com o cadastro real carregado. Cada p
 | A1 | `./aplicar.sh --conferir` | `pronto=true` |
 | A2 | `psql "$DB_URL" -f homologar_banco.sql` | `homologação do banco: 7 de 7 ok` |
 | A3 | Abrir https://www.imts.global sem login | Tela de entrada com "Entrar com Google" e "Receber link" |
-| A4 | Entrar com uma conta Google fora de @imts.com.br | Google recusa (consentimento interno) ou o sistema mostra "Acesso não liberado" |
+| A4 | Entrar com uma conta Google fora de @imts.email | Google recusa (consentimento interno) ou o sistema mostra "Acesso não liberado" |
 | A5 | Pedir link com um e-mail sem convite | Mensagem neutra; ao entrar pelo link, "Acesso não liberado" |
 | A6 | Administração > Alertas | Sem alerta aberto |
 | A7 | Pedir um documento qualquer pela Mesa ou pelo Acervo | O PDF sai em até 1 minuto (worker ativo) |
