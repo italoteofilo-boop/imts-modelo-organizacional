@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verificar assinatura · IMTS.OS</title>
+<meta name="description" content="Verificação pública das assinaturas eletrônicas avançadas do IMTS.OS pelo código de verificação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="comum/base.css">
+<style>
+/* Verificação pública: sem login. O arquivo não sai do computador: o SHA-256 é calculado aqui e só o resumo vai à função verificar. */
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html, body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.45; }
+main { max-width:880px; margin:0 auto; padding:32px 16px 48px; display:flex; flex-direction:column; gap:16px; }
+.topo { display:flex; flex-wrap:wrap; gap:6px 16px; align-items:baseline; }
+.marca { font-family:var(--serif); font-weight:600; font-size:18px; color:var(--sec); text-decoration:none; }
+h1 { font-family:var(--serif); font-weight:600; font-size:30px; margin:0; line-height:1.15; }
+h2 { font-family:var(--serif); font-weight:600; font-size:20px; margin:0 0 8px; }
+.sub { color:var(--sec); margin:0; font-size:14px; }
+.cartao { background:var(--surface); border:1px solid var(--hair); border-radius:14px; padding:18px 20px; display:flex; flex-direction:column; gap:12px; }
+form .campos { display:grid; grid-template-columns:repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap:12px; }
+label { display:flex; flex-direction:column; gap:4px; font-size:13px; color:var(--sec); min-width:0; }
+input[type="text"], input[type="file"] { font:inherit; color:var(--ink); padding:10px 12px; border:1px solid var(--hair); border-radius:10px; background:var(--surface); min-width:0; max-width:100%; }
+input#codigo { font-family:ui-monospace, 'SFMono-Regular', Menlo, monospace; letter-spacing:.08em; text-transform:uppercase; }
+.btn { font:inherit; border:1px solid var(--hair); background:var(--surface); color:var(--ink); border-radius:10px; padding:10px 16px; cursor:pointer; }
+.btn.prim { background:var(--accent); border-color:var(--accent); color:#fff; }
+:root[data-theme="dark"] .btn.prim { color:#10131c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn.prim { color:#10131c; } }
+.btn:disabled { opacity:.5; cursor:not-allowed; }
+.linha { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+.veredito { border-radius:12px; padding:14px 16px; font-size:16px; }
+.veredito strong { display:block; font-size:19px; font-family:var(--serif); }
+.veredito.ok { background:var(--ok-soft); color:var(--ok); } .veredito.nao { background:var(--late-soft); color:var(--late); } .veredito.espera { background:var(--wait-soft); color:var(--wait); }
+.veredito ul { margin:6px 0 0; padding-left:18px; font-size:14px; }
+dl { display:grid; grid-template-columns:minmax(120px, 200px) minmax(0, 1fr); gap:6px 14px; margin:0; font-size:14px; }
+dt { color:var(--sec); } dd { margin:0; overflow-wrap:anywhere; }
+.cod { font-family:ui-monospace, 'SFMono-Regular', Menlo, monospace; font-size:12.5px; overflow-wrap:anywhere; }
+.tabela { width:100%; border-collapse:collapse; font-size:14px; }
+.tabela th, .tabela td { text-align:left; padding:7px 8px; border-bottom:1px solid var(--hair); vertical-align:top; overflow-wrap:anywhere; }
+.tabela th { font-size:12px; color:var(--sec); }
+.rolar { overflow-x:auto; }
+.chip { font-size:12px; padding:2px 9px; border-radius:99px; background:var(--ground); color:var(--sec); white-space:nowrap; }
+.chip.ok { background:var(--ok-soft); color:var(--ok); } .chip.nao { background:var(--late-soft); color:var(--late); }
+details > summary { cursor:pointer; color:var(--accent); font-size:14px; min-height:24px; padding-block:3px; }
+pre { margin:8px 0 0; white-space:pre-wrap; overflow-wrap:anywhere; font-size:12px; background:var(--ground); border-radius:8px; padding:10px; }
+.rodape { font-size:12.5px; color:var(--sec); margin:0; max-width:80ch; }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+@media (max-width:560px) { dl { grid-template-columns:minmax(0, 1fr); } dt { margin-top:6px; } h1 { font-size:26px; } }
+@media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="topo"><a class="marca" href="index.html">IMTS.OS</a></div>
+  <div>
+    <h1>Verificar assinatura</h1>
+    <p class="sub">Confira um documento assinado eletronicamente pelo IMTS.OS: quem assinou e quando, se o arquivo é o mesmo e se o selo do IMTS confere.</p>
+  </div>
+  <form class="cartao" id="f" novalidate aria-labelledby="f-titulo">
+    <h2 id="f-titulo">Código de verificação</h2>
+    <div class="campos">
+      <label for="codigo">Código (está na página de manifesto e no QR)<input type="text" id="codigo" autocomplete="off" spellcheck="false" maxlength="20" placeholder="ABCD-EFGH-JKMN" required aria-describedby="ajuda-codigo"></label>
+      <label for="arquivo">PDF para comparar (opcional)<input type="file" id="arquivo" accept="application/pdf,.pdf" aria-describedby="ajuda-arquivo"></label>
+    </div>
+    <p class="sub" id="ajuda-codigo">São 12 letras e números, em três grupos.</p>
+    <p class="sub" id="ajuda-arquivo">O arquivo não é enviado: o resumo SHA-256 é calculado neste navegador e só ele vai para a verificação.</p>
+    <div class="linha"><button class="btn prim" type="submit" id="b-verificar">Verificar</button><span class="sub" id="estado" role="status" aria-live="polite"></span></div>
+  </form>
+  <section id="resultado" aria-live="polite" aria-labelledby="r-titulo" hidden></section>
+  <p class="rodape">Assinatura eletrônica avançada nos termos da Lei 14.063/2020, art. 4º, II: associada ao signatário de maneira unívoca (login e código de uso único enviado ao e-mail, sob o seu controle exclusivo) e relacionada ao documento de modo que qualquer modificação posterior seja detectável (SHA-256, trilha de eventos encadeada por hash e selo ECDSA do IMTS). Meio de comprovação admitido pelas partes conforme a MP 2.200-2/2001, art. 10, § 2º. Não substitui a assinatura qualificada (ICP-Brasil) quando a lei ou o órgão público a exigir. Esta página mostra só o nome e o e-mail mascarado de quem assinou.</p>
+</main>
+<script src="config.js"></script>
+<script>
+(function () {
+  'use strict';
+  const C = window.IMTS_CONFIG || {};
+  const FUNCOES = (C.funcoes || (C.supabaseUrl || '') + '/functions/v1').replace(/\/$/, '');
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+  const SIT = { concluido: 'concluído', aguardando: 'aguardando assinaturas', recusado: 'recusado', cancelado: 'cancelado', vencido: 'vencido', rascunho: 'em rascunho' };
+  const SIG = { assinado: 'assinou', assinado_fora: 'assinou fora (ICP-Brasil)', pendente: 'não assinou', recusado: 'recusou' };
+  async function sha256(buf) { const h = await crypto.subtle.digest('SHA-256', buf); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+
+  function mostrar(j) {
+    const r = $('resultado');
+    if (!j.encontrado) {
+      r.innerHTML = `<div class="cartao"><h2 id="r-titulo">Resultado</h2><div class="veredito nao"><strong>Código não encontrado</strong>Confira as letras do código. Ele está na página de manifesto do PDF assinado.</div></div>`;
+      r.hidden = false; r.querySelector('h2').focus?.(); return;
+    }
+    const cls = j.valido ? 'ok' : j.situacao === 'aguardando' ? 'espera' : 'nao';
+    const titulo = j.valido ? 'Assinatura válida' : j.exige_icp ? 'Assinatura qualificada feita fora' : j.situacao === 'aguardando' ? 'Ainda não concluído' : 'Não confere';
+    const arq = j.arquivo === 'original' ? 'É o documento original que foi assinado (o mesmo SHA-256).' : j.arquivo === 'assinado' ? 'É o PDF assinado, com a página de manifesto (o mesmo SHA-256).'
+      : j.arquivo === 'diferente' ? 'NÃO é o documento assinado: o SHA-256 é diferente.' : '';
+    r.innerHTML = `<div class="cartao">
+      <h2 id="r-titulo" tabindex="-1">Resultado</h2>
+      <div class="veredito ${cls}"><strong>${esc(titulo)}</strong>${j.valido ? 'Todos assinaram, a trilha de eventos está íntegra e o selo do IMTS confere com a chave pública.' : ''}
+        ${(j.motivos || []).length ? `<ul>${j.motivos.map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : ''}${(j.avisos || []).length ? `<ul>${j.avisos.map(m => `<li>${esc(m)}</li>`).join('')}</ul>` : ''}</div>
+      ${arq ? `<p class="veredito ${j.arquivo === 'diferente' ? 'nao' : 'ok'}" id="r-arquivo">${esc(arq)}</p>` : ''}
+      <dl>
+        <dt>Documento</dt><dd>${esc(j.titulo)}</dd>
+        <dt>Empresa</dt><dd>${esc(j.empresa)}</dd>
+        <dt>Código</dt><dd class="cod">${esc(j.codigo)}</dd>
+        <dt>Situação</dt><dd>${esc(SIT[j.situacao] || j.situacao)}${j.concluido_em ? ' em ' + quando(j.concluido_em) : ''}</dd>
+        <dt>SHA-256 do original</dt><dd class="cod">${esc(j.documento?.sha256_original)}</dd>
+        ${j.documento?.sha256_assinado ? `<dt>SHA-256 do PDF assinado</dt><dd class="cod">${esc(j.documento.sha256_assinado)}</dd>` : ''}
+        ${j.hash_informado ? `<dt>SHA-256 do seu arquivo</dt><dd class="cod">${esc(j.hash_informado)}</dd>` : ''}
+      </dl>
+      <h2>Quem assinou</h2>
+      <div class="rolar" role="region" tabindex="0" aria-label="Signatários"><table class="tabela"><thead><tr><th scope="col">Ordem</th><th scope="col">Nome</th><th scope="col">E-mail</th><th scope="col">Situação</th><th scope="col">Data</th></tr></thead>
+        <tbody>${(j.signatarios || []).map(s => `<tr><td>${Number(s.ordem)}</td><td>${esc(s.nome)}</td><td>${esc(s.email)}</td><td><span class="chip ${['assinado', 'assinado_fora'].includes(s.situacao) ? 'ok' : s.situacao === 'recusado' ? 'nao' : ''}">${esc(SIG[s.situacao] || s.situacao)}</span></td><td>${quando(s.assinado_em)}</td></tr>`).join('')}</tbody></table></div>
+      <dl>
+        <dt>Trilha de eventos</dt><dd>${j.trilha?.integra ? 'íntegra' : 'NÃO confere'} · ${Number(j.trilha?.eventos) || 0} eventos até a conclusão${j.trilha?.hash_final ? ` · hash final <span class="cod">${esc(j.trilha.hash_final)}</span>` : ''}</dd>
+        <dt>Selo do IMTS</dt><dd>${j.selo?.presente ? (j.selo.confere ? 'confere' : 'NÃO confere') + ' · ' + esc(j.selo.algoritmo) + (j.selo.selado_em ? ' · selado em ' + quando(j.selo.selado_em) : '') : 'ainda não gerado'}</dd>
+        ${j.selo?.kid ? `<dt>Chave do selo</dt><dd class="cod">${esc(j.selo.kid)}</dd>` : ''}
+      </dl>
+      ${j.selo?.chave_publica ? `<details><summary>Chave pública do IMTS (JWK)</summary><pre>${esc(JSON.stringify(j.selo.chave_publica, null, 2))}</pre></details>` : ''}
+    </div>`;
+    r.hidden = false; $('r-titulo').focus();
+  }
+
+  $('f').onsubmit = async ev => {
+    ev.preventDefault();
+    const codigo = $('codigo').value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if (codigo.length !== 12) { $('estado').textContent = 'O código tem 12 letras e números.'; $('codigo').focus(); return; }
+    const b = $('b-verificar'); b.disabled = true; $('estado').textContent = 'Verificando…';
+    try {
+      let hash = null; const f = $('arquivo').files[0];
+      if (f) { $('estado').textContent = 'Calculando o SHA-256 do arquivo neste navegador…'; hash = await sha256(await f.arrayBuffer()); }
+      const h = { 'Content-Type': 'application/json' }; if (C.anonKey) h.apikey = C.anonKey;
+      const r = await fetch(FUNCOES + '/verificar', { method: 'POST', headers: h, body: JSON.stringify({ codigo, hash }) });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok && r.status !== 404) throw new Error(j.erro || 'a verificação respondeu ' + r.status);
+      $('estado').textContent = ''; mostrar(j);
+    } catch (e) {
+      $('estado').textContent = 'Não foi possível verificar agora: ' + (e?.message || e) + '. Tente de novo.';
+    } finally { b.disabled = false; }
+  };
+  const c = new URLSearchParams(location.search).get('c');
+  if (c) { $('codigo').value = c; $('f').requestSubmit(); }
+})();
+</script>
+</body>
+</html>

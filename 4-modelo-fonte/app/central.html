@@ -91,8 +91,16 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
 .nd-item input, .nd-item select { padding:6px 8px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); min-width:0; max-width:100%; }
 .nd-total { margin-left:auto; font-size:15px; font-variant-numeric:tabular-nums; }
 .valor { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.acoes a { display:inline-block; min-height:24px; padding-block:3px; }
+.as-sig { grid-template-columns:minmax(0, 1fr) auto; }
+.acoes .marcar { display:flex; gap:8px; align-items:center; font-size:13px; color:var(--apoio); }
+.acoes .marcar input { width:24px; height:24px; min-width:24px; margin:0; flex:0 0 24px; }
+.acoes input.cod6 { width:10ch; flex:0 0 auto; font-family:var(--dados); letter-spacing:.18em; }
+.sigs { grid-column:1 / -1; margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.sigs li { background:var(--chao); border-radius:8px; padding:8px 10px; display:flex; flex-direction:column; gap:4px; font-size:14px; overflow-wrap:anywhere; }
+.consent { grid-column:1 / -1; margin:0; font-size:13px; color:var(--apoio); background:var(--chao); border-radius:8px; padding:8px 10px; overflow-wrap:anywhere; }
 @media (max-width: 760px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } .ata .enc { grid-template-columns:minmax(0, 1fr); }
-  .nd-item { grid-template-columns:minmax(0, 1fr); } .nd-total { margin-left:0; } }
+  .nd-item, .as-sig { grid-template-columns:minmax(0, 1fr); } .nd-total { margin-left:0; } }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
 </style>
 </head>
@@ -109,9 +117,10 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
       <button class="aba" role="tab" id="t-parceiros" data-aba="parceiros" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Parceiros<span class="n" id="n-parceiros"></span></button>
       <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Reuniões<span class="n" id="n-reunioes"></span></button>
       <button class="aba" role="tab" id="t-notas" data-aba="notas" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Notas de débito<span class="n" id="n-notas"></span></button>
+      <button class="aba" role="tab" id="t-assinaturas" data-aba="assinaturas" aria-controls="conteudo" aria-selected="false" tabindex="-1" type="button">Assinaturas<span class="n" id="n-assinaturas"></span></button>
     </div></nav>
     <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-atendimento"><p class="vazio">Carregando…</p></section>
-    <p class="rodape">Cada demanda vira encaminhamentos com responsável e prazo, que o cliente acompanha no portal. Encerrar é do cliente: a equipe propõe, o cliente confirma ou reabre; sem resposta, o aceite tácito encerra no prazo do parâmetro. A ouvidoria só aparece para a Governança, e a anônima não mostra quem escreveu. Nota de parceiro: a máquina confere, uma pessoa aprova, outra paga. Ata de reunião pode ser rascunhada por IA e só vale aprovada por uma pessoa. Nota de débito cobra o reembolso de despesas pagas por conta do cliente ou parceiro (não é documento fiscal): quem cria não aprova, quem aprova não registra o pagamento.</p>
+    <p class="rodape">Cada demanda vira encaminhamentos com responsável e prazo, que o cliente acompanha no portal. Encerrar é do cliente: a equipe propõe, o cliente confirma ou reabre; sem resposta, o aceite tácito encerra no prazo do parâmetro. A ouvidoria só aparece para a Governança, e a anônima não mostra quem escreveu. Nota de parceiro: a máquina confere, uma pessoa aprova, outra paga. Ata de reunião pode ser rascunhada por IA e só vale aprovada por uma pessoa. Nota de débito cobra o reembolso de despesas pagas por conta do cliente ou parceiro (não é documento fiscal): quem cria não aprova, quem aprova não registra o pagamento. Assinatura eletrônica avançada (Lei 14.063/2020, art. 4º, II): cada pessoa assina na ordem, com o próprio login e um código enviado ao seu e-mail; o documento fica preso ao seu SHA-256 e recebe o selo do IMTS; não substitui a assinatura qualificada (ICP-Brasil) quando a lei ou o órgão a exigir.</p>
   </div>
 </main>
 <div class="recibos" id="recibos" aria-live="polite"></div>
@@ -136,6 +145,7 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
   const PERFIS = { gestor: 'Gestor', fiscal: 'Fiscal', financeiro: 'Financeiro', operacional: 'Operacional' };
   let quem = null, A = null, P = null, R = null, CP = [], aba = 'atendimento', filtro = 'abertos', prefill = null;
   let D = null, Derro = null, ndFiltro = 'rascunho', ndForm = null;   // notas de débito: painel, motivo da falha, filtro e formulário aberto
+  let S = null, Serro = null, asFiltro = 'aguardando', asForm = null; const asAviso = {};   // assinaturas: painel, falha, filtro, formulário, aviso do código por signatário
   const transcricoes = {};   // texto da transcrição ligada nesta sessão, por reunião (para a IA ler sem ir ao Drive de novo)
 
   const motivo = e => String(e?.message || e || 'erro').slice(0, 300);
@@ -433,6 +443,143 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     finally { botao.disabled = false; }
   }
 
+
+  // ---------- Assinaturas (assinatura eletrônica avançada, Lei 14.063/2020, art. 4º, II) ----------
+  const AS_SIT = [['aguardando', 'Aguardando'], ['concluido', 'Concluídas'], ['encerrados', 'Recusadas, canceladas ou vencidas'], ['rascunho', 'Rascunhos']];
+  const AS_COR = { rascunho: 'esp', aguardando: 'esp', concluido: 'bom', recusado: 'mal', cancelado: '', vencido: 'mal', pendente: 'esp', assinado: 'bom', assinado_fora: 'bom' };
+  const AS_ROT = { concluido: 'concluído', assinado_fora: 'assinado fora (ICP-Brasil)', aguardando: 'aguardando' };
+  const asChip = s => `<span class="chip ${AS_COR[s] || ''}">${esc(AS_ROT[s] || String(s || '').replace(/_/g, ' '))}</span>`;
+  const asNoFiltro = p => asFiltro === 'encerrados' ? ['recusado', 'cancelado', 'vencido'].includes(p.situacao) : p.situacao === asFiltro;
+  const asOpcoes = sel => `<optgroup label="Equipe do IMTS">${(S.internos || []).map(i => `<option value="p:${esc(i.pessoa)}"${sel === 'p:' + i.pessoa ? ' selected' : ''}>${esc(i.nome)}${i.papel ? ' · ' + esc(i.papel) : ''}</option>`).join('')}</optgroup>
+      <optgroup label="Clientes e parceiros (portal)">${(S.externos || []).map(u => `<option value="u:${esc(u.usuario)}"${sel === 'u:' + u.usuario ? ' selected' : ''}>${esc(u.nome)} · ${esc(u.contraparte)}</option>`).join('')}</optgroup>`;
+  function vAssinaturas() {
+    if (!S) return `<h2 class="secao">Assinaturas</h2><p class="vazio">As assinaturas não carregaram${Serro ? ': ' + esc(Serro) : ''}. O resto da Central segue funcionando.</p>`;
+    const comigo = S.comigo || [], ps = S.pedidos || [], pode = S.pode || {};
+    const sec1 = `<h2 class="secao">Para eu assinar</h2>${comigo.length ? `<div class="lista">${comigo.map(artComigo).join('')}</div>` : '<p class="vazio">Nada esperando a sua assinatura.</p>'}`;
+    const fl = `<div class="filtros" role="group" aria-label="Situação dos pedidos de assinatura">${AS_SIT.map(([k, r]) => `<button class="filtro" type="button" data-asfiltro="${k}" aria-pressed="${asFiltro === k}">${r} ${ps.filter(p => k === 'encerrados' ? ['recusado', 'cancelado', 'vencido'].includes(p.situacao) : p.situacao === k).length}</button>`).join('')}</div>
+      <div class="acoes"><button class="btn" type="button" data-asatualizar="1">Atualizar</button>${pode.operar && !asForm ? '<button class="btn prim" type="button" data-asnovo="1">Pedir assinatura</button>' : ''}</div>`;
+    const ls = ps.filter(asNoFiltro);
+    const lista = ls.length ? `<div class="lista">${ls.map(artAss).join('')}</div>` : '<p class="vazio">Nenhum pedido de assinatura nesta situação nesta empresa.</p>';
+    return `${sec1}<h2 class="secao">Pedidos de assinatura da empresa</h2>${fl}${asForm ? formAss() : ''}${lista}
+      <p class="rodape">Cada signatário assina na ordem, autenticado e com um código de 6 dígitos enviado ao próprio e-mail (vale ${Number(S.validade_min) || 10} minutos). O pedido guarda o SHA-256 do PDF: se o arquivo mudar, ninguém mais assina. Cada evento entra numa trilha encadeada por hash que não se altera. Concluído, o IMTS sela o manifesto (ECDSA P-256) e anexa a página de manifesto ao PDF, com código e QR para a verificação pública. Base: Lei 14.063/2020, art. 4º, II, e MP 2.200-2/2001, art. 10, § 2º. Quando a lei ou o órgão público exigir assinatura qualificada (ICP-Brasil), marque o pedido: a assinatura é feita fora e só fica registrada aqui.</p>`;
+  }
+  function artComigo(p) {
+    const id = Number(p.id), s = (p.signatarios || []).find(x => x.sou_eu && x.situacao === 'pendente'); if (!s) return '';
+    const sid = Number(s.id), aviso = asAviso[sid];
+    return `<article class="item" data-comigo="${id}"><div><h3 class="t" style="margin:0;font-size:inherit">${esc(p.titulo)}</h3>
+        <div class="sub">${esc(p.empresa)} · pedido por ${esc(p.pedido_por_nome || 'outra pessoa')} · prazo ${quando(p.prazo)} · código ${esc(p.codigo)}</div>
+        <div class="sub">SHA-256 do documento: <span class="cod">${esc(p.hash_documento)}</span></div></div>
+      <div class="lado">${s.vez ? '<span class="chip azul">sua vez</span>' : '<span class="chip esp">aguardando quem vem antes</span>'}</div>
+      <div class="acoes"><button class="btn" type="button" data-asdoc="${id}">Baixar o documento</button></div>
+      ${p.exige_icp ? '<p class="consent">Este pedido exige assinatura qualificada (ICP-Brasil): assine com o seu certificado, fora do IMTS.OS, e entregue o arquivo assinado a quem pediu, que registra aqui.</p>' : ''}
+      ${s.vez && !p.exige_icp ? `<p class="consent" id="asct-${sid}">${esc(p.consentimento)}</p>
+      <div class="acoes"><button class="btn" type="button" data-ascodigo="${sid}">${aviso ? 'Enviar outro código' : 'Enviar código por e-mail'}</button><span class="sub" role="status" id="asav-${sid}">${aviso ? esc(aviso) : ''}</span></div>
+      <div class="acoes"><label class="sub" for="ascod-${sid}">Código de 6 dígitos</label><input type="text" class="cod6" id="ascod-${sid}" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}">
+        <label class="marcar"><input type="checkbox" id="asok-${sid}" aria-describedby="asct-${sid}"> Li o documento e aceito o texto acima</label>
+        <button class="btn prim" type="button" data-asassinar="${sid}" data-pedido="${id}">Assinar</button></div>
+      <div class="acoes"><input type="text" id="asrm-${sid}" aria-label="Motivo para recusar a assinatura de ${esc(p.titulo)}" placeholder="motivo para recusar"><button class="btn perigo" type="button" data-asrecusar="${sid}">Recusar</button></div>` : ''}
+    </article>`;
+  }
+  function artAss(p) {
+    const id = Number(p.id), pode = S.pode || {}, meu = p.pedido_por === S.eu, aberto = ['rascunho', 'aguardando'].includes(p.situacao);
+    const sigs = `<ol class="sigs" aria-label="Signatários de ${esc(p.titulo)}">${(p.signatarios || []).map(s => `<li><div><strong>${Number(s.ordem)}. ${esc(s.nome)}</strong> <span class="sub">(${esc(s.email)}, ${s.tipo === 'interno' ? 'equipe' : 'portal'})</span> ${asChip(s.situacao)}${s.vez ? ' <span class="chip azul">da vez</span>' : ''}</div>
+        ${s.assinado_em ? `<div class="sub">${s.situacao === 'assinado_fora' ? 'Registrado' : 'Assinou'} em ${quando(s.assinado_em)}${s.fora_referencia ? ': ' + esc(s.fora_referencia) : ''}</div>` : ''}
+        ${s.recusado_motivo ? `<div class="sub">Recusou: ${esc(s.recusado_motivo)}</div>` : ''}
+        ${p.exige_icp && p.situacao === 'aguardando' && s.situacao === 'pendente' && (pode.operar || meu) ? `<div class="acoes"><input type="text" id="asfr-${Number(s.id)}" aria-label="Referência da assinatura qualificada de ${esc(s.nome)}" placeholder="referência da assinatura ICP-Brasil (arquivo, data, assinador)"><button class="btn" type="button" data-asfora="${Number(s.id)}">Registrar assinatura feita fora</button></div>` : ''}</li>`).join('')}</ol>`;
+    const acoes = `<div class="acoes"><button class="btn" type="button" data-asdoc="${id}">${p.selado ? 'Baixar PDF assinado' : 'Baixar PDF'}</button>
+        ${p.situacao === 'concluido' && !p.selado && !p.exige_icp ? `<button class="btn" type="button" data-asselar="${id}">Gerar o selo agora</button>` : ''}
+        ${p.situacao === 'concluido' && !p.exige_icp ? `<a href="${esc((S.url_verificacao || 'verificar.html') + '?c=' + encodeURIComponent(p.codigo))}" target="_blank" rel="noopener">Verificação pública</a>` : ''}
+        ${p.situacao === 'rascunho' && meu ? `<button class="btn prim" type="button" data-asenviar="${id}">Enviar para assinatura</button>` : ''}</div>
+      ${aberto && meu ? `<div class="acoes"><input type="text" id="ascm-${id}" aria-label="Motivo para cancelar o pedido ${esc(p.codigo)}" placeholder="motivo para cancelar"><button class="btn perigo" type="button" data-ascancelar="${id}">Cancelar pedido</button></div>` : ''}`;
+    return `<article class="item" data-assped="${id}"><div><h3 class="t" style="margin:0;font-size:inherit">${esc(p.titulo)}</h3>
+        <div class="sub">Código ${esc(p.codigo)} · emissão nº ${Number(p.emissao)} · pedido por ${esc(p.pedido_por_nome || 'outra pessoa')} em ${quando(p.criado_em)} · prazo ${quando(p.prazo)}${p.exige_icp ? ' · exige ICP-Brasil' : ''}</div>
+        <div class="sub">SHA-256: <span class="cod">${esc(p.hash_documento)}</span></div></div>
+      <div class="lado">${asChip(p.situacao)}${p.documento_alterado ? '<span class="chip mal">documento alterado</span>' : ''}${p.selado ? '<span class="chip bom">selado</span>' : ''}</div>
+      ${p.encerrado_motivo ? `<div class="cheio sub">${esc(p.encerrado_motivo)}</div>` : ''}${p.exige_icp ? '<div class="cheio sub">Exige assinatura qualificada (ICP-Brasil): a assinatura eletrônica avançada do IMTS não serve aqui; cada parte assina fora e o pedido só registra.</div>' : ''}
+      ${sigs}${acoes}</article>`;
+  }
+  function formAss() {
+    const f = asForm, docs = S.documentos || [];
+    return `<form class="form" id="f-ass" aria-label="Pedir assinatura" novalidate>
+      <label>Documento emitido<select id="as-doc">${docs.map(d => `<option value="${Number(d.emissao)}"${Number(d.emissao) === Number(f.doc) ? ' selected' : ''}>nº ${Number(d.emissao)} · ${esc(d.titulo)} · ${quando(d.emitido_em)}</option>`).join('')}</select></label>
+      <label>Título (opcional)<input id="as-tit" maxlength="300" value="${esc(f.tit)}" autocomplete="off" placeholder="o título do documento"></label>
+      <label>Prazo para todos assinarem<input id="as-prazo" type="date" value="${esc(f.prazo)}" min="${diaISO(new Date(Date.now() + 864e5))}" required></label>
+      <div class="linha"><label class="marcar"><input type="checkbox" id="as-icp"${f.icp ? ' checked' : ''}> O órgão ou a lei exige assinatura qualificada (ICP-Brasil): assinam fora e o pedido só registra</label></div>
+      <fieldset class="linha nd-despesas" style="display:flex"><legend>Signatários, na ordem em que assinam</legend>
+        <div class="nd-itens" id="as-sigs">${f.sigs.map(linhaSig).join('')}</div>
+        <div class="acoes"><button class="btn" type="button" data-asmais="1">Mais um signatário</button></div></fieldset>
+      <div class="linha"><button class="btn prim" type="submit">Pedir assinatura</button><button class="btn" type="button" data-asfechar="1">Fechar sem pedir</button>
+        <span class="sub">O pedido guarda o SHA-256 do PDF agora. Cada pessoa recebe o código no e-mail quando for a sua vez.</span></div></form>`;
+  }
+  function linhaSig(v, i) {
+    return `<div class="nd-item as-sig" data-i="${i}"><label>Signatário ${i + 1}<select data-k="sig">${asOpcoes(v)}</select></label>
+      <button class="btn" type="button" data-astirar="${i}"${asForm.sigs.length === 1 ? ' disabled' : ''}>Tirar ${i + 1}</button></div>`;
+  }
+  function campoAss(e) {
+    const f = e.target.closest('#f-ass'); if (!f || !asForm) return;
+    const t = e.target, linha = t.closest('.as-sig');
+    if (linha) { asForm.sigs[Number(linha.dataset.i)] = t.value; return; }
+    if (t.id === 'as-doc') asForm.doc = t.value; else if (t.id === 'as-tit') asForm.tit = t.value; else if (t.id === 'as-prazo') asForm.prazo = t.value; else if (t.id === 'as-icp') asForm.icp = t.checked;
+  }
+  async function pedirAss(ev) {
+    ev.preventDefault();
+    const f = asForm, b = ev.target.querySelector('button[type="submit"]');
+    if (!f.doc) { recibo('recusado', 'Escolha o documento emitido.'); return; }
+    if (!f.prazo) { recibo('recusado', 'Informe o prazo.'); return; }
+    const sigs = f.sigs.filter(Boolean).map(v => v.startsWith('p:') ? { pessoa: v.slice(2) } : { usuario: v.slice(2) });
+    b.disabled = true;
+    let r;
+    try {
+      r = await IMTS.chamar('doc.assinatura_pedir', { p_emissao: Number(f.doc), p_signatarios: sigs, p_prazo: new Date(f.prazo + 'T23:59:00').toISOString(), p_titulo: f.tit.trim() || null, p_exige_icp: !!f.icp });
+    } catch (e) { recibo('recusado', 'Não pediu: ' + motivo(e)); b.disabled = false; return; }
+    asForm = null; asFiltro = 'aguardando';
+    await recarregar('feito', `Pedido de assinatura ${r?.codigo || ''} enviado: o primeiro signatário já pode assinar.`);
+  }
+  async function enviarCodigo(sid, botao) {
+    botao.disabled = true;
+    try {
+      const r = await IMTS.servidor('assinatura', 'codigo', { signatario: sid });
+      asAviso[sid] = `Código enviado para ${r?.para || 'o seu e-mail'}; vale ${Number(r?.validade_min) || 10} minutos.`;
+      const s = $('asav-' + sid); if (s) s.textContent = asAviso[sid]; botao.textContent = 'Enviar outro código';
+      $('ascod-' + sid)?.focus();
+    } catch (e) { recibo('recusado', 'O código não foi enviado: ' + motivo(e)); }
+    finally { botao.disabled = false; }
+  }
+  async function assinar(sid, pedido, botao) {
+    const cod = ($('ascod-' + sid)?.value || '').replace(/\D/g, ''), aceito = !!$('asok-' + sid)?.checked;
+    if (!aceito) { recibo('recusado', 'Para assinar, marque que leu o documento e aceita o texto.'); return; }
+    if (cod.length !== 6) { recibo('recusado', 'Digite o código de 6 dígitos enviado ao seu e-mail.'); return; }
+    botao.disabled = true;
+    let r;
+    try { r = await IMTS.chamar('doc.assinatura_assinar', { p_signatario: sid, p_codigo: cod, p_aceito: true }); }
+    catch (e) { recibo('recusado', 'Não assinou: ' + motivo(e)); botao.disabled = false; return; }
+    if (!r?.assinado) { const m = r?.motivo === 'código errado' ? `Código errado: restam ${Number(r.restantes)} tentativa(s).` : (r?.motivo || 'não assinou') + '.';
+      asAviso[sid] = m; const s = $('asav-' + sid); if (s) s.textContent = m; recibo('recusado', m); botao.disabled = false; return; }
+    delete asAviso[sid];
+    if (r.concluido) {
+      try { await IMTS.servidor('assinatura', 'selar', { pedido }); await recarregar('feito', 'Assinado. Todos assinaram: o PDF já tem a página de manifesto e o selo do IMTS.'); }
+      catch (e) { await recarregar('feito', 'Assinado. Todos assinaram; o selo sai em instantes (' + motivo(e) + ').'); }
+    } else await recarregar('feito', 'Assinado. O próximo signatário já pode assinar.');
+  }
+  async function baixarAss(id, botao) {
+    const p = [...(S?.pedidos || []), ...(S?.comigo || [])].find(x => Number(x.id) === id); botao.disabled = true;
+    try {
+      const r = await IMTS.chamar('doc.assinatura_documento', { p_pedido: id });
+      const b64 = String(r?.pdf || '').replace(/\s+/g, ''); if (!b64) throw new Error('PDF indisponível');
+      const bin = atob(b64), bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+      const a = document.createElement('a'); a.href = url; a.download = String(p?.titulo || 'documento').replace(/[\\/:*?"<>|]+/g, ' ').slice(0, 110) + (r.assinado ? ' (assinado)' : '') + '.pdf';
+      document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 10000);
+      recibo('feito', r.assinado ? 'PDF assinado baixado (com a página de manifesto).' : 'PDF baixado.');
+    } catch (e) { recibo('recusado', 'Não baixou: ' + motivo(e)); }
+    finally { botao.disabled = false; }
+  }
+  async function selarAgora(id, botao) {
+    botao.disabled = true;
+    try { await IMTS.servidor('assinatura', 'selar', { pedido: id }); await recarregar('feito', 'Selo gerado: o PDF assinado tem a página de manifesto.'); }
+    catch (e) { recibo('recusado', 'O selo não saiu: ' + motivo(e)); botao.disabled = false; }
+  }
+
   // ---------- desenho e carga ----------
   function desenhar() {
     for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
@@ -442,23 +589,28 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     const np = (P.prestacoes || []).filter(x => ['conferida', 'enviada', 'aprovada'].includes(x.situacao)).length;
     const nr = (R.reunioes || []).filter(r => r.situacao === 'agendada' || (r.situacao === 'realizada' && r.ata_situacao !== 'aprovada')).length;
     const nn = (D?.notas || []).filter(n => ['rascunho', 'aprovada', 'emitida'].includes(n.situacao)).length;
+    const na = (S?.comigo || []).filter(p => (p.signatarios || []).some(s => s.sou_eu && s.vez)).length;
     $('resumo').innerHTML = `<span>Demandas abertas <b>${ab.length}</b></span><span class="${atr ? 'mal' : ''}">Com prazo vencido <b>${atr}</b></span>
       <span>Aguardando o cliente <b>${(A.pedidos || []).filter(p => p.situacao === 'respondido').length}</b></span><span class="${np ? 'esp' : ''}">Notas de parceiro para decidir <b>${np}</b></span>
-      <span>Reuniões em aberto <b>${nr}</b></span><span>Notas de débito em aberto <b>${nn}</b></span>${A.ve_ouvidoria ? '<span>Você vê a ouvidoria</span>' : ''}`;
-    $('n-atendimento').textContent = ab.length || ''; $('n-parceiros').textContent = np || ''; $('n-reunioes').textContent = nr || ''; $('n-notas').textContent = nn || '';
-    $('conteudo').innerHTML = { atendimento: vAtendimento, parceiros: vParceiros, reunioes: vReunioes, notas: vNotas }[aba]();
+      <span>Reuniões em aberto <b>${nr}</b></span><span>Notas de débito em aberto <b>${nn}</b></span><span class="${na ? 'esp' : ''}">Assinaturas comigo <b>${na}</b></span>${A.ve_ouvidoria ? '<span>Você vê a ouvidoria</span>' : ''}`;
+    $('n-atendimento').textContent = ab.length || ''; $('n-parceiros').textContent = np || ''; $('n-reunioes').textContent = nr || ''; $('n-notas').textContent = nn || ''; $('n-assinaturas').textContent = na || '';
+    $('conteudo').innerHTML = { atendimento: vAtendimento, parceiros: vParceiros, reunioes: vReunioes, notas: vNotas, assinaturas: vAssinaturas }[aba]();
     if (aba === 'reunioes') { $('f-reuniao').onsubmit = marcar; $('fr-cp').onchange = $('fr-ped').onchange = preencherConvidados; preencherConvidados(); }
     if (aba === 'notas' && $('f-nd')) $('f-nd').onsubmit = salvarNd;
+    if (aba === 'assinaturas' && $('f-ass')) $('f-ass').onsubmit = pedirAss;
     if (aba === 'atendimento') { if ($('f-convite')) $('f-convite').onsubmit = convidar; if ($('f-publicar')) $('f-publicar').onsubmit = publicar; }
   }
   async function carregar() {
     const emp = IMTS.empresa();
-    if (!emp) { A = P = R = D = null; $('resumo').innerHTML = ''; $('conteudo').innerHTML = '<p class="vazio">Você ainda não tem acesso a nenhuma empresa. Peça à administração do IMTS.</p>'; return; }
-    const [a, p, r, d] = await Promise.all([IMTS.chamar('ext.painel_atendimento', { p_empresa: emp }), IMTS.chamar('ext.painel_parceiros', { p_empresa: emp }),
+    if (!emp) { A = P = R = D = S = null; $('resumo').innerHTML = ''; $('conteudo').innerHTML = '<p class="vazio">Você ainda não tem acesso a nenhuma empresa. Peça à administração do IMTS.</p>'; return; }
+    const [a, p, r, d, s] = await Promise.all([IMTS.chamar('ext.painel_atendimento', { p_empresa: emp }), IMTS.chamar('ext.painel_parceiros', { p_empresa: emp }),
       IMTS.chamar('ext.painel_reunioes', { p_empresa: emp }),
       // notas de débito: se a função faltar ou recusar, só a aba delas mostra o motivo
-      IMTS.chamar('doc.painel_notas_debito', { p_empresa: emp }).then(x => ({ ok: x }), e => ({ erro: motivo(e) }))]);
-    A = a || {}; P = p || {}; R = r || {}; D = d.ok || null; Derro = d.erro || null;
+      IMTS.chamar('doc.painel_notas_debito', { p_empresa: emp }).then(x => ({ ok: x }), e => ({ erro: motivo(e) })),
+      // assinaturas: idem, só a aba delas mostra o motivo
+      IMTS.chamar('doc.painel_assinaturas', { p_empresa: emp }).then(x => ({ ok: x }), e => ({ erro: motivo(e) }))]);
+    A = a || {}; P = p || {}; R = r || {}; D = d.ok || null; Derro = d.erro || null; S = s.ok || null; Serro = s.erro || null;
+    if (asForm && S && !(S.documentos || []).some(x => Number(x.emissao) === Number(asForm.doc))) asForm = null;
     if (ndForm && D && !(D.contrapartes || []).some(c => c.id === ndForm.cp)) ndForm = null;   // trocou de empresa: o formulário aberto era da outra
     // usuários de cada cliente ou parceiro: e-mails para convidar ao Meet (se falhar, os convidados ficam à mão)
     try { CP = (await IMTS.chamar('ext.contrapartes', { p_empresa: emp })) || []; } catch (e) { CP = []; }
@@ -596,6 +748,24 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
     const t = e.target.closest('button'); if (!t || t.closest('#imts-barra')) return;
     const d = t.dataset;
     if (d.aba) { aba = d.aba; desenhar(); return; }
+    // assinaturas
+    if (d.asfiltro) { asFiltro = d.asfiltro; desenhar(); return; }
+    if (d.asatualizar) { t.disabled = true; return recarregar('feito', 'Assinaturas atualizadas.'); }
+    if (d.asnovo) { const doc = (S.documentos || [])[0]; if (!doc) { recibo('recusado', 'Esta empresa não tem documento emitido pelo motor documental.'); return; }
+      const prim = (S.internos || [])[0] ? 'p:' + S.internos[0].pessoa : (S.externos || [])[0] ? 'u:' + S.externos[0].usuario : '';
+      asForm = { doc: doc.emissao, tit: '', prazo: diaISO(new Date(Date.now() + (Number(S.prazo_padrao_dias) || 15) * 864e5)), icp: false, sigs: [prim] };
+      desenhar(); $('as-doc').focus(); return; }
+    if (d.asfechar) { asForm = null; desenhar(); return; }
+    if (d.asmais) { asForm.sigs.push(asForm.sigs.at(-1) || ''); $('as-sigs').innerHTML = asForm.sigs.map(linhaSig).join(''); $('as-sigs').querySelector('.as-sig:last-child select')?.focus(); return; }
+    if (d.astirar) { asForm.sigs.splice(Number(d.astirar), 1); $('as-sigs').innerHTML = asForm.sigs.map(linhaSig).join(''); $('as-sigs').querySelector('select')?.focus(); return; }
+    if (d.ascodigo) return enviarCodigo(Number(d.ascodigo), t);
+    if (d.asassinar) return assinar(Number(d.asassinar), Number(d.pedido), t);
+    if (d.asrecusar) return agir('doc.assinatura_recusar', { p_signatario: Number(d.asrecusar), p_motivo: $('asrm-' + d.asrecusar).value }, 'Assinatura recusada; o pedido foi encerrado e quem pediu vê o motivo.', t);
+    if (d.ascancelar) return agir('doc.assinatura_cancelar', { p_pedido: Number(d.ascancelar), p_motivo: $('ascm-' + d.ascancelar).value }, 'Pedido de assinatura cancelado.', t);
+    if (d.asenviar) return agir('doc.assinatura_enviar', { p_pedido: Number(d.asenviar) }, 'Pedido enviado para assinatura.', t);
+    if (d.asfora) return agir('doc.assinatura_registrar_fora', { p_signatario: Number(d.asfora), p_referencia: $('asfr-' + d.asfora).value }, 'Assinatura qualificada feita fora registrada.', t);
+    if (d.asdoc) return baixarAss(Number(d.asdoc), t);
+    if (d.asselar) return selarAgora(Number(d.asselar), t);
     // notas de débito
     if (d.ndfiltro) { ndFiltro = d.ndfiltro; desenhar(); return; }
     if (d.ndatualizar) { t.disabled = true; return recarregar('feito', 'Notas de débito atualizadas.'); }
@@ -651,6 +821,8 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
   });
   document.addEventListener('input', campoNd);
   document.addEventListener('change', campoNd);
+  document.addEventListener('input', campoAss);
+  document.addEventListener('change', campoAss);
   document.addEventListener('keydown', e => {
     const t = e.target.closest?.('.aba');
     if (t && ['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) {

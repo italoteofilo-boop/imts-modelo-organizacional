@@ -94,6 +94,14 @@ details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-hei
 .tabela th { font-size:12px; color:var(--apoio); } .tabela td.num { text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
 .rolar { grid-column:1 / -1; overflow-x:auto; }
 .valor { font-weight:700; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.acoes .marcar { display:flex; gap:8px; align-items:center; font-size:13px; color:var(--apoio); }
+.acoes .marcar input { width:24px; height:24px; min-width:24px; margin:0; flex:0 0 24px; }
+.acoes input.cod6 { width:10ch; padding:7px 9px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); font-family:var(--dados); letter-spacing:.18em; }
+.acoes input.motivo { flex:1 1 220px; min-width:0; padding:7px 9px; border:1px solid var(--fio); border-radius:8px; background:var(--folha); color:var(--tinta); }
+.acoes a { display:inline-block; min-height:24px; padding-block:3px; }
+.consent { grid-column:1 / -1; margin:0; font-size:13px; color:var(--apoio); background:var(--chao); border-radius:8px; padding:8px 10px; overflow-wrap:anywhere; }
+.sigs { grid-column:1 / -1; margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px; }
+.sigs li { background:var(--chao); border-radius:8px; padding:7px 10px; font-size:14px; overflow-wrap:anywhere; }
 .erro-carga { background:var(--mal-suave); color:var(--mal); border-radius:12px; padding:14px 16px; margin:0; }
 @media (max-width: 640px) { .item { grid-template-columns:minmax(0, 1fr); } .item .lado { align-items:start; flex-direction:row; flex-wrap:wrap; } #b-telegram { margin-left:0; } }
 @media (prefers-reduced-motion: reduce) { * { transition:none !important; animation:none !important; } }
@@ -115,6 +123,7 @@ details > summary { cursor:pointer; font-size:13px; color:var(--realce); min-hei
       <button class="aba" role="tab" id="t-andamentos" data-aba="andamentos" aria-controls="conteudo" aria-selected="true" tabindex="0">Andamentos<span class="n" id="n-andamentos"></span></button>
       <button class="aba" role="tab" id="t-documentos" data-aba="documentos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Documentos<span class="n" id="n-documentos"></span></button>
       <button class="aba" role="tab" id="t-notas" data-aba="notas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Notas de débito<span class="n" id="n-notas"></span></button>
+      <button class="aba" role="tab" id="t-assinaturas" data-aba="assinaturas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Assinaturas<span class="n" id="n-assinaturas"></span></button>
       <button class="aba" role="tab" id="t-reunioes" data-aba="reunioes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Reuniões<span class="n" id="n-reunioes"></span></button>
       <button class="aba" role="tab" id="t-pedidos" data-aba="pedidos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Pedidos<span class="n" id="n-pedidos"></span></button>
       <button class="aba" role="tab" id="t-oportunidades" data-aba="oportunidades" aria-controls="conteudo" aria-selected="false" tabindex="-1" hidden>Oportunidades<span class="n" id="n-oportunidades"></span></button>
@@ -154,6 +163,7 @@ const SITC = { prevista: 'Prevista', adquirida: 'Adquirida', a_pagar: 'A pagar',
 const REGRA = { comissoes: 'Comissões escolhidas', cnpj: 'CNPJ do emitente', numero: 'Número da nota', valor: 'Valor da nota' };
 const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
 let dados = null, parc = null, reus = [], notas = null, notasErro = null, aba = 'andamentos', voltarFoco = null;
+let ass = null, assErro = null; const assAviso = {};   // assinaturas: lista do portal, motivo da falha, aviso do código por signatário
 
 const motivo = e => e?.message || String(e || 'erro');
 function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 8000); }
@@ -285,6 +295,77 @@ function vOportunidades() {
       <div class="form-linha"><input type="text" id="sm-${esc(o.id)}" maxlength="2000" aria-label="Mensagem para a sala do negócio ${esc(o.cliente_final)}" placeholder="Escreva para a equipe"><button class="btn" type="button" data-sala="${esc(o.id)}">Enviar</button></div>` : ''}
     </article>`; }).join('')}</div>`;
 }
+
+// ---------- assinaturas (assinatura eletrônica avançada, Lei 14.063/2020, art. 4º, II) ----------
+const ASS_COR = { aguardando: 'espera', concluido: 'bom', recusado: 'mal', cancelado: '', vencido: 'mal', pendente: 'espera', assinado: 'bom', assinado_fora: 'bom' };
+const ASS_ROT = { concluido: 'concluído', assinado_fora: 'assinado fora (ICP-Brasil)' };
+const assChip = s => `<span class="chip ${ASS_COR[s] || ''}">${esc(ASS_ROT[s] || String(s || '').replace(/_/g, ' '))}</span>`;
+function vAssinaturas() {
+  if (!ass) return `<p class="erro-carga" role="alert">As assinaturas não carregaram${assErro ? ': ' + esc(assErro) : ''}. O resto do portal segue funcionando.</p>`;
+  const ps = ass.pedidos || [];
+  if (!ps.length) return '<p class="vazio">Nenhum documento enviado para você assinar. Quando a empresa pedir a sua assinatura, ele aparece aqui; o código para assinar chega no seu e-mail.</p>';
+  return `<div class="lista">${ps.map(p => {
+    const id = num(p.id), eu = (p.signatarios || []).find(x => x.sou_eu) || {}, sid = num(eu.id), vez = eu.vez && eu.situacao === 'pendente', aviso = assAviso[sid];
+    return `<article class="item" data-ass="${id}">
+      <div><div class="t">${esc(p.titulo)}</div><div class="sub">${esc(p.empresa)} · prazo ${quando(p.prazo)} · código de verificação ${esc(p.codigo)}${p.exige_icp ? ' · exige assinatura qualificada (ICP-Brasil)' : ''}</div>
+        <div class="sub">SHA-256 do documento: <span class="cod">${esc(p.hash_documento)}</span></div></div>
+      <div class="lado">${assChip(p.situacao)}${eu.situacao ? `<span class="chip ${ASS_COR[eu.situacao] || ''}">você: ${esc(ASS_ROT[eu.situacao] || eu.situacao)}</span>` : ''}</div>
+      <ol class="sigs" aria-label="Quem assina ${esc(p.titulo)}">${(p.signatarios || []).map(s => `<li>${num(s.ordem)}. ${esc(s.nome)}${s.sou_eu ? ' (você)' : ''} ${assChip(s.situacao)}${s.assinado_em ? ` <span class="sub">em ${quando(s.assinado_em)}</span>` : ''}</li>`).join('')}</ol>
+      ${p.encerrado_motivo ? `<div class="resposta aviso">${esc(p.encerrado_motivo)}</div>` : ''}
+      <div class="acoes"><button class="btn" type="button" data-assdoc="${id}">${p.selado ? 'Baixar PDF assinado' : 'Baixar o documento'}</button>
+        ${p.situacao === 'concluido' && !p.exige_icp ? `<a href="${esc((ass.url_verificacao || 'verificar.html') + '?c=' + encodeURIComponent(p.codigo))}" target="_blank" rel="noopener">Verificação pública</a>` : ''}</div>
+      ${p.exige_icp && eu.situacao === 'pendente' ? '<div class="resposta aviso">Este documento exige assinatura qualificada (certificado ICP-Brasil): assine com o seu certificado, fora do portal, e devolva à empresa; a empresa registra aqui.</div>' : ''}
+      ${!p.exige_icp && eu.situacao === 'pendente' && p.situacao === 'aguardando' && !vez ? '<div class="resposta">Aguardando quem assina antes de você; o código chega quando for a sua vez.</div>' : ''}
+      ${!p.exige_icp && vez ? `<p class="consent" id="act-${sid}">${esc(p.consentimento)}</p>
+      <div class="acoes"><button class="btn" type="button" data-asscodigo="${sid}">${aviso ? 'Enviar outro código' : 'Enviar código por e-mail'}</button><span class="sub" role="status" id="aav-${sid}">${aviso ? esc(aviso) : ''}</span></div>
+      <div class="acoes"><label class="sub" for="acod-${sid}">Código de 6 dígitos</label><input type="text" class="cod6" id="acod-${sid}" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}">
+        <label class="marcar"><input type="checkbox" id="aok-${sid}" aria-describedby="act-${sid}"> Li o documento e aceito o texto acima</label>
+        <button class="btn prim" type="button" data-assassinar="${sid}" data-pedido="${id}">Assinar</button></div>
+      <div class="acoes"><input type="text" class="motivo" id="arm-${sid}" aria-label="Motivo para recusar a assinatura de ${esc(p.titulo)}" placeholder="motivo para recusar"><button class="btn perigo" type="button" data-assrecusar="${sid}">Recusar</button></div>` : ''}
+    </article>`; }).join('')}</div>`;
+}
+async function assCodigo(sid, botao) {
+  botao.disabled = true;
+  try {
+    const r = await IMTS.servidor('assinatura', 'codigo', { signatario: sid });
+    assAviso[sid] = `Código enviado para ${r?.para || 'o seu e-mail'}; vale ${num(r?.validade_min) || 10} minutos.`;
+    const s = $('aav-' + sid); if (s) s.textContent = assAviso[sid]; botao.textContent = 'Enviar outro código'; $('acod-' + sid)?.focus();
+  } catch (e) { recibo('recusado', 'O código não foi enviado: ' + motivo(e)); }
+  finally { botao.disabled = false; }
+}
+async function assAssinar(sid, pedido, botao) {
+  const cod = ($('acod-' + sid)?.value || '').replace(/\D/g, '');
+  if (!$('aok-' + sid)?.checked) { recibo('recusado', 'Para assinar, marque que leu o documento e aceita o texto.'); return; }
+  if (cod.length !== 6) { recibo('recusado', 'Digite o código de 6 dígitos enviado ao seu e-mail.'); return; }
+  botao.disabled = true;
+  let r;
+  try { r = await IMTS.chamar('ext.assinatura_assinar', { p_signatario: sid, p_codigo: cod, p_aceito: true }); }
+  catch (e) { recibo('recusado', 'Não assinou: ' + motivo(e)); botao.disabled = false; return; }
+  if (!r?.assinado) { const m = r?.motivo === 'código errado' ? `Código errado: restam ${num(r.restantes)} tentativa(s).` : (r?.motivo || 'não assinou') + '.';
+    assAviso[sid] = m; const s = $('aav-' + sid); if (s) s.textContent = m; recibo('recusado', m); botao.disabled = false; return; }
+  delete assAviso[sid];
+  if (r.concluido) { try { await IMTS.servidor('assinatura', 'selar', { pedido }); } catch (e) { /* o banco pede o selo sozinho; a tela segue */ } }
+  recibo('feito', r.concluido ? 'Assinado. Todos assinaram: baixe o PDF assinado, com a página de manifesto.' : 'Assinado. Agora é a vez do próximo signatário.');
+  await carregar();
+}
+async function assRecusar(sid, botao) {
+  botao.disabled = true;
+  try { await IMTS.chamar('ext.assinatura_recusar', { p_signatario: sid, p_motivo: $('arm-' + sid)?.value || '' }); recibo('feito', 'Assinatura recusada; a empresa vê o motivo.'); await carregar(); }
+  catch (e) { recibo('recusado', 'Não recusou: ' + motivo(e)); botao.disabled = false; }
+}
+async function assBaixar(id, botao) {
+  const p = (ass?.pedidos || []).find(x => num(x.id) === id); botao.disabled = true;
+  try {
+    const r = await IMTS.chamar('ext.assinatura_documento', { p_pedido: id });
+    const b64 = String(r?.pdf || '').replace(/\s+/g, ''); if (!b64) throw new Error('PDF indisponível');
+    const bin = atob(b64), bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+    const a = document.createElement('a'); a.href = url; a.download = String(p?.titulo || 'documento').replace(/[\\/:*?"<>|]+/g, ' ').slice(0, 110) + (r.assinado ? ' (assinado)' : '') + '.pdf';
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 10000);
+    recibo('feito', r.assinado ? 'PDF assinado baixado.' : 'Documento baixado.');
+  } catch (e) { recibo('recusado', 'Não baixou: ' + motivo(e)); }
+  finally { botao.disabled = false; }
+}
 function desenhar() {
   for (const b of document.querySelectorAll('.aba')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
   $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
@@ -303,9 +384,10 @@ function desenhar() {
   $('n-andamentos').textContent = (dados.andamentos || []).length || '';
   $('n-documentos').textContent = (dados.documentos || []).length || '';
   $('n-notas').textContent = (notas || []).filter(n => n.situacao === 'emitida').length || '';
+  $('n-assinaturas').textContent = (ass?.pedidos || []).filter(p => (p.signatarios || []).some(s => s.sou_eu && s.vez)).length || '';
   $('n-pedidos').textContent = (dados.pedidos || []).length || ''; $('n-reunioes').textContent = reus.filter(r => r.situacao === 'agendada').length || '';
   $('n-oportunidades').textContent = (dados.oportunidades || []).length || '';
-  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, notas: vNotas, pedidos: vPedidos, oportunidades: vOportunidades, reunioes: vReunioes, carteira: vCarteira, prestacao: vPrestacao }[aba]();
+  $('conteudo').innerHTML = { andamentos: vAndamentos, documentos: vDocumentos, notas: vNotas, assinaturas: vAssinaturas, pedidos: vPedidos, oportunidades: vOportunidades, reunioes: vReunioes, carteira: vCarteira, prestacao: vPrestacao }[aba]();
   $('b-novo').disabled = false; $('b-telegram').disabled = false;
   $('rodape').textContent = 'Você vê só o que foi publicado para a sua organização e o seu perfil. Mudanças internas da empresa não aparecem aqui; cada etapa visível tem título e texto aprovados para o público externo.';
 }
@@ -369,13 +451,16 @@ async function baixar(emissao, nome, botao) {
 
 async function carregar() {
   const parceiro = quem.contraparte?.tipo === 'parceiro';
-  const [d, p, r, n] = await Promise.all([
+  const [d, p, r, n, a] = await Promise.all([
     IMTS.chamar('ext.portal', {}),
     parceiro ? IMTS.chamar('ext.portal_parceiro', {}) : Promise.resolve(null),
     IMTS.chamar('ext.portal_reunioes', {}),
     // notas de débito: se falhar, só a aba delas mostra o motivo
-    IMTS.chamar('ext.portal_notas_debito', {}).then(x => ({ ok: Array.isArray(x) ? x : [] }), e => ({ erro: motivo(e) }))
+    IMTS.chamar('ext.portal_notas_debito', {}).then(x => ({ ok: Array.isArray(x) ? x : [] }), e => ({ erro: motivo(e) })),
+    // assinaturas: idem
+    IMTS.chamar('ext.portal_assinaturas', {}).then(x => ({ ok: x || { pedidos: [] } }), e => ({ erro: motivo(e) }))
   ]);
+  ass = a.ok || null; assErro = a.erro || null;
   dados = d || {}; parc = p; reus = Array.isArray(r) ? r : []; notas = n.ok || null; notasErro = n.erro || null;
   desenhar();
 }
@@ -474,6 +559,10 @@ document.addEventListener('click', e => {
   if (t.id === 'b-novo') abrirNovo();
   else if (t.dataset.aceite) abrirAceite(t.dataset.aceite, t.dataset.t);
   else if (t.dataset.baixar) baixar(t.dataset.baixar, t.dataset.nome, t);
+  else if (t.dataset.assdoc) assBaixar(num(t.dataset.assdoc), t);
+  else if (t.dataset.asscodigo) assCodigo(num(t.dataset.asscodigo), t);
+  else if (t.dataset.assassinar) assAssinar(num(t.dataset.assassinar), num(t.dataset.pedido), t);
+  else if (t.dataset.assrecusar) assRecusar(num(t.dataset.assrecusar), t);
   else if (t.dataset.sala) falarSala(t.dataset.sala, t);
   else if (t.dataset.confirmar) confirmar(t.dataset.confirmar, t);
   else if (t.dataset.consentir) consentir(t.dataset.consentir, t);

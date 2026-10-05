@@ -355,3 +355,14 @@ Ensaio em 04/10/2026, Postgres 16 local com a imitação do Supabase:
 | `071_nota_debito.sql` | Nota de débito para ressarcimento: numeração por empresa e ano, aprovação por outra pessoa, PDF pelo motor, portal e pagamento; 10 testes |
 | `072_integracoes.sql` | Integrações guiadas: serviços externos cadastrados pela Administração, segredos gravados no cofre pela tela (o valor não volta), teste real pela função `conexoes`, sistemas do motor em modo assistido ou real |
 | `073_testes_integracoes.sql` | 8 testes das integrações e a definição final de `adm.testar_tudo()` (21 suítes, 199 testes) |
+
+### Migrações 076 e 077 (05/10/2026): assinatura eletrônica avançada própria
+
+| Arquivo | O que faz |
+|---|---|
+| `076_assinatura.sql` | Assinatura eletrônica avançada (Lei 14.063/2020, art. 4º, II; MP 2.200-2/2001, art. 10, § 2º) sobre documento emitido pelo motor documental: pedido com o SHA-256 do PDF, signatários em ordem (equipe e portal), código de 6 dígitos por e-mail guardado só como hash (validade, tentativas e códigos por hora em parâmetro), evidências (login, IP e navegador dos cabeçalhos, consentimento, hash), trilha de eventos encadeada por hash e imutável, recusa, cancelamento por quem pediu, vencimento (rotina `imts-assinatura`), pedido que exige ICP-Brasil (só registra a assinatura feita fora), selo ECDSA P-256 do manifesto e verificação pública pelo código |
+| `077_testes_assinatura.sql` | 15 testes da assinatura e a definição de `adm.testar_tudo()` com 23 suítes |
+
+Funções do servidor novas: `assinatura` (verify_jwt ligado: código por e-mail e selo a pedido de quem assina), `selo` (verify_jwt desligado, só com `X-IMTS-Chave`: selo automático chamado pelo banco ao concluir e pela rotina) e `verificar` (verify_jwt desligado: verificação pública, sem login). A chave privada do selo nasce no cofre (`assinatura_chave_privada`, JWK) no primeiro selo; a pública fica em `doc.assinatura_chave`. Testes: `deno test -A functions/testes/assinatura_test.ts`. Página pública: `app/verificar.html`.
+
+Limite: quando a lei ou o órgão público exigir assinatura qualificada (ICP-Brasil), esta assinatura não serve; marque o pedido como "exige ICP-Brasil".

@@ -68,6 +68,19 @@ Orçamento: parâmetro `ia.orcamento_mensal_tokens`; passou, `403` até o mês v
 
 Nada que a IA devolve é gravado sem aprovação de pessoa: a tela mostra o rascunho e quem aprova chama `ext.reuniao_ata_rascunho` ou `ext.reuniao_ata_aprovar`.
 
+## Funções do servidor da assinatura eletrônica avançada (supabase/functions/assinatura, selo e verificar)
+
+Base: Lei 14.063/2020, art. 4º, II, e MP 2.200-2/2001, art. 10, § 2º. Não substitui a assinatura qualificada (ICP-Brasil) quando a lei ou o órgão exigir: nesse caso o pedido é marcado `exige ICP-Brasil` e só registra a assinatura feita fora.
+
+| função | acao | entrada | saída | quem |
+| --- | --- | --- | --- | --- |
+| `assinatura` (verify_jwt ligado) | `codigo` | `signatario` | `{ enviado, para (e-mail mascarado), validade_min, tentativas }` (o código vai ao e-mail pelo Gmail da conta do sistema) | o próprio signatário, na sua vez |
+| `assinatura` | `selar` | `pedido` | `{ selados[] }` | quem lê o pedido |
+| `selo` (verify_jwt desligado) | (nenhuma) | cabeçalho `X-IMTS-Chave` | `{ selados[] }` | o banco e a rotina `imts-assinatura` |
+| `verificar` (verify_jwt desligado) | (nenhuma) | `codigo`, `hash` (SHA-256 calculado no navegador) ou `arquivo` (base64) | `{ encontrado, valido, motivos[], signatarios[nome, e-mail mascarado, data], documento, arquivo, trilha, selo{ confere, chave_publica } }` | qualquer pessoa, sem login |
+
+Assinar e recusar vão pela porta única (`doc.assinatura_assinar`, `ext.assinatura_assinar`, `doc.assinatura_recusar`, `ext.assinatura_recusar`): o IP e o navegador saem dos cabeçalhos da requisição. Código errado não é erro: a resposta traz `{ assinado: false, motivo, restantes }`. A página pública é `verificar.html?c=CODIGO`.
+
 ## Testes
 
 `testes/apoio.mjs` abre a página com um token de ensaio (sem Google) contra o PostgREST local. Cada módulo tem `testes/t_<modulo>.mjs`. Pessoas do ensaio: `admin`, `olga` (Operações), `lia` (líder de Operações), `rui` (Relações), `clara` (cliente), `paulo` (parceiro), `curioso` (sem cadastro).

@@ -149,6 +149,9 @@ supabase functions deploy google
 supabase functions deploy ia
 supabase functions deploy alertas  --no-verify-jwt   # chamada pela rotina, com a chave X-IMTS-Chave
 supabase functions deploy telegram --no-verify-jwt   # chamada pelo Telegram (webhook), com o segredo do webhook
+supabase functions deploy assinatura                 # assinatura eletrônica avançada: código por e-mail e selo (exige login)
+supabase functions deploy selo     --no-verify-jwt   # selo automático, chamado pelo banco e pela rotina, com a chave X-IMTS-Chave
+supabase functions deploy verificar --no-verify-jwt  # verificação pública da assinatura (verificar.html), sem login
 ```
 
 Guia de publicação: https://supabase.com/docs/guides/functions/deploy
@@ -167,6 +170,7 @@ update adm.parametro set valor = '["ti@imts.email"]' where chave = 'alerta.email
 Na Administração > Conexões, preencha o endereço de produção e marque como ativa cada conexão pendente:
 - `supabase-api`, `supabase-postgres`, `edge-telegram`;
 - `edge-google`, `edge-ia`, `edge-alertas`;
+- `edge-assinatura`, `edge-selo`, `edge-verificar` (a chave do selo nasce sozinha no cofre, `assinatura_chave_privada`, no primeiro pedido concluído);
 - `google-drive-imts`.
 
 ## 7. Bot do Telegram (E07, Ítalo)
