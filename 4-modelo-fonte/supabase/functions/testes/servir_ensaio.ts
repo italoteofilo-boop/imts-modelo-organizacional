@@ -1,11 +1,13 @@
 // Só para os testes de navegador (ensaio local). Nunca publicar.
-// Serve as funções assinatura, selo e verificar de verdade, contra o banco app_ensaio, com o Google e o Gmail simulados.
+// Serve as funções assinatura, selo, avisos, verificar e telegram_app de verdade, contra o banco app_ensaio, com o Google e o Gmail simulados.
 // O que o Gmail "enviaria" fica em GET /_emails (para o teste ler o código que chegaria ao e-mail da pessoa).
 // Rodar: DENO_DIR=... deno run -A functions/testes/servir_ensaio.ts   (porta 3398, a mesma de testes/config.ensaio.js)
 import postgres from "npm:postgres@3.4.4";
 import { tratar as assinatura } from "../assinatura/tratar.ts";
 import { tratar as selo } from "../selo/tratar.ts";
+import { tratar as avisos } from "../avisos/tratar.ts";
 import { tratar as verificar } from "../verificar/tratar.ts";
+import { tratar as telegramApp } from "../telegram_app/tratar.ts";
 import { b64urlDecode, CORS, deB64 } from "../_comum/servidor.ts";
 
 const sql = postgres(Deno.env.get("IMTS_DB_URL") || "postgres://postgres:ensaio-local@127.0.0.1:5499/app_ensaio", { max: 3, prepare: false });
@@ -28,6 +30,8 @@ Deno.serve({ port: Number(Deno.env.get("PORTA") || 3398), hostname: "127.0.0.1",
   if (p === "/_emails") return new Response(JSON.stringify(emails), { headers: { ...CORS, "content-type": "application/json" } });
   if (p === "/assinatura") return assinatura(req, deps);
   if (p === "/selo") return selo(req, deps);
+  if (p === "/avisos") return avisos(req, deps);
   if (p === "/verificar") return verificar(req, deps);
+  if (p === "/telegram_app") return telegramApp(req, deps);   // Mini App do Telegram (o teste assina o initData com um token de ensaio)
   return new Response(JSON.stringify({ erro: "função não servida no ensaio", codigo: 404 }), { status: 404, headers: { ...CORS, "content-type": "application/json" } });
 });

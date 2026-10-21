@@ -15,6 +15,7 @@ const tok = (sub: string) => b64url(JSON.stringify({ alg: "HS256" })) + "." + b6
 const pedir = (corpo: unknown, quem: string | null, extra: Record<string, string> = {}) =>
   new Request("http://local/f", { method: "POST", headers: { "content-type": "application/json", ...(quem ? { authorization: "Bearer " + tok(quem) } : {}), ...extra }, body: JSON.stringify(corpo) });
 function ok(c: unknown, m: string) { if (!c) throw new Error(m); }
+const IPV = { "x-forwarded-for": "192.0.2." + (Math.floor(Math.random() * 250) + 1) };   // IP de documentação: a verificação conta consultas por IP (080)
 
 // Google simulado: token da conta de serviço e Gmail (guarda as mensagens); gmailFora derruba o envio
 const enviados: string[] = []; let gmailFora = false;
@@ -142,25 +143,25 @@ Deno.test({ name: "assinatura eletrônica avançada: funções do servidor", san
     ok((await sql`select count(*)::int n from doc.assinatura_chave where ativa`)[0].n === 1, "mais de uma chave ativa");
   });
   await t.step("verificação pública sem login: válida, sem IP nem e-mail inteiro, com a chave pública", async () => {
-    const r = await verificar(pedir({ codigo: pedido.codigo.toLowerCase() }, null), deps); const j = await r.json();
+    const r = await verificar(pedir({ codigo: pedido.codigo.toLowerCase() }, null, IPV), deps); const j = await r.json();
     ok(r.status === 200 && j.valido && j.selo.confere && j.trilha.integra && j.signatarios.length === 2 && j.selo.chave_publica?.kty === "EC", JSON.stringify(j));
     const texto = JSON.stringify(j);
     ok(!texto.includes("198.51.100.23") && !texto.includes("DenoTeste") && !texto.includes("olga@imts.com.br") && !texto.includes("clara@prefeitura") && texto.includes("ol***@imts.com.br"), "dado pessoal na resposta");
   });
   await t.step("verificação compara o arquivo: original, assinado (enviado inteiro) e diferente", async () => {
-    const j1 = await (await verificar(pedir({ codigo: pedido.codigo, hash: await sha256Hex(doc1.pdf) }, null), deps)).json(); ok(j1.valido && j1.arquivo === "original", JSON.stringify(j1));
+    const j1 = await (await verificar(pedir({ codigo: pedido.codigo, hash: await sha256Hex(doc1.pdf) }, null, IPV), deps)).json(); ok(j1.valido && j1.arquivo === "original", JSON.stringify(j1));
     const [sl] = await sql`select pdf from doc.assinatura_selo where pedido = ${pedido.id}`;
-    const j2 = await (await verificar(pedir({ codigo: pedido.codigo, arquivo: b64(new Uint8Array(sl.pdf)) }, null), deps)).json(); ok(j2.valido && j2.arquivo === "assinado", JSON.stringify(j2));
-    const j3 = await (await verificar(pedir({ codigo: pedido.codigo, hash: "f".repeat(64) }, null), deps)).json(); ok(!j3.valido && j3.arquivo === "diferente", JSON.stringify(j3));
+    const j2 = await (await verificar(pedir({ codigo: pedido.codigo, arquivo: b64(new Uint8Array(sl.pdf)) }, null, IPV), deps)).json(); ok(j2.valido && j2.arquivo === "assinado", JSON.stringify(j2));
+    const j3 = await (await verificar(pedir({ codigo: pedido.codigo, hash: "f".repeat(64) }, null, IPV), deps)).json(); ok(!j3.valido && j3.arquivo === "diferente", JSON.stringify(j3));
   });
   await t.step("código inexistente: 404; código malformado: 400", async () => {
-    const r = await verificar(pedir({ codigo: "ZZZZ-ZZZZ-ZZZZ" }, null), deps); ok(r.status === 404, "status " + r.status);
-    const r2 = await verificar(pedir({ codigo: "abc" }, null), deps); ok(r2.status === 400, "status " + r2.status);
+    const r = await verificar(pedir({ codigo: "ZZZZ-ZZZZ-ZZZZ" }, null, IPV), deps); ok(r.status === 404, "status " + r.status);
+    const r2 = await verificar(pedir({ codigo: "abc" }, null, IPV), deps); ok(r2.status === 400, "status " + r2.status);
   });
   await t.step("pedido ainda aguardando: verificação mostra que não está concluído", async () => {
     const doc2 = await pdfEmitido("Termo aguardando " + marca);
     const [{ r: p2 }] = await como(U.rui, (tx) => tx`select doc.assinatura_pedir(${doc2.emissao}::bigint, ${tx.json([{ pessoa: olga }])}) as r`);
-    const j = await (await verificar(pedir({ codigo: p2.codigo }, null), deps)).json();
+    const j = await (await verificar(pedir({ codigo: p2.codigo }, null, IPV), deps)).json();
     ok(!j.valido && j.situacao === "aguardando" && j.motivos[0].includes("aguardando"), JSON.stringify(j));
     await como(U.rui, (tx) => tx`select doc.assinatura_cancelar(${p2.id}::bigint, 'teste das funções do servidor')`);
   });

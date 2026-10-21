@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Mesa no Telegram · IMTS.OS</title>
+<meta name="description" content="Mesa do IMTS.OS dentro do Telegram: tarefas abertas, decisões e pedidos para aceitar.">
+<!-- Telegram Mini App: o script oficial vem antes de qualquer outro (documentação: Initializing Mini Apps) -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<link rel="stylesheet" href="comum/base.css">
+<style>
+/* Mesa no Telegram (P6). Sem login do Supabase: a identidade vem do initData do Telegram, conferido na função telegram_app.
+   Cores: as do tema do Telegram (themeParams), corrigidas aqui para contraste AA; sem Telegram, as da base do IMTS.OS. */
+:root {
+  --t-sec: var(--ground); --t-fundo: var(--surface); --t-texto: var(--ink); --t-dica: var(--sec); --t-borda: var(--hair);
+  --t-botao: var(--accent); --t-botao-texto: #FFFFFF; --t-link: var(--accent); --t-perigo: var(--late); --t-espera: var(--wait); --t-espera-fundo: var(--wait-soft);
+}
+:root[data-theme="dark"] { --t-botao-texto: #10131C; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --t-botao-texto: #10131C; } }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+html, body { margin:0; background:var(--t-sec); color:var(--t-texto); font-family:var(--sans); font-size:16px; line-height:1.45; -webkit-text-size-adjust:100%; }
+button { font:inherit; cursor:pointer; }
+:focus-visible { outline:2px solid var(--t-link); outline-offset:2px; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+main { max-width:640px; margin:0 auto; padding:16px 16px calc(24px + env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:16px; }
+header.topo { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; }
+h1 { font-size:22px; line-height:1.2; margin:0; }
+.quem { color:var(--t-dica); font-size:14px; margin:0; flex:1 1 auto; }
+.atualizar { margin-left:auto; border:1px solid var(--t-borda); background:var(--t-fundo); color:var(--t-texto); border-radius:10px; padding:8px 12px; font-size:14px; min-height:40px; }
+.resumo { display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none; }
+.resumo li { font-size:13px; padding:4px 10px; border-radius:99px; background:var(--t-fundo); color:var(--t-dica); border:1px solid var(--t-borda); }
+.resumo b { color:var(--t-texto); }
+.resumo .alerta b { color:var(--t-perigo); }
+.aviso { margin:0; padding:12px 14px; border-radius:12px; background:var(--t-fundo); border:1px solid var(--t-borda); }
+.aviso.erro { border-color:var(--t-perigo); color:var(--t-perigo); }
+.aviso.ok { border-left:4px solid var(--t-link); }
+.painel { background:var(--t-fundo); border:1px solid var(--t-borda); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:10px; }
+.painel h2 { font-size:18px; margin:0; }
+.painel p { margin:0; }
+section.grupo { display:flex; flex-direction:column; gap:8px; }
+section.grupo > h2 { font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--t-dica); margin:4px 2px 0; font-weight:700; }
+ul.cartoes { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+.cartao { background:var(--t-fundo); border:1px solid var(--t-borda); border-radius:14px; padding:12px 14px; display:flex; flex-direction:column; gap:8px; min-width:0; }
+.cartao h3 { font-size:16px; margin:0; line-height:1.3; overflow-wrap:anywhere; }
+.meta { display:flex; flex-wrap:wrap; gap:2px 10px; font-size:13px; color:var(--t-dica); margin:0; }
+.meta .atraso { color:var(--t-perigo); font-weight:700; }
+.chips { display:flex; flex-wrap:wrap; gap:6px; }
+.chip { font-size:12px; padding:2px 8px; border-radius:6px; border:1px solid var(--t-borda); color:var(--t-dica); }
+.chip.pend { background:var(--t-espera-fundo); color:var(--t-espera); border-color:transparent; }
+.acoes { display:flex; flex-wrap:wrap; gap:8px; }
+.btn { border:1px solid var(--t-borda); background:var(--t-fundo); color:var(--t-texto); border-radius:10px; padding:10px 14px; font-size:15px; min-height:44px; flex:0 1 auto; max-width:100%; text-align:left; overflow-wrap:anywhere; }
+.btn.prim { background:var(--t-botao); border-color:var(--t-botao); color:var(--t-botao-texto); font-weight:700; }
+.btn.perigo { color:var(--t-perigo); border-color:var(--t-perigo); }
+.btn:disabled { opacity:.55; cursor:progress; }
+.opcoes { display:flex; flex-direction:column; gap:6px; }
+.opcoes .btn { width:100%; }
+.nota { font-size:13px; color:var(--t-dica); margin:0; }
+a { color:var(--t-link); }
+.vazio { color:var(--t-dica); margin:0; padding:8px 2px; }
+</style>
+</head>
+<body>
+<main id="app" aria-busy="true">
+  <header class="topo">
+    <h1>Mesa</h1>
+    <p class="quem" id="quem">IMTS.OS no Telegram</p>
+    <button type="button" class="atualizar" id="atualizar" hidden>Atualizar</button>
+  </header>
+  <p class="aviso" id="status" role="status" aria-live="polite">Carregando a sua Mesa…</p>
+  <p class="aviso erro" id="erro" role="alert" hidden></p>
+  <ul class="resumo" id="resumo" aria-label="Resumo" hidden></ul>
+  <div id="lista"></div>
+  <section class="painel" id="instrucao" hidden aria-labelledby="instrucao-t">
+    <h2 id="instrucao-t">Como ligar o seu Telegram</h2>
+    <p id="instrucao-p"></p>
+    <div class="acoes"><button type="button" class="btn" id="fechar">Fechar</button></div>
+  </section>
+</main>
+
+<script src="config.js"></script>
+<script>
+(function () {
+  'use strict';
+  const C = window.IMTS_CONFIG || {};
+  const FUNCAO = (C.funcoes || (C.supabaseUrl || '') + '/functions/v1').replace(/\/$/, '') + '/telegram_app';
+  const TG = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const ASSISTIDA = /\s*\(assistida:\s*([^)]*)\)\s*$/i;
+  let cartoes = [], ocupado = false;
+
+  // ---------- tema do Telegram, com contraste AA garantido ----------
+  const HEX = /^#[0-9a-f]{6}$/i;
+  const rgb = h => h.slice(1).match(/../g).map(x => parseInt(x, 16));
+  const paraHex = c => '#' + c.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join('');
+  function lum(h) { return rgb(h).map(v => v / 255).map(v => v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)).reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0); }
+  function contraste(a, b) { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+  function mistura(a, b, t) { const p = rgb(a), q = rgb(b); return paraHex(p.map((v, i) => v + (q[i] - v) * t)); }
+  // aproxima a cor de frente do preto ou do branco até ter contraste com todos os fundos
+  function legivel(fg, fundos, min) {
+    const ruim = c => fundos.some(f => contraste(c, f) < min);
+    if (!ruim(fg)) return fg;
+    const alvo = lum(fundos[0]) > 0.4 ? '#000000' : '#FFFFFF';
+    for (let t = 0.1; t < 1; t += 0.1) { const c = mistura(fg, alvo, t); if (!ruim(c)) return c; }
+    return alvo;
+  }
+  function aplicarTema() {
+    const raiz = document.documentElement;
+    if (TG && (TG.colorScheme === 'dark' || TG.colorScheme === 'light')) raiz.setAttribute('data-theme', TG.colorScheme);
+    const p = TG && TG.themeParams ? TG.themeParams : {};
+    const ok = k => HEX.test(p[k] || '');
+    if (!ok('bg_color') || !ok('text_color')) return;   // sem tema do Telegram: fica a base do IMTS.OS
+    const fundo = p.bg_color, sec = ok('secondary_bg_color') ? p.secondary_bg_color : fundo;
+    const texto = legivel(p.text_color, [fundo, sec], 4.5);
+    const dica = legivel(ok('hint_color') ? p.hint_color : mistura(texto, fundo, 0.4), [fundo, sec], 4.5);
+    const link = legivel(ok('link_color') ? p.link_color : texto, [fundo, sec], 4.5);
+    const perigo = legivel(ok('destructive_text_color') ? p.destructive_text_color : '#D32F2F', [fundo, sec], 4.5);
+    let botao = ok('button_color') ? p.button_color : link, botaoTexto = ok('button_text_color') ? p.button_text_color : '#FFFFFF';
+    // o fundo do botão escurece (ou clareia) até o texto do botão ficar legível
+    if (contraste(botao, botaoTexto) < 4.5) { const alvo = lum(botaoTexto) > 0.4 ? '#000000' : '#FFFFFF'; let t = 0; while (t < 1 && contraste(botao, botaoTexto) < 4.5) { t += 0.05; botao = mistura(ok('button_color') ? p.button_color : link, alvo, t); } }
+    const escuro = lum(fundo) < 0.4;
+    const v = { '--t-fundo': fundo, '--t-sec': sec, '--t-texto': texto, '--t-dica': dica, '--t-link': link, '--t-perigo': perigo,
+      '--t-borda': mistura(fundo, texto, escuro ? 0.28 : 0.2), '--t-botao': botao, '--t-botao-texto': botaoTexto,
+      '--t-espera': legivel(escuro ? '#E8C276' : '#8A5A00', [mistura(fundo, escuro ? '#E8C276' : '#8A5A00', 0.14)], 4.5), '--t-espera-fundo': mistura(fundo, escuro ? '#E8C276' : '#8A5A00', 0.14) };
+    for (const k in v) raiz.style.setProperty(k, v[k]);
+    try { TG.setHeaderColor && TG.setHeaderColor(sec); TG.setBackgroundColor && TG.setBackgroundColor(sec); } catch (e) { /* versão antiga do Telegram */ }
+  }
+
+  // ---------- conversa com a função do servidor (a identidade vai no initData assinado pelo Telegram) ----------
+  async function pedir(acao, dados) {
+    let r;
+    try {
+      r = await fetch(FUNCAO, { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json' }, C.anonKey ? { apikey: C.anonKey } : {}),
+        body: JSON.stringify(Object.assign({ initData: TG ? TG.initData : '', acao }, dados || {})) });
+    } catch (e) { const x = new Error('sem conexão com o servidor; tente de novo'); x.codigo = 'rede'; throw x; }
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { const x = new Error(j.erro || 'falha ' + r.status); x.codigo = j.codigo || r.status; x.instrucao = j.instrucao; throw x; }
+    return j;
+  }
+
+  // ---------- desenho ----------
+  const titulo = c => String(c.titulo || '').replace(ASSISTIDA, '');
+  function prazo(t) {
+    const d = new Date(t); if (isNaN(d)) return { txt: '', atraso: false, data: '' };
+    const m = Math.round((d - Date.now()) / 60000), a = Math.abs(m);
+    const txt = a < 60 ? `${a} min` : a < 2880 ? `${Math.round(a / 60)} h` : `${Math.round(a / 1440)} dias`;
+    return { atraso: m < 0, txt: m < 0 ? `atrasada ${txt}` : `vence em ${txt}`, data: d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) };
+  }
+  function cartaoHTML(c) {
+    const p = prazo(c.prazo), id = Number(c.id), t = esc(titulo(c));
+    const assistida = ASSISTIDA.test(c.titulo || '');
+    const chips = [];
+    if (c.para_aceitar) chips.push('<span class="chip pend">pedido para você</span>');
+    if (c.delegada) chips.push('<span class="chip">aguardando outra pessoa</span>');
+    if (c.com_agente) chips.push('<span class="chip">com o agente</span>');
+    if (assistida) chips.push('<span class="chip">assistida</span>');
+    if (c.tipo && c.tipo !== 'fluxo') chips.push(`<span class="chip">${esc(c.tipo)}</span>`);
+    let acoes;
+    if (c.so_na_web) acoes = `<p class="nota">Aprovação de pagamento: confirme na <a href="${esc(new URL('mesa.html', location.href).href)}" data-web>Mesa da web</a> (segregação).</p>`;
+    else if (c.para_aceitar) acoes = `<div class="acoes"><button type="button" class="btn prim" data-acao="aceitar" data-id="${id}" aria-describedby="t${id}">Aceitar</button>
+        <button type="button" class="btn perigo" data-acao="recusar" data-id="${id}" aria-describedby="t${id}">Recusar</button></div>`;
+    else if (c.coluna === 'decidir' && Array.isArray(c.opcoes) && c.opcoes.length)
+      acoes = `<div class="opcoes" role="group" aria-label="Opções da decisão ${t}">${c.opcoes.map((o, i) => `<button type="button" class="btn" data-acao="decidir" data-id="${id}" data-opcao="${i}">${esc(o)}</button>`).join('')}</div>`;
+    else acoes = `<div class="acoes"><button type="button" class="btn prim" data-acao="concluir" data-id="${id}" aria-describedby="t${id}">Concluir</button></div>`;
+    return `<li class="cartao" data-cartao="${id}">
+      <h3 id="t${id}">${t}</h3>
+      <p class="meta"><span>#${id}</span>${c.jornada ? `<span>${esc(c.jornada)}${c.etapa_nome ? ' · ' + esc(c.etapa_nome) : ''}</span>` : '<span>avulsa</span>'}
+        ${p.txt ? `<span class="${p.atraso && c.coluna !== 'decidir' ? 'atraso' : ''}" title="${esc(p.data)}">${esc(p.txt)}</span>` : ''}${c.de ? `<span>de ${esc(c.de)}</span>` : ''}</p>
+      ${chips.length ? `<div class="chips">${chips.join('')}</div>` : ''}
+      ${acoes}</li>`;
+  }
+  function desenhar(m) {
+    cartoes = Array.isArray(m.cartoes) ? m.cartoes : [];
+    $('quem').textContent = m.nome ? m.nome + ' · IMTS.OS' : 'IMTS.OS no Telegram';
+    const aceitar = cartoes.filter(c => c.para_aceitar), decidir = cartoes.filter(c => !c.para_aceitar && c.coluna === 'decidir');
+    const resto = cartoes.filter(c => !c.para_aceitar && c.coluna !== 'decidir');
+    const atrasadas = cartoes.filter(c => c.coluna !== 'decidir' && new Date(c.prazo) < Date.now()).length;
+    $('resumo').innerHTML = `<li>abertas <b>${cartoes.length}</b></li><li class="${atrasadas ? 'alerta' : ''}">atrasadas <b>${atrasadas}</b></li>
+      <li>decidir <b>${decidir.length}</b></li><li>para aceitar <b>${aceitar.length}</b></li>`;
+    $('resumo').hidden = false;
+    const grupo = (id, nome, lista) => lista.length ? `<section class="grupo" aria-labelledby="${id}"><h2 id="${id}">${nome} (${lista.length})</h2><ul class="cartoes">${lista.map(cartaoHTML).join('')}</ul></section>` : '';
+    $('lista').innerHTML = cartoes.length
+      ? grupo('g-aceitar', 'Pedidos para você', aceitar) + grupo('g-decidir', 'Decidir', decidir) + grupo('g-abertas', 'Em aberto', resto)
+      : '<p class="vazio">Nada aberto com você agora.</p>';
+    $('atualizar').hidden = false;
+  }
+  function status(txt) { $('status').textContent = txt; $('status').hidden = !txt; }
+  function erro(txt) { $('erro').textContent = txt || ''; $('erro').hidden = !txt; }
+  function vibrar(tipo) { try { TG && TG.HapticFeedback && TG.HapticFeedback.notificationOccurred(tipo); } catch (e) { /* sem vibração */ } }
+  function confirmar(msg) {
+    return new Promise(ok => {
+      if (TG && typeof TG.showConfirm === 'function' && (!TG.isVersionAtLeast || TG.isVersionAtLeast('6.2'))) { try { TG.showConfirm(msg, r => ok(!!r)); return; } catch (e) { /* segue */ } }
+      ok(window.confirm(msg));
+    });
+  }
+
+  async function carregar(aviso) {
+    $('app').setAttribute('aria-busy', 'true');
+    try {
+      const m = await pedir('mesa');
+      erro(''); desenhar(m); status(aviso || '');
+    } catch (e) { mostrarErro(e); }
+    finally { $('app').setAttribute('aria-busy', 'false'); }
+  }
+  function mostrarErro(e) {
+    status('');
+    if (e.instrucao) {
+      $('instrucao-p').textContent = e.instrucao; $('instrucao').hidden = false; $('lista').innerHTML = ''; $('resumo').hidden = true; $('atualizar').hidden = true;
+      erro(''); return;
+    }
+    erro(e.message);
+    vibrar('error');
+  }
+
+  const PERGUNTA = { concluir: t => `Concluir “${t}”?`, aceitar: t => `Aceitar “${t}”? Ele entra no seu quadro.`, recusar: t => `Recusar “${t}”? Ele volta para quem pediu.`,
+    decidir: (t, o) => `Decidir “${t}”: ${o}?` };
+  async function agir(botao) {
+    if (ocupado) return;
+    const acao = botao.dataset.acao, id = Number(botao.dataset.id), c = cartoes.find(x => Number(x.id) === id);
+    if (!c) return;
+    const opcao = botao.dataset.opcao != null ? Number(botao.dataset.opcao) : null;
+    if (!(await confirmar(PERGUNTA[acao](titulo(c), opcao != null ? (c.opcoes || [])[opcao] : '')))) { status('Nada foi feito.'); return; }
+    ocupado = true;
+    document.querySelectorAll('[data-acao]').forEach(b => { b.disabled = true; });
+    status('Enviando…'); erro('');
+    try {
+      const r = await pedir(acao, { cartao: id, opcao });
+      vibrar('success');
+      await carregar(r.texto || 'Feito.');
+    } catch (e) {
+      mostrarErro(e);
+      document.querySelectorAll('[data-acao]').forEach(b => { b.disabled = false; });
+    } finally { ocupado = false; }
+  }
+
+  // ---------- início ----------
+  aplicarTema();
+  if (TG) { try { TG.ready(); TG.expand(); TG.onEvent && TG.onEvent('themeChanged', aplicarTema); } catch (e) { /* versão antiga */ } }
+  $('lista').addEventListener('click', ev => {
+    const b = ev.target.closest('button[data-acao]'); if (b) { agir(b); return; }
+    const a = ev.target.closest('a[data-web]');
+    if (a && TG && typeof TG.openLink === 'function') { ev.preventDefault(); TG.openLink(a.href); }
+  });
+  $('atualizar').addEventListener('click', () => { status('Atualizando…'); carregar('Atualizado.'); });
+  $('fechar').addEventListener('click', () => { if (TG && TG.close) TG.close(); else history.back(); });
+  if (!TG || !TG.initData) {
+    status('');
+    $('instrucao-t').textContent = 'Abra pelo Telegram';
+    $('instrucao-p').innerHTML = `Esta página é a Mesa dentro do Telegram. Abra pelo bot do IMTS (botão Mesa ou o comando /mesa). No computador, use a <a href="${esc(new URL('mesa.html', location.href).href)}">Mesa da web</a>.`;
+    $('instrucao').hidden = false; $('app').setAttribute('aria-busy', 'false');
+    document.body.dataset.pronto = '1';
+    return;
+  }
+  carregar().then(() => { document.body.dataset.pronto = '1'; });
+})();
+</script>
+</body>
+</html>

@@ -154,6 +154,11 @@ h1.marca { margin:0 auto 0 0; }
 .form-ini select { flex:1 1 160px; max-width:100%; min-width:0; padding:7px 9px; border:1px solid var(--hair); border-radius:8px; background:var(--surface); }
 .bloco .nota { margin-top:6px; }
 @media (max-width: 640px) { .aviso { margin:0 16px 10px; } }
+/* rascunho do agente de IA (086): texto puro, sempre com o rótulo de revisão */
+.etq.ia { border-color:transparent; background:var(--wait-soft); color:var(--wait); }
+.rasc-aviso { margin:0; padding:8px 10px; border-radius:8px; background:var(--wait-soft); color:var(--wait); font-size:13px; font-weight:700; }
+.rasc-texto { margin:0; padding:10px 12px; border:1px solid var(--hair); border-radius:8px; background:var(--ground); font-size:14px; line-height:1.5;
+  white-space:pre-wrap; overflow-wrap:anywhere; max-height:320px; overflow-y:auto; }
 </style>
 </head>
 <body>
@@ -238,6 +243,8 @@ h1.marca { margin:0 auto 0 0; }
   let aba = 'meu', raia = 'nenhuma', colMovel = 'a_fazer', aberto = null, jornadaSel = '';
   let quadro = [], circulo = { fluxo: [] }, circSel = quem.circulo ?? null, erroCirculo = '';
   const recibos = [];
+  const rascunhos = new Map();   // cartão -> { estado: 'carregando' | 'ok' | 'erro', dados, erro }
+  const ehRevisaoIA = c => c.origem === 'agente' || /^Revisar rascunho da IA:/.test(String(c.titulo || ''));
 
   const pessoas = quem.pessoas || [];
   const pessoa = id => pessoas.find(p => p.pessoa === id);
@@ -277,6 +284,7 @@ h1.marca { margin:0 auto 0 0; }
     } catch (e) { catalogoErro = e.message; }
   }
   async function recarregar() {
+    rascunhos.clear();
     try { await carregar(); $('falha').hidden = true; }
     catch (e) { $('falha').textContent = 'Não foi possível carregar a mesa: ' + e.message; $('falha').hidden = false; }
     desenhar();
@@ -353,7 +361,7 @@ h1.marca { margin:0 auto 0 0; }
     const ops = c.coluna === 'decidir' && c.opcoes ? `<span class="opcoes">${c.opcoes.map(o => `<span>${esc(o.rotulo)}</span>`).join('')}</span>` : '';
     const sobre = c.tipo || 'fluxo';
     return `<button type="button" class="cartao" data-id="${+c.id}" ${ro ? 'data-ro="1"' : `draggable="${c.coluna !== 'feito' && c.coluna !== 'decidir'}"`} aria-current="${aberto === c.id}">
-      <span class="meta"><span class="etq ${esc(sobre)}">${esc(sobre)}</span>${t.assistida ? `<span class="etq assistida" title="Tarefa de máquina feita por pessoa: ${esc(t.assistida)}">assistida</span>` : ''}${c.jornada ? `<span>${esc(c.jornada)}${c.etapa ? ' · etapa ' + esc(c.etapa) : ''}</span>` : ''}</span>
+      <span class="meta"><span class="etq ${esc(sobre)}">${esc(sobre)}</span>${ehRevisaoIA(c) ? '<span class="etq ia">rascunho da IA</span>' : ''}${t.assistida ? `<span class="etq assistida" title="Tarefa de máquina feita por pessoa: ${esc(t.assistida)}">assistida</span>` : ''}${c.jornada ? `<span>${esc(c.jornada)}${c.etapa ? ' · etapa ' + esc(c.etapa) : ''}</span>` : ''}</span>
       <span class="titulo">${esc(t.titulo)}</span>${ops}
       <span class="meta">${c.coluna === 'feito' ? '<span>concluída</span>' : `<span class="prazo ${p.atraso ? 'atraso' : ''}" title="${esc(p.data)}">${esc(p.txt)}</span>`}
         ${ro ? `<span>${esc(nomeDe(c.dono))}</span>` : (!c.sou_dono && c.dono ? `<span>de ${esc(nomeDe(c.dono))}</span>` : '')}</span>
@@ -499,6 +507,7 @@ h1.marca { margin:0 auto 0 0; }
         <div class="linha"><input type="datetime-local" id="f-ajuda-prazo" aria-label="Prazo do pedido de ajuda"><button type="button" class="btn" id="f-pedir">Criar pedido de ajuda</button></div>
         <p class="nota">Vira um cartão de ajuda ligado a este, visível só para você e para quem receber.</p></section>`;
     }
+    if (ehRevisaoIA(c)) h += `<section id="f-rasc" aria-labelledby="h-rasc"><h3 id="h-rasc">Rascunho gerado por IA</h3><div id="f-rasc-corpo"><p class="nota">Carregando o rascunho…</p></div></section>`;
     if (!meu) h += `<p class="nota">Cartão de ${esc(nomeDe(c.dono))}. ${lider ? 'Como líder, você pode delegá-lo.' : 'Só o dono ou o líder do círculo age sobre ele.'}</p>`;
     const f = $('foco'); f.innerHTML = h; f.hidden = false; $('veu').hidden = false;
     if (!redesenho) $('f-fechar').focus();
@@ -513,6 +522,49 @@ h1.marca { margin:0 auto 0 0; }
     if ($('f-delegar')) $('f-delegar').onclick = () => acDelegarPessoa(c, $('f-para').value);
     if ($('f-pedir')) $('f-pedir').onclick = () => acCriar($('f-ajuda').value, $('f-ajuda-prazo').value, c.id);
     document.querySelectorAll('.cartao').forEach(el => el.setAttribute('aria-current', String(+el.dataset.id === id)));
+    if (ehRevisaoIA(c)) carregarRascunho(c.id, redesenho);
+  }
+
+  // ---------- rascunho do agente de IA (rt.agente_ia_rascunho): o texto entra só por textContent ----------
+  async function carregarRascunho(id, redesenho) {
+    const r = rascunhos.get(id);
+    if (r && (r.estado === 'carregando' || (redesenho && r.estado === 'ok'))) { desenharRascunho(id); return; }
+    rascunhos.set(id, { estado: 'carregando' }); desenharRascunho(id);
+    try { rascunhos.set(id, { estado: 'ok', dados: await IMTS.chamar('rt.agente_ia_rascunho', { p_cartao: +id }) }); }
+    catch (e) { rascunhos.set(id, { estado: 'erro', erro: e.message }); }
+    if (aberto === id) desenharRascunho(id);
+  }
+  function el(tag, attrs, texto) {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) n.setAttribute(k, v);
+    if (texto != null) n.textContent = texto;
+    return n;
+  }
+  function desenharRascunho(id) {
+    const box = $('f-rasc-corpo'); if (!box || aberto !== id) return;
+    const r = rascunhos.get(id) || { estado: 'carregando' }, d = r.dados;
+    if (r.estado === 'carregando') { box.replaceChildren(el('p', { class: 'nota' }, 'Carregando o rascunho…')); return; }
+    if (r.estado === 'erro') { box.replaceChildren(el('p', { class: 'erro', role: 'alert' }, 'Rascunho indisponível: ' + r.erro)); return; }
+    if (!d) { box.replaceChildren(el('p', { class: 'nota' }, 'Este cartão não tem rascunho da IA ligado.')); return; }
+    if (!d.rascunho) { box.replaceChildren(el('p', { class: 'nota' }, 'A IA não devolveu rascunho' + (d.motivo ? ': ' + d.motivo : '.') + ' Faça a tarefa como de costume.')); return; }
+    const quando = d.gerado_em ? new Date(d.gerado_em).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+    const aviso = el('p', { class: 'rasc-aviso', id: 'f-rasc-aviso' }, 'Gerado por IA: precisa de revisão. ' + (d.aviso || 'Confira antes de concluir o cartão.'));
+    const texto = el('div', { class: 'rasc-texto', id: 'f-rasc-texto', role: 'region', 'aria-label': 'Texto do rascunho da IA', tabindex: '0' }, String(d.rascunho));
+    const meta = el('p', { class: 'nota' }, [d.tarefa ? 'Tarefa: ' + d.tarefa : '', d.provedor ? 'feito por ' + d.provedor + (d.modelo ? ' (' + d.modelo + ')' : '') : '', quando ? 'em ' + quando : ''].filter(Boolean).join(' · '));
+    const st = el('span', { class: 'nota', id: 'f-rasc-st', role: 'status' });
+    const bt = el('button', { type: 'button', class: 'btn', id: 'f-copiar' }, 'Copiar rascunho');
+    bt.onclick = () => copiar(String(d.rascunho), st);
+    const acoes = el('div', { class: 'acoes' }); acoes.append(bt, st);
+    const nota = el('p', { class: 'nota' }, 'Use o rascunho como ponto de partida: revise, ajuste e só então conclua o cartão. Nada aqui foi enviado a ninguém.');
+    box.replaceChildren(aviso, texto, meta, acoes, nota);
+  }
+  async function copiar(texto, st) {
+    try { await navigator.clipboard.writeText(texto); st.textContent = 'Copiado.'; }
+    catch (e) {
+      const t = el('textarea', { 'aria-hidden': 'true', readonly: '' }); t.value = texto; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.append(t); t.select(); let ok = false; try { ok = document.execCommand('copy'); } catch (e2) { ok = false; } t.remove();
+      st.textContent = ok ? 'Copiado.' : 'Não foi possível copiar aqui: selecione o texto e copie.';
+    }
   }
   function fechar() { aberto = null; $('foco').hidden = true; $('veu').hidden = true; document.querySelectorAll('.cartao[aria-current="true"]').forEach(el => el.setAttribute('aria-current', 'false')); }
   const toLocal = d => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);

@@ -55,8 +55,13 @@ POST `/functions/v1/google` com o token do usuário. Corpo `{ acao, ... }`. Resp
 | `drive_pasta` | `empresa`, `pasta` | `{ id }` (cria se faltar e registra em `acervo.pasta_drive`) | interno com acesso |
 | `agenda_evento` | `titulo`, `inicio` (ISO), `fim` (ISO), `convidados[]`, `descricao` | `{ evento_id, link }` (Google Meet; o organizador é quem marcou) | interno |
 | `agenda_cancelar` | `evento_id` | `{ ok: true }` | interno |
+| `docs_criar` | `emissao` (nº da emissão) | `{ emissao, id, link }` (Google Doc editável convertido do HTML emitido, na pasta do acervo do tipo); `ja_existia: true` se o Doc já existia | interno com operar na empresa da emissão; só emissão pronta (emitido ou emitido com alertas) com HTML |
 
 Erros: `401` sessão, `403` recusa do banco (mensagem em português), `503` configuração faltando (segredo ou parâmetro), `502` Google fora. Toda ação fica em `adm.registro_servidor`.
+
+### Google Docs como terceira saída (084)
+
+Ao emitir, se o parâmetro `documentos.saida_google_docs` estiver ligado e o tipo tiver `doc.tipo.google_docs`, o banco põe o pedido na fila `doc.google_doc` e chama a função `docs` (verify_jwt desligado, só cabeçalho `X-IMTS-Chave`) pelo pg_net; a rotina `imts-docs-google` (10 min) repete enquanto houver pedido vencido. Falha não toca no PDF: volta à fila com espera de 5, 10, 20 minutos (até 6 horas); esgotadas `documentos.google_docs_tentativas`, abre alerta de operação `docs_google:<emissão>`. A tela lê `doc.painel_docs_google(p_empresa)` (`{ ligado, automatico, pode_operar, tentativas, emissoes[{ emissao, titulo, tipo_nome, situacao, emitido_em, paginas, pasta, google{ situacao, link, tentativas, erro, proxima_em, gerado_em } }] }`), mostra "Abrir no Google Docs" quando há link (só endereço `https://docs.google.com/` ou `https://drive.google.com/`) e "Gerar Google Doc" (`docs_criar`) para quem opera a empresa. O id e o link ficam em `doc.emissao.google_doc_id` e `google_doc_link`.
 
 ## Função do servidor `ia` (supabase/functions/ia)
 
@@ -81,6 +86,42 @@ Base: Lei 14.063/2020, art. 4º, II, e MP 2.200-2/2001, art. 10, § 2º. Não su
 
 Assinar e recusar vão pela porta única (`doc.assinatura_assinar`, `ext.assinatura_assinar`, `doc.assinatura_recusar`, `ext.assinatura_recusar`): o IP e o navegador saem dos cabeçalhos da requisição. Código errado não é erro: a resposta traz `{ assinado: false, motivo, restantes }`. A página pública é `verificar.html?c=CODIGO`.
 
+## Mesa no Telegram (Mini App, `tg.html`) e função do servidor `telegram_app`
+
+`tg.html` abre dentro do Telegram (botão de menu "Mesa", comando `/mesa` ou botão "Abrir a Mesa" do `/quadro`). Carrega o script oficial `https://telegram.org/js/telegram-web-app.js` antes de tudo e `config.js`; não usa `imts.js` nem login do Supabase. Cores do tema do Telegram (`themeParams`), corrigidas na página para contraste AA. Endereço: parâmetro `telegram_app.url` (produção `https://www.imts.global/tg.html`, homologação `https://homolog.imts.global/tg.html`).
+
+| função | acao | entrada | saída | quem |
+| --- | --- | --- | --- | --- |
+| `telegram_app` (verify_jwt desligado) | `mesa` | `initData` | `{ nome, cartoes[{ id, titulo, coluna, prazo, tipo, jornada, jornada_nome, etapa_nome, de, para_aceitar, delegada, com_agente, opcoes[rótulos], so_na_web }] }` | pessoa da equipe com o Telegram ligado e login |
+| `telegram_app` | `concluir`, `aceitar`, `recusar` | `initData`, `cartao` | `{ texto }` | idem; a regra é de `rt.app_*` |
+| `telegram_app` | `decidir` | `initData`, `cartao`, `opcao` (posição) | `{ texto }` | idem |
+
+A função confere a assinatura do `initData` (HMAC-SHA-256, chave derivada de `WebAppData` e do token do bot no cofre) e o `auth_date` (`telegram_app.validade_segundos`), acha a pessoa (`rt.tg_app_identificar`) e chama `rt.tg_mesa` / `rt.tg_agir` pela porta única com o login dela. Erros: `401` assinatura ou abertura vencida, `403` sem vínculo (`codigo` e `instrucao`) ou recusa do banco, `429` limite (`telegram_app.tentativas_max`, `telegram_app.janela_minutos`, `telegram_app.pedidos_minuto`), `503` sem o token do bot. Aprovação de pagamento (GE-04 e GE-05) não sai pelo Telegram: o cartão vem com `so_na_web`. Tudo em `adm.registro_servidor`, com hash do IP ou do usuário do Telegram, nunca o valor em claro.
+
 ## Testes
 
 `testes/apoio.mjs` abre a página com um token de ensaio (sem Google) contra o PostgREST local. Cada módulo tem `testes/t_<modulo>.mjs`. Pessoas do ensaio: `admin`, `olga` (Operações), `lia` (líder de Operações), `rui` (Relações), `clara` (cliente), `paulo` (parceiro), `curioso` (sem cadastro).
+
+## Agente de IA das tarefas de agente (086, função do servidor `agente`)
+
+No modo assistido, a tarefa de agente (executor A) vai à fila `rt.fila_ia` e a função `agente` a executa pela IA (Anthropic ou Kimi, com reserva). Por padrão o rascunho vira cartão de revisão na Mesa ("Revisar rascunho da IA: ..."), que se conclui como qualquer cartão de fluxo; com `motor.agente_ia_autonomo` ligado o agente conclui sozinho. Sem IA disponível, a tarefa vira o cartão assistido de antes.
+
+| função | acao | entrada | saída | quem |
+| --- | --- | --- | --- | --- |
+| `agente` (verify_jwt desligado) | `agente_executar` | cabeçalho `X-IMTS-Chave`, `lote` (opcional, até 20) | `{ processados, revisao, autonomos, cartoes_humanos, novas_tentativas, erros, degradados }` | o banco (pg_net) e a rotina `imts-agente-ia` |
+
+Porta única: `rt.agente_ia_rascunho(p_cartao)` devolve `{ cartao, tarefa, desfecho, rascunho, provedor, modelo, gerado_em, motivo, aviso }` para quem é dono do cartão, recebeu a tarefa ou aprova no círculo; `adm.agente_ia_resumo()` é da administração.
+
+Na Mesa (`mesa.html`): o cartão com `origem = 'agente'` (ou título "Revisar rascunho da IA: ...") ganha a etiqueta "rascunho da IA"; ao abrir o foco, a tela chama `rt.agente_ia_rascunho` e mostra a seção "Rascunho gerado por IA" com o rótulo "Gerado por IA: precisa de revisão" (mais o `aviso` do banco), o texto do rascunho e o botão "Copiar rascunho". O rascunho entra só por `textContent` (nunca `innerHTML`): marcação vinda da IA aparece como texto. Sem rascunho ligado, a seção diz isso; com `motivo` e sem texto, mostra o motivo. A conclusão continua a do cartão de fluxo (`rt.app_concluir`).
+
+## Automação das tarefas R (078) e agentes de IA (086) na Administração
+
+Aba "Automação e IA" de `admin.html` (só administração):
+
+| chamada | uso na tela |
+| --- | --- |
+| `adm.automacao_r_resumo()` | `{ ligado, modo_assistido, tarefas_r, por_modo{ registrar, encaminhar, avisar, humano }, automaticas, humanas, compostas_humanas, verbos_sem_regra[] }`: totais e tabela por modo |
+| `adm.automacao_r_definir(p_verbo, p_modo, p_motivo)` | formulário "Definir o modo de um verbo": verbo de uma palavra, modo `registrar`, `encaminhar`, `avisar` ou `humano`, motivo obrigatório; a tela abre a confirmação antes de gravar e o banco recusa quem não administra; fica em `adm.historico` (objeto `automacao_r`) |
+| `adm.agente_ia_resumo()` | leitura: ligado, autônomo ou com revisão, modo assistido, disponível (ou `motivo_indisponivel`), provedor e chaves, uso de hoje contra os limites, fila por estado e por desfecho, revisões abertas na Mesa, tokens em 30 dias, motivos de queda para o cartão humano |
+
+Os parâmetros (`motor.automacao_r`, `motor.agente_ia*`) mudam na aba Parâmetros; as chaves da IA, na aba Integrações. O painel de Google Docs (`doc.painel_docs_google`, 084) fica no Acervo (`acervo.html`).

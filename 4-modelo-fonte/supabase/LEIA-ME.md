@@ -262,7 +262,7 @@ Parâmetros novos: `parceiro.prazo_aprovacao_horas` (48), `parceiro.prazo_pagame
 
 ### Ordem de implantação
 
-001 a 024, depois 025 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → 033 → 034 → 035 → 036 → 037 → 038 → 039 → 040 → 041 → 042 → 043 → 044 → 045 → 046 → 047 → 048 → 049 → 050 → 051 → 052 → 053 → 054 → 055 → 056 → 057 a 068. A 012a não entra numa implantação nova: é ferramenta de troca de versão do modelo. Para produção, use `producao/aplicar.sh` (seção abaixo).
+001 a 024, depois 025 a 088 em ordem (as de teste só onde os testes ficam). A 012a não entra numa implantação nova: é ferramenta de troca de versão do modelo. Para produção, use `producao/aplicar.sh` (seção abaixo).
 
 Se reimplantar algum arquivo anterior, reaplique a 035 depois. Ela revoga a execução das funções e troca as políticas.
 
@@ -366,3 +366,17 @@ Ensaio em 04/10/2026, Postgres 16 local com a imitação do Supabase:
 Funções do servidor novas: `assinatura` (verify_jwt ligado: código por e-mail e selo a pedido de quem assina), `selo` (verify_jwt desligado, só com `X-IMTS-Chave`: selo automático chamado pelo banco ao concluir e pela rotina) e `verificar` (verify_jwt desligado: verificação pública, sem login). A chave privada do selo nasce no cofre (`assinatura_chave_privada`, JWK) no primeiro selo; a pública fica em `doc.assinatura_chave`. Testes: `deno test -A functions/testes/assinatura_test.ts`. Página pública: `app/verificar.html`.
 
 Limite: quando a lei ou o órgão público exigir assinatura qualificada (ICP-Brasil), esta assinatura não serve; marque o pedido como "exige ICP-Brasil".
+
+### Migrações 074 a 088 (05/10 a 21/10/2026): papéis acumulados e P6
+
+| Arquivo | O que faz |
+|---|---|
+| `074_papeis_acumulados.sql` / `075` | Uma pessoa ocupa vários papéis (principal em `rt.pessoa`, os demais em `rt.acesso`); a carga do cadastro acumula papel por e-mail repetido; a segregação continua barrando papéis incompatíveis |
+| `078_automacao_r.sql` / `079` | Tarefa de automação (R) cujo verbo só registra, encaminha ou avisa é concluída pela automação no modo assistido; regras por verbo em `adm.automacao_r_regra` (393 de 585 tarefas R saem do cartão); parâmetro `motor.automacao_r` |
+| `080_assinatura_avisos.sql` / `081` | Aviso por e-mail quando chega a vez de assinar e um lembrete antes do prazo (função `avisos`), limite de consultas na verificação pública e rotação da chave do selo |
+| `082_telegram_miniapp.sql` / `083` | Mesa no Telegram (Mini App `tg.html`, função `telegram_app`), com validação do initData pelo token do bot |
+| `084_docs_google.sql` / `085` | Google Docs como terceira saída do motor documental (fila `doc.google_doc`, função `docs`); desligada até a conta Google estar configurada |
+| `086_agentes_ia.sql` / `087` | Tarefa de agente (A) vai para a IA (fila `rt.fila_ia`, função `agente`) e volta como rascunho para revisão humana; sem chave de IA, cai no cartão de antes |
+| `088_testar_tudo_p6.sql` | `adm.testar_tudo()` com 28 suítes |
+
+Projetos já implantados (perfil de produção): aplicar `producao/pacote_p6_homologacao.sql` ou `producao/pacote_p6_producao.sql` no SQL Editor (uma transação, idempotente; ensaiado num banco com 001 a 077 e o perfil de produção: conferência e homologação do banco 7 de 7). Montagem: `producao/montar_pacote.py`. Funções achatadas para o deploy: `functions/empacotar.py`.

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="comum/base.css">
 <style>
-/* Acervo: cabeçalho do módulo, resumo, envio com o registro passo a passo, abas por objeto (arquivos, triagem, dados da empresa, divergências, marca, modelos, pastas). */
+/* Acervo: cabeçalho do módulo, resumo, envio com o registro passo a passo, abas por objeto (arquivos, triagem, dados da empresa, divergências, marca, modelos, emitidos, pastas). */
 :root {
   --chao:var(--ground); --folha:var(--surface); --tinta:var(--ink); --apoio:var(--sec); --fio:var(--hair);
   --bom:var(--ok); --bom-suave:var(--ok-soft); --espera:var(--wait); --espera-suave:var(--wait-soft); --mal:var(--late); --mal-suave:var(--late-soft);
@@ -122,6 +122,7 @@ a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:2
     <button class="aba" role="tab" id="t-divergencias" data-aba="divergencias" aria-controls="conteudo" aria-selected="false" tabindex="-1">Divergências<span class="n" id="n-divergencias"></span></button>
     <button class="aba" role="tab" id="t-marca" data-aba="marca" aria-controls="conteudo" aria-selected="false" tabindex="-1">Marca<span class="n" id="n-marca"></span></button>
     <button class="aba" role="tab" id="t-modelos" data-aba="modelos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Modelos<span class="n" id="n-modelos"></span></button>
+    <button class="aba" role="tab" id="t-emitidos" data-aba="emitidos" aria-controls="conteudo" aria-selected="false" tabindex="-1">Emitidos<span class="n" id="n-emitidos"></span></button>
     <button class="aba" role="tab" id="t-pastas" data-aba="pastas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Pastas</button>
   </div></nav>
   <section id="conteudo" role="tabpanel" tabindex="0" aria-labelledby="t-arquivos"><p class="vazio">Carregando…</p></section>
@@ -139,7 +140,7 @@ a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:2
   const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
   const SIT = { organizado: ['organizado', 'bom'], triagem: ['triagem', 'esp'], entrada: ['na entrada', 'azul'], substituido: ['substituído', ''] };
   const CHAVE = { cnpj: 'CNPJ', razao_social: 'Razão social', regime_tributario: 'Regime tributário' };
-  let quem = null, empresa = null, dados = null, mm = null, aba = 'arquivos', ocupado = false;
+  let quem = null, empresa = null, dados = null, mm = null, gd = null, aba = 'arquivos', ocupado = false;
 
   const motivo = e => String(e?.message || e || 'erro');
   function recibo(tipo, texto) { const d = document.createElement('div'); d.className = 'recibo ' + tipo; d.textContent = texto; $('recibos').prepend(d); setTimeout(() => d.remove(), 8000); }
@@ -321,6 +322,30 @@ a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:2
              <label class="sub" for="el-${id}">Local</label><input id="el-${id}" value="Fortaleza/CE" size="14">
              <button class="btn prim" type="button" data-emitir="${id}">Emitir pela minuta</button></div>`}</article>`; }).join('')}</div>`;
   }
+  // Emitidos: documentos que o motor emitiu e o Google Doc editável de cada um (terceira saída, 084). O link só abre endereço do Google.
+  const SIT_EMI = { emitido: ['pronto', 'bom'], emitido_com_alertas: ['pronto, com alertas tipográficos', 'esp'] };
+  const linkGoogle = l => /^https:\/\/(docs|drive)\.google\.com\//.test(String(l || '')) ? l : null;
+  function estadoDoc(g) {
+    if (!g) return '';
+    if (g.situacao === 'na_fila') return `Google Doc na fila${g.tentativas ? ` (tentativa ${Number(g.tentativas)} falhou: ${esc(g.erro || 'sem detalhe')}; nova tentativa ${esc(quando(g.proxima_em))})` : ''}.`;
+    if (g.situacao === 'gerando') return 'Google Doc sendo gerado: use Atualizar daqui a pouco.';
+    if (g.situacao === 'falhou') return `Google Doc não gerado depois de ${Number(g.tentativas)} tentativa(s): ${esc(g.erro || 'sem detalhe')}. O PDF segue valendo.`;
+    return g.gerado_em ? 'Google Doc gerado em ' + esc(quando(g.gerado_em)) + '.' : '';
+  }
+  function vEmitidos() {
+    if (!gd) return '<p class="vazio">Os documentos emitidos não carregaram.</p>';
+    const es = gd.emissoes || [];
+    const aviso = !gd.ligado ? '<p class="aviso">Google Docs indisponível: o Google ainda não está configurado nesta implantação. O PDF e o HTML de cada emissão seguem valendo.</p>'
+      : `<p class="rodape">${gd.automatico ? 'Cada documento emitido (dos tipos marcados) ganha também um Google Doc editável na pasta do acervo da empresa.' : 'A geração automática do Google Doc está desligada: gere por documento.'}</p>`;
+    if (!es.length) return aviso + '<p class="vazio">Nenhum documento emitido nesta empresa ainda.</p>';
+    return aviso + `<div class="lista">${es.map(e => { const id = Number(e.emissao), [rot, cls] = SIT_EMI[e.situacao] || [e.situacao, ''], g = e.google, link = linkGoogle(g?.link);
+      const pode = gd.ligado && gd.pode_operar && !link && (!g || g.situacao === 'falhou' || g.situacao === 'na_fila');
+      return `<article class="item" data-emissao="${id}"><div><div class="t">${esc(e.titulo)}</div>
+        <div class="sub">${esc(e.tipo_nome)} · emissão nº ${id} · ${esc(quando(e.emitido_em))}${e.paginas ? ' · ' + Number(e.paginas) + (Number(e.paginas) === 1 ? ' página' : ' páginas') : ''}</div>
+        ${g && !link ? `<div class="sub">${estadoDoc(g)}</div>` : ''}</div>
+        <div class="lado"><span class="chip ${cls}">${esc(rot)}</span>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener noreferrer" data-gdoc-link="${id}">Abrir no Google Docs</a>` : ''}</div>
+        ${pode ? `<div class="acoes"><button class="btn" type="button" data-gdoc="${id}">Gerar Google Doc</button><span class="sub">Vai para a pasta ${esc(e.pasta)} do acervo.</span></div>` : ''}</article>`; }).join('')}</div>`;
+  }
   function vPastas() {
     const ps = dados.pastas || [];
     const opc = [{ codigo: 'raiz', nome: 'Pasta da empresa (raiz)' }, ...ps].map(p => `<option value="${esc(p.codigo)}">${esc(p.nome)}</option>`).join('');
@@ -339,17 +364,19 @@ a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:2
       <span>Versões substituídas <b>${Number(r.substituidos)}</b></span><span class="${r.campos_pendentes ? 'esp' : ''}">Dados para decidir <b>${Number(r.campos_pendentes)}</b></span><span class="${r.divergencias ? 'mal' : ''}">Divergências <b>${Number(r.divergencias)}</b></span>`;
     $('n-arquivos').textContent = (dados.arquivos || []).length || ''; $('n-triagem').textContent = r.triagem || '';
     $('n-dados').textContent = r.campos_pendentes || ''; $('n-divergencias').textContent = r.divergencias || '';
+    $('n-emitidos').textContent = gd?.emissoes?.length || '';
     $('n-marca').textContent = mm?.propostas?.length || ''; $('n-modelos').textContent = mm?.minutas?.filter(m => m.situacao === 'proposta').length || '';
     if ((aba === 'marca' || aba === 'modelos') && !mm) { $('conteudo').innerHTML = '<p class="vazio">Marca e modelos não carregaram.</p>'; return; }
-    $('conteudo').innerHTML = { arquivos: vArquivos, triagem: vTriagem, dados: vDados, divergencias: vDivergencias, marca: vMarca, modelos: vModelos, pastas: vPastas }[aba]();
+    $('conteudo').innerHTML = { arquivos: vArquivos, triagem: vTriagem, dados: vDados, divergencias: vDivergencias, marca: vMarca, modelos: vModelos, emitidos: vEmitidos, pastas: vPastas }[aba]();
   }
   async function carregar() {
     empresa = IMTS.empresa();
     if (!empresa) { dados = null; $('conteudo').innerHTML = '<p class="vazio">Você não tem empresa com acesso ao acervo.</p>'; return; }
-    const [d, m] = await Promise.all([
+    const [d, m, g] = await Promise.all([
       IMTS.chamar('acervo.painel', { p_empresa: empresa }),
-      IMTS.chamar('doc.painel_marca_modelos', { p_empresa: empresa }).catch(e => { recibo('recusado', 'Marca e modelos: ' + motivo(e)); return null; })]);
-    dados = d; mm = m;
+      IMTS.chamar('doc.painel_marca_modelos', { p_empresa: empresa }).catch(e => { recibo('recusado', 'Marca e modelos: ' + motivo(e)); return null; }),
+      IMTS.chamar('doc.painel_docs_google', { p_empresa: empresa }).catch(e => { recibo('recusado', 'Documentos emitidos: ' + motivo(e)); return null; })]);
+    dados = d; mm = m; gd = g;
     $('cab-sub').textContent = (dados.empresa?.nome ? dados.empresa.nome + ': ' : '') + 'arquivos, pastas e dados conferidos';
     $('erro').hidden = true;
     desenhar();
@@ -375,6 +402,12 @@ a { color:var(--azul); } .lado a, .arvore a { display:inline-block; min-height:2
       t.disabled = true;
       try { await IMTS.google('drive_pasta', { empresa, pasta: t.dataset.criarPasta }); await carregar(); recibo('feito', 'Pasta criada no Drive.'); }
       catch (er) { recibo('recusado', 'Criar pasta no Drive indisponível: ' + motivo(er)); t.disabled = false; }
+      return;
+    }
+    if (t.dataset.gdoc) {
+      t.disabled = true; t.textContent = 'Gerando…';
+      try { const r = await IMTS.google('docs_criar', { emissao: Number(t.dataset.gdoc) }); await carregar(); recibo('feito', r?.ja_existia ? 'Este documento já tinha Google Doc: o link está na lista.' : 'Google Doc gerado na pasta do acervo.'); }
+      catch (er) { recibo('recusado', 'Google Doc não gerado: ' + motivo(er)); await carregar().catch(() => {}); }
       return;
     }
     if (t.dataset.mover) {

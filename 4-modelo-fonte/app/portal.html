@@ -162,7 +162,7 @@ const brl = v => v == null ? '' : Number(v).toLocaleString('pt-BR', { style: 'cu
 const SITC = { prevista: 'Prevista', adquirida: 'Adquirida', a_pagar: 'A pagar', paga: 'Paga' };
 const REGRA = { comissoes: 'Comissões escolhidas', cnpj: 'CNPJ do emitente', numero: 'Número da nota', valor: 'Valor da nota' };
 const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
-let dados = null, parc = null, reus = [], notas = null, notasErro = null, aba = 'andamentos', voltarFoco = null;
+let dados = null, parc = null, reus = [], notas = null, notasErro = null, aba = location.hash === '#assinaturas' ? 'assinaturas' : 'andamentos', voltarFoco = null;
 let ass = null, assErro = null; const assAviso = {};   // assinaturas: lista do portal, motivo da falha, aviso do código por signatário
 
 const motivo = e => e?.message || String(e || 'erro');

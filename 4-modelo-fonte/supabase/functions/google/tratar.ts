@@ -1,6 +1,7 @@
 // Função google (B21): Drive do acervo e Agenda com Meet, pela conta de serviço com delegação no domínio.
 // Contrato: app/CONTRATO.md. Permissão: adm.servidor_autorizar. Registro: adm.servidor_registrar.
 // Segredo no cofre: google_conta_servico (JSON da chave da conta de serviço).
+// P6 (084): ação docs_criar e a fila dos Google Docs (processarFilaDocs, usada pela função docs), com o mesmo código de geração.
 import { autorizar, b64, deB64, Deps, googleToken, json, lerUsuario, limparErro, Recusa, registrar, segredo, CORS } from "../_comum/servidor.ts";
 
 const DRIVE = "https://www.googleapis.com/drive/v3";
@@ -13,7 +14,7 @@ const DOC = "application/vnd.google-apps.document";
 const MAX_BYTES = 25 * 1024 * 1024;
 const ID = /^[A-Za-z0-9_-]{10,}$/;
 
-type Ctx = { deps: Deps; token: string };
+export type Ctx = { deps: Deps; token: string };
 async function g(ctx: Ctx, url: string, init: RequestInit = {}) {
   const r = await ctx.deps.fetch(url, { ...init, headers: { Authorization: "Bearer " + ctx.token, ...(init.headers || {}) } });
   if (!r.ok) {
@@ -36,7 +37,7 @@ async function pastaFilha(ctx: Ctx, mae: string, nome: string): Promise<string> 
 
 // Garante raiz da empresa e a pasta do acervo; registra no banco o que criou
 // deno-lint-ignore no-explicit-any
-async function garantirPasta(ctx: Ctx, a: any): Promise<string> {
+export async function garantirPasta(ctx: Ctx, a: any): Promise<string> {
   if (a.pasta_id) return a.pasta_id;
   let raiz = a.raiz_id as string | null;
   if (!raiz) {
@@ -48,6 +49,63 @@ async function garantirPasta(ctx: Ctx, a: any): Promise<string> {
   const id = await pastaFilha(ctx, raiz, a.pasta_nome);
   await ctx.deps.sql`select adm.servidor_pasta(${a.empresa}::uuid, ${a.pasta}, ${id})`;
   return id;
+}
+
+// Corpo multipart/related do upload do Drive: metadados em JSON e o conteúdo do arquivo
+function multipart(meta: Record<string, unknown>, mime: string, bytes: Uint8Array): { corpo: Uint8Array<ArrayBuffer>; tipo: string } {
+  const limite = "imts" + crypto.randomUUID().replace(/-/g, "");
+  const ini = new TextEncoder().encode(`--${limite}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify(meta)}\r\n--${limite}\r\nContent-Type: ${mime}\r\n\r\n`);
+  const fim = new TextEncoder().encode(`\r\n--${limite}--`);
+  const corpo = new Uint8Array(new ArrayBuffer(ini.length + bytes.length + fim.length)); corpo.set(ini); corpo.set(bytes, ini.length); corpo.set(fim, ini.length + bytes.length);
+  return { corpo, tipo: `multipart/related; boundary=${limite}` };
+}
+
+// ---------- Google Docs como terceira saída dos documentos emitidos (P6, migração 084) ----------
+// O HTML emitido pelo motor sobe por upload multipart com o mimeType do Google Docs nos metadados: o Drive converte na hora e o arquivo
+// nasce como Google Doc editável. Documentação oficial do Drive API v3, "Upload file data", seção de importação para tipos do Google
+// Workspace: o mimeType dos metadados é o tipo de destino e HTML está entre os formatos aceitos para Google Docs (a lista vale para a
+// conta em about.importFormats): https://developers.google.com/workspace/drive/api/guides/manage-uploads
+// deno-lint-ignore no-explicit-any
+export async function criarDocGoogle(ctx: Ctx, item: any): Promise<{ id: string; link: string }> {
+  const bytes = deB64(String(item.html || ""));
+  if (!bytes.length) throw new Recusa("emissão sem o HTML para converter");
+  if (bytes.length > MAX_BYTES) throw new Recusa("HTML acima de 25 MB");
+  const pasta = await garantirPasta(ctx, item);
+  const { corpo, tipo } = multipart({ name: String(item.nome || "Documento emitido").slice(0, 200), parents: [pasta], mimeType: DOC }, "text/html; charset=UTF-8", bytes);
+  const f = await (await g(ctx, `${UPLOAD}/files?uploadType=multipart&supportsAllDrives=true&fields=id,webViewLink,mimeType`, { method: "POST",
+    headers: { "Content-Type": tipo }, body: corpo })).json();
+  if (!ID.test(String(f.id || ""))) throw new Recusa("o Drive não devolveu o id do Google Doc", 502);
+  if (f.mimeType && f.mimeType !== DOC) throw new Recusa("o Drive guardou o HTML sem converter para Google Docs (" + f.mimeType + ")", 502);
+  return { id: f.id, link: /^https:\/\/(docs|drive)\.google\.com\//.test(String(f.webViewLink || "")) ? f.webViewLink : `https://docs.google.com/document/d/${f.id}/edit` };
+}
+
+// Fila (função docs, chamada pelo banco com X-IMTS-Chave): toma os pedidos vencidos, gera cada Doc e devolve o resultado ao banco.
+// Falha de um não para os outros: doc.gdoc_falhar devolve à fila com espera ou, esgotadas as tentativas, abre o alerta de operação.
+export async function processarFilaDocs(deps: Deps, limite = 5) {
+  const conta = await segredo(deps.sql, "google_conta_servico");
+  if (!conta) throw new Recusa("Google ainda não configurado: falta o segredo google_conta_servico no cofre", 503);
+  let lote;
+  try { lote = (await deps.sql`select doc.gdoc_proximos(${limite}::int) as r`)[0].r; }
+  catch (e) { throw new Recusa(limparErro(e), 503); }
+  const gerados: { emissao: number; id: string }[] = [], falhas: { emissao: number; erro: string; situacao: string }[] = [];
+  // deno-lint-ignore no-explicit-any
+  const itens: any[] = lote.itens || [];
+  if (!itens.length) return { gerados, falhas };
+  let ctx: Ctx | null = null, erroToken: string | null = null;
+  try { ctx = { deps, token: await googleToken(deps, conta, lote.usuario_sistema, ESC_DRIVE) }; } catch (e) { erroToken = limparErro(e); }
+  for (const item of itens) {
+    try {
+      if (!ctx) throw new Recusa(erroToken || "sem token do Google", 502);
+      const d = await criarDocGoogle(ctx, { ...item, drive_raiz: lote.drive_raiz });
+      await deps.sql`select doc.gdoc_concluir(${item.emissao}::bigint, ${d.id}, ${d.link}, null::uuid)`;
+      gerados.push({ emissao: item.emissao, id: d.id });
+    } catch (e) {
+      const erro = limparErro(e);
+      const f = (await deps.sql`select doc.gdoc_falhar(${item.emissao}::bigint, ${erro}, null::uuid) as r`)[0].r;
+      falhas.push({ emissao: item.emissao, erro, situacao: f.situacao });
+    }
+  }
+  return { gerados, falhas };
 }
 
 // Texto de um arquivo: Docs exporta; texto lê direto; PDF e Office passam por uma cópia convertida (com OCR) que é apagada em seguida
@@ -66,7 +124,7 @@ async function textoDe(ctx: Ctx, id: string, mime: string): Promise<string | nul
 export async function tratar(req: Request, deps: Deps): Promise<Response> {
   if (req.method === "OPTIONS") return new Response(null, { headers: CORS });
   if (req.method !== "POST") return json({ erro: "use POST" }, 405);
-  let acao = "?", alvo: string | null = null, pessoa: string | null = null, usuario: string | null = null;
+  let acao = "?", alvo: string | null = null, pessoa: string | null = null, usuario: string | null = null, jaRegistrado = false;
   try {
     const u = lerUsuario(req, (deps.agora ?? Date.now)());
     // deno-lint-ignore no-explicit-any
@@ -88,13 +146,9 @@ export async function tratar(req: Request, deps: Deps): Promise<Response> {
         if (bytes.length > MAX_BYTES) throw new Recusa("arquivo acima de 25 MB");
         const nome = String(d.nome || "arquivo").slice(0, 200), mime = String(d.mime || "application/octet-stream");
         const pasta = await garantirPasta(ctx, a);
-        const limite = "imts" + crypto.randomUUID().replace(/-/g, "");
-        const meta = JSON.stringify({ name: nome, parents: [pasta], mimeType: mime });
-        const ini = new TextEncoder().encode(`--${limite}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${meta}\r\n--${limite}\r\nContent-Type: ${mime}\r\n\r\n`);
-        const fim = new TextEncoder().encode(`\r\n--${limite}--`);
-        const corpo = new Uint8Array(ini.length + bytes.length + fim.length); corpo.set(ini); corpo.set(bytes, ini.length); corpo.set(fim, ini.length + bytes.length);
+        const { corpo, tipo } = multipart({ name: nome, parents: [pasta], mimeType: mime }, mime, bytes);
         const f = await (await g(ctx, `${UPLOAD}/files?uploadType=multipart&supportsAllDrives=true&fields=id,webViewLink`, { method: "POST",
-          headers: { "Content-Type": `multipart/related; boundary=${limite}` }, body: corpo })).json();
+          headers: { "Content-Type": tipo }, body: corpo })).json();
         alvo = f.id;
         let texto: string | null = null;
         try { texto = await textoDe(ctx, f.id, mime); } catch { texto = null; }   // sem texto, o banco decide o que fazer
@@ -151,6 +205,26 @@ export async function tratar(req: Request, deps: Deps): Promise<Response> {
         saida = { nome: m.name, mime: m.mimeType, conteudo: b64(bytes) };
         break;
       }
+      case "docs_criar": {
+        // a permissão já veio do banco (doc._gdoc_autorizar); aqui o pedido entra na fila e é tomado na hora (doc.gdoc_tomar)
+        let t;
+        try { t = (await deps.sql`select doc.gdoc_tomar(${a.emissao}::bigint, ${pessoa}::uuid) as r`)[0].r; }
+        catch (e) { throw new Recusa(limparErro(e), 409); }
+        jaRegistrado = true;   // sucesso e falha ficam registrados pelo banco (doc.gdoc_concluir e doc.gdoc_falhar)
+        if (t.pronto) { alvo = t.id; saida = { emissao: a.emissao, id: t.id, link: t.link, ja_existia: true }; break; }
+        try {
+          const gd = await criarDocGoogle(ctx, { ...t, drive_raiz: a.drive_raiz ?? t.drive_raiz });
+          await deps.sql`select doc.gdoc_concluir(${a.emissao}::bigint, ${gd.id}, ${gd.link}, ${pessoa}::uuid)`;
+          alvo = gd.id; saida = { emissao: a.emissao, id: gd.id, link: gd.link };
+        } catch (e) {
+          const erro = limparErro(e);
+          const f = (await deps.sql`select doc.gdoc_falhar(${a.emissao}::bigint, ${erro}, ${pessoa}::uuid) as r`)[0].r;
+          const quando = f.proxima_em ? new Date(f.proxima_em).toLocaleTimeString("pt-BR", { timeZone: "America/Fortaleza", hour: "2-digit", minute: "2-digit" }) : null;
+          throw new Recusa(erro + (f.situacao === "falhou" ? "; tentativas esgotadas: virou alerta de operação" : quando ? `; nova tentativa automática às ${quando}` : ""),
+            e instanceof Recusa && e.status < 500 ? e.status : 502);
+        }
+        break;
+      }
       case "agenda_evento": {
         const ini = new Date(String(d.inicio)), fim = new Date(String(d.fim));
         if (isNaN(+ini) || isNaN(+fim) || fim <= ini) throw new Recusa("início e fim inválidos");
@@ -174,12 +248,12 @@ export async function tratar(req: Request, deps: Deps): Promise<Response> {
       }
       default: throw new Recusa("ação desconhecida: " + acao);
     }
-    await registrar(deps.sql, "google", acao, pessoa, usuario, alvo, true, null);
+    if (!jaRegistrado) await registrar(deps.sql, "google", acao, pessoa, usuario, alvo, true, null);
     return json(saida);
   } catch (e) {
     const status = e instanceof Recusa ? e.status : 500;
     const msg = e instanceof Recusa ? e.message : "falha interna na função google";
-    if (status >= 500) await registrar(deps.sql, "google", acao, pessoa, usuario, alvo, false, limparErro(e));
+    if (status >= 500 && !jaRegistrado) await registrar(deps.sql, "google", acao, pessoa, usuario, alvo, false, limparErro(e));
     if (!(e instanceof Recusa)) console.error(e);
     return json({ erro: msg, codigo: status }, status);
   }

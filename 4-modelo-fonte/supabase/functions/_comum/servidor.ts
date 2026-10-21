@@ -59,6 +59,21 @@ export async function segredo(sql: Sql, nome: string): Promise<string | null> {
   return r[0]?.v ?? null;
 }
 
+// IP de quem chamou, pelos cabeçalhos que a plataforma preenche (nunca guardado em claro: o banco só guarda hash com sal)
+export function ipDe(req: Request): string | null {
+  const h = req.headers;
+  const ip = h.get("cf-connecting-ip") || h.get("x-real-ip") || (h.get("x-forwarded-for") || "").split(",")[0];
+  return ip && ip.trim() ? ip.trim().slice(0, 64) : null;
+}
+
+// e-mail de texto simples em UTF-8 (assunto e corpo em base64), no formato bruto que o Gmail aceita (base64url)
+export function emailTexto(de: string, para: string, assunto: string, corpo: string): string {
+  const b = (s: string) => b64(new TextEncoder().encode(s));
+  const msg = [`From: IMTS.OS <${de}>`, `To: ${para}`, `Subject: =?UTF-8?B?${b(assunto)}?=`, "MIME-Version: 1.0", "Content-Type: text/plain; charset=UTF-8",
+    "Content-Transfer-Encoding: base64", "", b(corpo)].join("\r\n");
+  return b64url(msg);
+}
+
 export function iguais(a: string | null, b: string | null): boolean {
   if (!a || !b || a.length !== b.length) return false;
   let d = 0; for (let i = 0; i < a.length; i++) d |= a.charCodeAt(i) ^ b.charCodeAt(i);

@@ -166,7 +166,7 @@ await caso('cliente (externo) é recusado', async () => {
 await caso('acessibilidade: zero violação em 1280 claro (todas as abas), 1280 escuro e 390 claro; sem rolagem horizontal', async () => {
   for (const [l, e] of [[1280, 'light'], [1280, 'dark'], [390, 'light']]) {
     const p = await abrir('acervo.html', 'lia', { largura: l, esquema: e }); await p.waitForSelector('#resumo span');
-    const abas = l === 1280 && e === 'light' ? ['arquivos', 'triagem', 'dados', 'divergencias', 'marca', 'modelos', 'pastas'] : ['arquivos', 'modelos', 'pastas'];
+    const abas = l === 1280 && e === 'light' ? ['arquivos', 'triagem', 'dados', 'divergencias', 'marca', 'modelos', 'emitidos', 'pastas'] : ['arquivos', 'modelos', 'emitidos', 'pastas'];
     for (const a of abas) { await aba(p, a); const v = await axe(p); confere(v.length === 0, `${l} ${e} ${a} axe ${v}`);
       const larg = await p.evaluate(() => document.documentElement.scrollWidth); confere(larg <= l, `${a} rolagem horizontal ${larg}`); }
     confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();

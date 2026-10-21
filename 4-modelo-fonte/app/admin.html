@@ -115,7 +115,7 @@ details > summary { padding:4px 0; min-height:24px; cursor:pointer; }
 <body>
 <header id="imts-barra"></header>
 <div class="chao">
-  <h1 class="marca">Administração<small>conexões, parâmetros, agentes, saúde e cadastro</small></h1>
+  <h1 class="marca">Administração<small>conexões, parâmetros, agentes, automação, saúde e cadastro</small></h1>
   <button class="icone" id="b-verificar" type="button">Verificar saúde</button>
   <button class="icone" id="b-atual" type="button">Atualizar</button>
 </div>
@@ -127,6 +127,7 @@ details > summary { padding:4px 0; min-height:24px; cursor:pointer; }
   <button class="aba" role="tab" id="t-parametros" data-aba="parametros" aria-controls="conteudo" aria-selected="false" tabindex="-1">Parâmetros<span class="n" id="n-parametros"></span></button>
   <button class="aba" role="tab" id="t-mudancas" data-aba="mudancas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Aprovações<span class="n" id="n-mudancas"></span></button>
   <button class="aba" role="tab" id="t-agentes" data-aba="agentes" aria-controls="conteudo" aria-selected="false" tabindex="-1">Agentes<span class="n" id="n-agentes"></span></button>
+  <button class="aba" role="tab" id="t-automacao" data-aba="automacao" aria-controls="conteudo" aria-selected="false" tabindex="-1">Automação e IA<span class="n" id="n-automacao"></span></button>
   <button class="aba" role="tab" id="t-saude" data-aba="saude" aria-controls="conteudo" aria-selected="false" tabindex="-1">Saúde<span class="n" id="n-saude"></span></button>
   <button class="aba" role="tab" id="t-alertas" data-aba="alertas" aria-controls="conteudo" aria-selected="false" tabindex="-1">Alertas<span class="n" id="n-alertas"></span></button>
   <button class="aba" role="tab" id="t-implantacao" data-aba="implantacao" aria-controls="conteudo" aria-selected="false" tabindex="-1">Implantação<span class="n" id="n-implantacao"></span></button>
@@ -177,7 +178,7 @@ const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', mo
 const ESTADO = { ativa: 'ativa', simulada: 'simulada', pendente: 'pendente', desligada: 'desligada' };
 const SAUDE = { ok: 'saudável', falha: 'falha', desconhecida: 'sem verificação' };
 const VAZIO = { resumo: {}, conexoes: [], parametros: [], mudancas: [], historico: [], agenda: [], administradores: [] };
-let dados = VAZIO, agentes = null, alertas = null, implantacao = null, cobertura = null, falhas = {};
+let dados = VAZIO, agentes = null, alertas = null, implantacao = null, cobertura = null, automacaoR = null, agenteIA = null, falhas = {};
 let aba = 'conexoes', voltarFoco = null, carregou = false;
 
 const quem = await IMTS.iniciar({ exige: 'interno', modulo: 'admin', admin: true });
@@ -209,6 +210,7 @@ function desenharResumo() {
   const ifal = (integ?.conexoes || []).filter(c => c.saude === 'falha').length; $('n-integracoes').textContent = ifal ? '!' + ifal : ''; $('n-implantacao').textContent = faltam ? '!' + faltam : '';
   const errs = (dados.saude?.erros || []).length + (dados.saude?.rotinas || []).filter(j => !j.ativo || j.falhas_24h).length;
   $('n-saude').textContent = errs ? '!' + errs : '';
+  $('n-automacao').textContent = agenteIA && agenteIA.ligado && agenteIA.modo_assistido && !agenteIA.disponivel ? '!' : '';
   const rs = (agentes || []).reduce((n, a) => n + (a.rascunhos || []).length, 0);
   if (rs) $('resumo').insertAdjacentHTML('beforeend', `<span class="esp">Rascunhos de agente para aprovar <b>${rs}</b></span>`);
   if (errs) $('resumo').insertAdjacentHTML('beforeend', `<span class="mal">Alertas de saúde <b>${errs}</b></span>`);
@@ -291,6 +293,81 @@ function vAgentes(q) {
         <button class="btn ${a.liberado ? 'perigo' : 'prim'}" type="button" data-liberar="${esc(a.codigo)}" data-v="${!a.liberado}">${a.liberado ? 'Suspender' : 'Liberar'}</button></div>
     </div></article>`; }).join('')}</div>
     <p class="rodape" style="padding:12px 0 0">Ligar e desligar é do dia a dia; suspender tira o agente de serviço até alguém com acesso de administrar liberar de novo. Toda mudança fica no histórico, com motivo.</p>`;
+}
+// ---------- Automação das tarefas R (078) e agentes de IA (086): leitura, e a regra por verbo com confirmação ----------
+const MODOS_R = [['registrar', 'a automação conclui e registra no histórico da instância'], ['encaminhar', 'a automação conclui e registra a passagem; a entrega segue pelo fluxo'],
+  ['avisar', 'a automação conclui e avisa a pessoa da raia'], ['humano', 'continua cartão para a pessoa no modo assistido']];
+const simNao = (v, sim, nao, bom = true) => `<span class="chip ${v ? (bom ? 'ok' : 'pendente') : (bom ? 'pendente' : '')}">${v ? sim : nao}</span>`;
+function vAutomacaoR() {
+  if (falhas.automacao) return `<section class="grupo" id="sec-automacao-r"><h2>Automação das tarefas R</h2>${naoCarregou('automacao')}</section>`;
+  if (!automacaoR) return '<p class="vazio">Carregando…</p>';
+  const r = automacaoR, pm = r.por_modo || {}, sem = r.verbos_sem_regra || [];
+  return `<section class="grupo" id="sec-automacao-r"><h2>Automação das tarefas R</h2>
+    <div class="cartao linhas">
+      <p class="chips" style="margin:0">${simNao(r.ligado, 'automação ligada', 'automação desligada')} ${simNao(r.modo_assistido, 'modo assistido ligado', 'modo assistido desligado: a regra ainda não vale', true)}</p>
+      <div class="resumo" style="padding:0" id="automacao-totais"><span>Tarefas R no modelo <b>${Number(r.tarefas_r || 0)}</b></span><span class="bem">A automação conclui <b>${Number(r.automaticas || 0)}</b></span>
+        <span>Com a pessoa <b>${Number(r.humanas || 0)}</b></span><span>Compostas que ficam com a pessoa <b>${Number(r.compostas_humanas || 0)}</b></span></div>
+      <div class="rolagem" tabindex="0"><table class="hist" id="tab-automacao-r"><caption class="sub" style="text-align:left;padding:0 0 6px">Tarefas R por modo</caption>
+        <thead><tr><th scope="col">Modo</th><th scope="col">Tarefas</th><th scope="col">O que acontece</th></tr></thead><tbody>
+        ${MODOS_R.map(([m, d]) => `<tr data-modo-r="${m}"><td><span class="chip ${m === 'humano' ? '' : 'ok'}">${m}</span></td><td>${Number(pm[m] || 0)}</td><td>${d}</td></tr>`).join('')}</tbody></table></div>
+      <p class="sub" style="margin:0">${sem.length ? `Verbos sem regra (ficam com a pessoa): ${sem.map(v => `<code>${esc(v)}</code>`).join(', ')}.` : 'Todo verbo de tarefa R tem regra.'} O verbo é a primeira palavra do nome da tarefa; tarefa composta fica com a pessoa quando a outra ação é humana.</p>
+    </div>
+    <form class="cartao linhas" id="f-automacao-r" autocomplete="off" style="margin-top:10px">
+      <h3 class="sub" style="margin:0;font-weight:700">Definir o modo de um verbo</h3>
+      <div class="par"><label class="campo" for="ar-verbo">Verbo (uma palavra, ex.: Registrar)<input id="ar-verbo" required pattern="[A-Za-zÀ-ÿ]+" maxlength="40"></label>
+        <label class="campo" for="ar-modo">Modo<select id="ar-modo">${MODOS_R.map(([m]) => `<option value="${m}">${m}</option>`).join('')}</select></label></div>
+      <label class="campo" for="ar-mot">Motivo<input id="ar-mot" required maxlength="300" placeholder="obrigatório; fica no histórico e na regra"></label>
+      <div class="acoes"><button class="btn prim" type="submit">Revisar e gravar</button><span class="sub" role="status" id="ar-st">${esc(retornos.automacao || '')}</span></div>
+      <p class="sub" style="margin:0">Só quem administra grava. A mudança vale para as próximas tarefas R do modo assistido; o que já virou cartão continua cartão.</p>
+    </form></section>`;
+}
+function vAgenteIA() {
+  if (falhas.agente_ia) return `<section class="grupo" id="sec-agente-ia"><h2>Agentes de IA</h2>${naoCarregou('agente_ia')}</section>`;
+  if (!agenteIA) return '<p class="vazio">Carregando…</p>';
+  const a = agenteIA, h = a.hoje || {}, pe = a.por_estado || {}, pd = a.por_desfecho || {}, mr = a.motivos_recentes || [];
+  const DES = { revisao: 'virou cartão de revisão', autonomo: 'concluída sozinha', cartao_humano: 'caiu no cartão humano' };
+  return `<section class="grupo" id="sec-agente-ia"><h2>Agentes de IA</h2>
+    <div class="cartao linhas">
+      <p class="chips" style="margin:0">${simNao(a.ligado, 'agente de IA ligado', 'agente de IA desligado')} ${a.autonomo ? '<span class="chip pendente">autônomo: conclui sem revisão</span>' : '<span class="chip ok">rascunho com revisão humana</span>'}
+        ${simNao(a.modo_assistido, 'modo assistido ligado', 'modo assistido desligado')} ${simNao(a.disponivel, 'disponível', 'indisponível')}</p>
+      ${a.disponivel ? '' : `<p class="sub" style="margin:0" id="agente-ia-motivo">Motivo: ${esc(a.motivo_indisponivel || 'não informado')}. Enquanto isso, a tarefa de agente vira o cartão assistido de antes.</p>`}
+      <p class="chips" style="margin:0"><span class="chip">provedor: ${esc(a.provedor || '')}</span>${simNao(a.chave_anthropic, 'chave Anthropic no cofre', 'sem chave Anthropic')} ${simNao(a.chave_kimi, 'chave Kimi no cofre', 'sem chave Kimi')} ${simNao(a.endereco_funcoes, 'endereço das funções definido', 'sem endereço das funções')}</p>
+      <div class="resumo" style="padding:0" id="agente-ia-totais"><span>Tarefas A no modelo <b>${Number(a.tarefas_a || 0)}</b></span>
+        <span>Hoje: chamadas <b>${Number(h.chamadas || 0)}</b> de ${Number(h.limite_chamadas || 0)}</span><span>Hoje: tokens <b>${Number(h.tokens || 0)}</b> de ${Number(h.limite_tokens || 0)}</span>
+        <span>Tokens em 30 dias <b>${Number(a.tokens_30_dias || 0)}</b></span><span class="${a.revisoes_abertas ? 'esp' : ''}">Revisões abertas na Mesa <b>${Number(a.revisoes_abertas || 0)}</b></span></div>
+      <div class="par">
+        <div class="rolagem" tabindex="0"><table class="hist" id="tab-agente-estado"><caption class="sub" style="text-align:left;padding:0 0 6px">Fila por estado</caption><thead><tr><th scope="col">Estado</th><th scope="col">Pedidos</th></tr></thead><tbody>
+          ${Object.entries(pe).map(([k, v]) => `<tr><td>${esc(k)}</td><td>${Number(v)}</td></tr>`).join('')}</tbody></table></div>
+        <div class="rolagem" tabindex="0"><table class="hist" id="tab-agente-desfecho"><caption class="sub" style="text-align:left;padding:0 0 6px">Desfecho dos pedidos</caption><thead><tr><th scope="col">Desfecho</th><th scope="col">Pedidos</th></tr></thead><tbody>
+          ${Object.entries(pd).map(([k, v]) => `<tr><td>${esc(DES[k] || k)}</td><td>${Number(v)}</td></tr>`).join('')}</tbody></table></div>
+      </div>
+      <h3 class="sub" style="margin:0;font-weight:700">Por que caiu no cartão humano (7 dias)</h3>
+      ${mr.length ? `<ul id="agente-ia-motivos" style="margin:0;padding-left:20px;font-size:14px">${mr.map(m => `<li>${esc(m.motivo)}: ${Number(m.vezes)} ${Number(m.vezes) === 1 ? 'vez' : 'vezes'}</li>`).join('')}</ul>` : '<p class="sub" style="margin:0">Nenhuma queda nos últimos 7 dias.</p>'}
+      <p class="sub" style="margin:0">Leitura. Os parâmetros <code>motor.agente_ia</code>, <code>motor.agente_ia_autonomo</code> e os limites do dia mudam na aba Parâmetros; as chaves, na aba Integrações.</p>
+    </div></section>`;
+}
+function vAutomacao() { return vAutomacaoR() + vAgenteIA(); }
+function abrirConfirmarAutomacao() {
+  const verbo = $('ar-verbo').value.trim(), modo = $('ar-modo').value, mot = $('ar-mot').value.trim();
+  if (!/^[A-Za-zÀ-ÿ]+$/.test(verbo)) { $('ar-st').textContent = 'Verbo: uma palavra só, sem espaço.'; return; }
+  if (!mot) { $('ar-st').textContent = 'Informe o motivo.'; return; }
+  const v = verbo.charAt(0).toUpperCase() + verbo.slice(1).toLowerCase(), d = MODOS_R.find(m => m[0] === modo)[1];
+  $('foco').innerHTML = `<div class="topo"><h2 id="f-titulo">Confirmar a regra do verbo ${esc(v)}</h2><button class="icone" type="button" id="f-fechar">Fechar</button></div>
+    <p>Tarefas R que começam com <code>${esc(v)}</code> passam ao modo <b>${esc(modo)}</b>: ${esc(d)}.</p>
+    <p>Motivo: ${esc(mot)}</p>
+    <form id="f-ar-conf" class="linhas"><div class="acoes"><button class="btn prim" type="submit">Confirmar e gravar</button><button class="btn" type="button" id="f-cancelar">Cancelar</button></div></form>`;
+  abrirFoco(); $('f-fechar').onclick = $('f-cancelar').onclick = fechar;
+  $('f-ar-conf').onsubmit = async ev => {
+    ev.preventDefault();
+    const b = ev.target.querySelector('button[type=submit]'); b.disabled = true;
+    try {
+      const r = await IMTS.chamar('adm.automacao_r_definir', { p_verbo: v, p_modo: modo, p_motivo: mot });
+      retornos.automacao = `Gravado: ${r?.verbo || v} no modo ${r?.modo || modo}.`; recibo('feito', retornos.automacao);
+      fechar(); await recarregar();
+      $('ar-verbo').value = ''; $('ar-mot').value = '';
+    } catch (e) { retornos.automacao = 'Recusado: ' + motivo(e); recibo('recusado', retornos.automacao); fechar(); if ($('ar-st')) $('ar-st').textContent = retornos.automacao; }
+    finally { b.disabled = false; }
+  };
 }
 function vSaude() {
   if (falhas.painel) return naoCarregou('painel');
@@ -751,6 +828,7 @@ document.addEventListener('submit', e => {
   else if (f.dataset.paramForm) { e.preventDefault(); enviarParam(f); }
   else if (f.dataset.sistemaForm) { e.preventDefault(); salvarSistema(f); }
   else if (f.id === 'f-ext') { e.preventDefault(); criarExterno(f); }
+  else if (f.id === 'f-automacao-r') { e.preventDefault(); voltarFoco = f.querySelector('button[type=submit]'); abrirConfirmarAutomacao(); }
 });
 
 function desenhar() {
@@ -758,7 +836,7 @@ function desenhar() {
   const q = $('q').value.trim().toLowerCase();
   if (aba === 'cadastro') { if (!cadNo) { montarCadastro(); desenharConvite(); } $('conteudo').replaceChildren(cadNo); }
   else if (!carregou && !['cadastro'].includes(aba)) $('conteudo').innerHTML = '<p class="vazio">Carregando…</p>';
-  else $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, historico: vHistorico, agenda: vAgenda, alertas: vAlertas, implantacao: vImplantacao, integracoes: vIntegracoes }[aba](q);
+  else $('conteudo').innerHTML = { conexoes: vConexoes, parametros: vParametros, mudancas: vMudancas, agentes: vAgentes, saude: vSaude, automacao: vAutomacao, historico: vHistorico, agenda: vAgenda, alertas: vAlertas, implantacao: vImplantacao, integracoes: vIntegracoes }[aba](q);
   $('conteudo').setAttribute('aria-labelledby', 't-' + aba);
   for (const b of document.querySelectorAll('.aba[role=tab]')) { const s = b.dataset.aba === aba; b.setAttribute('aria-selected', String(s)); b.tabIndex = s ? 0 : -1; }
   $('rodape').textContent = dados.gerado_em ? `Gerado ${quando(dados.gerado_em)}. Cada alteração passa pelas funções da administração e vale a regra do banco: validação, duas mãos nos sensíveis e histórico. Valores de segredo nunca aparecem: só o nome no cofre.` : '';
@@ -871,8 +949,9 @@ async function agir(fn, args, ok, fecharDepois) {
   finally { bs.forEach(b => b.disabled = false); }
 }
 async function recarregar() {
-  const [p, a, al, im, co, ig] = await Promise.allSettled([IMTS.chamar('adm.painel_completo', {}), IMTS.chamar('rt.agentes_painel', {}), IMTS.chamar('adm.alertas', {}),
-    IMTS.chamar('adm.conferir_implantacao', {}), IMTS.chamar('adm.cobertura_papeis', {}), IMTS.chamar('adm.integracoes', {})]);
+  const [p, a, al, im, co, ig, ar, ai] = await Promise.allSettled([IMTS.chamar('adm.painel_completo', {}), IMTS.chamar('rt.agentes_painel', {}), IMTS.chamar('adm.alertas', {}),
+    IMTS.chamar('adm.conferir_implantacao', {}), IMTS.chamar('adm.cobertura_papeis', {}), IMTS.chamar('adm.integracoes', {}),
+    IMTS.chamar('adm.automacao_r_resumo', {}), IMTS.chamar('adm.agente_ia_resumo', {})]);
   falhas = {};
   if (p.status === 'fulfilled') dados = p.value || VAZIO; else falhas.painel = motivo(p.reason);
   if (a.status === 'fulfilled') agentes = a.value || []; else falhas.agentes = motivo(a.reason);
@@ -880,6 +959,8 @@ async function recarregar() {
   if (im.status === 'fulfilled') implantacao = im.value; else falhas.implantacao = motivo(im.reason);
   if (co.status === 'fulfilled') cobertura = co.value; else falhas.cobertura = motivo(co.reason);
   if (ig.status === 'fulfilled') integ = ig.value; else falhas.integ = motivo(ig.reason);
+  if (ar.status === 'fulfilled') automacaoR = ar.value; else falhas.automacao = motivo(ar.reason);
+  if (ai.status === 'fulfilled') agenteIA = ai.value; else falhas.agente_ia = motivo(ai.reason);
   carregou = true;
   const msgs = Object.values(falhas);
   $('erro').hidden = !msgs.length; $('erro').textContent = msgs.length ? 'Parte da administração não carregou: ' + [...new Set(msgs)].join('; ') : '';

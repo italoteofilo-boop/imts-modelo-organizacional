@@ -143,7 +143,7 @@ details > summary { cursor:pointer; font-size:13px; color:var(--azul); min-heigh
   const REGRA = { comissoes: 'Comissões', cnpj: 'CNPJ do emitente', numero: 'Número', valor: 'Valor' };
   const PLAT = { meet: 'Google Meet', zoom: 'Zoom', teams: 'Microsoft Teams', webex: 'Webex', presencial: 'Presencial', outra: 'Outra' };
   const PERFIS = { gestor: 'Gestor', fiscal: 'Fiscal', financeiro: 'Financeiro', operacional: 'Operacional' };
-  let quem = null, A = null, P = null, R = null, CP = [], aba = 'atendimento', filtro = 'abertos', prefill = null;
+  let quem = null, A = null, P = null, R = null, CP = [], aba = location.hash === '#assinaturas' ? 'assinaturas' : 'atendimento', filtro = 'abertos', prefill = null;
   let D = null, Derro = null, ndFiltro = 'rascunho', ndForm = null;   // notas de débito: painel, motivo da falha, filtro e formulário aberto
   let S = null, Serro = null, asFiltro = 'aguardando', asForm = null; const asAviso = {};   // assinaturas: painel, falha, filtro, formulário, aviso do código por signatário
   const transcricoes = {};   // texto da transcrição ligada nesta sessão, por reunião (para a IA ler sem ir ao Drive de novo)

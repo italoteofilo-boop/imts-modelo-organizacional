@@ -27,14 +27,15 @@ export function lerAta(texto: string) {
 }
 
 
-type Resposta = { texto: string; entrada: number | null; saida: number | null; provedor: string };
+export type Resposta = { texto: string; entrada: number | null; saida: number | null; provedor: string };
+// configuração vinda do banco (adm.servidor_autorizar ou rt.agente_ia_pegar)
+export type ConfigIA = { provedor?: string; modelo?: string; kimi_url?: string | null; kimi_modelo?: string | null };
 
-// deno-lint-ignore no-explicit-any
-async function anthropic(deps: Deps, a: any, transcricao: string): Promise<Resposta> {
+async function anthropic(deps: Deps, a: ConfigIA, sistema: string, conteudo: string, max: number): Promise<Resposta> {
   const chave = await segredo(deps.sql, "anthropic_chave");
   if (!chave) throw new Recusa("falta o segredo anthropic_chave no cofre", 503);
   const r = await deps.fetch(API, { method: "POST", headers: { "x-api-key": chave, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: a.modelo, max_tokens: 2000, system: INSTRUCAO, messages: [{ role: "user", content: "Transcrição:\n\n" + transcricao }] }) })
+    body: JSON.stringify({ model: a.modelo, max_tokens: max, system: sistema, messages: [{ role: "user", content: conteudo }] }) })
     .catch(() => { throw new Recusa("sem conexão com a API da Anthropic", 502); });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Recusa("respondeu " + r.status + ": " + (j?.error?.message || ""), 502);
@@ -43,17 +44,29 @@ async function anthropic(deps: Deps, a: any, transcricao: string): Promise<Respo
 }
 
 // Kimi (Moonshot AI): API compatível com Chat Completions da OpenAI
-// deno-lint-ignore no-explicit-any
-async function kimi(deps: Deps, a: any, transcricao: string): Promise<Resposta> {
+async function kimi(deps: Deps, a: ConfigIA, sistema: string, conteudo: string, max: number): Promise<Resposta> {
   if (!a.kimi_url || !a.kimi_modelo) throw new Recusa("Kimi não configurada: preencha ia.kimi_url e ia.kimi_modelo", 503);
   const chave = await segredo(deps.sql, "kimi_chave");
   if (!chave) throw new Recusa("falta o segredo kimi_chave no cofre", 503);
   const r = await deps.fetch(a.kimi_url + "/chat/completions", { method: "POST", headers: { Authorization: "Bearer " + chave, "Content-Type": "application/json" },
-    body: JSON.stringify({ model: a.kimi_modelo, max_tokens: 2000, messages: [{ role: "system", content: INSTRUCAO }, { role: "user", content: "Transcrição:\n\n" + transcricao }] }) })
+    body: JSON.stringify({ model: a.kimi_modelo, max_tokens: max, messages: [{ role: "system", content: sistema }, { role: "user", content: conteudo }] }) })
     .catch(() => { throw new Recusa("sem conexão com a API Kimi", 502); });
   const j = await r.json().catch(() => ({}));
   if (!r.ok) throw new Recusa("respondeu " + r.status + ": " + (j?.error?.message || ""), 502);
   return { texto: String(j.choices?.[0]?.message?.content ?? ""), entrada: j.usage?.prompt_tokens ?? null, saida: j.usage?.completion_tokens ?? null, provedor: "kimi" };
+}
+
+// Provedor principal e reserva (parâmetro ia.provedor); a reserva só entra se o principal falhar (Recusa 5xx).
+// Devolve a resposta (ou null) e as falhas; status 503 = falta configuração (chave, endereço ou modelo), 502 = o provedor falhou.
+export async function chamarIA(deps: Deps, a: ConfigIA, sistema: string, conteudo: string, max: number):
+  Promise<{ saida: Resposta | null; falhas: { provedor: string; motivo: string; status: number }[] }> {
+  const ordem = a.provedor === "kimi" ? ["kimi", "anthropic"] : ["anthropic", "kimi"];
+  const falhas: { provedor: string; motivo: string; status: number }[] = [];
+  for (const p of ordem) {
+    try { return { saida: p === "kimi" ? await kimi(deps, a, sistema, conteudo, max) : await anthropic(deps, a, sistema, conteudo, max), falhas }; }
+    catch (e) { if (e instanceof Recusa && e.status >= 500) { falhas.push({ provedor: p, motivo: e.message, status: e.status }); continue; } throw e; }
+  }
+  return { saida: null, falhas };
 }
 
 export async function tratar(req: Request, deps: Deps): Promise<Response> {
@@ -71,15 +84,8 @@ export async function tratar(req: Request, deps: Deps): Promise<Response> {
     if (transcricao.length > MAX_TRANSCRICAO) throw new Recusa("transcrição longa demais para um rascunho (máximo de 120 mil caracteres)");
     const a = await autorizar(deps.sql, u, req.headers.get("x-empresa"), "ia", acao, { reuniao: d.reuniao });
     pessoa = a.pessoa;
-    // provedor principal e reserva (parâmetro ia.provedor); a reserva só entra se o principal falhar
-    const ordem = a.provedor === "kimi" ? ["kimi", "anthropic"] : ["anthropic", "kimi"];
-    const falhas: string[] = [];
-    let saida: Resposta | null = null;
-    for (const p of ordem) {
-      try { saida = p === "kimi" ? await kimi(deps, a, transcricao) : await anthropic(deps, a, transcricao); break; }
-      catch (e) { if (e instanceof Recusa && e.status >= 500) { falhas.push(p + ": " + e.message); continue; } throw e; }
-    }
-    if (!saida) throw new Recusa("IA indisponível: " + falhas.join("; "), 503);
+    const { saida, falhas } = await chamarIA(deps, a, INSTRUCAO, "Transcrição:\n\n" + transcricao, 2000);
+    if (!saida) throw new Recusa("IA indisponível: " + falhas.map((f) => f.provedor + ": " + f.motivo).join("; "), 503);
     const ata = lerAta(saida.texto);
     await registrar(deps.sql, "ia", acao, pessoa, null, "reuniao:" + d.reuniao, true, saida.provedor + (falhas.length ? " (reserva)" : ""), saida.entrada, saida.saida);
     return json({ ata });

@@ -4,7 +4,9 @@
 // POST ?tarefa=manutencao | configurar | estado, com o cabeçalho X-IMTS-Chave (segredo do Vault): esvazia a fila, apaga as mensagens
 // vencidas (autodestruição) e configura o webhook e os comandos do bot. Ambiente "teste" usa a Bot API em /bot<token>/test/<método>.
 // Segredos (Vault): telegram_bot_token, telegram_webhook_segredo, imts_funcao_chave; ambiente em telegram_ambiente ("teste" por padrão).
+// Mini App (P6, 082): "configurar" põe o botão de menu "Mesa" (web_app) com o endereço do parâmetro telegram_app.url e o comando /mesa.
 import postgres from "npm:postgres@3.4.4";
+import { ajustarBotoes, menuMesa } from "./botoes.ts";
 
 const sql = postgres(Deno.env.get("SUPABASE_DB_URL")!, { max: 2, prepare: false });
 const json = (b: unknown, status = 200) => new Response(JSON.stringify(b), { status, headers: { "Content-Type": "application/json" } });
@@ -41,7 +43,7 @@ async function esvaziar(token: string | null, ambiente: string) {
       }
       const chat_id = String(f.chat_ref).replace(/^tg:/, "");
       const corpo: Record<string, unknown> = { chat_id, text: f.texto };
-      if (f.botoes) corpo.reply_markup = { inline_keyboard: f.botoes };
+      if (f.botoes) corpo.reply_markup = { inline_keyboard: ajustarBotoes(f.botoes, chat_id) };
       const r = await api(token, ambiente, "sendMessage", corpo);
       if (r.ok) { await sql`select rt.confirmar_envio(${f.id}, true, ${String(r.result.message_id)})`; enviados++; }
       else { await sql`select rt.confirmar_envio(${f.id}, false, null, ${String(r.description ?? "erro")})`; falhas++; }
@@ -85,12 +87,15 @@ Deno.serve(async (req) => {
         const w = await api(token, ambiente, "setWebhook", { url: destino, secret_token: await segredo("telegram_webhook_segredo"),
           allowed_updates: ["message", "callback_query"], drop_pending_updates: false });
         const c = await api(token, ambiente, "setMyCommands", { commands: [
-          { command: "quadro", description: "Suas tarefas abertas" }, { command: "nova", description: "Nova tarefa avulsa" },
+          { command: "quadro", description: "Suas tarefas abertas" }, { command: "mesa", description: "Abrir a Mesa no Telegram" },
+          { command: "nova", description: "Nova tarefa avulsa" },
           { command: "concluir", description: "Concluir a tarefa N" }, { command: "decidir", description: "Decidir o cartão N" },
           { command: "aceitar", description: "Aceitar a tarefa N" }, { command: "recusar", description: "Recusar a tarefa N" },
           { command: "iniciar", description: "Iniciar uma jornada" }, { command: "ajuda", description: "Como usar" }] });
+        const [{ u: urlMesa }] = await sql`select rt._tg_app_url() as u`;
+        const menu = await api(token, ambiente, "setChatMenuButton", menuMesa(urlMesa));
         const me = await api(token, ambiente, "getMe", {});
-        return json({ webhook: w, comandos: c, bot: me.result?.username ?? null });
+        return json({ webhook: w, comandos: c, menu, mesa: urlMesa, bot: me.result?.username ?? null });
       }
       return json({ erro: "tarefa desconhecida" }, 400);
     }

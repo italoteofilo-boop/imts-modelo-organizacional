@@ -4,7 +4,9 @@
 // de quem assinou, datas, hashes, situação da trilha e do selo. IP, navegador e o manifesto completo não saem daqui.
 // Entrada (POST JSON): { codigo, hash? } ou { codigo, arquivo? (base64, até 25 MB) }. O ideal é a página mandar só o hash,
 // calculado no navegador: o arquivo não precisa sair do computador de quem verifica.
-import { CORS, deB64, Deps, json, limparErro, Recusa, registrar } from "../_comum/servidor.ts";
+// Limite de consultas: o banco conta por minuto, por IP e por código (doc.verificar_contar, só hash com sal, nunca o IP em claro);
+// quem passa de verificar.limite_por_minuto recebe 429 com Retry-After, antes de qualquer leitura do registro.
+import { CORS, deB64, Deps, ipDe, json, limparErro, Recusa, registrar } from "../_comum/servidor.ts";
 import { conferirTexto, sha256Hex } from "../_comum/selo.ts";
 
 const MAX_BYTES = 25 * 1024 * 1024;
@@ -15,8 +17,15 @@ export async function tratar(req: Request, deps: Deps): Promise<Response> {
   let codigo = "";
   try {
     // deno-lint-ignore no-explicit-any
-    const d: any = await req.json().catch(() => { throw new Recusa("corpo inválido"); });
-    codigo = String(d.codigo || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    const d: any = await req.json().catch(() => null);
+    codigo = String(d?.codigo || "").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 40);
+    const [{ r: lim }] = await deps.sql`select doc.verificar_contar(${ipDe(req)}, ${codigo.length === 12 ? codigo : null}) as r`;
+    if (!lim.permitido) {
+      const espera = Math.max(1, Number(lim.tentar_em) || 60);
+      return new Response(JSON.stringify({ erro: `muitas consultas em pouco tempo: tente de novo em ${espera} segundos`, codigo: 429 }),
+        { status: 429, headers: { ...CORS, "Content-Type": "application/json", "Retry-After": String(espera) } });
+    }
+    if (!d || typeof d !== "object") throw new Recusa("corpo inválido");
     if (codigo.length !== 12) throw new Recusa("código de verificação inválido: são 12 letras e números, como ABCD-EFGH-JKMN");
     let hash: string | null = typeof d.hash === "string" && /^[0-9a-fA-F]{64}$/.test(d.hash) ? d.hash.toLowerCase() : null;
     if (!hash && typeof d.arquivo === "string" && d.arquivo) {

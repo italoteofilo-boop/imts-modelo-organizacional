@@ -191,6 +191,63 @@ await caso('integrações: cadastrar serviço externo, configurar e ver os siste
   confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
 });
 
+await caso('automação e IA: resumo das tarefas R e dos agentes de IA, com os números do banco', async () => {
+  const p = await abrir('admin.html', 'admin'); await pronto(p); await aba(p, 'automacao');
+  await p.waitForSelector('#sec-automacao-r'); await p.waitForSelector('#sec-agente-ia');
+  const r = JSON.parse(sql('select adm.automacao_r_resumo()')), a = JSON.parse(sql('select adm.agente_ia_resumo()'));
+  const tot = await p.textContent('#automacao-totais');
+  confere(tot.includes('Tarefas R no modelo ' + r.tarefas_r) && tot.includes('A automação conclui ' + r.automaticas) && tot.includes('Com a pessoa ' + r.humanas), 'totais R: ' + tot);
+  for (const m of ['registrar', 'encaminhar', 'avisar', 'humano'])
+    confere((await p.textContent(`[data-modo-r="${m}"]`)).includes(String(r.por_modo[m])), 'modo ' + m);
+  const ia = await p.textContent('#sec-agente-ia');
+  confere((await p.textContent('#agente-ia-totais')).includes('Tarefas A no modelo ' + a.tarefas_a), 'tarefas A');
+  confere(ia.includes(a.disponivel ? 'disponível' : 'indisponível') && (a.disponivel || ia.includes(a.motivo_indisponivel)), 'disponibilidade: ' + ia);
+  confere(ia.includes(a.autonomo ? 'autônomo' : 'revisão humana'), 'autonomia');
+  confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
+});
+
+await caso('automação R: definir o modo de um verbo pede confirmação, grava e fica no histórico', async () => {
+  const letras = Array.from(marca.replace(/[^a-z]/g, '') + 'abcdef').slice(0, 6).join('');
+  const verbo = 'Ensaiar' + letras, mot = 'teste do aplicativo ' + marca;
+  const p = await abrir('admin.html', 'admin'); await pronto(p); await aba(p, 'automacao'); await p.waitForSelector('#f-automacao-r');
+  await p.fill('#ar-verbo', verbo.toLowerCase()); await p.selectOption('#ar-modo', 'avisar'); await p.fill('#ar-mot', mot);
+  await p.click('#f-automacao-r button[type=submit]'); await p.waitForSelector('#f-ar-conf');
+  confere((await p.textContent('#foco')).includes(verbo) && (await p.textContent('#foco')).includes('avisar'), 'confirmação sem o verbo e o modo');
+  let v = await axe(p); confere(v.length === 0, 'axe na confirmação ' + v);
+  await p.click('#f-cancelar'); await semAviso(p);
+  confere(sql(`select count(*) from adm.automacao_r_regra where verbo = '${verbo}'`) === '0', 'gravou sem confirmar');
+  await p.click('#f-automacao-r button[type=submit]'); await p.waitForSelector('#f-ar-conf'); await p.click('#f-ar-conf button[type=submit]');
+  await semAviso(p); await p.waitForFunction(t => document.getElementById('ar-st')?.textContent.includes(t), verbo, { timeout: 8000 });
+  confere(sql(`select modo from adm.automacao_r_regra where verbo = '${verbo}'`) === 'avisar', 'regra não gravada');
+  confere(sql(`select count(*) from adm.historico where objeto = 'automacao_r' and chave = '${verbo}' and motivo = '${mot}'`) === '1', 'sem histórico');
+  sql(`delete from adm.automacao_r_regra where verbo = '${verbo}'`);
+  confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
+});
+
+await caso('automação R: quem não administra é recusado pelo banco', async () => {
+  const p = await abrir('mesa.html', 'olga'); await p.waitForSelector('body[data-pronto="1"]');
+  const r = await p.evaluate(async () => { try { await IMTS.chamar('adm.automacao_r_definir', { p_verbo: 'Registrar', p_modo: 'humano', p_motivo: 'tentativa' }); return 'aceito'; } catch (e) { return 'recusado: ' + e.message; } });
+  confere(r.startsWith('recusado'), 'olga gravou: ' + r);
+  const ia = await p.evaluate(async () => { try { await IMTS.chamar('adm.agente_ia_resumo', {}); return 'aceito'; } catch (e) { return 'recusado'; } });
+  confere(ia === 'recusado', 'olga leu o resumo do agente de IA');
+  confere(sql("select modo from adm.automacao_r_regra where verbo = 'Registrar'") === 'registrar', 'regra mudou');
+  p.erros.splice(0, p.erros.length, ...p.erros.filter(e => !/status of (400|403)/.test(e)));
+  confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
+});
+
+await caso('automação e IA: axe em 390 e 1280, claro e escuro, com a confirmação aberta, sem rolagem horizontal', async () => {
+  for (const [l, e] of [[1280, 'light'], [1280, 'dark'], [390, 'light'], [390, 'dark']]) {
+    const p = await abrir('admin.html', 'admin', { largura: l, esquema: e }); await pronto(p); await aba(p, 'automacao'); await p.waitForSelector('#sec-agente-ia');
+    let v = await axe(p); confere(v.length === 0, `${l} ${e} axe ` + v);
+    let lg = await p.evaluate(() => document.documentElement.scrollWidth); confere(lg <= l, `${l} ${e} rolagem horizontal ${lg}`);
+    await p.fill('#ar-verbo', 'Registrar'); await p.fill('#ar-mot', 'só conferir a tela'); await p.click('#f-automacao-r button[type=submit]'); await p.waitForSelector('#f-ar-conf');
+    v = await axe(p); confere(v.length === 0, `${l} ${e} confirmação axe ` + v);
+    lg = await p.evaluate(() => document.documentElement.scrollWidth); confere(lg <= l, `${l} ${e} confirmação rolagem ${lg}`);
+    await p.keyboard.press('Escape'); await semAviso(p);
+    confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
+  }
+});
+
 await caso('olga (sem administração) é recusada', async () => {
   const p = await abrir('admin.html', 'olga'); await p.waitForURL(/index\.html/, { timeout: 5000 });
   await p.waitForSelector('#inicio:not([hidden])'); await p.close();
@@ -202,7 +259,7 @@ await caso('clara (cliente) é recusada', async () => {
 await caso('acessibilidade e largura: 1280 claro, 1280 escuro, 390 claro', async () => {
   for (const [l, e] of [[1280, 'light'], [1280, 'dark'], [390, 'light']]) {
     const p = await abrir('admin.html', 'admin', { largura: l, esquema: e }); await pronto(p);
-    for (const t of ['conexoes', 'integracoes', 'parametros', 'agentes', 'saude', 'alertas', 'implantacao', 'cadastro', 'historico', 'agenda']) {
+    for (const t of ['conexoes', 'integracoes', 'parametros', 'agentes', 'automacao', 'saude', 'alertas', 'implantacao', 'cadastro', 'historico', 'agenda']) {
       await aba(p, t); await p.waitForTimeout(50);
       if (t === 'agentes' || t === 'alertas') await p.$$eval('#conteudo details', ds => ds.forEach(d => { d.open = true; }));
       if (t === 'integracoes') for (const k of ['telegram', 'anthropic', 'kimi', 'google', 'externo', 'sistemas', 'todas']) {
