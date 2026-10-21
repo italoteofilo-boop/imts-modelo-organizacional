@@ -178,7 +178,8 @@ const quando = t => t ? new Date(t).toLocaleString('pt-BR', { day: '2-digit', mo
 const ESTADO = { ativa: 'ativa', simulada: 'simulada', pendente: 'pendente', desligada: 'desligada' };
 const SAUDE = { ok: 'saudável', falha: 'falha', desconhecida: 'sem verificação' };
 const VAZIO = { resumo: {}, conexoes: [], parametros: [], mudancas: [], historico: [], agenda: [], administradores: [] };
-let dados = VAZIO, agentes = null, alertas = null, implantacao = null, cobertura = null, automacaoR = null, agenteIA = null, falhas = {};
+let dados = VAZIO, agentes = null, alertas = null, implantacao = null, cobertura = null, automacaoR = null, regrasR = null, agenteIA = null, falhas = {};
+let regraModo = '', regraBusca = '';
 let aba = 'conexoes', voltarFoco = null, carregou = false;
 
 const quem = await IMTS.iniciar({ exige: 'interno', modulo: 'admin', admin: true });
@@ -319,8 +320,59 @@ function vAutomacaoR() {
       <label class="campo" for="ar-mot">Motivo<input id="ar-mot" required maxlength="300" placeholder="obrigatório; fica no histórico e na regra"></label>
       <div class="acoes"><button class="btn prim" type="submit">Revisar e gravar</button><span class="sub" role="status" id="ar-st">${esc(retornos.automacao || '')}</span></div>
       <p class="sub" style="margin:0">Só quem administra grava. A mudança vale para as próximas tarefas R do modo assistido; o que já virou cartão continua cartão.</p>
-    </form></section>`;
+    </form>${vRegrasR()}</section>`;
 }
+// lista das regras por verbo (091): filtro por modo e busca por verbo redesenham só o corpo da tabela, sem perder o foco do campo
+function regrasFiltradas() {
+  const b = regraBusca.trim().toLowerCase();
+  return (regrasR?.regras || []).filter(g => (!regraModo || g.modo === regraModo) && (!b || String(g.verbo).toLowerCase().includes(b)));
+}
+function linhasRegrasR() {
+  const gs = regrasFiltradas();
+  if (!gs.length) return `<tr><td colspan="6">Nenhuma regra com esse filtro.</td></tr>`;
+  return gs.map(g => {
+    const por = g.atualizado_por ? (g.atualizado_por_nome || papel(g.atualizado_por)) : 'carga inicial';
+    const cp = Number(g.compostas_com_pessoa || 0);
+    return `<tr data-regra="${esc(g.verbo)}"><th scope="row">${esc(g.verbo)}</th><td><span class="chip ${g.modo === 'humano' ? '' : 'ok'}">${esc(g.modo)}</span></td>
+      <td>${esc(g.descricao)}</td><td>${Number(g.tarefas_r || 0)}${cp ? `<br><small>${cp} ${cp === 1 ? 'composta fica' : 'compostas ficam'} com a pessoa</small>` : ''}</td>
+      <td>${quando(g.atualizado_em)}<br><small>${esc(por)}</small></td>
+      <td><button class="btn" type="button" data-regra-verbo="${esc(g.verbo)}" aria-label="Trocar o modo de ${esc(g.verbo)}">Trocar modo</button></td></tr>`;
+  }).join('');
+}
+function contagemRegrasR() {
+  const n = regrasFiltradas().length, t = (regrasR?.regras || []).length;
+  return n === t ? `${t} ${t === 1 ? 'regra' : 'regras'}` : `${n} de ${t} regras`;
+}
+function vRegrasR() {
+  if (falhas.regras) return `<section class="cartao linhas" id="sec-regras-r" style="margin-top:10px" aria-labelledby="rg-titulo"><h3 class="sub" id="rg-titulo" style="margin:0;font-weight:700">Regras por verbo</h3>${naoCarregou('regras')}</section>`;
+  if (!regrasR) return '';
+  const pm = regrasR.por_modo || {};
+  return `<section class="cartao linhas" id="sec-regras-r" style="margin-top:10px" aria-labelledby="rg-titulo">
+      <h3 class="sub" id="rg-titulo" style="margin:0;font-weight:700">Regras por verbo</h3>
+      <div class="par"><label class="campo" for="rg-modo">Filtrar por modo<select id="rg-modo"><option value="">todos os modos (${Number(regrasR.total || 0)})</option>
+          ${MODOS_R.map(([m]) => `<option value="${m}" ${regraModo === m ? 'selected' : ''}>${m} (${Number(pm[m] || 0)})</option>`).join('')}</select></label>
+        <label class="campo" for="rg-busca">Buscar verbo<input id="rg-busca" type="search" value="${esc(regraBusca)}" placeholder="ex.: Registrar" autocomplete="off"></label></div>
+      <p class="sub" style="margin:0" role="status" id="rg-n">${contagemRegrasR()}</p>
+      <div class="rolagem" tabindex="0" aria-label="Regras por verbo"><table class="hist" id="tab-regras-r">
+        <thead><tr><th scope="col">Verbo</th><th scope="col">Modo</th><th scope="col">Descrição</th><th scope="col">Tarefas R</th><th scope="col">Atualizado</th><th scope="col">Ação</th></tr></thead>
+        <tbody id="tb-regras-r">${linhasRegrasR()}</tbody></table></div>
+      <p class="sub" style="margin:0">Trocar modo preenche o formulário acima com o verbo e o modo atual; a gravação passa pela mesma confirmação.</p>
+    </section>`;
+}
+function filtrarRegrasR() {
+  if ($('tb-regras-r')) $('tb-regras-r').innerHTML = linhasRegrasR();
+  if ($('rg-n')) $('rg-n').textContent = contagemRegrasR();
+}
+function preencherRegra(verbo) {
+  const g = (regrasR?.regras || []).find(x => x.verbo === verbo); if (!g || !$('f-automacao-r')) return;
+  $('ar-verbo').value = g.verbo; $('ar-modo').value = g.modo; $('ar-mot').value = '';
+  $('ar-st').textContent = `Verbo ${g.verbo} (hoje: ${g.modo}): escolha o novo modo, informe o motivo e revise.`;
+  $('f-automacao-r').scrollIntoView({ block: 'nearest' }); $('ar-modo').focus();
+}
+document.addEventListener('input', e => {
+  if (e.target.id === 'rg-busca') { regraBusca = e.target.value; filtrarRegrasR(); }
+  else if (e.target.id === 'rg-modo') { regraModo = e.target.value; filtrarRegrasR(); }
+});
 function vAgenteIA() {
   if (falhas.agente_ia) return `<section class="grupo" id="sec-agente-ia"><h2>Agentes de IA</h2>${naoCarregou('agente_ia')}</section>`;
   if (!agenteIA) return '<p class="vazio">Carregando…</p>';
@@ -949,9 +1001,9 @@ async function agir(fn, args, ok, fecharDepois) {
   finally { bs.forEach(b => b.disabled = false); }
 }
 async function recarregar() {
-  const [p, a, al, im, co, ig, ar, ai] = await Promise.allSettled([IMTS.chamar('adm.painel_completo', {}), IMTS.chamar('rt.agentes_painel', {}), IMTS.chamar('adm.alertas', {}),
+  const [p, a, al, im, co, ig, ar, ai, rg] = await Promise.allSettled([IMTS.chamar('adm.painel_completo', {}), IMTS.chamar('rt.agentes_painel', {}), IMTS.chamar('adm.alertas', {}),
     IMTS.chamar('adm.conferir_implantacao', {}), IMTS.chamar('adm.cobertura_papeis', {}), IMTS.chamar('adm.integracoes', {}),
-    IMTS.chamar('adm.automacao_r_resumo', {}), IMTS.chamar('adm.agente_ia_resumo', {})]);
+    IMTS.chamar('adm.automacao_r_resumo', {}), IMTS.chamar('adm.agente_ia_resumo', {}), IMTS.chamar('adm.automacao_r_regras', {})]);
   falhas = {};
   if (p.status === 'fulfilled') dados = p.value || VAZIO; else falhas.painel = motivo(p.reason);
   if (a.status === 'fulfilled') agentes = a.value || []; else falhas.agentes = motivo(a.reason);
@@ -961,6 +1013,7 @@ async function recarregar() {
   if (ig.status === 'fulfilled') integ = ig.value; else falhas.integ = motivo(ig.reason);
   if (ar.status === 'fulfilled') automacaoR = ar.value; else falhas.automacao = motivo(ar.reason);
   if (ai.status === 'fulfilled') agenteIA = ai.value; else falhas.agente_ia = motivo(ai.reason);
+  if (rg.status === 'fulfilled') regrasR = rg.value; else falhas.regras = motivo(rg.reason);
   carregou = true;
   const msgs = Object.values(falhas);
   $('erro').hidden = !msgs.length; $('erro').textContent = msgs.length ? 'Parte da administração não carregou: ' + [...new Set(msgs)].join('; ') : '';
@@ -979,6 +1032,7 @@ document.addEventListener('click', e => {
   else if (t.dataset.editarConexao) abrirConexao(t.dataset.editarConexao);
   else if (t.dataset.editarParam) abrirParam(t.dataset.editarParam);
   else if (t.dataset.decidir) abrirDecisao(Number(t.dataset.decidir), t.dataset.d);
+  else if (t.dataset.regraVerbo) preencherRegra(t.dataset.regraVerbo);
   else if (t.dataset.modelo) baixarModelo(t.dataset.modelo);
   else if (t.dataset.assist) { assist = t.dataset.assist; desenhar(); document.querySelector(`[data-assist="${assist}"]`)?.focus(); }
   else if (t.dataset.testar) testar(t.dataset.testar, t);

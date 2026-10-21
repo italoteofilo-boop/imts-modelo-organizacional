@@ -52,8 +52,9 @@ export async function validarInitData(initData: string, token: string, agoraSeg:
 }
 
 const INSTRUCAO = {
-  sem_vinculo: "Este Telegram ainda não está ligado a uma pessoa do IMTS.OS. Pessoa da equipe: peça à Gestão (GE-07) para registrar o seu Telegram no seu cadastro; " +
-    "depois mande /quadro ao bot para conferir e abra a Mesa de novo pelo botão do bot. Parceiro ou cliente: gere o código no portal e envie /vincular CÓDIGO ao bot.",
+  sem_vinculo: "Este Telegram ainda não está ligado a uma pessoa do IMTS.OS. Pessoa da equipe: na Mesa da web, abra Ligar o Telegram, aceite o termo, gere o código " +
+    "e envie /vincular CÓDIGO ao bot numa conversa privada (sem acesso à Mesa, peça à Gestão, GE-07, para registrar o seu Telegram no cadastro); " +
+    "depois abra a Mesa de novo pelo botão do bot. Parceiro ou cliente: gere o código no portal e envie /vincular CÓDIGO ao bot.",
   externo: "Esta Mesa é da equipe do IMTS. Parceiros e clientes usam o portal (portal.html) e os comandos do bot: mande /ajuda.",
   sem_login: "Seu Telegram está ligado, mas o seu cadastro ainda não tem login no IMTS.OS. Entre uma vez em www.imts.global com a conta do Workspace e abra a Mesa de novo.",
   simulado: "Este Telegram está ligado a uma pessoa simulada (ambiente de teste). Use o bot do ambiente de teste.",

@@ -110,7 +110,7 @@ Deno.test({ name: "função telegram_app contra o banco de ensaio", sanitizeReso
 
     await t.step("Telegram sem vínculo: 403 com a instrução de vincular pelo bot", async () => {
       const { status, j } = await chama({ initData: await initData(TG_ESTRANHO), acao: "mesa" });
-      ok(status === 403 && j.codigo === "sem_vinculo" && j.instrucao.includes("/vincular") && j.instrucao.includes("GE-07") && !("cartoes" in j), JSON.stringify(j));
+      ok(status === 403 && j.codigo === "sem_vinculo" && j.instrucao.includes("/vincular") && j.instrucao.includes("Ligar o Telegram") && j.instrucao.includes("GE-07") && !("cartoes" in j), JSON.stringify(j));
     });
 
     await t.step("ação autorizada: concluir uma tarefa avulsa da pessoa", async () => {

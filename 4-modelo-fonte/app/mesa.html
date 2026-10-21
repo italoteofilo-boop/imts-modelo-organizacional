@@ -159,6 +159,17 @@ h1.marca { margin:0 auto 0 0; }
 .rasc-aviso { margin:0; padding:8px 10px; border-radius:8px; background:var(--wait-soft); color:var(--wait); font-size:13px; font-weight:700; }
 .rasc-texto { margin:0; padding:10px 12px; border:1px solid var(--hair); border-radius:8px; background:var(--ground); font-size:14px; line-height:1.5;
   white-space:pre-wrap; overflow-wrap:anywhere; max-height:320px; overflow-y:auto; }
+/* Ligar o Telegram (089): texto só por textContent */
+.bloco .tg-estado { display:flex; align-items:center; gap:8px; font-size:14px; color:var(--ink); font-weight:700; margin:0 0 6px; }
+.tg-ponto { width:10px; height:10px; border-radius:50%; background:var(--sec); flex:0 0 auto; }
+.tg-ponto.ligado { background:var(--ok); }
+#tg-corpo { display:flex; flex-direction:column; gap:8px; }
+.bloco .tg-termo { margin:0; padding:8px 10px; border-radius:8px; background:var(--ground); color:var(--ink); font-size:13px; line-height:1.45; }
+.tg-aceite { display:flex; gap:8px; align-items:flex-start; font-size:13px; }
+.tg-aceite input { margin-top:2px; width:18px; height:18px; flex:0 0 auto; }
+.tg-caixa { padding:10px 12px; border:1px dashed var(--accent); border-radius:10px; background:var(--accent-soft); display:flex; flex-direction:column; gap:6px; }
+.bloco .tg-caixa .nota { color:var(--ink); }
+.tg-codigo { font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:24px; font-weight:700; letter-spacing:.14em; color:var(--ink); overflow-wrap:anywhere; }
 </style>
 </head>
 <body>
@@ -203,6 +214,10 @@ h1.marca { margin:0 auto 0 0; }
         <p class="nota" id="ini-aviso" hidden>Escolha a empresa no cabeçalho para iniciar uma jornada.</p>
       </div>
       <div class="bloco" id="b-carga" hidden><h2>Carga do círculo</h2><p id="carga-nota"></p><table class="carga" id="carga"></table></div>
+      <section class="bloco" id="b-telegram" aria-labelledby="h-tg"><h2 id="h-tg">Ligar o Telegram</h2>
+        <p class="tg-estado" id="tg-estado" role="status"><span>Carregando o estado do Telegram…</span></p>
+        <div id="tg-corpo"></div>
+      </section>
       <div class="bloco"><h2>Recibos</h2><div class="lista" id="recibos" aria-live="polite"><p>Cada ação sua aparece aqui: o pedido, o que foi feito e o que precisa de você.</p></div></div>
     </aside>
   </main>
@@ -644,7 +659,7 @@ h1.marca { margin:0 auto 0 0; }
     $('aba-circulo').disabled = circSel == null; $('aba-jornada').disabled = circSel == null;
   }
   $('sel-circulo').onchange = async e => { circSel = +e.target.value; fechar(); await recarregar(); };
-  $('b-atual').onclick = async () => { const b = $('b-atual'); b.disabled = true; try { await recarregar(); } finally { b.disabled = false; } };
+  $('b-atual').onclick = async () => { const b = $('b-atual'); b.disabled = true; try { await recarregar(); await carregarTelegram(); } finally { b.disabled = false; } };
   document.addEventListener('imts:empresa', async () => { fechar(); await carregarCatalogo(); desenharCirculos(); marcarAba(); await recarregar(); });
 
   // arrastar (no computador; no celular, use o foco)
@@ -664,10 +679,96 @@ h1.marca { margin:0 auto 0 0; }
     r.dataset.theme = escuro ? 'light' : 'dark';
   };
 
+  // ---------- Ligar o Telegram (089): código de uso único, com aceite do termo; tudo por textContent ----------
+  let tg = { estado: 'carregando' }, tgCodigo = null, tgConfirmar = false, tgErro = '';
+  const hora = d => new Date(d).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const dataHora = d => new Date(d).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  async function carregarTelegram() {
+    try { tg = { estado: 'ok', dados: await IMTS.chamar('rt.tg_vinculo', {}) }; }
+    catch (e) { tg = { estado: 'erro', erro: e.message }; }
+    if (tg.dados?.ligado) tgCodigo = null;
+    desenharTelegram();
+  }
+  function desenharTelegram() {
+    const box = $('tg-corpo'), st = $('tg-estado');
+    if (tg.estado === 'carregando') { st.replaceChildren(el('span', {}, 'Carregando o estado do Telegram…')); box.replaceChildren(); return; }
+    if (tg.estado === 'erro') {
+      st.replaceChildren(el('span', {}, 'Estado indisponível'));
+      box.replaceChildren(el('p', { class: 'erro', role: 'alert' }, 'Não foi possível ler o vínculo do Telegram: ' + tg.erro)); return;
+    }
+    const d = tg.dados || {}, partes = [];
+    st.replaceChildren(el('span', { class: 'tg-ponto' + (d.ligado ? ' ligado' : ''), 'aria-hidden': 'true' }),
+      el('span', { id: 'tg-situacao' }, d.ligado ? 'Ligado' + (d.desde ? ' desde ' + dataHora(d.desde) : '') + (d.origem === 'cadastro' ? ' (pelo cadastro)' : '') : 'Desligado'));
+    if (tgErro) partes.push(el('p', { class: 'erro', role: 'alert', id: 'tg-erro', tabindex: '-1' }, tgErro));
+    if (d.ligado) {
+      partes.push(el('p', { class: 'nota' }, 'O bot do IMTS.OS fala com você no Telegram: /quadro, /mesa e os avisos das suas tarefas. Desligar revoga o consentimento dado no termo.'));
+      if (!tgConfirmar) {
+        const b = el('button', { type: 'button', class: 'btn', id: 'tg-desligar' }, 'Desligar o Telegram');
+        b.onclick = () => { tgConfirmar = true; desenharTelegram(); $('tg-sim')?.focus(); };
+        const a = el('div', { class: 'acoes' }); a.append(b); partes.push(a);
+      } else {
+        const q = el('p', { class: 'nota', id: 'tg-pergunta' }, 'Desligar o Telegram? O bot deixa de falar com você até um novo vínculo.');
+        const sim = el('button', { type: 'button', class: 'btn prim', id: 'tg-sim' }, 'Sim, desligar');
+        const nao = el('button', { type: 'button', class: 'btn', id: 'tg-nao' }, 'Cancelar');
+        sim.onclick = desligarTelegram;
+        nao.onclick = () => { tgConfirmar = false; desenharTelegram(); $('tg-desligar')?.focus(); };
+        const a = el('div', { class: 'acoes', role: 'group', 'aria-labelledby': 'tg-pergunta' }); a.append(sim, nao); partes.push(q, a);
+      }
+    } else {
+      partes.push(el('p', { class: 'nota' }, 'Receba e responda suas tarefas pelo bot do IMTS.OS. Leia o termo, aceite e gere um código de uso único.'));
+      partes.push(el('p', { class: 'tg-termo', id: 'tg-termo' }, d.termo || ''));
+      const lin = el('div', { class: 'tg-aceite' });
+      const cb = el('input', { type: 'checkbox', id: 'tg-aceite', 'aria-describedby': 'tg-termo' });
+      lin.append(cb, el('label', { for: 'tg-aceite' }, 'Li e aceito o termo de uso do Telegram'));
+      const bt = el('button', { type: 'button', class: 'btn prim', id: 'tg-gerar' }, tgCodigo ? 'Gerar outro código' : 'Gerar código');
+      bt.disabled = true;
+      cb.onchange = () => { bt.disabled = !cb.checked || !(d.restantes_hora > 0); };
+      bt.onclick = () => gerarCodigoTelegram(cb.checked);
+      const a = el('div', { class: 'acoes' }); a.append(bt);
+      partes.push(lin, a, el('p', { class: 'nota', id: 'tg-limite' }, d.restantes_hora > 0
+        ? `Cada código vale ${d.validade_minutos} minutos; você ainda pode gerar ${d.restantes_hora} nesta hora.`
+        : 'Limite de códigos desta hora atingido: espere um pouco para gerar outro.'));
+      if (tgCodigo && new Date(tgCodigo.expira) > new Date()) {
+        const caixa = el('div', { class: 'tg-caixa', id: 'tg-caixa' });
+        const stc = el('span', { class: 'nota', id: 'tg-copia-st', role: 'status' });
+        const cp = el('button', { type: 'button', class: 'btn', id: 'tg-copiar' }, 'Copiar o comando');
+        cp.onclick = () => copiar(tgCodigo.comando, stc);
+        const cf = el('button', { type: 'button', class: 'btn', id: 'tg-conferir' }, 'Já enviei: conferir');
+        cf.onclick = async () => { cf.disabled = true; await carregarTelegram(); if (!tg.dados?.ligado) $('tg-conferir')?.focus(); };
+        const ac = el('div', { class: 'acoes' }); ac.append(cp, cf, stc);
+        caixa.append(el('p', { class: 'nota' }, 'Seu código, de uso único, vale até ' + hora(tgCodigo.expira) + ':'),
+          el('code', { class: 'tg-codigo', id: 'tg-codigo' }, tgCodigo.codigo),
+          el('p', { class: 'nota', id: 'tg-instrucao' }, tgCodigo.instrucao || ''), ac);
+        partes.push(caixa);
+      } else if (d.codigo_aberto) {
+        partes.push(el('p', { class: 'nota', id: 'tg-aberto' }, 'Há um código em aberto até ' + hora(d.codigo_aberto.expira) + '. Se você não o tem mais, gere outro: o anterior deixa de valer.'));
+      }
+    }
+    box.replaceChildren(...partes);
+  }
+  async function gerarCodigoTelegram(aceite) {
+    tgErro = '';
+    try {
+      tgCodigo = await IMTS.chamar('rt.tg_codigo_gerar', { p_aceite: !!aceite });
+      recibo('feito', 'Ligar o Telegram', 'Código gerado; vale até ' + hora(tgCodigo.expira) + '.');
+    } catch (e) { tgErro = 'Não foi possível gerar o código: ' + e.message; recibo('precisa', 'Ligar o Telegram', 'Recusado: ' + e.message); }
+    await carregarTelegram();
+    ($('tg-copiar') || $('tg-erro'))?.focus?.();
+  }
+  async function desligarTelegram() {
+    tgErro = '';
+    try { const r = await IMTS.chamar('rt.tg_desvincular', {}); recibo('feito', 'Desligar o Telegram', r?.texto || ''); }
+    catch (e) { tgErro = 'Não foi possível desligar: ' + e.message; recibo('precisa', 'Desligar o Telegram', 'Recusado: ' + e.message); }
+    tgConfirmar = false; tgCodigo = null;
+    await carregarTelegram();
+    ($('tg-aceite') || $('tg-erro'))?.focus?.();
+  }
+
   // ---------- início ----------
   await carregarCatalogo();
   desenharCirculos(); marcarAba();
   await recarregar();
+  await carregarTelegram();
   document.body.dataset.pronto = '1';
 })().catch(e => { const f = document.getElementById('falha'); if (f) { f.textContent = 'Não foi possível abrir a mesa: ' + (e?.message || e); f.hidden = false; } });
 </script>

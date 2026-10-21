@@ -224,12 +224,65 @@ await caso('automação R: definir o modo de um verbo pede confirmação, grava 
   confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
 });
 
+await caso('automação R: lista de regras por verbo com os números do banco, filtro por modo e busca por verbo', async () => {
+  const p = await abrir('admin.html', 'admin'); await pronto(p); await aba(p, 'automacao'); await p.waitForSelector('#tab-regras-r');
+  const g = JSON.parse(sql('select adm.automacao_r_regras()'));
+  confere(g.total === Number(sql('select count(*) from adm.automacao_r_regra')), 'total da função');
+  confere(await p.$$eval('#tb-regras-r tr[data-regra]', t => t.length) === g.total, 'linhas da tabela');
+  const reg = g.regras.find(x => x.verbo === 'Registrar');
+  confere(reg.tarefas_r === Number(sql("select count(*) from org.tarefa where executor = 'R' and initcap(lower(split_part(btrim(nome), ' ', 1))) = 'Registrar'")), 'tarefas de Registrar');
+  const lr = await p.textContent('#tb-regras-r tr[data-regra="Registrar"]');
+  confere(lr.includes('registrar') && lr.includes(reg.descricao) && lr.includes(String(reg.tarefas_r)) && lr.includes('Trocar modo'), 'linha de Registrar: ' + lr);
+  confere((await p.$$eval('#tab-regras-r thead th', ts => ts.map(t => t.textContent).join('|'))) === 'Verbo|Modo|Descrição|Tarefas R|Atualizado|Ação', 'colunas');
+  await p.selectOption('#rg-modo', 'avisar');
+  const nAv = Number(sql("select count(*) from adm.automacao_r_regra where modo = 'avisar'"));
+  confere(await p.$$eval('#tb-regras-r tr[data-regra]', t => t.length) === nAv, 'filtro por modo avisar');
+  confere(await p.$$eval('#tb-regras-r tr[data-regra] .chip', cs => cs.every(c => c.textContent === 'avisar')), 'filtro deixou outro modo');
+  confere((await p.textContent('#rg-n')).includes(`${nAv} de ${g.total}`), 'contagem do filtro');
+  await p.selectOption('#rg-modo', ''); await p.click('#rg-busca'); await p.keyboard.type('regis');
+  confere(await p.evaluate(() => document.activeElement?.id) === 'rg-busca', 'busca perdeu o foco');
+  const vs = await p.$$eval('#tb-regras-r tr[data-regra]', t => t.map(x => x.dataset.regra));
+  confere(vs.length > 0 && vs.includes('Registrar') && vs.every(v => v.toLowerCase().includes('regis')), 'busca por verbo: ' + vs);
+  await p.fill('#rg-busca', 'zzzsemverbo'); confere((await p.textContent('#tb-regras-r')).includes('Nenhuma regra com esse filtro'), 'busca vazia');
+  confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
+});
+
+await caso('automação R: trocar modo pela linha pré-preenche o formulário e mantém a confirmação', async () => {
+  const letras = Array.from(marca.replace(/[^a-z]/g, '') + 'ghijkl').slice(0, 6).join('');
+  const verbo = 'Linhar' + letras, mot = 'troca pela linha ' + marca;
+  sql(`insert into adm.automacao_r_regra (verbo, modo, descricao) values ('${verbo}', 'humano', 'regra de teste da lista')`);
+  try {
+    const p = await abrir('admin.html', 'admin'); await pronto(p); await aba(p, 'automacao'); await p.waitForSelector('#tab-regras-r');
+    await p.fill('#rg-busca', verbo.toLowerCase());
+    const lin = `#tb-regras-r tr[data-regra="${verbo}"]`;
+    confere((await p.textContent(lin)).includes('carga inicial'), 'linha sem autor deveria dizer carga inicial');
+    await p.click(`${lin} [data-regra-verbo]`);
+    confere(await p.inputValue('#ar-verbo') === verbo && await p.inputValue('#ar-modo') === 'humano', 'formulário não pré-preenchido');
+    confere(await p.evaluate(() => document.activeElement?.id) === 'ar-modo', 'foco não foi ao modo');
+    await p.selectOption('#ar-modo', 'registrar'); await p.fill('#ar-mot', mot);
+    await p.click('#f-automacao-r button[type=submit]'); await p.waitForSelector('#f-ar-conf');
+    confere((await p.textContent('#foco')).includes(verbo) && (await p.textContent('#foco')).includes('registrar'), 'confirmação sem verbo e modo');
+    confere(sql(`select modo from adm.automacao_r_regra where verbo = '${verbo}'`) === 'humano', 'gravou antes de confirmar');
+    await p.click('#f-ar-conf button[type=submit]'); await semAviso(p);
+    await p.waitForFunction(t => document.getElementById('ar-st')?.textContent.includes(t), verbo, { timeout: 8000 });
+    confere(sql(`select modo from adm.automacao_r_regra where verbo = '${verbo}'`) === 'registrar', 'regra não gravada');
+    confere(sql(`select count(*) from adm.historico where objeto = 'automacao_r' and chave = '${verbo}' and motivo = '${mot}'`) === '1', 'sem histórico');
+    const nome = sql(`select i.nome from rt_chave.login l join rt_chave.identidade i on i.pseudonimo = l.pseudonimo where l.auth_uid = '00000000-0000-4000-8000-000000000001'`);
+    await p.waitForFunction(v => document.querySelector(`#tb-regras-r tr[data-regra="${v}"] .chip`)?.textContent === 'registrar', verbo, { timeout: 8000 });
+    const t = await p.textContent(lin);
+    confere(t.includes(mot) && t.includes(nome), 'linha não mostra a mudança: ' + t);
+    confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
+  } finally { sql(`delete from adm.automacao_r_regra where verbo = '${verbo}'`); }
+});
+
 await caso('automação R: quem não administra é recusado pelo banco', async () => {
   const p = await abrir('mesa.html', 'olga'); await p.waitForSelector('body[data-pronto="1"]');
   const r = await p.evaluate(async () => { try { await IMTS.chamar('adm.automacao_r_definir', { p_verbo: 'Registrar', p_modo: 'humano', p_motivo: 'tentativa' }); return 'aceito'; } catch (e) { return 'recusado: ' + e.message; } });
   confere(r.startsWith('recusado'), 'olga gravou: ' + r);
   const ia = await p.evaluate(async () => { try { await IMTS.chamar('adm.agente_ia_resumo', {}); return 'aceito'; } catch (e) { return 'recusado'; } });
   confere(ia === 'recusado', 'olga leu o resumo do agente de IA');
+  const rg = await p.evaluate(async () => { try { await IMTS.chamar('adm.automacao_r_regras', {}); return 'aceito'; } catch (e) { return 'recusado: ' + e.message; } });
+  confere(rg.startsWith('recusado'), 'olga leu a lista de regras: ' + rg);
   confere(sql("select modo from adm.automacao_r_regra where verbo = 'Registrar'") === 'registrar', 'regra mudou');
   p.erros.splice(0, p.erros.length, ...p.erros.filter(e => !/status of (400|403)/.test(e)));
   confere(p.erros.length === 0, 'erros ' + p.erros); await p.close();
@@ -240,6 +293,11 @@ await caso('automação e IA: axe em 390 e 1280, claro e escuro, com a confirma�
     const p = await abrir('admin.html', 'admin', { largura: l, esquema: e }); await pronto(p); await aba(p, 'automacao'); await p.waitForSelector('#sec-agente-ia');
     let v = await axe(p); confere(v.length === 0, `${l} ${e} axe ` + v);
     let lg = await p.evaluate(() => document.documentElement.scrollWidth); confere(lg <= l, `${l} ${e} rolagem horizontal ${lg}`);
+    confere(await p.$$eval('#tb-regras-r tr[data-regra]', t => t.length) > 0, `${l} ${e} lista de regras vazia`);
+    await p.selectOption('#rg-modo', 'encaminhar'); await p.fill('#rg-busca', 'e');
+    v = await axe(p); confere(v.length === 0, `${l} ${e} regras filtradas axe ` + v);
+    lg = await p.evaluate(() => document.documentElement.scrollWidth); confere(lg <= l, `${l} ${e} regras filtradas rolagem ${lg}`);
+    await p.click('#tb-regras-r [data-regra-verbo]'); confere(await p.inputValue('#ar-modo') === 'encaminhar', `${l} ${e} trocar modo não pré-preencheu`);
     await p.fill('#ar-verbo', 'Registrar'); await p.fill('#ar-mot', 'só conferir a tela'); await p.click('#f-automacao-r button[type=submit]'); await p.waitForSelector('#f-ar-conf');
     v = await axe(p); confere(v.length === 0, `${l} ${e} confirmação axe ` + v);
     lg = await p.evaluate(() => document.documentElement.scrollWidth); confere(lg <= l, `${l} ${e} confirmação rolagem ${lg}`);

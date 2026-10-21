@@ -98,6 +98,18 @@ Assinar e recusar vão pela porta única (`doc.assinatura_assinar`, `ext.assinat
 
 A função confere a assinatura do `initData` (HMAC-SHA-256, chave derivada de `WebAppData` e do token do bot no cofre) e o `auth_date` (`telegram_app.validade_segundos`), acha a pessoa (`rt.tg_app_identificar`) e chama `rt.tg_mesa` / `rt.tg_agir` pela porta única com o login dela. Erros: `401` assinatura ou abertura vencida, `403` sem vínculo (`codigo` e `instrucao`) ou recusa do banco, `429` limite (`telegram_app.tentativas_max`, `telegram_app.janela_minutos`, `telegram_app.pedidos_minuto`), `503` sem o token do bot. Aprovação de pagamento (GE-04 e GE-05) não sai pelo Telegram: o cartão vem com `so_na_web`. Tudo em `adm.registro_servidor`, com hash do IP ou do usuário do Telegram, nunca o valor em claro.
 
+## Ligar o Telegram na Mesa (089)
+
+Bloco "Ligar o Telegram" na periferia de `mesa.html` (só equipe). O caminho da Gestão (GE-07) continua valendo para quem não usa a Mesa.
+
+| chamada | uso na tela |
+| --- | --- |
+| `rt.tg_vinculo()` | `{ ligado, desde, origem ('mesa' ou 'cadastro'), codigo_aberto{ expira }, validade_minutos, limite_hora, restantes_hora, termo }`: estado (ligado ou desligado) e o termo; nunca o número do Telegram nem o código |
+| `rt.tg_codigo_gerar(p_aceite)` | só com a caixa "Li e aceito" marcada (`p_aceite: true`; o banco recusa sem aceite e acima de `telegram.vinculo_codigos_hora`); devolve `{ codigo, comando, expira, validade_minutos, instrucao }` uma única vez; a tela mostra o código, "Copiar o comando" e "Já enviei: conferir" |
+| `rt.tg_desvincular()` | "Desligar o Telegram" com confirmação na própria tela ("Sim, desligar" ou "Cancelar"); revoga o consentimento |
+
+O bot aceita `/vincular CÓDIGO` da equipe só em conversa privada (em grupo o código é cancelado) e recusa código vencido, usado, cancelado, de pessoa já ligada a outro Telegram (desligar antes) ou enviado de um Telegram que já é de outra pessoa ou do portal. Termo, código e instrução entram por `textContent`. Parâmetros: `telegram.vinculo_codigo_minutos` (15), `telegram.vinculo_codigos_hora` (5), `telegram.vinculo_termo`.
+
 ## Testes
 
 `testes/apoio.mjs` abre a página com um token de ensaio (sem Google) contra o PostgREST local. Cada módulo tem `testes/t_<modulo>.mjs`. Pessoas do ensaio: `admin`, `olga` (Operações), `lia` (líder de Operações), `rui` (Relações), `clara` (cliente), `paulo` (parceiro), `curioso` (sem cadastro).
@@ -122,6 +134,7 @@ Aba "Automação e IA" de `admin.html` (só administração):
 | --- | --- |
 | `adm.automacao_r_resumo()` | `{ ligado, modo_assistido, tarefas_r, por_modo{ registrar, encaminhar, avisar, humano }, automaticas, humanas, compostas_humanas, verbos_sem_regra[] }`: totais e tabela por modo |
 | `adm.automacao_r_definir(p_verbo, p_modo, p_motivo)` | formulário "Definir o modo de um verbo": verbo de uma palavra, modo `registrar`, `encaminhar`, `avisar` ou `humano`, motivo obrigatório; a tela abre a confirmação antes de gravar e o banco recusa quem não administra; fica em `adm.historico` (objeto `automacao_r`) |
+| `adm.automacao_r_regras()` (091) | `{ total, por_modo{ registrar, encaminhar, avisar, humano }, regras[{ verbo, modo, descricao, tarefas_r, compostas_com_pessoa, atualizado_em, atualizado_por, atualizado_por_nome }] }`, ordem: mais tarefas R primeiro, depois o verbo. Só administração (`adm._so_admin`) ou chamada de serviço; leitura. Seção "Regras por verbo": tabela Verbo, Modo, Descrição, Tarefas R (com quantas compostas ficam com a pessoa), Atualizado (quando e por quem; sem autor, "carga inicial"), Ação. Filtro por modo (`#rg-modo`) e busca por verbo (`#rg-busca`) redesenham só o corpo da tabela (`#tb-regras-r`) e a contagem (`#rg-n`). "Trocar modo" (`data-regra-verbo`) pré-preenche o formulário "Definir o modo de um verbo" com o verbo e o modo atual e leva o foco ao modo; gravar segue pela mesma confirmação de `adm.automacao_r_definir` |
 | `adm.agente_ia_resumo()` | leitura: ligado, autônomo ou com revisão, modo assistido, disponível (ou `motivo_indisponivel`), provedor e chaves, uso de hoje contra os limites, fila por estado e por desfecho, revisões abertas na Mesa, tokens em 30 dias, motivos de queda para o cartão humano |
 
 Os parâmetros (`motor.automacao_r`, `motor.agente_ia*`) mudam na aba Parâmetros; as chaves da IA, na aba Integrações. O painel de Google Docs (`doc.painel_docs_google`, 084) fica no Acervo (`acervo.html`).
